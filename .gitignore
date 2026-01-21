@@ -1,0 +1,31 @@
+# FICHIERS SENSIBLES - NE JAMAIS COMMIT
+project_config.json
+*.env
+.env
+.env.local
+.secrets
+credentials.json
+
+# TOKENS ET CLÉS
+*.key
+*.pem
+*.crt
+*.pfx
+*.p12
+
+# CONFIGURATIONS LOCALES
+config.local.*
+settings.local.*
+
+# DOSSIERS SYSTÈME
+node_modules/
+.vscode/
+.idea/
+__pycache__/
+.DS_Store
+
+# BACKUPS ET TEMPORAIRES
+backup_*
+temp_*
+*.bak
+*.backup
