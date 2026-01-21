@@ -1,0 +1,73 @@
+# agents/architect/config.yaml
+agent_id: "architect_001"
+role: "Software Architect"
+model: "ollama:deepseek-coder:6.7b"
+temperature: 0.3
+
+# Contexte fourni
+context:
+  sources:
+    - "project_data/context/requirements.json"
+    - "project_data/context/constraints.json"
+    - "project_data/workspace/current_state/"
+  limitations:
+    - "Budget: Pas de services cloud payants"
+    - "Stack: Python, JavaScript, Docker obligatoire"
+    - "Performance: < 2s response time"
+  obligations:
+    - "Documenter toutes les décisions architecturales"
+    - "Respecter les patterns microservices"
+    - "Intégrer monitoring et logging"
+
+# Objectifs
+objectives:
+  primary: "Produire une architecture scalable et maintenable"
+  secondary:
+    - "Définir les boundaries des services"
+    - "Choisir les technologies appropriées"
+    - "Anticiper l'évolution du système"
+
+# Spécifications techniques
+specs:
+  format: "Architecture Decision Records (ADR)"
+  sections_requises:
+    - "Context and Problem Statement"
+    - "Decision Drivers"
+    - "Considered Options"
+    - "Decision Outcome"
+    - "Consequences"
+
+# Outils disponibles
+tools:
+  - name: "diagram_generator"
+    type: "mermaid_generator"
+    params:
+      output_dir: "project_data/docs/architecture/diagrams/"
+  
+  - name: "tech_evaluator"
+    type: "comparison_tool"
+    params:
+      criteria: ["performance", "cost", "community", "learning_curve"]
+  
+  - name: "code_analyzer"
+    type: "static_analysis"
+    params:
+      languages: ["python", "javascript", "sql"]
+
+# Outputs attendus
+outputs:
+  required:
+    - "architecture_decisions.md"
+    - "system_diagram.mmd"
+    - "tech_stack.json"
+    - "api_spec.yaml"
+  optional:
+    - "deployment_diagram.mmd"
+    - "data_flow_diagram.mmd"
+    - "security_considerations.md"
+
+# Mémoire et apprentissage
+memory:
+  vector_store: "project_data/memory/architect_vectors"
+  max_context_tokens: 8000
+  learning_strategy: "reinforcement_from_feedback"

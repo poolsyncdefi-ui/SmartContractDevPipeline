@@ -1,0 +1,71 @@
+graph TB
+    subgraph "Niveau 1: Agents Principaux (9)"
+        A1[Agent Architecte]
+        A2[Agent Codeur]
+        A3[Agent Smart Contract]
+        A4[Agent Communication]
+        A5[Agent Documenteur]
+        A6[Agent Formal Verification]
+        A7[Agent Frontend Web3]
+        A8[Agent Quality Metrics]
+        A9[Agent Tester]
+    end
+    
+    subgraph "Niveau 2: Sous-Agents Spécialisés (17)"
+        SA1[Sous-Agent Architecture Cloud]
+        SA2[Sous-Agent Architecture Blockchain]
+        SA3[Sous-Agent Architecture Microservices]
+        
+        SC1[Sous-Agent Backend]
+        SC2[Sous-Agent Frontend]
+        SC3[Sous-Agent DevOps]
+        
+        SS1[Sous-Agent Solidity]
+        SS2[Sous-Agent Security]
+        SS3[Sous-Agent Gas Optimizer]
+        SS4[Sous-Agent Formal Verification]
+        
+        SF1[Sous-Agent React/Next.js]
+        SF2[Sous-Agent Web3 Integration]
+        
+        ST1[Sous-Agent Unit Testing]
+        ST2[Sous-Agent Integration Testing]
+        ST3[Sous-Agent E2E Testing]
+        ST4[Sous-Agent Fuzzing]
+    end
+    
+    subgraph "Niveau 3: Micro-Agents"
+        MA1[Micro-Agent Database]
+        MA2[Micro-Agent Cache]
+        MA3[Micro-Agent API Gateway]
+        MA4[Micro-Agent Authentication]
+        MA5[Micro-Agent Monitoring]
+    end
+    
+    subgraph "Système de Communication"
+        ZMQ[ZeroMQ Message Bus]
+        REDIS[Redis Pub/Sub]
+        ES[Event System]
+    end
+    
+    A1 --> SA1 & SA2 & SA3
+    A2 --> SC1 & SC2 & SC3
+    A3 --> SS1 & SS2 & SS3 & SS4
+    A7 --> SF1 & SF2
+    A9 --> ST1 & ST2 & ST3 & ST4
+    
+    SA3 --> MA1 & MA2 & MA3 & MA4 & MA5
+    
+    ZMQ --> A1 & A2 & A3 & A4 & A5 & A6 & A7 & A8 & A9
+    ZMQ --> SA1 & SA2 & SA3 & SC1 & SC2 & SC3 & SS1 & SS2 & SS3 & SS4
+    ZMQ --> SF1 & SF2 & ST1 & ST2 & ST3 & ST4
+    
+    classDef mainAgent fill:#e3f2fd
+    classDef subAgent fill:#f3e5f5
+    classDef microAgent fill:#e8f5e8
+    classDef comm fill:#fff3e0
+    
+    class A1,A2,A3,A4,A5,A6,A7,A8,A9 mainAgent
+    class SA1,SA2,SA3,SC1,SC2,SC3,SS1,SS2,SS3,SS4,SF1,SF2,ST1,ST2,ST3,ST4 subAgent
+    class MA1,MA2,MA3,MA4,MA5 microAgent
+    class ZMQ,REDIS,ES comm

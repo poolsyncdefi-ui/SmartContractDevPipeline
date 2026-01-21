@@ -1,24 +1,16 @@
 # Fichiers sensibles
 project_config.json
-*.env
-.env
-.env.local
-.env.*.local
+*.backup
+*.bak
 
-# Secrets et tokens
-secrets.json
-credentials.json
-*.key
-*.pem
-*.crt
-*.pfx
+# Fichiers générés
+PROJECT_SHARE_*
+GISTS_INDEX*
+GITHUB_PUBLISH_*
 
 # Dossiers système
 node_modules/
 .vscode/
 .idea/
 __pycache__/
-.DS_Store
-
-# Fichiers générés par le script
-backup_*
+.env
