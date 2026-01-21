@@ -1,0 +1,60 @@
+graph TB
+    subgraph "Pipeline Principal"
+        P1[Phase 1: Conception<br/>Smart Contract]
+        P2[Phase 2: Développement<br/>& Test Formel]
+        P3[Phase 3: Frontend<br/>Integration]
+        P4[Phase 4: Simulation<br/>& Sécurité]
+        P5[Phase 5: Déploiement<br/>& Monitoring]
+        
+        P1 --> P2
+        P2 --> P3
+        P3 --> P4
+        P4 --> P5
+    end
+    
+    subgraph "Agents Smart Contracts"
+        ASC[Agent Smart Contract]
+        AFT[Agent Formal Test]
+        AGAS[Agent Gas Optimizer]
+        ASEC[Agent Sécurité SC]
+    end
+    
+    subgraph "Agents Frontend"
+        AFE[Agent Frontend]
+        AWEB3[Agent Web3 Integration]
+        ATEST[Agent Test Frontend]
+    end
+    
+    subgraph "Système Anti-Bugs"
+        SAB[Simulation Engine]
+        FZZ[Fuzzing System]
+        TRC[Trace Analyzer]
+        VER[Formal Verifier]
+    end
+    
+    P1 --> ASC
+    P1 --> AFT
+    
+    ASC --> AGAS
+    ASC --> ASEC
+    
+    P2 --> FZZ
+    P2 --> VER
+    
+    P3 --> AFE
+    P3 --> AWEB3
+    
+    P4 --> SAB
+    P4 --> TRC
+    
+    P5 --> ATEST
+    
+    classDef phase fill:#e3f2fd
+    classDef scAgent fill:#f3e5f5
+    classDef feAgent fill:#e8f5e8
+    classDef antiBug fill:#ffebee
+    
+    class P1,P2,P3,P4,P5 phase
+    class ASC,AFT,AGAS,ASEC scAgent
+    class AFE,AWEB3,ATEST feAgent
+    class SAB,FZZ,TRC,VER antiBug

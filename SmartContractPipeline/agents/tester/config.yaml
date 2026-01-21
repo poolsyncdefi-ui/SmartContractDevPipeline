@@ -1,0 +1,101 @@
+# agents/tester/config.yaml
+agent_id: "tester_001"
+role: "QA Automation Engineer"
+model: "ollama:qwen2.5:7b"
+temperature: 0.4  # Plus créatif pour les edge cases
+
+# Contexte fourni
+context:
+  code_to_test:
+    path: "project_data/workspace/src/"
+    changed_files: true
+  test_strategy:
+    file: "project_data/context/test_strategy.md"
+  quality_gates:
+    min_coverage: 80
+    max_complexity: 15
+  
+# Limitations
+limitations:
+  test_types: ["unit", "integration", "e2e", "performance"]
+  test_frameworks: ["pytest", "jest", "cypress"]
+  execution_time: "< 10min pour le test suite"
+  resources: "Pas de services externes payants"
+
+# Obligations
+obligations:
+  - "Tester les happy paths et edge cases"
+  - "Vérifier les regressions"
+  - "Documenter les bugs clairement"
+  - "Maintenir les tests à jour"
+  - "Générer des données de test réalistes"
+
+# Objectifs
+objectives:
+  primary: "Assurer la qualité du code produit"
+  secondary:
+    - "Détecter les bugs avant la production"
+    - "Maintenir une bonne couverture de tests"
+    - "Optimiser le temps d'exécution des tests"
+
+# Spécifications de test
+test_specs:
+  unit_tests:
+    framework: "pytest"
+    coverage: ">= 80%"
+    mocking: "unittest.mock"
+  integration_tests:
+    framework: "pytest"
+    test_data: "fixtures/"
+    cleanup: true
+  e2e_tests:
+    framework: "selenium | cypress"
+    browser: "chrome headless"
+
+# Outils disponibles
+tools:
+  - name: "test_generator"
+    type: "auto_test_gen"
+    params:
+      framework: "pytest"
+      style: "given-when-then"
+  
+  - name: "test_executor"
+    type: "test_runner"
+    params:
+      parallel: true
+      retry_failed: 2
+  
+  - name: "coverage_tool"
+    type: "coverage.py | istanbul"
+  
+  - name: "bug_reporter"
+    type: "issue_tracker"
+    params:
+      template: "project_data/templates/bug_report.md"
+  
+  - name: "performance_tester"
+    type: "locust | k6"
+    params:
+      virtual_users: 100
+      duration: "5m"
+
+# Outputs attendus
+outputs:
+  test_reports:
+    - "test_results.json"
+    - "coverage_report.xml"
+    - "performance_metrics.json"
+  artifacts:
+    - "test_cases.md"
+    - "bug_reports/"
+    - "test_data/"
+  notifications:
+    slack_channel: "#qa-alerts"
+    threshold: "coverage < 80% OR tests_failed > 0"
+
+# Intégration continue
+ci_integration:
+  trigger: "on_push_or_pr"
+  stages: ["test", "coverage", "report"]
+  blockers: ["coverage_below_threshold", "critical_bugs"]

@@ -1,0 +1,53 @@
+graph TB
+    subgraph "Phase 0: Prérequis"
+        P0A[Installation<br/>Ollama]
+        P0B[Installation<br/>Node.js/Python]
+        P0C[Configuration<br/>Blockchain Tools]
+        P0D[Clonage<br/>Repository]
+    end
+    
+    subgraph "Phase 1: Setup Local"
+        P1A[Initialisation<br/>Projet]
+        P1B[Déploiement<br/>Agents IA]
+        P1C[Configuration<br/>Mémoire]
+        P1D[Tests<br/>Système]
+    end
+    
+    subgraph "Phase 2: Pipeline Dev"
+        P2A[Spécifications<br/>Formelles]
+        P2B[Génération<br/>Smart Contracts]
+        P2C[Vérification<br/>& Fuzzing]
+        P2D[Génération<br/>Frontend]
+    end
+    
+    subgraph "Phase 3: Déploiement"
+        P3A[Build<br/>& Optimisation]
+        P3B[Tests<br/>Multi-Chaîne]
+        P3C[Déploiement<br/>Smart Contracts]
+        P3D[Déploiement<br/>Frontend]
+    end
+    
+    subgraph "Phase 4: Monitoring"
+        P4A[Monitoring<br/>Sécurité]
+        P4B[Analytics<br/>Performance]
+        P4C[Alertes<br/>Automatiques]
+        P4D[Retro<br/>& Amélioration]
+    end
+    
+    P0A --> P0B --> P0C --> P0D
+    P0D --> P1A --> P1B --> P1C --> P1D
+    P1D --> P2A --> P2B --> P2C --> P2D
+    P2D --> P3A --> P3B --> P3C --> P3D
+    P3D --> P4A --> P4B --> P4C --> P4D
+    
+    classDef prerequis fill:#f3e5f5
+    classDef setup fill:#e8f5e8
+    classDef dev fill:#fff3e0
+    classDef deploy fill:#fce4ec
+    classDef monitor fill:#e3f2fd
+    
+    class P0A,P0B,P0C,P0D prerequis
+    class P1A,P1B,P1C,P1D setup
+    class P2A,P2B,P2C,P2D dev
+    class P3A,P3B,P3C,P3D deploy
+    class P4A,P4B,P4C,P4D monitor

@@ -1,0 +1,35 @@
+graph LR
+    subgraph "Étape 1: Prévention"
+        S1[Spécifications<br/>Formelles]
+        S2[Génération<br/>de Contrats]
+        S3[Vérification<br/>Statique]
+    end
+    
+    subgraph "Étape 2: Test Avancé"
+        T1[Fuzzing<br/>Automatique]
+        T2[Simulation<br/>Multi-Chaîne]
+        T3[Analyse<br/>de Traces]
+    end
+    
+    subgraph "Étape 3: Validation"
+        V1[Formal<br/>Verification]
+        V2[Test d'Invariance]
+        V3[Vérification<br/>Sécurité]
+    end
+    
+    S1 --> S2
+    S2 --> S3
+    S3 --> T1
+    T1 --> T2
+    T2 --> T3
+    T3 --> V1
+    V1 --> V2
+    V2 --> V3
+    
+    classDef prevention fill:#e8f5e8
+    classDef testing fill:#fff3e0
+    classDef validation fill:#fce4ec
+    
+    class S1,S2,S3 prevention
+    class T1,T2,T3 testing
+    class V1,V2,V3 validation

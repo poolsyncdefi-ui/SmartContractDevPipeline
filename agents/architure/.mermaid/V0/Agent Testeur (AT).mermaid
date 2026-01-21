@@ -1,0 +1,49 @@
+graph LR
+    subgraph "Inputs"
+        CODE[Code à<br/>tester]
+        SPECS[Test<br/>Specifications]
+        HIST[Test History<br/>& Bugs]
+    end
+    
+    subgraph "Agent Testeur"
+        TPG[Test Plan<br/>Generation]
+        TCG[Test Case<br/>Generation]
+        TEX[Test<br/>Execution]
+        TREP[Test<br/>Reporting]
+    end
+    
+    subgraph "Test Types"
+        UT[Unit Tests]
+        IT[Integration<br/>Tests]
+        E2E[E2E Tests]
+        PERF[Performance<br/>Tests]
+    end
+    
+    subgraph "Outputs"
+        TR[Test<br/>Results]
+        BUG[Bug<br/>Reports]
+        COV[Coverage<br/>Report]
+        REC[Test<br/>Recommendations]
+    end
+    
+    CODE --> TPG
+    SPECS --> TPG
+    HIST --> TPG
+    
+    TPG --> TCG
+    TCG --> TEX
+    
+    TEX --> UT
+    TEX --> IT
+    TEX --> E2E
+    TEX --> PERF
+    
+    UT --> TREP
+    IT --> TREP
+    E2E --> TREP
+    PERF --> TREP
+    
+    TREP --> TR
+    TREP --> BUG
+    TREP --> COV
+    TREP --> REC
