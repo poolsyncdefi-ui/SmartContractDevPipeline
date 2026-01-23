@@ -1,0 +1,124 @@
+**********************
+PowerShell transcript start
+Start time: 20260122194403
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[2026-01-22 19:44:03] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:44:03] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+ParserError: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1194
+Line |
+1194 |  }  # Fin de la fonction Main
+     |  ~
+     | Unexpected token '}' in expression or statement.
+ParserError: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1194
+Line |
+1194 |  }  # Fin de la fonction Main
+     |  ~
+     | Unexpected token '}' in expression or statement.
+
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION DES PREREQUIS
+Version: 2.0.0
+= * 70
+
+TEST: Début de la fonction Main
+Test-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1026
+Line |
+1026 |      if (-not (Test-Path $Config.LogDir)) {
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~
+     | Value cannot be null. (Parameter 'The provided Path argument was null or an empty collection.')
+Test-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1026
+Line |
+1026 |      if (-not (Test-Path $Config.LogDir)) {
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~
+     | Value cannot be null. (Parameter 'The provided Path argument was null or an empty collection.')
+
+Création du dossier logs...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(New-Item): "Cannot bind argument to parameter 'Path' because it is null."
+New-Item: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1028
+Line |
+1028 |          New-Item -Path $Config.LogDir -ItemType Directory -Force | Ou …
+     |                         ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+New-Item: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1028
+Line |
+1028 |          New-Item -Path $Config.LogDir -ItemType Directory -Force | Ou …
+     |                         ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Join-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1032
+Line |
+1032 |      $logFile = Join-Path $Config.LogDir "install-$(Get-Date -Format ' …
+     |                           ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1032
+Line |
+1032 |      $logFile = Join-Path $Config.LogDir "install-$(Get-Date -Format ' …
+     |                           ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+
+Log:
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Start-Transcript): "Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+Start-Transcript: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1034
+Line |
+1034 |      Start-Transcript -Path $logFile -Append
+     |                             ~~~~~~~~
+     | Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again.
+Start-Transcript: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1034
+Line |
+1034 |      Start-Transcript -Path $logFile -Append
+     |                             ~~~~~~~~
+     | Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and
+     | then try the command again.
+
+[2026-01-22 19:50:46] [Info] Debut de l'installation des prerequis
+[2026-01-22 19:50:46] [Info] Repertoire du projet:
+[2026-01-22 19:50:46] [Info] ETAPE 1: Verification du systeme
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 19:50:46] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 19:50:46] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 19:50:46] [Info] Build Windows: 19045
+[2026-01-22 19:50:46] [Success] [OK] Version Windows compatible
+[2026-01-22 19:50:46] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Vérification de Chocolatey...
+[2026-01-22 19:50:47] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 19:50:47] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 19:50:47] [Info] ----------------------------------------
+[2026-01-22 19:50:47] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 19:50:47] [Info] Installation de python311...
+[2026-01-22 19:50:48] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:48] [Info] Installation de nodejs-lts...
+[2026-01-22 19:50:49] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:49] [Info] Installation de git...
+[2026-01-22 19:50:50] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:50] [Info] Installation de docker-desktop...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+**********************
+PowerShell transcript end
+End time: 20260122195050
+**********************

@@ -1,0 +1,163 @@
+**********************
+PowerShell transcript start
+Start time: 20260122173552
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[2026-01-22 17:35:52] [Info] Debut de l'installation des prerequis
+[2026-01-22 17:35:52] [Info] Repertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 17:35:52] [Info] ETAPE 1: Verification du systeme
+[2026-01-22 17:35:52] [Info] ----------------------------------------
+[2026-01-22 17:35:52] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 17:35:52] [Info] Build Windows: 19045
+[2026-01-22 17:35:52] [Success] [OK] Version Windows compatible
+[2026-01-22 17:35:52] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 17:35:52] [Info] ----------------------------------------
+[2026-01-22 17:35:52] [Info] Vérification de Chocolatey...
+[2026-01-22 17:35:52] [Info] Installation de Chocolatey...
+Forcing web requests to allow TLS v1.2 (Required for requests to Chocolatey.org)
+Getting latest version of the Chocolatey package for download.
+Not using proxy.
+Getting Chocolatey from https://community.chocolatey.org/api/v2/package/chocolatey/2.6.0.
+Downloading https://community.chocolatey.org/api/v2/package/chocolatey/2.6.0 to C:\Users\elega\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip
+Not using proxy.
+Extracting C:\Users\elega\AppData\Local\Temp\chocolatey\chocoInstall\chocolatey.zip to C:\Users\elega\AppData\Local\Temp\chocolatey\chocoInstall
+Installing Chocolatey on the local machine
+WARNING: It's very likely you will need to close and reopen your shell 
+  before you can use choco.
+WARNING: Not setting tab completion: Profile file does not exist at 'C:\Users\elega\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1'.
+Ensuring Chocolatey commands are on the path
+Ensuring chocolatey.nupkg is in the lib folder
+[2026-01-22 17:36:05] [Success] [OK] Chocolatey installé avec succès
+[2026-01-22 17:36:05] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 17:36:05] [Info] ----------------------------------------
+[2026-01-22 17:36:05] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 17:36:05] [Info] Installation de python311...
+[2026-01-22 17:36:06] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:06] [Info] Installation de nodejs-lts...
+[2026-01-22 17:36:07] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:07] [Info] Installation de git...
+[2026-01-22 17:36:08] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:08] [Info] Installation de docker-desktop...
+[2026-01-22 17:36:09] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:09] [Info] Installation de vscode...
+[2026-01-22 17:36:10] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:10] [Info] Installation de postman...
+[2026-01-22 17:36:11] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:11] [Info] Installation de curl...
+[2026-01-22 17:36:12] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:12] [Info] Installation de 7zip...
+[2026-01-22 17:36:12] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:12] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 17:36:13] [Info] 
+ETAPE 4: Configuration de Python
+[2026-01-22 17:36:13] [Info] ----------------------------------------
+[2026-01-22 17:36:13] [Info] Configuration de Python...
+PS>TerminatingError(): "The pipeline has been stopped."
+[2026-01-22 17:36:13] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 17:36:13] [Info] Configuration de l'environnement Python...
+[2026-01-22 17:36:13] [Info] Création de l'environnement virtuel...
+[2026-01-22 17:36:18] [Success] [OK] Environnement virtuel créé
+[2026-01-22 17:36:18] [Success] [OK] Environnement virtuel activé
+[2026-01-22 17:36:18] [Info] Mise à jour de pip...
+[2026-01-22 17:36:21] [Success] [OK] Pip mis à jour
+[2026-01-22 17:36:21] [Info] Installation des dépendances Python...
+[2026-01-22 17:36:21] [Warning] Fichier requirements.txt non trouvé, création...
+[2026-01-22 17:36:21] [Success] [OK] Fichier requirements.txt généré
+[2026-01-22 17:36:21] [Info] Installation depuis requirements.txt...
+[2026-01-22 17:41:19] [Info] Installation des dépendances pour les agents IA...
+[2026-01-22 17:41:21] [Success]   [OK] langchain-ollama
+[2026-01-22 17:41:25] [Success]   [OK] langchain-openai
+[2026-01-22 17:41:26] [Success]   [OK] langchain-community
+[2026-01-22 17:41:49] [Success]   [OK] faiss-cpu
+[2026-01-22 17:44:08] [Success]   [OK] chromadb
+[2026-01-22 17:44:09] [Success]   [OK] tiktoken
+[2026-01-22 17:44:09] [Success] [OK] Toutes les dépendances installées
+[2026-01-22 17:44:09] [Info] 
+ETAPE 5: Installation de Node.js
+[2026-01-22 17:44:09] [Info] ----------------------------------------
+[2026-01-22 17:44:09] [Info] Configuration de Node.js...
+[2026-01-22 17:44:09] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 17:44:09] [Info] 
+ETAPE 6: Installation d'Ollama (pour les agents IA)
+[2026-01-22 17:44:09] [Info] ----------------------------------------
+[2026-01-22 17:44:09] [Info] Installation d'Ollama...
+[2026-01-22 17:44:09] [Info] Téléchargement d'Ollama...
+[2026-01-22 18:16:47] [Info] Installation en cours...
+[2026-01-22 18:21:55] [Info] Démarrage du service...
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: An error occurred trying to start process 'ollama' with working directory 'D:\Web3Projects\SmartContractDevPipeline'. Le fichier spécifié est introuvable."
+[2026-01-22 18:22:10] [Error] Échec de l'installation d'Ollama: This command cannot be run due to the error: An error occurred trying to start process 'ollama' with working directory 'D:\Web3Projects\SmartContractDevPipeline'. Le fichier spécifié est introuvable.
+[2026-01-22 18:22:10] [Warning] Vous pouvez l'installer manuellement depuis: https://ollama.com
+[2026-01-22 18:22:10] [Warning] Ollama n'a pas pu etre installe
+[2026-01-22 18:22:10] [Warning] Les agents IA fonctionneront en mode limite.
+[2026-01-22 18:22:10] [Info] 
+ETAPE 7: Installation de Git
+[2026-01-22 18:22:10] [Info] ----------------------------------------
+[2026-01-22 18:22:10] [Info] Configuration de Git...
+[2026-01-22 18:22:10] [Success] [OK] Git déjà installé: git version 2.52.0.windows.1
+[2026-01-22 18:22:10] [Info] 
+ETAPE 8: Validation des installations
+[2026-01-22 18:22:10] [Info] ----------------------------------------
+[2026-01-22 18:22:10] [Info] Validation de toutes les installations...
+[2026-01-22 18:22:10] [Success] [OK] PowerShell: Version PowerShell: 7.6.0-preview.6
+[2026-01-22 18:22:10] [Success] [OK] Python: Python: Python 3.11.9
+[2026-01-22 18:22:10] [Success] [OK] Python Environment: Environnement virtuel: [OK]
+[2026-01-22 18:22:11] [Success] [OK] Node.js: Node.js: v22.10.0
+PS>TerminatingError(): "The term 'ollama' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again."
+[2026-01-22 18:22:11] [Warning] [FAIL] Ollama: Erreur de test (The term 'ollama' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.)
+[2026-01-22 18:22:11] [Success] [OK] Git: Git: git version 2.52.0.windows.1
+[2026-01-22 18:22:11] [Success] [OK] Docker: Docker: Docker version 29.1.3, build f52814d
+[2026-01-22 18:22:11] [Info] 
+RESUME DES INSTALLATIONS:
+[2026-01-22 18:22:11] [Info] --------------------------------------------------
+[2026-01-22 18:22:11] [Success] REQUIS: 5/5
+[2026-01-22 18:22:11] [Success] OPTIONNEL: 4/2
+[2026-01-22 18:22:11] [Success] 
+[SUCCESS] TOUS LES PREREQUIS REQUIS SONT INSTALLES
+[2026-01-22 18:22:11] [Success] Le projet SmartContractDevPipeline est pret a etre utilise.
+[2026-01-22 18:22:11] [Info] 
+PROCHAINES ETAPES:
+[2026-01-22 18:22:11] [Info] ----------------------------------------
+[2026-01-22 18:22:11] [Info] 1. Verifiez que l'environnement virtuel est active
+[2026-01-22 18:22:11] [Info] 2. Lancez le pipeline principal: python -m workflow.pipeline
+[2026-01-22 18:22:11] [Info] 3. Consultez la documentation dans le dossier 'docs/'
+[2026-01-22 18:22:11] [Info] 4. Configurez vos cles API dans '.env' (voir '.env.example')
+[2026-01-22 18:22:11] [Info] 5. Testez les agents individuels: python agents/architect/main.py
+[2026-01-22 18:22:11] [Info] 6. Pour desactiver l'environnement: deactivate
+[2026-01-22 18:22:11] [Info] 
+COMMANDES UTILES:
+[2026-01-22 18:22:11] [Info] ----------------------------------------
+[2026-01-22 18:22:11] [Info] Voir les logs:
+[2026-01-22 18:22:11] [Success]   Get-Content logs/install-*.log -Tail 20
+[2026-01-22 18:22:11] [Info] Lancer le pipeline:
+[2026-01-22 18:22:11] [Success]   python -m workflow.pipeline
+[2026-01-22 18:22:11] [Info] Generer la documentation:
+[2026-01-22 18:22:11] [Success]   python scripts/generate_docs.py
+[2026-01-22 18:22:11] [Info] Tester tous les agents:
+[2026-01-22 18:22:11] [Success]   python -m pytest agents/ -v
+[2026-01-22 18:22:11] [Info] Activer l'environnement:
+[2026-01-22 18:22:11] [Success]   .\venv\Scripts\Activate.ps1
+[2026-01-22 18:22:11] [Success] 
+Installation terminee!
+[2026-01-22 18:22:11] [Info] Log complet: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260122-173552.log
+**********************
+PowerShell transcript end
+End time: 20260122182211
+**********************

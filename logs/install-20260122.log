@@ -1,0 +1,412 @@
+[2026-01-22 17:35:52] [Info] Debut de l'installation des prerequis
+[2026-01-22 17:35:52] [Info] Repertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 17:35:52] [Info] ETAPE 1: Verification du systeme
+[2026-01-22 17:35:52] [Info] ----------------------------------------
+[2026-01-22 17:35:52] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 17:35:52] [Info] Build Windows: 19045
+[2026-01-22 17:35:52] [Success] [OK] Version Windows compatible
+[2026-01-22 17:35:52] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 17:35:52] [Info] ----------------------------------------
+[2026-01-22 17:35:52] [Info] Vérification de Chocolatey...
+[2026-01-22 17:35:52] [Info] Installation de Chocolatey...
+[2026-01-22 17:36:05] [Success] [OK] Chocolatey installé avec succès
+[2026-01-22 17:36:05] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 17:36:05] [Info] ----------------------------------------
+[2026-01-22 17:36:05] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 17:36:05] [Info] Installation de python311...
+[2026-01-22 17:36:06] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:06] [Info] Installation de nodejs-lts...
+[2026-01-22 17:36:07] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:07] [Info] Installation de git...
+[2026-01-22 17:36:08] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:08] [Info] Installation de docker-desktop...
+[2026-01-22 17:36:09] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:09] [Info] Installation de vscode...
+[2026-01-22 17:36:10] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:10] [Info] Installation de postman...
+[2026-01-22 17:36:11] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:11] [Info] Installation de curl...
+[2026-01-22 17:36:12] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:12] [Info] Installation de 7zip...
+[2026-01-22 17:36:12] [Success]  [OK] (déjà installé)
+[2026-01-22 17:36:12] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 17:36:13] [Info] 
+ETAPE 4: Configuration de Python
+[2026-01-22 17:36:13] [Info] ----------------------------------------
+[2026-01-22 17:36:13] [Info] Configuration de Python...
+[2026-01-22 17:36:13] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 17:36:13] [Info] Configuration de l'environnement Python...
+[2026-01-22 17:36:13] [Info] Création de l'environnement virtuel...
+[2026-01-22 17:36:18] [Success] [OK] Environnement virtuel créé
+[2026-01-22 17:36:18] [Success] [OK] Environnement virtuel activé
+[2026-01-22 17:36:18] [Info] Mise à jour de pip...
+[2026-01-22 17:36:21] [Success] [OK] Pip mis à jour
+[2026-01-22 17:36:21] [Info] Installation des dépendances Python...
+[2026-01-22 17:36:21] [Warning] Fichier requirements.txt non trouvé, création...
+[2026-01-22 17:36:21] [Success] [OK] Fichier requirements.txt généré
+[2026-01-22 17:36:21] [Info] Installation depuis requirements.txt...
+[2026-01-22 17:41:19] [Info] Installation des dépendances pour les agents IA...
+[2026-01-22 17:41:21] [Success]   [OK] langchain-ollama
+[2026-01-22 17:41:25] [Success]   [OK] langchain-openai
+[2026-01-22 17:41:26] [Success]   [OK] langchain-community
+[2026-01-22 17:41:49] [Success]   [OK] faiss-cpu
+[2026-01-22 17:44:08] [Success]   [OK] chromadb
+[2026-01-22 17:44:09] [Success]   [OK] tiktoken
+[2026-01-22 17:44:09] [Success] [OK] Toutes les dépendances installées
+[2026-01-22 17:44:09] [Info] 
+ETAPE 5: Installation de Node.js
+[2026-01-22 17:44:09] [Info] ----------------------------------------
+[2026-01-22 17:44:09] [Info] Configuration de Node.js...
+[2026-01-22 17:44:09] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 17:44:09] [Info] 
+ETAPE 6: Installation d'Ollama (pour les agents IA)
+[2026-01-22 17:44:09] [Info] ----------------------------------------
+[2026-01-22 17:44:09] [Info] Installation d'Ollama...
+[2026-01-22 17:44:09] [Info] Téléchargement d'Ollama...
+[2026-01-22 18:16:47] [Info] Installation en cours...
+[2026-01-22 18:21:55] [Info] Démarrage du service...
+[2026-01-22 18:22:10] [Error] Échec de l'installation d'Ollama: This command cannot be run due to the error: An error occurred trying to start process 'ollama' with working directory 'D:\Web3Projects\SmartContractDevPipeline'. Le fichier spécifié est introuvable.
+[2026-01-22 18:22:10] [Warning] Vous pouvez l'installer manuellement depuis: https://ollama.com
+[2026-01-22 18:22:10] [Warning] Ollama n'a pas pu etre installe
+[2026-01-22 18:22:10] [Warning] Les agents IA fonctionneront en mode limite.
+[2026-01-22 18:22:10] [Info] 
+ETAPE 7: Installation de Git
+[2026-01-22 18:22:10] [Info] ----------------------------------------
+[2026-01-22 18:22:10] [Info] Configuration de Git...
+[2026-01-22 18:22:10] [Success] [OK] Git déjà installé: git version 2.52.0.windows.1
+[2026-01-22 18:22:10] [Info] 
+ETAPE 8: Validation des installations
+[2026-01-22 18:22:10] [Info] ----------------------------------------
+[2026-01-22 18:22:10] [Info] Validation de toutes les installations...
+[2026-01-22 18:22:10] [Success] [OK] PowerShell: Version PowerShell: 7.6.0-preview.6
+[2026-01-22 18:22:10] [Success] [OK] Python: Python: Python 3.11.9
+[2026-01-22 18:22:10] [Success] [OK] Python Environment: Environnement virtuel: [OK]
+[2026-01-22 18:22:11] [Success] [OK] Node.js: Node.js: v22.10.0
+[2026-01-22 18:22:11] [Warning] [FAIL] Ollama: Erreur de test (The term 'ollama' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.)
+[2026-01-22 18:22:11] [Success] [OK] Git: Git: git version 2.52.0.windows.1
+[2026-01-22 18:22:11] [Success] [OK] Docker: Docker: Docker version 29.1.3, build f52814d
+[2026-01-22 18:22:11] [Info] 
+RESUME DES INSTALLATIONS:
+[2026-01-22 18:22:11] [Info] --------------------------------------------------
+[2026-01-22 18:22:11] [Success] REQUIS: 5/5
+[2026-01-22 18:22:11] [Success] OPTIONNEL: 4/2
+[2026-01-22 18:22:11] [Success] 
+[SUCCESS] TOUS LES PREREQUIS REQUIS SONT INSTALLES
+[2026-01-22 18:22:11] [Success] Le projet SmartContractDevPipeline est pret a etre utilise.
+[2026-01-22 18:22:11] [Info] 
+PROCHAINES ETAPES:
+[2026-01-22 18:22:11] [Info] ----------------------------------------
+[2026-01-22 18:22:11] [Info] 1. Verifiez que l'environnement virtuel est active
+[2026-01-22 18:22:11] [Info] 2. Lancez le pipeline principal: python -m workflow.pipeline
+[2026-01-22 18:22:11] [Info] 3. Consultez la documentation dans le dossier 'docs/'
+[2026-01-22 18:22:11] [Info] 4. Configurez vos cles API dans '.env' (voir '.env.example')
+[2026-01-22 18:22:11] [Info] 5. Testez les agents individuels: python agents/architect/main.py
+[2026-01-22 18:22:11] [Info] 6. Pour desactiver l'environnement: deactivate
+[2026-01-22 18:22:11] [Info] 
+COMMANDES UTILES:
+[2026-01-22 18:22:11] [Info] ----------------------------------------
+[2026-01-22 18:22:11] [Info] Voir les logs:
+[2026-01-22 18:22:11] [Success]   Get-Content logs/install-*.log -Tail 20
+[2026-01-22 18:22:11] [Info] Lancer le pipeline:
+[2026-01-22 18:22:11] [Success]   python -m workflow.pipeline
+[2026-01-22 18:22:11] [Info] Generer la documentation:
+[2026-01-22 18:22:11] [Success]   python scripts/generate_docs.py
+[2026-01-22 18:22:11] [Info] Tester tous les agents:
+[2026-01-22 18:22:11] [Success]   python -m pytest agents/ -v
+[2026-01-22 18:22:11] [Info] Activer l'environnement:
+[2026-01-22 18:22:11] [Success]   .\venv\Scripts\Activate.ps1
+[2026-01-22 18:22:11] [Success] 
+Installation terminee!
+[2026-01-22 18:22:11] [Info] Log complet: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260122-173552.log
+[2026-01-22 18:31:02] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 18:31:02] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 18:31:02] [Info] ETAPE 0: Configuration des chemins sur D:
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Configuration des chemins d'installation sur le lecteur D:...
+[2026-01-22 18:31:02] [Info] Crée: D:\Ollama
+[2026-01-22 18:31:02] [Info] Crée: D:\Python311
+[2026-01-22 18:31:02] [Info] Crée: D:\VSCode
+[2026-01-22 18:31:02] [Info] Crée: D:\Docker
+[2026-01-22 18:31:02] [Info] Crée: D:\ProgramData\chocolatey
+[2026-01-22 18:31:02] [Info] Crée: D:\NodeJS
+[2026-01-22 18:31:02] [Info] Crée: D:\Git
+[2026-01-22 18:31:02] [Success] Répertoire temporaire configuré: D:\Temp
+[2026-01-22 18:31:02] [Info] ETAPE 1: Vérification du système
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 18:31:02] [Info] Build Windows: 19045
+[2026-01-22 18:31:02] [Success] [OK] Version Windows compatible
+[2026-01-22 18:31:02] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Vérification de Chocolatey...
+[2026-01-22 18:31:02] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 18:31:02] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 18:31:02] [Info] Installation de python311...
+[2026-01-22 18:31:03] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:03] [Info] Installation de nodejs-lts...
+[2026-01-22 18:31:04] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:04] [Info] Installation de git...
+[2026-01-22 18:31:05] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:05] [Info] Installation de docker-desktop...
+[2026-01-22 18:31:06] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:06] [Info] Installation de vscode...
+[2026-01-22 18:31:07] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:07] [Info] Installation de postman...
+[2026-01-22 18:31:08] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:08] [Info] Installation de curl...
+[2026-01-22 18:31:09] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:09] [Info] Installation de 7zip...
+[2026-01-22 18:31:10] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:10] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 18:31:10] [Info] 
+ETAPE 4: Configuration de Python
+[2026-01-22 18:31:10] [Info] ----------------------------------------
+[2026-01-22 18:31:10] [Info] Configuration de Python sur D:...
+[2026-01-22 18:31:10] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 18:31:10] [Info] Configuration de l'environnement Python...
+[2026-01-22 18:31:10] [Info] [OK] Environnement virtuel déjà existant
+[2026-01-22 18:31:10] [Success] [OK] Environnement virtuel activé
+[2026-01-22 18:31:10] [Info] Mise à jour de pip...
+[2026-01-22 18:31:12] [Success] [OK] Pip mis à jour
+[2026-01-22 18:31:12] [Info] Installation des dépendances Python...
+[2026-01-22 18:31:12] [Info] Installation depuis requirements.txt...
+[2026-01-22 18:31:17] [Info] Installation des dépendances pour les agents IA...
+[2026-01-22 18:31:18] [Success]   [OK] langchain-ollama
+[2026-01-22 18:31:19] [Success]   [OK] langchain-openai
+[2026-01-22 18:31:20] [Success]   [OK] langchain-community
+[2026-01-22 18:31:21] [Success]   [OK] faiss-cpu
+[2026-01-22 18:31:22] [Success]   [OK] chromadb
+[2026-01-22 18:31:22] [Success]   [OK] tiktoken
+[2026-01-22 18:31:22] [Success] [OK] Toutes les dépendances installées
+[2026-01-22 18:31:22] [Info] 
+ETAPE 5: Installation de Node.js
+[2026-01-22 18:31:22] [Info] ----------------------------------------
+[2026-01-22 18:31:22] [Info] Configuration de Node.js...
+[2026-01-22 18:31:23] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 18:31:23] [Info] 
+ETAPE 6: Installation d'Ollama (pour les agents IA)
+[2026-01-22 18:31:23] [Info] ----------------------------------------
+[2026-01-22 18:31:23] [Info] Installation d'Ollama sur D:...
+[2026-01-22 18:31:23] [Info] Téléchargement d'Ollama...
+[2026-01-22 19:01:01] [Info] Installation sur D: en cours...
+[2026-01-22 19:01:35] [Warning] Tentative d'installation alternative...
+[2026-01-22 19:18:44] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:18:44] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 19:19:11] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:19:11] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 19:24:39] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:24:39] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 19:44:03] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:44:03] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 19:50:46] [Info] Debut de l'installation des prerequis
+[2026-01-22 19:50:46] [Info] Repertoire du projet: 
+[2026-01-22 19:50:46] [Info] ETAPE 1: Verification du systeme
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 19:50:46] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 19:50:46] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 19:50:46] [Info] Build Windows: 19045
+[2026-01-22 19:50:46] [Success] [OK] Version Windows compatible
+[2026-01-22 19:50:46] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Vérification de Chocolatey...
+[2026-01-22 19:50:47] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 19:50:47] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 19:50:47] [Info] ----------------------------------------
+[2026-01-22 19:50:47] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 19:50:47] [Info] Installation de python311...
+[2026-01-22 19:50:48] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:48] [Info] Installation de nodejs-lts...
+[2026-01-22 19:50:49] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:49] [Info] Installation de git...
+[2026-01-22 19:50:50] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:50] [Info] Installation de docker-desktop...
+[2026-01-22 20:02:00] [Info] Début de l'installation
+[2026-01-22 20:02:00] [Info] Projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 20:02:00] [Info] Étape 1: Vérifications système
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 20:02:00] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 20:02:00] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 20:02:00] [Info] Build Windows: 19045
+[2026-01-22 20:02:00] [Success] [OK] Version Windows compatible
+[2026-01-22 20:02:00] [Info] 
+Étape 2: Chocolatey
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Vérification de Chocolatey...
+[2026-01-22 20:02:01] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 20:02:01] [Info] 
+Étape 3: Packages système
+[2026-01-22 20:02:01] [Info] ----------------------------------------
+[2026-01-22 20:02:01] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 20:02:01] [Info] Installation de python311...
+[2026-01-22 20:02:02] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:02] [Info] Installation de nodejs-lts...
+[2026-01-22 20:02:03] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:03] [Info] Installation de git...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:04] [Info] Installation de docker-desktop...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de vscode...
+[2026-01-22 20:02:05] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de postman...
+[2026-01-22 20:02:06] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:06] [Info] Installation de curl...
+[2026-01-22 20:02:07] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:07] [Info] Installation de 7zip...
+[2026-01-22 20:02:08] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:08] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 20:02:09] [Info] 
+Étape 4: Python
+[2026-01-22 20:02:09] [Info] ----------------------------------------
+[2026-01-22 20:02:09] [Info] Configuration de Python...
+[2026-01-22 20:02:09] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 20:02:09] [Info] Configuration de l'environnement Python...
+[2026-01-22 20:02:09] [Info] [OK] Environnement virtuel déjà existant
+[2026-01-22 20:02:09] [Success] [OK] Environnement virtuel activé
+[2026-01-22 20:02:09] [Info] Mise à jour de pip...
+[2026-01-22 20:02:10] [Success] [OK] Pip mis à jour
+[2026-01-22 20:02:10] [Info] Installation des dépendances Python...
+[2026-01-22 20:02:10] [Info] Installation depuis requirements.txt...
+[2026-01-22 20:02:13] [Success] [OK] Dépendances installées
+[2026-01-22 20:02:13] [Info] 
+Étape 5: Node.js
+[2026-01-22 20:02:13] [Info] ----------------------------------------
+[2026-01-22 20:02:13] [Info] Configuration de Node.js...
+[2026-01-22 20:02:14] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 20:02:14] [Info] 
+Étape 6: Ollama
+[2026-01-22 20:02:14] [Info] ----------------------------------------
+[2026-01-22 20:02:14] [Info] Installation d'Ollama sur D:...
+[2026-01-22 20:02:14] [Info] Téléchargement d'Ollama...
+[2026-01-22 20:02:15] [Error] Échec installation Ollama: The process cannot access the file 'D:\Temp\OllamaSetup.exe' because it is being used by another process.
+[2026-01-22 20:02:15] [Warning] Ollama optionnel
+[2026-01-22 20:02:15] [Info] 
+Étape 7: Git
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Configuration de Git...
+[2026-01-22 20:02:15] [Success] [OK] Git déjà installé: git version 2.52.0.windows.1
+[2026-01-22 20:02:15] [Info] 
+Étape 8: Validation
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Validation des installations...
+[2026-01-22 20:02:15] [Success] [OK] PowerShell
+[2026-01-22 20:02:15] [Success] [OK] Python
+[2026-01-22 20:02:15] [Success] [OK] Environnement virtuel
+[2026-01-22 20:02:15] [Success] [OK] Node.js
+[2026-01-22 20:02:15] [Warning] [OPT] Ollama
+[2026-01-22 20:02:15] [Success] [OK] Git
+[2026-01-22 20:02:15] [Info] 
+RÉSUMÉ:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 
+PROCHAINES ÉTAPES:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 1. Vérifiez l'environnement virtuel
+[2026-01-22 20:02:15] [Info] 2. Lancez: python -m workflow.pipeline
+[2026-01-22 20:02:15] [Info] 3. Configurez vos clés API
+[2026-01-22 20:02:15] [Info] 4. Testez: python agents/architect/main.py
+[2026-01-22 20:02:15] [Success] 
+Installation terminée!
+[20:07:07] [Info] Début installation complète
+[20:07:07] [Info] Étape 1: Vérifications système
+[20:07:07] [Info] D: a 400.27 GB libre
+[20:07:07] [Info] 
+Étape 2: Chocolatey
+[20:07:07] [Success] Chocolatey déjà installé
+[20:07:07] [Info] 
+Étape 3: Packages système
+[20:07:07] [Info] Installation packages...
+[20:07:07] [Info]   python311...
+[20:07:08] [Success]  (déjà installé)
+[20:07:08] [Info]   nodejs-lts...
+[20:07:08] [Success]  (déjà installé)
+[20:07:08] [Info]   git...
+[20:07:09] [Success]  (déjà installé)
+[20:07:09] [Info]   vscode...
+[20:07:10] [Success]  (déjà installé)
+[20:07:10] [Info]   postman...
+[20:07:11] [Success]  (déjà installé)
+[20:07:11] [Info]   curl...
+[20:07:12] [Success]  (déjà installé)
+[20:07:12] [Info]   7zip...
+[20:07:13] [Success]  (déjà installé)
+[20:07:13] [Info] 
+Étape 4: Python
+[20:07:14] [Success] Python: Python 3.11.9
+[20:07:14] [Info] Configuration environnement Python...
+[20:07:15] [Info] Installation dépendances...
+[20:07:17] [Success] Dépendances installées
+[20:07:17] [Info] 
+Étape 5: Node.js
+[20:07:17] [Success] Node.js: v22.10.0
+[20:07:17] [Info] 
+Étape 6: Ollama (Agents IA)
+[20:07:17] [Info] Installation Ollama...
+[20:07:17] [Info] Nettoyage fichiers temporaires...
+[20:07:19] [Info]   Fichier supprimé: D:\Temp\OllamaSetup.exe
+[20:07:19] [Info] Téléchargement Ollama...
+[20:24:40] [Success] Téléchargement réussi (1201.79 MB)
+[20:24:40] [Info] Installation en cours...
+[20:24:40] [Error] Échec installation Ollama: A parameter cannot be found that matches parameter name 'PassThrup'.
+[20:24:40] [Error] Ollama nécessite installation manuelle
+[20:24:40] [Info] 
+Étape 7: Git
+[20:24:40] [Success] Git: git version 2.52.0.windows.1
+[20:24:40] [Info] 
+Étape 8: Validation
+[20:24:40] [Info] Validation finale...
+[20:24:40] [Success] ✓ Python
+[20:24:40] [Success] ✓ Environnement
+[20:24:40] [Success] ✓ Node.js
+[20:24:40] [Success] ✓ Git
+[20:24:40] [Error] ERREUR: A parameter cannot be found that matches parameter name 'or'.
+[20:33:23] [Info] Début installation complète
+[20:33:23] [Info] Étape 1: Vérifications système
+[20:33:23] [Info] D: a 400.27 GB libre
+[20:33:23] [Info] 
+Étape 2: Chocolatey
+[20:33:23] [Success] Chocolatey déjà installé
+[20:33:23] [Info] 
+Étape 3: Packages système
+[20:33:23] [Info] Installation packages...
+[20:33:23] [Info]   python311...
+[20:33:24] [Success]  (déjà installé)
+[20:33:24] [Info]   nodejs-lts...
+[20:33:25] [Success]  (déjà installé)
+[20:33:25] [Info]   git...
+[20:33:26] [Success]  (déjà installé)
+[20:33:26] [Info]   vscode...
+[20:33:27] [Success]  (déjà installé)
+[20:33:27] [Info]   postman...
+[20:33:28] [Success]  (déjà installé)
+[20:33:28] [Info]   curl...
+[20:33:29] [Success]  (déjà installé)
+[20:33:29] [Info]   7zip...
+[20:33:30] [Success]  (déjà installé)
+[20:33:30] [Info] 
+Étape 4: Python
+[20:33:30] [Success] Python: Python 3.11.9
+[20:33:30] [Info] Configuration environnement Python...
+[20:33:32] [Info] Installation dépendances...
+[20:33:34] [Success] Dépendances installées
+[20:33:34] [Info] 
+Étape 5: Node.js
+[20:33:34] [Success] Node.js: v22.10.0
+[20:33:34] [Info] 
+Étape 6: Ollama (Agents IA)
+[20:33:34] [Info] Installation Ollama...
+[20:33:34] [Info] Nettoyage fichiers temporaires...
+[20:33:34] [Info] Téléchargement Ollama...
+[20:52:23] [Success] Téléchargement réussi (1201.79 MB)
+[20:52:23] [Info] Installation en cours...
+[20:53:17] [Warning] Mode silencieux échoué, lancement interactif...

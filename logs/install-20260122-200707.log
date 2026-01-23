@@ -1,0 +1,93 @@
+**********************
+PowerShell transcript start
+Start time: 20260122200707
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[20:07:07] » Début installation complète
+[20:07:07] » Étape 1: Vérifications système
+[20:07:07] » D: a 400.27 GB libre
+[20:07:07] » 
+Étape 2: Chocolatey
+[20:07:07] ✓ Chocolatey déjà installé
+[20:07:07] » 
+Étape 3: Packages système
+[20:07:07] » Installation packages...
+[20:07:07] »   python311...
+[20:07:08] ✓  (déjà installé)
+[20:07:08] »   nodejs-lts...
+[20:07:08] ✓  (déjà installé)
+[20:07:08] »   git...
+[20:07:09] ✓  (déjà installé)
+[20:07:09] »   vscode...
+[20:07:10] ✓  (déjà installé)
+[20:07:10] »   postman...
+[20:07:11] ✓  (déjà installé)
+[20:07:11] »   curl...
+[20:07:12] ✓  (déjà installé)
+[20:07:12] »   7zip...
+[20:07:13] ✓  (déjà installé)
+[20:07:13] » 
+Étape 4: Python
+[20:07:14] ✓ Python: Python 3.11.9
+[20:07:14] » Configuration environnement Python...
+[20:07:15] » Installation dépendances...
+[20:07:17] ✓ Dépendances installées
+[20:07:17] » 
+Étape 5: Node.js
+[20:07:17] ✓ Node.js: v22.10.0
+[20:07:17] » 
+Étape 6: Ollama (Agents IA)
+[20:07:17] » Installation Ollama...
+[20:07:17] » Nettoyage fichiers temporaires...
+[20:07:19] »   Fichier supprimé: D:\Temp\OllamaSetup.exe
+[20:07:19] » Téléchargement Ollama...
+[20:24:40] ✓ Téléchargement réussi (1201.79 MB)
+[20:24:40] » Installation en cours...
+(venv) TerminatingError(Start-Process): "A parameter cannot be found that matches parameter name 'PassThrup'."
+[20:24:40] ✗ Échec installation Ollama: A parameter cannot be found that matches parameter name 'PassThrup'.
+
+ + ============================================================
+INSTRUCTIONS MANUELLES POUR OLLAMA
+= *60
+1. Téléchargez: https://ollama.com/download/OllamaSetup.exe
+2. Exécutez l'installateur
+3. CHOISISSEZ CE CHEMIN: D:\Ollama
+4. Après installation:
+   - Ajoutez au PATH: D:\Ollama
+   - Créez variable: OLLAMA_MODELS=D:\Ollama\Models
+5. Redémarrez PowerShell
+6. Testez: ollama --version
+= *60
+[20:24:40] ✗ Ollama nécessite installation manuelle
+[20:24:40] » 
+Étape 7: Git
+[20:24:40] ✓ Git: git version 2.52.0.windows.1
+[20:24:40] » 
+Étape 8: Validation
+[20:24:40] » Validation finale...
+[20:24:40] ✓ ✓ Python
+[20:24:40] ✓ ✓ Environnement
+[20:24:40] ✓ ✓ Node.js
+[20:24:40] ✓ ✓ Git
+(venv) TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+[20:24:40] ✗ ERREUR: A parameter cannot be found that matches parameter name 'or'.
+**********************
+PowerShell transcript end
+End time: 20260122202440
+**********************

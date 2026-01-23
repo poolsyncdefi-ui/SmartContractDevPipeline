@@ -1,367 +1,537 @@
 # =============================================================================
-# install-prerequis.ps1 - Script d'installation des prérequis
-# Version corrigée et améliorée
+# install-prerequis.ps1 - Installation des prérequis pour SmartContractPipeline
+# Version: 2.2.0 - Corrections Ollama complètes
 # =============================================================================
 
-# Définition des variables au début pour une meilleure maintenance
-$global:isAdmin = $false
-$global:venvPath = "venv"
-$global:requirementsFile = "requirements.txt"
-$global:ollamaVersion = "latest"
-$global:nodeVersion = "18.x"  # Version LTS recommandée
+# -----------------------------------------------------------------------------
+# CONFIGURATION
+# -----------------------------------------------------------------------------
 
-# Configuration du script
-$ErrorActionPreference = "Stop"
-$ProgressPreference = 'SilentlyContinue'
+class InstallationConfig {
+    [string]$ProjectName = "SmartContractPipeline"
+    [string]$Version = "2.2.0"
+    
+    # Chemins
+    [string]$ProjectRoot
+    [string]$LogDir
+    [string]$VenvPath
+    [string]$RequirementsFile
+    [string]$TempDir = "D:\Temp"
+    
+    # URLs
+    [hashtable]$Urls = @{
+        Ollama = "https://ollama.com/download/OllamaSetup.exe"
+        Python = "https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe"
+    }
+    
+    # Versions minimales
+    [hashtable]$MinVersions = @{
+        Windows = @{Build=19041}
+    }
+    
+    # Packages
+    [string[]]$ChocolateyPackages = @(
+        "python311",
+        "nodejs-lts",
+        "git",
+        "vscode",
+        "postman",
+        "curl",
+        "7zip"
+    )
+    
+    # Modèles Ollama
+    [string[]]$OllamaModels = @(
+        "deepseek-coder:6.7b",
+        "llama2:7b",
+        "mistral:7b"
+    )
+    
+    # Chemins sur D:
+    [hashtable]$InstallPaths = @{
+        Ollama = "D:\Ollama"
+        Models = "D:\Ollama\Models"
+    }
+    
+    # Constructeur
+    InstallationConfig([string]$projectRoot) {
+        $this.ProjectRoot = $projectRoot
+        $this.LogDir = Join-Path $projectRoot "logs"
+        $this.VenvPath = Join-Path $projectRoot "venv"
+        $this.RequirementsFile = Join-Path $projectRoot "requirements.txt"
+        
+        # Assurer D:\Temp existe
+        if (-not (Test-Path $this.TempDir)) {
+            New-Item -Path $this.TempDir -ItemType Directory -Force | Out-Null
+        }
+    }
+}
 
 # -----------------------------------------------------------------------------
-# Fonction : Test-Administrator
-# Description : Vérifie si le script est exécuté en tant qu'administrateur
+# INITIALISATION
 # -----------------------------------------------------------------------------
-function Test-Administrator {
+
+$global:ScriptConfig = $null
+
+function Initialize-Configuration {
+    [OutputType([InstallationConfig])]
+    param()
+    
+    try {
+        $projectRoot = $PSScriptRoot
+        
+        # Valider le répertoire
+        if (-not (Test-Path (Join-Path $projectRoot "agents"))) {
+            throw "Dossier 'agents' introuvable. Mauvais répertoire ?"
+        }
+        
+        # Créer configuration
+        $config = [InstallationConfig]::new($projectRoot)
+        $global:ScriptConfig = $config
+        
+        Write-Host "Configuration initialisée" -ForegroundColor Green
+        return $config
+        
+    } catch {
+        Write-Host "ERREUR Initialisation: $_" -ForegroundColor Red
+        throw
+    }
+}
+
+function Get-Config {
+    [OutputType([InstallationConfig])]
+    param()
+    
+    if ($null -eq $global:ScriptConfig) {
+        throw "Configuration non initialisée"
+    }
+    return $global:ScriptConfig
+}
+
+# -----------------------------------------------------------------------------
+# UTILITAIRES
+# -----------------------------------------------------------------------------
+
+function Write-Log {
+    param(
+        [string]$Message,
+        [string]$Level = 'Info',
+        [switch]$NoNewLine
+    )
+    
+    $timestamp = Get-Date -Format "HH:mm:ss"
+    $colors = @{Info='White'; Success='Green'; Warning='Yellow'; Error='Red'}
+    $symbols = @{Info='»'; Success='✓'; Warning='⚠'; Error='✗'}
+    
+    $output = "[$timestamp] $($symbols[$Level]) $Message"
+    Write-Host $output -ForegroundColor $colors[$Level] -NoNewLine:$NoNewLine
+    
+    # Log fichier
+    try {
+        $config = Get-Config
+        $logFile = Join-Path $config.LogDir "install-$(Get-Date -Format 'yyyyMMdd').log"
+        "[$timestamp] [$Level] $Message" | Out-File $logFile -Append -Encoding UTF8
+    } catch {}
+}
+
+function Test-Admin {
     try {
         $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
         $principal = New-Object Security.Principal.WindowsPrincipal($identity)
         return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+    } catch {
+        return $false
     }
-    catch {
-        Write-Host "Impossible de vérifier les droits administrateur: $_" -ForegroundColor Yellow
+}
+
+function Test-DriveSpace {
+    try {
+        $drive = Get-PSDrive -Name "D" -ErrorAction Stop
+        $freeGB = [math]::Round($drive.Free / 1GB, 2)
+        Write-Log "D: a $freeGB GB libre" -Level Info
+        return ($freeGB -ge 20)
+    } catch {
+        Write-Log "Impossible de vérifier D:" -Level Error
         return $false
     }
 }
 
 # -----------------------------------------------------------------------------
-# Fonction : Install-Chocolatey
-# Description : Installe Chocolatey si nécessaire
+# FONCTIONS D'INSTALLATION
 # -----------------------------------------------------------------------------
+
 function Install-Chocolatey {
-    Write-Host "`n[1/7] Vérification de Chocolatey..." -ForegroundColor Green
-    
     if (Get-Command choco -ErrorAction SilentlyContinue) {
-        Write-Host "✓ Chocolatey est déjà installé" -ForegroundColor Cyan
+        Write-Log "Chocolatey déjà installé" -Level Success
         return $true
     }
     
-    Write-Host "Installation de Chocolatey..." -ForegroundColor Yellow
+    Write-Log "Installation Chocolatey..." -Level Info
     
     try {
-        # Méthode officielle d'installation
+        $originalPolicy = Get-ExecutionPolicy -Scope Process
         Set-ExecutionPolicy Bypass -Scope Process -Force
+        
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
         
-        # Ajout au PATH pour la session courante
-        $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+        Set-ExecutionPolicy $originalPolicy -Scope Process -Force
         
-        Write-Host "✓ Chocolatey installé avec succès" -ForegroundColor Green
-        return $true
-    }
-    catch {
-        Write-Host "✗ Échec de l'installation de Chocolatey: $_" -ForegroundColor Red
+        Start-Sleep -Seconds 3
+        if (Get-Command choco -ErrorAction SilentlyContinue) {
+            Write-Log "Chocolatey installé" -Level Success
+            return $true
+        }
+        throw "Installation échouée"
+    } catch {
+        Write-Log "Échec Chocolatey: $_" -Level Error
         return $false
     }
 }
 
-# -----------------------------------------------------------------------------
-# Fonction : Install-PythonWithChoco
-# Description : Installe Python via Chocolatey
-# -----------------------------------------------------------------------------
-function Install-PythonWithChoco {
-    Write-Host "`n[2/7] Installation de Python..." -ForegroundColor Green
+function Install-BasePackages {
+    $config = Get-Config
+    Write-Log "Installation packages..." -Level Info
     
+    $success = 0
+    foreach ($package in $config.ChocolateyPackages) {
+        try {
+            Write-Log "  $package..." -Level Info -NoNewLine
+            
+            if (choco list --local-only $package --exact) {
+                Write-Log " (déjà installé)" -Level Success
+                $success++
+                continue
+            }
+            
+            choco install $package -y --no-progress
+            if ($LASTEXITCODE -eq 0) {
+                Write-Log " ✓" -Level Success
+                $success++
+            } else {
+                Write-Log " (code $LASTEXITCODE)" -Level Warning
+            }
+        } catch {
+            Write-Log " (erreur)" -Level Warning
+        }
+    }
+    
+    refreshenv
+    return $true
+}
+
+function Install-Python {
     if (Get-Command python -ErrorAction SilentlyContinue) {
-        $version = & python --version 2>&1
-        Write-Host "✓ Python déjà installé: $version" -ForegroundColor Cyan
-        
-        # Vérification de la version
-        if ($version -match "Python 3\.(7|8|9|10|11|12)") {
-            return $true
-        } else {
-            Write-Host "Version de Python obsolète, mise à jour..." -ForegroundColor Yellow
-        }
+        $version = python --version 2>&1
+        Write-Log "Python: $version" -Level Success
+        return $true
     }
     
+    Write-Log "Installation Python..." -Level Info
+    
     try {
-        Write-Host "Installation de Python 3.11 (recommandé)..." -ForegroundColor Yellow
         choco install python311 -y --no-progress
-        
-        # Rafraîchir le PATH
         refreshenv
+        Start-Sleep -Seconds 3
         
-        # Vérification
-        $pythonCheck = & python --version 2>&1
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "✓ Python installé: $pythonCheck" -ForegroundColor Green
-            return $true
-        } else {
-            throw "Python non détecté après installation"
-        }
-    }
-    catch {
-        Write-Host "✗ Échec de l'installation de Python: $_" -ForegroundColor Red
-        
-        # Solution de secours
-        Write-Host "Tentative d'installation via le web..." -ForegroundColor Yellow
-        try {
-            $pythonInstaller = "https://www.python.org/ftp/python/3.11.4/python-3.11.4-amd64.exe"
-            $installerPath = "$env:TEMP\python-installer.exe"
-            
-            Invoke-WebRequest -Uri $pythonInstaller -OutFile $installerPath
-            Start-Process -FilePath $installerPath -Args "/quiet InstallAllUsers=1 PrependPath=1" -Wait
-            
-            Write-Host "✓ Python installé via l'installateur officiel" -ForegroundColor Green
+        if (Get-Command python -ErrorAction SilentlyContinue) {
+            Write-Log "Python installé" -Level Success
             return $true
         }
-        catch {
-            Write-Host "✗ Échec de toutes les méthodes d'installation Python" -ForegroundColor Red
-            return $false
-        }
-    }
-}
-
-# -----------------------------------------------------------------------------
-# Fonction : Install-NodeWithChoco
-# Description : Installe Node.js via Chocolatey
-# -----------------------------------------------------------------------------
-function Install-NodeWithChoco {
-    Write-Host "`n[3/7] Installation de Node.js..." -ForegroundColor Green
-    
-    if (Get-Command node -ErrorAction SilentlyContinue) {
-        $version = & node --version 2>&1
-        Write-Host "✓ Node.js déjà installé: $version" -ForegroundColor Cyan
-        return $true
-    }
-    
-    try {
-        Write-Host "Installation de Node.js LTS..." -ForegroundColor Yellow
-        choco install nodejs-lts -y --no-progress
-        
-        # Rafraîchir le PATH
-        refreshenv
-        
-        # Vérification
-        $nodeCheck = & node --version 2>&1
-        $npmCheck = & npm --version 2>&1
-        
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "✓ Node.js installé: $nodeCheck" -ForegroundColor Green
-            Write-Host "✓ NPM installé: $npmCheck" -ForegroundColor Green
-            return $true
-        } else {
-            throw "Node.js non détecté après installation"
-        }
-    }
-    catch {
-        Write-Host "✗ Échec de l'installation de Node.js: $_" -ForegroundColor Red
+        throw "Python non détecté"
+    } catch {
+        Write-Log "Échec Python: $_" -Level Error
         return $false
     }
 }
 
-# -----------------------------------------------------------------------------
-# Fonction : Install-Ollama
-# Description : Installe Ollama pour les modèles IA
-# -----------------------------------------------------------------------------
-function Install-Ollama {
-    Write-Host "`n[4/7] Installation d'Ollama..." -ForegroundColor Green
-    
-    # Vérifier si Ollama est déjà installé
-    if (Get-Command ollama -ErrorAction SilentlyContinue) {
-        $version = & ollama --version 2>&1
-        Write-Host "✓ Ollama déjà installé: $version" -ForegroundColor Cyan
-        return $true
-    }
-    
-    try {
-        Write-Host "Téléchargement et installation d'Ollama..." -ForegroundColor Yellow
-        
-        # Télécharger l'installateur Windows
-        $ollamaURL = "https://ollama.com/download/OllamaSetup.exe"
-        $installerPath = "$env:TEMP\OllamaSetup.exe"
-        
-        # Téléchargement avec barre de progression
-        Write-Host "Téléchargement en cours..." -ForegroundColor Yellow
-        Invoke-WebRequest -Uri $ollamaURL -OutFile $installerPath -UseBasicParsing
-        
-        # Installation silencieuse
-        Write-Host "Installation en cours..." -ForegroundColor Yellow
-        Start-Process -FilePath $installerPath -Args "/S" -Wait
-        
-        # Attendre que le service soit prêt
-        Start-Sleep -Seconds 10
-        
-        # Vérification
-        if (Get-Command ollama -ErrorAction SilentlyContinue) {
-            Write-Host "✓ Ollama installé avec succès" -ForegroundColor Green
-            
-            # Démarrer le service
-            Write-Host "Démarrage du service Ollama..." -ForegroundColor Yellow
-            Start-Process "ollama" -ArgumentList "serve" -WindowStyle Hidden
-            
-            # Télécharger un modèle léger pour test
-            Write-Host "Téléchargement du modèle de test (tinyllama)..." -ForegroundColor Yellow
-            Start-Process "ollama" -ArgumentList "pull tinyllama" -NoNewWindow -Wait
-            
-            return $true
-        } else {
-            throw "Ollama non détecté après installation"
-        }
-    }
-    catch {
-        Write-Host "✗ Échec de l'installation d'Ollama: $_" -ForegroundColor Red
-        Write-Host "Vous pouvez l'installer manuellement depuis: https://ollama.com" -ForegroundColor Yellow
-        return $false
-    }
-}
-
-# -----------------------------------------------------------------------------
-# Fonction : Setup-PythonEnvironment
-# Description : Configure l'environnement virtuel Python
-# -----------------------------------------------------------------------------
 function Setup-PythonEnvironment {
-    Write-Host "`n[5/7] Configuration de l'environnement Python..." -ForegroundColor Green
+    $config = Get-Config
+    Write-Log "Configuration environnement Python..." -Level Info
     
-    # Vérifier si venv existe déjà
-    if (Test-Path $venvPath) {
-        Write-Host "✓ Environnement virtuel déjà existant" -ForegroundColor Cyan
-        
-        # Vérifier s'il est actif
-        if ($env:VIRTUAL_ENV) {
-            Write-Host "✓ Environnement virtuel déjà activé" -ForegroundColor Cyan
-        } else {
-            # Activer l'environnement
-            & "$venvPath\Scripts\Activate.ps1"
-        }
-    } else {
+    # Environnement virtuel
+    if (-not (Test-Path $config.VenvPath)) {
         try {
-            # Créer l'environnement virtuel
-            Write-Host "Création de l'environnement virtuel..." -ForegroundColor Yellow
-            python -m venv $venvPath
-            
-            # Activer l'environnement
-            & "$venvPath\Scripts\Activate.ps1"
-            
-            Write-Host "✓ Environnement virtuel créé et activé" -ForegroundColor Green
-        }
-        catch {
-            Write-Host "✗ Échec de la création de l'environnement virtuel: $_" -ForegroundColor Red
+            python -m venv $config.VenvPath
+            Write-Log "Environnement créé" -Level Success
+        } catch {
+            Write-Log "Échec création environnement: $_" -Level Error
             return $false
         }
     }
+    
+    # Activer
+    try {
+        $activate = Join-Path $config.VenvPath "Scripts\Activate.ps1"
+        if (Test-Path $activate) {
+            . $activate
+        }
+    } catch {}
     
     # Mettre à jour pip
     try {
-        Write-Host "Mise à jour de pip..." -ForegroundColor Yellow
-        python -m pip install --upgrade pip
-        Write-Host "✓ Pip mis à jour" -ForegroundColor Green
-    }
-    catch {
-        Write-Host "✗ Échec de la mise à jour de pip: $_" -ForegroundColor Red
-    }
+        python -m pip install --upgrade pip --disable-pip-version-check
+    } catch {}
     
     return $true
 }
 
-# -----------------------------------------------------------------------------
-# Fonction : Install-PythonDependencies
-# Description : Installe les dépendances Python depuis requirements.txt
-# -----------------------------------------------------------------------------
 function Install-PythonDependencies {
-    Write-Host "`n[6/7] Installation des dépendances Python..." -ForegroundColor Green
+    $config = Get-Config
     
-    if (-not (Test-Path $requirementsFile)) {
-        Write-Host "✗ Fichier $requirementsFile non trouvé" -ForegroundColor Red
-        
-        # Créer un fichier requirements.txt minimal
-        Write-Host "Création d'un fichier requirements.txt minimal..." -ForegroundColor Yellow
+    # Créer requirements.txt si absent
+    if (-not (Test-Path $config.RequirementsFile)) {
         @"
-# Dépendances minimales pour SmartContractPipeline
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
-pydantic>=2.4.0
-python-dotenv>=1.0.0
-requests>=2.31.0
 web3>=6.10.0
-"@ | Out-File -FilePath $requirementsFile -Encoding UTF8
-        
-        Write-Host "✓ Fichier $requirementsFile créé" -ForegroundColor Green
+pydantic>=2.4.0
+langchain>=0.1.0
+ollama>=0.1.0
+requests>=2.31.0
+"@ | Out-File $config.RequirementsFile -Encoding UTF8
     }
     
+    Write-Log "Installation dépendances..." -Level Info
+    
     try {
-        Write-Host "Installation des dépendances..." -ForegroundColor Yellow
-        pip install -r $requirementsFile
-        
-        # Installation de dépendances optionnelles utiles
-        Write-Host "Installation de dépendances supplémentaires..." -ForegroundColor Yellow
-        pip install pytest pytest-asyncio black isort mypy
-        
-        Write-Host "✓ Dépendances installées avec succès" -ForegroundColor Green
+        pip install -r $config.RequirementsFile --no-cache-dir
+        Write-Log "Dépendances installées" -Level Success
         return $true
-    }
-    catch {
-        Write-Host "✗ Échec de l'installation des dépendances: $_" -ForegroundColor Red
-        
-        # Essayer avec pip install individuel
-        Write-Host "Tentative d'installation des packages essentiels..." -ForegroundColor Yellow
-        try {
-            pip install fastapi uvicorn web3
-            Write-Host "✓ Packages essentiels installés" -ForegroundColor Green
-            return $true
-        }
-        catch {
-            Write-Host "✗ Échec de l'installation des packages essentiels" -ForegroundColor Red
-            return $false
-        }
+    } catch {
+        Write-Log "Échec dépendances: $_" -Level Error
+        return $false
     }
 }
 
-# -----------------------------------------------------------------------------
-# Fonction : Test-Installations
-# Description : Vérifie que toutes les installations fonctionnent
-# -----------------------------------------------------------------------------
+function Install-Ollama {
+    $config = Get-Config
+    Write-Log "Installation Ollama..." -Level Info
+    
+    $ollamaPath = $config.InstallPaths.Ollama
+    $ollamaExe = Join-Path $ollamaPath "ollama.exe"
+    
+    # Vérifier si déjà installé sur D:
+    if (Test-Path $ollamaExe) {
+        try {
+            $version = & $ollamaExe --version 2>&1
+            Write-Log "Ollama déjà installé: $version" -Level Success
+            return $true
+        } catch {}
+    }
+    
+    # Nettoyer les anciens fichiers d'installation
+    Write-Log "Nettoyage fichiers temporaires..." -Level Info
+    $oldInstallers = @(
+        "D:\Temp\OllamaSetup.exe",
+        "D:\Temp\OllamaSetup-NEW.exe",
+        "$($config.TempDir)\OllamaSetup.exe"
+    )
+    
+    foreach ($file in $oldInstallers) {
+        if (Test-Path $file) {
+            try {
+                # Tenter de libérer le fichier
+                Get-Process | Where-Object { $_.Path -like "*Ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+                Start-Sleep -Seconds 1
+                Remove-Item -Path $file -Force -ErrorAction SilentlyContinue
+                Write-Log "  Fichier supprimé: $file" -Level Info
+            } catch {}
+        }
+    }
+    
+    # Créer dossier d'installation
+    if (-not (Test-Path $ollamaPath)) {
+        New-Item -Path $ollamaPath -ItemType Directory -Force | Out-Null
+    }
+    
+    # Télécharger avec nom unique
+    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+    $installerPath = Join-Path $config.TempDir "OllamaSetup-$timestamp.exe"
+    
+    Write-Log "Téléchargement Ollama..." -Level Info
+    
+    try {
+        # Télécharger avec retry
+        $maxRetries = 3
+        $retryCount = 0
+        
+        while ($retryCount -lt $maxRetries) {
+            try {
+                Invoke-WebRequest -Uri $config.Urls.Ollama -OutFile $installerPath -UseBasicParsing -TimeoutSec 30
+                break
+            } catch {
+                $retryCount++
+                if ($retryCount -eq $maxRetries) {
+                    throw "Échec téléchargement après $maxRetries tentatives: $_"
+                }
+                Write-Log "Tentative $retryCount/$maxRetries échouée, nouvelle tentative..." -Level Warning
+                Start-Sleep -Seconds 2
+            }
+        }
+        
+        Write-Log "Téléchargement réussi ($([math]::Round((Get-Item $installerPath).Length/1MB,2)) MB)" -Level Success
+        
+        # Installation silencieuse
+        Write-Log "Installation en cours..." -Level Info
+        
+        $process = Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait -PassThru
+        
+        # Attendre l'installation
+        Start-Sleep -Seconds 10
+        
+        # Vérifier l'installation
+        if (Test-Path $ollamaExe) {
+            # Ajouter au PATH
+            $env:Path += ";$ollamaPath"
+            
+            # Configurer les modèles sur D:
+            $modelsPath = $config.InstallPaths.Models
+            if (-not (Test-Path $modelsPath)) {
+                New-Item -Path $modelsPath -ItemType Directory -Force | Out-Null
+            }
+            
+            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, "User")
+            $env:OLLAMA_MODELS = $modelsPath
+            
+            Write-Log "Ollama installé sur D:" -Level Success
+            
+            # Démarrer le service
+            Write-Log "Démarrage service..." -Level Info
+            Start-Process $ollamaExe -ArgumentList "serve" -WindowStyle Hidden
+            Start-Sleep -Seconds 10
+            
+            # Télécharger modèles
+            Write-Log "Téléchargement modèles IA..." -Level Info
+            foreach ($model in $config.OllamaModels) {
+                try {
+                    Write-Log "  $model..." -Level Info -NoNewLine
+                    & $ollamaExe pull $model 2>&1 | Out-Null
+                    Write-Log " ✓" -Level Success
+                } catch {
+                    Write-Log " ✗" -Level Warning
+                }
+            }
+            
+            # Nettoyer l'installateur
+            Remove-Item -Path $installerPath -Force -ErrorAction SilentlyContinue
+            
+            return $true
+            
+        } else {
+            # Fallback: mode interactif
+            Write-Log "Installation silencieuse échouée, mode interactif..." -Level Warning
+            Write-Host "`n=== IMPORTANT ===" -ForegroundColor Red
+            Write-Host "L'installateur Ollama va s'ouvrir." -ForegroundColor Yellow
+            Write-Host "VOUS DEVEZ CHOISIR: $ollamaPath" -ForegroundColor Red
+            Write-Host "Ne laissez pas l'installation sur C:\" -ForegroundColor Red
+            Write-Host "Appuyez sur Entrée pour continuer..." -ForegroundColor Yellow
+            Pause
+            
+            Start-Process -FilePath $installerPath -Wait
+            
+            # Vérifier après installation manuelle
+            Start-Sleep -Seconds 10
+            if (Test-Path $ollamaExe) {
+                Write-Log "Ollama installé (manuel)" -Level Success
+                return $true
+            }
+        }
+        
+    } catch {
+        Write-Log "Échec installation Ollama: $_" -Level Error
+        
+        # Instructions manuelles détaillées
+        Write-Host "`n" + ("="*60) -ForegroundColor Red
+        Write-Host "INSTRUCTIONS MANUELLES POUR OLLAMA" -ForegroundColor Red
+        Write-Host "="*60 -ForegroundColor Red
+        Write-Host "1. Téléchargez: https://ollama.com/download/OllamaSetup.exe" -ForegroundColor Yellow
+        Write-Host "2. Exécutez l'installateur" -ForegroundColor Yellow
+        Write-Host "3. CHOISISSEZ CE CHEMIN: $ollamaPath" -ForegroundColor Green
+        Write-Host "4. Après installation:" -ForegroundColor Yellow
+        Write-Host "   - Ajoutez au PATH: $ollamaPath" -ForegroundColor White
+        Write-Host "   - Créez variable: OLLAMA_MODELS=$($config.InstallPaths.Models)" -ForegroundColor White
+        Write-Host "5. Redémarrez PowerShell" -ForegroundColor Yellow
+        Write-Host "6. Testez: ollama --version" -ForegroundColor Yellow
+        Write-Host "="*60 -ForegroundColor Red
+        
+        return $false
+    }
+    
+    return $false
+}
+
+function Install-NodeJS {
+    if (Get-Command node -ErrorAction SilentlyContinue) {
+        $version = node --version
+        Write-Log "Node.js: $version" -Level Success
+        return $true
+    }
+    
+    Write-Log "Installation Node.js..." -Level Info
+    
+    try {
+        choco install nodejs-lts -y --no-progress
+        refreshenv
+        Start-Sleep -Seconds 3
+        
+        if (Get-Command node -ErrorAction SilentlyContinue) {
+            Write-Log "Node.js installé" -Level Success
+            return $true
+        }
+        return $false
+    } catch {
+        Write-Log "Échec Node.js: $_" -Level Warning
+        return $false
+    }
+}
+
+function Install-Git {
+    if (Get-Command git -ErrorAction SilentlyContinue) {
+        $version = git --version
+        Write-Log "Git: $version" -Level Success
+        return $true
+    }
+    
+    Write-Log "Installation Git..." -Level Info
+    
+    try {
+        choco install git -y --no-progress
+        refreshenv
+        Write-Log "Git installé" -Level Success
+        return $true
+    } catch {
+        Write-Log "Échec Git: $_" -Level Warning
+        return $false
+    }
+}
+
 function Test-Installations {
-    Write-Host "`n[7/7] Validation des installations..." -ForegroundColor Green
+    $config = Get-Config
+    Write-Log "Validation finale..." -Level Info
     
     $tests = @(
-        @{Name="Python"; Command="python --version"; MinVersion="3.7"},
-        @{Name="Node.js"; Command="node --version"; MinVersion="v18"},
-        @{Name="NPM"; Command="npm --version"; MinVersion="8"},
-        @{Name="Ollama"; Command="ollama --version"; Optional=$true}
+        @{Name="Python"; Test={Get-Command python -ErrorAction SilentlyContinue}},
+        @{Name="Environnement"; Test={Test-Path $config.VenvPath}},
+        @{Name="Node.js"; Test={Get-Command node -ErrorAction SilentlyContinue}},
+        @{Name="Git"; Test={Get-Command git -ErrorAction SilentlyContinue}},
+        @{Name="Ollama"; Test={
+            $ollamaExe = Join-Path $config.InstallPaths.Ollama "ollama.exe"
+            (Test-Path $ollamaExe) -or (Get-Command ollama -ErrorAction SilentlyContinue)
+        }}
     )
     
     $allPassed = $true
-    
     foreach ($test in $tests) {
-        try {
-            $output = Invoke-Expression $test.Command 2>&1
-            $success = $LASTEXITCODE -eq 0
-            
-            if ($success -or ($test.Optional -and -not $success)) {
-                $color = if ($test.Optional -and -not $success) { "Yellow" } else { "Green" }
-                $status = if ($test.Optional -and -not $success) { "⚠ Optionnel" } else { "✓ OK" }
-                Write-Host "$status $($test.Name): $output" -ForegroundColor $color
-            } else {
-                Write-Host "✗ $($test.Name): Non disponible" -ForegroundColor Red
-                $allPassed = $false
-            }
+        $passed = & $test.Test
+        $status = if ($passed) { "✓" } else { "✗" }
+        $level = if ($passed) { "Success" } else { "Warning" }
+        
+        Write-Log "$status $($test.Name)" -Level $level
+        
+        if (-not $passed -and $test.Name -in @("Python", "Environnement")) {
+            $allPassed = $false
         }
-        catch {
-            if ($test.Optional) {
-                Write-Host "⚠ $($test.Name): Optionnel non installé" -ForegroundColor Yellow
-            } else {
-                Write-Host "✗ $($test.Name): Erreur de test" -ForegroundColor Red
-                $allPassed = $false
-            }
-        }
-    }
-    
-    # Test de l'environnement Python
-    try {
-        $pythonTest = & python -c "import sys; print(f'Python {sys.version}'); import fastapi; print('FastAPI disponible')" 2>&1
-        Write-Host "✓ Environnement Python: OK" -ForegroundColor Green
-    }
-    catch {
-        Write-Host "✗ Environnement Python: Problème avec les imports" -ForegroundColor Red
-        $allPassed = $false
     }
     
     return $allPassed
@@ -370,117 +540,133 @@ function Test-Installations {
 # -----------------------------------------------------------------------------
 # FONCTION PRINCIPALE
 # -----------------------------------------------------------------------------
+
 function Main {
-    Write-Host "`n" + ("="*60) -ForegroundColor Cyan
-    Write-Host "INSTALLATION DES PRÉREQUIS - SmartContractPipeline" -ForegroundColor Cyan
-    Write-Host "="*60 -ForegroundColor Cyan
-    
-    # 1. Vérification des droits administrateur
-    $global:isAdmin = Test-Administrator
-    
-    if (-not $isAdmin) {
-        Write-Host "`n⚠ ATTENTION: Ce script nécessite des droits administrateur" -ForegroundColor Red
-        Write-Host "Veuillez exécuter PowerShell en tant qu'Administrateur" -ForegroundColor Yellow
-        Write-Host "1. Cliquez droit sur PowerShell" -ForegroundColor Yellow
-        Write-Host "2. Sélectionnez 'Exécuter en tant qu'administrateur'" -ForegroundColor Yellow
-        Write-Host "3. Relancez ce script" -ForegroundColor Yellow
-        
-        $choice = Read-Host "`nVoulez-vous quand même continuer? (oui/non)"
-        if ($choice -notmatch "^(oui|yes|o|y)$") {
-            exit 1
-        }
-    }
-    
-    # Journalisation
-    $logFile = "install-prerequis-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
-    Start-Transcript -Path $logFile -Append
+    # En-tête
+    Write-Host "`n" + ("="*70) -ForegroundColor Cyan
+    Write-Host "SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE" -ForegroundColor Cyan
+    Write-Host "Version: 2.2.0" -ForegroundColor Cyan
+    Write-Host "="*70 -ForegroundColor Cyan
+    Write-Host "`n"
     
     try {
-        # 2. Installation des composants
-        $chocoInstalled = Install-Chocolatey
-        if (-not $chocoInstalled) {
-            throw "Échec de l'installation de Chocolatey"
+        # Initialisation
+        $config = Initialize-Configuration
+        
+        # Créer logs
+        if (-not (Test-Path $config.LogDir)) {
+            New-Item -Path $config.LogDir -ItemType Directory -Force | Out-Null
         }
         
-        $pythonInstalled = Install-PythonWithChoco
-        if (-not $pythonInstalled) {
-            throw "Échec de l'installation de Python"
+        $logFile = Join-Path $config.LogDir "install-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"
+        Start-Transcript -Path $logFile -Append
+        
+        Write-Log "Début installation complète" -Level Info
+        
+        # Vérifications
+        Write-Log "Étape 1: Vérifications système" -Level Info
+        if (-not (Test-DriveSpace)) {
+            throw "Espace D: insuffisant"
         }
         
-        $nodeInstalled = Install-NodeWithChoco
-        if (-not $nodeInstalled) {
-            Write-Host "Node.js optionnel pour certains composants" -ForegroundColor Yellow
+        if (-not (Test-Admin)) {
+            Write-Log "⚠ Administration recommandée" -Level Warning
         }
         
-        $ollamaInstalled = Install-Ollama
-        if (-not $ollamaInstalled) {
-            Write-Host "Ollama optionnel mais recommandé pour les agents IA" -ForegroundColor Yellow
+        # Chocolatey
+        Write-Log "`nÉtape 2: Chocolatey" -Level Info
+        if (-not (Install-Chocolatey)) {
+            throw "Échec Chocolatey"
         }
         
-        # 3. Configuration Python
-        $envSetup = Setup-PythonEnvironment
-        if (-not $envSetup) {
-            throw "Échec de la configuration de l'environnement Python"
+        # Packages
+        Write-Log "`nÉtape 3: Packages système" -Level Info
+        Install-BasePackages
+        
+        # Python
+        Write-Log "`nÉtape 4: Python" -Level Info
+        if (-not (Install-Python)) {
+            throw "Échec Python"
         }
         
-        $depsInstalled = Install-PythonDependencies
-        if (-not $depsInstalled) {
-            throw "Échec de l'installation des dépendances Python"
+        if (-not (Setup-PythonEnvironment)) {
+            throw "Échec environnement Python"
         }
         
-        # 4. Validation finale
-        $testsPassed = Test-Installations
+        if (-not (Install-PythonDependencies)) {
+            throw "Échec dépendances Python"
+        }
         
-        Write-Host "`n" + ("="*60) -ForegroundColor Cyan
+        # Node.js
+        Write-Log "`nÉtape 5: Node.js" -Level Info
+        Install-NodeJS
         
-        if ($testsPassed) {
+        # Ollama (CRITIQUE - avec nettoyage)
+        Write-Log "`nÉtape 6: Ollama (Agents IA)" -Level Info
+        if (-not (Install-Ollama)) {
+            Write-Log "Ollama nécessite installation manuelle" -Level Error
+            # Mais on continue, c'est optionnel pour le pipeline de base
+        }
+        
+        # Git
+        Write-Log "`nÉtape 7: Git" -Level Info
+        Install-Git
+        
+        # Validation
+        Write-Log "`nÉtape 8: Validation" -Level Info
+        $allPassed = Test-Installations
+        
+        # Conclusion
+        Write-Host "`n" + ("="*70) -ForegroundColor Cyan
+        if ($allPassed) {
             Write-Host "✅ INSTALLATION RÉUSSIE" -ForegroundColor Green
-            Write-Host "Tous les prérequis sont installés et configurés." -ForegroundColor Green
-            
-            Write-Host "`nProchaines étapes:" -ForegroundColor Yellow
-            Write-Host "1. Votre environnement virtuel Python est activé" -ForegroundColor White
-            Write-Host "2. Vous pouvez lancer le pipeline avec: python main.py" -ForegroundColor White
-            Write-Host "3. Pour désactiver l'environnement: deactivate" -ForegroundColor White
-            Write-Host "`nLog d'installation: $logFile" -ForegroundColor Gray
         } else {
             Write-Host "⚠ INSTALLATION PARTIELLE" -ForegroundColor Yellow
-            Write-Host "Certains composants ont échoué mais l'essentiel est installé." -ForegroundColor Yellow
-            Write-Host "Consultez le log pour plus de détails: $logFile" -ForegroundColor Gray
         }
         
-    }
-    catch {
-        Write-Host "`n❌ ERREUR CRITIQUE" -ForegroundColor Red
-        Write-Host "Message: $_" -ForegroundColor Red
-        Write-Host "Stack: $($_.ScriptStackTrace)" -ForegroundColor DarkGray
-        Write-Host "`nConsultez le log complet: $logFile" -ForegroundColor Yellow
+        Write-Host "="*70 -ForegroundColor Cyan
         
-        exit 1
-    }
-    finally {
-        Stop-Transcript
+        # Instructions finales
+        Write-Host "`nProchaines étapes:" -ForegroundColor Yellow
+        Write-Host "1. Environnement virtuel activé" -ForegroundColor White
+        Write-Host "2. Testez: python -c 'import web3; print(\"Web3 OK\")'" -ForegroundColor White
+        Write-Host "3. Si Ollama installé: ollama list" -ForegroundColor White
+        Write-Host "4. Lancez le pipeline: python main.py" -ForegroundColor White
         
-        # Afficher un résumé
-        Write-Host "`n" + ("-"*60) -ForegroundColor DarkGray
-        Write-Host "Résumé de l'installation:" -ForegroundColor Gray
-        Write-Host "- Python: $(if (Get-Command python -ErrorAction SilentlyContinue) {'✓'} else {'✗'})" -ForegroundColor Gray
-        Write-Host "- Node.js: $(if (Get-Command node -ErrorAction SilentlyContinue) {'✓'} else {'✗'})" -ForegroundColor Gray
-        Write-Host "- Ollama: $(if (Get-Command ollama -ErrorAction SilentlyContinue) {'✓'} else {'✗'})" -ForegroundColor Gray
-        Write-Host "- Environnement virtuel: $(if (Test-Path $venvPath) {'✓'} else {'✗'})" -ForegroundColor Gray
-        Write-Host "- Dépendances: $(if (Test-Path "$venvPath\Scripts\pip.exe") {'✓'} else {'✗'})" -ForegroundColor Gray
-        Write-Host "- Log: $logFile" -ForegroundColor Gray
+        # Marqueur
+        $marker = Join-Path $config.ProjectRoot ".installed"
+        @{
+            Date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+            Version = $config.Version
+            Success = $allPassed
+            OllamaInstalled = (Test-Path (Join-Path $config.InstallPaths.Ollama "ollama.exe"))
+        } | ConvertTo-Json | Out-File $marker -Encoding UTF8
+        
+        Write-Log "Installation terminée" -Level Success
+        return $allPassed
+        
+    } catch {
+        Write-Log "ERREUR: $_" -Level Error
+        return $false
+    } finally {
+        Stop-Transcript | Out-Null
+        Write-Host "`nLog: $logFile" -ForegroundColor Gray
     }
 }
 
 # -----------------------------------------------------------------------------
-# POINT D'ENTRÉE DU SCRIPT
+# EXÉCUTION
 # -----------------------------------------------------------------------------
 
-# Vérifier la version de Windows
-if ([Environment]::OSVersion.Version.Major -lt 10) {
-    Write-Host "Ce script nécessite Windows 10 ou supérieur" -ForegroundColor Red
+try {
+    # Désactiver l'environnement virtuel actuel si présent
+    if ($env:VIRTUAL_ENV) {
+        deactivate 2>$null
+    }
+    
+    $success = Main
+    exit $(if ($success) { 0 } else { 1 })
+} catch {
+    Write-Host "ERREUR FATALE: $_" -ForegroundColor Red
     exit 1
 }
-
-# Exécuter la fonction principale
-Main

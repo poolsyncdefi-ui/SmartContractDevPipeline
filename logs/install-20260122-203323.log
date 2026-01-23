@@ -1,0 +1,71 @@
+**********************
+PowerShell transcript start
+Start time: 20260122203323
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[20:33:23] » Début installation complète
+[20:33:23] » Étape 1: Vérifications système
+[20:33:23] » D: a 400.27 GB libre
+[20:33:23] » 
+Étape 2: Chocolatey
+[20:33:23] ✓ Chocolatey déjà installé
+[20:33:23] » 
+Étape 3: Packages système
+[20:33:23] » Installation packages...
+[20:33:23] »   python311...
+[20:33:24] ✓  (déjà installé)
+[20:33:24] »   nodejs-lts...
+[20:33:25] ✓  (déjà installé)
+[20:33:25] »   git...
+[20:33:26] ✓  (déjà installé)
+[20:33:26] »   vscode...
+[20:33:27] ✓  (déjà installé)
+[20:33:27] »   postman...
+[20:33:28] ✓  (déjà installé)
+[20:33:28] »   curl...
+[20:33:29] ✓  (déjà installé)
+[20:33:29] »   7zip...
+[20:33:30] ✓  (déjà installé)
+[20:33:30] » 
+Étape 4: Python
+[20:33:30] ✓ Python: Python 3.11.9
+[20:33:30] » Configuration environnement Python...
+[20:33:32] » Installation dépendances...
+[20:33:34] ✓ Dépendances installées
+[20:33:34] » 
+Étape 5: Node.js
+[20:33:34] ✓ Node.js: v22.10.0
+[20:33:34] » 
+Étape 6: Ollama (Agents IA)
+[20:33:34] » Installation Ollama...
+[20:33:34] » Nettoyage fichiers temporaires...
+[20:33:34] » Téléchargement Ollama...
+[20:52:23] ✓ Téléchargement réussi (1201.79 MB)
+[20:52:23] » Installation en cours...
+[20:53:17] ⚠ Mode silencieux échoué, lancement interactif...
+
+=== IMPORTANT ===
+Dans l'installateur, CHOISISSEZ:
+D:\Ollama
+Appuyez sur Entrée pour ouvrir l'installateur...
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+**********************
+PowerShell transcript end
+End time: 20260122205807
+**********************

@@ -1,0 +1,105 @@
+[09:53:27] [Info] Début installation complète
+[09:53:27] [Info] Étape 1: Vérifications système
+[09:53:27] [Info] D: a 400.27 GB libre
+[09:53:27] [Info] 
+Étape 2: Chocolatey
+[09:53:27] [Success] Chocolatey déjà installé
+[09:53:27] [Info] 
+Étape 3: Packages système
+[09:53:27] [Info] Installation packages...
+[09:53:27] [Info]   python311...
+[09:53:28] [Success]  (déjà installé)
+[09:53:28] [Info]   nodejs-lts...
+[09:53:29] [Success]  (déjà installé)
+[09:53:29] [Info]   git...
+[09:53:30] [Success]  (déjà installé)
+[09:53:30] [Info]   vscode...
+[09:53:31] [Success]  (déjà installé)
+[09:53:31] [Info]   postman...
+[09:53:32] [Success]  (déjà installé)
+[09:53:32] [Info]   curl...
+[09:53:33] [Success]  (déjà installé)
+[09:53:33] [Info]   7zip...
+[09:53:33] [Success]  (déjà installé)
+[09:53:34] [Info] 
+Étape 4: Python
+[09:53:34] [Success] Python: Python 3.11.9
+[09:53:34] [Info] Configuration environnement Python...
+[09:53:36] [Info] Installation dépendances...
+[09:53:39] [Success] Dépendances installées
+[09:53:39] [Info] 
+Étape 5: Node.js
+[09:53:39] [Success] Node.js: v22.10.0
+[09:53:39] [Info] 
+Étape 6: Ollama (Agents IA)
+[09:53:39] [Info] Installation Ollama...
+[09:53:39] [Info] Nettoyage fichiers temporaires...
+[09:53:39] [Info] Téléchargement Ollama...
+[10:07:51] [Success] Téléchargement réussi (1201.79 MB)
+[10:07:51] [Info] Installation en cours...
+[10:07:51] [Error] Échec installation Ollama: A parameter cannot be found that matches parameter name 'PassThrup'.
+[10:07:51] [Error] Ollama nécessite installation manuelle
+[10:07:51] [Info] 
+Étape 7: Git
+[10:07:51] [Success] Git: git version 2.52.0.windows.1
+[10:07:51] [Info] 
+Étape 8: Validation
+[10:07:51] [Info] Validation finale...
+[10:07:51] [Success] ✓ Python
+[10:07:51] [Success] ✓ Environnement
+[10:07:51] [Success] ✓ Node.js
+[10:07:51] [Success] ✓ Git
+[10:07:51] [Error] ERREUR: A parameter cannot be found that matches parameter name 'or'.
+[10:26:06] [Info] Début installation complète
+[10:26:06] [Info] Étape 1: Vérifications système
+[10:26:06] [Info] D: a 399.1 GB libre
+[10:26:06] [Info] 
+Étape 2: Chocolatey
+[10:26:06] [Success] Chocolatey déjà installé
+[10:26:06] [Info] 
+Étape 3: Packages système
+[10:26:06] [Info] Installation packages...
+[10:26:06] [Info]   python311...
+[10:26:07] [Success]  (déjà installé)
+[10:26:07] [Info]   nodejs-lts...
+[10:26:08] [Success]  (déjà installé)
+[10:26:08] [Info]   git...
+[10:26:09] [Success]  (déjà installé)
+[10:26:09] [Info]   vscode...
+[10:26:10] [Success]  (déjà installé)
+[10:26:10] [Info]   postman...
+[10:26:11] [Success]  (déjà installé)
+[10:26:11] [Info]   curl...
+[10:26:11] [Success]  (déjà installé)
+[10:26:11] [Info]   7zip...
+[10:26:12] [Success]  (déjà installé)
+[10:26:13] [Info] 
+Étape 4: Python
+[10:26:13] [Success] Python: Python 3.11.9
+[10:26:13] [Info] Configuration environnement Python...
+[10:26:15] [Info] Installation dépendances...
+[10:26:16] [Success] Dépendances installées
+[10:26:16] [Info] 
+Étape 5: Node.js
+[10:26:16] [Success] Node.js: v22.10.0
+[10:26:16] [Info] 
+Étape 6: Ollama (Agents IA)
+[10:26:16] [Info] Installation Ollama...
+[10:26:16] [Info] Nettoyage fichiers temporaires...
+[10:26:16] [Info] Téléchargement Ollama...
+[10:46:17] [Success] Téléchargement réussi (1201.79 MB)
+[10:46:17] [Info] Installation en cours...
+[10:49:58] [Warning] Installation silencieuse échouée, mode interactif...
+[10:50:26] [Error] Ollama nécessite installation manuelle
+[10:52:35] [Info] 
+Étape 7: Git
+[10:52:35] [Success] Git: git version 2.52.0.windows.1
+[10:52:35] [Info] 
+Étape 8: Validation
+[10:52:35] [Info] Validation finale...
+[10:52:35] [Success] ✓ Python
+[10:52:35] [Success] ✓ Environnement
+[10:52:35] [Success] ✓ Node.js
+[10:52:35] [Success] ✓ Git
+[10:52:35] [Warning] ✗ Ollama
+[10:52:35] [Success] Installation terminée

@@ -1,0 +1,92 @@
+**********************
+PowerShell transcript start
+Start time: 20260123102606
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[10:26:06] » Début installation complète
+[10:26:06] » Étape 1: Vérifications système
+[10:26:06] » D: a 399.1 GB libre
+[10:26:06] » 
+Étape 2: Chocolatey
+[10:26:06] ✓ Chocolatey déjà installé
+[10:26:06] » 
+Étape 3: Packages système
+[10:26:06] » Installation packages...
+[10:26:06] »   python311...
+[10:26:07] ✓  (déjà installé)
+[10:26:07] »   nodejs-lts...
+[10:26:08] ✓  (déjà installé)
+[10:26:08] »   git...
+[10:26:09] ✓  (déjà installé)
+[10:26:09] »   vscode...
+[10:26:10] ✓  (déjà installé)
+[10:26:10] »   postman...
+[10:26:11] ✓  (déjà installé)
+[10:26:11] »   curl...
+[10:26:11] ✓  (déjà installé)
+[10:26:11] »   7zip...
+[10:26:12] ✓  (déjà installé)
+[10:26:13] » 
+Étape 4: Python
+[10:26:13] ✓ Python: Python 3.11.9
+[10:26:13] » Configuration environnement Python...
+[10:26:15] » Installation dépendances...
+[10:26:16] ✓ Dépendances installées
+[10:26:16] » 
+Étape 5: Node.js
+[10:26:16] ✓ Node.js: v22.10.0
+[10:26:16] » 
+Étape 6: Ollama (Agents IA)
+[10:26:16] » Installation Ollama...
+[10:26:16] » Nettoyage fichiers temporaires...
+[10:26:16] » Téléchargement Ollama...
+[10:46:17] ✓ Téléchargement réussi (1201.79 MB)
+[10:46:17] » Installation en cours...
+[10:49:58] ⚠ Installation silencieuse échouée, mode interactif...
+
+=== IMPORTANT ===
+L'installateur Ollama va s'ouvrir.
+VOUS DEVEZ CHOISIR: D:\Ollama
+Ne laissez pas l'installation sur C:\
+Appuyez sur Entrée pour continuer...
+[10:50:26] ✗ Ollama nécessite installation manuelle
+[10:52:35] » 
+Étape 7: Git
+[10:52:35] ✓ Git: git version 2.52.0.windows.1
+[10:52:35] » 
+Étape 8: Validation
+[10:52:35] » Validation finale...
+[10:52:35] ✓ ✓ Python
+[10:52:35] ✓ ✓ Environnement
+[10:52:35] ✓ ✓ Node.js
+[10:52:35] ✓ ✓ Git
+[10:52:35] ⚠ ✗ Ollama
+
+ + ======================================================================
+✅ INSTALLATION RÉUSSIE
+= *70
+
+Prochaines étapes:
+1. Environnement virtuel activé
+2. Testez: python -c 'import web3; print(\ Web3 OK\)'
+3. Si Ollama installé: ollama list
+4. Lancez le pipeline: python main.py
+[10:52:35] ✓ Installation terminée
+**********************
+PowerShell transcript end
+End time: 20260123105235
+**********************

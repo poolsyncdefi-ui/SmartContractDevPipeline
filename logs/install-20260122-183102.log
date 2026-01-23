@@ -1,0 +1,102 @@
+**********************
+PowerShell transcript start
+Start time: 20260122183102
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[2026-01-22 18:31:02] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 18:31:02] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 18:31:02] [Info] ETAPE 0: Configuration des chemins sur D:
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Configuration des chemins d'installation sur le lecteur D:...
+[2026-01-22 18:31:02] [Info] Crée: D:\Ollama
+[2026-01-22 18:31:02] [Info] Crée: D:\Python311
+[2026-01-22 18:31:02] [Info] Crée: D:\VSCode
+[2026-01-22 18:31:02] [Info] Crée: D:\Docker
+[2026-01-22 18:31:02] [Info] Crée: D:\ProgramData\chocolatey
+[2026-01-22 18:31:02] [Info] Crée: D:\NodeJS
+[2026-01-22 18:31:02] [Info] Crée: D:\Git
+[2026-01-22 18:31:02] [Success] Répertoire temporaire configuré: D:\Temp
+[2026-01-22 18:31:02] [Info] ETAPE 1: Vérification du système
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 18:31:02] [Info] Build Windows: 19045
+[2026-01-22 18:31:02] [Success] [OK] Version Windows compatible
+[2026-01-22 18:31:02] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Vérification de Chocolatey...
+[2026-01-22 18:31:02] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 18:31:02] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 18:31:02] [Info] ----------------------------------------
+[2026-01-22 18:31:02] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 18:31:02] [Info] Installation de python311...
+[2026-01-22 18:31:03] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:03] [Info] Installation de nodejs-lts...
+[2026-01-22 18:31:04] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:04] [Info] Installation de git...
+[2026-01-22 18:31:05] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:05] [Info] Installation de docker-desktop...
+[2026-01-22 18:31:06] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:06] [Info] Installation de vscode...
+[2026-01-22 18:31:07] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:07] [Info] Installation de postman...
+[2026-01-22 18:31:08] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:08] [Info] Installation de curl...
+[2026-01-22 18:31:09] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:09] [Info] Installation de 7zip...
+[2026-01-22 18:31:10] [Success]  [OK] (déjà installé)
+[2026-01-22 18:31:10] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 18:31:10] [Info] 
+ETAPE 4: Configuration de Python
+[2026-01-22 18:31:10] [Info] ----------------------------------------
+[2026-01-22 18:31:10] [Info] Configuration de Python sur D:...
+PS>TerminatingError(): "The pipeline has been stopped."
+[2026-01-22 18:31:10] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 18:31:10] [Info] Configuration de l'environnement Python...
+[2026-01-22 18:31:10] [Info] [OK] Environnement virtuel déjà existant
+[2026-01-22 18:31:10] [Success] [OK] Environnement virtuel activé
+[2026-01-22 18:31:10] [Info] Mise à jour de pip...
+[2026-01-22 18:31:12] [Success] [OK] Pip mis à jour
+[2026-01-22 18:31:12] [Info] Installation des dépendances Python...
+[2026-01-22 18:31:12] [Info] Installation depuis requirements.txt...
+[2026-01-22 18:31:17] [Info] Installation des dépendances pour les agents IA...
+[2026-01-22 18:31:18] [Success]   [OK] langchain-ollama
+[2026-01-22 18:31:19] [Success]   [OK] langchain-openai
+[2026-01-22 18:31:20] [Success]   [OK] langchain-community
+[2026-01-22 18:31:21] [Success]   [OK] faiss-cpu
+[2026-01-22 18:31:22] [Success]   [OK] chromadb
+[2026-01-22 18:31:22] [Success]   [OK] tiktoken
+[2026-01-22 18:31:22] [Success] [OK] Toutes les dépendances installées
+[2026-01-22 18:31:22] [Info] 
+ETAPE 5: Installation de Node.js
+[2026-01-22 18:31:22] [Info] ----------------------------------------
+[2026-01-22 18:31:22] [Info] Configuration de Node.js...
+[2026-01-22 18:31:23] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 18:31:23] [Info] 
+ETAPE 6: Installation d'Ollama (pour les agents IA)
+[2026-01-22 18:31:23] [Info] ----------------------------------------
+[2026-01-22 18:31:23] [Info] Installation d'Ollama sur D:...
+[2026-01-22 18:31:23] [Info] Téléchargement d'Ollama...
+[2026-01-22 19:01:01] [Info] Installation sur D: en cours...
+[2026-01-22 19:01:35] [Warning] Tentative d'installation alternative...
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+**********************
+PowerShell transcript end
+End time: 20260122191120
+**********************

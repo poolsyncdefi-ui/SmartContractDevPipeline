@@ -1,0 +1,43 @@
+[20:58:16] [Info] Début installation
+[20:58:16] [Info] Étape 1: Vérifications
+[20:58:16] [Info] D: a 400.27 GB libre
+[20:58:16] [Info] 
+Étape 2: Chocolatey
+[20:58:16] [Success] Chocolatey déjà installé
+[20:58:16] [Info] 
+Étape 3: Packages
+[20:58:16] [Info] Installation packages...
+[20:58:16] [Info]   python311...
+[20:58:17] [Success]  (déjà)
+[20:58:17] [Info]   nodejs-lts...
+[20:58:18] [Success]  (déjà)
+[20:58:18] [Info]   git...
+[20:58:19] [Success]  (déjà)
+[20:58:19] [Info] 
+Étape 4: Python
+[20:58:19] [Success] Python: Python 3.11.9
+[20:58:19] [Info] Configuration environnement Python...
+[20:58:21] [Info] Installation dépendances...
+[20:58:22] [Success] Dépendances installées
+[20:58:22] [Info] 
+Étape 5: Node.js
+[20:58:22] [Success] Node.js: v22.10.0
+[20:58:23] [Info] 
+Étape 6: Ollama (INTERACTIF)
+[20:58:23] [Info] Installation Ollama SUR D:...
+[20:58:23] [Info] Vérification installation existante...
+[20:58:23] [Info] Téléchargement Ollama (1.2GB)...
+[21:18:44] [Success] Téléchargement réussi (1201.79 MB)
+[21:19:17] [Info] Attente installation...
+[21:19:32] [Error] ❌ Ollama non détecté après installation
+[21:19:32] [Info] 
+Étape 7: Git
+[21:19:32] [Success] Git: git version 2.52.0.windows.1
+[21:19:32] [Info] 
+Étape 8: Validation
+[21:19:32] [Info] Validation...
+[21:19:32] [Success] ✓ Python
+[21:19:32] [Success] ✓ Environnement
+[21:19:32] [Success] ✓ Node.js
+[21:19:32] [Success] ✓ Git
+[21:19:32] [Warning] ✗ Ollama

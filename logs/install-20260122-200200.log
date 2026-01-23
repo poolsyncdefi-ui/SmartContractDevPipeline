@@ -1,0 +1,112 @@
+**********************
+PowerShell transcript start
+Start time: 20260122200200
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[2026-01-22 20:02:00] [Info] Début de l'installation
+[2026-01-22 20:02:00] [Info] Projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 20:02:00] [Info] Étape 1: Vérifications système
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 20:02:00] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 20:02:00] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 20:02:00] [Info] Build Windows: 19045
+[2026-01-22 20:02:00] [Success] [OK] Version Windows compatible
+[2026-01-22 20:02:00] [Info] 
+Étape 2: Chocolatey
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Vérification de Chocolatey...
+[2026-01-22 20:02:01] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 20:02:01] [Info] 
+Étape 3: Packages système
+[2026-01-22 20:02:01] [Info] ----------------------------------------
+[2026-01-22 20:02:01] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 20:02:01] [Info] Installation de python311...
+[2026-01-22 20:02:02] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:02] [Info] Installation de nodejs-lts...
+[2026-01-22 20:02:03] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:03] [Info] Installation de git...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:04] [Info] Installation de docker-desktop...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de vscode...
+[2026-01-22 20:02:05] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de postman...
+[2026-01-22 20:02:06] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:06] [Info] Installation de curl...
+[2026-01-22 20:02:07] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:07] [Info] Installation de 7zip...
+[2026-01-22 20:02:08] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:08] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 20:02:09] [Info] 
+Étape 4: Python
+[2026-01-22 20:02:09] [Info] ----------------------------------------
+[2026-01-22 20:02:09] [Info] Configuration de Python...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(): "The pipeline has been stopped."
+[2026-01-22 20:02:09] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 20:02:09] [Info] Configuration de l'environnement Python...
+[2026-01-22 20:02:09] [Info] [OK] Environnement virtuel déjà existant
+[2026-01-22 20:02:09] [Success] [OK] Environnement virtuel activé
+[2026-01-22 20:02:09] [Info] Mise à jour de pip...
+[2026-01-22 20:02:10] [Success] [OK] Pip mis à jour
+[2026-01-22 20:02:10] [Info] Installation des dépendances Python...
+[2026-01-22 20:02:10] [Info] Installation depuis requirements.txt...
+[2026-01-22 20:02:13] [Success] [OK] Dépendances installées
+[2026-01-22 20:02:13] [Info] 
+Étape 5: Node.js
+[2026-01-22 20:02:13] [Info] ----------------------------------------
+[2026-01-22 20:02:13] [Info] Configuration de Node.js...
+[2026-01-22 20:02:14] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 20:02:14] [Info] 
+Étape 6: Ollama
+[2026-01-22 20:02:14] [Info] ----------------------------------------
+[2026-01-22 20:02:14] [Info] Installation d'Ollama sur D:...
+[2026-01-22 20:02:14] [Info] Téléchargement d'Ollama...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Invoke-WebRequest): "The process cannot access the file 'D:\Temp\OllamaSetup.exe' because it is being used by another process."
+[2026-01-22 20:02:15] [Error] Échec installation Ollama: The process cannot access the file 'D:\Temp\OllamaSetup.exe' because it is being used by another process.
+[2026-01-22 20:02:15] [Warning] Ollama optionnel
+[2026-01-22 20:02:15] [Info] 
+Étape 7: Git
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Configuration de Git...
+[2026-01-22 20:02:15] [Success] [OK] Git déjà installé: git version 2.52.0.windows.1
+[2026-01-22 20:02:15] [Info] 
+Étape 8: Validation
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Validation des installations...
+[2026-01-22 20:02:15] [Success] [OK] PowerShell
+[2026-01-22 20:02:15] [Success] [OK] Python
+[2026-01-22 20:02:15] [Success] [OK] Environnement virtuel
+[2026-01-22 20:02:15] [Success] [OK] Node.js
+[2026-01-22 20:02:15] [Warning] [OPT] Ollama
+[2026-01-22 20:02:15] [Success] [OK] Git
+[2026-01-22 20:02:15] [Info] 
+RÉSUMÉ:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 
+PROCHAINES ÉTAPES:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 1. Vérifiez l'environnement virtuel
+[2026-01-22 20:02:15] [Info] 2. Lancez: python -m workflow.pipeline
+[2026-01-22 20:02:15] [Info] 3. Configurez vos clés API
+[2026-01-22 20:02:15] [Info] 4. Testez: python agents/architect/main.py
+[2026-01-22 20:02:15] [Success] 
+Installation terminée!
+**********************
+PowerShell transcript end
+End time: 20260122200215
+**********************
