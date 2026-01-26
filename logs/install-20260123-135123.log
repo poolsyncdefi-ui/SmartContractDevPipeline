@@ -1,0 +1,94 @@
+**********************
+PowerShell transcript start
+Start time: 20260123135123
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[13:51:23] » Début installation complète
+[13:51:23] » Étape 1: Vérifications système
+[13:51:23] » D: a 400.1 GB libre
+[13:51:23] » 
+Étape 2: Chocolatey
+[13:51:23] ✓ Chocolatey déjà installé
+[13:51:23] » 
+Étape 3: Packages système
+[13:51:23] » Installation packages...
+[13:51:23] »   python311...
+[13:51:24] ✓  (déjà installé)
+[13:51:24] »   nodejs-lts...
+[13:51:25] ✓  (déjà installé)
+[13:51:25] »   git...
+[13:51:26] ✓  (déjà installé)
+[13:51:26] »   vscode...
+[13:51:26] ✓  (déjà installé)
+[13:51:26] »   postman...
+[13:51:27] ✓  (déjà installé)
+[13:51:27] »   curl...
+[13:51:28] ✓  (déjà installé)
+[13:51:28] »   7zip...
+[13:51:29] ✓  (déjà installé)
+[13:51:30] » 
+Étape 4: Python
+[13:51:30] ✓ Python: Python 3.11.9
+[13:51:30] » Configuration environnement Python...
+[13:51:31] » Installation dépendances...
+[13:51:33] ✓ Dépendances installées
+[13:51:33] » 
+Étape 5: Node.js
+[13:51:33] ✓ Node.js: v22.10.0
+[13:51:33] » 
+Étape 6: Ollama (Agents IA)
+[13:51:33] » Installation d'Ollama...
+[13:51:33] » Téléchargement d'Ollama (1.2GB)...
+(venv) TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+[13:51:33] ✗ Échec de l'installation d'Ollama: Cannot bind argument to parameter 'Path' because it is null.
+
+ + ============================================================
+INSTRUCTIONS MANUELLES
+= *60
+1. Ouvrez : https://ollama.com/download/OllamaSetup.exe
+2. Enregistrez le fichier dans : D:\Temp\
+3. Exécutez l'installateur
+4. IMPORTANT : Choisissez D:\Ollama comme chemin
+5. Après installation, testez : ollama --version
+= *60
+[13:51:33] ✗ Ollama nécessite installation manuelle
+[13:51:33] » 
+Étape 7: Git
+[13:51:33] ✓ Git: git version 2.52.0.windows.1
+[13:51:33] » 
+Étape 8: Validation
+[13:51:33] » Validation finale...
+[13:51:33] ✓ ✓ Python
+[13:51:33] ✓ ✓ Environnement
+[13:51:34] ✓ ✓ Node.js
+[13:51:34] ✓ ✓ Git
+[13:51:34] ⚠ ✗ Ollama
+
+ + ======================================================================
+✅ INSTALLATION RÉUSSIE
+= *70
+
+Prochaines étapes:
+1. Environnement virtuel activé
+2. Testez: python -c 'import web3; print(\ Web3 OK\)'
+3. Si Ollama installé: ollama list
+4. Lancez le pipeline: python main.py
+[13:51:34] ✓ Installation terminée
+**********************
+PowerShell transcript end
+End time: 20260123135134
+**********************

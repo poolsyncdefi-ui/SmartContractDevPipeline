@@ -1,0 +1,1350 @@
+**********************
+PowerShell transcript start
+Start time: 20260122191844
+Username: DESKTOP-0PIJ3DT\elega
+RunAs User: DESKTOP-0PIJ3DT\elega
+Configuration Name: 
+Machine: DESKTOP-0PIJ3DT (Microsoft Windows NT 10.0.19045.0)
+Host Application: D:\Program Files\PowerShell\7-preview\pwsh.dll
+Process ID: 17164
+PSVersion: 7.6.0-preview.6
+PSEdition: Core
+GitCommitId: 7.6.0-preview.6
+OS: Microsoft Windows 10.0.19045
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+[2026-01-22 19:18:44] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:18:44] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION SUR LECTEUR D:
+Version: 2.0.0
+= * 70
+
+[2026-01-22 19:19:11] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:19:11] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+PS D:\Web3Projects\SmartContractDevPipeline> # 1. Testez juste la fonction Test-DriveSpace
+function Test-DriveSpace {
+    param([string]$Drive = "D:", [int]$RequiredGB = 20)
+    try {
+        $driveInfo = Get-PSDrive -Name $Drive.Replace(":", "") -ErrorAction Stop
+        $freeGB = [math]::Round($driveInfo.Free / 1GB, 2)
+        Write-Host "Lecteur $Drive : $freeGB GB libre" -ForegroundColor Green
+        return $true
+    } catch {
+        Write-Host "Erreur: $_" -ForegroundColor Red
+        return $false
+    }
+}
+
+# Testez-la
+Test-DriveSpace -Drive "D:"
+
+# 2. Vérifiez où le script plante
+Write-Host "Test 1..." -ForegroundColor Yellow
+Start-Sleep -Seconds 1
+Write-Host "Test 2..." -ForegroundColor Yellow
+Lecteur D: : 400.27 GB libre
+True
+Test 1...
+Test 2...
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION SUR LECTEUR D:
+Version: 2.0.0
+= * 70
+
+[2026-01-22 19:24:39] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:24:39] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+PS D:\Web3Projects\SmartContractDevPipeline> echo $ENV
+PS D:\Web3Projects\SmartContractDevPipeline> $ENV
+PS D:\Web3Projects\SmartContractDevPipeline> cat $ENV
+>> TerminatingError(Get-Content): "Cannot bind argument to parameter 'Path' because it is null."
+Get-Content: Cannot bind argument to parameter 'Path' because it is null.
+Get-Content: Cannot bind argument to parameter 'Path' because it is null.
+PS D:\Web3Projects\SmartContractDevPipeline> cat $$ENV
+Get-Content: Cannot find path 'D:\Web3Projects\SmartContractDevPipeline\$ENVENV' because it does not exist.
+Get-Content: Cannot find path 'D:\Web3Projects\SmartContractDevPipeline\$ENVENV' because it does not exist.
+PS D:\Web3Projects\SmartContractDevPipeline> $$ENV
+At line:1 char:3
++ $$ENV
++   ~~~
+Unexpected token 'ENV' in expression or statement.
+ParserError: 
+Line |
+   1 |  $$ENV
+     |    ~~~
+     | Unexpected token 'ENV' in expression or statement.
+
+PS D:\Web3Projects\SmartContractDevPipeline> $ENV:stdout
+PS D:\Web3Projects\SmartContractDevPipeline> $ENV:help
+PS D:\Web3Projects\SmartContractDevPipeline> $ENV:-help
+At line:1 char:1
++ $ENV:-help
++ ~~~~~
+Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+
+At line:1 char:6
++ $ENV:-help
++      ~~~~~
+Unexpected token '-help' in expression or statement.
+ParserError: 
+Line |
+   1 |  $ENV:-help
+     |  ~~~~~
+     | Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+
+PS D:\Web3Projects\SmartContractDevPipeline> $ENV: --help
+At line:1 char:1
++ $ENV: --help
++ ~~~~~
+Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+
+At line:1 char:9
++ $ENV: --help
++         ~~~~
+Unexpected token 'help' in expression or statement.
+ParserError: 
+Line |
+   1 |  $ENV: --help
+     |  ~~~~~
+     | Variable reference is not valid. ':' was not followed by a valid variable name character. Consider using ${} to delimit the name.
+
+PS D:\Web3Projects\SmartContractDevPipeline> clear
+PS D:\Web3Projects\SmartContractDevPipeline> Get-ChildItem Env:
+
+Name                           Value
+----                           -----
+ALLUSERSPROFILE                C:\ProgramData
+APPDATA                        C:\Users\elega\AppData\Roaming
+BuildLab                       19041.vb_release.191206-1406
+BuildLabEx                     19041.1.amd64fre.vb_release.191206-1406
+ChocolateyExitCode             0
+ChocolateyInstall              C:\ProgramData\chocolatey
+ChocolateyLastPathUpdate       134135733607277659
+CommonProgramFiles             C:\Program Files\Common Files
+CommonProgramFiles(x86)        C:\Program Files (x86)\Common Files
+CommonProgramW6432             C:\Program Files\Common Files
+COMPUTERNAME                   DESKTOP-0PIJ3DT
+ComSpec                        C:\WINDOWS\system32\cmd.exe
+DriverData                     C:\Windows\System32\Drivers\DriverData
+FPS_BROWSER_APP_PROFILE_STRING Internet Explorer
+FPS_BROWSER_USER_PROFILE_STRI… Default
+GCM_INTERACTIVE                Never
+GIT_TERMINAL_PROMPT            0
+HOMEDRIVE                      C:
+HOMEPATH                       \Users\elega
+LOCALAPPDATA                   C:\Users\elega\AppData\Local
+LOGONSERVER                    \\DESKTOP-0PIJ3DT
+NUMBER_OF_PROCESSORS           6
+NVM_HOME                       D:\Users\elega\AppData\Local\nvm
+NVM_SYMLINK                    D:\nvm4w\nodejs
+OneDrive                       C:\Users\elega\OneDrive
+OneDriveConsumer               C:\Users\elega\OneDrive
+OS                             Windows_NT
+Path                           C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\W…
+PATHEXT                        .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+PIP_CACHE_DIR                  D:\Temp\pip-cache
+PIP_DEFAULT_TIMEOUT            120
+POWERSHELL_DISTRIBUTION_CHANN… MSI:Windows 10 Pro
+PROCESSOR_ARCHITECTURE         AMD64
+PROCESSOR_IDENTIFIER           Intel64 Family 6 Model 158 Stepping 13, GenuineIntel
+PROCESSOR_LEVEL                6
+PROCESSOR_REVISION             9e0d
+ProgramData                    C:\ProgramData
+ProgramFiles                   C:\Program Files
+ProgramFiles(x86)              C:\Program Files (x86)
+ProgramW6432                   C:\Program Files
+PSExecutionPolicyPreference    Bypass
+PSModulePath                   C:\Users\elega\OneDrive\Documents\PowerShell\Modules;C:\Program Files\PowerShell\Modules;d:\program file…
+PUBLIC                         C:\Users\Public
+SystemDrive                    C:
+SystemRoot                     C:\WINDOWS
+TEMP                           D:\Temp
+TMP                            D:\Temp
+USERDOMAIN                     DESKTOP-0PIJ3DT
+USERDOMAIN_ROAMINGPROFILE      DESKTOP-0PIJ3DT
+USERNAME                       elega
+USERPROFILE                    C:\Users\elega
+windir                         C:\WINDOWS
+
+PS D:\Web3Projects\SmartContractDevPipeline> # 1. Vérifier Ollama
+ollama --version 2>$null
+if ($?) { Write-Host "✅ Ollama installé" -ForegroundColor Green } 
+else { Write-Host "❌ Ollama non installé" -ForegroundColor Red }
+
+# 2. Vérifier l'environnement virtuel
+if (Test-Path "venv") { 
+    Write-Host "✅ Environnement virtuel présent" -ForegroundColor Green 
+} else { 
+    Write-Host "❌ Environnement virtuel manquant" -ForegroundColor Red 
+}
+
+# 3. Vérifier les dépendances Python
+if (Test-Path "requirements.txt") {
+    Write-Host "✅ requirements.txt présent" -ForegroundColor Green
+} else {
+    Write-Host "❌ requirements.txt manquant" -ForegroundColor Red
+}
+
+# 4. Vérifier l'espace sur D:
+$drive = Get-PSDrive -Name "D"
+$freeGB = [math]::Round($drive.Free / 1GB, 2)
+Write-Host "D: a $freeGB GB libre" -ForegroundColor $(if ($freeGB -ge 20) { "Green" } else { "Yellow" })
+ollama: 
+Line |
+   2 |  ollama --version 2>$null
+     |  ~~~~~~
+     | The term 'ollama' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+ollama: 
+Line |
+   2 |  ollama --version 2>$null
+     |  ~~~~~~
+     | The term 'ollama' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+❌ Ollama non installé
+✅ Environnement virtuel présent
+✅ requirements.txt présent
+D: a 400.27 GB libre
+PS D:\Web3Projects\SmartContractDevPipeline> clear
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION SUR LECTEUR D:
+Version: 2.0.0
+= * 70
+
+[2026-01-22 19:44:03] [Info] Début de l'installation des prérequis SUR LECTEUR D:
+[2026-01-22 19:44:03] [Info] Répertoire du projet: D:\Web3Projects\SmartContractDevPipeline
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+ParserError: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1194
+Line |
+1194 |  }  # Fin de la fonction Main
+     |  ~
+     | Unexpected token '}' in expression or statement.
+ParserError: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1194
+Line |
+1194 |  }  # Fin de la fonction Main
+     |  ~
+     | Unexpected token '}' in expression or statement.
+
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION DES PREREQUIS
+Version: 2.0.0
+= * 70
+
+TEST: Début de la fonction Main
+Test-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1026
+Line |
+1026 |      if (-not (Test-Path $Config.LogDir)) {
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~
+     | Value cannot be null. (Parameter 'The provided Path argument was null or an empty collection.')
+Test-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1026
+Line |
+1026 |      if (-not (Test-Path $Config.LogDir)) {
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~
+     | Value cannot be null. (Parameter 'The provided Path argument was null or an empty collection.')
+
+Création du dossier logs...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(New-Item): "Cannot bind argument to parameter 'Path' because it is null."
+New-Item: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1028
+Line |
+1028 |          New-Item -Path $Config.LogDir -ItemType Directory -Force | Ou …
+     |                         ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+New-Item: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1028
+Line |
+1028 |          New-Item -Path $Config.LogDir -ItemType Directory -Force | Ou …
+     |                         ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+Join-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1032
+Line |
+1032 |      $logFile = Join-Path $Config.LogDir "install-$(Get-Date -Format ' …
+     |                           ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+Join-Path: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1032
+Line |
+1032 |      $logFile = Join-Path $Config.LogDir "install-$(Get-Date -Format ' …
+     |                           ~~~~~~~~~~~~~~
+     | Cannot bind argument to parameter 'Path' because it is null.
+
+Log:
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Start-Transcript): "Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again."
+Start-Transcript: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1034
+Line |
+1034 |      Start-Transcript -Path $logFile -Append
+     |                             ~~~~~~~~
+     | Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and then try the command again.
+Start-Transcript: D:\Web3Projects\SmartContractDevPipeline\install-prerequis.ps1:1034
+Line |
+1034 |      Start-Transcript -Path $logFile -Append
+     |                             ~~~~~~~~
+     | Cannot validate argument on parameter 'Path'. The argument is null or empty. Provide an argument that is not null or empty, and
+     | then try the command again.
+
+[2026-01-22 19:50:46] [Info] Debut de l'installation des prerequis
+[2026-01-22 19:50:46] [Info] Repertoire du projet:
+[2026-01-22 19:50:46] [Info] ETAPE 1: Verification du systeme
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 19:50:46] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 19:50:46] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 19:50:46] [Info] Build Windows: 19045
+[2026-01-22 19:50:46] [Success] [OK] Version Windows compatible
+[2026-01-22 19:50:46] [Info] 
+ETAPE 2: Installation du gestionnaire de packages
+[2026-01-22 19:50:46] [Info] ----------------------------------------
+[2026-01-22 19:50:46] [Info] Vérification de Chocolatey...
+[2026-01-22 19:50:47] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 19:50:47] [Info] 
+ETAPE 3: Installation des packages systeme
+[2026-01-22 19:50:47] [Info] ----------------------------------------
+[2026-01-22 19:50:47] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 19:50:47] [Info] Installation de python311...
+[2026-01-22 19:50:48] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:48] [Info] Installation de nodejs-lts...
+[2026-01-22 19:50:49] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:49] [Info] Installation de git...
+[2026-01-22 19:50:50] [Success]  [OK] (déjà installé)
+[2026-01-22 19:50:50] [Info] Installation de docker-desktop...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+ + ----------------------------------------------------------------------
+Log d'installation:
+
+- * 70
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS D:\Web3Projects\SmartContractDevPipeline> clear
+PS D:\Web3Projects\SmartContractDevPipeline> Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION
+= * 70
+
+Configuration initialisée avec succès
+  Projet: D:\Web3Projects\SmartContractDevPipeline
+  Logs: D:\Web3Projects\SmartContractDevPipeline\logs
+  Temp: D:\Temp
+[2026-01-22 20:02:00] [Info] Début de l'installation
+[2026-01-22 20:02:00] [Info] Projet: D:\Web3Projects\SmartContractDevPipeline
+[2026-01-22 20:02:00] [Info] Étape 1: Vérifications système
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Lecteur D: a 400.27 GB libre
+[2026-01-22 20:02:00] [Success] [OK] Espace suffisant sur D:
+[2026-01-22 20:02:00] [Info] Système d'exploitation: Microsoft Windows NT 10.0.19045.0
+[2026-01-22 20:02:00] [Info] Build Windows: 19045
+[2026-01-22 20:02:00] [Success] [OK] Version Windows compatible
+[2026-01-22 20:02:00] [Info] 
+Étape 2: Chocolatey
+[2026-01-22 20:02:00] [Info] ----------------------------------------
+[2026-01-22 20:02:00] [Info] Vérification de Chocolatey...
+[2026-01-22 20:02:01] [Success] [OK] Chocolatey déjà installé (v2.6.0)
+[2026-01-22 20:02:01] [Info] 
+Étape 3: Packages système
+[2026-01-22 20:02:01] [Info] ----------------------------------------
+[2026-01-22 20:02:01] [Info] Installation des packages de base via Chocolatey...
+[2026-01-22 20:02:01] [Info] Installation de python311...
+[2026-01-22 20:02:02] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:02] [Info] Installation de nodejs-lts...
+[2026-01-22 20:02:03] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:03] [Info] Installation de git...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:04] [Info] Installation de docker-desktop...
+[2026-01-22 20:02:04] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de vscode...
+[2026-01-22 20:02:05] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:05] [Info] Installation de postman...
+[2026-01-22 20:02:06] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:06] [Info] Installation de curl...
+[2026-01-22 20:02:07] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:07] [Info] Installation de 7zip...
+[2026-01-22 20:02:08] [Success]  [OK] (déjà installé)
+[2026-01-22 20:02:08] [Info] Installation terminée: 8/8 packages installés
+[2026-01-22 20:02:09] [Info] 
+Étape 4: Python
+[2026-01-22 20:02:09] [Info] ----------------------------------------
+[2026-01-22 20:02:09] [Info] Configuration de Python...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(): "The pipeline has been stopped."
+[2026-01-22 20:02:09] [Success] [OK] Python déjà installé: Python 3.11.9
+[2026-01-22 20:02:09] [Info] Configuration de l'environnement Python...
+[2026-01-22 20:02:09] [Info] [OK] Environnement virtuel déjà existant
+[2026-01-22 20:02:09] [Success] [OK] Environnement virtuel activé
+[2026-01-22 20:02:09] [Info] Mise à jour de pip...
+[2026-01-22 20:02:10] [Success] [OK] Pip mis à jour
+[2026-01-22 20:02:10] [Info] Installation des dépendances Python...
+[2026-01-22 20:02:10] [Info] Installation depuis requirements.txt...
+[2026-01-22 20:02:13] [Success] [OK] Dépendances installées
+[2026-01-22 20:02:13] [Info] 
+Étape 5: Node.js
+[2026-01-22 20:02:13] [Info] ----------------------------------------
+[2026-01-22 20:02:13] [Info] Configuration de Node.js...
+[2026-01-22 20:02:14] [Success] [OK] Node.js déjà installé: v22.10.0
+[2026-01-22 20:02:14] [Info] 
+Étape 6: Ollama
+[2026-01-22 20:02:14] [Info] ----------------------------------------
+[2026-01-22 20:02:14] [Info] Installation d'Ollama sur D:...
+[2026-01-22 20:02:14] [Info] Téléchargement d'Ollama...
+PS D:\Web3Projects\SmartContractDevPipeline> TerminatingError(Invoke-WebRequest): "The process cannot access the file 'D:\Temp\OllamaSetup.exe' because it is being used by another process."
+[2026-01-22 20:02:15] [Error] Échec installation Ollama: The process cannot access the file 'D:\Temp\OllamaSetup.exe' because it is being used by another process.
+[2026-01-22 20:02:15] [Warning] Ollama optionnel
+[2026-01-22 20:02:15] [Info] 
+Étape 7: Git
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Configuration de Git...
+[2026-01-22 20:02:15] [Success] [OK] Git déjà installé: git version 2.52.0.windows.1
+[2026-01-22 20:02:15] [Info] 
+Étape 8: Validation
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] Validation des installations...
+[2026-01-22 20:02:15] [Success] [OK] PowerShell
+[2026-01-22 20:02:15] [Success] [OK] Python
+[2026-01-22 20:02:15] [Success] [OK] Environnement virtuel
+[2026-01-22 20:02:15] [Success] [OK] Node.js
+[2026-01-22 20:02:15] [Warning] [OPT] Ollama
+[2026-01-22 20:02:15] [Success] [OK] Git
+[2026-01-22 20:02:15] [Info] 
+RÉSUMÉ:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 
+PROCHAINES ÉTAPES:
+[2026-01-22 20:02:15] [Info] ----------------------------------------
+[2026-01-22 20:02:15] [Info] 1. Vérifiez l'environnement virtuel
+[2026-01-22 20:02:15] [Info] 2. Lancez: python -m workflow.pipeline
+[2026-01-22 20:02:15] [Info] 3. Configurez vos clés API
+[2026-01-22 20:02:15] [Info] 4. Testez: python agents/architect/main.py
+[2026-01-22 20:02:15] [Success] 
+Installation terminée!
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260122-200200.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) clear
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+Version: 2.2.0
+= *70
+
+Configuration initialisée
+[20:07:07] » Début installation complète
+[20:07:07] » Étape 1: Vérifications système
+[20:07:07] » D: a 400.27 GB libre
+[20:07:07] » 
+Étape 2: Chocolatey
+[20:07:07] ✓ Chocolatey déjà installé
+[20:07:07] » 
+Étape 3: Packages système
+[20:07:07] » Installation packages...
+[20:07:07] »   python311...
+[20:07:08] ✓  (déjà installé)
+[20:07:08] »   nodejs-lts...
+[20:07:08] ✓  (déjà installé)
+[20:07:08] »   git...
+[20:07:09] ✓  (déjà installé)
+[20:07:09] »   vscode...
+[20:07:10] ✓  (déjà installé)
+[20:07:10] »   postman...
+[20:07:11] ✓  (déjà installé)
+[20:07:11] »   curl...
+[20:07:12] ✓  (déjà installé)
+[20:07:12] »   7zip...
+[20:07:13] ✓  (déjà installé)
+[20:07:13] » 
+Étape 4: Python
+[20:07:14] ✓ Python: Python 3.11.9
+[20:07:14] » Configuration environnement Python...
+[20:07:15] » Installation dépendances...
+[20:07:17] ✓ Dépendances installées
+[20:07:17] » 
+Étape 5: Node.js
+[20:07:17] ✓ Node.js: v22.10.0
+[20:07:17] » 
+Étape 6: Ollama (Agents IA)
+[20:07:17] » Installation Ollama...
+[20:07:17] » Nettoyage fichiers temporaires...
+[20:07:19] »   Fichier supprimé: D:\Temp\OllamaSetup.exe
+[20:07:19] » Téléchargement Ollama...
+[20:24:40] ✓ Téléchargement réussi (1201.79 MB)
+[20:24:40] » Installation en cours...
+(venv) TerminatingError(Start-Process): "A parameter cannot be found that matches parameter name 'PassThrup'."
+[20:24:40] ✗ Échec installation Ollama: A parameter cannot be found that matches parameter name 'PassThrup'.
+
+ + ============================================================
+INSTRUCTIONS MANUELLES POUR OLLAMA
+= *60
+1. Téléchargez: https://ollama.com/download/OllamaSetup.exe
+2. Exécutez l'installateur
+3. CHOISISSEZ CE CHEMIN: D:\Ollama
+4. Après installation:
+   - Ajoutez au PATH: D:\Ollama
+   - Créez variable: OLLAMA_MODELS=D:\Ollama\Models
+5. Redémarrez PowerShell
+6. Testez: ollama --version
+= *60
+[20:24:40] ✗ Ollama nécessite installation manuelle
+[20:24:40] » 
+Étape 7: Git
+[20:24:40] ✓ Git: git version 2.52.0.windows.1
+[20:24:40] » 
+Étape 8: Validation
+[20:24:40] » Validation finale...
+[20:24:40] ✓ ✓ Python
+[20:24:40] ✓ ✓ Environnement
+[20:24:40] ✓ ✓ Node.js
+[20:24:40] ✓ ✓ Git
+(venv) TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+[20:24:40] ✗ ERREUR: A parameter cannot be found that matches parameter name 'or'.
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260122-200707.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) clear
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # Fermez tous les processus Ollama
+Get-Process | Where-Object { $_.Name -like "*ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Relancer
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+Version: 2.2.0
+= *70
+
+Configuration initialisée
+[20:33:23] » Début installation complète
+[20:33:23] » Étape 1: Vérifications système
+[20:33:23] » D: a 400.27 GB libre
+[20:33:23] » 
+Étape 2: Chocolatey
+[20:33:23] ✓ Chocolatey déjà installé
+[20:33:23] » 
+Étape 3: Packages système
+[20:33:23] » Installation packages...
+[20:33:23] »   python311...
+[20:33:24] ✓  (déjà installé)
+[20:33:24] »   nodejs-lts...
+[20:33:25] ✓  (déjà installé)
+[20:33:25] »   git...
+[20:33:26] ✓  (déjà installé)
+[20:33:26] »   vscode...
+[20:33:27] ✓  (déjà installé)
+[20:33:27] »   postman...
+[20:33:28] ✓  (déjà installé)
+[20:33:28] »   curl...
+[20:33:29] ✓  (déjà installé)
+[20:33:29] »   7zip...
+[20:33:30] ✓  (déjà installé)
+[20:33:30] » 
+Étape 4: Python
+[20:33:30] ✓ Python: Python 3.11.9
+[20:33:30] » Configuration environnement Python...
+[20:33:32] » Installation dépendances...
+[20:33:34] ✓ Dépendances installées
+[20:33:34] » 
+Étape 5: Node.js
+[20:33:34] ✓ Node.js: v22.10.0
+[20:33:34] » 
+Étape 6: Ollama (Agents IA)
+[20:33:34] » Installation Ollama...
+[20:33:34] » Nettoyage fichiers temporaires...
+[20:33:34] » Téléchargement Ollama...
+[20:52:23] ✓ Téléchargement réussi (1201.79 MB)
+[20:52:23] » Installation en cours...
+[20:53:17] ⚠ Mode silencieux échoué, lancement interactif...
+
+=== IMPORTANT ===
+Dans l'installateur, CHOISISSEZ:
+D:\Ollama
+Appuyez sur Entrée pour ouvrir l'installateur...
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) clear
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # Fermez tous les processus Ollama
+Get-Process | Where-Object { $_.Name -like "*ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Relancer
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+= *70
+
+✅ Configuration initialisée
+[20:58:16] » Début installation
+[20:58:16] » Étape 1: Vérifications
+[20:58:16] » D: a 400.27 GB libre
+[20:58:16] » 
+Étape 2: Chocolatey
+[20:58:16] ✓ Chocolatey déjà installé
+[20:58:16] » 
+Étape 3: Packages
+[20:58:16] » Installation packages...
+[20:58:16] »   python311...
+[20:58:17] ✓  (déjà)
+[20:58:17] »   nodejs-lts...
+[20:58:18] ✓  (déjà)
+[20:58:18] »   git...
+[20:58:19] ✓  (déjà)
+[20:58:19] » 
+Étape 4: Python
+[20:58:19] ✓ Python: Python 3.11.9
+[20:58:19] » Configuration environnement Python...
+[20:58:21] » Installation dépendances...
+[20:58:22] ✓ Dépendances installées
+[20:58:22] » 
+Étape 5: Node.js
+[20:58:22] ✓ Node.js: v22.10.0
+[20:58:23] » 
+Étape 6: Ollama (INTERACTIF)
+[20:58:23] » Installation Ollama SUR D:...
+[20:58:23] » Vérification installation existante...
+[20:58:23] » Téléchargement Ollama (1.2GB)...
+[21:18:44] ✓ Téléchargement réussi (1201.79 MB)
+
+ + ======================================================================
+⚠ INSTALLATION OLLAMA - ATTENTION ⚠
+= *70
+L'installateur va s'ouvrir.
+VOUS DEVEZ FAIRE 2 CHOSES:
+1. CHOISIR CE CHEMIN:
+   D:\Ollama
+2. DÉCOCHER 'Create Desktop Shortcut' si présent
+3. Cliquer sur Install
+
+L'installateur s'ouvre dans 5 secondes...
+[21:19:17] » Attente installation...
+[21:19:32] ✗ ❌ Ollama non détecté après installation
+[21:19:32] » 
+Étape 7: Git
+[21:19:32] ✓ Git: git version 2.52.0.windows.1
+[21:19:32] » 
+Étape 8: Validation
+[21:19:32] » Validation...
+[21:19:32] ✓ ✓ Python
+[21:19:32] ✓ ✓ Environnement
+[21:19:32] ✓ ✓ Node.js
+[21:19:32] ✓ ✓ Git
+[21:19:32] ⚠ ✗ Ollama
+
+ + ======================================================================
+✅ INSTALLATION TERMINÉE
+= *70
+
+Prochaines étapes:
+1. Testez: python -c 'import web3; print(\ Web3 OK\)'
+2. Si Ollama installé: ollama --version
+3. Lancez le pipeline
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260122-205816.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) clear
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # Fermez tous les processus Ollama
+Get-Process | Where-Object { $_.Name -like "*ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Relancer
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+Version: 2.2.0
+= *70
+
+Configuration initialisée
+[09:53:27] » Début installation complète
+[09:53:27] » Étape 1: Vérifications système
+[09:53:27] » D: a 400.27 GB libre
+[09:53:27] » 
+Étape 2: Chocolatey
+[09:53:27] ✓ Chocolatey déjà installé
+[09:53:27] » 
+Étape 3: Packages système
+[09:53:27] » Installation packages...
+[09:53:27] »   python311...
+[09:53:28] ✓  (déjà installé)
+[09:53:28] »   nodejs-lts...
+[09:53:29] ✓  (déjà installé)
+[09:53:29] »   git...
+[09:53:30] ✓  (déjà installé)
+[09:53:30] »   vscode...
+[09:53:31] ✓  (déjà installé)
+[09:53:31] »   postman...
+[09:53:32] ✓  (déjà installé)
+[09:53:32] »   curl...
+[09:53:33] ✓  (déjà installé)
+[09:53:33] »   7zip...
+[09:53:33] ✓  (déjà installé)
+[09:53:34] » 
+Étape 4: Python
+[09:53:34] ✓ Python: Python 3.11.9
+[09:53:34] » Configuration environnement Python...
+[09:53:36] » Installation dépendances...
+[09:53:39] ✓ Dépendances installées
+[09:53:39] » 
+Étape 5: Node.js
+[09:53:39] ✓ Node.js: v22.10.0
+[09:53:39] » 
+Étape 6: Ollama (Agents IA)
+[09:53:39] » Installation Ollama...
+[09:53:39] » Nettoyage fichiers temporaires...
+[09:53:39] » Téléchargement Ollama...
+[10:07:51] ✓ Téléchargement réussi (1201.79 MB)
+[10:07:51] » Installation en cours...
+(venv) TerminatingError(Start-Process): "A parameter cannot be found that matches parameter name 'PassThrup'."
+[10:07:51] ✗ Échec installation Ollama: A parameter cannot be found that matches parameter name 'PassThrup'.
+
+ + ============================================================
+INSTRUCTIONS MANUELLES POUR OLLAMA
+= *60
+1. Téléchargez: https://ollama.com/download/OllamaSetup.exe
+2. Exécutez l'installateur
+3. CHOISISSEZ CE CHEMIN: D:\Ollama
+4. Après installation:
+   - Ajoutez au PATH: D:\Ollama
+   - Créez variable: OLLAMA_MODELS=D:\Ollama\Models
+5. Redémarrez PowerShell
+6. Testez: ollama --version
+= *60
+[10:07:51] ✗ Ollama nécessite installation manuelle
+[10:07:51] » 
+Étape 7: Git
+[10:07:51] ✓ Git: git version 2.52.0.windows.1
+[10:07:51] » 
+Étape 8: Validation
+[10:07:51] » Validation finale...
+[10:07:51] ✓ ✓ Python
+[10:07:51] ✓ ✓ Environnement
+[10:07:51] ✓ ✓ Node.js
+[10:07:51] ✓ ✓ Git
+(venv) TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+>> TerminatingError(Test-Path): "A parameter cannot be found that matches parameter name 'or'."
+[10:07:51] ✗ ERREUR: A parameter cannot be found that matches parameter name 'or'.
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260123-095327.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) clear
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # Fermez tous les processus Ollama
+Get-Process | Where-Object { $_.Name -like "*ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Relancer
+Set-ExecutionPolicy Bypass -Scope Process -Force
+.\install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+Version: 2.2.0
+= *70
+
+Configuration initialisée
+[10:26:06] » Début installation complète
+[10:26:06] » Étape 1: Vérifications système
+[10:26:06] » D: a 399.1 GB libre
+[10:26:06] » 
+Étape 2: Chocolatey
+[10:26:06] ✓ Chocolatey déjà installé
+[10:26:06] » 
+Étape 3: Packages système
+[10:26:06] » Installation packages...
+[10:26:06] »   python311...
+[10:26:07] ✓  (déjà installé)
+[10:26:07] »   nodejs-lts...
+[10:26:08] ✓  (déjà installé)
+[10:26:08] »   git...
+[10:26:09] ✓  (déjà installé)
+[10:26:09] »   vscode...
+[10:26:10] ✓  (déjà installé)
+[10:26:10] »   postman...
+[10:26:11] ✓  (déjà installé)
+[10:26:11] »   curl...
+[10:26:11] ✓  (déjà installé)
+[10:26:11] »   7zip...
+[10:26:12] ✓  (déjà installé)
+[10:26:13] » 
+Étape 4: Python
+[10:26:13] ✓ Python: Python 3.11.9
+[10:26:13] » Configuration environnement Python...
+[10:26:15] » Installation dépendances...
+[10:26:16] ✓ Dépendances installées
+[10:26:16] » 
+Étape 5: Node.js
+[10:26:16] ✓ Node.js: v22.10.0
+[10:26:16] » 
+Étape 6: Ollama (Agents IA)
+[10:26:16] » Installation Ollama...
+[10:26:16] » Nettoyage fichiers temporaires...
+[10:26:16] » Téléchargement Ollama...
+[10:46:17] ✓ Téléchargement réussi (1201.79 MB)
+[10:46:17] » Installation en cours...
+[10:49:58] ⚠ Installation silencieuse échouée, mode interactif...
+
+=== IMPORTANT ===
+L'installateur Ollama va s'ouvrir.
+VOUS DEVEZ CHOISIR: D:\Ollama
+Ne laissez pas l'installation sur C:\
+Appuyez sur Entrée pour continuer...
+[10:50:26] ✗ Ollama nécessite installation manuelle
+[10:52:35] » 
+Étape 7: Git
+[10:52:35] ✓ Git: git version 2.52.0.windows.1
+[10:52:35] » 
+Étape 8: Validation
+[10:52:35] » Validation finale...
+[10:52:35] ✓ ✓ Python
+[10:52:35] ✓ ✓ Environnement
+[10:52:35] ✓ ✓ Node.js
+[10:52:35] ✓ ✓ Git
+[10:52:35] ⚠ ✗ Ollama
+
+ + ======================================================================
+✅ INSTALLATION RÉUSSIE
+= *70
+
+Prochaines étapes:
+1. Environnement virtuel activé
+2. Testez: python -c 'import web3; print(\ Web3 OK\)'
+3. Si Ollama installé: ollama list
+4. Lancez le pipeline: python main.py
+[10:52:35] ✓ Installation terminée
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260123-102606.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) .\_ShareSplit1M.ps1
+.\_ShareSplit1M.ps1: The term '.\_ShareSplit1M.ps1' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+.\_ShareSplit1M.ps1: The term '.\_ShareSplit1M.ps1' is not recognized as a name of a cmdlet, function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+(venv) CommandInvocation(Get-Command): "Get-Command"
+>> ParameterBinding(Get-Command): name="UseFuzzyMatching"; value="True"
+>> ParameterBinding(Get-Command): name="FuzzyMinimumDistance"; value="1"
+>> ParameterBinding(Get-Command): name="Name"; value=".\_ShareSplit1M.ps1"
+>> CommandInvocation(Select-Object): "Select-Object"
+>> ParameterBinding(Select-Object): name="First"; value="5"
+>> ParameterBinding(Select-Object): name="Unique"; value="True"
+>> ParameterBinding(Select-Object): name="ExpandProperty"; value="Name"
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) .\ShareSplit1M.ps1
+SHARE SPLIT 1M - SmartContractDevPipeline
+= * 60
+
+=== CONFIGURATION GITHUB ===
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS D:\Web3Projects\SmartContractDevPipeline>
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) .\NewShareSplit1M.ps1
+
+= * 60
+SHARE SPLIT 1M - SmartContractDevPipeline
+= * 60
+
+=== MENU PRINCIPAL ===
+1. Publier sur GitHub Repository
+2. Partager sur GitHub Gists
+3. Générer seulement les fichiers locaux
+4. Quitter
+
+
+=== PUBLICATION GITHUB REPOSITORY ===
+
+Vérification du répertoire...
+
+=== PUBLICATION SUR GITHUB REPOSITORY ===
+Vérification du répertoire...
+ ✓
+Nettoyage Git...
+ ✓
+✓ Git déjà initialisé
+Configuration Git...
+ ✓
+Remote: https://github.com/poolsyncdefi-ui/SmartContractDevPipeline
+Ajout fichiers...
+ ✓
+Commit...
+ ✓
+Branche...
+ ✓
+Push vers GitHub...
+ ✓
+✅ PUBLICATION RÉUSSIE !
+🔗 https://github.com/poolsyncdefi-ui/SmartContractDevPipeline
+
+✅ Publication réussie sur GitHub!
+Repository: https://github.com/poolsyncdefi-ui/SmartContractDevPipeline
+
+Appuyez sur Entrée pour continuer...
+
+
+= * 60
+SHARE SPLIT 1M - SmartContractDevPipeline
+= * 60
+
+=== MENU PRINCIPAL ===
+1. Publier sur GitHub Repository
+2. Partager sur GitHub Gists
+3. Générer seulement les fichiers locaux
+4. Quitter
+
+Au revoir!
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) function Install-Ollama {
+    Write-Log "Installation d'Ollama..." -Level Info
+    
+    # Chemin D: cible
+    $ollamaPath = "D:\Ollama"
+    $ollamaExe = Join-Path $ollamaPath "ollama.exe"
+    
+    # Vérifier si déjà installé sur D:
+    if (Test-Path $ollamaExe) {
+        $version = & $ollamaExe --version 2>&1
+        Write-Log "[OK] Ollama déjà installé sur D:: $version" -Level Success
+        return $true
+    }
+    
+    # Télécharger
+    Write-Log "Téléchargement d'Ollama (1.2GB)..." -Level Info
+    
+    try {
+        $installerPath = Join-Path $Script:Config.TempDir "OllamaSetup.exe"
+        
+        # Nettoyer l'ancien fichier
+        if (Test-Path $installerPath) {
+            Remove-Item -Path $installerPath -Force -ErrorAction SilentlyContinue
+        }
+        
+        # Télécharger
+        $progressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri $Script:Config.Urls.Ollama -OutFile $installerPath -UseBasicParsing
+        
+        $size = [math]::Round((Get-Item $installerPath).Length/1MB, 2)
+        Write-Log "[OK] Téléchargement réussi ($size MB)" -Level Success
+        
+        # === MÉTHODE DÉFINITIVE : Installation Interactive avec Contrôle ===
+        
+        # 1. Préparer D:\Ollama
+        if (-not (Test-Path $ollamaPath)) {
+            New-Item -Path $ollamaPath -ItemType Directory -Force | Out-Null
+            Write-Log "Dossier préparé: $ollamaPath" -Level Info
+        }
+        
+        # 2. Instructions CLAIRES
+        Write-Host "`n" -ForegroundColor Cyan
+        Write-Host "┌────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+        Write-Host "│                INSTALLATION OLLAMA - IMPORTANT             │" -ForegroundColor Red
+        Write-Host "├────────────────────────────────────────────────────────────┤" -ForegroundColor Cyan
+        Write-Host "│ L'installateur va s'ouvrir. SUIVEZ CES ÉTAPES :           │" -ForegroundColor Yellow
+        Write-Host "│                                                            │" -ForegroundColor Yellow
+        Write-Host "│ 1. Dans l'installateur, cliquez sur 'Browse...'           │" -ForegroundColor White
+        Write-Host "│ 2. Naviguez vers : D:\                                    │" -ForegroundColor White
+        Write-Host "│ 3. Cliquez sur 'Make New Folder'                          │" -ForegroundColor White
+        Write-Host "│ 4. Nommez le dossier : Ollama                            │" -ForegroundColor White
+        Write-Host "│ 5. Sélectionnez D:\Ollama                                 │" -ForegroundColor Green
+        WriteHost "│ 6. Décochez 'Create Desktop Shortcut' (optionnel)         │" -ForegroundColor White
+        Write-Host "│ 7. Cliquez sur Install                                    │" -ForegroundColor White
+        Write-Host "│                                                            │" -ForegroundColor Yellow
+        Write-Host "│ ⚠  NE LAISSEZ PAS l'installation par défaut sur C:\ !     │" -ForegroundColor Red
+        Write-Host "└────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+        Write-Host "`n"
+        
+        # 3. Donner le temps de lire
+        Write-Host "L'installateur s'ouvre dans 10 secondes..." -ForegroundColor Yellow
+        for ($i = 10; $i -gt 0; $i--) {
+            Write-Host "  $i..." -ForegroundColor Gray -NoNewline
+            Start-Sleep -Seconds 1
+        }
+        Write-Host "`n"
+        
+        # 4. Ouvrir l'installateur
+        Write-Log "Ouverture de l'installateur Ollama..." -Level Info
+        $process = Start-Process -FilePath $installerPath -Wait -PassThru
+        
+        # 5. Attendre et vérifier
+        Write-Log "Attente de l'installation..." -Level Info
+        Start-Sleep -Seconds 20
+        
+        # 6. Vérifier l'installation sur D:
+        if (Test-Path $ollamaExe) {
+            Write-Log "[OK] Ollama installé sur D:" -Level Success
+            
+            # Configurer le PATH
+            $env:Path += ";$ollamaPath"
+            [Environment]::SetEnvironmentVariable("Path", $env:Path, [EnvironmentVariableTarget]::Machine)
+            
+            # Configurer les modèles sur D:
+            $modelsPath = "D:\Ollama\Models"
+            if (-not (Test-Path $modelsPath)) {
+                New-Item -Path $modelsPath -ItemType Directory -Force | Out-Null
+            }
+            
+            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, [EnvironmentVariableTarget]::User)
+            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, [EnvironmentVariableTarget]::Machine)
+            $env:OLLAMA_MODELS = $modelsPath
+            
+            Write-Log "Dossier des modèles configuré: $modelsPath" -Level Success
+            
+            # Démarrer le service
+            Write-Log "Démarrage du service Ollama..." -Level Info
+            Start-Process $ollamaExe -ArgumentList "serve" -WindowStyle Hidden
+            Start-Sleep -Seconds 10
+            
+            # Télécharger les modèles
+            Write-Log "Téléchargement des modèles IA..." -Level Info
+            
+            foreach ($model in $Script:Config.OllamaModels) {
+                try {
+                    Write-Log "  Téléchargement de $model..." -Level Info -NoNewLine
+                    & $ollamaExe pull $model 2>&1 | Out-Null
+                    Write-Log " [OK]" -Level Success
+                } catch {
+                    Write-Log " [ECHEC]" -Level Warning
+                }
+            }
+            
+            Write-Log "[OK] Ollama installé et configuré sur D:" -Level Success
+            return $true
+            
+        } else {
+            # Vérifier si installé sur C: par erreur
+            $ollamaC = Get-Command ollama -ErrorAction SilentlyContinue
+            if ($ollamaC) {
+                Write-Log "[ERREUR] Ollama installé sur C: au lieu de D:" -Level Error
+                Write-Host "`n⚠ PROBLEME DETECTE : Ollama est installé sur C:\" -ForegroundColor Red
+                Write-Host "Pour corriger :" -ForegroundColor Yellow
+                Write-Host "1. Désinstallez Ollama depuis le Panneau de configuration" -ForegroundColor White
+                Write-Host "2. Relancez ce script" -ForegroundColor White
+                Write-Host "3. Cette fois, CHOISISSEZ D:\Ollama dans l'installateur" -ForegroundColor White
+            } else {
+                Write-Log "[ERREUR] Ollama non installé" -Level Error
+            }
+            
+            return $false
+        }
+        
+    } catch {
+        Write-Log "Échec de l'installation d'Ollama: $_" -Level Error
+        
+        # Instructions de secours
+        Write-Host "`n" + ("="*60) -ForegroundColor Yellow
+        Write-Host "INSTRUCTIONS MANUELLES" -ForegroundColor Yellow
+        Write-Host "="*60 -ForegroundColor Yellow
+        Write-Host "1. Ouvrez : https://ollama.com/download/OllamaSetup.exe" -ForegroundColor White
+        Write-Host "2. Enregistrez le fichier dans : D:\Temp\" -ForegroundColor White
+        Write-Host "3. Exécutez l'installateur" -ForegroundColor White
+        Write-Host "4. IMPORTANT : Choisissez D:\Ollama comme chemin" -ForegroundColor Green
+        Write-Host "5. Après installation, testez : ollama --version" -ForegroundColor White
+        Write-Host "="*60 -ForegroundColor Yellow
+        
+        return $false
+    }
+}
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) Set-ExecutionPolicy Bypass -Scope Process -Force
+.\new_install-prerequis.ps1
+
+ + ======================================================================
+SMART CONTRACT PIPELINE - INSTALLATION COMPLÈTE
+Version: 2.2.0
+= *70
+
+Configuration initialisée
+[13:51:23] » Début installation complète
+[13:51:23] » Étape 1: Vérifications système
+[13:51:23] » D: a 400.1 GB libre
+[13:51:23] » 
+Étape 2: Chocolatey
+[13:51:23] ✓ Chocolatey déjà installé
+[13:51:23] » 
+Étape 3: Packages système
+[13:51:23] » Installation packages...
+[13:51:23] »   python311...
+[13:51:24] ✓  (déjà installé)
+[13:51:24] »   nodejs-lts...
+[13:51:25] ✓  (déjà installé)
+[13:51:25] »   git...
+[13:51:26] ✓  (déjà installé)
+[13:51:26] »   vscode...
+[13:51:26] ✓  (déjà installé)
+[13:51:26] »   postman...
+[13:51:27] ✓  (déjà installé)
+[13:51:27] »   curl...
+[13:51:28] ✓  (déjà installé)
+[13:51:28] »   7zip...
+[13:51:29] ✓  (déjà installé)
+[13:51:30] » 
+Étape 4: Python
+[13:51:30] ✓ Python: Python 3.11.9
+[13:51:30] » Configuration environnement Python...
+[13:51:31] » Installation dépendances...
+[13:51:33] ✓ Dépendances installées
+[13:51:33] » 
+Étape 5: Node.js
+[13:51:33] ✓ Node.js: v22.10.0
+[13:51:33] » 
+Étape 6: Ollama (Agents IA)
+[13:51:33] » Installation d'Ollama...
+[13:51:33] » Téléchargement d'Ollama (1.2GB)...
+(venv) TerminatingError(Join-Path): "Cannot bind argument to parameter 'Path' because it is null."
+[13:51:33] ✗ Échec de l'installation d'Ollama: Cannot bind argument to parameter 'Path' because it is null.
+
+ + ============================================================
+INSTRUCTIONS MANUELLES
+= *60
+1. Ouvrez : https://ollama.com/download/OllamaSetup.exe
+2. Enregistrez le fichier dans : D:\Temp\
+3. Exécutez l'installateur
+4. IMPORTANT : Choisissez D:\Ollama comme chemin
+5. Après installation, testez : ollama --version
+= *60
+[13:51:33] ✗ Ollama nécessite installation manuelle
+[13:51:33] » 
+Étape 7: Git
+[13:51:33] ✓ Git: git version 2.52.0.windows.1
+[13:51:33] » 
+Étape 8: Validation
+[13:51:33] » Validation finale...
+[13:51:33] ✓ ✓ Python
+[13:51:33] ✓ ✓ Environnement
+[13:51:34] ✓ ✓ Node.js
+[13:51:34] ✓ ✓ Git
+[13:51:34] ⚠ ✗ Ollama
+
+ + ======================================================================
+✅ INSTALLATION RÉUSSIE
+= *70
+
+Prochaines étapes:
+1. Environnement virtuel activé
+2. Testez: python -c 'import web3; print(\ Web3 OK\)'
+3. Si Ollama installé: ollama list
+4. Lancez le pipeline: python main.py
+[13:51:34] ✓ Installation terminée
+
+Log: D:\Web3Projects\SmartContractDevPipeline\logs\install-20260123-135123.log
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) $installer = "D:\Temp\OllamaSetup-NEW.exe"
+Invoke-WebRequest -Uri "https://ollama.com/download/OllamaSetup.exe" -OutFile $installer
+Start-Process -FilePath $installer
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) Set-ExecutionPolicy Bypass -Scope Process -Force
+.\verifier-installation.ps1
+
+ + = *70
+VÉRIFICATION DE L'ENVIRONNEMENT SMART CONTRACT PIPELINE
+= *70
+
+1. PYTHON ET ENVIRONNEMENT VIRTUEL
+--------------------------------------------------
+  ✅ Python: Python 3.11.9
+  ✅ Environnement virtuel présent
+  ✅ Environnement activé
+  ✅ Pip dans venv: 25.3
+
+2. DÉPENDANCES PYTHON
+--------------------------------------------------
+  ✅ fastapi : 0.128.0
+  ✅ uvicorn : 0.40.0
+  ✅ web3 : 7.14.0
+  ✅ pydantic : 2.12.5
+  ✅ langchain : 1.2.6
+  ✅ ollama : Traceback (most recent call last):   File "<string>", line 1, in <module> AttributeError: module 'ollama' has no attribute '__version__'
+  ✅ requests : 2.32.5
+
+3. OLLAMA ET MODÈLES IA
+--------------------------------------------------
+  ❌ Ollama: Commande non trouvée
+     Installez-le depuis: https://ollama.com
+
+4. NODE.JS ET NPM
+--------------------------------------------------
+  ✅ Node.js: v22.10.0
+  ✅ NPM: v10.9.0
+
+5. GIT
+--------------------------------------------------
+  ✅ Git: 2.52.0.windows.1
+  👤 Utilisateur: poolsync.defi
+  📧 Email: poolsync.defi@gmail.com
+
+6. STRUCTURE DU PROJET
+--------------------------------------------------
+  ✅ agents/
+  ❌ workflow/ (manquant)
+  ✅ storage/
+  ✅ monitoring/
+  ✅ learning/
+  4/5 dossiers présents
+
+7. TEST WEB3 (Smart Contracts)
+--------------------------------------------------
+  Traceback (most recent call last):   File "<string>", line 10, in <module>   File "C:\Users\elega\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\u2705' in position 0: character maps to <undefined>  During handling of the above exception, another exception occurred:  Traceback (most recent call last):   File "<string>", line 15, in <module>   File "C:\Users\elega\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode     return codecs.charmap_encode(input,self.errors,encoding_table)[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UnicodeEncodeError: 'charmap' codec can't encode character '\u274c' in position 0: character maps to <undefined>
+
+8. TEST AGENTS IA
+--------------------------------------------------
+  ⚠ Ollama requis pour les agents IA
+
+ + = *70
+RÉSUMÉ DE L'INSTALLATION
+= *70
+  ✅ Python 3.8+
+  ✅ Environnement virtuel
+  ❌ Web3.py
+  ❌ FastAPI
+  ❌ Ollama
+  ✅ Node.js
+  ✅ Git
+
+  4/7 tests passés
+
+ + = *70
+RECOMMANDATIONS
+= *70
+⚠ ENVIRONNEMENT INCOMPLET
+
+• Ollama manquant:
+  Téléchargez depuis: https://ollama.com
+  Choisissez D:\Ollama comme chemin d'installation
+
+ + = *70
+PS D:\Web3Projects\SmartContractDevPipeline>
+PS D:\Web3Projects\SmartContractDevPipeline>
+PS D:\Web3Projects\SmartContractDevPipeline>
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # install-ollama-definitif.ps1
+Write-Host "=== INSTALLATION OLLAMA SUR D: ===" -ForegroundColor Cyan
+
+# 1. Télécharger
+$installer = "D:\Temp\OllamaInstaller.exe"
+Write-Host "1. Téléchargement..." -ForegroundColor Yellow
+Invoke-WebRequest -Uri "https://ollama.com/download/OllamaSetup.exe" -OutFile $installer -UseBasicParsing
+
+# 2. Instructions CLAIRES
+Write-Host "`n2. IMPORTANT - LISEZ ATTENTIVEMENT:" -ForegroundColor Red
+Write-Host "   L'installateur va s'ouvrir." -ForegroundColor Yellow
+Write-Host "   VOUS DEVEZ:" -ForegroundColor White
+Write-Host "   a) Cliquer sur 'Browse...'" -ForegroundColor White
+Write-Host "   b) Aller dans D:\" -ForegroundColor White
+Write-Host "   c) Créer dossier 'Ollama'" -ForegroundColor White
+Write-Host "   d) Sélectionner D:\Ollama" -ForegroundColor Green
+Write-Host "   e) Cliquer Install" -ForegroundColor White
+Write-Host "`nAppuyez sur Entrée pour ouvrir l'installateur..." -ForegroundColor Yellow
+Pause
+
+# 3. Ouvrir l'installateur
+Start-Process -FilePath $installer -Wait
+
+# 4. Vérifier
+Write-Host "`n3. Vérification..." -ForegroundColor Yellow
+Start-Sleep -Seconds 10
+
+if (Test-Path "D:\Ollama\ollama.exe") {
+    Write-Host "✅ Ollama installé sur D:" -ForegroundColor Green
+    
+    # Ajouter au PATH
+    $env:Path += ";D:\Ollama"
+    
+    # Test
+    ollama --version
+} else {
+    Write-Host "❌ Ollama non trouvé sur D:" -ForegroundColor Red
+    Write-Host "Il est probablement sur C:\" -ForegroundColor Yellow
+}
+=== INSTALLATION OLLAMA SUR D: ===
+1. Téléchargement...
+
+2. IMPORTANT - LISEZ ATTENTIVEMENT:
+   L'installateur va s'ouvrir.
+   VOUS DEVEZ:
+   a) Cliquer sur 'Browse...'
+   b) Aller dans D:\
+   c) Créer dossier 'Ollama'
+   d) Sélectionner D:\Ollama
+   e) Cliquer Install
+
+Appuyez sur Entrée pour ouvrir l'installateur...
+
+3. Vérification...
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS D:\Web3Projects\SmartContractDevPipeline>
+(venv) # install-ollama-definitif.ps1
+Write-Host "=== INSTALLATION OLLAMA SUR D: ===" -ForegroundColor Cyan
+
+# 1. Télécharger
+$installer = "D:\Temp\OllamaInstaller.exe"
+Write-Host "1. Téléchargement..." -ForegroundColor Yellow
+Invoke-WebRequest -Uri "https://ollama.com/download/OllamaSetup.exe" -OutFile $installer -UseBasicParsing
+
+# 2. Instructions CLAIRES
+Write-Host "`n2. IMPORTANT - LISEZ ATTENTIVEMENT:" -ForegroundColor Red
+Write-Host "   L'installateur va s'ouvrir." -ForegroundColor Yellow
+Write-Host "   VOUS DEVEZ:" -ForegroundColor White
+Write-Host "   a) Cliquer sur 'Browse...'" -ForegroundColor White
+Write-Host "   b) Aller dans D:\" -ForegroundColor White
+Write-Host "   c) Créer dossier 'Ollama'" -ForegroundColor White
+Write-Host "   d) Sélectionner D:\Ollama" -ForegroundColor Green
+Write-Host "   e) Cliquer Install" -ForegroundColor White
+Write-Host "`nAppuyez sur Entrée pour ouvrir l'installateur..." -ForegroundColor Yellow
+Pause
+
+# 3. Ouvrir l'installateur
+Start-Process -FilePath $installer -Wait
+
+# 4. Vérifier
+Write-Host "`n3. Vérification..." -ForegroundColor Yellow
+Start-Sleep -Seconds 10
+
+if (Test-Path "D:\Ollama\ollama.exe") {
+    Write-Host "✅ Ollama installé sur D:" -ForegroundColor Green
+    
+    # Ajouter au PATH
+    $env:Path += ";D:\Ollama"
+    
+    # Test
+    ollama --version
+} else {
+    Write-Host "❌ Ollama non trouvé sur D:" -ForegroundColor Red
+    Write-Host "Il est probablement sur C:\" -ForegroundColor Yellow
+}
+=== INSTALLATION OLLAMA SUR D: ===
+1. Téléchargement...
+(venv) TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS D:\Web3Projects\SmartContractDevPipeline>

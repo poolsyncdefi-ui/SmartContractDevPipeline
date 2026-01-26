@@ -305,160 +305,154 @@ requests>=2.31.0
 }
 
 function Install-Ollama {
-    $config = Get-Config
-    Write-Log "Installation Ollama..." -Level Info
+    Write-Log "Installation d'Ollama..." -Level Info
     
-    $ollamaPath = $config.InstallPaths.Ollama
+    # Chemin D: cible
+    $ollamaPath = "D:\Ollama"
     $ollamaExe = Join-Path $ollamaPath "ollama.exe"
     
     # Vérifier si déjà installé sur D:
     if (Test-Path $ollamaExe) {
-        try {
-            $version = & $ollamaExe --version 2>&1
-            Write-Log "Ollama déjà installé: $version" -Level Success
-            return $true
-        } catch {}
+        $version = & $ollamaExe --version 2>&1
+        Write-Log "[OK] Ollama déjà installé sur D:: $version" -Level Success
+        return $true
     }
     
-    # Nettoyer les anciens fichiers d'installation
-    Write-Log "Nettoyage fichiers temporaires..." -Level Info
-    $oldInstallers = @(
-        "D:\Temp\OllamaSetup.exe",
-        "D:\Temp\OllamaSetup-NEW.exe",
-        "$($config.TempDir)\OllamaSetup.exe"
-    )
-    
-    foreach ($file in $oldInstallers) {
-        if (Test-Path $file) {
-            try {
-                # Tenter de libérer le fichier
-                Get-Process | Where-Object { $_.Path -like "*Ollama*" } | Stop-Process -Force -ErrorAction SilentlyContinue
-                Start-Sleep -Seconds 1
-                Remove-Item -Path $file -Force -ErrorAction SilentlyContinue
-                Write-Log "  Fichier supprimé: $file" -Level Info
-            } catch {}
-        }
-    }
-    
-    # Créer dossier d'installation
-    if (-not (Test-Path $ollamaPath)) {
-        New-Item -Path $ollamaPath -ItemType Directory -Force | Out-Null
-    }
-    
-    # Télécharger avec nom unique
-    $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
-    $installerPath = Join-Path $config.TempDir "OllamaSetup-$timestamp.exe"
-    
-    Write-Log "Téléchargement Ollama..." -Level Info
+    # Télécharger
+    Write-Log "Téléchargement d'Ollama (1.2GB)..." -Level Info
     
     try {
-        # Télécharger avec retry
-        $maxRetries = 3
-        $retryCount = 0
+        $installerPath = Join-Path $Script:Config.TempDir "OllamaSetup.exe"
         
-        while ($retryCount -lt $maxRetries) {
-            try {
-                Invoke-WebRequest -Uri $config.Urls.Ollama -OutFile $installerPath -UseBasicParsing -TimeoutSec 30
-                break
-            } catch {
-                $retryCount++
-                if ($retryCount -eq $maxRetries) {
-                    throw "Échec téléchargement après $maxRetries tentatives: $_"
-                }
-                Write-Log "Tentative $retryCount/$maxRetries échouée, nouvelle tentative..." -Level Warning
-                Start-Sleep -Seconds 2
-            }
+        # Nettoyer l'ancien fichier
+        if (Test-Path $installerPath) {
+            Remove-Item -Path $installerPath -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Log "Téléchargement réussi ($([math]::Round((Get-Item $installerPath).Length/1MB,2)) MB)" -Level Success
+        # Télécharger
+        $progressPreference = 'SilentlyContinue'
+        Invoke-WebRequest -Uri $Script:Config.Urls.Ollama -OutFile $installerPath -UseBasicParsing
         
-        # Installation silencieuse
-        Write-Log "Installation en cours..." -Level Info
+        $size = [math]::Round((Get-Item $installerPath).Length/1MB, 2)
+        Write-Log "[OK] Téléchargement réussi ($size MB)" -Level Success
         
-        $process = Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait -PassThru
+        # === MÉTHODE DÉFINITIVE : Installation Interactive avec Contrôle ===
         
-        # Attendre l'installation
-        Start-Sleep -Seconds 10
+        # 1. Préparer D:\Ollama
+        if (-not (Test-Path $ollamaPath)) {
+            New-Item -Path $ollamaPath -ItemType Directory -Force | Out-Null
+            Write-Log "Dossier préparé: $ollamaPath" -Level Info
+        }
         
-        # Vérifier l'installation
+        # 2. Instructions CLAIRES
+        Write-Host "`n" -ForegroundColor Cyan
+        Write-Host "┌────────────────────────────────────────────────────────────┐" -ForegroundColor Cyan
+        Write-Host "│                INSTALLATION OLLAMA - IMPORTANT             │" -ForegroundColor Red
+        Write-Host "├────────────────────────────────────────────────────────────┤" -ForegroundColor Cyan
+        Write-Host "│ L'installateur va s'ouvrir. SUIVEZ CES ÉTAPES :           │" -ForegroundColor Yellow
+        Write-Host "│                                                            │" -ForegroundColor Yellow
+        Write-Host "│ 1. Dans l'installateur, cliquez sur 'Browse...'           │" -ForegroundColor White
+        Write-Host "│ 2. Naviguez vers : D:\                                    │" -ForegroundColor White
+        Write-Host "│ 3. Cliquez sur 'Make New Folder'                          │" -ForegroundColor White
+        Write-Host "│ 4. Nommez le dossier : Ollama                            │" -ForegroundColor White
+        Write-Host "│ 5. Sélectionnez D:\Ollama                                 │" -ForegroundColor Green
+        WriteHost "│ 6. Décochez 'Create Desktop Shortcut' (optionnel)         │" -ForegroundColor White
+        Write-Host "│ 7. Cliquez sur Install                                    │" -ForegroundColor White
+        Write-Host "│                                                            │" -ForegroundColor Yellow
+        Write-Host "│ ⚠  NE LAISSEZ PAS l'installation par défaut sur C:\ !     │" -ForegroundColor Red
+        Write-Host "└────────────────────────────────────────────────────────────┘" -ForegroundColor Cyan
+        Write-Host "`n"
+        
+        # 3. Donner le temps de lire
+        Write-Host "L'installateur s'ouvre dans 10 secondes..." -ForegroundColor Yellow
+        for ($i = 10; $i -gt 0; $i--) {
+            Write-Host "  $i..." -ForegroundColor Gray -NoNewline
+            Start-Sleep -Seconds 1
+        }
+        Write-Host "`n"
+        
+        # 4. Ouvrir l'installateur
+        Write-Log "Ouverture de l'installateur Ollama..." -Level Info
+        $process = Start-Process -FilePath $installerPath -Wait -PassThru
+        
+        # 5. Attendre et vérifier
+        Write-Log "Attente de l'installation..." -Level Info
+        Start-Sleep -Seconds 20
+        
+        # 6. Vérifier l'installation sur D:
         if (Test-Path $ollamaExe) {
-            # Ajouter au PATH
+            Write-Log "[OK] Ollama installé sur D:" -Level Success
+            
+            # Configurer le PATH
             $env:Path += ";$ollamaPath"
+            [Environment]::SetEnvironmentVariable("Path", $env:Path, [EnvironmentVariableTarget]::Machine)
             
             # Configurer les modèles sur D:
-            $modelsPath = $config.InstallPaths.Models
+            $modelsPath = "D:\Ollama\Models"
             if (-not (Test-Path $modelsPath)) {
                 New-Item -Path $modelsPath -ItemType Directory -Force | Out-Null
             }
             
-            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, "User")
+            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, [EnvironmentVariableTarget]::User)
+            [Environment]::SetEnvironmentVariable("OLLAMA_MODELS", $modelsPath, [EnvironmentVariableTarget]::Machine)
             $env:OLLAMA_MODELS = $modelsPath
             
-            Write-Log "Ollama installé sur D:" -Level Success
+            Write-Log "Dossier des modèles configuré: $modelsPath" -Level Success
             
             # Démarrer le service
-            Write-Log "Démarrage service..." -Level Info
+            Write-Log "Démarrage du service Ollama..." -Level Info
             Start-Process $ollamaExe -ArgumentList "serve" -WindowStyle Hidden
             Start-Sleep -Seconds 10
             
-            # Télécharger modèles
-            Write-Log "Téléchargement modèles IA..." -Level Info
-            foreach ($model in $config.OllamaModels) {
+            # Télécharger les modèles
+            Write-Log "Téléchargement des modèles IA..." -Level Info
+            
+            foreach ($model in $Script:Config.OllamaModels) {
                 try {
-                    Write-Log "  $model..." -Level Info -NoNewLine
+                    Write-Log "  Téléchargement de $model..." -Level Info -NoNewLine
                     & $ollamaExe pull $model 2>&1 | Out-Null
-                    Write-Log " ✓" -Level Success
+                    Write-Log " [OK]" -Level Success
                 } catch {
-                    Write-Log " ✗" -Level Warning
+                    Write-Log " [ECHEC]" -Level Warning
                 }
             }
             
-            # Nettoyer l'installateur
-            Remove-Item -Path $installerPath -Force -ErrorAction SilentlyContinue
-            
+            Write-Log "[OK] Ollama installé et configuré sur D:" -Level Success
             return $true
             
         } else {
-            # Fallback: mode interactif
-            Write-Log "Installation silencieuse échouée, mode interactif..." -Level Warning
-            Write-Host "`n=== IMPORTANT ===" -ForegroundColor Red
-            Write-Host "L'installateur Ollama va s'ouvrir." -ForegroundColor Yellow
-            Write-Host "VOUS DEVEZ CHOISIR: $ollamaPath" -ForegroundColor Red
-            Write-Host "Ne laissez pas l'installation sur C:\" -ForegroundColor Red
-            Write-Host "Appuyez sur Entrée pour continuer..." -ForegroundColor Yellow
-            Pause
-            
-            Start-Process -FilePath $installerPath -Wait
-            
-            # Vérifier après installation manuelle
-            Start-Sleep -Seconds 10
-            if (Test-Path $ollamaExe) {
-                Write-Log "Ollama installé (manuel)" -Level Success
-                return $true
+            # Vérifier si installé sur C: par erreur
+            $ollamaC = Get-Command ollama -ErrorAction SilentlyContinue
+            if ($ollamaC) {
+                Write-Log "[ERREUR] Ollama installé sur C: au lieu de D:" -Level Error
+                Write-Host "`n⚠ PROBLEME DETECTE : Ollama est installé sur C:\" -ForegroundColor Red
+                Write-Host "Pour corriger :" -ForegroundColor Yellow
+                Write-Host "1. Désinstallez Ollama depuis le Panneau de configuration" -ForegroundColor White
+                Write-Host "2. Relancez ce script" -ForegroundColor White
+                Write-Host "3. Cette fois, CHOISISSEZ D:\Ollama dans l'installateur" -ForegroundColor White
+            } else {
+                Write-Log "[ERREUR] Ollama non installé" -Level Error
             }
+            
+            return $false
         }
         
     } catch {
-        Write-Log "Échec installation Ollama: $_" -Level Error
+        Write-Log "Échec de l'installation d'Ollama: $_" -Level Error
         
-        # Instructions manuelles détaillées
-        Write-Host "`n" + ("="*60) -ForegroundColor Red
-        Write-Host "INSTRUCTIONS MANUELLES POUR OLLAMA" -ForegroundColor Red
-        Write-Host "="*60 -ForegroundColor Red
-        Write-Host "1. Téléchargez: https://ollama.com/download/OllamaSetup.exe" -ForegroundColor Yellow
-        Write-Host "2. Exécutez l'installateur" -ForegroundColor Yellow
-        Write-Host "3. CHOISISSEZ CE CHEMIN: $ollamaPath" -ForegroundColor Green
-        Write-Host "4. Après installation:" -ForegroundColor Yellow
-        Write-Host "   - Ajoutez au PATH: $ollamaPath" -ForegroundColor White
-        Write-Host "   - Créez variable: OLLAMA_MODELS=$($config.InstallPaths.Models)" -ForegroundColor White
-        Write-Host "5. Redémarrez PowerShell" -ForegroundColor Yellow
-        Write-Host "6. Testez: ollama --version" -ForegroundColor Yellow
-        Write-Host "="*60 -ForegroundColor Red
+        # Instructions de secours
+        Write-Host "`n" + ("="*60) -ForegroundColor Yellow
+        Write-Host "INSTRUCTIONS MANUELLES" -ForegroundColor Yellow
+        Write-Host "="*60 -ForegroundColor Yellow
+        Write-Host "1. Ouvrez : https://ollama.com/download/OllamaSetup.exe" -ForegroundColor White
+        Write-Host "2. Enregistrez le fichier dans : D:\Temp\" -ForegroundColor White
+        Write-Host "3. Exécutez l'installateur" -ForegroundColor White
+        Write-Host "4. IMPORTANT : Choisissez D:\Ollama comme chemin" -ForegroundColor Green
+        Write-Host "5. Après installation, testez : ollama --version" -ForegroundColor White
+        Write-Host "="*60 -ForegroundColor Yellow
         
         return $false
     }
-    
-    return $false
 }
 
 function Install-NodeJS {

@@ -103,3 +103,53 @@
 [10:52:35] [Success] ✓ Git
 [10:52:35] [Warning] ✗ Ollama
 [10:52:35] [Success] Installation terminée
+[13:51:23] [Info] Début installation complète
+[13:51:23] [Info] Étape 1: Vérifications système
+[13:51:23] [Info] D: a 400.1 GB libre
+[13:51:23] [Info] 
+Étape 2: Chocolatey
+[13:51:23] [Success] Chocolatey déjà installé
+[13:51:23] [Info] 
+Étape 3: Packages système
+[13:51:23] [Info] Installation packages...
+[13:51:23] [Info]   python311...
+[13:51:24] [Success]  (déjà installé)
+[13:51:24] [Info]   nodejs-lts...
+[13:51:25] [Success]  (déjà installé)
+[13:51:25] [Info]   git...
+[13:51:26] [Success]  (déjà installé)
+[13:51:26] [Info]   vscode...
+[13:51:26] [Success]  (déjà installé)
+[13:51:26] [Info]   postman...
+[13:51:27] [Success]  (déjà installé)
+[13:51:27] [Info]   curl...
+[13:51:28] [Success]  (déjà installé)
+[13:51:28] [Info]   7zip...
+[13:51:29] [Success]  (déjà installé)
+[13:51:30] [Info] 
+Étape 4: Python
+[13:51:30] [Success] Python: Python 3.11.9
+[13:51:30] [Info] Configuration environnement Python...
+[13:51:31] [Info] Installation dépendances...
+[13:51:33] [Success] Dépendances installées
+[13:51:33] [Info] 
+Étape 5: Node.js
+[13:51:33] [Success] Node.js: v22.10.0
+[13:51:33] [Info] 
+Étape 6: Ollama (Agents IA)
+[13:51:33] [Info] Installation d'Ollama...
+[13:51:33] [Info] Téléchargement d'Ollama (1.2GB)...
+[13:51:33] [Error] Échec de l'installation d'Ollama: Cannot bind argument to parameter 'Path' because it is null.
+[13:51:33] [Error] Ollama nécessite installation manuelle
+[13:51:33] [Info] 
+Étape 7: Git
+[13:51:33] [Success] Git: git version 2.52.0.windows.1
+[13:51:33] [Info] 
+Étape 8: Validation
+[13:51:33] [Info] Validation finale...
+[13:51:33] [Success] ✓ Python
+[13:51:33] [Success] ✓ Environnement
+[13:51:34] [Success] ✓ Node.js
+[13:51:34] [Success] ✓ Git
+[13:51:34] [Warning] ✗ Ollama
+[13:51:34] [Success] Installation terminée
