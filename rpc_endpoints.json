@@ -1,0 +1,7 @@
+{
+  "arbitrum": "https://arbitrum.llamarpc.com",
+  "ethereum_mainnet": "https://eth.llamarpc.com",
+  "optimism": "https://optimism.llamarpc.com",
+  "polygon": "https://polygon.llamarpc.com",
+  "base": "https://base.llamarpc.com"
+}
