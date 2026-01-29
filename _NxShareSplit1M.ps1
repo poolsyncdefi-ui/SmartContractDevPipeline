@@ -1,4 +1,4 @@
-# ShareSplit1M_Working.ps1
+# ShareSplit1M_Complete.ps1
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
@@ -14,18 +14,18 @@ if (Test-Path $configPath) {
     $GITHUB_REPO_PRIVATE = $config.GITHUB_REPO_PRIVATE
     $GITHUB_REPO_DESCRIPTION = $config.GITHUB_REPO_DESCRIPTION
 } else {
-    Write-Host "Fichier de configuration non trouve. Utilisation des valeurs par defaut." -ForegroundColor Yellow
+    Write-Host "Fichier de configuration non trouvé. Utilisation des valeurs par défaut." -ForegroundColor Yellow
     $PROJECT_NAME = "MonProjet"
     $PROJECT_PATH = "."
     $GITHUB_TOKEN = ""
     $GITHUB_USERNAME = ""
     $GITHUB_REPO_NAME = ""
     $GITHUB_REPO_PRIVATE = $false
-    $GITHUB_REPO_DESCRIPTION = "Projet partage automatiquement"
+    $GITHUB_REPO_DESCRIPTION = "Projet partagé automatiquement"
 }
 
 # ============================================================================
-# FONCTION POUR PUBLIER SUR GITHUB REPOSITORY - VERSION FONCTIONNELLE
+# FONCTION POUR PUBLIER SUR GITHUB REPOSITORY
 # ============================================================================
 function Publish-ToGitHubRepo-Working {
     param(
@@ -38,33 +38,33 @@ function Publish-ToGitHubRepo-Working {
     
     Write-Host "`n=== PUBLICATION SUR GITHUB REPOSITORY ===" -ForegroundColor Cyan
     
-    # CRITIQUE: Verifier que nous sommes dans le bon repertoire
-    Write-Host "Verification du repertoire..." -NoNewline
+    # CRITIQUE: Vérifier que nous sommes dans le bon répertoire
+    Write-Host "Vérification du répertoire..." -NoNewline
     $currentDir = Get-Location
     $projectDir = Resolve-Path $PROJECT_PATH -ErrorAction SilentlyContinue
     
     if ($currentDir.Path -ne $projectDir.Path) {
         Write-Host " ✗" -ForegroundColor Red
-        Write-Host "ERREUR: Vous devez etre dans le dossier du projet!" -ForegroundColor Red
+        Write-Host "ERREUR: Vous devez être dans le dossier du projet!" -ForegroundColor Red
         Write-Host "Actuel: $currentDir" -ForegroundColor Yellow
         Write-Host "Projet: $projectDir" -ForegroundColor Yellow
-        Write-Host "Executez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-        return @{ success = $false; error = "Mauvais repertoire" }
+        Write-Host "Exécutez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
+        return @{ success = $false; error = "Mauvais répertoire" }
     }
     Write-Host " ✓" -ForegroundColor Green
     
-    # CRITIQUE: Verifier le token
+    # CRITIQUE: Vérifier le token
     if ([string]::IsNullOrWhiteSpace($Token) -or $Token -notmatch "^ghp_[a-zA-Z0-9]{36,}$") {
         Write-Host "❌ Token invalide ou manquant" -ForegroundColor Red
         return @{ success = $false; error = "Token GitHub invalide" }
     }
     
-    # CRITIQUE: Verifier que Git est installe
+    # CRITIQUE: Vérifier que Git est installé
     try {
         git --version | Out-Null
     } catch {
-        Write-Host "❌ Git non installe" -ForegroundColor Red
-        return @{ success = $false; error = "Git non installe" }
+        Write-Host "❌ Git non installé" -ForegroundColor Red
+        return @{ success = $false; error = "Git non installé" }
     }
     
     # CRITIQUE: Nettoyer la configuration Git
@@ -74,13 +74,13 @@ function Publish-ToGitHubRepo-Working {
     Write-Host " ✓" -ForegroundColor Green
     
     try {
-        # CRITIQUE: Initialiser Git si necessaire
+        # CRITIQUE: Initialiser Git si nécessaire
         if (-not (Test-Path ".git")) {
             Write-Host "Initialisation Git..." -NoNewline
             git init
             Write-Host " ✓" -ForegroundColor Green
         } else {
-            Write-Host "✓ Git deja initialise" -ForegroundColor Gray
+            Write-Host "✓ Git déjà initialisé" -ForegroundColor Gray
         }
         
         # CRITIQUE: Configurer Git
@@ -89,19 +89,19 @@ function Publish-ToGitHubRepo-Working {
         git config user.email "$Username@users.noreply.github.com"
         Write-Host " ✓" -ForegroundColor Green
         
-        # CRITIQUE: Creer le .gitignore pour exclure les fichiers sensibles
+        # CRITIQUE: Créer le .gitignore pour exclure les fichiers sensibles
         $gitignoreContent = @"
 # Fichiers sensibles
 project_config.json
 *.backup
 *.bak
 
-# Fichiers generes
+# Fichiers générés
 PROJECT_SHARE_*
 GISTS_INDEX*
 GITHUB_PUBLISH_*
 
-# Dossiers systeme
+# Dossiers système
 node_modules/
 .vscode/
 .idea/
@@ -110,11 +110,11 @@ __pycache__/
 "@
         $gitignoreContent | Out-File ".gitignore" -Encoding UTF8
         
-        # CRITIQUE: Preparer l URL avec le token
+        # CRITIQUE: Préparer l'URL avec le token
         $remoteUrl = "https://x-access-token:${Token}@github.com/${Username}/${RepoName}.git"
         Write-Host "Remote: https://github.com/${Username}/${RepoName}" -ForegroundColor Gray
         
-        # CRITIQUE: Gerer le remote
+        # CRITIQUE: Gérer le remote
         git remote remove origin 2>$null
         git remote add origin $remoteUrl
         
@@ -129,20 +129,20 @@ __pycache__/
         git commit -m $commitMsg --quiet
         Write-Host " ✓" -ForegroundColor Green
         
-        # CRITIQUE: Creer la branche main
+        # CRITIQUE: Créer la branche main
         Write-Host "Branche..." -NoNewline
         git branch -M main
         Write-Host " ✓" -ForegroundColor Green
         
-        # CORRECTION: Push avec l approche en deux etapes
+        # CORRECTION: Push avec l'approche en deux étapes
         Write-Host "Push vers GitHub..." -NoNewline
-        # Desactiver les prompts
+        # Désactiver les prompts
         $env:GIT_TERMINAL_PROMPT = "0"
         
-        # Premiere tentative : push normal
+        # Première tentative : push normal
         $pushOutput = git push -u origin main 2>&1
         
-        # Si echec avec erreur d histoires non liees, essayer avec --force
+        # Si échec avec erreur d'histoires non liées, essayer avec --force
         if ($LASTEXITCODE -ne 0) {
             if ($pushOutput -match "failed to push some refs" -or $pushOutput -match "unrelated histories" -or $pushOutput -match "non-fast-forward") {
                 Write-Host " (tentative avec --force)..." -NoNewline -ForegroundColor Yellow
@@ -152,23 +152,23 @@ __pycache__/
         
         if ($LASTEXITCODE -eq 0) {
             Write-Host " ✓" -ForegroundColor Green
-            Write-Host "✅ PUBLICATION REUSSIE !" -ForegroundColor Green
+            Write-Host "✅ PUBLICATION RÉUSSIE !" -ForegroundColor Green
             Write-Host "🔗 https://github.com/$Username/$RepoName" -ForegroundColor Cyan
             return @{
                 success = $true
                 repo_url = "https://github.com/$Username/$RepoName"
-                message = "Publication reussie"
+                message = "Publication réussie"
             }
         } else {
             Write-Host " ✗" -ForegroundColor Red
-            # Analyser l erreur
+            # Analyser l'erreur
             $errorMsg = "Erreur Git"
             if ($pushOutput -match "Authentication failed") {
-                $errorMsg = "Token invalide - Regenez-le sur GitHub"
+                $errorMsg = "Token invalide - Regénérez-le sur GitHub"
             } elseif ($pushOutput -match "Repository not found") {
-                $errorMsg = "Repository non trouve - Creez-le d abord sur GitHub"
+                $errorMsg = "Repository non trouvé - Créez-le d'abord sur GitHub"
             } elseif ($pushOutput -match "GH013" -or $pushOutput -match "secret") {
-                $errorMsg = "GitHub a bloque le push (secret detecte) - Autorisez-le sur GitHub"
+                $errorMsg = "GitHub a bloqué le push (secret détecté) - Autorisez-le sur GitHub"
             } else {
                 $errorMsg = "Erreur: $($pushOutput | Select-Object -First 2)"
             }
@@ -190,426 +190,381 @@ __pycache__/
 }
 
 # ============================================================================
-# FONCTION POUR PARTAGER SUR GITHUB GISTS
+# FONCTION POUR PUBLIER SUR GITHUB GISTS
 # ============================================================================
 function Publish-ToGitHubGists {
     param(
         [string]$Token,
         [string]$Username,
-        [string]$ProjectName,
-        [int]$MaxFileSizeKB = 250
+        [string]$Description
     )
     
-    Write-Host "`n=== PARTAGE SUR GITHUB GISTS ===" -ForegroundColor Cyan
+    Write-Host "`n=== PUBLICATION SUR GITHUB GISTS ===" -ForegroundColor Cyan
     
-    # Verifier le token
+    # Vérifier le token
     if ([string]::IsNullOrWhiteSpace($Token) -or $Token -notmatch "^ghp_[a-zA-Z0-9]{36,}$") {
         Write-Host "❌ Token invalide ou manquant" -ForegroundColor Red
+        Write-Host "Générez un token sur: https://github.com/settings/tokens" -ForegroundColor Yellow
         return @{ success = $false; error = "Token GitHub invalide" }
     }
     
-    # Verifier le chemin du projet
-    Write-Host "Verification du repertoire..." -NoNewline
+    # S'assurer d'être dans le bon répertoire
     $currentDir = Get-Location
     $projectDir = Resolve-Path $PROJECT_PATH -ErrorAction SilentlyContinue
     
     if ($currentDir.Path -ne $projectDir.Path) {
-        Write-Host " ✗" -ForegroundColor Red
-        Write-Host "ERREUR: Vous devez etre dans le dossier du projet!" -ForegroundColor Red
-        Write-Host "Actuel: $currentDir" -ForegroundColor Yellow
-        Write-Host "Projet: $projectDir" -ForegroundColor Yellow
-        Write-Host "Executez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-        return @{ success = $false; error = "Mauvais repertoire" }
+        Write-Host "ERREUR: Vous devez être dans le dossier du projet!" -ForegroundColor Red
+        Write-Host "Exécutez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
+        return @{ success = $false; error = "Mauvais répertoire" }
     }
-    Write-Host " ✓" -ForegroundColor Green
     
-    # Lister les fichiers a partager
-    Write-Host "Analyse des fichiers du projet..." -NoNewline
-    $projectFiles = Get-ChildItem -Path . -File -Recurse | 
-        Where-Object { 
-            $_.FullName -notmatch "\\.git" -and 
-            $_.FullName -notmatch "project_config.json" -and
-            $_.FullName -notmatch "PROJECT_SHARE_" -and
-            $_.FullName -notmatch "GISTS_INDEX" -and
-            $_.FullName -notmatch "GITHUB_PUBLISH_"
+    # Scanner les fichiers du projet
+    Write-Host "Scan des fichiers du projet..." -NoNewline
+    $files = Get-ChildItem -Path . -File -Recurse | Where-Object {
+        # Exclure certains fichiers/dossiers
+        $excludePatterns = @(
+            '\.git', 'node_modules', '\.vscode', '\.idea', '__pycache__',
+            'project_config\.json', '\.env', '\.backup', '\.bak',
+            'PROJECT_SHARE_', 'GISTS_INDEX_', 'GITHUB_PUBLISH_'
+        )
+        $exclude = $false
+        foreach ($pattern in $excludePatterns) {
+            if ($_.FullName -match $pattern) {
+                $exclude = $true
+                break
+            }
         }
-    
-    if (-not $projectFiles) {
-        Write-Host " ✗" -ForegroundColor Red
-        Write-Host "❌ Aucun fichier trouve a partager" -ForegroundColor Red
-        return @{ success = $false; error = "Aucun fichier a partager" }
+        return -not $exclude
     }
-    Write-Host " ✓ ($($projectFiles.Count) fichiers)" -ForegroundColor Green
     
-    # Preparer les donnees pour les Gists
-    $gistsData = @()
-    $currentGistFiles = @{}
-    $currentSize = 0
-    $gistCounter = 1
-    $fileCounter = 0
+    $totalFiles = $files.Count
+    Write-Host " ✓ ($totalFiles fichiers trouvés)" -ForegroundColor Green
     
-    Write-Host "Preparation des Gists..." -ForegroundColor Yellow
+    # Limiter la taille des fichiers (Gists a une limite de 10 fichiers)
+    $maxFiles = 10
+    $maxFileSize = 1MB
     
-    foreach ($file in $projectFiles) {
-        $fileSizeKB = [math]::Round($file.Length / 1KB, 2)
-        $relativePath = $file.FullName.Substring($projectDir.Path.Length + 1)
-        
-        # Si le fichier est trop gros pour un Gist
-        if ($fileSizeKB > $MaxFileSizeKB) {
-            Write-Host "  ⚠ Fichier trop gros: $relativePath ($fileSizeKB KB)" -ForegroundColor Yellow
+    $filteredFiles = @()
+    $skippedFiles = @()
+    
+    foreach ($file in $files) {
+        if ($filteredFiles.Count -ge $maxFiles) {
+            $skippedFiles += $file.Name
             continue
         }
         
-        # Verifier si on depasse la limite de taille pour le Gist actuel
-        $shouldCreateNewGist = ($currentSize + $fileSizeKB > $MaxFileSizeKB) -and ($currentGistFiles.Count -gt 0)
-        if ($shouldCreateNewGist) {
-            # Creer un Gist avec les fichiers actuels
-            $gistName = "${ProjectName}_Part${gistCounter}"
-            $gistsData += @{
-                Name = $gistName
-                Files = $currentGistFiles.Clone()
-                TotalSizeKB = $currentSize
-                FileCount = $currentGistFiles.Count
-            }
-            
-            # Reinitialiser pour le prochain Gist
-            $currentGistFiles = @{}
-            $currentSize = 0
-            $gistCounter++
+        if ($file.Length -gt $maxFileSize) {
+            $skippedFiles += "$($file.Name) (trop grand: $([math]::Round($file.Length / 1MB, 2)) MB)"
+            continue
         }
         
-        # Lire le contenu du fichier
+        $filteredFiles += $file
+    }
+    
+    if ($filteredFiles.Count -eq 0) {
+        Write-Host "❌ Aucun fichier à publier (tous filtrés)" -ForegroundColor Red
+        return @{ success = $false; error = "Aucun fichier à publier" }
+    }
+    
+    Write-Host "Fichiers sélectionnés pour Gists ($($filteredFiles.Count)/$totalFiles) :" -ForegroundColor Yellow
+    $filteredFiles | ForEach-Object { Write-Host "  - $($_.Name)" -ForegroundColor Gray }
+    
+    if ($skippedFiles.Count -gt 0) {
+        Write-Host "Fichiers ignorés :" -ForegroundColor Yellow
+        $skippedFiles | ForEach-Object { Write-Host "  - $_" -ForegroundColor Gray }
+    }
+    
+    # Préparer les fichiers pour l'API GitHub
+    $filesObject = @{}
+    
+    foreach ($file in $filteredFiles) {
         try {
-            $content = Get-Content -Path $file.FullName -Raw -Encoding UTF8
-            $currentGistFiles[$relativePath] = @{
-                content = $content
-                sizeKB = $fileSizeKB
-            }
-            $currentSize += $fileSizeKB
-            $fileCounter++
-            Write-Host "  ✓ $relativePath ($fileSizeKB KB)" -ForegroundColor Gray
+            $content = Get-Content -Path $file.FullName -Raw -Encoding UTF8 -ErrorAction Stop
+            $filesObject[$file.Name] = @{ content = $content }
         } catch {
-            Write-Host "  ✗ Erreur lecture: $relativePath" -ForegroundColor Red
+            Write-Host "⚠️  Impossible de lire $($file.Name): $_" -ForegroundColor Yellow
         }
     }
     
-    # Ajouter le dernier Gist s il reste des fichiers
-    if ($currentGistFiles.Count -gt 0) {
-        $gistName = "${ProjectName}_Part${gistCounter}"
-        $gistsData += @{
-            Name = $gistName
-            Files = $currentGistFiles.Clone()
-            TotalSizeKB = $currentSize
-            FileCount = $currentGistFiles.Count
-        }
-    }
+    # Préparer le corps de la requête
+    $body = @{
+        description = "$Description - $PROJECT_NAME"
+        public = $false
+        files = $filesObject
+    } | ConvertTo-Json -Depth 10
     
-    if ($gistsData.Count -eq 0) {
-        Write-Host "❌ Aucun Gist a creer" -ForegroundColor Red
-        return @{ success = $false; error = "Aucun Gist a creer" }
-    }
+    # Publier sur GitHub Gists
+    Write-Host "Publication sur GitHub Gists..." -NoNewline
     
-    Write-Host "`nResume:" -ForegroundColor Cyan
-    Write-Host "• Fichiers traites: $fileCounter" -ForegroundColor Gray
-    Write-Host "• Gists a creer: $($gistsData.Count)" -ForegroundColor Gray
-    Write-Host "• Taille max par Gist: ${MaxFileSizeKB} KB" -ForegroundColor Gray
-    
-    # Demander confirmation
-    Write-Host "`nConfirmez la creation des Gists ? (O/N)" -ForegroundColor Yellow
-    $confirm = Read-Host
-    if ($confirm -notmatch "^[OoYy]") {
-        Write-Host "Operation annulee" -ForegroundColor Yellow
-        return @{ success = $false; error = "Operation annulee par l utilisateur" }
-    }
-    
-    # Creer les Gists via API GitHub
-    $createdGists = @()
-    $failedGists = @()
-    $indexContent = "# GISTS INDEX - $ProjectName`n`n"
-    $indexContent += "Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')`n"
-    $indexContent += "Nombre de Gists: $($gistsData.Count)`n"
-    $indexContent += "Fichiers totaux: $fileCounter`n`n"
-    $indexContent += "## LISTE DES GISTS`n`n"
-    
-    $baseHeaders = @{
-        "Authorization" = "token $Token"
-        "Accept" = "application/vnd.github.v3+json"
-        "Content-Type" = "application/json"
-    }
-    
-    foreach ($gist in $gistsData) {
-        Write-Host "`nCreation du Gist: $($gist.Name)..." -NoNewline
-        
-        # Preparer les fichiers pour l API
-        $gistFiles = @{}
-        foreach ($fileEntry in $gist.Files.GetEnumerator()) {
-            $fileName = $fileEntry.Key
-            $fileData = $fileEntry.Value
-            $gistFiles[$fileName] = @{ content = $fileData.content }
+    try {
+        $headers = @{
+            "Authorization" = "token $Token"
+            "Accept" = "application/vnd.github.v3+json"
+            "Content-Type" = "application/json"
         }
         
-        # Corps de la requete
-        $body = @{
-            description = "$ProjectName - $($gist.Name)"
-            public = $true
-            files = $gistFiles
-        } | ConvertTo-Json -Depth 10
+        $response = Invoke-RestMethod -Uri "https://api.github.com/gists" `
+            -Method Post `
+            -Headers $headers `
+            -Body $body `
+            -TimeoutSec 30
         
-        try {
-            # Appel API GitHub
-            $response = Invoke-RestMethod -Uri "https://api.github.com/gists" `
-                -Method Post `
-                -Headers $baseHeaders `
-                -Body $body `
-                -TimeoutSec 30 `
-                -ErrorAction Stop
+        Write-Host " ✓" -ForegroundColor Green
+        Write-Host "✅ GIST CRÉÉ AVEC SUCCÈS !" -ForegroundColor Green
+        Write-Host "🔗 $($response.html_url)" -ForegroundColor Cyan
+        Write-Host "ID: $($response.id)" -ForegroundColor Gray
+        
+        # Créer un fichier index local
+        $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+        $indexFile = "GISTS_INDEX_$timestamp.txt"
+        
+        $indexContent = @"
+==========================================
+GITHUB GISTS PUBLICATION INDEX
+==========================================
+Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+Projet: $PROJECT_NAME
+Gist URL: $($response.html_url)
+Gist ID: $($response.id)
+Description: $Description
+
+FICHIERS PUBLIÉS:
+$($filteredFiles | ForEach-Object { "  - $($_.Name)" } | Out-String)
+
+FICHIERS IGNORÉS:
+$(if ($skippedFiles.Count -gt 0) { $skippedFiles | ForEach-Object { "  - $_" } | Out-String } else { "  (aucun)" })
+
+==========================================
+"@
+        
+        $indexContent | Out-File $indexFile -Encoding UTF8
+        Write-Host "📄 Index créé: $indexFile" -ForegroundColor Green
+        
+        return @{
+            success = $true
+            gist_url = $response.html_url
+            gist_id = $response.id
+            files_published = $filteredFiles.Count
+            index_file = $indexFile
+        }
+        
+    } catch {
+        Write-Host " ✗" -ForegroundColor Red
+        $errorMsg = "Erreur API GitHub"
+        if ($_.Exception.Response) {
+            $stream = $_.Exception.Response.GetResponseStream()
+            $reader = New-Object System.IO.StreamReader($stream)
+            $responseBody = $reader.ReadToEnd()
+            $reader.Close()
             
-            $gistUrl = $response.html_url
-            $createdGists += @{
-                Name = $gist.Name
-                URL = $gistUrl
-                FileCount = $gist.FileCount
-                SizeKB = $gist.TotalSizeKB
-            }
-            
-            Write-Host " ✓" -ForegroundColor Green
-            Write-Host "  URL: $gistUrl" -ForegroundColor Gray
-            
-            # Ajouter a l index
-            $indexContent += "### $($gist.Name)`n"
-            $indexContent += "- URL: $gistUrl`n"
-            $indexContent += "- Fichiers: $($gist.FileCount)`n"
-            $indexContent += "- Taille: $($gist.TotalSizeKB) KB`n"
-            $indexContent += "- Fichiers inclus:`n"
-            
-            foreach ($fileName in $gist.Files.Keys | Sort-Object) {
-                $fileSize = $gist.Files[$fileName].sizeKB
-                $indexContent += "  * $fileName ($fileSize KB)`n"
-            }
-            $indexContent += "`n"
-            
-        } catch {
-            Write-Host " ✗" -ForegroundColor Red
-            $errorMsg = $_.Exception.Message
-            Write-Host "  Erreur: $errorMsg" -ForegroundColor Red
-            $failedGists += @{
-                Name = $gist.Name
-                Error = $errorMsg
+            try {
+                $errorDetails = $responseBody | ConvertFrom-Json
+                $errorMsg = "GitHub: $($errorDetails.message)"
+            } catch {
+                $errorMsg = "Erreur HTTP: $($_.Exception.Message)"
             }
         }
         
-        # Pause pour eviter les limites de rate limit
-        if ($gistsData.IndexOf($gist) -lt $gistsData.Count - 1) {
-            Start-Sleep -Seconds 1
+        Write-Host "❌ $errorMsg" -ForegroundColor Red
+        return @{
+            success = $false
+            error = $errorMsg
         }
-    }
-    
-    # Sauvegarder l index localement
-    $indexFileName = "GISTS_INDEX_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
-    $indexContent | Out-File -FilePath $indexFileName -Encoding UTF8
-    
-    Write-Host "`n=== RESUME ===" -ForegroundColor Cyan
-    Write-Host "Gists crees avec succes: $($createdGists.Count)" -ForegroundColor Green
-    
-    if ($createdGists.Count -gt 0) {
-        Write-Host "`nListe des Gists:" -ForegroundColor Yellow
-        foreach ($gist in $createdGists) {
-            Write-Host "• $($gist.Name): $($gist.URL)" -ForegroundColor Gray
-        }
-    }
-    
-    if ($failedGists.Count -gt 0) {
-        Write-Host "`nGists en echec: $($failedGists.Count)" -ForegroundColor Red
-        foreach ($failed in $failedGists) {
-            Write-Host "• $($failed.Name): $($failed.Error)" -ForegroundColor Red
-        }
-    }
-    
-    Write-Host "`nIndex local sauvegarde: $indexFileName" -ForegroundColor Green
-    
-    return @{
-        success = ($failedGists.Count -eq 0)
-        created_gists = $createdGists
-        failed_gists = $failedGists
-        index_file = $indexFileName
-        total_created = $createdGists.Count
-        total_failed = $failedGists.Count
     }
 }
 
 # ============================================================================
-# FONCTION POUR GENERER LES FICHIERS LOCAUX
+# FONCTION POUR GÉNÉRER DES FICHIERS LOCAUX
 # ============================================================================
 function Generate-LocalFiles {
     param(
-        [string]$ProjectName,
-        [int]$MaxFileSizeKB = 1000
+        [string]$OutputFormat = "ALL"
     )
     
-    Write-Host "`n=== GENERATION DES FICHIERS LOCAUX ===" -ForegroundColor Cyan
+    Write-Host "`n=== GÉNÉRATION DE FICHIERS LOCAUX ===" -ForegroundColor Cyan
     
-    # Verifier le chemin du projet
-    Write-Host "Verification du repertoire..." -NoNewline
+    # S'assurer d'être dans le bon répertoire
     $currentDir = Get-Location
     $projectDir = Resolve-Path $PROJECT_PATH -ErrorAction SilentlyContinue
     
     if ($currentDir.Path -ne $projectDir.Path) {
-        Write-Host " ✗" -ForegroundColor Red
-        Write-Host "ERREUR: Vous devez etre dans le dossier du projet!" -ForegroundColor Red
-        Write-Host "Actuel: $currentDir" -ForegroundColor Yellow
-        Write-Host "Projet: $projectDir" -ForegroundColor Yellow
-        Write-Host "Executez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-        return @{ success = $false; error = "Mauvais repertoire" }
+        Write-Host "ERREUR: Vous devez être dans le dossier du projet!" -ForegroundColor Red
+        Write-Host "Exécutez: cd '$PROJECT_PATH'" -ForegroundColor Cyan
+        return @{ success = $false; error = "Mauvais répertoire" }
     }
-    Write-Host " ✓" -ForegroundColor Green
     
-    # Lister les fichiers du projet
-    Write-Host "Analyse des fichiers..." -NoNewline
-    $projectFiles = Get-ChildItem -Path . -File -Recurse | 
-        Where-Object { 
-            $_.FullName -notmatch "\\.git" -and 
-            $_.FullName -notmatch "project_config.json" -and
-            $_.FullName -notmatch "PROJECT_SHARE_" -and
-            $_.FullName -notmatch "GISTS_INDEX" -and
-            $_.FullName -notmatch "GITHUB_PUBLISH_"
-        }
-    
-    if (-not $projectFiles) {
-        Write-Host " ✗" -ForegroundColor Red
-        Write-Host "❌ Aucun fichier trouve" -ForegroundColor Red
-        return @{ success = $false; error = "Aucun fichier trouve" }
-    }
-    Write-Host " ✓ ($($projectFiles.Count) fichiers)" -ForegroundColor Green
-    
-    # Preparer les donnees pour les fichiers partages
-    $shareParts = @()
-    $currentPartFiles = @()
-    $currentPartSize = 0
-    $partCounter = 1
-    $totalFilesProcessed = 0
-    
-    Write-Host "Preparation des fichiers partages..." -ForegroundColor Yellow
-    
-    foreach ($file in $projectFiles) {
-        $fileSizeKB = [math]::Round($file.Length / 1KB, 2)
-        $relativePath = $file.FullName.Substring($projectDir.Path.Length + 1)
-        
-        # Verifier si on depasse la limite de taille
-        $shouldCreateNewPart = ($currentPartSize + $fileSizeKB > $MaxFileSizeKB) -and ($currentPartFiles.Count -gt 0)
-        if ($shouldCreateNewPart) {
-            # Creer une partie
-            $shareParts += @{
-                PartNumber = $partCounter
-                Files = $currentPartFiles.Clone()
-                TotalSizeKB = $currentPartSize
+    # Scanner les fichiers du projet
+    Write-Host "Scan des fichiers du projet..." -NoNewline
+    $files = Get-ChildItem -Path . -File -Recurse | Where-Object {
+        # Exclure certains fichiers/dossiers
+        $excludePatterns = @(
+            '\.git', 'node_modules', '\.vscode', '\.idea', '__pycache__',
+            'project_config\.json', '\.env', '\.backup', '\.bak',
+            'PROJECT_SHARE_', 'GISTS_INDEX_', 'GITHUB_PUBLISH_'
+        )
+        $exclude = $false
+        foreach ($pattern in $excludePatterns) {
+            if ($_.FullName -match $pattern) {
+                $exclude = $true
+                break
             }
-            
-            # Reinitialiser pour la partie suivante
-            $currentPartFiles = @()
-            $currentPartSize = 0
-            $partCounter++
         }
-        
-        # Lire le contenu du fichier
-        try {
-            $content = Get-Content -Path $file.FullName -Raw -Encoding UTF8
-            $currentPartFiles += @{
-                Path = $relativePath
-                Content = $content
-                SizeKB = $fileSizeKB
-            }
-            $currentPartSize += $fileSizeKB
-            $totalFilesProcessed++
-            Write-Host "  ✓ $relativePath ($fileSizeKB KB)" -ForegroundColor Gray
-        } catch {
-            Write-Host "  ✗ Erreur lecture: $relativePath" -ForegroundColor Red
-        }
+        return -not $exclude
     }
     
-    # Ajouter la derniere partie s il reste des fichiers
-    if ($currentPartFiles.Count -gt 0) {
-        $shareParts += @{
-            PartNumber = $partCounter
-            Files = $currentPartFiles
-            TotalSizeKB = $currentPartSize
-        }
-    }
+    $totalFiles = $files.Count
+    Write-Host " ✓ ($totalFiles fichiers trouvés)" -ForegroundColor Green
     
-    if ($shareParts.Count -eq 0) {
-        Write-Host "❌ Aucune partie a creer" -ForegroundColor Red
-        return @{ success = $false; error = "Aucune partie a creer" }
-    }
-    
-    # Generer les fichiers partages
+    # Créer un dossier de sortie
     $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-    $shareFilesCreated = @()
+    $outputDir = "PROJECT_SHARE_$timestamp"
+    New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
     
-    Write-Host "`nGeneration des fichiers..." -ForegroundColor Cyan
+    Write-Host "Dossier de sortie: $outputDir" -ForegroundColor Green
     
-    foreach ($part in $shareParts) {
-        $fileName = "PROJECT_SHARE_PART$($part.PartNumber)_$timestamp.txt"
-        $fileContent = "# PROJECT SHARE - Part $($part.PartNumber)`n"
-        $fileContent += "# Project: $ProjectName`n"
-        $fileContent += "# Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')`n"
-        $fileContent += "# Total size: $($part.TotalSizeKB) KB`n"
-        $fileContent += "# Files: $($part.Files.Count)`n"
-        $fileContent += "`n"
-        
-        foreach ($file in $part.Files) {
-            $fileContent += "=" * 60 + "`n"
-            $fileContent += "FILE: $($file.Path)`n"
-            $fileContent += "SIZE: $($file.SizeKB) KB`n"
-            $fileContent += "=" * 60 + "`n"
-            $fileContent += $file.Content
-            $fileContent += "`n`n"
-        }
-        
-        $fileContent | Out-File -FilePath $fileName -Encoding UTF8
-        $shareFilesCreated += $fileName
-        Write-Host "  ✓ $fileName ($($part.Files.Count) fichiers, $($part.TotalSizeKB) KB)" -ForegroundColor Green
-    }
+    # Générer différents formats selon le choix
+    $generatedFiles = @()
     
-    # Generer le fichier index
-    $indexFileName = "PROJECT_SHARE_INDEX_$timestamp.txt"
-    $indexContent = "# PROJECT SHARE INDEX`n"
-    $indexContent += "# Project: $ProjectName`n"
-    $indexContent += "# Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')`n"
-    $indexContent += "# Total parts: $($shareParts.Count)`n"
-    $indexContent += "# Total files: $totalFilesProcessed`n"
-    $indexContent += "`n"
-    $indexContent += "## PARTS LIST`n`n"
-    
-    foreach ($part in $shareParts) {
-        $fileName = "PROJECT_SHARE_PART$($part.PartNumber)_$timestamp.txt"
-        $indexContent += "### Part $($part.PartNumber) - $fileName`n"
-        $indexContent += "- Size: $($part.TotalSizeKB) KB`n"
-        $indexContent += "- Files: $($part.Files.Count)`n"
-        $indexContent += "- Files included:`n"
-        
-        foreach ($file in $part.Files) {
-            $indexContent += "  * $($file.Path) ($($file.SizeKB) KB)`n"
-        }
-        $indexContent += "`n"
-    }
-    
-    $indexContent | Out-File -FilePath $indexFileName -Encoding UTF8
-    $shareFilesCreated += $indexFileName
-    
-    Write-Host "`n=== RESUME ===" -ForegroundColor Cyan
-    Write-Host "Fichiers generes: $($shareFilesCreated.Count)" -ForegroundColor Green
-    Write-Host "• Index: $indexFileName" -ForegroundColor Gray
-    foreach ($fileName in $shareFilesCreated) {
-        if ($fileName -ne $indexFileName) {
-            Write-Host "• Part: $fileName" -ForegroundColor Gray
+    # 1. Archive ZIP complète
+    if ($OutputFormat -eq "ALL" -or $OutputFormat -eq "ZIP") {
+        Write-Host "Création de l'archive ZIP..." -NoNewline
+        $zipFile = "$outputDir/$PROJECT_NAME.zip"
+        try {
+            Compress-Archive -Path $files.FullName -DestinationPath $zipFile -CompressionLevel Optimal
+            $generatedFiles += "Archive ZIP: $zipFile"
+            Write-Host " ✓" -ForegroundColor Green
+        } catch {
+            Write-Host " ✗ ($_)" -ForegroundColor Red
         }
     }
+    
+    # 2. Fichier d'index avec métadonnées
+    if ($OutputFormat -eq "ALL" -or $OutputFormat -eq "INDEX") {
+        Write-Host "Création du fichier d'index..." -NoNewline
+        $indexFile = "$outputDir/PROJECT_INDEX.txt"
+        
+        $indexContent = @"
+==========================================
+PROJECT SHARE - INDEX
+==========================================
+Date: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+Projet: $PROJECT_NAME
+Chemin: $PROJECT_PATH
+Fichiers total: $totalFiles
+
+LISTE DES FICHIERS:
+$($files | ForEach-Object { 
+    $size = if ($_.Length -lt 1024) { "$($_.Length) B" }
+            elseif ($_.Length -lt 1048576) { "$([math]::Round($_.Length/1KB, 2)) KB" }
+            else { "$([math]::Round($_.Length/1MB, 2)) MB" }
+    "  - $($_.Name) [$size]"
+} | Out-String)
+
+STATISTIQUES:
+$($files | Group-Object Extension | Sort-Object Count -Descending | ForEach-Object {
+    "  - $($_.Name): $($_.Count) fichiers"
+} | Out-String)
+
+TAILLE TOTALE: $([math]::Round(($files | Measure-Object Length -Sum).Sum / 1MB, 2)) MB
+==========================================
+"@
+        
+        $indexContent | Out-File $indexFile -Encoding UTF8
+        $generatedFiles += "Fichier index: $indexFile"
+        Write-Host " ✓" -ForegroundColor Green
+    }
+    
+    # 3. Fichier README pour le partage
+    if ($OutputFormat -eq "ALL" -or $OutputFormat -eq "README") {
+        Write-Host "Création du fichier README..." -NoNewline
+        $readmeFile = "$outputDir/README_SHARE.md"
+        
+        $readmeContent = @"
+# $PROJECT_NAME - Partage de Projet
+
+## 📋 Informations
+- **Projet:** $PROJECT_NAME
+- **Date de génération:** $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+- **Nombre de fichiers:** $totalFiles
+- **Format:** Généré automatiquement avec ShareSplit1M
+
+## 📁 Structure du Projet
+
+\`\`\`
+$(Get-Location)
+$(Get-ChildItem -Recurse -Depth 2 | Where-Object { $_.PSIsContainer } | ForEach-Object {
+    $depth = ($_.FullName -split '[\\/]').Count - 1
+    "|$("--" * $depth) $($_.Name)/"
+})
+\`\`\`
+
+## 🔧 Fichiers Principaux
+
+$(($files | Sort-Object Length -Descending | Select-Object -First 10) | ForEach-Object {
+    $size = if ($_.Length -lt 1024) { "$($_.Length) B" }
+            elseif ($_.Length -lt 1048576) { "$([math]::Round($_.Length/1KB, 2)) KB" }
+            else { "$([math]::Round($_.Length/1MB, 2)) MB" }
+    "- \`$($_.Name)\` - $size"
+} | Out-String)
+
+## 📊 Statistiques
+\`\`\`text
+$($files | Group-Object Extension | Sort-Object Count -Descending | ForEach-Object {
+    "$($_.Name.PadRight(10)): $($_.Count.ToString().PadLeft(4)) fichiers"
+} | Out-String)
+\`\`\`
+
+## ⚠️ Notes
+- Ce dossier a été généré automatiquement
+- Ne contient pas de fichiers sensibles (config, env, etc.)
+- Pour restaurer, extraire l'archive ZIP
+
+---
+*Généré avec ❤️ par ShareSplit1M*
+"@
+        
+        $readmeContent | Out-File $readmeFile -Encoding UTF8
+        $generatedFiles += "Fichier README: $readmeFile"
+        Write-Host " ✓" -ForegroundColor Green
+    }
+    
+    # 4. Fichiers individuels copiés
+    if ($OutputFormat -eq "ALL" -or $OutputFormat -eq "FILES") {
+        Write-Host "Copie des fichiers..." -NoNewline
+        $filesDir = "$outputDir/files"
+        New-Item -ItemType Directory -Path $filesDir -Force | Out-Null
+        
+        $copied = 0
+        foreach ($file in $files) {
+            try {
+                $relativePath = $file.FullName.Substring($currentDir.Path.Length + 1)
+                $destPath = Join-Path $filesDir $relativePath
+                $destDir = Split-Path $destPath -Parent
+                
+                if (-not (Test-Path $destDir)) {
+                    New-Item -ItemType Directory -Path $destDir -Force | Out-Null
+                }
+                
+                Copy-Item -Path $file.FullName -Destination $destPath -Force
+                $copied++
+            } catch {
+                Write-Host "  ⚠️  Erreur copie $($file.Name): $_" -ForegroundColor Yellow
+            }
+        }
+        
+        $generatedFiles += "Fichiers copiés: $copied/$totalFiles dans $filesDir/"
+        Write-Host " ✓ ($copied/$totalFiles fichiers)" -ForegroundColor Green
+    }
+    
+    Write-Host "`n✅ GÉNÉRATION TERMINÉE !" -ForegroundColor Green
+    Write-Host "Fichiers générés dans: $outputDir" -ForegroundColor Cyan
+    $generatedFiles | ForEach-Object { Write-Host "  - $_" -ForegroundColor Gray }
     
     return @{
         success = $true
-        files_created = $shareFilesCreated
-        total_parts = $shareParts.Count
-        total_files = $totalFilesProcessed
-        index_file = $indexFileName
+        output_dir = $outputDir
+        generated_files = $generatedFiles
+        total_files = $totalFiles
     }
 }
 
@@ -626,7 +581,7 @@ function Show-MainMenu {
     Write-Host "=== MENU PRINCIPAL ===" -ForegroundColor Yellow
     Write-Host "1. Publier sur GitHub Repository" -ForegroundColor Green
     Write-Host "2. Partager sur GitHub Gists" -ForegroundColor Yellow
-    Write-Host "3. Generer seulement les fichiers locaux" -ForegroundColor Yellow
+    Write-Host "3. Générer seulement les fichiers locaux" -ForegroundColor Yellow
     Write-Host "4. Quitter" -ForegroundColor Red
     Write-Host ""
     $choice = Read-Host "Votre choix [1-4]"
@@ -635,31 +590,31 @@ function Show-MainMenu {
         '1' {
             Write-Host "`n=== PUBLICATION GITHUB REPOSITORY ===" -ForegroundColor Cyan
             
-            # Verifier le token
+            # Vérifier le token
             if (-not $GITHUB_TOKEN -or $GITHUB_TOKEN -eq "*** REMOVED FOR SECURITY ***") {
                 Write-Host "🔑 TOKEN GITHUB REQUIS" -ForegroundColor Yellow
                 Write-Host "Collez votre token GitHub (commence par 'ghp_'):"
                 $GITHUB_TOKEN = Read-Host
             }
             
-            # Verifier les autres informations
+            # Vérifier les autres informations
             if (-not $GITHUB_USERNAME) {
-                $GITHUB_USERNAME = Read-Host "Nom d utilisateur GitHub"
+                $GITHUB_USERNAME = Read-Host "Nom d'utilisateur GitHub"
             }
             if (-not $GITHUB_REPO_NAME) {
                 $GITHUB_REPO_NAME = Read-Host "Nom du repository"
             }
             
-            # CRITIQUE: S assurer d etre dans le bon repertoire
-            Write-Host "`nVerification du repertoire..." -ForegroundColor Yellow
+            # CRITIQUE: S'assurer d'être dans le bon répertoire
+            Write-Host "`nVérification du répertoire..." -ForegroundColor Yellow
             if ((Get-Location).Path -ne (Resolve-Path $PROJECT_PATH).Path) {
-                Write-Host "ATTENTION: Vous devez etre dans: $PROJECT_PATH" -ForegroundColor Red
-                Write-Host "Executez d abord: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-                Read-Host "Appuyez sur Entree pour continuer..."
+                Write-Host "ATTENTION: Vous devez être dans: $PROJECT_PATH" -ForegroundColor Red
+                Write-Host "Exécutez d'abord: cd '$PROJECT_PATH'" -ForegroundColor Cyan
+                Read-Host "Appuyez sur Entrée pour continuer..."
                 return
             }
             
-            # Executer la publication
+            # Exécuter la publication
             $result = Publish-ToGitHubRepo-Working -Token $GITHUB_TOKEN `
                 -Username $GITHUB_USERNAME `
                 -RepoName $GITHUB_REPO_NAME `
@@ -668,14 +623,14 @@ function Show-MainMenu {
             
             if ($result.success) {
                 Write-Host ""
-                Write-Host "✅ Publication reussie sur GitHub!" -ForegroundColor Green
+                Write-Host "✅ Publication réussie sur GitHub!" -ForegroundColor Green
                 Write-Host "Repository: $($result.repo_url)" -ForegroundColor Cyan
             } else {
                 Write-Host ""
-                Write-Host "❌ Echec de la publication" -ForegroundColor Red
+                Write-Host "❌ Échec de la publication" -ForegroundColor Red
                 Write-Host "Erreur: $($result.error)" -ForegroundColor Red
                 
-                # Conseils de depannage
+                # Conseils de dépannage
                 if ($result.error -match "Token") {
                     Write-Host "`n=== CONSEILS ===" -ForegroundColor Yellow
                     Write-Host "1. https://github.com/settings/tokens" -ForegroundColor Gray
@@ -685,103 +640,86 @@ function Show-MainMenu {
                 }
             }
             Write-Host ""
-            Write-Host "Appuyez sur Entree pour continuer..."
-            Read-Host
+            Read-Host "Appuyez sur Entrée pour continuer..."
         }
         '2' {
             Write-Host "`n=== GITHUB GISTS ===" -ForegroundColor Cyan
             
-            # Verifier le token
+            # Vérifier le token
             if (-not $GITHUB_TOKEN -or $GITHUB_TOKEN -eq "*** REMOVED FOR SECURITY ***") {
                 Write-Host "🔑 TOKEN GITHUB REQUIS" -ForegroundColor Yellow
                 Write-Host "Collez votre token GitHub (commence par 'ghp_'):"
                 $GITHUB_TOKEN = Read-Host
             }
             
-            # Verifier le nom d utilisateur
             if (-not $GITHUB_USERNAME) {
-                $GITHUB_USERNAME = Read-Host "Nom d utilisateur GitHub"
+                $GITHUB_USERNAME = Read-Host "Nom d'utilisateur GitHub"
             }
             
-            # Verifier le repertoire
-            Write-Host "`nVerification du repertoire..." -ForegroundColor Yellow
+            # Vérifier le répertoire
+            Write-Host "`nVérification du répertoire..." -ForegroundColor Yellow
             if ((Get-Location).Path -ne (Resolve-Path $PROJECT_PATH).Path) {
-                Write-Host "ATTENTION: Vous devez etre dans: $PROJECT_PATH" -ForegroundColor Red
-                Write-Host "Executez d abord: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-                Read-Host "Appuyez sur Entree pour continuer..."
+                Write-Host "ATTENTION: Vous devez être dans: $PROJECT_PATH" -ForegroundColor Red
+                Write-Host "Exécutez d'abord: cd '$PROJECT_PATH'" -ForegroundColor Cyan
+                Read-Host "Appuyez sur Entrée pour continuer..."
                 return
             }
             
-            # Demander la taille max des Gists
-            Write-Host "`nTaille maximale par Gist (en KB) [defaut: 250]:"
-            $maxSizeInput = Read-Host
-            if (-not [int]::TryParse($maxSizeInput, [ref]$null) -or [int]$maxSizeInput -le 0) {
-                $maxSizeKB = 250
-            } else {
-                $maxSizeKB = [int]$maxSizeInput
-            }
+            $description = Read-Host "Description du Gist (optionnel) [$GITHUB_REPO_DESCRIPTION]"
+            if (-not $description) { $description = $GITHUB_REPO_DESCRIPTION }
             
-            # Executer la publication sur Gists
             $result = Publish-ToGitHubGists -Token $GITHUB_TOKEN `
                 -Username $GITHUB_USERNAME `
-                -ProjectName $PROJECT_NAME `
-                -MaxFileSizeKB $maxSizeKB
+                -Description $description
             
-            if ($result.success -or $result.total_created -gt 0) {
+            if ($result.success) {
                 Write-Host ""
-                Write-Host "✅ $($result.total_created) Gists crees avec succes!" -ForegroundColor Green
-                if ($result.total_failed -gt 0) {
-                    Write-Host "⚠ $($result.total_failed) Gists en echec" -ForegroundColor Yellow
-                }
-                Write-Host "Index local: $($result.index_file)" -ForegroundColor Cyan
+                Write-Host "✅ Gist créé avec succès!" -ForegroundColor Green
+                Write-Host "URL: $($result.gist_url)" -ForegroundColor Cyan
+                Write-Host "Fichiers publiés: $($result.files_published)" -ForegroundColor Gray
+                Write-Host "Index créé: $($result.index_file)" -ForegroundColor Gray
             } else {
                 Write-Host ""
-                Write-Host "❌ Echec de la creation des Gists" -ForegroundColor Red
+                Write-Host "❌ Échec de la publication sur Gists" -ForegroundColor Red
                 Write-Host "Erreur: $($result.error)" -ForegroundColor Red
             }
-            
             Write-Host ""
-            Write-Host "Appuyez sur Entree pour continuer..."
-            Read-Host
+            Read-Host "Appuyez sur Entrée pour continuer..."
         }
         '3' {
             Write-Host "`n=== FICHIERS LOCAUX ===" -ForegroundColor Cyan
             
-            # Verifier le repertoire
-            Write-Host "Verification du repertoire..." -ForegroundColor Yellow
-            if ((Get-Location).Path -ne (Resolve-Path $PROJECT_PATH).Path) {
-                Write-Host "ATTENTION: Vous devez etre dans: $PROJECT_PATH" -ForegroundColor Red
-                Write-Host "Executez d abord: cd '$PROJECT_PATH'" -ForegroundColor Cyan
-                Read-Host "Appuyez sur Entree pour continuer..."
-                return
+            # Sous-menu pour les formats
+            Write-Host "`nSélectionnez le format de sortie:" -ForegroundColor Yellow
+            Write-Host "1. Tous les formats (ZIP + Index + README + Fichiers)" -ForegroundColor Green
+            Write-Host "2. Archive ZIP seulement" -ForegroundColor Yellow
+            Write-Host "3. Fichier d'index seulement" -ForegroundColor Yellow
+            Write-Host "4. Retour au menu principal" -ForegroundColor Gray
+            Write-Host ""
+            $formatChoice = Read-Host "Choix [1-4]"
+            
+            $formatMap = @{
+                '1' = 'ALL'
+                '2' = 'ZIP'
+                '3' = 'INDEX'
             }
             
-            # Demander la taille max des fichiers
-            Write-Host "`nTaille maximale par fichier (en KB) [defaut: 1000]:"
-            $maxSizeInput = Read-Host
-            if (-not [int]::TryParse($maxSizeInput, [ref]$null) -or [int]$maxSizeInput -le 0) {
-                $maxSizeKB = 1000
-            } else {
-                $maxSizeKB = [int]$maxSizeInput
-            }
-            
-            # Generer les fichiers
-            $result = Generate-LocalFiles -ProjectName $PROJECT_NAME -MaxFileSizeKB $maxSizeKB
-            
-            if ($result.success) {
-                Write-Host ""
-                Write-Host "✅ $($result.total_parts) fichiers generes avec succes!" -ForegroundColor Green
-                Write-Host "Total fichiers inclus: $($result.total_files)" -ForegroundColor Gray
-                Write-Host "Fichier index: $($result.index_file)" -ForegroundColor Cyan
-            } else {
-                Write-Host ""
-                Write-Host "❌ Echec de la generation des fichiers" -ForegroundColor Red
-                Write-Host "Erreur: $($result.error)" -ForegroundColor Red
+            if ($formatMap.ContainsKey($formatChoice)) {
+                $result = Generate-LocalFiles -OutputFormat $formatMap[$formatChoice]
+                
+                if ($result.success) {
+                    Write-Host ""
+                    Write-Host "✅ Génération terminée avec succès!" -ForegroundColor Green
+                    Write-Host "Dossier: $($result.output_dir)" -ForegroundColor Cyan
+                    Write-Host "Fichiers générés:" -ForegroundColor Gray
+                    $result.generated_files | ForEach-Object { Write-Host "  - $_" -ForegroundColor Gray }
+                } else {
+                    Write-Host "❌ Échec de la génération: $($result.error)" -ForegroundColor Red
+                }
             }
             
             Write-Host ""
-            Write-Host "Appuyez sur Entree pour continuer..."
-            Read-Host
+            Read-Host "Appuyez sur Entrée pour continuer..."
         }
         '4' {
             Write-Host "Au revoir!" -ForegroundColor Green
@@ -795,7 +733,7 @@ function Show-MainMenu {
 }
 
 # ============================================================================
-# POINT D ENTREE
+# POINT D'ENTRÉE
 # ============================================================================
 # Boucle principale
 do {
@@ -803,7 +741,7 @@ do {
         Show-MainMenu
     } catch {
         Write-Host "❌ Erreur: $_" -ForegroundColor Red
-        Write-Host "Redemarrage dans 3 secondes..." -ForegroundColor Yellow
+        Write-Host "Redémarrage dans 3 secondes..." -ForegroundColor Yellow
         Start-Sleep -Seconds 3
     }
 } while ($true)
