@@ -3,12 +3,12 @@ project_config.json
 *.backup
 *.bak
 
-# Fichiers générés
+# Fichiers generes
 PROJECT_SHARE_*
 GISTS_INDEX*
 GITHUB_PUBLISH_*
 
-# Dossiers système
+# Dossiers systeme
 node_modules/
 .vscode/
 .idea/
