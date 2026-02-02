@@ -1,0 +1,10 @@
+{
+  "websocketUrl": "wss://ws.dev.poolsync.finance",
+  "apiUrl": "https://api.dev.poolsync.finance",
+  "features": {
+    "advancedTrading": false,
+    "multiChain": false,
+    "analytics": true
+  },
+  "chainId": 5
+}

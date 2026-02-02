@@ -1,5 +1,17 @@
 {
   "dependencies": {
     "viem": "^2.45.0"
+  },
+  "scripts": {
+    "clean": "hardhat clean",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "hardhat": "^2.0.0",
+    "dotenv": "^16.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0"
   }
 }

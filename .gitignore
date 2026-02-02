@@ -14,3 +14,53 @@ node_modules/
 .idea/
 __pycache__/
 .env
+
+# Added by setup-project.ps1
+# Environment
+.env.local
+.env.*.local
+
+# Build outputs
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain-types/
+build/
+dist/
+out/
+
+# Deployments
+deployments/
+deployments.localhost/
+
+# Hardhat
+.hardhat/
+
+# Foundry
+forge-std/
+lib/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Reports
+reports/*.json
+reports/*.html
+!reports/README.md
+
+# Added by setup-project.ps1
+# Environment
+
+# Build outputs
+
+# Deployments
+
+# Hardhat
+
+# Foundry
+
+# Coverage
+
+# Reports
