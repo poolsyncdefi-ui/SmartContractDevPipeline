@@ -1,0 +1,18 @@
+# Configuration du sous-agent microservices_architect
+sub_agent:
+  id: "microservices_architect_01"
+  name: "Microservices Architecture"
+  parent: "architect"
+  specialization: "Microservices Architecture"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

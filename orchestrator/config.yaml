@@ -1,0 +1,82 @@
+# Configuration de l'orchestrateur
+orchestrator:
+  name: "SmartContractDevPipeline"
+  version: "1.0.0"
+  log_level: "INFO"
+
+# Configuration des agents
+agents:
+  architect:
+    enabled: true
+    module: "agents.architect.agent"
+    class: "ArchitectAgent"
+    config_path: "agents/architect/config.yaml"
+    priority: 1
+    
+  coder:
+    enabled: true
+    module: "agents.coder.agent"
+    class: "CoderAgent"
+    config_path: "agents/coder/config.yaml"
+    priority: 2
+    
+  smart_contract:
+    enabled: true
+    module: "agents.smart_contract.agent"
+    class: "SmartContractAgent"
+    config_path: "agents/smart_contract/config.yaml"
+    priority: 3
+    
+  frontend_web3:
+    enabled: true
+    module: "agents.frontend_web3.agent"
+    class: "FrontendWeb3Agent"
+    config_path: "agents/frontend_web3/config.yaml"
+    priority: 4
+    
+  tester:
+    enabled: true
+    module: "agents.tester.agent"
+    class: "TesterAgent"
+    config_path: "agents/tester/config.yaml"
+    priority: 5
+
+# Définition des workflows
+workflow:
+  full_pipeline:
+    name: "Pipeline complet de développement"
+    description: "Workflow complet du développement d'un smart contract"
+    steps:
+      - id: "architecture"
+        agent: "architect"
+        task: "design_architecture"
+        parameters:
+          project_type: "smart_contract"
+          complexity: "medium"
+      
+      - id: "backend_dev"
+        agent: "coder"
+        task: "develop_backend"
+        parameters:
+          language: "python"
+          framework: "fastapi"
+      
+      - id: "smart_contract_dev"
+        agent: "smart_contract"
+        task: "develop_contract"
+        parameters:
+          blockchain: "ethereum"
+          standard: "ERC20"
+      
+      - id: "frontend_dev"
+        agent: "frontend_web3"
+        task: "develop_frontend"
+        parameters:
+          framework: "nextjs"
+          web3_library: "ethers"
+      
+      - id: "testing"
+        agent: "tester"
+        task: "run_full_tests"
+        parameters:
+          test_types: ["unit", "integration", "e2e"]

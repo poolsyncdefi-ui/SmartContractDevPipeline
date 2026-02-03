@@ -1,0 +1,18 @@
+# Configuration du sous-agent blockchain_architect
+sub_agent:
+  id: "blockchain_architect_01"
+  name: "Blockchain Architecture"
+  parent: "architect"
+  specialization: "Blockchain Architecture"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

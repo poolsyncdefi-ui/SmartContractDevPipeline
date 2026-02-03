@@ -1,0 +1,124 @@
+version: '3.8'
+
+services:
+  orchestrator:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartcontract-orchestrator
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./orchestrator:/app/orchestrator
+      - ./agents:/app/agents
+      - ./logs:/app/logs
+    environment:
+      - LOG_LEVEL=INFO
+      - ENVIRONMENT=production
+    command: python orchestrator/orchestrator.py
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+  architect:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: agent-architect
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./agents/architect:/app/agent
+      - ./logs:/app/logs
+    environment:
+      - AGENT_TYPE=architect
+      - PARENT_ORCHESTRATOR=http://orchestrator:8000
+    depends_on:
+      - orchestrator
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+  coder:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: agent-coder
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./agents/coder:/app/agent
+      - ./logs:/app/logs
+    environment:
+      - AGENT_TYPE=coder
+      - PARENT_ORCHESTRATOR=http://orchestrator:8000
+    depends_on:
+      - orchestrator
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+  smart_contract:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: agent-smart-contract
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./agents/smart_contract:/app/agent
+      - ./logs:/app/logs
+    environment:
+      - AGENT_TYPE=smart_contract
+      - PARENT_ORCHESTRATOR=http://orchestrator:8000
+    depends_on:
+      - orchestrator
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+  frontend_web3:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: agent-frontend-web3
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./agents/frontend_web3:/app/agent
+      - ./logs:/app/logs
+    environment:
+      - AGENT_TYPE=frontend_web3
+      - PARENT_ORCHESTRATOR=http://orchestrator:8000
+    depends_on:
+      - orchestrator
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+  tester:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    container_name: agent-tester
+    ports:
+      - "8005:8005"
+    volumes:
+      - ./agents/tester:/app/agent
+      - ./logs:/app/logs
+    environment:
+      - AGENT_TYPE=tester
+      - PARENT_ORCHESTRATOR=http://orchestrator:8000
+    depends_on:
+      - orchestrator
+    restart: unless-stopped
+    networks:
+      - agent-network
+
+networks:
+  agent-network:
+    driver: bridge
+
+volumes:
+  agent-data:
+    driver: local

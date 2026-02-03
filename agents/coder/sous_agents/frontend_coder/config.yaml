@@ -1,0 +1,18 @@
+# Configuration du sous-agent frontend_coder
+sub_agent:
+  id: "frontend_coder_01"
+  name: "Frontend Development"
+  parent: "coder"
+  specialization: "Frontend Development"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

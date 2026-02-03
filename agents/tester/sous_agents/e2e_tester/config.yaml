@@ -1,0 +1,18 @@
+# Configuration du sous-agent e2e_tester
+sub_agent:
+  id: "e2e_tester_01"
+  name: "E2E Testing"
+  parent: "tester"
+  specialization: "E2E Testing"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

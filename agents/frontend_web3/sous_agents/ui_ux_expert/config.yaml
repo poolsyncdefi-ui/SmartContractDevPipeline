@@ -1,0 +1,18 @@
+# Configuration du sous-agent ui_ux_expert
+sub_agent:
+  id: "ui_ux_expert_01"
+  name: "UI/UX Design"
+  parent: "frontend_web3"
+  specialization: "UI/UX Design"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

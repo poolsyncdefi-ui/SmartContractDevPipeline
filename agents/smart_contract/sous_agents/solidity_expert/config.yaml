@@ -1,0 +1,18 @@
+# Configuration du sous-agent solidity_expert
+sub_agent:
+  id: "solidity_expert_01"
+  name: "Solidity Development"
+  parent: "smart_contract"
+  specialization: "Solidity Development"
+  version: "1.0.0"
+
+capabilities:
+  - "specialized_task_execution"
+  - "domain_expertise"
+
+parameters:
+  timeout_seconds: 60
+  max_retries: 2
+
+logging:
+  level: "INFO"

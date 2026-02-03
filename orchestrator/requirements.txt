@@ -1,0 +1,7 @@
+# Dépendances de l'orchestrateur
+aiohttp>=3.9.0
+PyYAML>=6.0
+asyncio>=3.4.3
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+web3>=6.0.0
