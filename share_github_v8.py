@@ -514,7 +514,7 @@ def share_to_github_gists(config):
     print(f"✓ Contenu créé: {content_size:,} bytes ({content_size_mb:.2f} MB)")
     print(f"📢 Gist sera PUBLIC")
     
-    # TOUJOURS PUBLIC
+    # CORRECTION : TOUJOURS PUBLIC
     is_public = True
     
     # Vérifier la taille
@@ -533,9 +533,10 @@ def share_to_github_gists(config):
             "Accept": "application/vnd.github.v3+json"
         }
         
+        # CORRECTION : FORCER À True
         data = {
             "description": f"{config.get('PROJECT_NAME')} - Full Project {datetime.datetime.now().strftime('%Y-%m-%d')}",
-            "public": is_public,
+            "public": True,  # CORRECTION ICI : True au lieu de is_public
             "files": {
                 "PROJECT_SHARE.txt": {
                     "content": gist_content
@@ -649,9 +650,10 @@ def split_and_upload_from_content(config, github_token, content, is_public=True)
             "Accept": "application/vnd.github.v3+json"
         }
         
+        # CORRECTION : FORCER À True
         data = {
             "description": f"{config.get('PROJECT_NAME')} - Part {part_num}/{num_parts}",
-            "public": is_public,
+            "public": True,  # CORRECTION ICI : True au lieu de is_public
             "files": {
                 f"PROJECT_PART{part_num}.txt": {
                     "content": part_content
@@ -698,7 +700,7 @@ def split_and_upload_from_content(config, github_token, content, is_public=True)
             f.write(f"  Date: {timestamp}\n")
             f.write(f"  Dépôt: https://github.com/{config.get('GITHUB_USERNAME')}/{config.get('GITHUB_REPO_NAME')}\n")
             f.write(f"  Gists créés: {len(gist_urls)}\n")
-            f.write(f"  Visibilité: {'Public' if is_public else 'Privé'}\n")
+            f.write(f"  Visibilité: Public")  # CORRECTION : Toujours Public
             f.write(f"  Script: share_github_v8.py\n")
             f.write("="*80 + "\n\n")
             
@@ -708,7 +710,7 @@ def split_and_upload_from_content(config, github_token, content, is_public=True)
             f.write("• Ces Gists contiennent le code source du projet\n")
             f.write("• Chaque fichier montre son chemin COMPLET\n")
             f.write("• Les fichiers incluent leurs numéros de ligne originaux\n")
-            f.write("• Tous les Gists sont PUBLICS\n")
+            f.write("• Tous les Gists sont PUBLICS\n")  # CORRECTION : Toujours Publics
             f.write("• Combinez toutes les parties pour reconstituer le projet\n")
             f.write("\n")
             
@@ -752,7 +754,7 @@ def split_and_upload_gists(config, github_token, is_public=True):
     print(f"Lignes totales: {total_lines}")
     print(f"Lignes par Gist: {max_lines_per_gist}")
     print(f"Nombre de parties: {num_parts}")
-    print(f"Public: {'Oui' if is_public else 'Non'}")
+    print(f"Public: Oui")  # CORRECTION : Toujours Oui
     
     gist_urls = []
     
@@ -777,9 +779,10 @@ def split_and_upload_gists(config, github_token, is_public=True):
             "Accept": "application/vnd.github.v3+json"
         }
         
+        # CORRECTION : FORCER À True
         data = {
             "description": f"{config.get('PROJECT_NAME')} - Part {part_num}/{num_parts} {datetime.datetime.now().strftime('%Y-%m-%d')}",
-            "public": is_public,  # MODIFICATION ICI
+            "public": True,  # CORRECTION ICI : True au lieu de is_public
             "files": {
                 f"PROJECT_SHARE_PART{part_num}.txt": {
                     "content": part_content
@@ -813,7 +816,7 @@ def split_and_upload_gists(config, github_token, is_public=True):
             f.write(f"Project: {config.get('PROJECT_NAME')}\n")
             f.write(f"Split into: {len(gist_urls)} parts\n")
             f.write(f"Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"Public: {'Yes' if is_public else 'No'}\n")
+            f.write(f"Public: Yes\n")  # CORRECTION : Toujours Yes
             f.write("\nGIST URLs:\n\n")
             
             for i, url in enumerate(gist_urls, 1):
@@ -823,7 +826,7 @@ def split_and_upload_gists(config, github_token, is_public=True):
         print("✅ TOUS LES GISTS CRÉÉS !")
         print("="*60)
         print(f"Nombre de Gists: {len(gist_urls)}")
-        print(f"Public: {'Oui' if is_public else 'Non'}")
+        print(f"Public: Oui")  # CORRECTION : Toujours Oui
         print(f"Index sauvegardé dans: GISTS_INDEX.txt")
         
         # Afficher les URLs

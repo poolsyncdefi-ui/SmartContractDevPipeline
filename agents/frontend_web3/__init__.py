@@ -1,1 +1,4 @@
-# Frontend_web3 Agent package
+# Package frontend_web3
+from .agent import FrontendWeb3Agent
+
+__all__ = ["FrontendWeb3Agent"]

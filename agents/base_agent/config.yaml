@@ -1,0 +1,253 @@
+# Configuration de base pour tous les agents
+# Emplacement: agents/base_agent/config.yaml
+
+# ============================================================================
+# CONFIGURATION GÉNÉRALE DE L'AGENT
+# ============================================================================
+agent:
+  name: "BaseAgent"
+  version: "1.0.0"
+  description: "Classe de base pour tous les agents du pipeline"
+  type: "abstract_base"
+  
+  # Statut et disponibilité
+  enabled: true
+  initialized: false
+  health_check_interval: 60  # secondes
+  
+  # Journalisation
+  logging:
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file_path: "logs/agents/base_agent.log"
+    max_file_size_mb: 10
+    backup_count: 5
+
+# ============================================================================
+# CAPACITÉS DE BASE
+# ============================================================================
+capabilities:
+  - "health_check"
+  - "execute_tasks"
+  - "load_configuration"
+  - "validate_input"
+  - "error_handling"
+  - "timeout_management"
+
+# ============================================================================
+# PARAMÈTRES D'EXÉCUTION
+# ============================================================================
+execution:
+  # Timeouts par défaut
+  default_task_timeout: 30  # secondes
+  max_task_timeout: 300     # secondes
+  health_check_timeout: 10  # secondes
+  
+  # Politique de retry
+  retry_policy:
+    enabled: true
+    max_retries: 3
+    initial_delay: 1  # seconde
+    max_delay: 10     # secondes
+    exponential_backoff: true
+  
+  # Validation des tâches
+  validation:
+    required_task_fields: ["task_type"]
+    max_task_size_kb: 1024  # 1MB max
+
+# ============================================================================
+# CONFIGURATION DE LA SÉCURITÉ
+# ============================================================================
+security:
+  # Validation des entrées
+  input_validation: true
+  max_input_depth: 10
+  disallowed_patterns:
+    - "<script>"
+    - "javascript:"
+    - "eval("
+    - "exec("
+  
+  # Restrictions de fichiers
+  allowed_file_extensions:
+    - ".yaml"
+    - ".yml"
+    - ".json"
+    - ".txt"
+  
+  # Limites de ressources
+  resource_limits:
+    max_memory_mb: 512
+    max_cpu_percent: 80
+    max_open_files: 256
+
+# ============================================================================
+# CONFIGURATION DES ERREURS
+# ============================================================================
+error_handling:
+  # Niveaux de gravité
+  severity_levels:
+    critical: ["system_crash", "data_corruption", "security_breach"]
+    high: ["timeout", "resource_exhaustion", "validation_failure"]
+    medium: ["configuration_error", "dependency_error"]
+    low: ["warning", "info", "debug"]
+  
+  # Politique de gestion des erreurs
+  policy:
+    log_all_errors: true
+    notify_on_critical: true
+    auto_recovery: false
+    fallback_strategy: "return_error_response"
+  
+  # Messages d'erreur standardisés
+  error_messages:
+    timeout: "La tâche a dépassé le temps d'exécution maximum"
+    validation: "Les données de la tâche ne sont pas valides"
+    config: "Erreur de chargement de la configuration"
+    execution: "Erreur lors de l'exécution de la tâche"
+    health: "L'agent ne répond pas correctement"
+
+# ============================================================================
+# CONFIGURATION DES MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection_interval: 60  # secondes
+  
+  # Métriques à collecter
+  collect:
+    - "execution_count"
+    - "success_rate"
+    - "average_execution_time"
+    - "error_count_by_type"
+    - "health_check_status"
+    - "memory_usage"
+    - "cpu_usage"
+  
+  # Stockage des métriques
+  storage:
+    type: "memory"  # memory, file, database
+    retention_days: 7
+    max_metrics_count: 10000
+
+# ============================================================================
+# CONFIGURATION DU CACHING
+# ============================================================================
+caching:
+  enabled: true
+  default_ttl: 3600  # secondes (1 heure)
+  max_cache_size_mb: 100
+  
+  # Stratégies de cache
+  strategies:
+    config_cache: true
+    health_check_cache: true
+    task_result_cache: false  # Désactivé par défaut pour les résultats frais
+
+# ============================================================================
+# CONFIGURATION DES DÉPENDANCES
+# ============================================================================
+dependencies:
+  # Dépendances système requises
+  system:
+    python_version: ">=3.8"
+    required_packages:
+      - "pyyaml>=6.0"
+      - "typing-extensions>=4.0"
+    
+  # Dépendances internes
+  internal:
+    required_modules:
+      - "logging"
+      - "asyncio"
+      - "datetime"
+      - "hashlib"
+      - "json"
+
+# ============================================================================
+# CONFIGURATION DES TESTS
+# ============================================================================
+testing:
+  enabled: true
+  test_levels:
+    - "unit"
+    - "integration"
+    - "health_check"
+  
+  # Tests par défaut à exécuter
+  default_tests:
+    health_check:
+      name: "Test de santé de base"
+      timeout: 5
+      expected_result: {"status": "healthy"}
+    
+    config_loading:
+      name: "Test de chargement de configuration"
+      test_files: ["config.yaml", "test_config.yaml"]
+    
+    task_execution:
+      name: "Test d'exécution de tâche"
+      test_tasks:
+        - {"task_type": "test_task", "data": "test_data"}
+
+# ============================================================================
+# CONFIGURATION DU DÉBOGAGE
+# ============================================================================
+debug:
+  enabled: false  # À désactiver en production
+  log_level: "DEBUG"
+  
+  # Points de débogage
+  debug_points:
+    config_loading: false
+    task_execution: false
+    error_handling: false
+    health_check: false
+  
+  # Information supplémentaire
+  extra_info:
+    include_traceback: true
+    include_timestamp: true
+    include_agent_context: true
+
+# ============================================================================
+# VALEURS PAR DÉFAUT
+# ============================================================================
+defaults:
+  # Valeurs par défaut pour la configuration
+  config:
+    name: "UnnamedAgent"
+    type: "generic"
+    version: "1.0.0"
+    enabled: true
+  
+  # Valeurs par défaut pour les tâches
+  task:
+    priority: "normal"
+    source: "orchestrator"
+    retry_on_failure: true
+  
+  # Valeurs par défaut pour les réponses
+  response:
+    include_timestamp: true
+    include_agent_info: true
+    include_execution_time: true
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  created: "2026-02-03"
+  last_updated: "2026-02-03"
+  author: "SmartContractDevPipeline Team"
+  license: "MIT"
+  
+  documentation:
+    api_reference: "docs/api/base_agent.md"
+    usage_examples: "docs/examples/base_agent_usage.md"
+    troubleshooting: "docs/troubleshooting/base_agent.md"
+  
+  contacts:
+    maintainer: "devops@smartcontractpipeline.com"
+    support_channel: "#agent-support"

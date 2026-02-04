@@ -1,0 +1,78 @@
+# agent_registry.yaml
+agents:
+  architect:
+    name: "architect"
+    display_name: "Architect"
+    module_path: "agents.architect.agent"
+    class_name: "ArchitectAgent"
+    config_path: "agents/architect/config.yaml"
+    description: "Agent spécialisé en architecture système et blockchain"
+    category: "architecture"
+    specializations: ["cloud_architect", "blockchain_architect", "microservices_architect"]
+    dependencies: []
+    version: "1.0.0"
+    enabled: true
+  
+  coder:
+    name: "coder"
+    display_name: "Coder"
+    module_path: "agents.coder.agent"
+    class_name: "CoderAgent"
+    config_path: "agents/coder/config.yaml"
+    description: "Agent spécialisé en développement de code"
+    category: "development"
+    specializations: ["backend_coder", "frontend_coder", "devops_coder"]
+    dependencies: []
+    version: "1.0.0"
+    enabled: true
+  
+  smart_contract:
+    name: "smart_contract"
+    display_name: "Smart Contract Developer"
+    module_path: "agents.smart_contract.agent"
+    class_name: "SmartContractAgent"
+    config_path: "agents/smart_contract/config.yaml"
+    description: "Agent spécialisé en développement et audit de smart contracts"
+    category: "blockchain"
+    specializations: ["solidity_expert", "security_expert", "gas_optimizer", "formal_verification"]
+    dependencies: []
+    version: "1.0.0"
+    enabled: true
+  
+  frontend_web3:
+    name: "frontend_web3"
+    display_name: "Frontend Web3"
+    module_path: "agents.frontend_web3.agent"
+    class_name: "FrontendWeb3Agent"
+    config_path: "agents/frontend_web3/config.yaml"
+    description: "Agent spécialisé en développement frontend Web3"
+    category: "frontend"
+    specializations: ["react_expert", "web3_integration", "ui_ux_expert"]
+    dependencies: []
+    version: "1.0.0"
+    enabled: true
+  
+  tester:
+    name: "tester"
+    display_name: "Tester"
+    module_path: "agents.tester.agent"
+    class_name: "TesterAgent"
+    config_path: "agents/tester/config.yaml"
+    description: "Agent spécialisé en tests et assurance qualité"
+    category: "testing"
+    specializations: ["unit_tester", "integration_tester", "e2e_tester", "fuzzing_expert"]
+    dependencies: []
+    version: "1.0.0"
+    enabled: true
+
+categories:
+  architecture: ["architect"]
+  development: ["coder"]
+  blockchain: ["smart_contract"]
+  frontend: ["frontend_web3"]
+  testing: ["tester"]
+
+metadata:
+  total_agents: 5
+  version: "1.0.0"
+  last_updated: "2026-02-03"

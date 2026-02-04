@@ -1,33 +1,29 @@
 # Dépendances du projet SmartContractDevPipeline
+# NOTE: python>=3.9 n'est pas une dépendance pip, c'est une exigence système
 
 # Core
-python>=3.9
 PyYAML>=6.0
 pydantic>=2.5.0
 python-dotenv>=1.0.0
 
 # Async
 aiohttp>=3.9.0
-asyncio>=3.4.3
 
 # Web3 & Blockchain
 web3>=6.0.0
 eth-account>=0.11.0
 eth-typing>=3.0.0
-cryptography>=41.0.0
 
-# Development
+# Development (optionnel)
 black>=23.0.0
 pytest>=7.0.0
 pytest-asyncio>=0.21.0
-mypy>=1.0.0
 
-# API
+# API (optionnel)
 fastapi>=0.104.0
 uvicorn>=0.24.0
 httpx>=0.25.0
 
-# Utils
+# Utils (optionnel)
 jinja2>=3.1.0
-markdown>=3.5.0
 rich>=13.0.0

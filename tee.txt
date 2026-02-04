@@ -1,0 +1,246 @@
+Structure du dossier
+Le num‚ro de s‚rie du volume est 000000A9 76CD:81A5
+D:\WEB3PROJECTS\SMARTCONTRACTDEVPIPELINE\AGENTS
+³   __init__.py
+³   
+ÃÄÄÄarchitect
+³   ³   agent.py
+³   ³   config.yaml
+³   ³   tools.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄsous_agents
+³   ³   ³   blockchain_architect.ps1
+³   ³   ³   cloud_architect.ps1
+³   ³   ³   microservices_architect.ps1
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄblockchain_architect
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄcloud_architect
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÀÄÄÄmicroservices_architect
+³   ³           agent.py
+³   ³           config.yaml
+³   ³           tools.py
+³   ³           __init__.py
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           agent.cpython-311.pyc
+³           __init__.cpython-311.pyc
+³           
+ÃÄÄÄarchiture
+³   ÃÄÄÄ.mermaid
+³   ³   ³   Architecture Mise … Jour avec Phases de D‚ploiement.mermaid
+³   ³   ³   Architecture Sp‚cialis‚e.mermaid
+³   ³   ³   Flux de Pr‚vention.mermaid
+³   ³   ³   S‚quence d'une Tƒche ComplŠte.mermaid
+³   ³   ³   
+³   ³   ÃÄÄÄV0
+³   ³   ³       Agent Architecte (AR).mermaid
+³   ³   ³       Agent Codeur (AC).mermaid
+³   ³   ³       Agent Documenteur (AD).mermaid
+³   ³   ³       Agent Testeur (AT).mermaid
+³   ³   ³       Communication entre Agents (ZeroMQ).mermaid
+³   ³   ³       
+³   ³   ÀÄÄÄV1
+³   ³           Architecture ComplŠte des 20 agents et sous-agents.mermaid
+³   ³           
+³   ÀÄÄÄ.svg
+³       ³   Agent Architecte (AR).svg
+³       ³   Agent Codeur (AC).svg
+³       ³   Agent Documenteur (AD).svg
+³       ³   Agent Testeur  (AT).svg
+³       ³   Architecture Mise … Jour avec Phases de D‚ploiement.svg
+³       ³   Architecture Sp‚cialis‚e.svg
+³       ³   Communication entre Agents (ZeroMQ).svg
+³       ³   Flux de Pr‚vention.svg
+³       ³   S‚quence d'une Tƒche ComplŠte.svg
+³       ³   
+³       ÀÄÄÄV1
+³               Architecture ComplŠte des 20 agents et sous-agents.svg
+³               
+ÃÄÄÄcoder
+³   ³   agent.py
+³   ³   config.yaml
+³   ³   tools.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄsous_agents
+³   ³   ³   backend_coder.ps1
+³   ³   ³   devops_coder.ps1
+³   ³   ³   frontend_coder.ps1
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄbackend_coder
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄdevops_coder
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÀÄÄÄfrontend_coder
+³   ³           agent.py
+³   ³           config.yaml
+³   ³           tools.py
+³   ³           __init__.py
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           agent.cpython-311.pyc
+³           __init__.cpython-311.pyc
+³           
+ÃÄÄÄcommunication
+³   ³   agent_messaging.py
+³   ³   
+³   ÀÄÄÄzeromq
+³           message_bus.py
+³           
+ÃÄÄÄdocumenter
+³       config.yaml
+³       
+ÃÄÄÄformal_verification
+³       config.yaml
+³       
+ÃÄÄÄfrontend_web3
+³   ³   agent.py
+³   ³   config.yaml
+³   ³   tools.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄsous_agents
+³   ³   ³   react_expert.ps1
+³   ³   ³   web3_integration.ps1
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄreact_expert
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄui_ux_expert
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÀÄÄÄweb3_integration
+³   ³           agent.py
+³   ³           config.yaml
+³   ³           tools.py
+³   ³           __init__.py
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           agent.cpython-311.pyc
+³           __init__.cpython-311.pyc
+³           
+ÃÄÄÄfuzzing_simulation
+³       config.yaml
+³       
+ÃÄÄÄlearning
+³       collective_learning.py
+³       
+ÃÄÄÄmonitoring
+³       dashboard_config.yaml
+³       
+ÃÄÄÄsmart_contract
+³   ³   agent.py
+³   ³   config.yaml
+³   ³   tools.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄsous_agents
+³   ³   ³   gas_optimizer.ps1
+³   ³   ³   security_expert.ps1
+³   ³   ³   solidity_expert.ps1
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄformal_verification
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄgas_optimizer
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄsecurity_expert
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÀÄÄÄsolidity_expert
+³   ³           agent.py
+³   ³           config.yaml
+³   ³           tools.py
+³   ³           __init__.py
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           agent.cpython-311.pyc
+³           __init__.cpython-311.pyc
+³           
+ÃÄÄÄstorage
+³       file_based_storage.py
+³       
+ÃÄÄÄtester
+³   ³   agent.py
+³   ³   config.yaml
+³   ³   tools.py
+³   ³   __init__.py
+³   ³   
+³   ÃÄÄÄsous_agents
+³   ³   ³   unit_tester.ps1
+³   ³   ³   __init__.py
+³   ³   ³   
+³   ³   ÃÄÄÄe2e_tester
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄfuzzing_expert
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÃÄÄÄintegration_tester
+³   ³   ³       agent.py
+³   ³   ³       config.yaml
+³   ³   ³       tools.py
+³   ³   ³       __init__.py
+³   ³   ³       
+³   ³   ÀÄÄÄunit_tester
+³   ³           agent.py
+³   ³           config.yaml
+³   ³           tools.py
+³   ³           __init__.py
+³   ³           
+³   ÀÄÄÄ__pycache__
+³           agent.cpython-311.pyc
+³           __init__.cpython-311.pyc
+³           
+ÃÄÄÄworkflow
+³       anti_bug_pipeline.py
+³       fullstack_integration.py
+³       
+ÀÄÄÄ__pycache__
+        __init__.cpython-311.pyc
+        

@@ -1,1 +1,4 @@
-# Coder Agent package
+# Package coder
+from .agent import CoderAgent
+
+__all__ = ["CoderAgent"]
