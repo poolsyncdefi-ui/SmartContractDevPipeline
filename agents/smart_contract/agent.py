@@ -12,6 +12,7 @@ class SmartContractAgent(BaseAgent):
     
     def __init__(self, config_path: str = None):
         super().__init__(config_path, "SmartContractAgent")
+        super().__init__(config_path, "SmartContractAgent")
         self.blockchains = self.config.get("blockchains", ["Ethereum", "Polygon", "Arbitrum", "BNB Chain", "Avalanche"])
         self.standards = self.config.get("standards", ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626"])
         self.security_level = self.config.get("security_level", "high")

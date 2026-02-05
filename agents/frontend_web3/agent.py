@@ -12,6 +12,7 @@ class FrontendWeb3Agent(BaseAgent):
     
     def __init__(self, config_path: str = None):
         super().__init__(config_path, "FrontendWeb3Agent")
+        super().__init__(config_path, "FrontendWeb3Agent")
         self.frameworks = self.config.get("frameworks", ["React", "Next.js", "Vue", "Svelte", "Angular"])
         self.web3_libraries = self.config.get("web3_libraries", ["wagmi", "viem", "ethers.js", "web3.js", "thirdweb"])
         self.wallets = self.config.get("wallets", ["MetaMask", "WalletConnect", "Coinbase Wallet", "Phantom", "Rainbow"])

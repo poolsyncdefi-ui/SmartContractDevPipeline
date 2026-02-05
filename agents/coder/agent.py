@@ -12,6 +12,7 @@ class CoderAgent(BaseAgent):
     
     def __init__(self, config_path: str = None):
         super().__init__(config_path, "CoderAgent")
+        super().__init__(config_path, "CoderAgent")
         self.languages = self.config.get("languages", ["Python", "JavaScript", "TypeScript", "Java", "Go"])
         self.frameworks = self.config.get("frameworks", ["React", "Node.js", "Spring", "Django", "FastAPI"])
         self.code_quality_target = self.config.get("code_quality_target", 90)

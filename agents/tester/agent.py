@@ -12,6 +12,7 @@ class TesterAgent(BaseAgent):
     
     def __init__(self, config_path: str = None):
         super().__init__(config_path, "TesterAgent")
+        super().__init__(config_path, "TesterAgent")
         self.test_types = self.config.get("test_types", ["unit", "integration", "e2e", "security", "performance", "load"])
         self.coverage_target = self.config.get("coverage_target", 85)
         self.tools = self.config.get("tools", ["pytest", "jest", "cypress", "selenium", "playwright", "k6", "locust"])

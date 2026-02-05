@@ -13,6 +13,7 @@ class ArchitectAgent(BaseAgent):
     
     def __init__(self, config_path: str = None):
         super().__init__(config_path, "ArchitectAgent")
+        super().__init__(config_path, "ArchitectAgent")
         self.specialization = self.config.get("specialization", "System Architecture")
         self.design_patterns = self.config.get("design_patterns", ["microservices", "event-driven", "layered"])
         self.technologies = self.config.get("technologies", ["Kubernetes", "Docker", "AWS", "PostgreSQL"])

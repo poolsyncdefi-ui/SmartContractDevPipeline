@@ -1,12 +1,11 @@
-# project_config.yaml - Configuration complète du projet SmartContractDevPipeline
-# Emplacement: SmartContractDevPipeline/project_config.yaml
+# project_config.yaml - Configuration complète pour SmartContractDevPipeline
+# Version: 3.0.0 (Orchestrateur avancé avec workflows détaillés)
 # Date: 2026-02-03
-# Version: 2.0.0 (avec base_agent)
 
 project_name: "SmartContractDevPipeline"
 project_type: "blockchain_dev_tools"
-description: "Pipeline complet de développement de smart contracts avec agents spécialisés"
-version: "2.0.0"
+description: "Pipeline complet de développement de smart contracts avec agents spécialisés et workflows par sprints"
+version: "3.0.0"
 
 # ============================================================================
 # AGENTS PRINCIPAUX REQUIS
@@ -28,7 +27,7 @@ required_agents:
   # AGENT ARCHITECT - Architecture système
   - name: "architect"
     display_name: "Architecte Système"
-    specialization: "default"
+    specialization: "system_architecture"
     config: "agents/architect/config.yaml"
     mandatory: true
     agent_type: "main_agent"
@@ -36,11 +35,12 @@ required_agents:
     instantiate: true
     dependencies: ["base_agent"]
     initialization_order: 1
+    purpose: "Conception de l'architecture système et choix technologiques"
   
   # AGENT CODER - Développement code
   - name: "coder"
-    display_name: "Développeur"
-    specialization: "default"
+    display_name: "Développeur Principal"
+    specialization: "fullstack_development"
     config: "agents/coder/config.yaml"
     mandatory: true
     agent_type: "main_agent"
@@ -48,11 +48,12 @@ required_agents:
     instantiate: true
     dependencies: ["base_agent"]
     initialization_order: 2
+    purpose: "Développement du code backend, frontend et intégration"
   
   # AGENT SMART_CONTRACT - Développement blockchain
   - name: "smart_contract"
     display_name: "Développeur Smart Contract"
-    specialization: "default"
+    specialization: "blockchain_development"
     config: "agents/smart_contract/config.yaml"
     mandatory: true
     agent_type: "main_agent"
@@ -60,11 +61,12 @@ required_agents:
     instantiate: true
     dependencies: ["base_agent"]
     initialization_order: 3
+    purpose: "Développement, test et déploiement de smart contracts"
   
   # AGENT FRONTEND_WEB3 - Interface utilisateur
   - name: "frontend_web3"
     display_name: "Développeur Frontend Web3"
-    specialization: "default"
+    specialization: "web3_frontend"
     config: "agents/frontend_web3/config.yaml"
     mandatory: true
     agent_type: "main_agent"
@@ -72,11 +74,12 @@ required_agents:
     instantiate: true
     dependencies: ["base_agent"]
     initialization_order: 4
+    purpose: "Développement d'interfaces utilisateur Web3 et DApps"
   
   # AGENT TESTER - Tests et qualité
   - name: "tester"
-    display_name: "Testeur"
-    specialization: "default"
+    display_name: "Ingénieur Qualité"
+    specialization: "quality_assurance"
     config: "agents/tester/config.yaml"
     mandatory: true
     agent_type: "main_agent"
@@ -84,6 +87,7 @@ required_agents:
     instantiate: true
     dependencies: ["base_agent"]
     initialization_order: 5
+    purpose: "Tests, audit de sécurité et assurance qualité"
 
 # ============================================================================
 # SOUS-AGENTS SPÉCIALISÉS
@@ -97,6 +101,7 @@ specialized_sub_agents:
       config: "agents/architect/sous_agents/cloud_architect/config.yaml"
       enabled: true
       dependencies: ["architect", "base_agent"]
+      purpose: "Conception d'architecture cloud et infrastructure"
     
     - name: "blockchain_architect"
       parent: "architect"
@@ -104,6 +109,7 @@ specialized_sub_agents:
       config: "agents/architect/sous_agents/blockchain_architect/config.yaml"
       enabled: true
       dependencies: ["architect", "base_agent"]
+      purpose: "Architecture spécifique blockchain et solutions décentralisées"
     
     - name: "microservices_architect"
       parent: "architect"
@@ -111,6 +117,7 @@ specialized_sub_agents:
       config: "agents/architect/sous_agents/microservices_architect/config.yaml"
       enabled: true
       dependencies: ["architect", "base_agent"]
+      purpose: "Conception d'architecture microservices et APIs"
   
   # Sous-agents de CODAGE
   coder_subagents:
@@ -120,6 +127,7 @@ specialized_sub_agents:
       config: "agents/coder/sous_agents/backend_coder/config.yaml"
       enabled: true
       dependencies: ["coder", "base_agent"]
+      purpose: "Développement backend, APIs et services"
     
     - name: "frontend_coder"
       parent: "coder"
@@ -127,13 +135,15 @@ specialized_sub_agents:
       config: "agents/coder/sous_agents/frontend_coder/config.yaml"
       enabled: true
       dependencies: ["coder", "base_agent"]
+      purpose: "Développement frontend traditionnel (non Web3)"
     
     - name: "devops_coder"
       parent: "coder"
-      type: "DevOps"
+      type: "DevOps & Infrastructure"
       config: "agents/coder/sous_agents/devops_coder/config.yaml"
       enabled: true
       dependencies: ["coder", "base_agent"]
+      purpose: "CI/CD, infrastructure as code, déploiement"
   
   # Sous-agents de SMART CONTRACT
   smart_contract_subagents:
@@ -143,6 +153,7 @@ specialized_sub_agents:
       config: "agents/smart_contract/sous_agents/solidity_expert/config.yaml"
       enabled: true
       dependencies: ["smart_contract", "base_agent"]
+      purpose: "Expert en développement Solidity et optimisation"
     
     - name: "security_expert"
       parent: "smart_contract"
@@ -150,6 +161,7 @@ specialized_sub_agents:
       config: "agents/smart_contract/sous_agents/security_expert/config.yaml"
       enabled: true
       dependencies: ["smart_contract", "base_agent"]
+      purpose: "Audit de sécurité et prévention des vulnérabilités"
     
     - name: "gas_optimizer"
       parent: "smart_contract"
@@ -157,6 +169,7 @@ specialized_sub_agents:
       config: "agents/smart_contract/sous_agents/gas_optimizer/config.yaml"
       enabled: true
       dependencies: ["smart_contract", "base_agent"]
+      purpose: "Optimisation des coûts de gas et efficacité"
     
     - name: "formal_verification"
       parent: "smart_contract"
@@ -164,15 +177,17 @@ specialized_sub_agents:
       config: "agents/smart_contract/sous_agents/formal_verification/config.yaml"
       enabled: true
       dependencies: ["smart_contract", "base_agent"]
+      purpose: "Vérification formelle et preuves mathématiques"
   
   # Sous-agents de FRONTEND WEB3
   frontend_web3_subagents:
     - name: "react_expert"
       parent: "frontend_web3"
-      type: "React/Next.js"
+      type: "React/Next.js Expert"
       config: "agents/frontend_web3/sous_agents/react_expert/config.yaml"
       enabled: true
       dependencies: ["frontend_web3", "base_agent"]
+      purpose: "Expert en React, Next.js et frameworks modernes"
     
     - name: "web3_integration"
       parent: "frontend_web3"
@@ -180,6 +195,7 @@ specialized_sub_agents:
       config: "agents/frontend_web3/sous_agents/web3_integration/config.yaml"
       enabled: true
       dependencies: ["frontend_web3", "base_agent"]
+      purpose: "Intégration Web3, wallets et smart contracts"
     
     - name: "ui_ux_expert"
       parent: "frontend_web3"
@@ -187,6 +203,7 @@ specialized_sub_agents:
       config: "agents/frontend_web3/sous_agents/ui_ux_expert/config.yaml"
       enabled: true
       dependencies: ["frontend_web3", "base_agent"]
+      purpose: "Design d'interface utilisateur et expérience utilisateur"
   
   # Sous-agents de TESTING
   tester_subagents:
@@ -196,6 +213,7 @@ specialized_sub_agents:
       config: "agents/tester/sous_agents/unit_tester/config.yaml"
       enabled: true
       dependencies: ["tester", "base_agent"]
+      purpose: "Tests unitaires et tests de composants"
     
     - name: "integration_tester"
       parent: "tester"
@@ -203,83 +221,96 @@ specialized_sub_agents:
       config: "agents/tester/sous_agents/integration_tester/config.yaml"
       enabled: true
       dependencies: ["tester", "base_agent"]
+      purpose: "Tests d'intégration et tests système"
     
     - name: "e2e_tester"
       parent: "tester"
-      type: "E2E Testing"
+      type: "End-to-End Testing"
       config: "agents/tester/sous_agents/e2e_tester/config.yaml"
       enabled: true
       dependencies: ["tester", "base_agent"]
+      purpose: "Tests end-to-end et tests de scénarios complets"
     
     - name: "fuzzing_expert"
       parent: "tester"
-      type: "Fuzzing"
+      type: "Fuzzing & Security Testing"
       config: "agents/tester/sous_agents/fuzzing_expert/config.yaml"
       enabled: true
       dependencies: ["tester", "base_agent"]
+      purpose: "Tests de fuzzing et tests de sécurité avancés"
 
 # ============================================================================
 # MAPPING DES TÂCHES VERS LES AGENTS
 # ============================================================================
 task_mapping:
   # Tâches de base (héritées par tous via base_agent)
-  "health_check": ["*"]  # Tous les agents
+  "health_check": ["*"]
   "validate_config": ["*"]
   "get_capabilities": ["*"]
   "execute_with_timeout": ["*"]
+  "get_status": ["*"]
   
   # Tâches d'architecture
   "cloud_design": ["architect", "cloud_architect"]
   "blockchain_architecture": ["architect", "blockchain_architect"]
   "microservices_design": ["architect", "microservices_architect"]
-  "system_architecture": ["architect"]
+  "system_architecture": ["architect", "blockchain_architect"]
   "review_architecture": ["architect"]
   "select_tech_stack": ["architect"]
+  "design_system": ["architect"]
   
-  # Tâches de développement
+  # Tâches de développement général
   "backend_development": ["coder", "backend_coder"]
   "frontend_development": ["coder", "frontend_coder"]
   "devops_pipeline": ["coder", "devops_coder"]
-  "api_development": ["coder"]
-  "generate_code": ["coder"]
-  "debug_code": ["coder"]
+  "api_development": ["coder", "backend_coder"]
+  "generate_code": ["coder", "backend_coder", "frontend_coder"]
+  "debug_code": ["coder", "backend_coder", "frontend_coder"]
   "refactor_code": ["coder"]
   "review_code": ["coder"]
+  "setup_infrastructure": ["coder", "devops_coder"]
+  "deploy_infrastructure": ["coder", "devops_coder"]
   
   # Tâches de smart contract
   "solidity_development": ["smart_contract", "solidity_expert"]
   "contract_security": ["smart_contract", "security_expert"]
   "gas_optimization": ["smart_contract", "gas_optimizer"]
   "formal_verification_task": ["smart_contract", "formal_verification"]
-  "contract_deployment": ["smart_contract"]
-  "develop_contract": ["smart_contract"]
-  "audit_contract": ["smart_contract"]
-  "deploy_contract": ["smart_contract"]
-  "optimize_gas": ["smart_contract"]
-  "test_contract": ["smart_contract"]
+  "contract_deployment": ["smart_contract", "solidity_expert"]
+  "develop_contract": ["smart_contract", "solidity_expert"]
+  "audit_contract": ["smart_contract", "security_expert"]
+  "deploy_contract": ["smart_contract", "solidity_expert"]
+  "optimize_gas": ["smart_contract", "gas_optimizer"]
+  "test_contract": ["smart_contract", "solidity_expert"]
+  "compile_contract": ["smart_contract"]
+  "verify_contract": ["smart_contract", "formal_verification"]
   
   # Tâches de frontend Web3
   "react_development": ["frontend_web3", "react_expert"]
   "web3_integration": ["frontend_web3", "web3_integration"]
   "ui_ux_design": ["frontend_web3", "ui_ux_expert"]
-  "dapp_development": ["frontend_web3"]
-  "create_dapp": ["frontend_web3"]
-  "design_ui": ["frontend_web3"]
-  "integrate_web3": ["frontend_web3"]
-  "optimize_performance": ["frontend_web3"]
-  "create_component": ["frontend_web3"]
+  "dapp_development": ["frontend_web3", "react_expert", "web3_integration"]
+  "create_dapp": ["frontend_web3", "react_expert"]
+  "design_ui": ["frontend_web3", "ui_ux_expert"]
+  "integrate_web3": ["frontend_web3", "web3_integration"]
+  "optimize_performance": ["frontend_web3", "react_expert"]
+  "create_component": ["frontend_web3", "react_expert"]
+  "connect_wallet": ["frontend_web3", "web3_integration"]
+  "handle_transactions": ["frontend_web3", "web3_integration"]
   
   # Tâches de test
   "unit_testing": ["tester", "unit_tester"]
   "integration_testing": ["tester", "integration_tester"]
   "e2e_testing": ["tester", "e2e_tester"]
   "fuzzing_test": ["tester", "fuzzing_expert"]
-  "security_audit": ["tester"]
-  "run_test_suite": ["tester"]
-  "performance_test": ["tester"]
-  "load_test": ["tester"]
-  "accessibility_test": ["tester"]
-  "api_test": ["tester"]
+  "security_audit": ["tester", "fuzzing_expert", "security_expert"]
+  "run_test_suite": ["tester", "unit_tester", "integration_tester"]
+  "performance_test": ["tester", "integration_tester"]
+  "load_test": ["tester", "integration_tester"]
+  "accessibility_test": ["tester", "e2e_tester"]
+  "api_test": ["tester", "integration_tester"]
+  "generate_test_report": ["tester"]
+  "analyze_test_results": ["tester"]
 
 # ============================================================================
 # HIÉRARCHIE ET DÉPENDANCES
@@ -289,32 +320,547 @@ agent_hierarchy:
     - name: "base_agent"
       role: "classe_abstraite"
       children: ["architect", "coder", "smart_contract", "frontend_web3", "tester"]
+      description: "Classe de base pour tous les agents, non instanciée"
   
   main_agents_layer:
     - name: "architect"
       role: "architecture"
       children: ["cloud_architect", "blockchain_architect", "microservices_architect"]
+      description: "Conception système et choix technologiques"
     
     - name: "coder"
       role: "development"
       children: ["backend_coder", "frontend_coder", "devops_coder"]
+      description: "Développement général et intégration"
     
     - name: "smart_contract"
       role: "blockchain"
       children: ["solidity_expert", "security_expert", "gas_optimizer", "formal_verification"]
+      description: "Développement et sécurité des smart contracts"
     
     - name: "frontend_web3"
       role: "frontend"
       children: ["react_expert", "web3_integration", "ui_ux_expert"]
+      description: "Interfaces utilisateur Web3 et DApps"
     
     - name: "tester"
       role: "quality"
       children: ["unit_tester", "integration_tester", "e2e_tester", "fuzzing_expert"]
+      description: "Tests, qualité et sécurité"
   
   subagents_layer:
     type: "specialized"
     count: 17
     instantiation: "on_demand"
+    description: "Sous-agents spécialisés instanciés à la demande selon les besoins"
+
+# ============================================================================
+# WORKFLOWS DÉTAILLÉS POUR L'ORCHESTRATEUR
+# ============================================================================
+workflow_definitions:
+  # --------------------------------------------------------------------------
+  # WORKFLOW PRINCIPAL - DÉVELOPPEMENT PAR SPRINTS
+  # --------------------------------------------------------------------------
+  sprint_development:
+    name: "Développement par Sprints Agile"
+    description: "Workflow complet de développement agile avec sprints de 2 semaines pour projets Web3"
+    version: "2.0.0"
+    
+    phases:
+      initialization:
+        name: "Initialisation du Sprint"
+        description: "Préparation et planification du sprint"
+        order: 1
+        parallel_execution: false
+        timeout_minutes: 30
+        required_agents: ["architect", "coder"]
+        
+        tasks:
+          - id: "init_sprint_planning"
+            name: "Planification du Sprint"
+            description: "Définition des objectifs et user stories"
+            required_agents: ["architect"]
+            estimated_duration: 15
+            dependencies: []
+            priority: 1
+            required: true
+            
+          - id: "init_tech_stack"
+            name: "Sélection de la stack technique"
+            description: "Choix des technologies et outils"
+            required_agents: ["architect", "blockchain_architect"]
+            estimated_duration: 10
+            dependencies: ["init_sprint_planning"]
+            priority: 1
+            required: true
+            
+          - id: "init_project_structure"
+            name: "Structure du projet"
+            description: "Création de l'arborescence et setup initial"
+            required_agents: ["coder", "devops_coder"]
+            estimated_duration: 5
+            dependencies: ["init_tech_stack"]
+            priority: 2
+            required: true
+        
+        deliverables:
+          - "sprint_plan.md"
+          - "tech_stack.yaml"
+          - "project_structure.json"
+          
+        success_criteria:
+          - "Tous les documents de planification générés"
+          - "Structure du projet validée"
+          - "Dépendances techniques résolues"
+          
+      requirements_analysis:
+        name: "Analyse des Exigences"
+        description: "Analyse détaillée des besoins fonctionnels et techniques"
+        order: 2
+        parallel_execution: false
+        timeout_minutes: 45
+        required_agents: ["architect", "coder", "smart_contract"]
+        
+        tasks:
+          - id: "analyze_functional_requirements"
+            name: "Analyse fonctionnelle"
+            description: "Décomposition des user stories en exigences fonctionnelles"
+            required_agents: ["architect"]
+            estimated_duration: 20
+            dependencies: ["init_sprint_planning"]
+            priority: 1
+            required: true
+            
+          - id: "analyze_technical_requirements"
+            name: "Analyse technique"
+            description: "Définition des contraintes et exigences techniques"
+            required_agents: ["coder", "backend_coder"]
+            estimated_duration: 15
+            dependencies: ["init_tech_stack"]
+            priority: 1
+            required: true
+            
+          - id: "define_apis"
+            name: "Définition des APIs"
+            description: "Spécification des interfaces et contrats d'API"
+            required_agents: ["coder", "backend_coder"]
+            estimated_duration: 10
+            dependencies: ["analyze_technical_requirements"]
+            priority: 2
+            required: true
+        
+        deliverables:
+          - "functional_requirements.md"
+          - "technical_specifications.md"
+          - "api_contracts.yaml"
+          
+        success_criteria:
+          - "Exigences fonctionnelles complètes"
+          - "Contraintes techniques identifiées"
+          - "APIs spécifiées avec contrats"
+          
+      smart_contract_development:
+        name: "Développement Smart Contract"
+        description: "Développement, test et audit des smart contracts"
+        order: 3
+        parallel_execution: true
+        timeout_minutes: 120
+        required_agents: ["smart_contract", "tester"]
+        
+        tasks:
+          - id: "contract_architecture"
+            name: "Architecture du contrat"
+            description: "Conception de l'architecture du smart contract"
+            required_agents: ["smart_contract"]
+            estimated_duration: 25
+            dependencies: ["analyze_technical_requirements"]
+            priority: 1
+            required: true
+            
+          - id: "contract_implementation"
+            name: "Implémentation du contrat"
+            description: "Codage du smart contract en Solidity"
+            required_agents: ["smart_contract", "solidity_expert"]
+            estimated_duration: 40
+            dependencies: ["contract_architecture"]
+            priority: 1
+            required: true
+            
+          - id: "security_audit"
+            name: "Audit de sécurité"
+            description: "Vérification des vulnérabilités de sécurité"
+            required_agents: ["smart_contract", "security_expert"]
+            estimated_duration: 30
+            dependencies: ["contract_implementation"]
+            priority: 1
+            required: true
+            
+          - id: "gas_optimization"
+            name: "Optimisation du gas"
+            description: "Optimisation des coûts d'exécution"
+            required_agents: ["smart_contract", "gas_optimizer"]
+            estimated_duration: 15
+            dependencies: ["security_audit"]
+            priority: 2
+            required: true
+            
+          - id: "formal_verification"
+            name: "Vérification formelle"
+            description: "Vérification mathématique du contrat"
+            required_agents: ["smart_contract", "formal_verification"]
+            estimated_duration: 20
+            dependencies: ["gas_optimization"]
+            priority: 3
+            required: false
+        
+        deliverables:
+          - "contracts/*.sol"
+          - "security_audit_report.md"
+          - "gas_optimization_report.md"
+          - "formal_verification_report.md"
+          
+        success_criteria:
+          - "Contrats compilés sans erreur"
+          - "Aucune vulnérabilité critique"
+          - "Coûts de gas optimisés"
+          - "Vérification formelle réussie (si applicable)"
+          
+      frontend_development:
+        name: "Développement Frontend"
+        description: "Développement de l'interface utilisateur Web3"
+        order: 4
+        parallel_execution: true
+        timeout_minutes: 90
+        required_agents: ["frontend_web3", "coder"]
+        
+        tasks:
+          - id: "ui_ux_design"
+            name: "Design UI/UX"
+            description: "Conception de l'interface utilisateur"
+            required_agents: ["frontend_web3", "ui_ux_expert"]
+            estimated_duration: 30
+            dependencies: ["analyze_functional_requirements"]
+            priority: 1
+            required: true
+            
+          - id: "component_development"
+            name: "Développement des composants"
+            description: "Implémentation des composants React"
+            required_agents: ["frontend_web3", "react_expert"]
+            estimated_duration: 40
+            dependencies: ["ui_ux_design"]
+            priority: 1
+            required: true
+            
+          - id: "web3_integration"
+            name: "Intégration Web3"
+            description: "Connexion aux smart contracts et wallets"
+            required_agents: ["frontend_web3", "web3_integration"]
+            estimated_duration: 20
+            dependencies: ["contract_implementation", "component_development"]
+            priority: 1
+            required: true
+        
+        deliverables:
+          - "src/components/**"
+          - "ui_design_system.json"
+          - "web3_integration_config.js"
+          
+        success_criteria:
+          - "Interface utilisateur responsive"
+          - "Composants React fonctionnels"
+          - "Connexion Web3 opérationnelle"
+          
+      integration_testing:
+        name: "Intégration et Tests"
+        description: "Intégration des composants et tests complets"
+        order: 5
+        parallel_execution: false
+        timeout_minutes: 60
+        required_agents: ["coder", "tester", "smart_contract"]
+        
+        tasks:
+          - id: "integration_assembly"
+            name: "Assemblage d'intégration"
+            description: "Assemblage et connexion des composants"
+            required_agents: ["coder", "devops_coder"]
+            estimated_duration: 25
+            dependencies: ["contract_implementation", "web3_integration"]
+            priority: 1
+            required: true
+            
+          - id: "integration_testing"
+            name: "Tests d'intégration"
+            description: "Tests des interactions entre composants"
+            required_agents: ["tester", "integration_tester"]
+            estimated_duration: 20
+            dependencies: ["integration_assembly"]
+            priority: 1
+            required: true
+            
+          - id: "e2e_testing"
+            name: "Tests end-to-end"
+            description: "Tests complets du flux utilisateur"
+            required_agents: ["tester", "e2e_tester"]
+            estimated_duration: 15
+            dependencies: ["integration_testing"]
+            priority: 2
+            required: true
+        
+        deliverables:
+          - "integration_report.md"
+          - "e2e_test_results.json"
+          - "coverage_report.html"
+          
+        success_criteria:
+          - "Tous les composants intégrés"
+          - "Tests d'intégration réussis"
+          - "Flux utilisateur fonctionnel"
+          
+      deployment:
+        name: "Déploiement"
+        description: "Déploiement en environnement cible"
+        order: 6
+        parallel_execution: false
+        timeout_minutes: 25
+        required_agents: ["coder", "smart_contract"]
+        
+        tasks:
+          - id: "build_packaging"
+            name: "Build et packaging"
+            description: "Compilation et préparation du déploiement"
+            required_agents: ["coder", "devops_coder"]
+            estimated_duration: 10
+            dependencies: ["integration_testing"]
+            priority: 1
+            required: true
+            
+          - id: "environment_deployment"
+            name: "Déploiement environnement"
+            description: "Déploiement sur l'environnement cible"
+            required_agents: ["coder", "devops_coder"]
+            estimated_duration: 10
+            dependencies: ["build_packaging"]
+            priority: 1
+            required: true
+            
+          - id: "smoke_tests"
+            name: "Tests de fumée"
+            description: "Tests basiques après déploiement"
+            required_agents: ["tester", "unit_tester"]
+            estimated_duration: 5
+            dependencies: ["environment_deployment"]
+            priority: 2
+            required: true
+        
+        deliverables:
+          - "deployment_package.zip"
+          - "deployment_log.txt"
+          - "smoke_test_results.json"
+          
+        success_criteria:
+          - "Build réussi sans erreur"
+          - "Déploiement effectué"
+          - "Tests de fumée positifs"
+          
+      documentation:
+        name: "Documentation"
+        description: "Génération et mise à jour de la documentation"
+        order: 7
+        parallel_execution: true
+        timeout_minutes: 30
+        required_agents: ["coder", "frontend_web3"]
+        
+        tasks:
+          - id: "technical_documentation"
+            name: "Documentation technique"
+            description: "Documentation du code et des APIs"
+            required_agents: ["coder"]
+            estimated_duration: 15
+            dependencies: ["api_development", "contract_implementation"]
+            priority: 2
+            required: true
+            
+          - id: "user_documentation"
+            name: "Documentation utilisateur"
+            description: "Guides utilisateur et tutoriels"
+            required_agents: ["frontend_web3"]
+            estimated_duration: 15
+            dependencies: ["e2e_testing"]
+            priority: 3
+            required: true
+        
+        deliverables:
+          - "docs/api.md"
+          - "docs/contracts.md"
+          - "docs/user_guide.md"
+          - "docs/tutorials/"
+          
+        success_criteria:
+          - "Documentation technique complète"
+          - "Documentation utilisateur claire"
+          - "Exemples et tutoriels fournis"
+    
+    global_config:
+      max_parallel_phases: 2
+      auto_rollback_on_failure: true
+      notification_on_phase_completion: true
+      save_intermediate_results: true
+      health_check_interval_minutes: 5
+      
+    completion_criteria:
+      all_mandatory_tasks_completed: true
+      all_deliverables_generated: true
+      all_success_criteria_met: true
+      no_critical_bugs_open: true
+      
+    error_handling:
+      max_retries_per_task: 3
+      retry_delay_minutes: 2
+      escalation_after_failures: 2
+      fallback_agents: ["coder", "architect"]
+      emergency_procedures: ["rollback_last_phase", "notify_administrator"]
+
+  # --------------------------------------------------------------------------
+  # WORKFLOW DE TEST SIMPLE
+  # --------------------------------------------------------------------------
+  test:
+    name: "Test de santé système"
+    description: "Test basique de tous les agents principaux et vérification du système"
+    version: "1.0.0"
+    
+    agents: ["architect", "coder", "smart_contract", "frontend_web3", "tester"]
+    use_subagents: false
+    sequential: true
+    timeout: 300
+    critical: false
+    
+    steps:
+      - "initialization"
+      - "health_check"
+      - "capabilities_check"
+      - "system_validation"
+    
+    expected_result: "Tous les agents principaux fonctionnels et prêts"
+    
+    deliverables:
+      - "health_check_report.json"
+      - "system_status.md"
+    
+    success_criteria:
+      - "5 agents principaux initialisés"
+      - "Tous les health checks réussis"
+      - "Système prêt pour les workflows"
+
+  # --------------------------------------------------------------------------
+  # WORKFLOW COMPLET DE DÉVELOPPEMENT
+  # --------------------------------------------------------------------------
+  full_development:
+    name: "Développement complet de smart contract"
+    description: "Workflow complet de développement d'un smart contract avec frontend"
+    version: "2.0.0"
+    
+    agents: ["architect", "coder", "smart_contract", "frontend_web3", "tester"]
+    use_subagents: true
+    subagents: ["solidity_expert", "react_expert", "unit_tester", "security_expert"]
+    sequential: true
+    timeout: 1800
+    critical: true
+    
+    steps:
+      - "architecture_design"
+      - "contract_development"
+      - "security_audit"
+      - "frontend_integration"
+      - "testing"
+      - "deployment"
+    
+    expected_result: "Smart contract fonctionnel avec DApp déployée"
+    
+    deliverables:
+      - "smart_contract.sol"
+      - "security_report.md"
+      - "dapp_source/"
+      - "deployment_artifacts/"
+    
+    success_criteria:
+      - "Contrat compilé sans erreur"
+      - "Aucune vulnérabilité critique"
+      - "Interface utilisateur fonctionnelle"
+      - "Tests passants à 100%"
+
+  # --------------------------------------------------------------------------
+  # WORKFLOW D'AUDIT DE SÉCURITÉ
+  # --------------------------------------------------------------------------
+  security_audit:
+    name: "Audit complet de sécurité"
+    description: "Audit approfondi de sécurité des smart contracts et de l'application"
+    version: "1.5.0"
+    
+    agents: ["smart_contract", "tester"]
+    use_subagents: true
+    subagents: ["security_expert", "fuzzing_expert", "formal_verification"]
+    sequential: true
+    timeout: 1200
+    critical: true
+    
+    steps:
+      - "code_review"
+      - "static_analysis"
+      - "dynamic_analysis"
+      - "fuzzing_tests"
+      - "formal_verification"
+      - "report_generation"
+    
+    deliverables:
+      - "security_report.md"
+      - "vulnerability_list.json"
+      - "remediation_plan.md"
+      - "formal_verification_proofs/"
+    
+    success_criteria:
+      - "Analyse statique complète"
+      - "Tests de fuzzing effectués"
+      - "Vérification formelle réussie"
+      - "Rapport de sécurité généré"
+
+  # --------------------------------------------------------------------------
+  # WORKFLOW DE DÉPLOIEMENT CONTINU
+  # --------------------------------------------------------------------------
+  deployment_pipeline:
+    name: "Pipeline de déploiement continu"
+    description: "Pipeline CI/CD automatisé pour déploiement en production"
+    version: "2.0.0"
+    
+    agents: ["coder", "smart_contract", "tester"]
+    use_subagents: true
+    subagents: ["devops_coder", "gas_optimizer", "integration_tester"]
+    sequential: false
+    timeout: 1500
+    critical: true
+    
+    steps:
+      - "code_compilation"
+      - "unit_testing"
+      - "integration_testing"
+      - "security_scan"
+      - "performance_testing"
+      - "staging_deployment"
+      - "production_deployment"
+    
+    environments: ["staging", "production"]
+    
+    deliverables:
+      - "build_artifacts/"
+      - "test_reports/"
+      - "deployment_logs/"
+      - "monitoring_dashboard/"
+    
+    success_criteria:
+      - "Tous les tests passants"
+      - "Scans de sécurité réussis"
+      - "Déploiement sans erreur"
+      - "Monitoring en place"
 
 # ============================================================================
 # CONFIGURATION AVANCÉE
@@ -328,14 +874,16 @@ agent_discovery:
     - "__pycache__"
     - "*.pyc"
     - "*.log"
+    - "*.tmp"
   auto_load_subagents: true
   update_on_startup: true
   discovery_timeout_seconds: 30
   recursive: true
+  validate_configs: true
 
 agent_initialization:
   strategy: "sequential_with_dependencies"
-  parallel_initialization: false  # Désactivé pour respecter les dépendances
+  parallel_initialization: false
   max_parallel_agents: 1
   health_check_on_init: true
   initialization_timeout_seconds: 60
@@ -350,7 +898,16 @@ agent_initialization:
     - "initialize_agent"
     - "health_check"
     - "register_capabilities"
+    - "update_context"
+  
+  dependency_resolution:
+    allow_circular: false
+    max_depth: 5
+    timeout_seconds: 30
 
+# ============================================================================
+# CONFIGURATION DES WORKFLOWS (pour l'orchestrateur)
+# ============================================================================
 workflow_configurations:
   # Workflow de test simple
   test:
@@ -361,6 +918,7 @@ workflow_configurations:
     sequential: true
     timeout: 300
     expected_result: "5 agents initialisés avec succès"
+    critical: false
     
   # Workflow complet de développement
   full_development:
@@ -377,6 +935,7 @@ workflow_configurations:
       - "frontend_integration"
       - "testing"
       - "deployment"
+    critical: true
     
   # Workflow de sécurité
   security_audit:
@@ -388,6 +947,7 @@ workflow_configurations:
     sequential: true
     timeout: 1200
     deliverables: ["security_report", "vulnerability_list", "remediation_plan"]
+    critical: true
     
   # Workflow de déploiement
   deployment_pipeline:
@@ -399,6 +959,7 @@ workflow_configurations:
     sequential: true
     timeout: 1500
     environments: ["staging", "production"]
+    critical: true
     
   # Workflow d'intégration continue
   continuous_integration:
@@ -407,9 +968,10 @@ workflow_configurations:
     agents: ["coder", "tester", "smart_contract"]
     use_subagents: true
     subagents: ["devops_coder", "unit_tester", "integration_tester"]
-    sequential: false  # Peut être parallélisé
+    sequential: false
     timeout: 900
     triggers: ["push_to_main", "pull_request"]
+    critical: true
     
   # Workflow de maintenance
   maintenance:
@@ -420,6 +982,7 @@ workflow_configurations:
     sequential: true
     timeout: 600
     frequency: "daily"
+    critical: false
 
 # ============================================================================
 # STATISTIQUES DU PROJET
@@ -429,40 +992,51 @@ project_stats:
   total_abstract_agents: 1
   total_main_agents: 5
   total_subagents: 17
-  total_agent_instances: 5  # Agents effectivement instanciés
-  total_agent_classes: 23   # 1 abstract + 5 main + 17 sub
+  total_agent_instances: 5
+  total_agent_classes: 23
   
   # Distribution par catégorie
   by_category:
-    core_framework: 1       # base_agent (abstrait)
-    architecture: 4         # 1 principal + 3 sous-agents
-    development: 4          # 1 principal + 3 sous-agents
-    blockchain: 5          # 1 principal + 4 sous-agents
-    frontend: 4            # 1 principal + 3 sous-agents
-    testing: 5             # 1 principal + 4 sous-agents
+    core_framework: 1
+    architecture: 4
+    development: 4
+    blockchain: 5
+    frontend: 4
+    testing: 5
   
   # Dépendances
   dependencies:
-    base_agent_dependents: 5  # Tous les agents principaux
+    base_agent_dependents: 5
     circular_dependencies: 0
-    max_dependency_depth: 2   # base_agent -> main_agent -> subagent
+    max_dependency_depth: 2
+    total_dependencies: 22
+    
+  # Workflows
+  workflows:
+    total_workflows: 6
+    detailed_workflows: 4
+    simple_workflows: 2
+    phases_per_workflow:
+      sprint_development: 7
+      full_development: 6
+      security_audit: 6
+      deployment_pipeline: 7
     
   # Structure de fichiers
   file_structure:
-    agent_directories: 6      # 1 base + 5 principaux
+    agent_directories: 6
     subagent_directories: 17
     total_directories: 23
-    config_files: 23         # 1 par agent/sous-agent
-    agent_py_files: 23
-    tools_py_files: 23
-    init_py_files: 23
+    config_files: 23
+    workflow_files: 1
     
   # Métriques de complexité
   complexity:
     lines_of_code_estimated: 15000
     average_agent_size_kb: 50
     total_configuration_size_kb: 500
-    dependencies_count: 22   # 5 + 17
+    dependencies_count: 22
+    workflow_steps_total: 26
 
 # ============================================================================
 # CONFIGURATION DU LOGGING
@@ -477,6 +1051,8 @@ logging:
   file_enabled: true
   file_path: "logs/orchestrator.log"
   agent_log_path: "logs/agents/"
+  workflow_log_path: "logs/workflows/"
+  sprint_log_path: "logs/sprints/"
   max_file_size_mb: 10
   backup_count: 5
   compression: true
@@ -491,21 +1067,27 @@ logging:
   rotation_strategy: "time_and_size"
   when: "midnight"
   interval: 1
-  backup_count: 30  # Garder 30 jours de logs
+  backup_count: 30
   
   # Filtrage
   filters:
     exclude_loggers:
       - "urllib3"
       - "requests"
+      - "asyncio"
     include_only: []
   
-  # Monitoring
+  # Monitoring des logs
   log_monitoring:
     enabled: true
     alert_on_errors: true
     error_threshold_per_minute: 10
     alert_channels: ["console", "log_file"]
+    monitor_keywords:
+      - "ERROR"
+      - "CRITICAL"
+      - "FAILED"
+      - "EXCEPTION"
 
 # ============================================================================
 # CONFIGURATION DES PERFORMANCES
@@ -553,6 +1135,7 @@ performance:
       memory_percent: 85
       response_time_ms: 5000
       error_rate_percent: 5
+      task_queue_length: 20
 
 # ============================================================================
 # CONFIGURATION DE SÉCURITÉ
@@ -567,7 +1150,7 @@ security:
   # Opérations autorisées/bloquées
   allowed_file_operations: ["read", "write"]
   blocked_system_calls: ["exec", "system", "popen", "os.spawn", "subprocess"]
-  allowed_imports: ["logging", "yaml", "typing", "asyncio", "datetime", "hashlib", "json", "os", "sys"]
+  allowed_imports: ["logging", "yaml", "typing", "asyncio", "datetime", "hashlib", "json", "os", "sys", "uuid", "importlib", "inspect", "traceback"]
   
   # Validation des entrées
   input_validation:
@@ -576,10 +1159,11 @@ security:
     validate_json_schema: true
     sanitize_html: true
     block_sql_injection: true
+    validate_yaml: true
     
   # Configuration réseau
   network:
-    allowed_domains: ["github.com", "etherscan.io", "infura.io", "alchemy.com"]
+    allowed_domains: ["github.com", "etherscan.io", "infura.io", "alchemy.com", "sepolia.etherscan.io"]
     max_connections: 10
     timeout_seconds: 30
     ssl_verification: true
@@ -587,7 +1171,7 @@ security:
     
   # Authentification et autorisation
   authentication:
-    enabled: false  # À activer en production
+    enabled: false
     method: "api_key"
     required_scopes: ["read", "write", "execute"]
     
@@ -597,6 +1181,7 @@ security:
     log_all_actions: true
     retention_days: 90
     sensitive_data_masking: true
+    audit_log_path: "logs/audit/"
 
 # ============================================================================
 # CONFIGURATION DU DÉPLOIEMENT
@@ -608,16 +1193,29 @@ deployment:
       api_endpoint: "http://localhost:8000"
       debug: true
       log_level: "DEBUG"
+      features:
+        - "hot_reload"
+        - "debug_tools"
+        - "detailed_logging"
       
     staging:
       api_endpoint: "https://staging.api.smartcontractpipeline.com"
       debug: false
       log_level: "INFO"
+      features:
+        - "performance_monitoring"
+        - "error_tracking"
+        - "backup_enabled"
       
     production:
       api_endpoint: "https://api.smartcontractpipeline.com"
       debug: false
       log_level: "WARNING"
+      features:
+        - "high_availability"
+        - "auto_scaling"
+        - "disaster_recovery"
+        - "security_hardening"
   
   # Stratégie de déploiement
   strategy: "blue_green"
@@ -676,6 +1274,8 @@ notifications:
     health_check_failed: true
     security_alert: true
     performance_issue: true
+    sprint_completed: true
+    deployment_completed: true
     
   # Politique de notification
   policy:
@@ -701,6 +1301,9 @@ monitoring:
     network_io: true
     error_rates: true
     success_rates: true
+    workflow_duration: true
+    sprint_velocity: true
+    code_quality: true
     
   # Alertes
   alerts:
@@ -711,6 +1314,8 @@ monitoring:
       disk_usage_percent: 90
       error_rate_percent: 5
       response_time_ms: 5000
+      workflow_timeout_percent: 80
+      health_check_failure_count: 3
       
   # Tableau de bord
   dashboard:
@@ -718,6 +1323,12 @@ monitoring:
     port: 3000
     auth_required: true
     refresh_interval_seconds: 30
+    features:
+      - "real_time_metrics"
+      - "agent_status"
+      - "workflow_progress"
+      - "sprint_reports"
+      - "performance_charts"
     
   # Export des métriques
   export:
@@ -729,6 +1340,11 @@ monitoring:
       enabled: true
       path: "metrics/"
       interval_seconds: 60
+      
+    influxdb:
+      enabled: false
+      url: ""
+      database: "smartcontract_metrics"
 
 # ============================================================================
 # CONFIGURATION DE LA SAUVEGARDE
@@ -750,17 +1366,21 @@ backup:
     metrics: true
     agent_states: true
     workflow_results: true
+    sprint_results: true
+    generated_code: true
     
   # Stockage
   storage:
     local:
       enabled: true
       path: "backups/"
+      max_backups: 10
       
     cloud:
       enabled: false
       provider: "aws_s3"
       bucket: "smartcontractpipeline-backups"
+      region: "us-east-1"
       
   # Récupération
   recovery:
@@ -768,14 +1388,46 @@ backup:
     test_frequency: "weekly"
     recovery_time_objective: "4 hours"
     recovery_point_objective: "24 hours"
+    recovery_procedures: ["restore_config", "restore_data", "verify_integrity"]
+
+# ============================================================================
+# CONFIGURATION DES SPRINTS
+# ============================================================================
+sprint_configuration:
+  # Durée des sprints
+  default_duration_days: 14
+  sprint_planning_duration_hours: 4
+  sprint_review_duration_hours: 2
+  sprint_retrospective_duration_hours: 1
+  
+  # Capacité de l'équipe
+  team_capacity:
+    story_points_per_sprint: 20
+    max_concurrent_tasks: 3
+    focus_factor: 0.8
+    
+  # Critères d'acceptation
+  acceptance_criteria:
+    code_coverage_minimum: 80
+    security_audit_required: true
+    performance_tests_required: true
+    documentation_required: true
+    peer_review_required: true
+    
+  # Métriques de succès
+  success_metrics:
+    velocity_threshold: 70
+    quality_score_threshold: 3
+    bug_resolution_rate: 80
+    customer_satisfaction: 4
 
 # ============================================================================
 # MÉTADONNÉES
 # ============================================================================
 metadata:
   # Informations de version
-  version: "2.0.0"
-  schema_version: "1.0"
+  version: "3.0.0"
+  schema_version: "2.0"
   created_date: "2026-02-03"
   last_updated: "2026-02-03"
   
@@ -794,8 +1446,10 @@ metadata:
     readme: "README.md"
     api_docs: "docs/api.md"
     agent_docs: "docs/agents/"
+    workflow_docs: "docs/workflows/"
     configuration_guide: "docs/configuration.md"
     troubleshooting: "docs/troubleshooting.md"
+    sprint_guide: "docs/sprints.md"
     
   # Tags et catégories
   tags:
@@ -805,55 +1459,100 @@ metadata:
     - "automation"
     - "multi-agent"
     - "web3"
+    - "orchestrator"
+    - "workflow"
+    - "sprint"
+    - "agile"
     
   # Statistiques de projet
   project_stats:
-    estimated_development_hours: 200
-    estimated_maintenance_hours_per_week: 10
-    team_size: 3
+    estimated_development_hours: 300
+    estimated_maintenance_hours_per_week: 15
+    team_size: 5
     maturity_level: "beta"
+    supported_blockchains: ["Ethereum", "Polygon", "Arbitrum", "Optimism"]
     
   # Historique des versions
   version_history:
     - version: "1.0.0"
       date: "2026-01-15"
-      changes: ["Initial release", "Basic agent framework"]
+      changes: ["Initial release", "Basic agent framework", "Simple workflows"]
       
     - version: "2.0.0"
       date: "2026-02-03"
       changes: ["Added base_agent", "Enhanced configuration", "Added subagents support", "Improved error handling"]
+      
+    - version: "3.0.0"
+      date: "2026-02-03"
+      changes: ["Advanced orchestrator", "Detailed workflow definitions", "Sprint management", "Enhanced monitoring", "Comprehensive reporting"]
 
 # ============================================================================
 # NOTES ET CONFIGURATIONS AVANCÉES
 # ============================================================================
 notes: |
-  Ce fichier de configuration définit l'ensemble du pipeline SmartContractDevPipeline.
+  CONFIGURATION COMPLÈTE POUR SMART CONTRACT DEV PIPELINE - VERSION 3.0.0
   
   Points importants :
-  1. L'agent 'base_agent' est une classe abstraite et ne doit PAS être instancié
-  2. Les sous-agents sont chargés dynamiquement selon les besoins
-  3. Tous les agents héritent des fonctionnalités de base_agent
-  4. L'ordre d'initialisation respecte les dépendances
+  1. Structure hiérarchique des agents :
+     - base_agent : classe abstraite de base (non instanciée)
+     - 5 agents principaux : architect, coder, smart_contract, frontend_web3, tester
+     - 17 sous-agents spécialisés : instanciés à la demande
   
-  Pour modifier la configuration :
-  1. Éditez ce fichier YAML
-  2. Redémarrez l'orchestrateur
-  3. Les changements seront chargés automatiquement
+  2. Workflows détaillés :
+     - sprint_development : workflow principal avec 7 phases
+     - full_development : développement complet de smart contract
+     - security_audit : audit de sécurité approfondi
+     - deployment_pipeline : pipeline de déploiement CI/CD
   
-  Variables d'environnement supportées :
-  - LOG_LEVEL: Niveau de log (DEBUG, INFO, WARNING, ERROR)
-  - ENVIRONMENT: Environnement (development, staging, production)
-  - API_ENDPOINT: Point de terminaison de l'API
+  3. Gestion des sprints :
+     - Sprints de 14 jours par défaut
+     - Suivi complet des objectifs et fonctionnalités
+     - Rapports détaillés et rétrospectives
+     - Recommandations pour les sprints suivants
   
-  Sécurité :
-  - Ne pas exposer ce fichier en production
-  - Utiliser des variables d'environnement pour les secrets
-  - Activer l'authentification en production
+  4. Fonctionnalités de l'orchestrateur :
+     - Chargement dynamique des agents
+     - Exécution parallèle ou séquentielle
+     - Gestion des dépendances
+     - Monitoring en temps réel
+     - Gestion d'erreurs robuste
+     - Rapports détaillés
+  
+  5. Sécurité et performance :
+     - Sandboxing des agents
+     - Limites de ressources
+     - Validation des entrées
+     - Cache et optimisation
+     - Sauvegarde automatique
+  
+  Utilisation :
+  1. Démarrer l'orchestrateur : python orchestrator.py
+  2. Mode interactif : python orchestrator.py --interactive
+  3. Test rapide : python orchestrator.py --test
+  
+  Variables d'environnement :
+  - LOG_LEVEL: DEBUG, INFO, WARNING, ERROR
+  - ENVIRONMENT: development, staging, production
+  - API_ENDPOINT: URL de l'API
+  - MAX_CONCURRENT_TASKS: Nombre maximum de tâches parallèles
   
   Dépannage :
-  - Vérifier les logs dans logs/orchestrator.log
-  - Exécuter python orchestrator.py --test pour un diagnostic
-  - Consulter docs/troubleshooting.md pour les problèmes courants
+  1. Vérifier les logs : logs/orchestrator.log
+  2. Vérifier la santé : python orchestrator.py --test
+  3. Consulter la documentation : docs/troubleshooting.md
+  4. Vérifier les dépendances : logs/dependencies.log
+  
+  Pour modifier la configuration :
+  1. Éditer ce fichier YAML
+  2. Redémarrer l'orchestrateur
+  3. Les changements seront automatiquement appliqués
+  
+  Notes de mise à jour vers la version 3.0.0 :
+  - Ajout des workflows détaillés avec phases
+  - Support complet de la gestion des sprints
+  - Amélioration du monitoring et des rapports
+  - Optimisation des performances
+  - Meilleure gestion d'erreurs
 
 # ============================================================================
 # VALIDATION DU SCHÉMA
@@ -864,3 +1563,8 @@ schema_validation:
   strict_validation: false
   auto_fix: true
   validation_on_load: true
+  validation_rules:
+    - "required_fields"
+    - "agent_dependencies"
+    - "workflow_consistency"
+    - "task_mapping_integrity"
