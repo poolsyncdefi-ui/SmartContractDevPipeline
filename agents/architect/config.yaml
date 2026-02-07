@@ -1,73 +1,110 @@
 # agents/architect/config.yaml
-agent_id: "architect_001"
-role: "Software Architect"
-model: "ollama:deepseek-coder:6.7b"
-temperature: 0.3
-
-# Contexte fourni
-context:
-  sources:
-    - "project_data/context/requirements.json"
-    - "project_data/context/constraints.json"
-    - "project_data/workspace/current_state/"
-  limitations:
-    - "Budget: Pas de services cloud payants"
-    - "Stack: Python, JavaScript, Docker obligatoire"
-    - "Performance: < 2s response time"
-  obligations:
-    - "Documenter toutes les décisions architecturales"
-    - "Respecter les patterns microservices"
-    - "Intégrer monitoring et logging"
-
-# Objectifs
-objectives:
-  primary: "Produire une architecture scalable et maintenable"
-  secondary:
-    - "Définir les boundaries des services"
-    - "Choisir les technologies appropriées"
-    - "Anticiper l'évolution du système"
-
-# Spécifications techniques
-specs:
-  format: "Architecture Decision Records (ADR)"
-  sections_requises:
-    - "Context and Problem Statement"
-    - "Decision Drivers"
-    - "Considered Options"
-    - "Decision Outcome"
-    - "Consequences"
-
-# Outils disponibles
-tools:
-  - name: "diagram_generator"
-    type: "mermaid_generator"
-    params:
-      output_dir: "project_data/docs/architecture/diagrams/"
+agent:
+  name: "architect"
+  type: "main_agent"
+  description: "Agent principal responsable de la conception architecturale complète et de la stratégie technique du projet"
+  execution_order: 1
+  dependencies: []
   
-  - name: "tech_evaluator"
-    type: "comparison_tool"
-    params:
-      criteria: ["performance", "cost", "community", "learning_curve"]
-  
-  - name: "code_analyzer"
-    type: "static_analysis"
-    params:
-      languages: ["python", "javascript", "sql"]
+  capabilities:
+    - name: "validate_config"
+      description: "Valider et vérifier l'intégrité de la configuration complète du projet"
+    - name: "analyze_business_requirements"
+      description: "Analyser les exigences métier, fonctionnelles et non-fonctionnelles"
+    - name: "analyze_technical_constraints"
+      description: "Analyser les contraintes techniques, de performance et de sécurité"
+    - name: "design_system_architecture"
+      description: "Concevoir l'architecture système complète avec tous les composants"
+    - name: "design_cloud_infrastructure"
+      description: "Concevoir l'infrastructure cloud multi-cloud avec haute disponibilité"
+    - name: "design_blockchain_architecture"
+      description: "Concevoir l'architecture blockchain avec smart contracts, oracles et layer 2"
+    - name: "design_microservices_ecosystem"
+      description: "Concevoir l'écosystème microservices avec découpage de domaine"
+    - name: "design_api_gateway"
+      description: "Concevoir la gateway API avec rate limiting, authentification et monitoring"
+    - name: "design_data_architecture"
+      description: "Concevoir l'architecture de données avec pipelines, warehouses et analytics"
+    - name: "design_security_architecture"
+      description: "Concevoir l'architecture de sécurité complète avec défense en profondeur"
+    - name: "design_monitoring_observability"
+      description: "Concevoir le système de monitoring, observabilité et alerting"
+    - name: "design_disaster_recovery"
+      description: "Concevoir la stratégie de reprise après sinistre et haute disponibilité"
+    - name: "design_scalability_strategy"
+      description: "Concevoir la stratégie de scalabilité horizontale et verticale"
+    - name: "create_technical_specifications"
+      description: "Créer les spécifications techniques détaillées avec diagrammes UML"
+    - name: "review_architecture_decisions"
+      description: "Réviser et valider les décisions architecturales avec trade-off analysis"
+    - name: "optimize_architecture_performance"
+      description: "Optimiser l'architecture pour performance, latence et throughput"
+    - name: "optimize_architecture_cost"
+      description: "Optimiser l'architecture pour réduction des coûts cloud"
+    - name: "document_architecture_comprehensive"
+      description: "Documenter l'architecture avec C4, sequence diagrams et décisions ADR"
 
-# Outputs attendus
-outputs:
-  required:
-    - "architecture_decisions.md"
-    - "system_diagram.mmd"
-    - "tech_stack.json"
-    - "api_spec.yaml"
-  optional:
-    - "deployment_diagram.mmd"
-    - "data_flow_diagram.mmd"
-    - "security_considerations.md"
-
-# Mémoire et apprentissage
-memory:
-  vector_store: "project_data/memory/architect_vectors"
-  max_context_tokens: 8000
-  learning_strategy: "reinforcement_from_feedback"
+  llm_config:
+    model: "ollama:deepseek-coder:6.7b"
+    temperature: 0.1
+    max_tokens: 8000
+    top_p: 0.95
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    
+  tools:
+    - "architecture_designer"
+    - "cloud_designer"
+    - "blockchain_designer"
+    - "microservices_designer"
+    - "diagram_generator"
+    - "cost_optimizer"
+    - "performance_analyzer"
+    - "security_scanner"
+    
+  outputs:
+    - "architecture_diagrams_c4"
+    - "technical_specifications_detailed"
+    - "component_specifications"
+    - "deployment_strategy_document"
+    - "infrastructure_as_code_templates"
+    - "api_specifications_openapi"
+    - "database_schema_designs"
+    - "security_policy_document"
+    - "monitoring_dashboard_configs"
+    - "disaster_recovery_plan"
+    
+  validation_rules:
+    - "must_be_highly_scalable_to_millions_users"
+    - "must_have_99_99_availability"
+    - "must_comply_with_gdpr_hipaa_pci_dss"
+    - "must_support_zero_downtime_deployments"
+    - "must_have_comprehensive_monitoring"
+    - "must_be_cost_optimized_monthly_budget"
+    - "must_support_multi_region_deployment"
+    - "must_have_automated_disaster_recovery"
+    - "must_implement_defense_in_depth_security"
+    - "must_support_blue_green_canary_deployments"
+    
+  performance_metrics:
+    response_time_target: "P95 < 200ms"
+    throughput_target: "10,000 req/sec"
+    availability_target: "99.99%"
+    cost_target: "< $5000/month at scale"
+    security_compliance: "SOC2, ISO27001 ready"
+    
+  integration_points:
+    - "coder_agent_for_implementation"
+    - "smart_contract_agent_for_blockchain"
+    - "tester_agent_for_validation"
+    - "frontend_web3_agent_for_ui"
+    
+  escalation_paths:
+    - "complex_design_decisions_to_human_review"
+    - "security_critical_components_to_expert_review"
+    - "cost_overruns_to_project_manager"
+    
+  learning_feedback_loop:
+    store_architecture_decisions: true
+    learn_from_implementation_feedback: true
+    adjust_design_patterns_based_on_performance: true

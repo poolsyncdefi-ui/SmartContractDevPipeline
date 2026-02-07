@@ -1,0 +1,732 @@
+2026-02-05 19:48:37,330 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 19:48:37,406 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 19:48:37,406 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 19:48:37,406 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 19:48:37,406 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 19:48:37,406 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 19:48:37,407 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 19:48:37,408 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 19:48:37,408 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 19:48:37,408 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 19:48:37,408 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 19:48:37,409 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 19:48:37,409 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 19:48:37,409 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 19:48:37,410 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 19:48:37,410 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 19:48:37,410 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 19:48:37,410 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 19:48:37,411 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 19:48:37,411 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 19:48:37,411 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 19:48:37,411 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 19:48:37,411 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 19:48:37,412 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 19:48:37,412 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 19:48:37,412 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 19:48:37,413 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 19:48:37,413 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 19:48:37,413 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 19:48:37,416 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 19:48:37,417 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 19:48:37,417 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 19:48:37,417 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 19:48:37,417 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 19:48:37,418 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 19:48:37,422 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 19:48:37,422 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 19:48:37,423 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 19:48:37,424 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 19:48:37,425 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 19:48:37,430 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 19:48:37,430 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 19:48:37,430 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 19:48:37,431 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 19:48:37,431 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 19:48:37,431 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 19:48:37,435 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 19:48:37,435 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 19:48:37,435 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 19:48:37,435 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 19:48:37,436 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 19:48:37,440 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 19:48:37,441 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 19:48:37,441 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 19:48:37,441 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 19:48:37,442 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 19:48:37,442 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 19:48:37,442 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 19:48:37,443 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 19:48:37,443 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 19:48:37,444 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 19:48:37,444 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-05 19:52:47,373 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 19:52:47,449 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 19:52:47,449 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 19:52:47,449 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 19:52:47,449 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 19:52:47,449 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 19:52:47,450 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 19:52:47,450 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 19:52:47,450 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 19:52:47,451 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 19:52:47,451 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 19:52:47,451 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 19:52:47,451 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 19:52:47,452 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 19:52:47,452 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 19:52:47,452 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 19:52:47,452 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 19:52:47,453 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 19:52:47,453 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 19:52:47,453 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 19:52:47,453 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 19:52:47,454 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 19:52:47,454 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 19:52:47,454 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 19:52:47,454 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 19:52:47,455 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 19:52:47,455 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 19:52:47,455 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 19:52:47,455 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 19:52:47,459 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 19:52:47,459 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 19:52:47,459 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 19:52:47,459 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 19:52:47,460 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 19:52:47,460 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 19:52:47,464 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 19:52:47,464 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 19:52:47,465 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 19:52:47,465 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 19:52:47,465 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 19:52:47,470 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 19:52:47,473 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 19:52:47,473 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 19:52:47,473 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 19:52:47,474 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 19:52:47,474 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 19:52:47,477 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 19:52:47,478 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 19:52:47,478 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 19:52:47,478 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 19:52:47,478 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 19:52:47,483 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 19:52:47,484 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 19:52:47,484 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 19:52:47,484 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 19:52:47,484 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 19:52:47,485 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 19:52:47,485 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 19:52:47,485 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 19:52:47,489 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 19:52:47,489 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 19:52:47,489 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-05 20:39:53,430 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 20:39:53,506 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 20:39:53,506 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 20:39:53,507 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 20:39:53,507 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 20:39:53,507 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 20:39:53,507 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 20:39:53,507 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 20:39:53,508 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 20:39:53,508 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 20:39:53,508 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 20:39:53,508 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 20:39:53,509 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 20:39:53,509 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 20:39:53,509 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 20:39:53,509 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 20:39:53,510 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 20:39:53,510 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 20:39:53,510 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 20:39:53,510 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 20:39:53,511 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 20:39:53,511 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 20:39:53,511 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 20:39:53,511 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 20:39:53,511 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 20:39:53,512 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 20:39:53,512 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 20:39:53,512 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 20:39:53,512 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 20:39:53,515 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 20:39:53,515 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 20:39:53,516 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 20:39:53,516 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 20:39:53,516 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 20:39:53,516 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 20:39:53,520 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 20:39:53,520 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 20:39:53,521 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 20:39:53,521 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 20:39:53,521 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 20:39:53,524 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 20:39:53,524 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 20:39:53,525 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 20:39:53,527 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 20:39:53,527 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 20:39:53,527 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 20:39:53,532 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 20:39:53,532 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 20:39:53,532 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 20:39:53,532 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 20:39:53,532 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 20:39:53,537 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 20:39:53,538 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 20:39:53,538 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 20:39:53,538 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 20:39:53,538 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 20:39:53,539 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 20:39:53,539 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 20:39:53,539 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 20:39:53,540 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 20:39:53,540 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 20:39:53,540 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-05 21:05:05,904 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 21:05:05,980 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 21:05:05,980 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 21:05:05,980 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 21:05:05,981 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 21:05:05,981 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 21:05:05,981 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 21:05:05,981 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 21:05:05,981 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 21:05:05,982 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 21:05:05,982 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 21:05:05,982 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 21:05:05,982 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 21:05:05,983 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 21:05:05,983 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 21:05:05,983 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 21:05:05,983 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 21:05:05,983 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 21:05:05,984 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 21:05:05,984 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 21:05:05,984 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 21:05:05,984 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 21:05:05,984 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 21:05:05,985 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 21:05:05,985 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 21:05:05,985 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 21:05:05,985 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 21:05:05,986 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 21:05:05,986 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 21:05:05,988 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 21:05:05,989 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 21:05:05,989 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 21:05:05,989 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 21:05:05,989 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 21:05:05,990 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 21:05:05,994 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 21:05:05,994 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 21:05:05,995 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 21:05:05,995 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 21:05:05,995 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 21:05:05,998 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 21:05:05,999 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 21:05:05,999 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 21:05:05,999 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 21:05:05,999 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 21:05:06,000 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 21:05:06,004 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 21:05:06,004 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 21:05:06,004 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 21:05:06,004 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 21:05:06,005 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 21:05:06,008 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 21:05:06,009 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 21:05:06,009 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 21:05:06,009 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 21:05:06,009 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 21:05:06,010 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 21:05:06,010 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 21:05:06,011 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 21:05:06,011 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 21:05:06,011 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 21:05:06,011 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-05 21:40:43,788 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 21:40:43,863 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 21:40:43,864 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 21:40:43,864 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 21:40:43,864 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 21:40:43,864 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 21:40:43,864 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 21:40:43,865 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 21:40:43,865 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 21:40:43,865 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 21:40:43,866 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 21:40:43,866 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 21:40:43,866 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 21:40:43,866 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 21:40:43,867 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 21:40:43,867 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 21:40:43,867 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 21:40:43,867 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 21:40:43,868 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 21:40:43,868 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 21:40:43,868 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 21:40:43,868 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 21:40:43,869 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 21:40:43,869 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 21:40:43,869 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 21:40:43,869 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 21:40:43,870 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 21:40:43,870 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 21:40:43,870 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 21:40:43,876 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 21:40:43,876 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 21:40:43,877 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 21:40:43,877 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 21:40:43,877 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 21:40:43,878 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 21:40:43,887 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 21:40:43,887 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 21:40:43,887 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 21:40:43,887 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 21:40:43,888 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 21:40:43,899 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 21:40:43,899 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 21:40:43,900 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 21:40:43,900 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 21:40:43,900 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 21:40:43,901 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 21:40:43,911 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 21:40:43,911 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 21:40:43,913 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 21:40:43,913 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 21:40:43,913 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 21:40:43,926 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 21:40:43,926 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 21:40:43,927 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 21:40:43,927 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 21:40:43,927 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 21:40:43,929 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 21:40:43,929 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 21:40:43,930 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 21:40:43,930 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 21:40:43,930 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 21:40:43,930 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-05 21:50:51,184 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-05 21:50:51,259 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-05 21:50:51,259 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-05 21:50:51,260 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-05 21:50:51,260 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-05 21:50:51,260 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-05 21:50:51,260 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-05 21:50:51,260 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-05 21:50:51,261 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-05 21:50:51,261 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-05 21:50:51,261 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-05 21:50:51,261 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-05 21:50:51,262 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-05 21:50:51,262 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-05 21:50:51,262 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-05 21:50:51,262 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-05 21:50:51,263 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-05 21:50:51,263 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-05 21:50:51,263 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-05 21:50:51,263 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-05 21:50:51,264 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-05 21:50:51,264 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-05 21:50:51,264 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-05 21:50:51,264 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-05 21:50:51,265 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-05 21:50:51,265 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-05 21:50:51,266 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-05 21:50:51,266 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-05 21:50:51,266 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-05 21:50:51,273 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-05 21:50:51,273 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-05 21:50:51,274 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-05 21:50:51,274 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-05 21:50:51,274 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-05 21:50:51,275 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-05 21:50:51,284 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-05 21:50:51,284 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-05 21:50:51,284 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-05 21:50:51,284 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-05 21:50:51,285 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-05 21:50:51,296 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-05 21:50:51,296 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-05 21:50:51,296 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-05 21:50:51,297 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-05 21:50:51,297 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-05 21:50:51,297 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-05 21:50:51,308 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-05 21:50:51,308 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-05 21:50:51,309 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-05 21:50:51,309 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-05 21:50:51,309 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-05 21:50:51,322 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-05 21:50:51,323 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-05 21:50:51,323 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-05 21:50:51,323 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-05 21:50:51,323 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-05 21:50:51,324 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-05 21:50:51,324 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-05 21:50:51,325 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-05 21:50:51,325 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-05 21:50:51,325 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-05 21:50:51,325 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-06 08:05:07,017 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 08:05:07,095 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 08:05:07,111 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 08:05:07,111 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 08:05:07,111 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 08:05:07,111 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 08:05:07,111 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 08:05:07,118 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 08:05:07,133 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 08:05:07,149 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 08:05:07,149 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 08:05:07,149 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 08:05:07,149 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 08:05:07,149 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-06 08:05:07,165 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-06 08:18:59,486 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 08:18:59,564 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 08:18:59,579 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 08:18:59,586 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 08:18:59,586 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 08:18:59,586 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 08:18:59,586 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 08:18:59,586 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 08:18:59,601 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-06 08:18:59,617 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-06 08:18:59,633 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-06 08:18:59,633 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-06 08:20:37,275 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 08:20:37,353 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 08:20:37,369 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 08:20:37,375 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 08:20:37,375 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 08:20:37,375 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 08:20:37,375 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 08:20:37,375 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 08:20:37,391 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 08:20:37,406 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - INFO - Exécution de la tâche: validate_config
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - INFO - Utilisation de l'agent: architect
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - INFO - Agent architect exécute la tâche: validate_config
+2026-02-06 08:20:37,422 - SmartContractOrchestrator - WARNING - Tâche validate_config non supportée par l'agent architect. Capacités: []
+2026-02-06 09:06:28,529 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 09:06:28,606 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 09:06:28,606 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 09:06:28,606 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 09:06:28,607 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 09:06:28,607 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 09:06:28,607 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 09:06:28,607 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 09:06:28,607 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 09:06:28,608 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 09:06:28,608 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 09:06:28,608 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 09:06:28,609 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 09:06:28,609 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 09:06:28,609 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 09:06:28,609 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 09:06:28,610 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 09:06:28,610 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 09:06:28,610 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 09:06:28,610 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 09:06:28,611 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 09:06:28,611 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 09:06:28,611 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 09:06:28,611 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 09:06:28,612 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 09:06:28,612 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 09:06:28,612 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 09:06:28,612 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 09:06:28,613 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 09:06:28,619 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 09:06:28,619 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 09:06:28,619 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 09:06:28,619 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 09:06:28,620 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 09:06:28,620 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 09:06:28,630 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 09:06:28,630 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 09:06:28,630 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 09:06:28,630 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 09:06:28,631 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 09:06:28,642 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 09:06:28,642 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 09:06:28,643 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 09:06:28,643 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 09:06:28,643 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 09:06:28,644 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 09:06:28,654 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 09:06:28,655 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 09:06:28,655 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 09:06:28,655 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 09:06:28,655 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 09:06:28,669 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 09:06:28,669 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 09:06:28,669 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 09:06:28,670 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 09:06:28,670 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 09:06:28,671 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 09:06:28,671 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-06 09:17:13,810 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 09:17:13,889 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 09:17:13,890 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 09:17:13,890 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 09:17:13,891 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 09:17:13,891 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 09:17:13,891 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 09:17:13,891 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 09:17:13,892 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 09:17:13,892 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 09:17:13,892 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 09:17:13,892 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 09:17:13,893 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 09:17:13,893 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 09:17:13,893 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 09:17:13,893 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 09:17:13,894 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 09:17:13,894 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 09:17:13,894 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 09:17:13,894 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 09:17:13,894 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 09:17:13,895 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 09:17:13,895 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 09:17:13,895 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 09:17:13,895 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 09:17:13,896 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 09:17:13,896 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 09:17:13,896 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 09:17:13,896 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 09:17:13,902 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 09:17:13,902 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 09:17:13,903 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 09:17:13,903 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 09:17:13,903 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 09:17:13,904 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 09:17:13,913 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 09:17:13,913 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 09:17:13,913 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 09:17:13,913 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 09:17:13,914 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 09:17:13,925 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 09:17:13,925 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 09:17:13,926 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 09:17:13,926 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 09:17:13,926 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 09:17:13,927 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 09:17:13,937 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 09:17:13,938 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 09:17:13,939 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 09:17:13,939 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 09:17:13,939 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 09:17:13,952 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 09:17:13,953 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 09:17:13,953 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 09:17:13,953 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 09:17:13,953 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 09:17:13,955 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 09:17:13,955 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé
+2026-02-06 12:15:56,950 - SmartContractOrchestrator - INFO - Chargement de la configuration depuis project_config.yaml
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Configuration chargée: SmartContractDevPipeline v3.0.0
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: base_agent (abstract_base)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: architect (main_agent)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: coder (main_agent)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: smart_contract (main_agent)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: frontend_web3 (main_agent)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Agent configuré: tester (main_agent)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: cloud_architect (parent: architect)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: blockchain_architect (parent: architect)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: microservices_architect (parent: architect)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: backend_coder (parent: coder)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: frontend_coder (parent: coder)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: devops_coder (parent: coder)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: solidity_expert (parent: smart_contract)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: security_expert (parent: smart_contract)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: gas_optimizer (parent: smart_contract)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: formal_verification (parent: smart_contract)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: react_expert (parent: frontend_web3)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: web3_integration (parent: frontend_web3)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: ui_ux_expert (parent: frontend_web3)
+2026-02-06 12:15:57,028 - SmartContractOrchestrator - INFO - Sous-agent configuré: unit_tester (parent: tester)
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Sous-agent configuré: integration_tester (parent: tester)
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Sous-agent configuré: e2e_tester (parent: tester)
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Sous-agent configuré: fuzzing_expert (parent: tester)
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Total agents configurés: 23
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Initialisation des agents...
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Agent base_agent non instanciable, ignoré
+2026-02-06 12:15:57,044 - SmartContractOrchestrator - INFO - Initialisation de l'agent: architect (ordre: 1)
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Agent architect: configuration chargée (0 capacités)
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Agent architect initialisé
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Instance créée pour l'agent architect (ArchitectAgent) avec 12 capacités
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - ✓ Agent architect initialisé avec succès
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Initialisation de l'agent: coder (ordre: 2)
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour coder, utilisation de la classe par défaut
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Agent coder: configuration chargée (0 capacités)
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Agent coder initialisé
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Instance créée pour l'agent coder (BaseAgent) avec 15 capacités
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - ✓ Agent coder initialisé avec succès
+2026-02-06 12:15:57,050 - SmartContractOrchestrator - INFO - Initialisation de l'agent: smart_contract (ordre: 3)
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - INFO - Agent smart_contract: configuration chargée (0 capacités)
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - INFO - Agent smart_contract initialisé
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - INFO - Instance créée pour l'agent smart_contract (SmartContractAgent) avec 17 capacités
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - INFO - ✓ Agent smart_contract initialisé avec succès
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - INFO - Initialisation de l'agent: frontend_web3 (ordre: 4)
+2026-02-06 12:15:57,066 - SmartContractOrchestrator - WARNING - Fichier d'agent non trouvé pour frontend_web3, utilisation de la classe par défaut
+2026-02-06 12:15:57,081 - SmartContractOrchestrator - INFO - Agent frontend_web3: configuration chargée (0 capacités)
+2026-02-06 12:15:57,081 - SmartContractOrchestrator - INFO - Agent frontend_web3 initialisé
+2026-02-06 12:15:57,081 - SmartContractOrchestrator - INFO - Instance créée pour l'agent frontend_web3 (BaseAgent) avec 16 capacités
+2026-02-06 12:15:57,081 - SmartContractOrchestrator - INFO - ✓ Agent frontend_web3 initialisé avec succès
+2026-02-06 12:15:57,081 - SmartContractOrchestrator - INFO - Initialisation de l'agent: tester (ordre: 5)
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Agent tester: configuration chargée (0 capacités)
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Agent tester initialisé
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Instance créée pour l'agent tester (TesterAgent) avec 17 capacités
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - ✓ Agent tester initialisé avec succès
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Initialisation terminée: 6/6 agents initialisés avec succès
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Vérification de santé des agents...
+2026-02-06 12:15:57,097 - SmartContractOrchestrator - INFO - Résumé santé: 5/5 agents en bonne santé

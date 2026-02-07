@@ -8,22 +8,37 @@ from datetime import datetime
 import random
 
 class SmartContractAgent(BaseAgent):
-    """Agent principal pour le développement de smart contracts"""
-    
     def __init__(self, config_path: str = None):
-        super().__init__(config_path, "SmartContractAgent")
-        super().__init__(config_path, "SmartContractAgent")
-        self.blockchains = self.config.get("blockchains", ["Ethereum", "Polygon", "Arbitrum", "BNB Chain", "Avalanche"])
-        self.standards = self.config.get("standards", ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626"])
-        self.security_level = self.config.get("security_level", "high")
-        self.tools = self.config.get("tools", ["Hardhat", "Foundry", "Truffle", "Brownie"])
+        if config_path is None:
+            config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+        super().__init__(config_path)
         
-        # Ajout des capacités
-        self.add_capability("contract_development")
-        self.add_capability("security_audit")
-        self.add_capability("gas_optimization")
-        self.add_capability("contract_deployment")
-        self.add_capability("testing")
+        # Charger les capacités depuis le YAML
+        self._load_capabilities_from_config()
+    
+    def _load_capabilities_from_config(self):
+        """Charger les capacités depuis la configuration YAML."""
+        if hasattr(self, 'config') and self.config:
+            agent_config = self.config.get('agent', {})
+            capabilities = agent_config.get('capabilities', [])
+            
+            # Extraire les noms des capacités
+            self.capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
+        else:
+            # Fallback aux capacités par défaut
+            self.capabilities = [
+                "validate_config",
+                "analyze_requirements",
+                "design_contract_architecture",
+                "write_solidity_code",
+                "implement_security_measures",
+                "optimize_gas_usage",
+                "write_tests",
+                "perform_formal_verification",
+                "audit_contracts",
+                "generate_contract_documentation",
+                "deploy_contracts"
+            ]
     
     async def execute(self, task_data: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, Any]:
         """Exécute une tâche de smart contract"""

@@ -1,8 +1,6 @@
 Structure du dossier
-Le num‚ro de s‚rie du volume est 000000A9 76CD:81A5
+Le num‚ro de s‚rie du volume est 00000017 76CD:81A5
 D:\WEB3PROJECTS\SMARTCONTRACTDEVPIPELINE\AGENTS
-³   __init__.py
-³   
 ÃÄÄÄarchitect
 ³   ³   agent.py
 ³   ³   config.yaml
@@ -68,6 +66,11 @@ D:\WEB3PROJECTS\SMARTCONTRACTDEVPIPELINE\AGENTS
 ³       ÀÄÄÄV1
 ³               Architecture ComplŠte des 20 agents et sous-agents.svg
 ³               
+ÃÄÄÄbase_agent
+³       base_agent.py
+³       config.yaml
+³       __init__.py
+³       
 ÃÄÄÄcoder
 ³   ³   agent.py
 ³   ³   config.yaml
@@ -156,6 +159,7 @@ D:\WEB3PROJECTS\SMARTCONTRACTDEVPIPELINE\AGENTS
 ÃÄÄÄmonitoring
 ³       dashboard_config.yaml
 ³       
+ÃÄÄÄregistry
 ÃÄÄÄsmart_contract
 ³   ³   agent.py
 ³   ³   config.yaml

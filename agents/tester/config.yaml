@@ -1,101 +1,194 @@
 # agents/tester/config.yaml
-agent_id: "tester_001"
-role: "QA Automation Engineer"
-model: "ollama:qwen2.5:7b"
-temperature: 0.4  # Plus créatif pour les edge cases
-
-# Contexte fourni
-context:
-  code_to_test:
-    path: "project_data/workspace/src/"
-    changed_files: true
-  test_strategy:
-    file: "project_data/context/test_strategy.md"
-  quality_gates:
-    min_coverage: 80
-    max_complexity: 15
+agent:
+  name: "tester"
+  type: "main_agent"
+  description: "Agent spécialisé dans les tests complets, assurance qualité, performance testing, security testing et validation de toutes les composantes du système"
+  execution_order: 5
+  dependencies: ["coder", "frontend_web3", "smart_contract"]
   
-# Limitations
-limitations:
-  test_types: ["unit", "integration", "e2e", "performance"]
-  test_frameworks: ["pytest", "jest", "cypress"]
-  execution_time: "< 10min pour le test suite"
-  resources: "Pas de services externes payants"
+  capabilities:
+    - name: "validate_config"
+      description: "Valider la configuration des tests et environnement de test"
+    - name: "write_unit_tests_comprehensive"
+      description: "Écrire des tests unitaires complets avec coverage maximale"
+    - name: "write_integration_tests_advanced"
+      description: "Écrire des tests d'intégration avancés avec mocks et stubs"
+    - name: "write_e2e_tests_complete"
+      description: "Écrire des tests end-to-end complets avec scenarios business"
+    - name: "perform_fuzzing_intensive"
+      description: "Effectuer des tests de fuzzing intensifs avec edge case generation"
+    - name: "run_security_tests_penetration"
+      description: "Exécuter des tests de sécurité et penetration testing"
+    - name: "run_performance_tests_load"
+      description: "Exécuter des tests de performance et load testing à grande échelle"
+    - name: "generate_test_reports_detailed"
+      description: "Générer des rapports de tests détaillés avec analytics"
+    - name: "setup_test_environment_complete"
+      description: "Configurer l'environnement de test complet avec fixtures"
+    - name: "automate_testing_pipeline"
+      description: "Automatiser le pipeline de testing avec CI/CD integration"
+    - name: "monitor_test_coverage_real_time"
+      description: "Surveiller la couverture de code en temps réel avec alerts"
+    - name: "debug_test_failures_detailed"
+      description: "Déboguer les échecs de tests avec root cause analysis"
+    - name: "optimize_test_suite_performance"
+      description: "Optimiser la suite de tests pour performance et maintenance"
+    - name: "create_test_data_realistic"
+      description: "Créer des données de test réalistes avec generators"
+    - name: "validate_test_results_statistical"
+      description: "Valider les résultats des tests avec analysis statistique"
+    - name: "implement_chaos_engineering"
+      description: "Implémenter le chaos engineering avec failure injection"
+    - name: "run_compliance_tests"
+      description: "Exécuter des tests de compliance avec regulations"
+    - name: "perform_accessibility_tests"
+      description: "Effectuer des tests d'accessibilité avec screen readers"
+    - name: "run_usability_tests"
+      description: "Exécuter des tests d'usabilité avec user testing"
+    - name: "implement_contract_testing"
+      description: "Implémenter le contract testing pour APIs"
+    - name: "perform_visual_regression_testing"
+      description: "Effectuer des tests de regression visuelle"
+    - name: "run_mobile_testing"
+      description: "Exécuter des tests mobile avec device farms"
+    - name: "perform_cross_browser_testing"
+      description: "Effectuer des tests cross-browser avec automation"
+    - name: "implement_mutation_testing"
+      description: "Implémenter le mutation testing pour test quality"
+    - name: "run_api_performance_tests"
+      description: "Exécuter des tests de performance API avec load generation"
+    - name: "perform_database_testing"
+      description: "Effectuer des tests de base de données avec transactions"
+    - name: "run_security_scanning_automated"
+      description: "Exécuter le scanning de sécurité automatisé"
+    - name: "implement_performance_monitoring"
+      description: "Implémenter le monitoring de performance continu"
+    - name: "create_test_strategy_document"
+      description: "Créer le document de stratégie de test complet"
+    - name: "setup_test_automation_framework"
+      description: "Configurer le framework d'automatisation de tests"
+    - name: "implement_continuous_testing"
+      description: "Implémenter le continuous testing dans le pipeline"
+    - name: "run_blockchain_specific_tests"
+      description: "Exécuter des tests spécifiques blockchain avec fork testing"
+    - name: "perform_smart_contract_security_tests"
+      description: "Effectuer des tests de sécurité pour smart contracts"
+    - name: "run_gas_optimization_tests"
+      description: "Exécuter des tests d'optimisation de gas"
+    - name: "implement_test_data_management"
+      description: "Implémenter la gestion des données de test"
+    - name: "create_performance_baselines"
+      description: "Créer les baselines de performance pour comparison"
+    - name: "run_reliability_testing"
+      description: "Exécuter des tests de fiabilité avec long-running tests"
+    - name: "perform_recovery_testing"
+      description: "Effectuer des tests de recovery avec disaster scenarios"
+    - name: "implement_ai_based_testing"
+      description: "Implémenter le testing basé sur AI pour test generation"
 
-# Obligations
-obligations:
-  - "Tester les happy paths et edge cases"
-  - "Vérifier les regressions"
-  - "Documenter les bugs clairement"
-  - "Maintenir les tests à jour"
-  - "Générer des données de test réalistes"
-
-# Objectifs
-objectives:
-  primary: "Assurer la qualité du code produit"
-  secondary:
-    - "Détecter les bugs avant la production"
-    - "Maintenir une bonne couverture de tests"
-    - "Optimiser le temps d'exécution des tests"
-
-# Spécifications de test
-test_specs:
-  unit_tests:
-    framework: "pytest"
-    coverage: ">= 80%"
-    mocking: "unittest.mock"
-  integration_tests:
-    framework: "pytest"
-    test_data: "fixtures/"
-    cleanup: true
-  e2e_tests:
-    framework: "selenium | cypress"
-    browser: "chrome headless"
-
-# Outils disponibles
-tools:
-  - name: "test_generator"
-    type: "auto_test_gen"
-    params:
-      framework: "pytest"
-      style: "given-when-then"
-  
-  - name: "test_executor"
-    type: "test_runner"
-    params:
-      parallel: true
-      retry_failed: 2
-  
-  - name: "coverage_tool"
-    type: "coverage.py | istanbul"
-  
-  - name: "bug_reporter"
-    type: "issue_tracker"
-    params:
-      template: "project_data/templates/bug_report.md"
-  
-  - name: "performance_tester"
-    type: "locust | k6"
-    params:
-      virtual_users: 100
-      duration: "5m"
-
-# Outputs attendus
-outputs:
-  test_reports:
-    - "test_results.json"
-    - "coverage_report.xml"
-    - "performance_metrics.json"
-  artifacts:
-    - "test_cases.md"
-    - "bug_reports/"
-    - "test_data/"
-  notifications:
-    slack_channel: "#qa-alerts"
-    threshold: "coverage < 80% OR tests_failed > 0"
-
-# Intégration continue
-ci_integration:
-  trigger: "on_push_or_pr"
-  stages: ["test", "coverage", "report"]
-  blockers: ["coverage_below_threshold", "critical_bugs"]
+  llm_config:
+    model: "ollama:deepseek-coder:6.7b"
+    temperature: 0.1
+    max_tokens: 12000
+    top_p: 0.95
+    frequency_penalty: 0.05
+    presence_penalty: 0.05
+    
+  tools:
+    - "test_generator_comprehensive"
+    - "test_runner_distributed"
+    - "coverage_analyzer_advanced"
+    - "fuzzing_tool_intensive"
+    - "security_scanner_deep"
+    - "performance_load_tester"
+    - "chaos_engineering_platform"
+    - "accessibility_testing_suite"
+    - "visual_regression_tool"
+    - "mobile_testing_platform"
+    - "api_testing_framework"
+    - "mutation_testing_tool"
+    - "blockchain_testing_framework"
+    - "test_data_management_system"
+    - "ai_test_generator"
+    
+  outputs:
+    - "test_cases_comprehensive"
+    - "test_reports_detailed"
+    - "coverage_reports_advanced"
+    - "bug_reports_prioritized"
+    - "performance_metrics_baseline"
+    - "security_vulnerability_reports"
+    - "test_automation_scripts"
+    - "test_strategy_documentation"
+    - "test_environment_configs"
+    - "continuous_testing_pipeline"
+    - "blockchain_test_results"
+    - "gas_optimization_reports"
+    - "accessibility_compliance_reports"
+    - "performance_baseline_documents"
+    
+  validation_rules:
+    - "must_achieve_95_percent_test_coverage"
+    - "must_catch_all_critical_bugs_pre_production"
+    - "must_run_all_tests_under_10_minutes"
+    - "must_validate_all_security_requirements"
+    - "must_meet_all_performance_slas"
+    - "must_pass_all_compliance_requirements"
+    - "must_be_fully_automated_no_manual"
+    - "must_have_comprehensive_documentation"
+    - "must_support_parallel_execution"
+    - "must_integrate_with_ci_cd_seamlessly"
+    
+  testing_metrics:
+    code_coverage: "> 95%"
+    test_automation_rate: "100%"
+    test_execution_time: "< 10 minutes"
+    bug_escape_rate: "< 1% to production"
+    test_flakiness: "< 1% flaky tests"
+    security_vulnerabilities: "0 critical in production"
+    performance_deviations: "< 5% from baseline"
+    accessibility_compliance: "WCAG 2.1 AA 100%"
+    
+  testing_types_coverage:
+    unit_testing: "100% of business logic"
+    integration_testing: "All service integrations"
+    e2e_testing: "All critical user journeys"
+    performance_testing: "All performance SLAs"
+    security_testing: "OWASP Top 10 coverage"
+    accessibility_testing: "All WCAG criteria"
+    compatibility_testing: "All supported platforms"
+    usability_testing: "All major user flows"
+    chaos_testing: "All critical failure scenarios"
+    recovery_testing: "All disaster recovery plans"
+    
+  testing_frameworks_supported:
+    unit_testing: ["pytest", "Jest", "Mocha", "unittest", "RSpec"]
+    integration_testing: ["Postman", "Supertest", "REST Assured", "Karate"]
+    e2e_testing: ["Playwright", "Cypress", "Selenium", "Appium", "Detox"]
+    performance_testing: ["k6", "Locust", "JMeter", "Gatling", "Artillery"]
+    security_testing: ["OWASP ZAP", "Burp Suite", "Nessus", "Nmap", "SonarQube"]
+    accessibility_testing: ["axe-core", "Lighthouse", "Pa11y", "WAVE"]
+    mobile_testing: ["Appium", "Espresso", "XCUITest", "Detox", "Maestro"]
+    api_testing: ["Postman", "Insomnia", "Bruno", "HTTPie", "RestClient"]
+    visual_testing: ["Percy", "Chromatic", "Applitools", "Storybook"]
+    mutation_testing: ["Stryker", "PITest", "Mutmut", "Jumble"]
+    
+  blockchain_specific_testing:
+    smart_contract_testing: ["Hardhat", "Foundry", "Truffle", "Brownie", "Waffle"]
+    fork_testing: ["Anvil", "Hardhat Network", "Ganache", "Foundry Anvil"]
+    gas_profiling: ["Hardhat Gas Reporter", "Foundry Gas Snapshots", "Eth Gas Reporter"]
+    security_scanners: ["Slither", "Mythril", "Securify", "SmartCheck", "Oyente"]
+    formal_verification: ["Certora", "Halmos", "KEVM", "Scribble"]
+    fuzzing_tools: ["Echidna", "Medusa", "Harvey", "Diligence Fuzzing"]
+    
+  test_environment_requirements:
+    isolated_environments: "Dedicated per test run"
+    test_data_management: "Automated setup/teardown"
+    mock_services: "Comprehensive service virtualization"
+    database_seeding: "Automated with realistic data"
+    network_conditions: "Simulated latency/packet loss"
+    device_farms: "Access to real device testing"
+    browser_matrix: "All supported browser versions"
+    mobile_devices: "All targeted device models"
+    blockchain_forks: "Mainnet fork for testing"
+    load_generators: "Distributed load testing"

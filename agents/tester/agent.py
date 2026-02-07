@@ -8,28 +8,41 @@ from datetime import datetime, timedelta
 import random
 
 class TesterAgent(BaseAgent):
-    """Agent principal pour les tests et la qualité"""
-    
     def __init__(self, config_path: str = None):
-        super().__init__(config_path, "TesterAgent")
-        super().__init__(config_path, "TesterAgent")
-        self.test_types = self.config.get("test_types", ["unit", "integration", "e2e", "security", "performance", "load"])
-        self.coverage_target = self.config.get("coverage_target", 85)
-        self.tools = self.config.get("tools", ["pytest", "jest", "cypress", "selenium", "playwright", "k6", "locust"])
-        self.quality_gates = self.config.get("quality_gates", {
-            "unit_test_coverage": 80,
-            "integration_test_count": 50,
-            "security_score": 70,
-            "performance_threshold": "2s",
-            "accessibility": "WCAG AA"
-        })
+        if config_path is None:
+            config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+        super().__init__(config_path)
         
-        # Ajout des capacités
-        self.add_capability("test_automation")
-        self.add_capability("security_audit")
-        self.add_capability("performance_testing")
-        self.add_capability("ci_cd_integration")
-        self.add_capability("quality_metrics")
+        # Charger les capacités depuis le YAML
+        self._load_capabilities_from_config()
+    
+    def _load_capabilities_from_config(self):
+        """Charger les capacités depuis la configuration YAML."""
+        if hasattr(self, 'config') and self.config:
+            agent_config = self.config.get('agent', {})
+            capabilities = agent_config.get('capabilities', [])
+            
+            # Extraire les noms des capacités
+            self.capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
+        else:
+            # Fallback aux capacités par défaut
+            self.capabilities = [
+                "validate_config",
+                "write_unit_tests",
+                "write_integration_tests",
+                "write_e2e_tests",
+                "perform_fuzzing",
+                "run_security_tests",
+                "run_performance_tests",
+                "generate_test_reports",
+                "setup_test_environment",
+                "automate_testing",
+                "monitor_test_coverage",
+                "debug_test_failures",
+                "optimize_test_suite",
+                "create_test_data",
+                "validate_test_results"
+            ]
     
     async def execute(self, task_data: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, Any]:
         """Exécute une tâche de test"""

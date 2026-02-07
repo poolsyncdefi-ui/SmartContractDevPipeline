@@ -1,100 +1,166 @@
 # agents/smart_contract/config.yaml
-agent_id: "sc_principal_001"
-specialization: "Solidity Expert / Formal Methods"
-model: "ollama:deepseek-coder:6.7b"
-temperature: 0.1  # Très déterministe pour la sécurité
-
-# Contexte fourni
-context:
-  blockchain_target:
-    mainnet: "Ethereum"
-    testnets: ["Sepolia", "Hardhat", "Anvil"]
-  standards:
-    erc_standards: ["ERC20", "ERC721", "ERC1155", "ERC4626"]
-    security_standards: ["EIP-1474", "SWC Registry"]
-  tooling:
-    frameworks: ["Foundry", "Hardhat"]
-    testing: ["Foundry", "Waffle", "Truffle"]
-
-# Limitations strictes
-limitations:
-  security:
-    - "Pas de delegatecall non vérifié"
-    - "Pas de reentrancy possible"
-    - "Vérifier tous les transferts"
-  gas:
-    - "Optimiser pour L2 (Arbitrum, Optimism)"
-    - "Éviter les boucles non bornées"
-  design:
-    - "Respecter le pattern Checks-Effects-Interactions"
-    - "Utiliser OpenZeppelin quand possible"
-
-# Obligations critiques
-obligations:
-  - "Implémenter les spécifications formelles"
-  - "Générer des preuves formelles pour les fonctions critiques"
-  - "Documenter chaque ligne avec son invariant"
-  - "Tester avec fuzzing avant tout commit"
-  - "Vérifier les overflows/underflows systématiquement"
-
-# Objectifs
-objectives:
-  primary: "Produire des smart contracts sécurisés et optimisés"
-  secondary:
-    - "Maintenabilité via une architecture modulaire"
-    - "Compatibilité multi-chaîne"
-    - "Facilité d'upgrade via proxy pattern"
-
-# Outils spécialisés
-tools:
-  - name: "foundry_runner"
-    type: "forge_executor"
-    params:
-      fork_url: "${ALCHEMY_URL}"
-      gas_reports: true
-    
-  - name: "slither_analyzer"
-    type: "static_analysis"
-    params:
-      detectors: ["all"]
-      exclude: ["naming-convention"]
-    
-  - name: "mythril_scanner"
-    type: "security_analyzer"
-    
-  - name: "formal_verifier"
-    type: "halmos | hevm"
-    params:
-      solver: "z3"
-      timeout: 300
+agent:
+  name: "smart_contract"
+  type: "main_agent"
+  description: "Agent spécialisé dans le développement, audit, optimisation et déploiement de smart contracts sécurisés et efficaces pour applications DeFi et Web3"
+  execution_order: 3
+  dependencies: ["architect"]
   
-  - name: "gas_profiler"
-    type: "gas_analysis"
-    params:
-      scenarios: ["mint", "transfer", "approve"]
+  capabilities:
+    - name: "validate_config"
+      description: "Valider la configuration des smart contracts et environnement de développement"
+    - name: "analyze_requirements_deep"
+      description: "Analyser les exigences techniques et fonctionnelles pour smart contracts"
+    - name: "design_contract_architecture_comprehensive"
+      description: "Concevoir l'architecture complète des smart contracts avec patterns et standards"
+    - name: "write_solidity_code_advanced"
+      description: "Écrire le code Solidity avancé avec assembly, libraries et interfaces"
+    - name: "implement_security_measures_robust"
+      description: "Implémenter les mesures de sécurité robustes avec defense-in-depth"
+    - name: "optimize_gas_usage_extreme"
+      description: "Optimiser l'utilisation du gas à l'extrême avec profiling et techniques avancées"
+    - name: "write_comprehensive_test_suite"
+      description: "Écrire une suite de tests complète avec edge cases et property-based testing"
+    - name: "perform_formal_verification_rigorous"
+      description: "Effectuer la vérification formelle rigoureuse avec theorem provers"
+    - name: "audit_contracts_thorough"
+      description: "Auditer les contrats de manière approfondie avec tools et manual review"
+    - name: "generate_contract_documentation_complete"
+      description: "Générer la documentation complète des contrats avec NatSpec et diagrams"
+    - name: "deploy_contracts_multi_network"
+      description: "Déployer les contrats sur multiples réseaux avec scripts et verification"
+    - name: "implement_upgradeability_patterns"
+      description: "Implémenter les patterns d'upgradeability avec proxies et storage layouts"
+    - name: "design_token_economics"
+      description: "Concevoir la tokenomics avec vesting, staking et distribution models"
+    - name: "implement_governance_mechanisms"
+      description: "Implémenter les mécanismes de gouvernance avec voting et delegation"
+    - name: "create_oracle_integrations"
+      description: "Créer les intégrations oracles avec price feeds et custom data"
+    - name: "design_bridge_mechanisms"
+      description: "Concevoir les mécanismes de bridge cross-chain avec security models"
+    - name: "implement_flash_loan_protections"
+      description: "Implémenter les protections contre flash loans et arbitrage attacks"
+    - name: "create_emergency_mechanisms"
+      description: "Créer les mécanismes d'urgence avec pause, withdrawal et recovery"
+    - name: "optimize_storage_layout"
+      description: "Optimiser le layout de stockage pour minimiser gas costs"
+    - name: "implement_erc_standards_compliant"
+      description: "Implémenter les standards ERC avec full compliance et extensions"
+    - name: "create_factory_patterns"
+      description: "Créer les patterns factory pour deployment dynamique"
+    - name: "design_access_control_systems"
+      description: "Concevoir les systèmes de contrôle d'accès avec roles et permissions"
+    - name: "implement_meta_transactions"
+      description: "Implémenter les meta-transactions avec gas abstraction"
+    - name: "create_batch_operations"
+      description: "Créer les opérations batch pour optimiser gas et user experience"
+    - name: "design_event_systems"
+      description: "Concevoir les systèmes d'événements pour monitoring et indexing"
+    - name: "implement_circuit_breaker_patterns"
+      description: "Implémenter les patterns circuit breaker pour risk management"
+    - name: "create_insurance_mechanisms"
+      description: "Créer les mécanismes d'assurance pour protection des utilisateurs"
+    - name: "design_liquidity_mining"
+      description: "Concevoir les systèmes de liquidity mining avec rewards et vesting"
+    - name: "implement_vesting_schedules"
+      description: "Implémenter les schedules de vesting avec cliffs et linear release"
+    - name: "create_analytics_hooks"
+      description: "Créer les hooks analytics pour tracking et reporting"
+    - name: "design_multisig_wallets"
+      description: "Concevoir les multisig wallets avec threshold signatures"
+    - name: "implement_time_locks"
+      description: "Implémenter les time locks pour delayed execution"
+    - name: "create_reentrancy_guards"
+      description: "Créer les guards contre reentrancy attacks"
+    - name: "design_fallback_mechanisms"
+      description: "Concevoir les mécanismes de fallback pour error recovery"
+    - name: "implement_signature_verification"
+      description: "Implémenter la vérification de signatures avec EIP-712"
 
-# Processus de développement
-development_process:
-  step_1: "Rédiger les spécifications formelles"
-  step_2: "Générer le squelette du contrat"
-  step_3: "Implémenter avec vérifications en temps réel"
-  step_4: "Exécuter les preuves formelles"
-  step_5: "Fuzzing intensif"
-  step_6: "Audit statique"
-  step_7: "Simulation multi-chaîne"
-
-# Outputs
-outputs:
-  contracts:
-    - "src/contracts/"  # Code source
-    - "src/interfaces/" # Interfaces
-    - "src/libraries/"  # Libraries
-  proofs:
-    - "proofs/"         # Preuves formelles
-    - "invariants/"     # Invariants documentés
-  tests:
-    - "test/fuzzing/"   # Tests de fuzzing
-    - "test/formelle/"  # Tests formels
-  artifacts:
-    - "abi/"            # ABI générés
-    - "bytecode/"       # Bytecode optimisé
+  llm_config:
+    model: "ollama:deepseek-coder:6.7b"
+    temperature: 0.1
+    max_tokens: 16000
+    top_p: 0.9
+    frequency_penalty: 0.15
+    presence_penalty: 0.1
+    
+  tools:
+    - "solidity_developer_advanced"
+    - "security_auditor_comprehensive"
+    - "gas_optimizer_extreme"
+    - "formal_verification_toolkit"
+    - "test_generator_property_based"
+    - "documentation_generator_natspec"
+    - "deployment_automation_multi_chain"
+    - "upgradeability_designer"
+    - "tokenomics_modeler"
+    - "governance_framework_builder"
+    - "oracle_integrator"
+    - "bridge_designer"
+    - "emergency_recovery_planner"
+    - "storage_layout_optimizer"
+    
+  outputs:
+    - "solidity_contracts_production_ready"
+    - "security_audit_reports_detailed"
+    - "gas_optimization_reports"
+    - "formal_verification_certificates"
+    - "comprehensive_test_suites"
+    - "contract_documentation_complete"
+    - "deployment_scripts_multi_network"
+    - "upgradeability_implementation"
+    - "tokenomics_design_documents"
+    - "governance_framework_implementation"
+    - "oracle_integration_configs"
+    - "bridge_implementation"
+    - "emergency_recovery_plans"
+    - "storage_optimization_analysis"
+    
+  validation_rules:
+    - "must_pass_all_security_audits_zero_critical"
+    - "must_optimize_gas_costs_below_industry_average"
+    - "must_have_100_percent_test_coverage"
+    - "must_pass_formal_verification_key_properties"
+    - "must_comply_with_all_relevant_erc_standards"
+    - "must_implement_upgradeability_safely"
+    - "must_have_comprehensive_emergency_mechanisms"
+    - "must_document_all_functions_with_natspec"
+    - "must_deploy_to_all_specified_networks"
+    - "must_verify_source_code_on_all_block_explorers"
+    
+  security_requirements:
+    audit_requirements: "3 independent audits required"
+    bug_bounty: "Minimum $1M bug bounty program"
+    insurance_coverage: "Minimum $10M insurance coverage"
+    formal_verification: "All core functions formally verified"
+    time_locks: "Critical functions have 24h+ time locks"
+    multisig_threshold: "Admin functions require 3/5 multisig"
+    emergency_pause: "Contracts have emergency pause mechanism"
+    withdrawal_safety: "Funds can be recovered in emergencies"
+    
+  gas_optimization_targets:
+    deployment_cost: "< 5M gas for main contract"
+    transaction_cost: "< 200k gas for common operations"
+    storage_cost: "Minimal storage usage with packing"
+    computation_cost: "Optimized algorithms and data structures"
+    call_data: "Minimal call data usage with compression"
+    
+  supported_standards:
+    token_standards: ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626", "ERC-2981", "ERC-3525"]
+    interface_standards: ["EIP-165", "EIP-721", "EIP-1155", "EIP-1820", "EIP-1967"]
+    security_standards: ["EIP-150", "EIP-1884", "EIP-2200", "EIP-2929", "EIP-3529"]
+    metadata_standards: ["EIP-712", "EIP-2612", "EIP-4758", "EIP-5267"]
+    
+  development_frameworks:
+    primary: ["Hardhat", "Foundry", "Brownie"]
+    testing: ["Hardhat", "Foundry", "Truffle", "Waffle"]
+    deployment: ["Hardhat", "Foundry", "Tenderly", "OpenZeppelin Defender"]
+    verification: ["Etherscan", "Sourcify", "Blockscout", "Arbiscan", "Polygonscan"]
+    
+  network_support:
+    ethereum: ["Mainnet", "Goerli", "Sepolia", "Holesky"]
+    layer_2: ["Arbitrum", "Optimism", "Base", "zkSync", "Polygon zkEVM"]
+    sidechains: ["Polygon", "Gnosis Chain", "Avalanche", "Fantom", "Celo"]
+    testnets: ["All major testnets with faucet support"]

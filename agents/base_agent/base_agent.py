@@ -30,6 +30,34 @@ class BaseAgent:
         self._initialized = True
         self.logger.info(f"✅ {self.name} initialisé (type: {self.agent_type})")
     
+    @property
+    def capabilities(self):
+        """Retourne les capacités de l'agent."""
+        if not hasattr(self, '_capabilities'):
+            self._capabilities = []
+        return self._capabilities
+    
+    @capabilities.setter
+    def capabilities(self, value):
+        """Définit les capacités de l'agent."""
+        self._capabilities = value if isinstance(value, list) else []
+    
+    def _load_capabilities_from_config(self):
+        """Charger les capacités depuis la configuration YAML.
+        Cette méthode peut être surchargée par les classes dérivées.
+        """
+        if hasattr(self, 'config') and self.config:
+            agent_config = self.config.get('agent', {})
+            capabilities = agent_config.get('capabilities', [])
+            
+            # Extraire les noms des capacités
+            if capabilities:
+                self.capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
+                return
+        
+        # Si aucune capacité n'est définie dans le YAML ou si config n'est pas chargée
+        self.capabilities = self.default_capabilities if hasattr(self, 'default_capabilities') else []
+    
     def _get_agent_type(self) -> str:
         """Détermine le type d'agent basé sur le nom de classe"""
         class_name = self.__class__.__name__
