@@ -1,97 +1,194 @@
-# agents/documenter/config.yaml
-agent_id: "documenter_001"
-role: "Technical Writer"
-model: "ollama:mistral:7b"
-temperature: 0.5  # Équilibre créativité/cohérence
-
-# Contexte fourni
-context:
-  documentation_standards:
-    file: "project_data/context/doc_standards.md"
-  target_audience:
-    - "developers"
-    - "end_users"
-    - "devops"
-  existing_docs:
-    path: "project_data/workspace/docs/"
+agent:
+  # === IDENTIFICATION ===
+  name: "documenter"
+  class_name: "DocumenterAgent"
+  module_path: "agents.documenter.documenter"
+  display_name: "Documenteur Technique"
+  description: "Agent responsable de la génération et maintenance de la documentation technique complète en plusieurs formats"
+  extends: "BaseAgent"
   
-# Limitations
-limitations:
-  formats: ["markdown", "asciidoc", "openapi"]
-  languages: ["fr", "en"]  # Documentation bilingue
-  tools: "Pas d'outils SaaS payants"
-  media: "Images générées uniquement via diagrammes"
-
-# Obligations
-obligations:
-  - "Maintenir la documentation à jour avec le code"
-  - "Vérifier l'exactitude technique"
-  - "Adapter le ton à l'audience"
-  - "Structurer pour la recherche"
-  - "Inclure des exemples fonctionnels"
-
-# Objectifs
-objectives:
-  primary: "Produire une documentation complète et utile"
-  secondary:
-    - "Réduire la courbe d'apprentissage"
-    - "Faciliter la maintenance"
-    - "Supporter l'auto-découverte"
-
-# Spécifications de documentation
-doc_specs:
-  api_docs:
-    format: "OpenAPI 3.0"
-    auto_generate: true
-    examples: true
-  user_guide:
-    structure: "task-oriented"
-    screenshots: false  # ou générées automatiquement
-  developer_guide:
-    includes: ["setup", "architecture", "contributing"]
-  deployment_guide:
-    environments: ["development", "staging", "production"]
-
-# Outils disponibles
-tools:
-  - name: "doc_generator"
-    type: "sphinx | mkdocs"
-    params:
-      theme: "readthedocs"
+  # === TYPE ET STATUT ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: false
   
-  - name: "api_doc_extractor"
-    type: "openapi_generator"
-    params:
-      from_code: true
+  # === DÉPENDANCES ===
+  dependencies: ["architect", "coder"]
+  initialization_order: 10
+  parent: "BaseAgent"
+  purpose: "Génération de documentation technique complète"
   
-  - name: "diagram_generator"
-    type: "mermaid | plantuml"
+  # === CAPACITÉS ===
+  capabilities:
+    - "GENERATE_API_DOCUMENTATION"
+    - "GENERATE_USER_GUIDES"
+    - "GENERATE_DEVELOPER_GUIDES"
+    - "GENERATE_DEPLOYMENT_GUIDES"
+    - "MAINTAIN_DOCUMENTATION_SYNC"
+    - "VALIDATE_TECHNICAL_ACCURACY"
+    - "ADAPT_CONTENT_FOR_AUDIENCE"
+    - "STRUCTURE_FOR_SEARCHABILITY"
+    - "INCLUDE_FUNCTIONAL_EXAMPLES"
+    - "GENERATE_DIAGRAMS"
+    - "TRANSLATE_CONTENT"
+    - "VALIDATE_COMPLETENESS"
+    - "UPDATE_EXISTING_DOCS"
+    - "GENERATE_TUTORIALS"
+    - "CREATE_GLOSSARIES"
+    - "PRODUCE_CHANGELOGS"
+    - "GENERATE_RELEASE_NOTES"
+    - "MAINTAIN_KNOWLEDGE_BASE"
   
-  - name: "spell_checker"
-    type: "pyenchant | languagetool"
-  
-  - name: "readability_analyzer"
-    type: "text_metrics"
-    params:
-      metrics: ["flesch_kincaid", "dale_chall"]
-
-# Outputs attendus
-outputs:
-  generated_docs:
-    - "api_reference/"
-    - "user_guide/"
-    - "developer_guide/"
-    - "deployment/"
-  artifacts:
-    - "doc_coverage_report.json"
-    - "broken_links_report.json"
-    - "readability_scores.json"
-  publishing:
-    format: "static_site"
-    location: "project_data/workspace/docs/_build/"
-
-# Maintenance
-maintenance:
-  sync_with_code: true
-  review_cycle: "weekly"
-  outdated_check: true
+  # === CONFIGURATION COMPLÈTE ===
+  configuration:
+    # Identification
+    agent_id: "documenter_001"
+    role: "Technical Writer"
+    
+    # Configuration LLM
+    llm_config:
+      model: "ollama:mistral:7b"
+      temperature: 0.5
+      max_tokens: 4000
+      top_p: 0.9
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+    
+    # Contexte
+    context:
+      documentation_standards:
+        file: "project_data/context/doc_standards.md"
+      target_audience:
+        - "developers"
+        - "end_users"
+        - "devops"
+        - "project_managers"
+        - "stakeholders"
+      existing_docs:
+        path: "project_data/workspace/docs/"
+    
+    # Limitations
+    limitations:
+      formats: ["markdown", "asciidoc", "openapi", "html", "pdf"]
+      languages: ["fr", "en"]
+      tools: "Pas d'outils SaaS payants"
+      media: "Images générées uniquement via diagrammes"
+      max_document_size: "50MB"
+    
+    # Obligations
+    obligations:
+      - "Maintenir la documentation à jour avec le code"
+      - "Vérifier l'exactitude technique"
+      - "Adapter le ton à l'audience"
+      - "Structurer pour la recherche"
+      - "Inclure des exemples fonctionnels"
+      - "Vérifier les liens et références"
+      - "Maintenir la cohérence du style"
+      - "S'assurer de l'accessibilité"
+      - "Documenter les changements importants"
+    
+    # Objectifs
+    objectives:
+      primary: "Produire une documentation complète et utile"
+      secondary:
+        - "Réduire la courbe d'apprentissage"
+        - "Faciliter la maintenance"
+        - "Supporter l'auto-découverte"
+        - "Réduire le support technique"
+        - "Améliorer l'adoption produit"
+    
+    # Spécifications de documentation
+    doc_specs:
+      api_docs:
+        format: "OpenAPI 3.0"
+        auto_generate: true
+        examples: true
+        include_test_cases: true
+        versioning: true
+      
+      user_guide:
+        structure: "task-oriented"
+        screenshots: false
+        video_tutorials: false
+        troubleshooting: true
+        faq: true
+      
+      developer_guide:
+        includes: ["setup", "architecture", "contributing", "api_reference", "testing"]
+        code_examples: true
+        best_practices: true
+        debugging_guide: true
+      
+      deployment_guide:
+        environments: ["development", "staging", "production"]
+        steps: ["prerequisites", "installation", "configuration", "verification", "troubleshooting"]
+        monitoring: true
+        backup_recovery: true
+      
+      architecture_docs:
+        diagrams: ["C4", "component", "sequence", "deployment"]
+        decisions: true
+        constraints: true
+        quality_attributes: true
+    
+    # Formats de sortie
+    output_formats:
+      - name: "markdown"
+        extensions: [".md", ".mdx"]
+        features: ["tables", "code_blocks", "links"]
+      
+      - name: "html"
+        extensions: [".html"]
+        features: ["search", "navigation", "responsive"]
+      
+      - name: "pdf"
+        extensions: [".pdf"]
+        features: ["printable", "bookmarks", "watermark"]
+      
+      - name: "openapi"
+        extensions: [".yaml", ".json"]
+        features: ["interactive", "try_it_out"]
+    
+    # Déclencheurs de mise à jour
+    update_triggers:
+      code_changes:
+        enabled: true
+        watch_paths: ["src/", "api/", "config/"]
+      
+      api_changes:
+        enabled: true
+        watch_endpoints: true
+      
+      user_feedback:
+        enabled: true
+        source: ["github_issues", "support_tickets"]
+      
+      scheduled_review:
+        enabled: true
+        interval_days: 30
+    
+    # Qualité
+    quality_metrics:
+      completeness_score: "> 90%"
+      accuracy_score: "> 95%"
+      freshness_score: "> 85%"
+      readability_score: "> 80%"
+      searchability_score: "> 75%"
+    
+    # Collaboration
+    collaboration:
+      sync_with_code: true
+      review_required: true
+      approvers: ["tech_lead", "product_owner"]
+      notification_channels: ["slack", "email"]
+    
+    # Système
+    system:
+      timeout_seconds: 900
+      max_retries: 2
+      concurrent_tasks: 1
+      log_level: "INFO"
+      backup_enabled: true
+      version_control: true

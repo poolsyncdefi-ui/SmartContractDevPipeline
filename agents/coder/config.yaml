@@ -1,142 +1,162 @@
-# agents/coder/config.yaml
 agent:
+  # === IDENTIFICATION ===
   name: "coder"
-  type: "main_agent"
+  class_name: "CoderAgent"
+  module_path: "agents.coder.coder"
+  display_name: "Développeur Principal"
   description: "Agent principal responsable du développement complet du code backend, frontend, DevOps, tests et documentation"
-  execution_order: 2
-  dependencies: ["architect"]
+  extends: "BaseAgent"
   
+  # === TYPE ET STATUT ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  
+  # === DÉPENDANCES ===
+  dependencies: ["architect"]
+  initialization_order: 2
+  parent: "BaseAgent"
+  purpose: "Développement et implémentation de code complet"
+  
+  # === CAPACITÉS (FORMAT CORRIGÉ) ===
   capabilities:
-    - name: "validate_config"
-      description: "Valider la configuration technique et les prérequis de développement"
-    - name: "analyze_architecture_detailed"
-      description: "Analyser l'architecture fournie pour extraction des spécifications techniques"
-    - name: "generate_backend_microservices"
-      description: "Générer les microservices backend avec APIs, business logic et data layers"
-    - name: "generate_frontend_application"
-      description: "Générer l'application frontend complète avec routing, state management et UI"
-    - name: "generate_devops_infrastructure"
-      description: "Créer l'infrastructure DevOps avec CI/CD, containerization et orchestration"
-    - name: "implement_rest_apis"
-      description: "Implémenter les APIs REST avec versioning, pagination et filtering"
-    - name: "implement_graphql_apis"
-      description: "Implémenter les APIs GraphQL avec schemas, resolvers et subscriptions"
-    - name: "implement_websocket_services"
-      description: "Implémenter les services WebSocket pour communication temps réel"
-    - name: "integrate_relational_databases"
-      description: "Intégrer les bases de données relationnelles avec ORM et migrations"
-    - name: "integrate_nosql_databases"
-      description: "Intégrer les bases de données NoSQL avec modèles document/column"
-    - name: "integrate_caching_layers"
-      description: "Intégrer les couches de cache Redis/Memcached avec invalidation"
-    - name: "integrate_message_queues"
-      description: "Intégrer les message queues Kafka/RabbitMQ pour async processing"
-    - name: "setup_web3_integration_complete"
-      description: "Configurer l'intégration Web3 complète avec providers, signers et contracts"
-    - name: "implement_state_management_advanced"
-      description: "Mettre en place la gestion d'état avancée avec caching et persistence"
-    - name: "create_ui_component_library"
-      description: "Créer une bibliothèque de composants UI réutilisables et accessibles"
-    - name: "implement_authentication_authorization"
-      description: "Implémenter l'authentification et autorisation avec JWT, OAuth2, RBAC"
-    - name: "optimize_performance_comprehensive"
-      description: "Optimiser les performances avec lazy loading, code splitting et caching"
-    - name: "write_unit_tests_comprehensive"
-      description: "Écrire des tests unitaires complets avec mocks, stubs et fixtures"
-    - name: "write_integration_tests"
-      description: "Écrire des tests d'intégration avec test databases et external services"
-    - name: "write_e2e_tests"
-      description: "Écrire des tests end-to-end avec scenarios business complets"
-    - name: "document_code_comprehensive"
-      description: "Documenter le code avec docstrings, API docs et architecture docs"
-    - name: "enforce_coding_standards_strict"
-      description: "Appliquer les standards de codage strictes avec linting et formatting"
-    - name: "refactor_code_continuously"
-      description: "Refactoriser le code continuellement pour qualité et maintenabilité"
-    - name: "implement_error_handling"
-      description: "Implémenter la gestion d'erreurs complète avec logging et monitoring"
-    - name: "implement_logging_tracing"
-      description: "Implémenter le logging structuré et distributed tracing"
-    - name: "setup_ci_cd_pipelines"
-      description: "Configurer les pipelines CI/CD avec tests, builds et deployments"
-    - name: "containerize_applications"
-      description: "Containeriser les applications avec Docker multi-stage builds"
-    - name: "orchestrate_with_kubernetes"
-      description: "Orchestrer avec Kubernetes avec deployments, services et ingress"
-    - name: "implement_monitoring_metrics"
-      description: "Implémenter le monitoring avec métriques, dashboards et alertes"
-    - name: "optimize_security_posture"
-      description: "Optimiser la posture de sécurité avec scanning et vulnerability management"
-
-  llm_config:
-    model: "ollama:deepseek-coder:6.7b"
-    temperature: 0.15
-    max_tokens: 16000
-    top_p: 0.9
-    frequency_penalty: 0.1
-    presence_penalty: 0.1
+    - "VALIDATE_CONFIG"
+    - "ANALYZE_ARCHITECTURE_DETAILED"
+    - "GENERATE_BACKEND_MICROSERVICES"
+    - "GENERATE_FRONTEND_APPLICATION"
+    - "GENERATE_DEVOPS_INFRASTRUCTURE"
+    - "IMPLEMENT_REST_APIS"
+    - "IMPLEMENT_GRAPHQL_APIS"
+    - "IMPLEMENT_WEBSOCKET_SERVICES"
+    - "INTEGRATE_RELATIONAL_DATABASES"
+    - "INTEGRATE_NOSQL_DATABASES"
+    - "INTEGRATE_CACHING_LAYERS"
+    - "INTEGRATE_MESSAGE_QUEUES"
+    - "SETUP_WEB3_INTEGRATION_COMPLETE"
+    - "IMPLEMENT_STATE_MANAGEMENT_ADVANCED"
+    - "CREATE_UI_COMPONENT_LIBRARY"
+    - "IMPLEMENT_AUTHENTICATION_AUTHORIZATION"
+    - "OPTIMIZE_PERFORMANCE_COMPREHENSIVE"
+    - "WRITE_UNIT_TESTS_COMPREHENSIVE"
+    - "WRITE_INTEGRATION_TESTS"
+    - "WRITE_E2E_TESTS"
+    - "DOCUMENT_CODE_COMPREHENSIVE"
+    - "ENFORCE_CODING_STANDARDS_STRICT"
+    - "REFACTOR_CODE_CONTINUOUSLY"
+    - "IMPLEMENT_ERROR_HANDLING"
+    - "IMPLEMENT_LOGGING_TRACING"
+    - "SETUP_CI_CD_PIPELINES"
+    - "CONTAINERIZE_APPLICATIONS"
+    - "ORCHESTRATE_WITH_KUBERNETES"
+    - "IMPLEMENT_MONITORING_METRICS"
+    - "OPTIMIZE_SECURITY_POSTURE"
+  
+  # === CONFIGURATION COMPLÈTE ===
+  configuration:
+    # Configuration d'exécution
+    execution_order: 2
     
-  tools:
-    - "code_generator_multi_language"
-    - "api_designer_rest_graphql"
-    - "database_designer_sql_nosql"
-    - "web3_integrator_complete"
-    - "test_generator_unit_integration_e2e"
-    - "documentation_generator_comprehensive"
-    - "security_scanner_static_dynamic"
-    - "performance_analyzer_profiling"
-    - "ci_cd_pipeline_builder"
-    - "container_orchestration_designer"
-    - "monitoring_observability_setup"
-    - "code_review_automation"
+    # Configuration LLM
+    llm_config:
+      model: "ollama:deepseek-coder:6.7b"
+      temperature: 0.15
+      max_tokens: 16000
+      top_p: 0.9
+      frequency_penalty: 0.1
+      presence_penalty: 0.1
     
-  outputs:
-    - "backend_microservices_code"
-    - "frontend_application_code"
-    - "devops_infrastructure_code"
-    - "api_specifications_implemented"
-    - "database_schemas_migrations"
-    - "test_suites_comprehensive"
-    - "documentation_technical_user"
-    - "ci_cd_pipeline_configs"
-    - "docker_kubernetes_configs"
-    - "monitoring_dashboards_alerts"
-    - "security_scans_reports"
-    - "performance_benchmarks"
+    # Outils disponibles
+    tools:
+      - "code_generator_multi_language"
+      - "api_designer_rest_graphql"
+      - "database_designer_sql_nosql"
+      - "web3_integrator_complete"
+      - "test_generator_unit_integration_e2e"
+      - "documentation_generator_comprehensive"
+      - "security_scanner_static_dynamic"
+      - "performance_analyzer_profiling"
+      - "ci_cd_pipeline_builder"
+      - "container_orchestration_designer"
+      - "monitoring_observability_setup"
+      - "code_review_automation"
     
-  validation_rules:
-    - "all_code_must_compile_with_zero_warnings"
-    - "test_coverage_must_exceed_90_percent"
-    - "security_scans_must_pass_critical_high"
-    - "performance_benchmarks_must_meet_sla"
-    - "api_response_times_p95_under_200ms"
-    - "docker_images_must_be_multi_stage_optimized"
-    - "kubernetes_manifests_must_follow_best_practices"
-    - "documentation_must_be_comprehensive_updated"
-    - "ci_cd_pipelines_must_be_fully_automated"
-    - "error_handling_must_be_comprehensive_logged"
+    # Sorties produites
+    outputs:
+      - "backend_microservices_code"
+      - "frontend_application_code"
+      - "devops_infrastructure_code"
+      - "api_specifications_implemented"
+      - "database_schemas_migrations"
+      - "test_suites_comprehensive"
+      - "documentation_technical_user"
+      - "ci_cd_pipeline_configs"
+      - "docker_kubernetes_configs"
+      - "monitoring_dashboards_alerts"
+      - "security_scans_reports"
+      - "performance_benchmarks"
     
-  code_quality_metrics:
-    cyclomatic_complexity: "< 10 per function"
-    cognitive_complexity: "< 15 per function"
-    lines_of_code_per_function: "< 50"
-    test_coverage: "> 90%"
-    security_vulnerabilities: "0 critical/high"
-    performance_bottlenecks: "0 identified"
+    # Règles de validation
+    validation_rules:
+      - "all_code_must_compile_with_zero_warnings"
+      - "test_coverage_must_exceed_90_percent"
+      - "security_scans_must_pass_critical_high"
+      - "performance_benchmarks_must_meet_sla"
+      - "api_response_times_p95_under_200ms"
+      - "docker_images_must_be_multi_stage_optimized"
+      - "kubernetes_manifests_must_follow_best_practices"
+      - "documentation_must_be_comprehensive_updated"
+      - "ci_cd_pipelines_must_be_fully_automated"
+      - "error_handling_must_be_comprehensive_logged"
     
-  supported_languages_frameworks:
-    backend: ["Python/FastAPI", "Node.js/Express", "Go/Gin", "Java/Spring", ".NET Core"]
-    frontend: ["React/Next.js", "Vue/Nuxt.js", "Angular", "Svelte/SvelteKit"]
-    mobile: ["React Native", "Flutter", "Swift UI", "Kotlin Compose"]
-    blockchain: ["Solidity/Hardhat", "Rust/Anchor", "Move/Aptos", "Cairo/Starknet"]
-    devops: ["Docker", "Kubernetes", "Terraform", "Ansible", "GitHub Actions", "GitLab CI"]
-    databases: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch"]
+    # Métriques de qualité
+    code_quality_metrics:
+      cyclomatic_complexity: "< 10 per function"
+      cognitive_complexity: "< 15 per function"
+      lines_of_code_per_function: "< 50"
+      test_coverage: "> 90%"
+      security_vulnerabilities: "0 critical/high"
+      performance_bottlenecks: "0 identified"
     
-  collaboration_workflow:
-    - "receive_architecture_from_architect_agent"
-    - "implement_features_with_tdd_approach"
-    - "collaborate_with_tester_agent_for_validation"
-    - "integrate_with_smart_contract_agent_for_blockchain"
-    - "collaborate_with_frontend_web3_agent_for_ui"
-    - "deploy_with_devops_automation"
-    - "monitor_with_observability_stack"
+    # Langages et frameworks supportés
+    supported_languages_frameworks:
+      backend: ["Python/FastAPI", "Node.js/Express", "Go/Gin", "Java/Spring", ".NET Core"]
+      frontend: ["React/Next.js", "Vue/Nuxt.js", "Angular", "Svelte/SvelteKit"]
+      mobile: ["React Native", "Flutter", "Swift UI", "Kotlin Compose"]
+      blockchain: ["Solidity/Hardhat", "Rust/Anchor", "Move/Aptos", "Cairo/Starknet"]
+      devops: ["Docker", "Kubernetes", "Terraform", "Ansible", "GitHub Actions", "GitLab CI"]
+      databases: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch"]
+    
+    # Workflow de collaboration
+    collaboration_workflow:
+      - "receive_architecture_from_architect_agent"
+      - "implement_features_with_tdd_approach"
+      - "collaborate_with_tester_agent_for_validation"
+      - "integrate_with_smart_contract_agent_for_blockchain"
+      - "collaborate_with_frontend_web3_agent_for_ui"
+      - "deploy_with_devops_automation"
+      - "monitor_with_observability_stack"
+    
+    # Paramètres système
+    system:
+      timeout_seconds: 3600
+      max_retries: 5
+      concurrent_tasks: 3
+      log_level: "DEBUG"
+      enable_auto_format: true
+      enable_linting: true
+    
+    # Environnements supportés
+    environments:
+      development: true
+      staging: true
+      production: true
+    
+    # Tests
+    testing:
+      unit_tests: true
+      integration_tests: true
+      e2e_tests: true
+      performance_tests: true
+      security_tests: true

@@ -1,627 +1,1289 @@
-# orchestrator/orchestrator.py
-import asyncio
+#!/usr/bin/env python3
+"""
+Orchestrator Principal - SmartContractDevPipeline
+Version: 2.2.0
+Responsable: Gestion et coordination de tous les agents
+"""
+
 import os
 import sys
 import yaml
 import json
 import logging
-import time
+import asyncio
+import importlib
+import importlib.util
+import traceback
+import inspect
+import hashlib
 from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Optional, Any, Type, Union, Callable
 from dataclasses import dataclass, field
 from enum import Enum
+from pathlib import Path
+import threading
+import queue
+import time
 
-# Configuration du logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger("SmartContractOrchestrator")
+# ============================================================================
+# CONFIGURATION ET CONSTANTES
+# ============================================================================
 
-class AgentStatus(Enum):
-    """Statut d'un agent."""
-    UNINITIALIZED = "uninitialized"
-    INITIALIZING = "initializing"
-    READY = "ready"
-    BUSY = "busy"
-    ERROR = "error"
-    DISABLED = "disabled"
+@dataclass
+class OrchestratorConfig:
+    """Configuration de l'orchestrator"""
+    config_path: str
+    agents_dir: str = "agents"
+    log_level: str = "INFO"
+    max_concurrent_tasks: int = 5
+    auto_discover: bool = True
+    health_check_interval: int = 30
+    task_timeout: int = 300
+    enable_api: bool = True
+    api_host: str = "127.0.0.1"
+    api_port: int = 8000
+    
+    @classmethod
+    def from_yaml(cls, config_path: str) -> 'OrchestratorConfig':
+        """Charge la configuration depuis un fichier YAML"""
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config_data = yaml.safe_load(f)
+            
+            # Extraire la section orchestrator
+            orch_config = config_data.get('orchestrator', {})
+            
+            return cls(
+                config_path=config_path,
+                agents_dir=orch_config.get('agents_dir', 'agents'),
+                log_level=orch_config.get('log_level', 'INFO'),
+                max_concurrent_tasks=orch_config.get('max_concurrent_tasks', 5),
+                auto_discover=orch_config.get('auto_discover', True),
+                health_check_interval=orch_config.get('health_check_interval', 30),
+                task_timeout=orch_config.get('task_timeout', 300),
+                enable_api=orch_config.get('enable_api', True),
+                api_host=orch_config.get('api_host', '127.0.0.1'),
+                api_port=orch_config.get('api_port', 8000)
+            )
+        except Exception as e:
+            print(f"⚠️ Erreur chargement config {config_path}: {e}")
+            return cls(config_path=config_path)
+
+# ============================================================================
+# SYSTÈME DE LOGGING AVANCÉ
+# ============================================================================
+
+class OrchestratorLogger:
+    """Logger avancé pour l'orchestrator"""
+    
+    COLOR_CODES = {
+        'DEBUG': '\033[36m',      # Cyan
+        'INFO': '\033[32m',       # Vert
+        'WARNING': '\033[33m',    # Jaune
+        'ERROR': '\033[31m',      # Rouge
+        'CRITICAL': '\033[35m',   # Magenta
+        'RESET': '\033[0m'
+    }
+    
+    def __init__(self, name: str = "orchestrator", log_file: Optional[str] = None):
+        self.name = name
+        self.log_file = log_file
+        self._lock = threading.RLock()
+        
+        # Créer le dossier de logs si nécessaire
+        if log_file:
+            log_dir = os.path.dirname(log_file)
+            if log_dir and not os.path.exists(log_dir):
+                os.makedirs(log_dir, exist_ok=True)
+    
+    def log(self, level: str, message: str, **kwargs):
+        """Log un message avec niveau"""
+        with self._lock:
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+            color = self.COLOR_CODES.get(level, self.COLOR_CODES['RESET'])
+            reset = self.COLOR_CODES['RESET']
+            
+            # Formater le message
+            log_msg = f"{color}[{timestamp}] [{level:8}] {self.name}: {message}{reset}"
+            
+            # Ajouter les détails si présents
+            if kwargs:
+                details = ' '.join(f'{k}={v}' for k, v in kwargs.items())
+                log_msg += f" {details}"
+            
+            # Afficher à l'écran
+            print(log_msg)
+            
+            # Écrire dans le fichier si configuré
+            if self.log_file:
+                try:
+                    with open(self.log_file, 'a', encoding='utf-8') as f:
+                        file_msg = f"[{timestamp}] [{level}] {self.name}: {message}"
+                        if kwargs:
+                            file_msg += f" {kwargs}"
+                        f.write(file_msg + '\n')
+                except Exception:
+                    pass  # Ne pas échouer sur une erreur de log
+    
+    def debug(self, message: str, **kwargs):
+        self.log('DEBUG', message, **kwargs)
+    
+    def info(self, message: str, **kwargs):
+        self.log('INFO', message, **kwargs)
+    
+    def warning(self, message: str, **kwargs):
+        self.log('WARNING', message, **kwargs)
+    
+    def error(self, message: str, **kwargs):
+        self.log('ERROR', message, **kwargs)
+    
+    def critical(self, message: str, **kwargs):
+        self.log('CRITICAL', message, **kwargs)
+
+# ============================================================================
+# CLASSES DE DONNÉES
+# ============================================================================
 
 @dataclass
 class AgentInfo:
-    """Informations sur un agent."""
+    """Informations sur un agent"""
     name: str
     display_name: str
-    specialization: str
     config_path: str
-    agent_type: str  # main_agent, sous_agent, abstract_base
+    agent_type: str
     enabled: bool
     instantiate: bool
     dependencies: List[str]
     initialization_order: int
     parent: Optional[str]
-    status: AgentStatus = AgentStatus.UNINITIALIZED
-    instance: Any = None
-    capabilities: List[str] = field(default_factory=list)
-    last_health_check: Optional[datetime] = None
-    mandatory: bool = True
-    purpose: str = ""
-
-class SmartContractOrchestrator:
-    """Orchestrateur principal pour la pipeline de développement de smart contracts."""
+    purpose: str
+    mandatory: bool
     
-    def __init__(self, config_path: str = "project_config.yaml"):
-        """Initialiser l'orchestrateur.
+    @classmethod
+    def from_config(cls, agent_name: str, config_data: Dict[str, Any]) -> 'AgentInfo':
+        """Crée à partir de la configuration"""
+        return cls(
+            name=agent_name,
+            display_name=config_data.get('display_name', agent_name),
+            config_path=config_data.get('config_path', f"agents/{agent_name}/config.yaml"),
+            agent_type=config_data.get('agent_type', 'concrete'),
+            enabled=config_data.get('enabled', True),
+            instantiate=config_data.get('instantiate', True),
+            dependencies=config_data.get('dependencies', []),
+            initialization_order=config_data.get('initialization_order', 99),
+            parent=config_data.get('parent', None),
+            purpose=config_data.get('purpose', ''),
+            mandatory=config_data.get('mandatory', False)
+        )
+
+@dataclass
+class TaskInfo:
+    """Informations sur une tâche"""
+    task_id: str
+    agent_name: str
+    task_type: str
+    parameters: Dict[str, Any]
+    priority: int = 50
+    status: str = "PENDING"
+    result: Optional[Any] = None
+    error: Optional[str] = None
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    
+    @classmethod
+    def create(cls, agent_name: str, task_type: str, parameters: Dict[str, Any], 
+               priority: int = 50) -> 'TaskInfo':
+        """Crée une nouvelle tâche"""
+        task_id = hashlib.md5(
+            f"{agent_name}_{task_type}_{datetime.now().timestamp()}".encode()
+        ).hexdigest()[:12]
+        
+        return cls(
+            task_id=task_id,
+            agent_name=agent_name,
+            task_type=task_type,
+            parameters=parameters,
+            priority=priority
+        )
+
+# ============================================================================
+# ORCHESTRATOR PRINCIPAL
+# ============================================================================
+
+class Orchestrator:
+    """Orchestrator principal pour la gestion des agents"""
+    
+    def __init__(self, config_path: str = "config/project_config.yaml"):
+        """
+        Initialise l'orchestrator.
         
         Args:
             config_path: Chemin vers le fichier de configuration
         """
+        # Configuration
         self.config_path = config_path
-        self.config = None
-        self.agents: Dict[str, AgentInfo] = {}
-        self.agent_instances = {}
-        self.task_results = []
-        self.initialized = False
-        self.logger = logging.getLogger(self.__class__.__name__)
+        self.config = OrchestratorConfig.from_yaml(config_path)
         
-    def load_configuration(self) -> bool:
-        """Charger la configuration depuis le fichier YAML.
+        # Logging
+        log_file = f"logs/orchestrator_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        self.logger = OrchestratorLogger("orchestrator", log_file)
+        
+        # État
+        self.initialized = False
+        self.running = False
+        
+        # Agents
+        self.agent_configs: Dict[str, Dict[str, Any]] = {}
+        self.agent_infos: Dict[str, AgentInfo] = {}
+        self.agents: Dict[str, Any] = {}  # Agents instanciés
+        self.agent_classes: Dict[str, Type] = {}  # Classes d'agents
+        
+        # Tâches
+        self.task_queue = queue.PriorityQueue()
+        self.active_tasks: Dict[str, TaskInfo] = {}
+        self.task_history: List[TaskInfo] = []
+        
+        # Verrous
+        self._agents_lock = threading.RLock()
+        self._tasks_lock = threading.RLock()
+        
+        # API (optionnel)
+        self.api_server = None
+        
+        self.logger.info(f"Orchestrator initialisé avec config: {config_path}")
+    
+    # ============================================================================
+    # MÉTHODES D'INITIALISATION
+    # ============================================================================
+    
+    def initialize(self) -> bool:
+        """
+        Initialise complètement l'orchestrator.
         
         Returns:
-            True si la configuration a été chargée avec succès
+            bool: True si l'initialisation réussit
         """
         try:
-            if not os.path.exists(self.config_path):
-                self.logger.error(f"Fichier de configuration non trouvé: {self.config_path}")
+            self.logger.info("=" * 60)
+            self.logger.info("INITIALISATION DE L'ORCHESTRATOR")
+            self.logger.info("=" * 60)
+            
+            # Étape 1: Charger la configuration complète
+            self.logger.info("Étape 1: Chargement configuration...")
+            if not self._load_full_config():
+                self.logger.error("❌ Échec chargement configuration")
                 return False
             
-            with open(self.config_path, 'r', encoding='utf-8') as f:
-                self.config = yaml.safe_load(f)
+            # Étape 2: Découvrir les agents
+            self.logger.info("Étape 2: Découverte des agents...")
+            discovered = self.discover_agents()
+            self.logger.info(f"  → {len(discovered)} agents découverts")
             
-            if not self.config:
-                self.logger.error("Configuration vide")
-                return False
+            # Étape 3: Charger les classes d'agents
+            self.logger.info("Étape 3: Chargement des classes...")
+            loaded = self._load_agent_classes()
+            self.logger.info(f"  → {len(loaded)} classes chargées")
             
-            self.logger.info(f"Configuration chargée: {self.config.get('project_name', 'Unknown')} v{self.config.get('version', '1.0.0')}")
+            # Étape 4: Valider les dépendances
+            self.logger.info("Étape 4: Validation dépendances...")
+            if not self._validate_dependencies():
+                self.logger.warning("⚠️ Problèmes de dépendances détectés")
+            
+            # Étape 5: Initialiser les agents (dans le bon ordre)
+            self.logger.info("Étape 5: Initialisation des agents...")
+            initialized = self.initialize_agents()
+            self.logger.info(f"  → {len(initialized)} agents initialisés")
+            
+            # Étape 6: Démarrer l'API si activée
+            if self.config.enable_api:
+                self.logger.info("Étape 6: Démarrage API...")
+                self._start_api()
+            
+            # Étape 7: Démarrer le processeur de tâches
+            self.logger.info("Étape 7: Démarrage processeur tâches...")
+            self._start_task_processor()
+            
+            self.initialized = True
+            self.running = True
+            
+            self.logger.info("✅ INITIALISATION RÉUSSIE")
+            self.logger.info(f"   Agents actifs: {len(self.agents)}")
+            self.logger.info(f"   Classes disponibles: {len(self.agent_classes)}")
+            
+            # Afficher le résumé
+            self._print_summary()
+            
             return True
             
         except Exception as e:
-            self.logger.error(f"Erreur lors du chargement de la configuration: {e}")
+            self.logger.critical(f"❌ ERREUR D'INITIALISATION: {e}")
+            self.logger.error(traceback.format_exc())
             return False
     
-    def _load_agent_config(self, agent_name: str, agent_info: dict) -> Dict[str, Any]:
-        """Charger la configuration d'un agent.
-        
-        Args:
-            agent_name: Nom de l'agent
-            agent_info: Informations sur l'agent
-            
-        Returns:
-            Configuration de l'agent
-        """
+    def _load_full_config(self) -> bool:
+        """Charge la configuration complète depuis le YAML"""
         try:
-            config_path = agent_info.get("config_path")
-            if not config_path or not os.path.exists(config_path):
-                self.logger.warning(f"Fichier de configuration non trouvé pour {agent_name}")
-                return {}
+            with open(self.config_path, 'r', encoding='utf-8') as f:
+                full_config = yaml.safe_load(f)
             
-            with open(config_path, 'r', encoding='utf-8') as f:
-                config = yaml.safe_load(f)
+            # Charger la configuration des agents
+            agents_config = full_config.get('agents', {})
             
-            # Extraire les capacités
-            capabilities = config.get("agent", {}).get("capabilities", [])
-            capability_names = [cap.get("name") for cap in capabilities if isinstance(cap, dict) and "name" in cap]
+            # Convertir en AgentInfo
+            for agent_name, agent_data in agents_config.items():
+                self.agent_infos[agent_name] = AgentInfo.from_config(agent_name, agent_data)
+                self.agent_configs[agent_name] = agent_data
             
-            self.logger.info(f"Agent {agent_name}: configuration chargée ({len(capability_names)} capacités)")
-            
-            return config
+            self.logger.info(f"Configuration chargée: {len(self.agent_infos)} agents configurés")
+            return True
             
         except Exception as e:
-            self.logger.error(f"Erreur lors du chargement de la configuration pour {agent_name}: {e}")
-            return {}
-    
-    def _create_agent_instance(self, agent_name: str, agent_info: AgentInfo) -> Any:
-        """Créer une instance d'un agent.
-        
-        Args:
-            agent_name: Nom de l'agent
-            agent_info: Informations sur l'agent
-            
-        Returns:
-            Instance de l'agent ou None en cas d'erreur
-        """
-        try:
-            config_path = agent_info.config_path
-            
-            # Vérifier si le fichier d'agent existe
-            agent_file = config_path.replace("config.yaml", "agent.py")
-            if not os.path.exists(agent_file):
-                self.logger.warning(f"Fichier d'agent non trouvé pour {agent_name}, utilisation de la classe par défaut")
-                # Pour le moment, retourner une instance de BaseAgent
-                from agents.base_agent import BaseAgent
-                return BaseAgent(config_path)
-            
-            # Charger dynamiquement le module de l'agent
-            agent_dir = os.path.dirname(config_path)
-            agent_module_name = os.path.basename(agent_dir)
-            
-            # Ajouter le répertoire parent au chemin Python
-            parent_dir = os.path.dirname(agent_dir)
-            if parent_dir not in sys.path:
-                sys.path.insert(0, parent_dir)
-            
-            try:
-                # Importer le module de l'agent
-                agent_module = __import__(f"agents.{agent_module_name}.agent", fromlist=[f"{agent_module_name.capitalize()}Agent"])
-                
-                # Trouver la classe de l'agent (nommée selon la convention: NomAgent)
-                agent_class_name = f"{agent_module_name.capitalize()}Agent"
-                if hasattr(agent_module, agent_class_name):
-                    agent_class = getattr(agent_module, agent_class_name)
-                    
-                    # Créer l'instance
-                    instance = agent_class(config_path)
-                    
-                    # Charger les capacités depuis la config
-                    agent_config = self._load_agent_config(agent_name, {"config_path": config_path})
-                    capabilities = agent_config.get("agent", {}).get("capabilities", [])
-                    capability_names = [cap.get("name") for cap in capabilities if isinstance(cap, dict) and "name" in cap]
-                    
-                    # Mettre à jour les capacités de l'agent
-                    if capability_names:
-                        instance.capabilities = capability_names
-                    
-                    self.logger.info(f"Instance créée pour l'agent {agent_name} ({agent_class.__name__}) avec {len(instance.capabilities)} capacités")
-                    return instance
-                else:
-                    self.logger.warning(f"Classe {agent_class_name} non trouvée pour {agent_name}")
-                    from agents.base_agent import BaseAgent
-                    return BaseAgent(config_path)
-                    
-            except ImportError as e:
-                self.logger.warning(f"Impossible d'importer l'agent {agent_name}: {e}")
-                from agents.base_agent import BaseAgent
-                return BaseAgent(config_path)
-                
-        except Exception as e:
-            self.logger.error(f"Erreur lors de la création de l'instance pour {agent_name}: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
-    
-    async def initialize_agents(self) -> bool:
-        """Initialiser tous les agents.
-        
-        Returns:
-            True si tous les agents ont été initialisés avec succès
-        """
-        if not self.config:
-            self.logger.error("Configuration non chargée")
+            self.logger.error(f"Erreur chargement config: {e}")
             return False
-        
-        self.logger.info("Initialisation des agents...")
-        
-        agents_config = self.config.get("agents", {})
-        if not agents_config:
-            self.logger.error("Aucun agent configuré")
-            return False
-        
-        # Créer les objets AgentInfo pour tous les agents
-        for agent_name, agent_config in agents_config.items():
-            agent_info = AgentInfo(
-                name=agent_name,
-                display_name=agent_config.get("display_name", agent_name),
-                specialization=agent_config.get("specialization", ""),
-                config_path=agent_config.get("config_path", f"agents/{agent_name}/config.yaml"),
-                agent_type=agent_config.get("agent_type", "main_agent"),
-                enabled=agent_config.get("enabled", True),
-                instantiate=agent_config.get("instantiate", True),
-                dependencies=agent_config.get("dependencies", []),
-                initialization_order=agent_config.get("initialization_order", 999),
-                parent=agent_config.get("parent"),
-                purpose=agent_config.get("purpose", "")
-            )
-            
-            # Vérifier si l'agent doit être instancié
-            if agent_name == "base_agent" and agent_config.get("agent_type") == "abstract_base":
-                agent_info.instantiate = False
-                self.logger.info(f"Agent {agent_name} non instanciable, ignoré")
-            
-            self.agents[agent_name] = agent_info
-            
-            # Charger la configuration de l'agent
-            self._load_agent_config(agent_name, {"config_path": agent_info.config_path})
-        
-        # Trier les agents par ordre d'initialisation
-        sorted_agents = sorted(
-            [agent for agent in self.agents.values() if agent.instantiate],
-            key=lambda x: x.initialization_order
-        )
-        
-        # Initialiser les agents dans l'ordre
-        initialized_count = 0
-        for agent_info in sorted_agents:
-            try:
-                self.logger.info(f"Initialisation de l'agent: {agent_info.name} (ordre: {agent_info.initialization_order})")
-                
-                # Vérifier les dépendances
-                deps_ready = all(
-                    dep in self.agents and 
-                    self.agents[dep].status == AgentStatus.READY 
-                    for dep in agent_info.dependencies
-                )
-                
-                if not deps_ready and agent_info.dependencies:
-                    self.logger.warning(f"Dépendances non satisfaites pour {agent_info.name}: {agent_info.dependencies}")
-                    continue
-                
-                # Créer l'instance de l'agent
-                agent_info.status = AgentStatus.INITIALIZING
-                instance = self._create_agent_instance(agent_info.name, agent_info)
-                
-                if instance:
-                    agent_info.instance = instance
-                    agent_info.status = AgentStatus.READY
-                    
-                    # Récupérer les capacités de l'instance
-                    if hasattr(instance, 'capabilities'):
-                        agent_info.capabilities = instance.capabilities
-                    
-                    self.logger.info(f"✓ Agent {agent_info.name} initialisé avec succès")
-                    initialized_count += 1
-                else:
-                    agent_info.status = AgentStatus.ERROR
-                    self.logger.error(f"Échec de l'initialisation de l'agent {agent_info.name}")
-                    
-            except Exception as e:
-                agent_info.status = AgentStatus.ERROR
-                self.logger.error(f"Erreur lors de l'initialisation de l'agent {agent_info.name}: {e}")
-                import traceback
-                traceback.print_exc()
-        
-        # Compter les sous-agents
-        sous_agents_count = sum(1 for agent in self.agents.values() if agent.parent)
-        total_agents = len(self.agents) + sous_agents_count
-        
-        self.logger.info(f"Initialisation terminée: {initialized_count}/{len(sorted_agents)} agents initialisés avec succès")
-        self.logger.info(f"Total agents configurés: {total_agents}")
-        
-        self.initialized = initialized_count > 0
-        return self.initialized
     
-    async def check_health(self) -> Dict[str, Any]:
-        """Vérifier la santé de tous les agents.
+    # ============================================================================
+    # DÉCOUVERTE ET CHARGEMENT DES AGENTS
+    # ============================================================================
+    
+    def discover_agents(self) -> List[str]:
+        """
+        Découvre automatiquement les agents disponibles.
         
         Returns:
-            Dictionnaire avec le statut de santé
+            List[str]: Liste des noms d'agents découverts
         """
-        self.logger.info("Vérification de santé des agents...")
-        
-        healthy = 0
-        total = 0
-        
-        for agent_name, agent_info in self.agents.items():
-            if agent_info.instantiate and agent_info.enabled:
-                total += 1
-                
-                if agent_info.status == AgentStatus.READY:
-                    # Vérifier la santé de l'instance
-                    if agent_info.instance and hasattr(agent_info.instance, 'health_check'):
-                        try:
-                            health_result = agent_info.instance.health_check()
-                            if health_result and health_result.get("status") == "healthy":
-                                healthy += 1
-                                agent_info.last_health_check = datetime.now()
-                            else:
-                                agent_info.status = AgentStatus.ERROR
-                        except Exception as e:
-                            self.logger.error(f"Erreur lors du health check pour {agent_name}: {e}")
-                            agent_info.status = AgentStatus.ERROR
-                    else:
-                        # Si pas de méthode health_check, considérer comme healthy
-                        healthy += 1
-                        agent_info.last_health_check = datetime.now()
-                elif agent_info.status == AgentStatus.ERROR:
-                    self.logger.warning(f"Agent {agent_name} en état d'erreur")
-                else:
-                    self.logger.warning(f"Agent {agent_name} non prêt: {agent_info.status}")
-        
-        health_percentage = (healthy / total * 100) if total > 0 else 0
-        
-        self.logger.info(f"Résumé santé: {healthy}/{total} agents en bonne santé")
-        
-        return {
-            "healthy": healthy,
-            "total": total,
-            "percentage": health_percentage,
-            "timestamp": datetime.now().isoformat()
-        }
-    
-    def execute_task(self, agent_name: str, task_name: str, **kwargs):
-        """Exécuter une tâche avec un agent spécifique.
-        
-        Args:
-            agent_name: Nom de l'agent
-            task_name: Nom de la tâche/capacité
-            **kwargs: Arguments supplémentaires
-            
-        Returns:
-            Résultat de l'exécution ou None en cas d'erreur
-        """
-        print(f"\n" + "="*80)
-        print(f"DEBUG execute_task - ENTRÉE")
-        print(f"  agent_name: {agent_name}")
-        print(f"  task_name: {task_name}")
-        
-        if agent_name not in self.agents:
-            print(f"  ERREUR: Agent {agent_name} non trouvé dans self.agents!")
-            return None
-        
-        agent_info = self.agents[agent_name]
-        print(f"  AgentInfo trouvé: {agent_info.name}")
-        print(f"  Agent instance: {agent_info.instance}")
-        
-        # Obtenir l'instance réelle de l'agent
-        agent = agent_info.instance
-        if agent is None:
-            print(f"  ERREUR: L'agent {agent_name} n'a pas d'instance!")
-            return None
-        
-        print(f"  Agent instance type: {type(agent)}")
-        print(f"  Agent capabilities: {agent.capabilities}")
-        
-        # Vérifier si l'agent supporte cette tâche
-        if task_name not in agent.capabilities:
-            print(f"  Tâche {task_name} non supportée par l'agent {agent_name}. Capacités: {agent.capabilities}")
-            return None
-        
-        print(f"  ✅ Tâche supportée, exécution...")
+        discovered = []
         
         try:
-            # Préparation des arguments
-            execution_args = {
-                "task_name": task_name,
-                "task_data": kwargs.get("task_data", {}),
-                "context": kwargs.get("context", {}),
-                "orchestrator": self
-            }
+            agents_dir = Path(self.config.agents_dir)
             
-            # Exécution de la tâche
-            start_time = time.time()
-            result = agent.execute_capability(task_name, **execution_args)
-            execution_time = time.time() - start_time
+            if not agents_dir.exists():
+                self.logger.warning(f"⚠️ Dossier agents non trouvé: {agents_dir}")
+                return discovered
             
-            # Journalisation des résultats
-            if hasattr(self, 'logger'):
-                self.logger.info(f"Tâche {task_name} exécutée par {agent_name} en {execution_time:.2f}s")
-            else:
-                print(f"Tâche {task_name} exécutée par {agent_name} en {execution_time:.2f}s")
+            # Parcourir tous les sous-dossiers
+            for agent_dir in agents_dir.iterdir():
+                if agent_dir.is_dir():
+                    agent_name = agent_dir.name
+                    
+                    # Vérifier si l'agent a un config.yaml
+                    config_file = agent_dir / "config.yaml"
+                    if config_file.exists():
+                        discovered.append(agent_name)
+                        self.logger.debug(f"Découvert: {agent_name}")
             
-            # Stockage des résultats
-            if result is not None:
-                self.task_results.append({
-                    "task": task_name,
-                    "agent": agent_name,
-                    "result": result,
-                    "execution_time": execution_time,
-                    "timestamp": datetime.now().isoformat()
-                })
+            # Ajouter les agents de la config même sans dossier
+            for agent_name in self.agent_infos.keys():
+                if agent_name not in discovered:
+                    discovered.append(agent_name)
+                    self.logger.debug(f"Ajouté depuis config: {agent_name}")
             
-            print(f"  ✅ Résultat: {result}")
-            return result
+            # Trier par ordre d'initialisation
+            discovered.sort(key=lambda x: self.agent_infos.get(x, AgentInfo(x, x, "", "", True, True, [], 99, None, "", False)).initialization_order)
+            
+            self.logger.info(f"Agents découverts: {', '.join(discovered)}")
+            return discovered
             
         except Exception as e:
-            print(f"  ❌ Erreur lors de l'exécution: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
+            self.logger.error(f"Erreur découverte agents: {e}")
+            return discovered
     
-    async def execute_workflow(self, workflow_name: str, workflow_data: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Exécuter un workflow complet.
-        
-        Args:
-            workflow_name: Nom du workflow
-            workflow_data: Données du workflow
-            
-        Returns:
-            Résultats du workflow
+    def _load_agent_classes(self) -> Dict[str, Type]:
         """
-        if not self.initialized:
-            self.logger.error("Orchestrateur non initialisé")
-            return {"status": "error", "message": "Orchestrateur non initialisé"}
+        Charge les classes de tous les agents.
         
-        self.logger.info(f"Exécution du workflow: {workflow_name}")
+        Returns:
+            Dict[str, Type]: Dictionnaire nom_agent -> classe
+        """
+        loaded_classes = {}
         
-        workflows = self.config.get("workflows", {})
-        if workflow_name not in workflows:
-            self.logger.error(f"Workflow {workflow_name} non trouvé")
-            return {"status": "error", "message": f"Workflow {workflow_name} non trouvé"}
-        
-        workflow = workflows[workflow_name]
-        steps = workflow.get("steps", [])
-        
-        results = {
-            "workflow": workflow_name,
-            "start_time": datetime.now().isoformat(),
-            "steps": [],
-            "overall_status": "success"
-        }
-        
-        for step in steps:
-            step_name = step.get("name", f"step_{len(results['steps'])}")
-            agent_name = step.get("agent")
-            task_name = step.get("task")
-            step_data = step.get("data", {})
-            
-            if not agent_name or not task_name:
-                self.logger.warning(f"Step {step_name} ignoré: agent ou task manquant")
+        for agent_name, agent_info in self.agent_infos.items():
+            if not agent_info.enabled:
+                self.logger.debug(f"Agent désactivé: {agent_name}")
                 continue
             
-            self.logger.info(f"Exécution du step {step_name}: {agent_name}.{task_name}")
-            
-            step_result = {
-                "step": step_name,
-                "agent": agent_name,
-                "task": task_name,
-                "start_time": datetime.now().isoformat()
-            }
-            
             try:
-                # Exécuter la tâche
-                task_result = self.execute_task(agent_name, task_name, task_data=step_data, context=workflow_data)
+                # Charger la classe
+                agent_class = self._load_single_agent_class(agent_info)
                 
-                step_result["end_time"] = datetime.now().isoformat()
-                step_result["result"] = task_result
-                
-                if task_result is None:
-                    step_result["status"] = "failed"
-                    results["overall_status"] = "partial_failure"
-                    self.logger.warning(f"Step {step_name} échoué")
+                if agent_class:
+                    self.agent_classes[agent_name] = agent_class
+                    loaded_classes[agent_name] = agent_class
+                    self.logger.info(f"✅ Classe chargée: {agent_name}")
                 else:
-                    step_result["status"] = "success"
-                    self.logger.info(f"Step {step_name} terminé avec succès")
+                    self.logger.warning(f"⚠️ Classe non chargée: {agent_name}")
                     
             except Exception as e:
-                step_result["end_time"] = datetime.now().isoformat()
-                step_result["status"] = "error"
-                step_result["error"] = str(e)
-                results["overall_status"] = "failure"
-                self.logger.error(f"Erreur lors du step {step_name}: {e}")
-            
-            results["steps"].append(step_result)
+                self.logger.error(f"❌ Erreur chargement {agent_name}: {e}")
         
-        results["end_time"] = datetime.now().isoformat()
-        
-        self.logger.info(f"Workflow {workflow_name} terminé avec statut: {results['overall_status']}")
-        
-        return results
+        return loaded_classes
     
-    def get_agent_status(self, agent_name: str = None) -> Dict[str, Any]:
-        """Obtenir le statut d'un agent ou de tous les agents.
+    def _load_single_agent_class(self, agent_info: AgentInfo) -> Optional[Type]:
+        """
+        Charge la classe d'un agent spécifique.
         
         Args:
-            agent_name: Nom de l'agent (None pour tous les agents)
+            agent_info: Informations sur l'agent
             
         Returns:
-            Statut de(s) l'agent(s)
+            Optional[Type]: La classe chargée ou None
         """
-        if agent_name:
-            if agent_name not in self.agents:
-                return {"error": f"Agent {agent_name} non trouvé"}
-            
-            agent_info = self.agents[agent_name]
-            return {
-                "name": agent_info.name,
-                "display_name": agent_info.display_name,
-                "status": agent_info.status.value,
-                "capabilities": agent_info.capabilities,
-                "last_health_check": agent_info.last_health_check.isoformat() if agent_info.last_health_check else None,
-                "initialization_order": agent_info.initialization_order,
-                "dependencies": agent_info.dependencies,
-                "purpose": agent_info.purpose
-            }
-        else:
-            return {
-                "total_agents": len(self.agents),
-                "initialized_agents": sum(1 for a in self.agents.values() if a.status == AgentStatus.READY),
-                "agents": {
-                    name: {
-                        "display_name": info.display_name,
-                        "status": info.status.value,
-                        "capabilities": info.capabilities,
-                        "initialization_order": info.initialization_order
-                    }
-                    for name, info in self.agents.items()
-                }
-            }
-    
-    async def shutdown(self):
-        """Arrêter l'orchestrateur et tous les agents."""
-        self.logger.info("Arrêt de l'orchestrateur...")
-        
-        for agent_name, agent_info in self.agents.items():
-            if agent_info.instance and hasattr(agent_info.instance, 'cleanup'):
+        try:
+            # CRITIQUE: Pour BaseAgent, on utilise l'import direct
+            if agent_info.name == "base_agent":
+                self.logger.info("Chargement BaseAgent (spécial)...")
+                
+                # Essayer plusieurs méthodes
                 try:
-                    await agent_info.instance.cleanup()
-                    self.logger.info(f"Agent {agent_name} nettoyé")
-                except Exception as e:
-                    self.logger.error(f"Erreur lors du nettoyage de l'agent {agent_name}: {e}")
+                    # Méthode 1: Via agents.base_agent
+                    from agents.base_agent import BaseAgent
+                    self.logger.info("  → BaseAgent importé via agents.base_agent")
+                    return BaseAgent
+                except ImportError as e1:
+                    self.logger.debug(f"  → Échec méthode 1: {e1}")
+                    
+                    try:
+                        # Méthode 2: Direct depuis le fichier
+                        import sys
+                        sys.path.insert(0, os.getcwd())
+                        from agents.base_agent.base_agent import BaseAgent
+                        self.logger.info("  → BaseAgent importé directement")
+                        return BaseAgent
+                    except ImportError as e2:
+                        self.logger.debug(f"  → Échec méthode 2: {e2}")
+                        
+                        try:
+                            # Méthode 3: Via le proxy base_agent
+                            import base_agent
+                            if hasattr(base_agent, 'BaseAgent'):
+                                self.logger.info("  → BaseAgent importé via proxy")
+                                return base_agent.BaseAgent
+                        except ImportError as e3:
+                            self.logger.debug(f"  → Échec méthode 3: {e3}")
+                
+                # Si tout échoue, créer une classe de secours
+                self.logger.warning("Création classe BaseAgent de secours")
+                
+                class FallbackBaseAgent:
+                    def __init__(self, config=None):
+                        self.name = "FallbackBaseAgent"
+                        self.config = config or {}
+                        self.status = "FALLBACK"
+                    
+                    def execute_task(self, task):
+                        return {"error": "BaseAgent en mode secours"}
+                
+                return FallbackBaseAgent
+            
+            # Pour les autres agents, charger depuis leur config.yaml
+            config_path = Path(agent_info.config_path)
+            
+            if not config_path.exists():
+                self.logger.warning(f"Config non trouvée: {config_path}")
+                return None
+            
+            # Lire la configuration de l'agent
+            with open(config_path, 'r', encoding='utf-8') as f:
+                agent_config = yaml.safe_load(f)
+            
+            agent_spec = agent_config.get('agent', {})
+            module_path = agent_spec.get('module_path', '')
+            class_name = agent_spec.get('class_name', '')
+            
+            if not module_path or not class_name:
+                self.logger.error(f"Module ou classe manquant pour {agent_info.name}")
+                return None
+            
+            # Importer dynamiquement
+            self.logger.debug(f"Import dynamique: {module_path}.{class_name}")
+            
+            try:
+                module = importlib.import_module(module_path)
+                agent_class = getattr(module, class_name)
+                
+                # Vérifier que la classe hérite de BaseAgent
+                from agents.base_agent import BaseAgent as BaseAgentClass
+                if not issubclass(agent_class, BaseAgentClass):
+                    self.logger.warning(f"{agent_info.name} n'hérite pas de BaseAgent")
+                
+                return agent_class
+                
+            except Exception as e:
+                self.logger.error(f"Erreur import {module_path}.{class_name}: {e}")
+                return None
+                
+        except Exception as e:
+            self.logger.error(f"Erreur chargement classe {agent_info.name}: {e}")
+            return None
+    
+    # ============================================================================
+    # INITIALISATION DES AGENTS
+    # ============================================================================
+    
+    def initialize_agents(self) -> Dict[str, Any]:
+        """
+        Initialise tous les agents (dans le bon ordre).
         
-        self.initialized = False
-        self.logger.info("Orchestrateur arrêté")
+        Returns:
+            Dict[str, Any]: Agents instanciés
+        """
+        # Trier les agents par ordre d'initialisation
+        agents_to_initialize = sorted(
+            self.agent_infos.items(),
+            key=lambda x: x[1].initialization_order
+        )
+        
+        initialized = {}
+        
+        for agent_name, agent_info in agents_to_initialize:
+            if not agent_info.enabled:
+                self.logger.debug(f"Agent désactivé: {agent_name}")
+                continue
+            
+            if not agent_info.instantiate:
+                self.logger.debug(f"Agent non instantiable: {agent_name}")
+                continue
+            
+            try:
+                # Initialiser l'agent
+                agent_instance = self._initialize_single_agent(agent_name, agent_info)
+                
+                if agent_instance:
+                    self.agents[agent_name] = agent_instance
+                    initialized[agent_name] = agent_instance
+                    
+                    self.logger.info(f"✅ Agent initialisé: {agent_name} ({agent_info.display_name})")
+                else:
+                    if agent_info.mandatory:
+                        self.logger.error(f"❌ Agent obligatoire non initialisé: {agent_name}")
+                    else:
+                        self.logger.warning(f"⚠️ Agent optionnel non initialisé: {agent_name}")
+                        
+            except Exception as e:
+                self.logger.error(f"❌ Erreur initialisation {agent_name}: {e}")
+                if agent_info.mandatory:
+                    raise
+        
+        return initialized
+    
+    def _initialize_single_agent(self, agent_name: str, agent_info: AgentInfo) -> Optional[Any]:
+        """
+        Initialise un agent spécifique.
+        
+        Args:
+            agent_name: Nom de l'agent
+            agent_info: Informations sur l'agent
+            
+        Returns:
+            Optional[Any]: Instance de l'agent ou None
+        """
+        try:
+            # Vérifier que la classe est chargée
+            if agent_name not in self.agent_classes:
+                self.logger.error(f"Classe non chargée pour {agent_name}")
+                return None
+            
+            agent_class = self.agent_classes[agent_name]
+            
+            # Charger la configuration spécifique
+            agent_config = self._load_agent_configuration(agent_name)
+            
+            # CRITIQUE: Pour BaseAgent, configuration spéciale
+            if agent_name == "base_agent":
+                from agents.base_agent.base_agent import AgentConfiguration
+                
+                # BaseAgent a besoin d'une configuration spéciale
+                base_config = AgentConfiguration(
+                    name="BaseAgent",
+                    capabilities=["ABSTRACT_BASE"],
+                    description="Classe de base abstraite pour tous les agents",
+                    version="2.2.0"
+                )
+                
+                # Instancier avec la configuration
+                agent_instance = agent_class(config=base_config)
+                
+            else:
+                # Pour les autres agents, utiliser la configuration du YAML
+                from agents.base_agent.base_agent import AgentConfiguration
+                
+                # Créer la configuration à partir du YAML
+                config_dict = agent_config.get('agent', {})
+                
+                # S'assurer que les champs requis sont présents
+                required_fields = ['name', 'capabilities', 'description']
+                for field in required_fields:
+                    if field not in config_dict:
+                        config_dict[field] = agent_info.display_name if field == 'name' else []
+                
+                # Créer l'objet de configuration
+                config_obj = AgentConfiguration(**config_dict)
+                
+                # Instancier l'agent
+                agent_instance = agent_class(config=config_obj)
+            
+            # Configurer les métadonnées
+            if hasattr(agent_instance, '_orchestrator'):
+                agent_instance._orchestrator = self
+            
+            if hasattr(agent_instance, '_logger'):
+                agent_instance._logger = self.logger
+            
+            return agent_instance
+            
+        except Exception as e:
+            self.logger.error(f"Erreur instanciation {agent_name}: {e}")
+            self.logger.error(traceback.format_exc())
+            return None
+    
+    def _load_agent_configuration(self, agent_name: str) -> Dict[str, Any]:
+        """
+        Charge la configuration d'un agent.
+        
+        Args:
+            agent_name: Nom de l'agent
+            
+        Returns:
+            Dict[str, Any]: Configuration de l'agent
+        """
+        try:
+            agent_info = self.agent_infos.get(agent_name)
+            if not agent_info:
+                return {}
+            
+            config_path = Path(agent_info.config_path)
+            
+            if config_path.exists():
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    return yaml.safe_load(f)
+            else:
+                # Retourner une configuration par défaut
+                return {
+                    'agent': {
+                        'name': agent_info.display_name,
+                        'description': agent_info.purpose,
+                        'capabilities': [],
+                        'configuration': {}
+                    }
+                }
+                
+        except Exception as e:
+            self.logger.error(f"Erreur chargement config {agent_name}: {e}")
+            return {}
+    
+    # ============================================================================
+    # VALIDATION DES DÉPENDANCES
+    # ============================================================================
+    
+    def _validate_dependencies(self) -> bool:
+        """
+        Valide les dépendances entre agents.
+        
+        Returns:
+            bool: True si toutes les dépendances sont satisfaites
+        """
+        all_valid = True
+        
+        for agent_name, agent_info in self.agent_infos.items():
+            if not agent_info.dependencies:
+                continue
+            
+            for dep_name in agent_info.dependencies:
+                # Vérifier si la dépendance existe
+                if dep_name not in self.agent_infos:
+                    self.logger.error(f"❌ {agent_name}: Dépendance manquante: {dep_name}")
+                    all_valid = False
+                    continue
+                
+                # Vérifier si la dépendance est activée
+                dep_info = self.agent_infos[dep_name]
+                if not dep_info.enabled:
+                    self.logger.error(f"❌ {agent_name}: Dépendance désactivée: {dep_name}")
+                    all_valid = False
+                
+                # Vérifier l'ordre d'initialisation
+                if dep_info.initialization_order >= agent_info.initialization_order:
+                    self.logger.warning(
+                        f"⚠️ {agent_name}: Dépendance {dep_name} s'initialise après "
+                        f"({dep_info.initialization_order} >= {agent_info.initialization_order})"
+                    )
+        
+        return all_valid
+    
+    # ============================================================================
+    # GESTION DES TÂCHES
+    # ============================================================================
+    
+    def submit_task(self, agent_name: str, task_type: str, 
+                    parameters: Dict[str, Any], priority: int = 50) -> Optional[str]:
+        """
+        Soumet une tâche pour exécution.
+        
+        Args:
+            agent_name: Nom de l'agent
+            task_type: Type de tâche
+            parameters: Paramètres de la tâche
+            priority: Priorité (1-100)
+            
+        Returns:
+            Optional[str]: ID de la tâche ou None
+        """
+        try:
+            # Vérifier que l'agent existe
+            if agent_name not in self.agents:
+                self.logger.error(f"Agent inconnu: {agent_name}")
+                return None
+            
+            # Créer la tâche
+            task = TaskInfo.create(agent_name, task_type, parameters, priority)
+            
+            # Ajouter à la file d'attente
+            self.task_queue.put((-priority, task))  # Négatif pour priorité inversée
+            
+            # Enregistrer
+            with self._tasks_lock:
+                self.active_tasks[task.task_id] = task
+            
+            self.logger.info(f"Tâche soumise: {task.task_id} pour {agent_name}")
+            return task.task_id
+            
+        except Exception as e:
+            self.logger.error(f"Erreur soumission tâche: {e}")
+            return None
+    
+    def _start_task_processor(self):
+        """Démarre le processeur de tâches en arrière-plan"""
+        def process_tasks():
+            while self.running:
+                try:
+                    # Prendre une tâche de la file (bloquant avec timeout)
+                    priority, task = self.task_queue.get(timeout=1.0)
+                    
+                    # Exécuter la tâche
+                    self._execute_task(task)
+                    
+                    # Marquer comme terminée
+                    self.task_queue.task_done()
+                    
+                except queue.Empty:
+                    continue  # File vide, continuer
+                except Exception as e:
+                    self.logger.error(f"Erreur processeur tâches: {e}")
+        
+        # Démarrer le thread
+        processor_thread = threading.Thread(target=process_tasks, daemon=True)
+        processor_thread.start()
+        
+        self.logger.info("Processeur de tâches démarré")
+    
+    def _execute_task(self, task: TaskInfo):
+        """Exécute une tâche spécifique"""
+        try:
+            task.start_time = datetime.now()
+            task.status = "EXECUTING"
+            
+            self.logger.info(f"Exécution tâche {task.task_id}: {task.agent_name}.{task.task_type}")
+            
+            # Récupérer l'agent
+            agent = self.agents.get(task.agent_name)
+            if not agent:
+                task.status = "FAILED"
+                task.error = f"Agent non trouvé: {task.agent_name}"
+                return
+            
+            # Exécuter la tâche
+            if hasattr(agent, 'execute_task'):
+                result = agent.execute_task(task.task_type, task.parameters)
+                task.result = result
+                task.status = "COMPLETED"
+                
+                self.logger.info(f"Tâche {task.task_id} terminée avec succès")
+            else:
+                task.status = "FAILED"
+                task.error = f"Agent {task.agent_name} n'a pas de méthode execute_task"
+                self.logger.error(f"Agent sans execute_task: {task.agent_name}")
+                
+        except Exception as e:
+            task.status = "FAILED"
+            task.error = str(e)
+            self.logger.error(f"Erreur exécution tâche {task.task_id}: {e}")
+            
+        finally:
+            task.end_time = datetime.now()
+            
+            # Déplacer vers l'historique
+            with self._tasks_lock:
+                if task.task_id in self.active_tasks:
+                    del self.active_tasks[task.task_id]
+                self.task_history.append(task)
+    
+    def get_task_status(self, task_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Récupère le statut d'une tâche.
+        
+        Args:
+            task_id: ID de la tâche
+            
+        Returns:
+            Optional[Dict[str, Any]]: Statut de la tâche
+        """
+        with self._tasks_lock:
+            # Chercher dans les tâches actives
+            if task_id in self.active_tasks:
+                task = self.active_tasks[task_id]
+            else:
+                # Chercher dans l'historique
+                task = next((t for t in self.task_history if t.task_id == task_id), None)
+            
+            if task:
+                return {
+                    'task_id': task.task_id,
+                    'agent_name': task.agent_name,
+                    'task_type': task.task_type,
+                    'status': task.status,
+                    'error': task.error,
+                    'start_time': task.start_time.isoformat() if task.start_time else None,
+                    'end_time': task.end_time.isoformat() if task.end_time else None,
+                    'duration': (task.end_time - task.start_time).total_seconds() 
+                               if task.start_time and task.end_time else None
+                }
+        
+        return None
+    
+    # ============================================================================
+    # GESTION DES AGENTS
+    # ============================================================================
+    
+    def get_agent(self, agent_name: str) -> Optional[Any]:
+        """
+        Récupère un agent par son nom.
+        
+        Args:
+            agent_name: Nom de l'agent
+            
+        Returns:
+            Optional[Any]: Instance de l'agent ou None
+        """
+        return self.agents.get(agent_name)
+    
+    def get_agent_status(self, agent_name: str) -> Optional[Dict[str, Any]]:
+        """
+        Récupère le statut d'un agent.
+        
+        Args:
+            agent_name: Nom de l'agent
+            
+        Returns:
+            Optional[Dict[str, Any]]: Statut de l'agent
+        """
+        agent = self.get_agent(agent_name)
+        if not agent:
+            return None
+        
+        status = {
+            'name': agent_name,
+            'class': agent.__class__.__name__,
+            'initialized': True,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        # Ajouter des informations spécifiques si disponibles
+        if hasattr(agent, 'status'):
+            status['agent_status'] = agent.status
+        
+        if hasattr(agent, 'capabilities'):
+            status['capabilities'] = agent.capabilities
+        
+        return status
+    
+    def list_agents(self) -> List[Dict[str, Any]]:
+        """
+        Liste tous les agents disponibles.
+        
+        Returns:
+            List[Dict[str, Any]]: Liste des agents
+        """
+        agents_list = []
+        
+        for agent_name, agent_info in self.agent_infos.items():
+            agent_data = {
+                'name': agent_name,
+                'display_name': agent_info.display_name,
+                'type': agent_info.agent_type,
+                'enabled': agent_info.enabled,
+                'instantiate': agent_info.instantiate,
+                'initialized': agent_name in self.agents,
+                'dependencies': agent_info.dependencies,
+                'initialization_order': agent_info.initialization_order,
+                'purpose': agent_info.purpose,
+                'mandatory': agent_info.mandatory
+            }
+            
+            agents_list.append(agent_data)
+        
+        # Trier par nom
+        agents_list.sort(key=lambda x: x['name'])
+        
+        return agents_list
+    
+    # ============================================================================
+    # API REST (FASTAPI)
+    # ============================================================================
+    
+    def _start_api(self):
+        """Démarre l'API REST (optionnel)"""
+        try:
+            # Importer FastAPI dynamiquement
+            import fastapi
+            from fastapi import FastAPI, HTTPException
+            import uvicorn
+            
+            # Créer l'application
+            app = FastAPI(
+                title="SmartContractDevPipeline Orchestrator",
+                description="API de gestion des agents IA",
+                version="2.2.0"
+            )
+            
+            # ========== ENDPOINTS ==========
+            
+            @app.get("/")
+            async def root():
+                return {
+                    "service": "Orchestrator API",
+                    "version": "2.2.0",
+                    "status": "running",
+                    "agents_count": len(self.agents),
+                    "initialized": self.initialized
+                }
+            
+            @app.get("/agents")
+            async def get_agents():
+                return self.list_agents()
+            
+            @app.get("/agents/{agent_name}")
+            async def get_agent(agent_name: str):
+                agent = self.get_agent(agent_name)
+                if not agent:
+                    raise HTTPException(status_code=404, detail=f"Agent {agent_name} non trouvé")
+                
+                return self.get_agent_status(agent_name)
+            
+            @app.post("/tasks")
+            async def create_task(
+                agent_name: str,
+                task_type: str,
+                parameters: Dict[str, Any],
+                priority: int = 50
+            ):
+                task_id = self.submit_task(agent_name, task_type, parameters, priority)
+                if not task_id:
+                    raise HTTPException(status_code=400, detail="Échec création tâche")
+                
+                return {"task_id": task_id, "status": "submitted"}
+            
+            @app.get("/tasks/{task_id}")
+            async def get_task(task_id: str):
+                status = self.get_task_status(task_id)
+                if not status:
+                    raise HTTPException(status_code=404, detail=f"Tâche {task_id} non trouvée")
+                
+                return status
+            
+            @app.get("/health")
+            async def health_check():
+                return {
+                    "status": "healthy" if self.initialized else "initializing",
+                    "timestamp": datetime.now().isoformat(),
+                    "agents_initialized": len(self.agents),
+                    "tasks_pending": self.task_queue.qsize(),
+                    "tasks_active": len(self.active_tasks)
+                }
+            
+            # Démarrer le serveur dans un thread
+            def run_server():
+                uvicorn.run(
+                    app,
+                    host=self.config.api_host,
+                    port=self.config.api_port,
+                    log_level="warning"
+                )
+            
+            api_thread = threading.Thread(target=run_server, daemon=True)
+            api_thread.start()
+            
+            self.api_server = app
+            self.logger.info(f"API démarrée: http://{self.config.api_host}:{self.config.api_port}")
+            
+        except ImportError:
+            self.logger.warning("FastAPI non installé - API désactivée")
+        except Exception as e:
+            self.logger.error(f"Erreur démarrage API: {e}")
+    
+    # ============================================================================
+    # UTILITAIRES
+    # ============================================================================
+    
+    def _print_summary(self):
+        """Affiche un résumé de l'initialisation"""
+        self.logger.info("\n" + "=" * 60)
+        self.logger.info("RÉSUMÉ DE L'INITIALISATION")
+        self.logger.info("=" * 60)
+        
+        # Agents initialisés
+        initialized_count = len(self.agents)
+        total_agents = len([a for a in self.agent_infos.values() if a.enabled and a.instantiate])
+        
+        self.logger.info(f"Agents: {initialized_count}/{total_agents} initialisés")
+        
+        # Lister les agents
+        for agent_name, agent in self.agents.items():
+            agent_info = self.agent_infos.get(agent_name)
+            if agent_info:
+                status = "✅" if hasattr(agent, 'status') else "⚡"
+                self.logger.info(f"  {status} {agent_name:20} ({agent_info.display_name})")
+        
+        # Tâches en attente
+        self.logger.info(f"\nTâches en file d'attente: {self.task_queue.qsize()}")
+        
+        # API
+        if self.api_server:
+            self.logger.info(f"API: http://{self.config.api_host}:{self.config.api_port}")
+        
+        self.logger.info("=" * 60)
+    
+    def stop(self):
+        """Arrête proprement l'orchestrator"""
+        self.logger.info("Arrêt de l'orchestrator...")
+        
+        self.running = False
+        
+        # Arrêter tous les agents
+        for agent_name, agent in self.agents.items():
+            try:
+                if hasattr(agent, 'stop'):
+                    agent.stop()
+                    self.logger.info(f"Agent arrêté: {agent_name}")
+            except Exception as e:
+                self.logger.error(f"Erreur arrêt {agent_name}: {e}")
+        
+        # Nettoyer
+        self.agents.clear()
+        self.agent_classes.clear()
+        
+        self.logger.info("Orchestrator arrêté")
+    
+    def diagnose(self) -> Dict[str, Any]:
+        """
+        Génère un diagnostic complet.
+        
+        Returns:
+            Dict[str, Any]: Diagnostic détaillé
+        """
+        return {
+            'timestamp': datetime.now().isoformat(),
+            'orchestrator': {
+                'initialized': self.initialized,
+                'running': self.running,
+                'config': self.config.__dict__,
+                'api_enabled': self.config.enable_api and self.api_server is not None
+            },
+            'agents': {
+                'configured': len(self.agent_infos),
+                'classes_loaded': len(self.agent_classes),
+                'initialized': len(self.agents),
+                'list': self.list_agents()
+            },
+            'tasks': {
+                'queue_size': self.task_queue.qsize(),
+                'active_tasks': len(self.active_tasks),
+                'history_size': len(self.task_history)
+            },
+            'system': {
+                'python_version': sys.version,
+                'platform': sys.platform,
+                'cwd': os.getcwd(),
+                'sys_path': sys.path[:3]
+            }
+        }
 
-# Test rapide
-async def quick_test():
-    """Test rapide de l'orchestrateur."""
-    print("Test rapide de l'orchestrateur...")
+# ============================================================================
+# FONCTIONS UTILITAIRES
+# ============================================================================
+
+def test_agent_initialization():
+    """Teste l'initialisation d'un agent simple"""
+    print("🧪 TEST D'INITIALISATION D'AGENT")
+    print("=" * 50)
     
     try:
-        # Initialiser l'orchestrateur
-        orchestrator = SmartContractOrchestrator()
+        # Importer BaseAgent
+        from agents.base_agent import BaseAgent, AgentConfiguration
         
-        # Charger la configuration
-        if not orchestrator.load_configuration():
-            print("✗ Échec du chargement de la configuration")
-            return False
+        print("✅ BaseAgent importé")
         
-        print("✓ Configuration chargée")
+        # Créer une configuration simple
+        config = AgentConfiguration(
+            name="TestAgent",
+            capabilities=["TESTING"],
+            description="Agent de test",
+            version="1.0.0"
+        )
         
-        # Initialiser les agents
-        success = await orchestrator.initialize_agents()
-        if not success:
-            print("✗ Échec de l'initialisation des agents")
-            return False
+        # Instancier
+        agent = BaseAgent(config=config)
         
-        print(f"✓ {len([a for a in orchestrator.agents.values() if a.status == AgentStatus.READY])} agents initialisés")
+        print(f"✅ Agent instancié: {agent.name}")
+        print(f"   - Status: {agent.status}")
+        print(f"   - Capabilities: {agent.capabilities}")
         
-        # Vérifier la santé des agents
-        health = await orchestrator.check_health()
-        health_percentage = (health["healthy"] / health["total"]) * 100 if health["total"] > 0 else 0
-        print(f"✓ Santé: {health_percentage:.1f}%")
+        # Tester une tâche simple
+        if hasattr(agent, 'execute_task'):
+            result = agent.execute_task("test", {"message": "Hello"})
+            print(f"✅ Tâche exécutée: {result}")
         
-        # Exécuter une tâche de test
-        print("Exécution de la tâche: validate_config")
-        
-        # CORRECTION: Ajouter "architect" comme premier argument
-        result = orchestrator.execute_task("architect", "validate_config")
-        
-        if result is None:
-            print("✓ Tâche test: failed")
-            return False
-        
-        print(f"✓ Tâche test: success - {result}")
         return True
         
     except Exception as e:
-        print(f"✗ Erreur lors du test: {e}")
+        print(f"❌ Erreur: {e}")
         import traceback
         traceback.print_exc()
         return False
 
-if __name__ == "__main__":
+def test_orchestrator_simple(config_path: str = "config/project_config.yaml"):
+    """Teste l'orchestrator de manière simple"""
+    print("\n🧪 TEST ORCHESTRATOR SIMPLE")
+    print("=" * 50)
+    
+    try:
+        # Initialiser l'orchestrator
+        orchestrator = Orchestrator(config_path)
+        
+        # Initialiser
+        success = orchestrator.initialize()
+        
+        if success:
+            print("✅ Orchestrator initialisé avec succès")
+            
+            # Afficher les agents
+            agents = orchestrator.list_agents()
+            print(f"\n📋 Agents disponibles ({len(agents)}):")
+            for agent in agents[:5]:  # 5 premiers
+                status = "✅" if agent['initialized'] else "❌"
+                print(f"  {status} {agent['name']:20} ({agent['display_name']})")
+            
+            if len(agents) > 5:
+                print(f"  ... et {len(agents) - 5} autres")
+            
+            return True
+        else:
+            print("❌ Échec initialisation orchestrator")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Erreur orchestrator: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+# ============================================================================
+# POINT D'ENTRÉE PRINCIPAL
+# ============================================================================
+
+def main():
+    """Fonction principale"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Orchestrateur de pipeline de développement de smart contracts")
-    parser.add_argument("--test", action="store_true", help="Exécuter le test rapide")
-    parser.add_argument("--workflow", type=str, help="Exécuter un workflow spécifique")
-    parser.add_argument("--config", type=str, default="project_config.yaml", help="Chemin vers le fichier de configuration")
+    parser = argparse.ArgumentParser(description="Orchestrator SmartContractDevPipeline")
+    parser.add_argument("--config", default="config/project_config.yaml", 
+                       help="Chemin vers le fichier de configuration")
+    parser.add_argument("--test", action="store_true", 
+                       help="Exécuter les tests")
+    parser.add_argument("--diagnose", action="store_true",
+                       help="Générer un diagnostic")
+    parser.add_argument("--simple", action="store_true",
+                       help="Mode simple sans API")
     
     args = parser.parse_args()
     
+    print("\n" + "=" * 60)
+    print("ORCHESTRATOR - SmartContractDevPipeline v2.2.0")
+    print("=" * 60)
+    
     if args.test:
-        success = asyncio.run(quick_test())
-        sys.exit(0 if success else 1)
-    elif args.workflow:
-        orchestrator = SmartContractOrchestrator(args.config)
+        # Mode test
+        print("Mode test activé")
         
-        if orchestrator.load_configuration():
-            asyncio.run(orchestrator.initialize_agents())
-            result = asyncio.run(orchestrator.execute_workflow(args.workflow))
-            print(json.dumps(result, indent=2, default=str))
+        # Test 1: Initialisation agent simple
+        test1 = test_agent_initialization()
+        
+        # Test 2: Orchestrator simple
+        test2 = test_orchestrator_simple(args.config)
+        
+        print("\n" + "=" * 60)
+        print("RÉSULTATS DES TESTS:")
+        print(f"  Test agent: {'✅' if test1 else '❌'}")
+        print(f"  Test orchestrator: {'✅' if test2 else '❌'}")
+        print("=" * 60)
+        
+        exit(0 if test1 and test2 else 1)
+    
+    # Mode normal
+    try:
+        # Configurer l'orchestrator
+        if args.simple:
+            print("Mode simple - API désactivée")
+            config = OrchestratorConfig.from_yaml(args.config)
+            config.enable_api = False
+            orchestrator = Orchestrator(config_path=args.config)
+            orchestrator.config = config
         else:
-            print("Échec du chargement de la configuration")
-            sys.exit(1)
-    else:
-        print("Usage: python orchestrator.py --test | --workflow <workflow_name>")
-        sys.exit(1)
+            orchestrator = Orchestrator(config_path=args.config)
+        
+        # Initialiser
+        success = orchestrator.initialize()
+        
+        if not success:
+            print("❌ Échec initialisation orchestrator")
+            exit(1)
+        
+        # Mode diagnostic
+        if args.diagnose:
+            diagnosis = orchestrator.diagnose()
+            print("\n🔍 DIAGNOSTIC COMPLET:")
+            print(json.dumps(diagnosis, indent=2, default=str))
+            exit(0)
+        
+        # Mode interactif
+        print("\n🎯 Orchestrator prêt - En attente de tâches")
+        print("   Commande: Ctrl+C pour arrêter")
+        print("=" * 60)
+        
+        # Boucle principale
+        try:
+            while orchestrator.running:
+                time.sleep(1)
+                
+                # Afficher le statut toutes les 30 secondes
+                if int(time.time()) % 30 == 0:
+                    pending = orchestrator.task_queue.qsize()
+                    active = len(orchestrator.active_tasks)
+                    if pending > 0 or active > 0:
+                        print(f"📊 Statut: {pending} tâches en attente, {active} actives")
+                        
+        except KeyboardInterrupt:
+            print("\n\n🛑 Arrêt demandé...")
+        
+        finally:
+            # Arrêt propre
+            orchestrator.stop()
+            print("👋 Orchestrator arrêté")
+        
+    except Exception as e:
+        print(f"💥 ERREUR FATALE: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
+
+if __name__ == "__main__":
+    main()

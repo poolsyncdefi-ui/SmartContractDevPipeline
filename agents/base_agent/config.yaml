@@ -1,303 +1,1274 @@
+# ============================================================================
 # agents/base_agent/config.yaml
+# Configuration complète de l'Agent de Base - Version 2.2.0
+# ============================================================================
+
 agent:
-  name: "base_agent"
-  type: "abstract_base"
-  description: "Classe de base abstraite pour tous les agents, fournissant les fonctionnalités communes, le cycle de vie, la communication et l'intégration"
-  execution_order: 0
-  dependencies: []
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  name: "BaseAgent"
+  class_name: "BaseAgent"
+  module_path: "agents.base_agent.base_agent"
+  display_name: "Agent de Base"
+  version: "2.2.0"
+  description: "Classe de base abstraite fournissant les fonctionnalités fondamentales, la gestion du cycle de vie, la communication inter-agents, la journalisation avancée, et le système de configuration pour tous les agents dérivés."
+  purpose: "Framework de base pour la standardisation, l'interopérabilité et la gestion unifiée de tous les agents du pipeline."
   
-  abstract_capabilities:
-    - name: "initialize_agent"
-      description: "Initialiser l'agent avec configuration et dépendances"
-    - name: "validate_configuration"
-      description: "Valider la configuration de l'agent"
-    - name: "setup_environment"
-      description: "Configurer l'environnement d'exécution"
-    - name: "register_capabilities"
-      description: "Enregistrer les capacités disponibles"
-    - name: "execute_capability"
-      description: "Exécuter une capacité spécifique"
-    - name: "handle_errors"
-      description: "Gérer les erreurs d'exécution"
-    - name: "cleanup_resources"
-      description: "Nettoyer les ressources allouées"
-    - name: "report_status"
-      description: "Rapporter le statut de l'agent"
-    - name: "learn_from_experience"
-      description: "Apprendre des expériences passées"
-    - name: "adapt_behavior"
-      description: "Adapter le comportement basé sur le contexte"
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "abstract_base"
+  abstract: true
+  instantiate: false
+  enabled: true
+  mandatory: true
+  singleton: true
+  
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: null
+  parent: null
+  dependencies: []
+  initialization_order: 0
+  provides_base_for:
+    - "architect"
+    - "coder"
+    - "smart_contract"
+    - "tester"
+    - "formal_verification"
+    - "fuzzing_simulation"
+    - "documenter"
+    - "frontend_web3"
+    - "communication"
+    - "storage"
+    - "monitoring"
+    - "learning"
+    - "registry"
+    - "workflow"
+  
+  # === CAPACITÉS FONDAMENTALES ===
+  capabilities:
+    # Gestion des tâches
+    - "TASK_EXECUTION"
+    - "TASK_SCHEDULING"
+    - "TASK_PRIORITIZATION"
+    - "TASK_QUEUE_MANAGEMENT"
+    - "TASK_RESULT_HANDLING"
+    
+    # Gestion d'état
+    - "STATUS_MANAGEMENT"
+    - "STATE_PERSISTENCE"
+    - "STATE_RECOVERY"
+    - "STATE_VALIDATION"
+    - "STATE_TRANSITION"
+    
+    # Configuration
+    - "CONFIGURATION_LOADING"
+    - "CONFIGURATION_VALIDATION"
+    - "CONFIGURATION_RELOAD"
+    - "CONFIGURATION_VERSIONING"
+    - "CONFIGURATION_MIGRATION"
+    
+    # Journalisation
+    - "LOG_MANAGEMENT"
+    - "STRUCTURED_LOGGING"
+    - "LOG_ROTATION"
+    - "LOG_AGGREGATION"
+    - "LOG_ANALYSIS"
+    
+    # Gestion des erreurs
+    - "ERROR_HANDLING"
+    - "EXCEPTION_MANAGEMENT"
+    - "ERROR_RECOVERY"
+    - "ERROR_REPORTING"
+    - "ERROR_ESCALATION"
+    
+    # Cycle de vie
+    - "LIFECYCLE_MANAGEMENT"
+    - "HEALTH_MONITORING"
+    - "HEALTH_CHECK_EXECUTION"
+    - "SELF_HEALING"
+    - "GRACEFUL_SHUTDOWN"
+    
+    # Communication
+    - "INTER_AGENT_COMMUNICATION"
+    - "MESSAGE_PROCESSING"
+    - "MESSAGE_ROUTING"
+    - "MESSAGE_VALIDATION"
+    - "MESSAGE_SERIALIZATION"
+    
+    # Événements
+    - "EVENT_EMISSION"
+    - "EVENT_SUBSCRIPTION"
+    - "EVENT_HANDLING"
+    - "EVENT_PROPAGATION"
+    - "EVENT_ARCHIVING"
+    
+    # Données
+    - "DATA_VALIDATION"
+    - "DATA_TRANSFORMATION"
+    - "DATA_SERIALIZATION"
+    - "DATA_PERSISTENCE"
+    - "DATA_BACKUP"
+    
+    # Métriques
+    - "METRICS_COLLECTION"
+    - "METRICS_AGGREGATION"
+    - "METRICS_EXPORT"
+    - "PERFORMANCE_MONITORING"
+    - "RESOURCE_MONITORING"
+    
+    # Sécurité
+    - "AUTHENTICATION_MANAGEMENT"
+    - "AUTHORIZATION_ENFORCEMENT"
+    - "DATA_ENCRYPTION"
+    - "SECURITY_AUDITING"
+    - "COMPLIANCE_MONITORING"
+    
+    # Ressources
+    - "RESOURCE_MANAGEMENT"
+    - "MEMORY_MANAGEMENT"
+    - "CONNECTION_POOLING"
+    - "THREAD_MANAGEMENT"
+    - "CACHE_MANAGEMENT"
+    
+    # Débogage
+    - "DIAGNOSTIC_EXECUTION"
+    - "DEBUG_LOG_GENERATION"
+    - "PROFILING_ENABLEMENT"
+    - "TRACE_CAPTURE"
+    - "PERFORMANCE_PROFILING"
 
-  lifecycle_hooks:
-    pre_initialization:
-      - "load_configuration"
-      - "validate_dependencies"
-      - "setup_logging"
-    post_initialization:
-      - "register_with_orchestrator"
-      - "establish_communication"
-      - "warmup_caches"
-    pre_execution:
-      - "validate_inputs"
-      - "acquire_resources"
-      - "setup_context"
-    post_execution:
-      - "release_resources"
-      - "update_metrics"
-      - "store_results"
-    pre_cleanup:
-      - "persist_state"
-      - "backup_data"
-      - "notify_dependents"
-    post_cleanup:
-      - "unregister_capabilities"
-      - "close_connections"
-      - "log_shutdown"
-
-  communication_protocols:
-    internal:
-      - "zeromq_message_bus"
-      - "grpc_service_calls"
-      - "rest_api_endpoints"
-      - "websocket_connections"
-    external:
-      - "http_webhooks"
-      - "message_queue_integration"
-      - "database_triggers"
-      - "file_system_watchers"
-    synchronization:
-      - "distributed_locking"
-      - "event_sourcing"
-      - "state_machines"
-      - "workflow_coordination"
-
-  configuration_management:
-    sources:
-      - "yaml_config_files"
-      - "environment_variables"
-      - "database_configuration"
-      - "secret_management_systems"
-    validation:
-      - "schema_validation"
-      - "type_checking"
-      - "constraint_verification"
-      - "dependency_resolution"
-    hot_reload:
-      enabled: true
-      polling_interval: "30s"
-      change_detection: "inotify + checksum"
-      rollback_on_failure: true
-
-  state_management:
-    persistence:
-      - "in_memory_caching"
-      - "file_based_storage"
-      - "database_persistence"
-      - "distributed_cache"
-    serialization:
-      - "json_serialization"
-      - "protocol_buffers"
-      - "message_pack"
-      - "avro_schemas"
-    versioning:
-      - "state_versioning"
-      - "migration_scripts"
-      - "compatibility_checks"
-      - "rollback_capability"
-
-  monitoring_observability:
-    metrics:
-      - "execution_timing"
-      - "resource_utilization"
-      - "error_rates"
-      - "success_rates"
-      - "queue_lengths"
-      - "cache_hit_ratios"
+  # === CONFIGURATION SYSTÈME COMPLÈTE ===
+  configuration:
+    # ------------------------------------------------------------------------
+    # VERSION ET COMPATIBILITÉ
+    # ------------------------------------------------------------------------
+    version_info:
+      major: 2
+      minor: 2
+      patch: 0
+      build: "20260208"
+      compatible_versions:
+        - "2.1.x"
+        - "2.0.x"
+        - "1.5.x"
+    
+    # ------------------------------------------------------------------------
+    # SYSTÈME D'IMPORT DYNAMIQUE
+    # ------------------------------------------------------------------------
+    import_system:
+      strategy: "dynamic_proxy_with_cache"
+      enable_proxy: true
+      enable_cache: true
+      enable_fallback: true
+      enable_circular_protection: true
+      
+      proxy_config:
+        module_name: "base_agent"
+        target_module: "agents.base_agent.base_agent"
+        export_classes:
+          - "BaseAgent"
+          - "AgentCapability"
+          - "AgentStatus"
+          - "TaskResult"
+          - "AgentConfiguration"
+          - "AgentRegistry"
+          - "AgentFactory"
+          - "AgentMessage"
+          - "AgentResponse"
+          - "AgentError"
+          - "AgentWarning"
+          - "AgentInfo"
+          - "AgentHealth"
+          - "AgentMetrics"
+      
+      cache_config:
+        max_size: 100
+        ttl_seconds: 300
+        eviction_policy: "LRU"
+        enable_statistics: true
+      
+      import_protection:
+        max_import_depth: 15
+        detect_circular_imports: true
+        block_circular_paths: true
+        logging_level: "WARNING"
+    
+    # ------------------------------------------------------------------------
+    # CYCLE DE VIE AVANCÉ
+    # ------------------------------------------------------------------------
+    lifecycle:
+      states:
+        CREATED:
+          description: "Agent créé mais non initialisé"
+          allowed_transitions: ["INITIALIZING", "ERROR"]
+        
+        INITIALIZING:
+          description: "En cours d'initialisation"
+          allowed_transitions: ["READY", "ERROR"]
+          timeout_seconds: 30
+        
+        READY:
+          description: "Prêt à exécuter des tâches"
+          allowed_transitions: ["EXECUTING", "PAUSED", "STOPPING", "ERROR"]
+        
+        EXECUTING:
+          description: "Exécution d'une ou plusieurs tâches"
+          allowed_transitions: ["READY", "PAUSED", "STOPPING", "ERROR"]
+        
+        PAUSED:
+          description: "En pause, conserve l'état"
+          allowed_transitions: ["READY", "EXECUTING", "STOPPING", "ERROR"]
+        
+        STOPPING:
+          description: "En cours d'arrêt"
+          allowed_transitions: ["TERMINATED", "ERROR"]
+          timeout_seconds: 10
+        
+        TERMINATED:
+          description: "Arrêté définitivement"
+          allowed_transitions: []
+        
+        ERROR:
+          description: "État d'erreur"
+          allowed_transitions: ["READY", "TERMINATED"]
+          recovery_attempts: 3
+      
+      initialization:
+        sequence:
+          - "load_configuration"
+          - "setup_logging"
+          - "initialize_components"
+          - "validate_dependencies"
+          - "establish_connections"
+          - "run_health_checks"
+        
+        validation:
+          config_integrity: true
+          dependency_availability: true
+          resource_availability: true
+          permission_verification: true
+        
+        timeout_policy:
+          global_timeout: 60
+          per_step_timeout: 15
+          retry_on_timeout: true
+          max_retries: 2
+      
+      shutdown:
+        sequence:
+          - "stop_new_tasks"
+          - "complete_pending_tasks"
+          - "flush_buffers"
+          - "close_connections"
+          - "save_state"
+          - "cleanup_resources"
+        
+        cleanup:
+          delete_temp_files: true
+          close_open_files: true
+          release_memory: true
+          disconnect_networks: true
+        
+        timeout_policy:
+          graceful_timeout: 10
+          force_timeout: 5
+          kill_timeout: 2
+    
+    # ------------------------------------------------------------------------
+    # GESTION DES TÂCHES AVANCÉE
+    # ------------------------------------------------------------------------
+    task_management:
+      task_types:
+        EXECUTE:
+          priority: 50
+          timeout: 300
+          retryable: true
+        
+        VALIDATE:
+          priority: 60
+          timeout: 120
+          retryable: false
+        
+        ANALYZE:
+          priority: 40
+          timeout: 600
+          retryable: true
+        
+        GENERATE:
+          priority: 30
+          timeout: 900
+          retryable: true
+        
+        TRANSFORM:
+          priority: 35
+          timeout: 300
+          retryable: true
+        
+        MONITOR:
+          priority: 20
+          timeout: 30
+          retryable: true
+        
+        REPORT:
+          priority: 25
+          timeout: 180
+          retryable: false
+      
+      execution:
+        max_concurrent_tasks: 5
+        task_queue_size: 100
+        priority_queues: true
+        preemptive_execution: false
+        
+        timeout_handling:
+          default_timeout: 300
+          max_timeout: 3600
+          timeout_strategy: "RETRY_THEN_FAIL"
+          timeout_retries: 2
+        
+        retry_policy:
+          max_retries: 3
+          retry_delay: 5
+          backoff_factor: 2.0
+          jitter: 0.1
+          retryable_errors: ["TimeoutError", "ConnectionError", "ResourceBusyError"]
+      
+      result_handling:
+        store_results: true
+        result_expiry_hours: 24
+        max_results_per_task: 100
+        result_compression: true
+        result_encryption: false
+        
+        storage_backends:
+          memory:
+            enabled: true
+            max_size_mb: 100
+            
+          filesystem:
+            enabled: true
+            path: "data/task_results"
+            max_size_mb: 1000
+            
+          database:
+            enabled: false
+            table_name: "task_results"
+      
+      monitoring:
+        track_execution_time: true
+        track_resource_usage: true
+        track_error_rates: true
+        generate_execution_report: true
+        alert_on_anomalies: true
+    
+    # ------------------------------------------------------------------------
+    # SYSTÈME DE JOURNALISATION COMPLET
+    # ------------------------------------------------------------------------
     logging:
-      - "structured_logging"
-      - "log_levels_management"
-      - "log_aggregation"
-      - "log_rotation"
-    tracing:
-      - "distributed_tracing"
-      - "span_correlation"
-      - "trace_sampling"
-      - "trace_export"
-    alerting:
-      - "threshold_based_alerts"
-      - "anomaly_detection"
-      - "escalation_policies"
-      - "alert_routing"
-
-  security_features:
-    authentication:
-      - "jwt_tokens"
-      - "api_keys"
-      - "oauth2_integration"
-      - "mTLS_certificates"
-    authorization:
-      - "role_based_access"
-      - "attribute_based_access"
-      - "policy_engine"
-      - "permission_management"
-    encryption:
-      - "data_at_rest_encryption"
-      - "data_in_transit_encryption"
-      - "key_management"
-      - "key_rotation"
-    audit:
-      - "comprehensive_audit_logs"
-      - "immutable_log_storage"
-      - "audit_trail_analysis"
-      - "compliance_reporting"
-
-  performance_optimization:
-    caching:
-      - "in_memory_cache"
-      - "distributed_cache"
-      - "cache_invalidation"
-      - "cache_warming"
-    concurrency:
-      - "async_io_operations"
-      - "thread_pool_management"
-      - "coroutine_support"
-      - "parallel_processing"
-    resource_management:
-      - "connection_pooling"
-      - "memory_management"
-      - "garbage_collection"
-      - "resource_limits"
-    optimization:
-      - "lazy_loading"
-      - "batch_processing"
-      - "pipeline_processing"
-      - "compression"
-
-  error_handling_resilience:
-    retry_strategies:
-      - "exponential_backoff"
-      - "jitter_addition"
-      - "circuit_breaker"
-      - "bulkhead_pattern"
-    fallback_mechanisms:
-      - "graceful_degradation"
-      - "default_values"
-      - "cached_responses"
-      - "alternative_providers"
-    recovery_procedures:
-      - "automatic_retry"
-      - "manual_intervention"
-      - "state_recovery"
-      - "data_reconciliation"
-    failure_modes:
-      - "fail_fast"
-      - "fail_safe"
-      - "fail_over"
-      - "fail_gracefully"
-
-  learning_adaptation:
-    feedback_loops:
-      - "execution_feedback"
-      - "quality_metrics"
-      - "user_feedback"
-      - "system_feedback"
-    adaptation_mechanisms:
-      - "parameter_tuning"
-      - "strategy_adjustment"
-      - "capability_enhancement"
-      - "behavior_modification"
-    knowledge_base:
-      - "experience_repository"
-      - "pattern_recognition"
-      - "decision_logging"
-      - "knowledge_sharing"
-    improvement_cycles:
-      - "continuous_improvement"
-      - "periodic_review"
-      - "performance_analysis"
-      - "capability_audit"
-
-  integration_points:
-    orchestration:
-      - "task_assignment"
-      - "result_aggregation"
-      - "dependency_management"
-      - "workflow_coordination"
-    data_exchange:
-      - "schema_registry"
-      - "data_validation"
-      - "format_transformation"
-      - "quality_checks"
-    event_handling:
-      - "event_consumption"
-      - "event_production"
-      - "event_routing"
-      - "event_persistence"
-    service_discovery:
-      - "service_registration"
-      - "health_checking"
-      - "load_balancing"
-      - "failover_detection"
-
-  deployment_configurations:
-    scaling:
-      horizontal: true
-      vertical: true
-      auto_scaling: true
-      scaling_policies: "CPU/memory based"
-    availability:
-      multi_zone: true
-      multi_region: false
-      failover_automation: true
-      recovery_time_objective: "5 minutes"
-    updates:
-      rolling_updates: true
-      blue_green_deployments: true
-      canary_releases: true
-      rollback_capability: true
-    resource_requirements:
-      cpu: "0.5-2 cores"
-      memory: "512MB-4GB"
-      storage: "1-10GB"
-      network: "100Mbps-1Gbps"
-
-  compliance_standards:
+      system_name: "BaseAgent"
+      default_level: "INFO"
+      
+      handlers:
+        console:
+          enabled: true
+          level: "INFO"
+          format: "%(color)s[%(asctime)s] [%(levelname)8s] %(name)s: %(message)s%(reset)s"
+          date_format: "%Y-%m-%d %H:%M:%S.%f"
+          colors: true
+        
+        file:
+          enabled: true
+          level: "DEBUG"
+          format: "json"
+          path: "logs/agents"
+          filename_pattern: "%Y%m%d_%H%M%S.log"
+          max_file_size_mb: 100
+          backup_count: 10
+          compression: true
+        
+        rotating:
+          enabled: true
+          max_bytes: 10485760  # 10MB
+          backup_count: 5
+          encoding: "utf-8"
+        
+        syslog:
+          enabled: false
+          address: "/dev/log"
+          facility: "LOG_USER"
+      
+      loggers:
+        agents:
+          level: "DEBUG"
+          propagate: false
+        
+        tasks:
+          level: "INFO"
+          propagate: true
+        
+        imports:
+          level: "WARNING"
+          propagate: true
+        
+        security:
+          level: "INFO"
+          propagate: false
+      
+      filters:
+        sensitive_data:
+          enabled: true
+          patterns:
+            - "password=.*"
+            - "token=.*"
+            - "secret=.*"
+            - "key=.*"
+          replacement: "[REDACTED]"
+        
+        duplicate_messages:
+          enabled: true
+          window_seconds: 5
+          max_duplicates: 3
+      
+      metrics:
+        log_rate: true
+        error_rate: true
+        warning_rate: true
+        log_size: true
+    
+    # ------------------------------------------------------------------------
+    # GESTION DES ERREURS ET EXCEPTIONS
+    # ------------------------------------------------------------------------
+    error_handling:
+      exception_hierarchy:
+        AgentError:
+          base_class: true
+          log_level: "ERROR"
+          
+          ConfigurationError:
+            log_level: "ERROR"
+            recovery_action: "RELOAD_CONFIG"
+          
+          ExecutionError:
+            log_level: "ERROR"
+            recovery_action: "RETRY_TASK"
+            
+            TimeoutError:
+              log_level: "WARNING"
+              recovery_action: "RETRY_WITH_BACKOFF"
+            
+            ResourceError:
+              log_level: "ERROR"
+              recovery_action: "WAIT_AND_RETRY"
+          
+          CommunicationError:
+            log_level: "ERROR"
+            recovery_action: "RECONNECT"
+          
+          ValidationError:
+            log_level: "WARNING"
+            recovery_action: "REVALIDATE"
+      
+      recovery_strategies:
+        RETRY_TASK:
+          max_attempts: 3
+          delay_seconds: 5
+          backoff_factor: 2.0
+        
+        RELOAD_CONFIG:
+          preserve_state: true
+          validate_after_reload: true
+        
+        RECONNECT:
+          max_attempts: 5
+          delay_seconds: 2
+          exponential_backoff: true
+        
+        WAIT_AND_RETRY:
+          wait_seconds: 30
+          max_waits: 3
+        
+        REVALIDATE:
+          full_validation: false
+          fix_violations: true
+      
+      error_reporting:
+        enable_reporting: true
+        report_levels: ["ERROR", "CRITICAL"]
+        report_destinations:
+          - "log_file"
+          - "monitoring_system"
+          - "administrator_email"
+        
+        notification_thresholds:
+          error_count_5min: 10
+          error_rate_1hour: 0.1  # 10%
+          critical_error_count: 1
+        
+        error_aggregation:
+          window_minutes: 5
+          group_by_type: true
+          group_by_source: true
+      
+      fallback_mechanisms:
+        component_fallbacks:
+          import_system: "simple_import"
+          logging_system: "console_only"
+          cache_system: "disabled"
+        
+        graceful_degradation:
+          enabled: true
+          levels:
+            - "FULL_FUNCTIONALITY"
+            - "REDUCED_FUNCTIONALITY"
+            - "MINIMAL_FUNCTIONALITY"
+            - "EMERGENCY_MODE"
+    
+    # ------------------------------------------------------------------------
+    # COMMUNICATION INTER-AGENTS
+    # ------------------------------------------------------------------------
+    communication:
+      protocols:
+        internal:
+          enabled: true
+          transport: "in_memory"
+          serialization: "pickle"
+          compression: true
+        
+        rest:
+          enabled: false
+          host: "127.0.0.1"
+          port: 8000
+          ssl_enabled: false
+        
+        websocket:
+          enabled: false
+          endpoint: "/ws"
+          ping_interval: 30
+        
+        message_queue:
+          enabled: false
+          broker: "redis"
+          host: "localhost"
+          port: 6379
+      
+      message_format:
+        version: "1.0"
+        required_fields:
+          - "message_id"
+          - "sender"
+          - "recipient"
+          - "message_type"
+          - "timestamp"
+          - "payload"
+        
+        optional_fields:
+          - "correlation_id"
+          - "priority"
+          - "ttl_seconds"
+          - "headers"
+          - "signature"
+        
+        validation:
+          validate_schema: true
+          validate_signature: false
+          check_ttl: true
+          require_ack: false
+      
+      message_types:
+        TASK_REQUEST:
+          require_response: true
+          timeout: 30
+        
+        TASK_RESULT:
+          require_ack: true
+        
+        STATUS_UPDATE:
+          require_response: false
+        
+        HEALTH_CHECK:
+          require_response: true
+          timeout: 5
+        
+        CONFIG_UPDATE:
+          require_ack: true
+        
+        ERROR_REPORT:
+          require_response: false
+        
+        EVENT_NOTIFICATION:
+          require_response: false
+      
+      routing:
+        direct_routing: true
+        broadcast_routing: false
+        multicast_routing: false
+        routing_table: {}
+        
+        discovery:
+          auto_discover: true
+          discovery_interval: 60
+          discovery_timeout: 10
+        
+        load_balancing:
+          enabled: false
+          strategy: "ROUND_ROBIN"
+      
+      reliability:
+        delivery_guarantee: "AT_LEAST_ONCE"
+        max_retries: 3
+        retry_delay: 1
+        dead_letter_queue: true
+        dlq_max_size: 1000
+    
+    # ------------------------------------------------------------------------
+    # SYSTÈME D'ÉVÉNEMENTS
+    # ------------------------------------------------------------------------
+    events:
+      event_types:
+        AGENT_STARTED:
+          description: "Agent démarré avec succès"
+          data_schema:
+            agent_id: "string"
+            start_time: "datetime"
+            config_version: "string"
+        
+        AGENT_STOPPED:
+          description: "Agent arrêté"
+          data_schema:
+            agent_id: "string"
+            stop_time: "datetime"
+            reason: "string"
+            exit_code: "integer"
+        
+        TASK_STARTED:
+          description: "Tâche démarrée"
+          data_schema:
+            task_id: "string"
+            task_type: "string"
+            agent_id: "string"
+            start_time: "datetime"
+        
+        TASK_COMPLETED:
+          description: "Tâche terminée avec succès"
+          data_schema:
+            task_id: "string"
+            task_type: "string"
+            agent_id: "string"
+            start_time: "datetime"
+            end_time: "datetime"
+            result: "any"
+        
+        TASK_FAILED:
+          description: "Tâche échouée"
+          data_schema:
+            task_id: "string"
+            task_type: "string"
+            agent_id: "string"
+            start_time: "datetime"
+            end_time: "datetime"
+            error: "string"
+            stack_trace: "string"
+        
+        CONFIG_CHANGED:
+          description: "Configuration modifiée"
+          data_schema:
+            agent_id: "string"
+            change_time: "datetime"
+            changed_sections: "list"
+            old_version: "string"
+            new_version: "string"
+        
+        HEALTH_STATUS_CHANGED:
+          description: "Statut de santé changé"
+          data_schema:
+            agent_id: "string"
+            change_time: "datetime"
+            old_status: "string"
+            new_status: "string"
+            reason: "string"
+        
+        ERROR_OCCURRED:
+          description: "Erreur survenue"
+          data_schema:
+            agent_id: "string"
+            error_time: "datetime"
+            error_type: "string"
+            error_message: "string"
+            severity: "string"
+        
+        METRIC_UPDATE:
+          description: "Mise à jour de métrique"
+          data_schema:
+            agent_id: "string"
+            metric_name: "string"
+            metric_value: "any"
+            timestamp: "datetime"
+            tags: "dict"
+      
+      event_handling:
+        synchronous_handlers: true
+        asynchronous_handlers: true
+        max_handler_execution_time: 10
+        
+        error_handling:
+          continue_on_handler_error: true
+          log_handler_errors: true
+          retry_failed_handlers: false
+        
+        filtering:
+          event_type_filters: []
+          source_filters: []
+          content_filters: []
+      
+      event_storage:
+        enabled: true
+        storage_backend: "filesystem"
+        storage_path: "data/events"
+        retention_days: 30
+        compression: true
+        encryption: false
+        
+        indexing:
+          index_by_type: true
+          index_by_time: true
+          index_by_source: true
+          index_by_severity: true
+    
+    # ------------------------------------------------------------------------
+    # SURVEILLANCE ET MÉTRIQUES
+    # ------------------------------------------------------------------------
+    monitoring:
+      health_checks:
+        system_resources:
+          enabled: true
+          interval: 30
+          checks:
+            memory_usage:
+              threshold: 0.8  # 80%
+              severity: "WARNING"
+            
+            cpu_usage:
+              threshold: 0.9  # 90%
+              severity: "WARNING"
+            
+            disk_space:
+              threshold: 0.9  # 90%
+              severity: "CRITICAL"
+            
+            open_files:
+              threshold: 1000
+              severity: "WARNING"
+        
+        component_health:
+          enabled: true
+          interval: 60
+          checks:
+            logging_system:
+              check_method: "test_log_write"
+              timeout: 5
+            
+            import_system:
+              check_method: "test_import"
+              timeout: 10
+            
+            communication_system:
+              check_method: "test_message_loopback"
+              timeout: 5
+            
+            cache_system:
+              check_method: "test_cache_read_write"
+              timeout: 5
+        
+        dependency_health:
+          enabled: true
+          interval: 120
+          checks: {}
+      
+      metrics:
+        collection:
+          enabled: true
+          interval: 60
+          push_interval: 300
+        
+        system_metrics:
+          cpu_usage: true
+          memory_usage: true
+          disk_usage: true
+          network_io: true
+          open_files: true
+          thread_count: true
+        
+        application_metrics:
+          task_count: true
+          task_duration: true
+          error_count: true
+          cache_hit_rate: true
+          queue_size: true
+          event_count: true
+        
+        business_metrics:
+          enabled: false
+        
+        storage:
+          backend: "memory"
+          retention_hours: 24
+          aggregation:
+            hourly: true
+            daily: true
+            weekly: false
+        
+        export:
+          console: false
+          file: true
+          path: "data/metrics"
+          format: "json"
+          prometheus: false
+          statsd: false
+      
+      alerts:
+        enabled: true
+        notification_channels:
+          log: true
+          email: false
+          webhook: false
+          slack: false
+        
+        alert_rules:
+          high_error_rate:
+            metric: "error_count"
+            condition: ">"
+            threshold: 10
+            window: "5m"
+            severity: "WARNING"
+            cooldown: 300
+            
+          critical_error:
+            metric: "error_severity"
+            condition: "=="
+            threshold: "CRITICAL"
+            window: "1m"
+            severity: "CRITICAL"
+            cooldown: 60
+            
+          high_memory_usage:
+            metric: "memory_usage_percent"
+            condition: ">"
+            threshold: 0.9
+            window: "2m"
+            severity: "CRITICAL"
+            cooldown: 600
+            
+          task_queue_full:
+            metric: "task_queue_size"
+            condition: ">"
+            threshold: 90
+            window: "1m"
+            severity: "WARNING"
+            cooldown: 300
+            
+          agent_unresponsive:
+            metric: "last_heartbeat"
+            condition: "older_than"
+            threshold: 120
+            window: "1m"
+            severity: "CRITICAL"
+            cooldown: 60
+        
+        escalation:
+          enabled: true
+          levels:
+            - level: 1
+              delay: 300  # 5 minutes
+              channels: ["log"]
+            
+            - level: 2
+              delay: 600  # 10 minutes
+              channels: ["log", "email"]
+            
+            - level: 3
+              delay: 1800  # 30 minutes
+              channels: ["log", "email", "webhook"]
+    
+    # ------------------------------------------------------------------------
+    # SÉCURITÉ ET AUDIT
+    # ------------------------------------------------------------------------
     security:
-      - "ISO_27001"
-      - "SOC_2"
-      - "GDPR"
-      - "HIPAA"
-    quality:
-      - "ISO_9001"
-      - "CMMI"
-      - "Six_Sigma"
-    industry:
-      - "PCI_DSS"
-      - "SOX"
-      - "FERPA"
-    development:
-      - "OWASP"
-      - "NIST"
-      - "CIS_Benchmarks"
+      authentication:
+        enabled: false
+        method: "jwt"
+        token_expiry_hours: 24
+        secret_rotation_days: 90
+        
+        providers:
+          internal:
+            enabled: true
+            
+          ldap:
+            enabled: false
+            
+          oauth2:
+            enabled: false
+      
+      authorization:
+        enabled: false
+        model: "RBAC"
+        
+        roles:
+          admin:
+            permissions: ["*"]
+            
+          operator:
+            permissions: ["read", "execute", "monitor"]
+            
+          viewer:
+            permissions: ["read"]
+        
+        policies:
+          least_privilege: true
+          separation_of_duties: true
+          default_deny: true
+      
+      encryption:
+        enabled: false
+        algorithms:
+          data_at_rest: "AES-256-GCM"
+          data_in_transit: "TLSv1.2"
+          key_derivation: "PBKDF2"
+        
+        key_management:
+          rotation_interval: 90
+          key_storage: "environment"
+          backup_enabled: false
+      
+      audit:
+        enabled: true
+        log_all_operations: true
+        sensitive_data_masking: true
+        retention_days: 90
+        
+        events_to_audit:
+          - "AGENT_STARTED"
+          - "AGENT_STOPPED"
+          - "CONFIG_CHANGED"
+          - "TASK_STARTED"
+          - "TASK_COMPLETED"
+          - "TASK_FAILED"
+          - "ERROR_OCCURRED"
+          - "SECURITY_EVENT"
+        
+        compliance:
+          gdpr_compliant: true
+          data_minimization: true
+          right_to_be_forgotten: true
+          audit_trail_required: true
+    
+    # ------------------------------------------------------------------------
+    # PERFORMANCE ET OPTIMISATION
+    # ------------------------------------------------------------------------
+    performance:
+      resource_limits:
+        cpu_percent: 80
+        memory_mb: 1024
+        open_files: 1024
+        threads: 50
+        network_connections: 100
+      
+      caching:
+        enabled: true
+        strategies:
+          import_cache:
+            enabled: true
+            size: 100
+            ttl: 300
+            
+          task_result_cache:
+            enabled: true
+            size: 50
+            ttl: 600
+            
+          configuration_cache:
+            enabled: true
+            size: 10
+            ttl: 1800
+        
+        eviction_policies:
+          import_cache: "LRU"
+          task_result_cache: "LFU"
+          configuration_cache: "FIFO"
+      
+      connection_pooling:
+        enabled: true
+        database:
+          max_connections: 10
+          min_connections: 2
+          connection_timeout: 30
+        
+        http:
+          max_connections: 20
+          min_connections: 5
+          connection_timeout: 10
+        
+        message_queue:
+          max_connections: 5
+          min_connections: 1
+          connection_timeout: 5
+      
+      optimization:
+        lazy_loading: true
+        background_processing: true
+        batch_operations: true
+        compression: true
+        deduplication: true
+    
+    # ------------------------------------------------------------------------
+    # CONFIGURATION DU DÉBOGAGE
+    # ------------------------------------------------------------------------
+    debugging:
+      enabled: false
+      
+      trace_levels:
+        imports: false
+        circular_imports: false
+        cache: false
+        lifecycle: false
+        events: false
+        communications: false
+        tasks: false
+      
+      detailed_tracing:
+        enabled: false
+        trace_method_calls: false
+        trace_imports: false
+        trace_cache: false
+        trace_events: false
+        trace_communications: false
+      
+      diagnostics:
+        auto_diagnose_on_error: true
+        save_diagnostics_to_file: true
+        diagnostic_directory: "logs/diagnostics"
+        max_diagnostic_files: 10
+        include_stack_traces: true
+        include_memory_dump: false
+        include_thread_dump: false
+        
+        diagnostic_checks:
+          import_system: true
+          cache_system: true
+          communication_system: true
+          task_system: true
+          event_system: true
+          monitoring_system: true
+      
+      profiling:
+        enabled: false
+        profile_startup: false
+        profile_tasks: false
+        profile_interval: 0.1
+        profile_output: "logs/profiles"
+        
+        profilers:
+          cpu: false
+          memory: false
+          i_o: false
+          network: false
+    
+    # ------------------------------------------------------------------------
+    # PERSISTANCE ET SAUVEGARDE
+    # ------------------------------------------------------------------------
+    persistence:
+      state_persistence:
+        enabled: true
+        auto_save: true
+        save_interval_seconds: 300
+        save_on_shutdown: true
+        storage_backend: "filesystem"
+        storage_path: "data/agent_states"
+        compression: true
+        encryption: false
+        
+        state_components:
+          configuration: true
+          task_queue: true
+          task_results: true
+          metrics: true
+          events: true
+      
+      backup:
+        enabled: true
+        schedule: "0 2 * * *"  # Tous les jours à 2h du matin
+        retention:
+          daily: 7
+          weekly: 4
+          monthly: 3
+          yearly: 1
+        
+        what_to_backup:
+          - "config/"
+          - "data/agent_states"
+          - "data/task_results"
+          - "data/events"
+          - "logs/"
+          - "artifacts/important/"
+        
+        cloud_backup:
+          enabled: false
+          provider: ""  # aws, google, azure
+          bucket_name: ""
+          region: ""
+      
+      recovery:
+        enabled: true
+        automatic_recovery: false
+        recovery_point_objective: 3600  # 1 heure
+        recovery_time_objective: 300    # 5 minutes
+        
+        recovery_procedures:
+          configuration_loss: "restore_from_backup"
+          data_corruption: "restore_from_backup"
+          system_failure: "restart_agent"
+          dependency_failure: "wait_and_retry"
+    
+    # ------------------------------------------------------------------------
+    # EXTENSIONS ET PERSONNALISATION
+    # ------------------------------------------------------------------------
+    extensions:
+      auto_load: true
+      extension_dirs:
+        - "extensions/"
+        - "agents/_extensions/"
+      
+      extension_points:
+        pre_initialization:
+          description: "Exécuté avant l'initialisation"
+          multiple_allowed: true
+          order_matters: true
+        
+        post_initialization:
+          description: "Exécuté après l'initialisation"
+          multiple_allowed: true
+          order_matters: false
+        
+        pre_task_execution:
+          description: "Exécuté avant l'exécution d'une tâche"
+          multiple_allowed: true
+          order_matters: true
+        
+        post_task_execution:
+          description: "Exécuté après l'exécution d'une tâche"
+          multiple_allowed: true
+          order_matters: false
+        
+        pre_shutdown:
+          description: "Exécuté avant l'arrêt"
+          multiple_allowed: true
+          order_matters: false
+        
+        error_handler:
+          description: "Gestionnaire d'erreurs"
+          multiple_allowed: false
+          order_matters: false
+        
+        validation_hook:
+          description: "Point de validation"
+          multiple_allowed: true
+          order_matters: true
+      
+      builtin_extensions:
+        performance_monitor:
+          class: "PerformanceMonitorExtension"
+          enabled: true
+          config:
+            collection_interval: 60
+            alert_thresholds:
+              cpu: 0.8
+              memory: 0.8
+        
+        security_validator:
+          class: "SecurityValidatorExtension"
+          enabled: true
+          config:
+            validate_inputs: true
+            validate_outputs: false
+            check_sql_injection: true
+            check_xss: true
+        
+        data_serializer:
+          class: "DataSerializerExtension"
+          enabled: false
+          config:
+            formats: ["json", "yaml", "pickle"]
+            compression: true
+        
+        cache_manager:
+          class: "CacheManagerExtension"
+          enabled: true
+          config:
+            default_ttl: 300
+            max_size: 1000
+            eviction_policy: "LRU"
+    
+    # ------------------------------------------------------------------------
+    # MÉTADONNÉES ET DOCUMENTATION
+    # ------------------------------------------------------------------------
+    metadata:
+      author: "SmartContractDevPipeline"
+      maintainer: "devops@poolsync.io"
+      license: "Proprietary"
+      copyright: "© 2026 SmartContractDevPipeline"
+      
+      repository:
+        url: "https://github.com/poolsyncdefi-ui/SmartContractDevPipeline"
+        branch: "main"
+        commit: "${GIT_COMMIT_HASH}"
+      
+      documentation:
+        api_reference:
+          enabled: true
+          openapi_version: "3.1.0"
+          generate_schema: true
+          schema_path: "docs/api_schema.json"
+        
+        user_guide:
+          enabled: true
+          format: "markdown"
+          location: "docs/user_guide.md"
+        
+        developer_guide:
+          enabled: true
+          format: "markdown"
+          location: "docs/developer_guide.md"
+        
+        architecture_documentation:
+          enabled: true
+          format: "markdown"
+          location: "docs/architecture.md"
+      
+      support:
+        email: "support@poolsync.io"
+        issues: "https://github.com/poolsyncdefi-ui/SmartContractDevPipeline/issues"
+        documentation: "https://docs.poolsync.io"
+        
+      environment:
+        python_version: ">=3.9"
+        operating_systems: ["Windows", "Linux", "macOS"]
+        dependencies:
+          required:
+            - "fastapi>=0.104.0"
+            - "uvicorn>=0.24.0"
+            - "pydantic>=2.5.0"
+            - "pyyaml>=6.0"
+            - "websockets>=12.0"
+          
+          optional:
+            - "redis>=4.5.0"
+            - "sqlalchemy>=2.0.0"
+            - "prometheus-client>=0.17.0"
+          
+          development:
+            - "pytest>=7.4.0"
+            - "black>=23.0.0"
+            - "mypy>=1.5.0"
+            - "flake8>=6.0.0"
 
-  extension_points:
-    plugins:
-      - "capability_plugins"
-      - "tool_plugins"
-      - "integration_plugins"
-      - "monitoring_plugins"
-    hooks:
-      - "lifecycle_hooks"
-      - "event_hooks"
-      - "validation_hooks"
-      - "transformation_hooks"
-    adapters:
-      - "protocol_adapters"
-      - "data_adapters"
-      - "tool_adapters"
-      - "service_adapters"
-    templates:
-      - "agent_templates"
-      - "configuration_templates"
-      - "test_templates"
-      - "documentation_templates"
+# ============================================================================
+# FIN DU FICHIER DE CONFIGURATION
+# ============================================================================

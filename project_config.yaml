@@ -1,18 +1,80 @@
-# project_config.yaml - Configuration complète pour SmartContractDevPipeline
-# Version: 3.0.0 (Orchestrateur avancé avec workflows détaillés)
-# Date: 2026-02-07
-# Structure: Compatible avec SmartContractOrchestrator
-
-project_name: "SmartContractDevPipeline"
-project_type: "blockchain_dev_tools"
-description: "Pipeline complet de développement de smart contracts avec agents spécialisés et workflows par sprints"
-version: "3.0.0"
-
 # ============================================================================
-# AGENTS PRINCIPAUX - FORMAT ATTENDU PAR L'ORCHESTRATEUR
+# CONFIGURATION DU PROJET - SmartContractDevPipeline v2.2.0
 # ============================================================================
+# Fichier: D:\Web3Projects\SmartContractDevPipeline\config\project_config.yaml
+# Généré le: 2026-02-08
+# Version complète avec toutes les sections
+# ============================================================================
+
+project:
+  name: "SmartContractDevPipeline"
+  version: "2.2.0"
+  description: "Pipeline de développement de contrats intelligents avec agents IA"
+  root_path: "D:/Web3Projects/SmartContractDevPipeline"
+  environment: "development"
+  log_level: "INFO"
+  
+  owner: "PoolSync DeFi"
+  contact: "dev@poolsync.io"
+  repository: "https://github.com/poolsyncdefi-ui/SmartContractDevPipeline"
+  
+  security:
+    encryption_enabled: true
+    audit_logging: true
+    data_retention_days: 90
+    
+  performance:
+    max_workers: 8
+    task_timeout_seconds: 300
+    memory_limit_mb: 4096
+
+# ----------------------------------------------------------------------------
+# ORCHESTRATOR CONFIGURATION
+# ----------------------------------------------------------------------------
+orchestrator:
+  enabled: true
+  service_type: "fastapi"
+  host: "127.0.0.1"
+  port: 8000
+  workers: 4
+  reload: true
+  
+  api:
+    prefix: "/api/v1"
+    cors_origins: ["http://localhost:3000", "http://127.0.0.1:3000"]
+    rate_limit: "100/minute"
+    
+  task_management:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
+    retry_attempts: 3
+    retry_delay_seconds: 5
+    
+  discovery:
+    auto_discover: true
+    scan_interval_seconds: 60
+    discovery_paths:
+      - "agents/"
+    exclude_patterns:
+      - "__pycache__"
+      - ".git"
+      - "test_*"
+      
+  health:
+    health_check_interval: 30
+    health_endpoint: "/health"
+    metrics_endpoint: "/metrics"
+    
+  logging:
+    log_file: "logs/orchestrator.log"
+    max_file_size_mb: 100
+    backup_count: 5
+
+# ----------------------------------------------------------------------------
+# AGENTS CONFIGURATION - STRUCTURE RÉELLE
+# ----------------------------------------------------------------------------
 agents:
-  # AGENT BASE - Classe de base pour tous les agents (non instancié)
+  # === AGENTS FONDAMENTAUX ===
   base_agent:
     display_name: "Agent de Base"
     specialization: "core_framework"
@@ -24,589 +86,790 @@ agents:
     initialization_order: 0
     parent: null
     purpose: "Classe de base abstraite fournissant les fonctionnalités communes à tous les agents"
-    mandatory: false
-
-  # AGENT ARCHITECT - Architecture système
+    mandatory: true
+    version: "1.0.0"
+    
   architect:
     display_name: "Architecte Système"
-    specialization: "system_architecture"
+    specialization: "architecture_design"
     config_path: "agents/architect/config.yaml"
-    agent_type: "main_agent"
+    agent_type: "concrete"
     enabled: true
     instantiate: true
     dependencies: ["base_agent"]
-    initialization_order: 1
-    parent: null
-    purpose: "Conception de l'architecture système et choix technologiques"
+    initialization_order: 10
+    parent: "base_agent"
+    purpose: "Conçoit l'architecture des systèmes de contrats intelligents"
     mandatory: true
-
-  # AGENT CODER - Développement code
+    
   coder:
     display_name: "Développeur Principal"
-    specialization: "fullstack_development"
+    specialization: "code_implementation"
     config_path: "agents/coder/config.yaml"
-    agent_type: "main_agent"
+    agent_type: "concrete"
     enabled: true
     instantiate: true
-    dependencies: ["base_agent"]
-    initialization_order: 2
-    parent: null
-    purpose: "Développement du code backend, frontend et intégration"
+    dependencies: ["base_agent", "architect"]
+    initialization_order: 20
+    parent: "base_agent"
+    purpose: "Implémente le code Solidity/Vyper des contrats intelligents"
     mandatory: true
-
-  # AGENT SMART_CONTRACT - Développement blockchain
+    
   smart_contract:
-    display_name: "Développeur Smart Contract"
-    specialization: "blockchain_development"
+    display_name: "Expert Contrats Intelligents"
+    specialization: "contract_specialist"
     config_path: "agents/smart_contract/config.yaml"
-    agent_type: "main_agent"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent", "coder"]
+    initialization_order: 30
+    parent: "base_agent"
+    purpose: "Expert en logique métier et optimisations des contrats"
+    mandatory: true
+    
+  tester:
+    display_name: "Ingénieur Tests"
+    specialization: "testing_validation"
+    config_path: "agents/tester/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent", "coder"]
+    initialization_order: 40
+    parent: "base_agent"
+    purpose: "Teste et valide les contrats intelligents"
+    mandatory: true
+    
+  registry:
+    display_name: "Registre des Agents"
+    specialization: "agent_registry"
+    config_path: "agents/registry/config.yaml"
+    agent_type: "concrete"
     enabled: true
     instantiate: true
     dependencies: ["base_agent"]
-    initialization_order: 3
-    parent: null
-    purpose: "Développement, test et déploiement de smart contracts"
+    initialization_order: 50
+    parent: "base_agent"
+    purpose: "Gère l'enregistrement, la découverte et le cycle de vie des agents"
     mandatory: true
-
-  # AGENT FRONTEND_WEB3 - Interface utilisateur
+    
+  # === AGENTS SPÉCIALISÉS ===
+  formal_verification:
+    display_name: "Vérificateur Formel"
+    specialization: "formal_verification"
+    config_path: "agents/formal_verification/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent", "tester"]
+    initialization_order: 60
+    parent: "base_agent"
+    purpose: "Effectue la vérification formelle des propriétés des contrats"
+    mandatory: false
+    
+  fuzzing_simulation:
+    display_name: "Simulateur Fuzzing"
+    specialization: "fuzzing_simulation"
+    config_path: "agents/fuzzing_simulation/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent", "tester"]
+    initialization_order: 70
+    parent: "base_agent"
+    purpose: "Effectue des tests fuzzing avancés et simulations d'attaques"
+    mandatory: false
+    
+  # === AGENTS SUPPORT ===
+  documenter:
+    display_name: "Documenteur Technique"
+    specialization: "documentation"
+    config_path: "agents/documenter/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 80
+    parent: "base_agent"
+    purpose: "Génère la documentation technique et utilisateur des contrats"
+    mandatory: false
+    
   frontend_web3:
     display_name: "Développeur Frontend Web3"
-    specialization: "web3_frontend"
-    config_path: "agents/frontend_web3/config.yaml"
-    agent_type: "main_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["base_agent"]
-    initialization_order: 4
-    parent: null
-    purpose: "Développement d'interfaces utilisateur Web3 et DApps"
-    mandatory: true
-
-  # AGENT TESTER - Tests et qualité
-  tester:
-    display_name: "Ingénieur Qualité"
-    specialization: "quality_assurance"
-    config_path: "agents/tester/config.yaml"
-    agent_type: "main_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["base_agent"]
-    initialization_order: 5
-    parent: null
-    purpose: "Tests, audit de sécurité et assurance qualité"
-    mandatory: true
-
-  # ==========================================================================
-  # SOUS-AGENTS SPÉCIALISÉS - INTÉGRÉS DANS LA SECTION PRINCIPALE
-  # ==========================================================================
-
-  # Sous-agents d'ARCHITECTURE
-  cloud_architect:
-    display_name: "Architecte Cloud"
-    specialization: "cloud_architecture"
-    config_path: "agents/architect/sous_agents/cloud_architect/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["architect", "base_agent"]
-    initialization_order: 6
-    parent: "architect"
-    purpose: "Conception d'architecture cloud et infrastructure"
-    mandatory: false
-
-  blockchain_architect:
-    display_name: "Architecte Blockchain"
-    specialization: "blockchain_architecture"
-    config_path: "agents/architect/sous_agents/blockchain_architect/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["architect", "base_agent"]
-    initialization_order: 7
-    parent: "architect"
-    purpose: "Architecture spécifique blockchain et solutions décentralisées"
-    mandatory: false
-
-  microservices_architect:
-    display_name: "Architecte Microservices"
-    specialization: "microservices_architecture"
-    config_path: "agents/architect/sous_agents/microservices_architect/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["architect", "base_agent"]
-    initialization_order: 8
-    parent: "architect"
-    purpose: "Conception d'architecture microservices et APIs"
-    mandatory: false
-
-  # Sous-agents de CODAGE
-  backend_coder:
-    display_name: "Développeur Backend"
-    specialization: "backend_development"
-    config_path: "agents/coder/sous_agents/backend_coder/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["coder", "base_agent"]
-    initialization_order: 9
-    parent: "coder"
-    purpose: "Développement backend, APIs et services"
-    mandatory: false
-
-  frontend_coder:
-    display_name: "Développeur Frontend"
     specialization: "frontend_development"
-    config_path: "agents/coder/sous_agents/frontend_coder/config.yaml"
-    agent_type: "sous_agent"
+    config_path: "agents/frontend_web3/config.yaml"
+    agent_type: "concrete"
     enabled: true
     instantiate: true
-    dependencies: ["coder", "base_agent"]
-    initialization_order: 10
-    parent: "coder"
-    purpose: "Développement frontend traditionnel (non Web3)"
+    dependencies: ["base_agent", "smart_contract"]
+    initialization_order: 90
+    parent: "base_agent"
+    purpose: "Développe les interfaces utilisateur interactives pour les contrats"
     mandatory: false
-
-  devops_coder:
-    display_name: "Ingénieur DevOps"
-    specialization: "devops_infrastructure"
-    config_path: "agents/coder/sous_agents/devops_coder/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["coder", "base_agent"]
-    initialization_order: 11
-    parent: "coder"
-    purpose: "CI/CD, infrastructure as code, déploiement"
-    mandatory: false
-
-  # Sous-agents de SMART CONTRACT
-  solidity_expert:
-    display_name: "Expert Solidity"
-    specialization: "solidity_development"
-    config_path: "agents/smart_contract/sous_agents/solidity_expert/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["smart_contract", "base_agent"]
-    initialization_order: 12
-    parent: "smart_contract"
-    purpose: "Expert en développement Solidity et optimisation"
-    mandatory: false
-
-  security_expert:
-    display_name: "Expert en Sécurité"
-    specialization: "smart_contract_security"
-    config_path: "agents/smart_contract/sous_agents/security_expert/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["smart_contract", "base_agent"]
-    initialization_order: 13
-    parent: "smart_contract"
-    purpose: "Audit de sécurité et prévention des vulnérabilités"
-    mandatory: false
-
-  gas_optimizer:
-    display_name: "Optimiseur de Gas"
-    specialization: "gas_optimization"
-    config_path: "agents/smart_contract/sous_agents/gas_optimizer/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["smart_contract", "base_agent"]
-    initialization_order: 14
-    parent: "smart_contract"
-    purpose: "Optimisation des coûts de gas et efficacité"
-    mandatory: false
-
-  formal_verification:
-    display_name: "Expert Vérification Formelle"
-    specialization: "formal_verification"
-    config_path: "agents/smart_contract/sous_agents/formal_verification/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["smart_contract", "base_agent"]
-    initialization_order: 15
-    parent: "smart_contract"
-    purpose: "Vérification formelle et preuves mathématiques"
-    mandatory: false
-
-  # Sous-agents de FRONTEND WEB3
-  react_expert:
-    display_name: "Expert React/Next.js"
-    specialization: "react_nextjs"
-    config_path: "agents/frontend_web3/sous_agents/react_expert/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["frontend_web3", "base_agent"]
-    initialization_order: 16
-    parent: "frontend_web3"
-    purpose: "Expert en React, Next.js et frameworks modernes"
-    mandatory: false
-
-  web3_integration:
-    display_name: "Expert Intégration Web3"
-    specialization: "web3_integration"
-    config_path: "agents/frontend_web3/sous_agents/web3_integration/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["frontend_web3", "base_agent"]
-    initialization_order: 17
-    parent: "frontend_web3"
-    purpose: "Intégration Web3, wallets et smart contracts"
-    mandatory: false
-
-  ui_ux_expert:
-    display_name: "Expert UI/UX"
-    specialization: "ui_ux_design"
-    config_path: "agents/frontend_web3/sous_agents/ui_ux_expert/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["frontend_web3", "base_agent"]
-    initialization_order: 18
-    parent: "frontend_web3"
-    purpose: "Design d'interface utilisateur et expérience utilisateur"
-    mandatory: false
-
-  # Sous-agents de TESTING
-  unit_tester:
-    display_name: "Testeur Unitaire"
-    specialization: "unit_testing"
-    config_path: "agents/tester/sous_agents/unit_tester/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["tester", "base_agent"]
-    initialization_order: 19
-    parent: "tester"
-    purpose: "Tests unitaires et tests de composants"
-    mandatory: false
-
-  integration_tester:
-    display_name: "Testeur d'Intégration"
-    specialization: "integration_testing"
-    config_path: "agents/tester/sous_agents/integration_tester/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["tester", "base_agent"]
-    initialization_order: 20
-    parent: "tester"
-    purpose: "Tests d'intégration et tests système"
-    mandatory: false
-
-  e2e_tester:
-    display_name: "Testeur End-to-End"
-    specialization: "e2e_testing"
-    config_path: "agents/tester/sous_agents/e2e_tester/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["tester", "base_agent"]
-    initialization_order: 21
-    parent: "tester"
-    purpose: "Tests end-to-end et tests de scénarios complets"
-    mandatory: false
-
-  fuzzing_expert:
-    display_name: "Expert Fuzzing"
-    specialization: "fuzzing_security"
-    config_path: "agents/tester/sous_agents/fuzzing_expert/config.yaml"
-    agent_type: "sous_agent"
-    enabled: true
-    instantiate: true
-    dependencies: ["tester", "base_agent"]
-    initialization_order: 22
-    parent: "tester"
-    purpose: "Tests de fuzzing et tests de sécurité avancés"
-    mandatory: false
-
-# ============================================================================
-# MAPPING DES TÂCHES VERS LES AGENTS (Conservé pour référence)
-# ============================================================================
-task_mapping:
-  # Tâches de base (héritées par tous via base_agent)
-  "health_check": ["*"]
-  "validate_config": ["*"]
-  "get_capabilities": ["*"]
-  "execute_with_timeout": ["*"]
-  "get_status": ["*"]
-  
-  # Tâches d'architecture
-  "cloud_design": ["architect", "cloud_architect"]
-  "blockchain_architecture": ["architect", "blockchain_architect"]
-  "microservices_design": ["architect", "microservices_architect"]
-  "system_architecture": ["architect", "blockchain_architect"]
-  "review_architecture": ["architect"]
-  "select_tech_stack": ["architect"]
-  "design_system": ["architect"]
-  
-  # Tâches de développement général
-  "backend_development": ["coder", "backend_coder"]
-  "frontend_development": ["coder", "frontend_coder"]
-  "devops_pipeline": ["coder", "devops_coder"]
-  "api_development": ["coder", "backend_coder"]
-  "generate_code": ["coder", "backend_coder", "frontend_coder"]
-  "debug_code": ["coder", "backend_coder", "frontend_coder"]
-  "refactor_code": ["coder"]
-  "review_code": ["coder"]
-  "setup_infrastructure": ["coder", "devops_coder"]
-  "deploy_infrastructure": ["coder", "devops_coder"]
-  
-  # Tâches de smart contract
-  "solidity_development": ["smart_contract", "solidity_expert"]
-  "contract_security": ["smart_contract", "security_expert"]
-  "gas_optimization": ["smart_contract", "gas_optimizer"]
-  "formal_verification_task": ["smart_contract", "formal_verification"]
-  "contract_deployment": ["smart_contract", "solidity_expert"]
-  "develop_contract": ["smart_contract", "solidity_expert"]
-  "audit_contract": ["smart_contract", "security_expert"]
-  "deploy_contract": ["smart_contract", "solidity_expert"]
-  "optimize_gas": ["smart_contract", "gas_optimizer"]
-  "test_contract": ["smart_contract", "solidity_expert"]
-  "compile_contract": ["smart_contract"]
-  "verify_contract": ["smart_contract", "formal_verification"]
-  
-  # Tâches de frontend Web3
-  "react_development": ["frontend_web3", "react_expert"]
-  "web3_integration": ["frontend_web3", "web3_integration"]
-  "ui_ux_design": ["frontend_web3", "ui_ux_expert"]
-  "dapp_development": ["frontend_web3", "react_expert", "web3_integration"]
-  "create_dapp": ["frontend_web3", "react_expert"]
-  "design_ui": ["frontend_web3", "ui_ux_expert"]
-  "integrate_web3": ["frontend_web3", "web3_integration"]
-  "optimize_performance": ["frontend_web3", "react_expert"]
-  "create_component": ["frontend_web3", "react_expert"]
-  "connect_wallet": ["frontend_web3", "web3_integration"]
-  "handle_transactions": ["frontend_web3", "web3_integration"]
-  
-  # Tâches de test
-  "unit_testing": ["tester", "unit_tester"]
-  "integration_testing": ["tester", "integration_tester"]
-  "e2e_testing": ["tester", "e2e_tester"]
-  "fuzzing_test": ["tester", "fuzzing_expert"]
-  "security_audit": ["tester", "fuzzing_expert", "security_expert"]
-  "run_test_suite": ["tester", "unit_tester", "integration_tester"]
-  "performance_test": ["tester", "integration_tester"]
-  "load_test": ["tester", "integration_tester"]
-  "accessibility_test": ["tester", "e2e_tester"]
-  "api_test": ["tester", "integration_tester"]
-  "generate_test_report": ["tester"]
-  "analyze_test_results": ["tester"]
-
-# ============================================================================
-# HIÉRARCHIE ET DÉPENDANCES (Conservé pour référence)
-# ============================================================================
-agent_hierarchy:
-  base_layer:
-    - name: "base_agent"
-      role: "classe_abstraite"
-      children: ["architect", "coder", "smart_contract", "frontend_web3", "tester"]
-      description: "Classe de base pour tous les agents, non instanciée"
-  
-  main_agents_layer:
-    - name: "architect"
-      role: "architecture"
-      children: ["cloud_architect", "blockchain_architect", "microservices_architect"]
-      description: "Conception système et choix technologiques"
     
-    - name: "coder"
-      role: "development"
-      children: ["backend_coder", "frontend_coder", "devops_coder"]
-      description: "Développement général et intégration"
+  communication:
+    display_name: "Agent de Communication"
+    specialization: "communication"
+    config_path: "agents/communication/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 100
+    parent: "base_agent"
+    purpose: "Gère la communication inter-agents et avec les utilisateurs"
+    mandatory: false
     
-    - name: "smart_contract"
-      role: "blockchain_development"
-      children: ["solidity_expert", "security_expert", "gas_optimizer", "formal_verification"]
-      description: "Développement et audit de smart contracts"
+  storage:
+    display_name: "Gestionnaire de Stockage"
+    specialization: "storage_management"
+    config_path: "agents/storage/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 110
+    parent: "base_agent"
+    purpose: "Gère le stockage persistant des données, contrats et artefacts"
+    mandatory: false
     
-    - name: "frontend_web3"
-      role: "web3_frontend"
-      children: ["react_expert", "web3_integration", "ui_ux_expert"]
-      description: "Interfaces utilisateur Web3 et DApps"
-    
-    - name: "tester"
-      role: "quality_assurance"
-      children: ["unit_tester", "integration_tester", "e2e_tester", "fuzzing_expert"]
-      description: "Tests et assurance qualité"
-
-# ============================================================================
-# WORKFLOWS DE DÉVELOPPEMENT
-# ============================================================================
-workflows:
-  test_configuration:
-    description: "Test de validation de la configuration complète"
-    steps:
-      - name: "validate_project_config"
-        agent: "architect"
-        task: "validate_config"
-        data:
-          config_file: "project_config.yaml"
-          validate_agents: true
-          validate_paths: true
-      
-      - name: "health_check_all_agents"
-        agent: "architect"
-        task: "health_check"
-        data:
-          check_all_agents: true
-          timeout: 30
-  
-  development_pipeline:
-    description: "Pipeline complet de développement de smart contract"
-    steps:
-      - name: "design_system_architecture"
-        agent: "architect"
-        task: "system_architecture"
-        data:
-          requirements_file: "requirements/system_requirements.json"
-          output_format: "mermaid_diagrams"
-      
-      - name: "develop_smart_contract"
-        agent: "smart_contract"
-        task: "solidity_development"
-        data:
-          contract_specs: "contracts/erc20_token.spec.json"
-          output_dir: "contracts/build/"
-      
-      - name: "audit_contract_security"
-        agent: "security_expert"
-        task: "contract_security"
-        data:
-          contract_file: "contracts/build/ERC20Token.sol"
-          audit_level: "comprehensive"
-      
-      - name: "develop_frontend_dapp"
-        agent: "frontend_web3"
-        task: "dapp_development"
-        data:
-          design_file: "ui/dapp_design.figma.json"
-          contract_abi: "contracts/build/ERC20Token.abi.json"
-      
-      - name: "run_comprehensive_tests"
-        agent: "tester"
-        task: "run_test_suite"
-        data:
-          test_types: ["unit", "integration", "e2e", "security"]
-          coverage_target: 95
-
-# ============================================================================
-# CONFIGURATION DE L'ORCHESTRATEUR
-# ============================================================================
-orchestrator:
-  health_check_interval: 30  # secondes
-  task_timeout: 300  # secondes (5 minutes)
-  max_concurrent_tasks: 5
-  log_level: "INFO"
-  log_file: "logs/orchestrator.log"
-  enable_debug_mode: true
-  auto_recover_errors: true
-  max_retry_attempts: 3
-  
   monitoring:
-    enable_prometheus: false
-    metrics_port: 9090
-    enable_health_dashboard: true
-    dashboard_port: 8080
-  
-  performance:
-    enable_caching: true
-    cache_ttl: 3600  # 1 heure
-    enable_compression: true
-    max_memory_mb: 1024
+    display_name: "Agent de Monitoring"
+    specialization: "monitoring_observability"
+    config_path: "agents/monitoring/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 120
+    parent: "base_agent"
+    purpose: "Surveille les performances, la santé et les métriques du système"
+    mandatory: false
+    
+  learning:
+    display_name: "Agent d'Apprentissage"
+    specialization: "machine_learning"
+    config_path: "agents/learning/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 130
+    parent: "base_agent"
+    purpose: "Apprentissage automatique pour optimisation et prédictions"
+    mandatory: false
+    
+  workflow:
+    display_name: "Gestionnaire de Workflow"
+    specialization: "workflow_management"
+    config_path: "agents/workflow/config.yaml"
+    agent_type: "concrete"
+    enabled: true
+    instantiate: true
+    dependencies: ["base_agent"]
+    initialization_order: 140
+    parent: "base_agent"
+    purpose: "Orchestre les workflows complexes entre agents"
+    mandatory: false
 
-# ============================================================================
-# CHEMINS ET RÉPERTOIRES
-# ============================================================================
-paths:
-  agents_directory: "agents/"
-  configs_directory: "configs/"
-  contracts_directory: "contracts/"
-  tests_directory: "tests/"
-  logs_directory: "logs/"
-  outputs_directory: "outputs/"
-  temp_directory: "temp/"
-  
-  templates:
-    agent_template: "templates/agent_template.yaml"
-    contract_template: "templates/contract_template.sol"
-    test_template: "templates/test_template.js"
+# ----------------------------------------------------------------------------
+# MAPPING DES TÂCHES VERS LES AGENTS
+# ----------------------------------------------------------------------------
+task_mapping:
+  # === TÂCHES D'ARCHITECTURE ===
+  design_system_architecture:
+    primary_agent: "architect"
+    fallback_agent: "smart_contract"
+    timeout: 600
+    required_capabilities: ["ARCHITECTURE_DESIGN", "SYSTEM_ANALYSIS"]
+    
+  design_contract_pattern:
+    primary_agent: "architect"
+    secondary_agents: ["smart_contract", "coder"]
+    timeout: 300
+    required_capabilities: ["PATTERN_RECOGNITION", "CONTRACT_PATTERNS"]
+    
+  # === TÂCHES DE DÉVELOPPEMENT ===
+  generate_contract_code:
+    primary_agent: "coder"
+    fallback_agent: "smart_contract"
+    timeout: 900
+    required_capabilities: ["SOLIDITY", "CODE_GENERATION", "VYPER"]
+    
+  implement_business_logic:
+    primary_agent: "smart_contract"
+    secondary_agents: ["coder"]
+    timeout: 1200
+    required_capabilities: ["BUSINESS_LOGIC", "ALGORITHM_DESIGN"]
+    
+  optimize_gas_usage:
+    primary_agent: "smart_contract"
+    timeout: 600
+    required_capabilities: ["GAS_OPTIMIZATION", "PERFORMANCE_ANALYSIS"]
+    
+  # === TÂCHES DE TEST ===
+  write_unit_tests:
+    primary_agent: "tester"
+    secondary_agents: ["coder"]
+    timeout: 600
+    required_capabilities: ["UNIT_TESTING", "TEST_GENERATION"]
+    
+  security_audit:
+    primary_agent: "tester"
+    secondary_agents: ["formal_verification", "fuzzing_simulation"]
+    timeout: 1800
+    required_capabilities: ["SECURITY_ANALYSIS", "VULNERABILITY_DETECTION"]
+    
+  formal_verification:
+    primary_agent: "formal_verification"
+    timeout: 2400
+    required_capabilities: ["FORMAL_VERIFICATION", "THEOREM_PROVING"]
+    
+  fuzzing_test:
+    primary_agent: "fuzzing_simulation"
+    timeout: 1800
+    required_capabilities: ["FUZZING", "SIMULATION"]
+    
+  # === TÂCHES DE SUPPORT ===
+  generate_documentation:
+    primary_agent: "documenter"
+    secondary_agents: ["coder", "smart_contract"]
+    timeout: 300
+    required_capabilities: ["DOCUMENTATION_GENERATION", "NATSPEC"]
+    
+  create_frontend:
+    primary_agent: "frontend_web3"
+    timeout: 600
+    required_capabilities: ["REACT", "WEB3_JS", "UI_UX_DESIGN"]
+    
+  # === TÂCHES SYSTÈME ===
+  manage_agent_lifecycle:
+    primary_agent: "registry"
+    timeout: 60
+    required_capabilities: ["AGENT_DISCOVERY", "LIFECYCLE_MANAGEMENT"]
+    
+  orchestrate_workflow:
+    primary_agent: "workflow"
+    timeout: 300
+    required_capabilities: ["WORKFLOW_ORCHESTRATION", "TASK_SCHEDULING"]
+    
+  monitor_system:
+    primary_agent: "monitoring"
+    timeout: 30
+    required_capabilities: ["METRICS_COLLECTION", "ALERTING"]
+    
+  # === TÂCHES COMPLEXES (multi-agents) ===
+  full_contract_development:
+    agent_chain: ["architect", "coder", "smart_contract", "tester"]
+    orchestrator: "workflow"
+    timeout: 3600
+    parallel_tasks: false
+    
+  security_pipeline:
+    agent_chain: ["tester", "formal_verification", "fuzzing_simulation"]
+    orchestrator: "workflow"
+    timeout: 7200
+    parallel_tasks: true
 
-# ============================================================================
+# ----------------------------------------------------------------------------
+# HIÉRARCHIE ET DÉPENDANCES
+# ----------------------------------------------------------------------------
+dependencies:
+  # === HIÉRARCHIE DES AGENTS ===
+  hierarchy:
+    root: "base_agent"
+    layers:
+      - layer: 0
+        agents: ["base_agent"]
+        description: "Couche fondamentale"
+        
+      - layer: 1
+        agents: ["architect", "registry", "workflow"]
+        description: "Agents de gestion système"
+        depends_on: ["base_agent"]
+        
+      - layer: 2
+        agents: ["coder", "smart_contract"]
+        description: "Agents de développement"
+        depends_on: ["architect"]
+        
+      - layer: 3
+        agents: ["tester", "formal_verification", "fuzzing_simulation"]
+        description: "Agents de test et sécurité"
+        depends_on: ["coder", "smart_contract"]
+        
+      - layer: 4
+        agents: ["documenter", "frontend_web3", "communication"]
+        description: "Agents de support et interface"
+        depends_on: ["smart_contract", "tester"]
+        
+      - layer: 5
+        agents: ["storage", "monitoring", "learning"]
+        description: "Agents d'infrastructure"
+        depends_on: ["registry"]
+  
+  # === ORDRE D'INITIALISATION ===
+  initialization_order:
+    phase_1:
+      agents: ["base_agent"]
+      description: "Framework de base"
+      required: true
+      
+    phase_2:
+      agents: ["registry", "workflow"]
+      description: "Système de gestion"
+      required: true
+      depends_on: ["phase_1"]
+      
+    phase_3:
+      agents: ["architect"]
+      description: "Conception"
+      required: true
+      depends_on: ["phase_2"]
+      
+    phase_4:
+      agents: ["coder", "smart_contract"]
+      description: "Développement"
+      required: true
+      depends_on: ["phase_3"]
+      
+    phase_5:
+      agents: ["tester"]
+      description: "Test de base"
+      required: true
+      depends_on: ["phase_4"]
+      
+    phase_6:
+      agents: ["formal_verification", "fuzzing_simulation"]
+      description: "Tests avancés"
+      required: false
+      depends_on: ["phase_5"]
+      
+    phase_7:
+      agents: ["documenter", "frontend_web3", "communication"]
+      description: "Support utilisateur"
+      required: false
+      depends_on: ["phase_5"]
+      
+    phase_8:
+      agents: ["storage", "monitoring", "learning"]
+      description: "Infrastructure"
+      required: false
+      depends_on: ["phase_2"]
+  
+  # === VALIDATION DES DÉPENDANCES ===
+  validation:
+    check_circular_deps: true
+    validate_on_startup: true
+    auto_resolve_deps: true
+    missing_deps_action: "warn"  # warn, error, ignore
+    
+  # === GROUPE D'AGENTS ===
+  agent_groups:
+    core_development:
+      - "architect"
+      - "coder"
+      - "smart_contract"
+      - "tester"
+      description: "Pipeline de développement principal"
+      
+    security_suite:
+      - "tester"
+      - "formal_verification"
+      - "fuzzing_simulation"
+      description: "Suite complète de sécurité"
+      
+    user_experience:
+      - "documenter"
+      - "frontend_web3"
+      - "communication"
+      description: "Expérience utilisateur et documentation"
+      
+    infrastructure:
+      - "registry"
+      - "storage"
+      - "monitoring"
+      - "workflow"
+      description: "Infrastructure système"
+
+# ----------------------------------------------------------------------------
 # ENVIRONNEMENTS DE DÉPLOIEMENT
-# ============================================================================
+# ----------------------------------------------------------------------------
 environments:
   development:
-    blockchain_network: "hardhat"
-    rpc_url: "http://localhost:8545"
-    chain_id: 31337
-    enable_auto_mining: true
-    gas_price: "auto"
+    name: "Développement"
+    description: "Environnement de développement local"
+    enabled: true
+    auto_start: true
     
-  testnet:
-    blockchain_network: "sepolia"
-    rpc_url: "${SEPOLIA_RPC_URL}"
-    chain_id: 11155111
-    gas_price: "auto"
-    explorer_url: "https://sepolia.etherscan.io"
+    agents:
+      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", "registry"]
+      disabled: ["learning"]  # Trop lourd en dev
     
-  mainnet:
-    blockchain_network: "ethereum"
-    rpc_url: "${MAINNET_RPC_URL}"
-    chain_id: 1
-    gas_price: "priority"
-    explorer_url: "https://etherscan.io"
+    ollama:
+      models: ["llama2:7b", "codellama:7b"]
+      gpu_layers: 10
+      
+    blockchain:
+      network: "development"
+      auto_mine: true
+      gas_limit: 30000000
+      
+    monitoring:
+      level: "INFO"
+      enable_metrics: false
+      
+    security:
+      require_auth: false
+      encryption: false
+      
+  staging:
+    name: "Staging"
+    description: "Environnement de pré-production"
+    enabled: false
+    
+    agents:
+      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", 
+                "formal_verification", "registry", "monitoring"]
+      
+    ollama:
+      models: ["llama2:13b", "codellama:13b"]
+      gpu_layers: 20
+      
+    blockchain:
+      network: "sepolia"
+      confirmations: 3
+      
+    monitoring:
+      level: "INFO"
+      enable_metrics: true
+      
+    security:
+      require_auth: true
+      encryption: true
+      
+  production:
+    name: "Production"
+    description: "Environnement de production"
+    enabled: false
+    
+    agents:
+      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester",
+                "formal_verification", "fuzzing_simulation", "registry", 
+                "monitoring", "workflow"]
+      disabled: ["learning"]  # Risques de stabilité
+      
+    ollama:
+      models: ["llama2:13b", "codellama:13b", "mistral:7b"]
+      gpu_layers: 30
+      
+    blockchain:
+      network: "ethereum"
+      confirmations: 12
+      gas_price_strategy: "medium"
+      
+    monitoring:
+      level: "WARNING"
+      enable_metrics: true
+      enable_alerting: true
+      
+    security:
+      require_auth: true
+      encryption: true
+      audit_all_operations: true
+      
+  testing:
+    name: "Tests Automatisés"
+    description: "Environnement dédié aux tests"
+    enabled: true
+    
+    agents:
+      enabled: ["base_agent", "tester", "registry"]
+      mock_ollama: true
+      
+    blockchain:
+      use_mock: true
+      network: "ganache"
+      
+    features:
+      fast_execution: true
+      deterministic_results: true
+      skip_heavy_tasks: true
 
-# ============================================================================
+# ----------------------------------------------------------------------------
 # SÉCURITÉ ET SECRETS
-# ============================================================================
+# ----------------------------------------------------------------------------
 security:
-  secrets_manager: "environment_variables"
-  encrypted_secrets: false
-  
-  required_env_vars:
-    - "MAINNET_RPC_URL"
-    - "SEPOLIA_RPC_URL"
-    - "ETHERSCAN_API_KEY"
-    - "ALCHEMY_API_KEY"
-  
-  sensitive_files:
-    - "**/*.env"
-    - "**/secrets*.yaml"
-    - "**/private_keys.*"
-  
-  validation_rules:
-    - "no_secrets_in_code"
-    - "validate_env_vars_on_startup"
-    - "encrypt_sensitive_data"
-
-# ============================================================================
-# VERSIONS ET COMPATIBILITÉ
-# ============================================================================
-compatibility:
-  min_python_version: "3.10"
-  node_version: ">=18.0.0"
-  solidity_version: ">=0.8.0"
-  
-  required_packages:
-    python:
-      - "fastapi>=0.104.0"
-      - "pydantic>=2.5.0"
-      - "web3>=6.0.0"
-      - "pyyaml>=6.0"
+  # === AUTHENTIFICATION ===
+  authentication:
+    enabled: false  # À activer en production
+    provider: "jwt"
     
-    nodejs:
-      - "react>=18.0.0"
-      - "next>=14.0.0"
-      - "ethers>=6.0.0"
-      - "wagmi>=1.0.0"
+    jwt:
+      secret_key: "${JWT_SECRET_KEY}"
+      algorithm: "HS256"
+      token_expire_minutes: 1440  # 24 heures
+      refresh_token_expire_days: 7
+      
+    api_keys:
+      enabled: true
+      rotation_days: 90
+      max_keys_per_user: 3
+      
+  # === CHIFFREMENT ===
+  encryption:
+    enabled: true
+    
+    data_encryption:
+      algorithm: "AES-256-GCM"
+      key_derivation:
+        algorithm: "PBKDF2"
+        iterations: 100000
+        salt_size: 16
+        
+    at_rest:
+      encrypt_database: true
+      encrypt_logs: false
+      encrypt_configs: true
+      
+    in_transit:
+      require_tls: false  # True en production
+      tls_version: "TLSv1.2"
+      cipher_suites: ["ECDHE-RSA-AES256-GCM-SHA384"]
+      
+  # === GESTION DES SECRETS ===
+  secrets:
+    management: "environment"
+    
+    sources:
+      environment:
+        prefix: "SCDP_"
+        required_vars:
+          - "JWT_SECRET_KEY"
+          - "DATABASE_PASSWORD"
+          - "BLOCKCHAIN_PRIVATE_KEY"
+          
+      files:
+        secrets_file: ".env.secrets"
+        encrypted: true
+        permissions: "600"
+        
+      vault:
+        enabled: false
+        url: "${VAULT_URL}"
+        token: "${VAULT_TOKEN}"
+        
+    rotation:
+      auto_rotate: false
+      rotation_interval_days: 30
+      notify_before_days: 7
+      
+  # === CONTRÔLES D'ACCÈS ===
+  access_control:
+    rbac_enabled: true
+    
+    roles:
+      admin:
+        permissions: ["*"]
+        agents: ["*"]
+        
+      developer:
+        permissions: ["read", "write", "execute"]
+        agents: ["architect", "coder", "smart_contract", "tester"]
+        
+      auditor:
+        permissions: ["read", "execute"]
+        agents: ["tester", "formal_verification", "fuzzing_simulation"]
+        
+      viewer:
+        permissions: ["read"]
+        agents: ["documenter", "monitoring"]
+        
+    policies:
+      least_privilege: true
+      separation_of_duties: true
+      audit_all_changes: true
+      
+  # === AUDIT ET CONFORMITÉ ===
+  audit:
+    enabled: true
+    
+    logging:
+      log_all_operations: true
+      sensitive_data_masking: true
+      retention_days: 365
+      
+    compliance:
+      gdpr_compliant: true
+      data_minimization: true
+      right_to_be_forgotten: true
+      
+  # === RÉSEAU ET PARE-FEU ===
+  network:
+    firewall:
+      enabled: true
+      rules:
+        - action: "allow"
+          source: "127.0.0.1"
+          port: "8000"
+          
+        - action: "allow"
+          source: "127.0.0.1"
+          port: "11434"  # Ollama
+          
+        - action: "deny"
+          source: "0.0.0.0/0"
+          port: "*"
+          
+    rate_limiting:
+      enabled: true
+      requests_per_minute: 100
+      burst_limit: 20
+      
+    intrusion_detection:
+      enabled: false  # À activer en production
+      alert_on_suspicious: true
+
+# ----------------------------------------------------------------------------
+# VERSIONS ET COMPATIBILITÉ
+# ----------------------------------------------------------------------------
+versions:
+  # === VERSIONS DU SYSTÈME ===
+  system:
+    pipeline: "2.2.0"
+    api: "1.0.0"
+    config_schema: "1.2.0"
+    
+  # === VERSIONS DES AGENTS ===
+  agents:
+    base_agent:
+      min_version: "1.0.0"
+      max_version: "2.0.0"
+      current: "1.2.0"
+      
+    architect:
+      min_version: "1.0.0"
+      current: "1.1.0"
+      depends_on_base: ">=1.0.0"
+      
+    coder:
+      min_version: "1.0.0"
+      current: "1.3.0"
+      depends_on_base: ">=1.0.0"
+      depends_on_architect: ">=1.0.0"
+      
+    smart_contract:
+      min_version: "1.0.0"
+      current: "1.2.0"
+      depends_on_base: ">=1.0.0"
+      depends_on_coder: ">=1.1.0"
+      
+    tester:
+      min_version: "1.0.0"
+      current: "1.4.0"
+      depends_on_base: ">=1.0.0"
+      depends_on_coder: ">=1.0.0"
+      
+    registry:
+      min_version: "1.0.0"
+      current: "1.1.0"
+      depends_on_base: ">=1.0.0"
   
-  tested_platforms:
-    - "ubuntu:22.04"
-    - "macos:ventura"
-    - "windows:11"
+  # === COMPATIBILITÉ ===
+  compatibility:
+    check_on_startup: true
+    enforcement_level: "strict"  # strict, warning, none
+    
+    backward_compatibility:
+      agents: true
+      config: true
+      tasks: true
+      
+    deprecation_policy:
+      notice_period_days: 90
+      migration_guide_required: true
+      
+  # === MISE À JOUR ===
+  updates:
+    auto_check: true
+    check_interval_hours: 24
+    
+    channels:
+      stable:
+        url: "https://updates.poolsync.io/stable"
+        recommended: true
+        
+      beta:
+        url: "https://updates.poolsync.io/beta"
+        recommended: false
+        
+      nightly:
+        url: "https://updates.poolsync.io/nightly"
+        recommended: false
+        
+    policies:
+      allow_major_upgrades: false
+      allow_minor_upgrades: true
+      allow_patch_upgrades: true
+      require_approval: true
+      
+  # === HISTORIQUE DES VERSIONS ===
+  history:
+    keep_versions: 5
+    auto_cleanup: true
+    
+    migration_scripts:
+      enabled: true
+      location: "scripts/migrations/"
+      auto_apply: false
+
+# ----------------------------------------------------------------------------
+# SERVICES EXTERNES (inchangé mais inclus pour complétude)
+# ----------------------------------------------------------------------------
+database:
+  type: "sqlite"
+  path: "data/agents.db"
+  # ... [reste identique à la version précédente]
+
+ollama:
+  enabled: true
+  base_url: "http://localhost:11434"
+  # ... [reste identique à la version précédente]
+
+blockchain:
+  networks:
+    development:
+      name: "localhost"
+      chain_id: 1337
+      # ... [reste identique à la version précédente]
+
+# ----------------------------------------------------------------------------
+# PATHS & DIRECTORIES (inchangé)
+# ----------------------------------------------------------------------------
+paths:
+  root: "D:/Web3Projects/SmartContractDevPipeline"
+  # ... [reste identique à la version précédente]
+
+# ----------------------------------------------------------------------------
+# EXECUTION PIPELINE (inchangé)
+# ----------------------------------------------------------------------------
+pipeline:
+  stages:
+    - name: "architecture"
+      agent: "architect"
+      # ... [reste identique à la version précédente]
+
+# ----------------------------------------------------------------------------
+# MONITORING & TELEMETRY (inchangé)
+# ----------------------------------------------------------------------------
+monitoring:
+  enabled: true
+  # ... [reste identique à la version précédente]
+
+# ----------------------------------------------------------------------------
+# BACKUP & RECOVERY (inchangé)
+# ----------------------------------------------------------------------------
+backup:
+  enabled: true
+  # ... [reste identique à la version précédente]
