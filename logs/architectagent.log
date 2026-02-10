@@ -1,0 +1,60 @@
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Configuration chargée: architect v1.0.0
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Agent architect créé (config: agents/architect/config.yaml)
+2026-02-10 19:17:04 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-02-10 19:17:04 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Agent Architect initialisé avec la configuration de agents/architect/config.yaml
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Initialisation de l'agent architect...
+2026-02-10 19:17:04 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect...
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:17:04 - agent.ArchitectAgent - INFO - Agent architect initialisé avec succès
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Configuration chargée: architect v1.0.0
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Agent architect créé (config: agents/architect/config.yaml)
+2026-02-10 19:25:37 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-02-10 19:25:37 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Agent Architect initialisé avec la configuration de agents/architect/config.yaml
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Initialisation de l'agent architect...
+2026-02-10 19:25:37 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect...
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:25:37 - agent.ArchitectAgent - INFO - Agent architect initialisé avec succès
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Configuration chargée: architect v1.0.0
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Agent architect créé (config: agents/architect/config.yaml)
+2026-02-10 19:25:53 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-02-10 19:25:53 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Agent Architect initialisé avec la configuration de agents/architect/config.yaml
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Initialisation de l'agent architect...
+2026-02-10 19:25:53 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect...
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:25:53 - agent.ArchitectAgent - INFO - Agent architect initialisé avec succès
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Configuration chargée: architect v1.0.0
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Agent architect créé (config: agents/architect/config.yaml)
+2026-02-10 19:31:21 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-02-10 19:31:21 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Agent Architect initialisé avec la configuration de agents/architect/config.yaml
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Initialisation de l'agent architect...
+2026-02-10 19:31:21 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect...
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:31:21 - agent.ArchitectAgent - INFO - Agent architect initialisé avec succès
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Configuration chargée: architect v1.0.0
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Agent architect créé (config: agents/architect/config.yaml)
+2026-02-10 19:34:34 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-02-10 19:34:34 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Agent Architect initialisé avec la configuration de agents/architect/config.yaml
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Initialisation de l'agent architect...
+2026-02-10 19:34:34 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect...
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:34:34 - agent.ArchitectAgent - INFO - Agent architect initialisé avec succès

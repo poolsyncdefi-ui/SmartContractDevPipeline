@@ -1,0 +1,17 @@
+2026-02-10 19:25:37 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-10 19:25:37 - agent.CoderAgent - INFO - Agent coder créé (config: agents/coder/config.yaml)
+2026-02-10 19:25:53 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-10 19:25:53 - agent.CoderAgent - INFO - Agent coder créé (config: agents/coder/config.yaml)
+2026-02-10 19:31:21 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-10 19:31:21 - agent.CoderAgent - INFO - Agent coder créé (config: agents/coder/config.yaml)
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Agent coder créé (config: agents/coder/config.yaml)
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de agents/coder/config.yaml
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Initialisation de l'agent coder...
+2026-02-10 19:34:34 - agent.CoderAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-02-10 19:34:34 - agent.CoderAgent - INFO - Agent coder initialisé avec succès

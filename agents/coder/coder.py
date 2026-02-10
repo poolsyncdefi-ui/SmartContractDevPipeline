@@ -1,708 +1,740 @@
-# agents/coder/agent.py - VERSION COMPLÈTE
+"""
+Coder Agent - Agent principal de développement de code
+Implémente le code backend, frontend, DevOps, tests et documentation
+basé sur l'architecture conçue par l'Architect Agent.
+Version: 1.0.0
+"""
+
 import os
+import sys
 import yaml
-import json
-import shutil
-from typing import Dict, Any, List, Optional, Tuple
+import logging
+import asyncio
 from pathlib import Path
-from agents.base_agent import BaseAgent
+from typing import Dict, List, Any, Optional, Union, Tuple
+from dataclasses import dataclass, field
+from datetime import datetime
+from enum import Enum
+
+# Ajouter le chemin du projet au PYTHONPATH
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
+
+# -----------------------------------------------------------------------------
+# CLASSES DE DONNÉES
+# -----------------------------------------------------------------------------
+
+class CodeLanguage(Enum):
+    """Langages de programmation supportés"""
+    PYTHON = "python"
+    JAVASCRIPT = "javascript"
+    TYPESCRIPT = "typescript"
+    SOLIDITY = "solidity"
+    RUST = "rust"
+    GO = "go"
+    JAVA = "java"
+    CSHARP = "csharp"
+
+class Framework(Enum):
+    """Frameworks supportés"""
+    FASTAPI = "fastapi"
+    EXPRESS = "express"
+    NEXTJS = "nextjs"
+    REACT = "react"
+    VUE = "vue"
+    HARDFHAT = "hardhat"
+    ANCHOR = "anchor"
+
+class ComponentType(Enum):
+    """Types de composants logiciels"""
+    BACKEND_SERVICE = "backend_service"
+    FRONTEND_APP = "frontend_application"
+    SMART_CONTRACT = "smart_contract"
+    DATABASE = "database"
+    API_GATEWAY = "api_gateway"
+
+@dataclass
+class CodeComponent:
+    """Représente un composant de code à générer"""
+    name: str
+    component_type: ComponentType
+    language: CodeLanguage
+    framework: Optional[Framework] = None
+    description: str = ""
+    dependencies: List[str] = field(default_factory=list)
+    output_path: Optional[Path] = None
+    config: Dict[str, Any] = field(default_factory=dict)
+
+@dataclass
+class GenerationResult:
+    """Résultat de la génération de code"""
+    success: bool
+    component_name: str
+    output_path: Path
+    files_created: List[Path] = field(default_factory=list)
+    errors: List[str] = field(default_factory=list)
+    warnings: List[str] = field(default_factory=list)
+
+# -----------------------------------------------------------------------------
+# CLASSE CODER AGENT
+# -----------------------------------------------------------------------------
 
 class CoderAgent(BaseAgent):
-    def __init__(self, config_path: str = None):
+    """
+    Agent responsable du développement complet du code.
+    Génère le code backend, frontend, DevOps, tests et documentation
+    basé sur l'architecture conçue par l'Architect Agent.
+    """
+    
+    def __init__(self, config_path: Optional[str] = None):
+        """
+        Initialise l'agent Coder.
+        
+        Args:
+            config_path: Chemin vers le fichier de configuration (optionnel)
+        """
+        # Déterminer le chemin de configuration
         if config_path is None:
-            config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+            config_path = str(project_root / "agents" / "coder" / "config.yaml")
+        
+        # Initialiser l'agent de base
         super().__init__(config_path)
         
-        # Charger les capacités depuis le YAML
-        self._load_capabilities_from_config()
-    
-    def _load_capabilities_from_config(self):
-        """Charger les capacités depuis la configuration YAML."""
-        if hasattr(self, 'config') and self.config:
-            agent_config = self.config.get('agent', {})
-            capabilities = agent_config.get('capabilities', [])
-            
-            # Extraire les noms des capacités
-            self.capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
-        else:
-            # Fallback aux capacités par défaut
-            self.capabilities = [
-                "validate_config",
-                "analyze_architecture",
-                "generate_backend_code",
-                "generate_frontend_code",
-                "generate_devops_config",
-                "implement_api_endpoints",
-                "integrate_database",
-                "setup_web3_integration",
-                "implement_state_management",
-                "create_ui_components",
-                "optimize_performance",
-                "write_unit_tests",
-                "document_code",
-                "enforce_coding_standards",
-                "refactor_code",
-                "review_prerequisites"
-            ]
+        # Configuration spécifique au Coder
+        self._coder_config = self.load_coder_config()
         
         # État de l'agent
-        self.current_project = None
-        self.code_metrics = {
-            "files_created": 0,
-            "lines_of_code": 0,
-            "tests_written": 0,
-            "complexity_score": 0.0
+        self.current_plan = None
+        self.generated_components: Dict[str, GenerationResult] = {}
+        self.code_templates: Dict[str, str] = {}
+        
+        # Initialiser les templates
+        self._initialize_templates()
+        
+        self._logger.info(f"Agent Coder initialisé avec la configuration de {config_path}")
+    
+    async def initialize(self) -> bool:
+        """
+        Initialise l'agent Coder.
+        
+        Returns:
+            True si l'initialisation a réussi
+        """
+        return await super().initialize()
+    
+    async def _initialize_components(self) -> bool:
+        """
+        Initialise les composants spécifiques du CoderAgent.
+        
+        Returns:
+            True si l'initialisation a réussi
+        """
+        try:
+            self._logger.info("Initialisation des composants du CoderAgent...")
+            
+            # Initialiser les templates
+            self._initialize_templates()
+            
+            # Charger les configurations
+            self._load_framework_configs()
+            
+            self._logger.info("Composants du CoderAgent initialisés avec succès")
+            return True
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors de l'initialisation des composants: {e}")
+            return False
+    
+    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
+        """
+        Gère les messages personnalisés pour le CoderAgent.
+        
+        Args:
+            message: Message à traiter
+            
+        Returns:
+            Réponse éventuelle
+        """
+        try:
+            message_type = message.message_type
+            
+            if message_type == "generate_code":
+                # Générer du code basé sur les spécifications
+                plan = message.content.get("plan", {})
+                result = await self.generate_code(plan)
+                
+                response = Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content={"result": result},
+                    message_type="generation_result",
+                    correlation_id=message.message_id
+                )
+                return response
+                
+            elif message_type == "validate_code":
+                # Valider du code existant
+                code = message.content.get("code", "")
+                result = await self.validate_code(code)
+                
+                response = Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content={"validation_result": result},
+                    message_type="validation_result",
+                    correlation_id=message.message_id
+                )
+                return response
+                
+            else:
+                # Message non reconnu
+                self._logger.warning(f"Type de message non reconnu: {message_type}")
+                return None
+                
+        except Exception as e:
+            self._logger.error(f"Erreur lors du traitement du message personnalisé: {e}")
+            
+            error_response = Message(
+                sender=self.name,
+                recipient=message.sender,
+                content={"error": str(e)},
+                message_type="error",
+                correlation_id=message.message_id
+            )
+            return error_response
+    
+    # -------------------------------------------------------------------------
+    # MÉTHODES DE CONFIGURATION
+    # -------------------------------------------------------------------------
+    
+    def load_coder_config(self) -> Dict[str, Any]:
+        """
+        Charge la configuration spécifique au Coder.
+        
+        Returns:
+            Dict contenant la configuration
+        """
+        # Note: self.config est la propriété de BaseAgent
+        # self._coder_config est l'attribut spécifique au Coder
+        return self._agent_config.get('configuration', {})
+    
+    def _initialize_templates(self):
+        """Initialise les templates de code par défaut"""
+        self.code_templates = {
+            "python_fastapi_service": self._get_fastapi_template(),
+            "javascript_express_service": self._get_express_template(),
+            "react_component": self._get_react_template(),
+            "solidity_contract": self._get_solidity_template(),
+        }
+    
+    def _load_framework_configs(self):
+        """Charge les configurations des frameworks supportés"""
+        config_dir = project_root / "agents" / "coder" / "frameworks"
+        
+        if config_dir.exists():
+            for config_file in config_dir.glob("*.yaml"):
+                try:
+                    with open(config_file, 'r', encoding='utf-8') as f:
+                        framework_name = config_file.stem
+                        # Stocker la configuration si nécessaire
+                        self._logger.debug(f"Configuration chargée pour {framework_name}")
+                except Exception as e:
+                    self._logger.warning(f"Impossible de charger {config_file}: {e}")
+    
+    # -------------------------------------------------------------------------
+    # MÉTHODES DE GÉNÉRATION DE CODE
+    # -------------------------------------------------------------------------
+    
+    async def generate_code(self, plan: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Génère le code basé sur le plan d'implémentation.
+        
+        Args:
+            plan: Plan d'implémentation provenant de l'Architect
+            
+        Returns:
+            Dictionnaire avec les résultats de la génération
+        """
+        try:
+            self._logger.info("Démarrage de la génération de code...")
+            
+            # Valider le plan
+            if not self._validate_implementation_plan(plan):
+                return {
+                    "success": False,
+                    "error": "Plan d'implémentation invalide",
+                    "components_generated": 0
+                }
+            
+            # Créer les composants
+            components = self._create_components_from_plan(plan)
+            
+            # Générer les composants
+            results = []
+            for component in components:
+                result = await self._generate_component(component)
+                self.generated_components[component.name] = result
+                results.append(result)
+            
+            success = all(r.success for r in results)
+            
+            return {
+                "success": success,
+                "total_components": len(results),
+                "successful_components": sum(1 for r in results if r.success),
+                "failed_components": [r.component_name for r in results if not r.success],
+                "output_directory": str(self._get_output_directory())
+            }
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors de la génération de code: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "components_generated": 0
+            }
+    
+    def _validate_implementation_plan(self, plan: Dict[str, Any]) -> bool:
+        """
+        Valide le plan d'implémentation.
+        
+        Args:
+            plan: Plan à valider
+            
+        Returns:
+            True si le plan est valide
+        """
+        required_fields = ['architecture_id', 'components']
+        
+        for field in required_fields:
+            if field not in plan:
+                self._logger.error(f"Champ manquant dans le plan: {field}")
+                return False
+        
+        if not isinstance(plan['components'], list):
+            self._logger.error("Le champ 'components' doit être une liste")
+            return False
+        
+        return True
+    
+    def _create_components_from_plan(self, plan_data: Dict[str, Any]) -> List[CodeComponent]:
+        """
+        Crée des composants à partir des données du plan.
+        
+        Args:
+            plan_data: Données du plan
+            
+        Returns:
+            Liste des composants
+        """
+        components = []
+        
+        for comp_data in plan_data['components']:
+            try:
+                component = CodeComponent(
+                    name=comp_data.get('name', f"component_{len(components)}"),
+                    component_type=ComponentType(comp_data.get('type', 'backend_service')),
+                    language=CodeLanguage(comp_data.get('language', 'python')),
+                    framework=Framework(comp_data.get('framework')) if comp_data.get('framework') else None,
+                    description=comp_data.get('description', ''),
+                    dependencies=comp_data.get('dependencies', []),
+                    output_path=Path(comp_data.get('output_path', 'generated_code')),
+                    config=comp_data.get('config', {})
+                )
+                components.append(component)
+            except Exception as e:
+                self._logger.warning(f"Impossible de créer le composant {comp_data.get('name')}: {e}")
+        
+        return components
+    
+    async def _generate_component(self, component: CodeComponent) -> GenerationResult:
+        """
+        Génère un composant de code.
+        
+        Args:
+            component: Composant à générer
+            
+        Returns:
+            Résultat de la génération
+        """
+        try:
+            self._logger.info(f"Génération du composant: {component.name}")
+            
+            # Créer le répertoire de sortie
+            output_dir = component.output_path or self._get_output_directory() / component.name
+            output_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Déterminer le template à utiliser
+            template = self._select_template(component)
+            
+            if not template:
+                return GenerationResult(
+                    success=False,
+                    component_name=component.name,
+                    output_path=output_dir,
+                    errors=[f"Aucun template disponible pour {component.language.value}/{component.component_type.value}"]
+                )
+            
+            # Remplir le template
+            rendered_code = self._render_template(template, component)
+            
+            # Déterminer le nom du fichier
+            filename = self._get_filename(component)
+            filepath = output_dir / filename
+            
+            # Écrire le fichier
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(rendered_code)
+            
+            return GenerationResult(
+                success=True,
+                component_name=component.name,
+                output_path=output_dir,
+                files_created=[filepath]
+            )
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors de la génération du composant {component.name}: {e}")
+            return GenerationResult(
+                success=False,
+                component_name=component.name,
+                output_path=Path(),
+                errors=[str(e)]
+            )
+    
+    def _select_template(self, component: CodeComponent) -> str:
+        """
+        Sélectionne le template approprié pour un composant.
+        
+        Args:
+            component: Composant à générer
+            
+        Returns:
+            Template de code
+        """
+        template_key = f"{component.language.value}_{component.component_type.value}"
+        
+        if template_key in self.code_templates:
+            return self.code_templates[template_key]
+        
+        # Fallback par langage
+        if component.language == CodeLanguage.PYTHON:
+            return self.code_templates.get("python_fastapi_service", "")
+        elif component.language == CodeLanguage.JAVASCRIPT:
+            return self.code_templates.get("javascript_express_service", "")
+        elif component.language == CodeLanguage.SOLIDITY:
+            return self.code_templates.get("solidity_contract", "")
+        
+        return ""
+    
+    def _render_template(self, template: str, component: CodeComponent) -> str:
+        """
+        Remplit un template avec les données du composant.
+        
+        Args:
+            template: Template à remplir
+            component: Données du composant
+            
+        Returns:
+            Code généré
+        """
+        # Remplacer les variables de base
+        rendered = template.replace("{{ service_name }}", component.name)
+        rendered = rendered.replace("{{ component_name }}", component.name)
+        rendered = rendered.replace("{{ description }}", component.description)
+        rendered = rendered.replace("{{ version }}", "1.0.0")
+        
+        # Remplacer les variables spécifiques au langage
+        if component.language == CodeLanguage.PYTHON:
+            rendered = rendered.replace("{{ model_name }}", f"{component.name.capitalize()}Model")
+            rendered = rendered.replace("{{ port }}", str(component.config.get('port', 8000)))
+        elif component.language == CodeLanguage.SOLIDITY:
+            rendered = rendered.replace("{{ contract_name }}", component.name)
+            rendered = rendered.replace("{{ author }}", "SmartContractDevPipeline")
+            rendered = rendered.replace("{{ notice }}", component.description)
+            rendered = rendered.replace("{{ solidity_version }}", component.config.get('solidity_version', '0.8.19'))
+        
+        return rendered
+    
+    def _get_filename(self, component: CodeComponent) -> str:
+        """
+        Détermine le nom de fichier pour un composant.
+        
+        Args:
+            component: Composant
+            
+        Returns:
+            Nom de fichier
+        """
+        extensions = {
+            CodeLanguage.PYTHON: ".py",
+            CodeLanguage.JAVASCRIPT: ".js",
+            CodeLanguage.TYPESCRIPT: ".ts",
+            CodeLanguage.SOLIDITY: ".sol",
+            CodeLanguage.RUST: ".rs",
+            CodeLanguage.GO: ".go",
+            CodeLanguage.JAVA: ".java",
+            CodeLanguage.CSHARP: ".cs"
         }
         
-    def _load_templates(self) -> Dict[str, Any]:
-        """Charger les templates de code depuis le répertoire templates/."""
-        templates = {}
-        templates_dir = Path(__file__).parent / "templates"
+        extension = extensions.get(component.language, ".txt")
         
-        if templates_dir.exists():
-            for template_file in templates_dir.glob("**/*"):
-                if template_file.is_file():
-                    rel_path = template_file.relative_to(templates_dir)
-                    with open(template_file, 'r', encoding='utf-8') as f:
-                        templates[str(rel_path)] = f.read()
+        if component.component_type == ComponentType.BACKEND_SERVICE:
+            return f"main{extension}" if component.language == CodeLanguage.PYTHON else f"index{extension}"
+        elif component.component_type == ComponentType.SMART_CONTRACT:
+            return f"{component.name}{extension}"
+        elif component.component_type == ComponentType.FRONTEND_APP:
+            return f"{component.name}{extension}"
+        else:
+            return f"{component.name}{extension}"
+    
+    def _get_output_directory(self) -> Path:
+        """Retourne le répertoire de sortie par défaut"""
+        output_dir = project_root / "generated_code"
+        output_dir.mkdir(exist_ok=True)
+        return output_dir
+    
+    # -------------------------------------------------------------------------
+    # MÉTHODES UTILITAIRES
+    # -------------------------------------------------------------------------
+    
+    async def validate_code(self, code: str) -> Dict[str, Any]:
+        """
+        Valide du code.
         
-        # Templates par défaut
-        default_templates = {
-            "python/api/main.py": '''from fastapi import FastAPI, HTTPException, Depends
-from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-from typing import List, Optional
-import logging
+        Args:
+            code: Code à valider
+            
+        Returns:
+            Résultat de la validation
+        """
+        try:
+            self._logger.info("Validation de code...")
+            
+            # Implémentation de base
+            result = {
+                "valid": True,
+                "errors": [],
+                "warnings": [],
+                "suggestions": []
+            }
+            
+            # Vérifications basiques
+            if not code or len(code.strip()) == 0:
+                result["valid"] = False
+                result["errors"].append("Code vide")
+            
+            self._logger.info(f"Code validé: {result['valid']}")
+            return result
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors de la validation du code: {e}")
+            return {
+                "valid": False,
+                "errors": [str(e)],
+                "warnings": [],
+                "suggestions": []
+            }
+    
+    # -------------------------------------------------------------------------
+    # TEMPLATES DE CODE
+    # -------------------------------------------------------------------------
+    
+    def _get_fastapi_template(self) -> str:
+        """Retourne un template FastAPI de base"""
+        return '''"""
+{{ service_name }} - Service FastAPI
+"""
 
-# Configuration du logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import Optional
+from datetime import datetime
 
-app = FastAPI(title="{api_name}", version="1.0.0")
+app = FastAPI(title="{{ service_name }}", version="1.0.0")
 
-# Middleware CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
 
 @app.get("/")
 async def root():
-    """Endpoint racine."""
-    return {{"message": "{api_name} API", "version": "1.0.0"}}
+    return {"message": "Hello from {{ service_name }}"}
 
-@app.get("/health")
-async def health_check():
-    """Endpoint de santé."""
-    return {{"status": "healthy", "timestamp": "2024-01-01T00:00:00Z"}}
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
 
-# Add more endpoints based on requirements
-''',
-            "react/component/Component.jsx": '''import React, {{ useState, useEffect }} from 'react';
-import PropTypes from 'prop-types';
-import './{component_name}.css';
-
-/**
- * {component_name} - {description}
- */
-const {component_name} = ({{
-  initialValue = {default_value},
-  onChange = () => {{}},
-  className = '',
-  disabled = false,
-  ...props
-}}) => {{
-  const [value, setValue] = useState(initialValue);
-  
-  useEffect(() => {{
-    setValue(initialValue);
-  }}, [initialValue]);
-  
-  const handleChange = (newValue) => {{
-    if (!disabled) {{
-      setValue(newValue);
-      onChange(newValue);
-    }}
-  }};
-  
-  return (
-    <div className={`{component_name.lower()}-container ${{className}}`}}>
-      <div className="{component_name.lower()}-content">
-        {/* Implementation here */}
-      </div>
-    </div>
-  );
-}};
-
-{component_name}.propTypes = {{
-  initialValue: PropTypes.{prop_type},
-  onChange: PropTypes.func,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-}};
-
-{component_name}.defaultProps = {{
-  initialValue: {default_value},
-  onChange: () => {{}},
-  className: '',
-  disabled: false,
-}};
-
-export default {component_name};
-''',
-            "docker/Dockerfile.python": '''# Dockerfile for Python application
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
-COPY . .
-
-# Create non-root user
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
-USER appuser
-
-# Expose port
-EXPOSE 8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
-  CMD curl -f http://localhost:8000/health || exit 1
-
-# Command to run
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-'''
-        }
-        
-        templates.update(default_templates)
-        return templates
-    
-    def analyze_architecture(self, architecture_spec: Dict[str, Any]) -> Dict[str, Any]:
-        """Analyser l'architecture pour identifier les composants à développer."""
-        self.logger.info(f"Analyzing architecture: {architecture_spec.get('name', 'Unnamed')}")
-        
-        analysis = {
-            "project_name": architecture_spec.get("name", "Unknown"),
-            "backend_components": [],
-            "frontend_components": [],
-            "devops_components": [],
-            "database_components": [],
-            "api_endpoints": [],
-            "dependencies": {
-                "python": [],
-                "javascript": [],
-                "system": []
-            },
-            "technical_requirements": [],
-            "estimated_effort": {
-                "backend": 0,
-                "frontend": 0,
-                "devops": 0,
-                "total": 0
-            }
-        }
-        
-        # Analyse des composants
-        components = architecture_spec.get("components", [])
-        for component in components:
-            comp_type = component.get("type", "").lower()
-            comp_name = component.get("name", "")
-            comp_desc = component.get("description", "")
-            
-            comp_analysis = {
-                "name": comp_name,
-                "type": comp_type,
-                "description": comp_desc,
-                "complexity": component.get("complexity", "medium"),
-                "priority": component.get("priority", "medium"),
-                "estimated_hours": self._estimate_effort(component),
-                "dependencies": component.get("dependencies", []),
-                "technologies": component.get("technologies", [])
-            }
-            
-            if comp_type in ["api", "service", "microservice", "backend"]:
-                analysis["backend_components"].append(comp_analysis)
-                analysis["estimated_effort"]["backend"] += comp_analysis["estimated_hours"]
-                
-                # Extraire les endpoints
-                for endpoint in component.get("endpoints", []):
-                    analysis["api_endpoints"].append({
-                        "component": comp_name,
-                        "method": endpoint.get("method", "GET"),
-                        "path": endpoint.get("path", "/"),
-                        "description": endpoint.get("description", "")
-                    })
-                    
-            elif comp_type in ["frontend", "ui", "dashboard", "webapp"]:
-                analysis["frontend_components"].append(comp_analysis)
-                analysis["estimated_effort"]["frontend"] += comp_analysis["estimated_hours"]
-                
-            elif comp_type in ["database", "cache", "storage"]:
-                analysis["database_components"].append(comp_analysis)
-                
-            elif comp_type in ["infrastructure", "deployment", "ci_cd", "monitoring"]:
-                analysis["devops_components"].append(comp_analysis)
-                analysis["estimated_effort"]["devops"] += comp_analysis["estimated_hours"]
-        
-        # Calculer l'effort total
-        analysis["estimated_effort"]["total"] = (
-            analysis["estimated_effort"]["backend"] +
-            analysis["estimated_effort"]["frontend"] +
-            analysis["estimated_effort"]["devops"]
-        )
-        
-        # Identifier les dépendances
-        analysis["dependencies"]["python"] = self._extract_python_deps(architecture_spec)
-        analysis["dependencies"]["javascript"] = self._extract_javascript_deps(architecture_spec)
-        
-        self.logger.info(f"Analysis complete: {len(components)} components analyzed")
-        return analysis
-    
-    def generate_backend_code(self, component_spec: Dict[str, Any]) -> Dict[str, str]:
-        """Générer le code backend pour un composant spécifique."""
-        self.logger.info(f"Generating backend code for: {component_spec.get('name', 'Unknown')}")
-        
-        code_files = {}
-        component_name = component_spec.get("name", "unknown").replace(" ", "_").lower()
-        component_type = component_spec.get("type", "api").lower()
-        
-        # Créer la structure de répertoire
-        base_dir = self.project_root / "backend" / component_name
-        base_dir.mkdir(parents=True, exist_ok=True)
-        
-        if component_type == "api":
-            # Générer l'API FastAPI complète
-            api_structure = {
-                "main.py": self._generate_api_main(component_spec),
-                "requirements.txt": self._generate_requirements(component_spec),
-                "Dockerfile": self._generate_dockerfile("python", component_spec),
-                "docker-compose.yml": self._generate_docker_compose(component_spec),
-                "app/__init__.py": "",
-                "app/api/__init__.py": "",
-                "app/api/v1/__init__.py": "",
-                "app/api/v1/endpoints/__init__.py": "",
-                "app/core/__init__.py": "",
-                "app/core/config.py": self._generate_config(component_spec),
-                "app/core/security.py": self._generate_security_config(),
-                "app/models/__init__.py": "",
-                "app/models/base.py": self._generate_base_model(),
-                "app/schemas/__init__.py": "",
-                "app/db/__init__.py": "",
-                "app/db/session.py": self._generate_db_session(),
-                "tests/__init__.py": "",
-                "tests/test_api.py": self._generate_api_tests(component_spec)
-            }
-            
-            for file_path, content in api_structure.items():
-                full_path = base_dir / file_path
-                full_path.parent.mkdir(parents=True, exist_ok=True)
-                if content:
-                    full_path.write_text(content, encoding='utf-8')
-                    code_files[str(full_path.relative_to(self.project_root))] = content
-        
-        elif component_type == "database":
-            # Générer les modèles de base de données
-            db_files = self._generate_database_code(component_spec)
-            for file_path, content in db_files.items():
-                full_path = base_dir / file_path
-                full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(content, encoding='utf-8')
-                code_files[str(full_path.relative_to(self.project_root))] = content
-        
-        elif component_type == "service":
-            # Générer un service microservice
-            service_files = self._generate_service_code(component_spec)
-            for file_path, content in service_files.items():
-                full_path = base_dir / file_path
-                full_path.parent.mkdir(parents=True, exist_ok=True)
-                full_path.write_text(content, encoding='utf-8')
-                code_files[str(full_path.relative_to(self.project_root))] = content
-        
-        self.code_metrics["files_created"] += len(code_files)
-        self.logger.info(f"Generated {len(code_files)} backend files")
-        
-        return code_files
-    
-    def generate_frontend_code(self, component_spec: Dict[str, Any]) -> Dict[str, str]:
-        """Générer le code frontend pour un composant spécifique."""
-        self.logger.info(f"Generating frontend code for: {component_spec.get('name', 'Unknown')}")
-        
-        code_files = {}
-        component_name = component_spec.get("name", "unknown").replace(" ", "_").lower()
-        component_type = component_spec.get("type", "dashboard").lower()
-        
-        # Créer la structure de répertoire
-        base_dir = self.project_root / "frontend" / component_name
-        base_dir.mkdir(parents=True, exist_ok=True)
-        
-        if component_type == "dashboard":
-            # Générer un dashboard React/Next.js complet
-            frontend_structure = {
-                "package.json": self._generate_package_json(component_spec),
-                "next.config.js": self._generate_next_config(component_spec),
-                "tailwind.config.js": self._generate_tailwind_config(),
-                "postcss.config.js": self._generate_postcss_config(),
-                "tsconfig.json": self._generate_tsconfig(),
-                "app/globals.css": self._generate_global_css(),
-                "app/layout.tsx": self._generate_layout_component(component_spec),
-                "app/page.tsx": self._generate_main_page(component_spec),
-                "components/ui/button.tsx": self._generate_button_component(),
-                "components/ui/card.tsx": self._generate_card_component(),
-                "components/dashboard/Header.tsx": self._generate_dashboard_header(component_spec),
-                "components/dashboard/Sidebar.tsx": self._generate_dashboard_sidebar(component_spec),
-                "components/dashboard/MetricsCard.tsx": self._generate_metrics_card(component_spec),
-                "lib/utils.ts": self._generate_utils(),
-                "hooks/useWeb3.ts": self._generate_web3_hook(),
-                "contexts/Web3Context.tsx": self._generate_web3_context(),
-                "public/favicon.ico": "",
-                "README.md": self._generate_frontend_readme(component_spec)
-            }
-            
-            for file_path, content in frontend_structure.items():
-                full_path = base_dir / file_path
-                full_path.parent.mkdir(parents=True, exist_ok=True)
-                if content:
-                    full_path.write_text(content, encoding='utf-8')
-                    code_files[str(full_path.relative_to(self.project_root))] = content
-        
-        self.code_metrics["files_created"] += len(code_files)
-        self.logger.info(f"Generated {len(code_files)} frontend files")
-        
-        return code_files
-    
-    def generate_devops_config(self, infra_spec: Dict[str, Any]) -> Dict[str, str]:
-        """Générer les configurations DevOps."""
-        self.logger.info(f"Generating DevOps config for infrastructure")
-        
-        config_files = {}
-        infra_name = infra_spec.get("name", "infrastructure").replace(" ", "_").lower()
-        
-        # Créer la structure de répertoire
-        base_dir = self.project_root / "devops" / infra_name
-        base_dir.mkdir(parents=True, exist_ok=True)
-        
-        # Générer les configurations Docker
-        docker_configs = {
-            "docker-compose.prod.yml": self._generate_docker_compose_prod(infra_spec),
-            "docker-compose.dev.yml": self._generate_docker_compose_dev(infra_spec),
-            "nginx/nginx.conf": self._generate_nginx_config(infra_spec),
-            "prometheus/prometheus.yml": self._generate_prometheus_config(),
-            "grafana/dashboards/dashboard.json": self._generate_grafana_dashboard(),
-            "scripts/deploy.sh": self._generate_deploy_script(infra_spec),
-            "scripts/backup.sh": self._generate_backup_script(),
-        }
-        
-        # Générer les configurations CI/CD
-        cicd_configs = {
-            ".github/workflows/ci.yml": self._generate_ci_pipeline(infra_spec),
-            ".github/workflows/cd.yml": self._generate_cd_pipeline(infra_spec),
-            ".github/workflows/deploy.yml": self._generate_deploy_pipeline(infra_spec),
-        }
-        
-        # Générer les configurations Kubernetes
-        k8s_configs = {
-            "kubernetes/namespace.yaml": self._generate_k8s_namespace(infra_spec),
-            "kubernetes/deployment.yaml": self._generate_k8s_deployment(infra_spec),
-            "kubernetes/service.yaml": self._generate_k8s_service(infra_spec),
-            "kubernetes/ingress.yaml": self._generate_k8s_ingress(infra_spec),
-            "kubernetes/configmap.yaml": self._generate_k8s_configmap(infra_spec),
-            "kubernetes/secrets.yaml": self._generate_k8s_secrets_template(),
-            "kubernetes/hpa.yaml": self._generate_k8s_hpa(infra_spec),
-        }
-        
-        # Combiner tous les fichiers
-        all_configs = {**docker_configs, **cicd_configs, **k8s_configs}
-        
-        for file_path, content in all_configs.items():
-            full_path = base_dir / file_path
-            full_path.parent.mkdir(parents=True, exist_ok=True)
-            if content:
-                full_path.write_text(content, encoding='utf-8')
-                config_files[str(full_path.relative_to(self.project_root))] = content
-        
-        self.code_metrics["files_created"] += len(config_files)
-        self.logger.info(f"Generated {len(config_files)} DevOps config files")
-        
-        return config_files
-    
-    def implement_api_endpoints(self, endpoint_specs: List[Dict[str, Any]]) -> Dict[str, str]:
-        """Implémenter les endpoints API REST/GraphQL."""
-        self.logger.info(f"Implementing {len(endpoint_specs)} API endpoints")
-        
-        endpoint_files = {}
-        
-        for endpoint in endpoint_specs:
-            component_name = endpoint.get("component", "api")
-            endpoint_path = endpoint.get("path", "/")
-            method = endpoint.get("method", "GET").upper()
-            
-            # Générer le fichier d'endpoint
-            endpoint_code = self._generate_endpoint_code(endpoint)
-            
-            # Déterminer le chemin du fichier
-            safe_component = component_name.replace(" ", "_").lower()
-            safe_endpoint = endpoint_path.replace("/", "_").strip("_")
-            file_name = f"app/api/v1/endpoints/{safe_endpoint}.py"
-            
-            full_path = self.project_root / "backend" / safe_component / file_name
-            full_path.parent.mkdir(parents=True, exist_ok=True)
-            full_path.write_text(endpoint_code, encoding='utf-8')
-            
-            endpoint_files[str(full_path.relative_to(self.project_root))] = endpoint_code
-        
-        return endpoint_files
-    
-    def integrate_database(self, db_spec: Dict[str, Any]) -> Dict[str, str]:
-        """Intégrer les modèles de base de données et ORM."""
-        self.logger.info(f"Integrating database: {db_spec.get('type', 'Unknown')}")
-        
-        db_files = {}
-        db_type = db_spec.get("type", "postgresql").lower()
-        db_name = db_spec.get("name", "database").replace(" ", "_").lower()
-        
-        # Générer les modèles basés sur le schéma
-        schema = db_spec.get("schema", {})
-        models = schema.get("tables", [])
-        
-        # Fichier de configuration de la base de données
-        db_config = self._generate_database_config(db_spec)
-        config_path = self.project_root / "backend" / "shared" / "db" / "config.py"
-        config_path.parent.mkdir(parents=True, exist_ok=True)
-        config_path.write_text(db_config, encoding='utf-8')
-        db_files[str(config_path.relative_to(self.project_root))] = db_config
-        
-        # Générer les modèles pour chaque table
-        for table in models:
-            model_code = self._generate_model_code(table, db_type)
-            model_name = table.get("name", "Unknown").replace(" ", "_").lower()
-            model_path = self.project_root / "backend" / "shared" / "models" / f"{model_name}.py"
-            model_path.parent.mkdir(parents=True, exist_ok=True)
-            model_path.write_text(model_code, encoding='utf-8')
-            db_files[str(model_path.relative_to(self.project_root))] = model_code
-        
-        # Générer les migrations
-        migration_code = self._generate_migration_script(models, db_type)
-        migration_path = self.project_root / "backend" / "shared" / "db" / "migrations.py"
-        migration_path.write_text(migration_code, encoding='utf-8')
-        db_files[str(migration_path.relative_to(self.project_root))] = migration_code
-        
-        return db_files
-    
-    # Méthodes d'aide privées
-    def _estimate_effort(self, component: Dict[str, Any]) -> int:
-        """Estimer l'effort en heures pour un composant."""
-        complexity = component.get("complexity", "medium")
-        base_hours = {
-            "low": 4,
-            "medium": 8,
-            "high": 16,
-            "very_high": 32
-        }
-        return base_hours.get(complexity, 8)
-    
-    def _extract_python_deps(self, spec: Dict[str, Any]) -> List[str]:
-        """Extraire les dépendances Python."""
-        deps = [
-            "fastapi==0.104.1",
-            "uvicorn[standard]==0.24.0",
-            "sqlalchemy==2.0.23",
-            "alembic==1.12.1",
-            "pydantic==2.5.0",
-            "python-jose[cryptography]==3.3.0",
-            "passlib[bcrypt]==1.7.4",
-            "python-multipart==0.0.6",
-            "httpx==0.25.1",
-            "redis==5.0.1",
-            "celery==5.3.4",
-            "pytest==7.4.3",
-            "pytest-asyncio==0.21.1"
-        ]
-        return deps
-    
-    def _extract_javascript_deps(self, spec: Dict[str, Any]) -> List[str]:
-        """Extraire les dépendances JavaScript."""
-        deps = {
-            "dependencies": [
-                "next@14.0.4",
-                "react@18.2.0",
-                "react-dom@18.2.0",
-                "tailwindcss@3.3.5",
-                "ethers@6.9.0",
-                "wagmi@1.4.7",
-                "viem@1.19.7",
-                "@tanstack/react-query@5.12.0",
-                "zustand@4.4.7",
-                "axios@1.6.2"
-            ],
-            "devDependencies": [
-                "@types/node@20.10.0",
-                "@types/react@18.2.45",
-                "@types/react-dom@18.2.18",
-                "typescript@5.3.3",
-                "eslint@8.55.0",
-                "prettier@3.1.0"
-            ]
-        }
-        return deps
-    
-    def _generate_api_main(self, spec: Dict[str, Any]) -> str:
-        """Générer le fichier main.py pour une API."""
-        api_name = spec.get("name", "API Service")
-        api_version = spec.get("version", "1.0.0")
-        
-        return f'''from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
-import logging
-from app.api.v1.api import api_router
-from app.core.config import settings
-
-# Configuration du logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Gestion du cycle de vie de l'application."""
-    # Démarrage
-    logger.info("Starting {api_name}...")
-    yield
-    # Arrêt
-    logger.info("Shutting down {api_name}...")
-
-app = FastAPI(
-    title="{api_name}",
-    description="API service for {api_name}",
-    version="{api_version}",
-    lifespan=lifespan
-)
-
-# Middleware CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Inclure les routes
-app.include_router(api_router, prefix="/api/v1")
-
-@app.get("/")
-async def root():
-    """Endpoint racine."""
-    return {{"message": "{api_name}", "version": "{api_version}"}}
-
-@app.get("/health")
-async def health_check():
-    """Endpoint de santé."""
-    return {{"status": "healthy", "service": "{api_name}"}}
+@app.post("/items/")
+async def create_item(item: Item):
+    return {"item": item}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=settings.DEBUG
-    )
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 '''
     
-    def _generate_requirements(self, spec: Dict[str, Any]) -> str:
-        """Générer le fichier requirements.txt."""
-        deps = self._extract_python_deps(spec)
-        return "\n".join(deps)
-    
-    def _generate_dockerfile(self, language: str, spec: Dict[str, Any]) -> str:
-        """Générer un Dockerfile."""
-        if language == "python":
-            return '''# Dockerfile for Python API
-FROM python:3.11-slim as builder
+    def _get_express_template(self) -> str:
+        """Retourne un template Express.js de base"""
+        return '''/**
+ * {{ service_name }} - Service Express.js
+ */
 
-WORKDIR /app
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+app.use(express.json());
 
-# Create virtual environment
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+app.get('/', (req, res) => {
+    res.json({ message: 'Hello from {{ service_name }}' });
+});
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+app.get('/items/:id', (req, res) => {
+    res.json({ item_id: req.params.id });
+});
 
-# Runtime stage
-FROM python:3.11-slim
+app.post('/items', (req, res) => {
+    res.json({ item: req.body });
+});
 
-WORKDIR /app
-
-# Install runtime dependencies
-RUN apt-get update && apt-get install -y \
-    libpq5 \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy virtual environment
-COPY --from=builder /opt/venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Copy application code
-COPY . .
-
-# Create non-root user
-RUN groupadd -r appgroup && useradd -r -g appgroup -u 1000 appuser
-RUN chown -R appuser:appgroup /app
-USER appuser
-
-# Expose port
-EXPOSE 8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\
-  CMD curl -f http://localhost:8000/health || exit 1
-
-# Command to run
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+app.listen(PORT, () => {
+    console.log(`{{ service_name }} listening on port ${PORT}`);
+});
 '''
-        return "# Dockerfile placeholder"
     
-    # ... (autres méthodes de génération)
+    def _get_solidity_template(self) -> str:
+        """Retourne un template Solidity de base"""
+        return '''// SPDX-License-Identifier: MIT
+pragma solidity ^{{ solidity_version }};
+
+/**
+ * @title {{ contract_name }}
+ * @dev {{ description }}
+ */
+
+contract {{ contract_name }} {
+    address public owner;
     
-    def execute_capability(self, capability_name: str, **kwargs) -> Any:
-        """Exécuter une capacité spécifique de l'agent."""
-        if capability_name == "analyze_architecture":
-            return self.analyze_architecture(kwargs.get("architecture_spec", {}))
-        elif capability_name == "generate_backend_code":
-            return self.generate_backend_code(kwargs.get("component_spec", {}))
-        elif capability_name == "generate_frontend_code":
-            return self.generate_frontend_code(kwargs.get("component_spec", {}))
-        elif capability_name == "generate_devops_config":
-            return self.generate_devops_config(kwargs.get("infra_spec", {}))
-        elif capability_name == "implement_api_endpoints":
-            return self.implement_api_endpoints(kwargs.get("endpoint_specs", []))
-        elif capability_name == "integrate_database":
-            return self.integrate_database(kwargs.get("db_spec", {}))
+    struct Item {
+        string name;
+        address owner;
+        uint256 createdAt;
+    }
+    
+    Item[] public items;
+    
+    event ItemCreated(uint256 indexed itemId, address indexed owner, string name);
+    
+    constructor() {
+        owner = msg.sender;
+    }
+    
+    function createItem(string memory name) external returns (uint256) {
+        require(bytes(name).length > 0, "Name cannot be empty");
+        
+        uint256 newItemId = items.length;
+        items.push(Item({
+            name: name,
+            owner: msg.sender,
+            createdAt: block.timestamp
+        }));
+        
+        emit ItemCreated(newItemId, msg.sender, name);
+        return newItemId;
+    }
+    
+    function getItem(uint256 itemId) external view returns (Item memory) {
+        require(itemId < items.length, "Item does not exist");
+        return items[itemId];
+    }
+    
+    function getTotalItems() external view returns (uint256) {
+        return items.length;
+    }
+}
+'''
+    
+    def _get_react_template(self) -> str:
+        """Retourne un template React de base"""
+        return '''import React, { useState, useEffect } from 'react';
+
+const {{ component_name }} = () => {
+    const [message, setMessage] = useState('Hello from {{ component_name }}');
+    
+    useEffect(() => {
+        // Initialization code here
+        console.log('Component mounted');
+    }, []);
+    
+    return (
+        <div>
+            <h1>{{ component_name }}</h1>
+            <p>{message}</p>
+            <p>{{ description }}</p>
+        </div>
+    );
+};
+
+export default {{ component_name }};
+'''
+
+# -----------------------------------------------------------------------------
+# POINT D'ENTRÉE POUR LES TESTS
+# -----------------------------------------------------------------------------
+
+async def test_coder_agent():
+    """Teste l'agent Coder"""
+    print("🧪 Test de l'agent Coder...")
+    
+    # Créer l'agent
+    agent = CoderAgent()
+    
+    print(f"  Création: {agent}")
+    print(f"  Nom: {agent.name}")
+    
+    # Initialiser
+    success = await agent.initialize()
+    print(f"  Initialisation: {'✅' if success else '❌'}")
+    
+    if success:
+        # Tester la génération de code
+        plan = {
+            "architecture_id": "test_arch_1",
+            "components": [
+                {
+                    "name": "user-service",
+                    "type": "backend_service",
+                    "language": "python",
+                    "framework": "fastapi",
+                    "description": "Service de gestion des utilisateurs",
+                    "config": {"port": 8001}
+                },
+                {
+                    "name": "UserContract",
+                    "type": "smart_contract", 
+                    "language": "solidity",
+                    "description": "Contrat intelligent pour les utilisateurs"
+                }
+            ]
+        }
+        
+        result = await agent.generate_code(plan)
+        
+        if result["success"]:
+            print(f"  Génération de code: ✅")
+            print(f"  Composants générés: {result['successful_components']}/{result['total_components']}")
         else:
-            return super().execute_capability(capability_name, **kwargs)
+            print(f"  ❌ Échec de la génération: {result.get('error', 'Erreur inconnue')}")
+    
+    # Arrêter l'agent
+    await agent.shutdown()
+    print(f"  Statut final: {agent.status}")
+    
+    print("✅ Test CoderAgent terminé")
+
+if __name__ == "__main__":
+    # Exécuter le test si le fichier est exécuté directement
+    asyncio.run(test_coder_agent())
