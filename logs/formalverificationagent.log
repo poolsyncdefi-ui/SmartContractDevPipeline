@@ -1,0 +1,202 @@
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Certora Prover: ❌
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: object dict can't be used in 'await' expression
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 412, in initialize
+    success = await self._initialize_components()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object dict can't be used in 'await' expression
+
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - 🧪 Mode simulation - vérification simulée
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211192850.pdf
+2026-02-11 19:28:50 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: verified
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - WARNING - Dépendance smart_contract: Non disponible
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - ERROR - Dépendances critiques manquantes
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 19:42:49 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - WARNING - Dépendance smart_contract: Non disponible
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - ERROR - Dépendances critiques manquantes
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Génération automatique de la spécification...
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - Spécification sauvegardée: specs\SPEC-20260211194409.spec
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - WARNING - Certora non disponible, utilisation du mode simulation
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - 🧪 Mode simulation - vérification simulée
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211194409.pdf
+2026-02-11 19:44:09 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: verified (108ms)
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - WARNING - Dépendance smart_contract: Non disponible
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - ERROR - Dépendances critiques manquantes
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Génération automatique de la spécification...
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - Spécification sauvegardée: specs\SPEC-20260211194426.spec
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - WARNING - Certora non disponible, utilisation du mode simulation
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - 🧪 Mode simulation - vérification simulée
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211194426.pdf
+2026-02-11 19:44:26 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: verified (106ms)
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Certora Prover: ❌
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: object dict can't be used in 'await' expression
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 412, in initialize
+    success = await self._initialize_components()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object dict can't be used in 'await' expression
+
+2026-02-11 19:52:22 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Certora Prover: ❌
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: object dict can't be used in 'await' expression
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 412, in initialize
+    success = await self._initialize_components()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object dict can't be used in 'await' expression
+
+2026-02-11 20:02:20 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Certora Prover: ❌
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 20:05:07 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé avec succès
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Certora Prover: ❌
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé avec succès
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Génération automatique de la spécification...
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - Spécification sauvegardée: specs\SPEC-20260211200722.spec
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - WARNING - Certora non disponible, utilisation du mode simulation
+2026-02-11 20:07:22 - agent.FormalVerificationAgent - INFO - 🧪 Mode simulation - vérification simulée
+2026-02-11 20:07:23 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211200722.pdf
+2026-02-11 20:07:23 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: verified (112ms)
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Composants initialisés: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Agent vérification formelle initialisé avec succès
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - 🔬 Vérification formelle de ./contracts/Token.sol
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Génération automatique de la spécification...
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - ⚙️ Génération d'invariants
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - Spécification sauvegardée: specs\SPEC-20260211201128.spec
+2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - 🔍 Exécution Certora Prover sur Token
+2026-02-11 20:11:34 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211201128.pdf
+2026-02-11 20:11:34 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: failed (5372ms)

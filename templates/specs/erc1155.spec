@@ -1,0 +1,1 @@
+// Template for erc1155 not found

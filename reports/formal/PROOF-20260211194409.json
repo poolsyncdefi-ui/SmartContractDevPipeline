@@ -1,0 +1,22 @@
+{
+  "id": "PROOF-20260211194409",
+  "spec_id": "SPEC-20260211194409",
+  "contract": "Token",
+  "status": "verified",
+  "duration_ms": 108,
+  "verified_properties": [
+    "No reentrancy (simulated)",
+    "Integer safety (simulated)",
+    "Access control (simulated)",
+    "ERC20 compliance (simulated)",
+    "owner != address(0) (simulated)",
+    "msg.value >= 0 (simulated)"
+  ],
+  "failed_properties": [],
+  "counterexamples": [],
+  "certificate_path": null,
+  "log_path": "logs\\formal\\PROOF-20260211194409.log",
+  "completed_at": "2026-02-11T19:44:09.825717",
+  "tool_used": "simulation",
+  "confidence_score": 0.8
+}

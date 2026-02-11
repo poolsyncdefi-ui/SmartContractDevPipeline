@@ -1,0 +1,10 @@
+Verification Proof: PROOF-20260211201128
+Contract: Token
+Tool: certora
+Status: failed
+Duration: 5372ms
+Confidence: 0.3
+
+Verified Properties:
+
+Failed Properties:

@@ -1,0 +1,1 @@
+// Template for erc721 not found

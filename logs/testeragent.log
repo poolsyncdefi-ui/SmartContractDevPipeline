@@ -69,3 +69,18 @@
 2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent base_agent initialisé avec succès
 2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
 2026-02-11 18:40:26 - agent.TesterAgent - INFO - Scan de sécurité sur ./contracts avec ['slither', 'mythril', 'echidna']
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 20:11:28 - agent.TesterAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 20:11:28 - agent.TesterAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Vérification des dépendances: ['architect', 'coder']
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 20:11:28 - agent.TesterAgent - INFO - Agent tester initialisé avec succès

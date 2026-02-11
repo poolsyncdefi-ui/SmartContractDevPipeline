@@ -1,0 +1,16 @@
+Verification Proof: PROOF-20260211194409
+Contract: Token
+Tool: simulation
+Status: verified
+Duration: 108ms
+Confidence: 0.8
+
+Verified Properties:
+  ✅ No reentrancy (simulated)
+  ✅ Integer safety (simulated)
+  ✅ Access control (simulated)
+  ✅ ERC20 compliance (simulated)
+  ✅ owner != address(0) (simulated)
+  ✅ msg.value >= 0 (simulated)
+
+Failed Properties:
