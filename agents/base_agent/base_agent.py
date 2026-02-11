@@ -338,23 +338,13 @@ class BaseAgent(ABC):
             self._logger.setLevel(getattr(logging, log_level.upper(), logging.INFO))
             
             # Extraire les capacités
-            capabilities_info = agent_info.get('capabilities', [])
-            self._capabilities = [
-                AgentCapability(
-                    name=cap.get('name', ''),
-                    description=cap.get('description', ''),
-                    version=cap.get('version', '1.0.0'),
-                    parameters=cap.get('parameters', []),
-                    return_type=cap.get('return_type')
-                )
-                for cap in capabilities_info if isinstance(cap, dict)
-            ]
+            self._capabilities = agent_info.get('capabilities', [])
             
             # Extraire les dépendances
             self._dependencies = agent_info.get('dependencies', [])
             
             self._logger.info(f"Configuration chargée: {self._name} v{self._version}")
-            self._logger.debug(f"Capacités: {[c.name for c in self._capabilities]}")
+            self._logger.debug(f"Capacités: {self._capabilities}")
             
             return merged_config
             
@@ -364,6 +354,16 @@ class BaseAgent(ABC):
         except Exception as e:
             self._logger.error(f"Erreur lors du chargement de la configuration {config_path}: {e}")
             return self.DEFAULT_CONFIG
+    
+    @property
+    def capabilities(self) -> List[str]:
+        """Retourne la liste des capacités de l'agent."""
+        return self._capabilities.copy() if self._capabilities else []
+
+    def has_capability(self, capability_name: str) -> bool:
+        """Vérifie si l'agent a une capacité spécifique."""
+        return capability_name in self._capabilities
+    
     
     def _merge_configs(self, default: Dict, custom: Dict) -> Dict:
         """Fusionne deux configurations de manière récursive"""

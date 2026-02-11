@@ -1,0 +1,71 @@
+2026-02-11 08:51:38 - agent.TesterAgent - INFO - Configuration chargée: tester v1.0.0
+2026-02-11 08:51:38 - agent.TesterAgent - INFO - Agent tester créé (config: agents/tester/config.yaml)
+2026-02-11 18:11:20 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:11:24 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:14:54 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:16:13 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:17:03 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:17:35 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:18:44 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:19:34 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:20:30 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:23:03 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:27:56 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:27:56 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Agent Tester initialisé avec la configuration de 
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Vérification des dépendances: ['architect', 'coder']
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Composants du TesterAgent initialisés avec succès
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 18:30:05 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Agent Tester initialisé avec la configuration de 
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Vérification des dépendances: ['architect', 'coder']
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Composants du TesterAgent initialisés avec succès
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 18:31:43 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-11 18:36:56 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:36:56 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:37:42 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:37:42 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 18:38:46 - agent.TesterAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 18:38:46 - agent.TesterAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Vérification des dépendances: ['architect', 'coder']
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 18:38:46 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 18:40:26 - agent.TesterAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 18:40:26 - agent.TesterAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Vérification des dépendances: ['architect', 'coder']
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-11 18:40:26 - agent.TesterAgent - INFO - Scan de sécurité sur ./contracts avec ['slither', 'mythril', 'echidna']
