@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestToken - Documentation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f1215;
+            color: #fff;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 300px;
+            background: #1a1e24;
+            border-right: 1px solid #2a2f35;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .toc {
+            list-style: none;
+        }
+        
+        .toc li {
+            margin: 10px 0;
+        }
+        
+        .toc a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .toc a:hover {
+            color: #00ff88;
+            background: #2a2f35;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+        
+        .toc ul a {
+            font-size: 14px;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #00ff88;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 25px 0 10px;
+        }
+        
+        pre {
+            background: #1a1e24;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #2a2f35;
+        }
+        
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background: #1a1e24;
+            color: #888;
+            font-weight: 500;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        .badge-container {
+            margin: 20px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-license {
+            background: #2a2f35;
+            color: #fff;
+        }
+        
+        .badge-version {
+            background: #8b5cf6;
+            color: #fff;
+        }
+        
+        .badge-risk-low {
+            background: #10b981;
+            color: #fff;
+        }
+        
+        .badge-risk-medium {
+            background: #ffd700;
+            color: #000;
+        }
+        
+        .badge-risk-high {
+            background: #ef4444;
+            color: #fff;
+        }
+        
+        .badge-visibility-private {
+            background: #6b7280;
+            color: #fff;
+        }
+        
+        .badge-visibility-internal {
+            background: #8b5cf6;
+            color: #fff;
+        }
+        
+        .badge-mutability-view {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .badge-mutability-pure {
+            background: #10b981;
+            color: #fff;
+        }
+        
+        .badge-mutability-payable {
+            background: #f59e0b;
+            color: #000;
+        }
+        
+        .badge-virtual, .badge-override {
+            background: #ec4899;
+            color: #fff;
+        }
+        
+        .function-toc {
+            background: #1a1e24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .function-toc a {
+            color: #888;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: #2a2f35;
+            font-size: 14px;
+        }
+        
+        .function-toc a:hover {
+            color: #00ff88;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00ff88;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .back-to-top:hover {
+            background: #00cc88;
+        }
+        
+        .mermaid {
+            background: #1a1e24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Inter'
+        });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>📚 Documentation</h2>
+        <ul class='toc'>
+<li><a href='#overview'>📋 Overview</a>
+</li>
+<li><a href='#architecture'>🏗️ Architecture</a>
+</li>
+<li><a href='#contracts'>📜 Contracts</a>
+</li>
+<li><a href='#functions'>⚙️ Functions</a>
+<ul>
+</ul>
+</li>
+<li><a href='#events'>📢 Events</a>
+</li>
+<li><a href='#security'>🛡️ Security</a>
+</li>
+<li><a href='#deployment'>🚀 Deployment</a>
+</li>
+<li><a href='#examples'>💡 Examples</a>
+</li>
+<li><a href='#changelog'>📅 Changelog</a>
+</li>
+</ul>
+    </div>
+    
+    <div class="content">
+        <section id='overview' class='doc-section'>
+<h1 id="testtoken-smart-contract">📄 TestToken Smart Contract</h1>
+<div class='badge-container'>
+<span class='badge badge-license'>MIT</span>
+<span class='badge badge-version'>Solidity ^0.8.19</span>
+<span class='badge badge-risk badge-low'>Risque LOW</span>
+</div>
+
+<p>A simple test token contract</p>
+<p><em>Note: For demonstration purposes</em></p>
+<h2 id="quick-stats">📊 Quick Stats</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Functions</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Events</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Modifiers</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Lines of Code</td>
+<td>42</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quick-links">🔗 Quick Links</h2>
+<ul>
+<li><a href="#architecture">🏗️ Architecture</a></li>
+<li><a href="#contracts">📜 Contract Details</a></li>
+<li><a href="#functions">⚙️ Functions</a></li>
+<li><a href="#events">📢 Events</a></li>
+<li><a href="#modifiers">🔒 Modifiers</a></li>
+<li><a href="#security">🛡️ Security</a></li>
+<li><a href="#deployment">🚀 Deployment</a></li>
+<li><a href="#examples">💡 Examples</a></li>
+</ul>
+</section>
+<section id='architecture' class='doc-section'>
+<h2 id="architecture">🏗️ Architecture</h2>
+<h3 id="inheritance-diagram">📊 Inheritance Diagram</h3>
+<div class="codehilite"><pre><span></span><code><span class="c">%%{init: {&#39;theme&#39;:&#39;dark&#39;}}%%</span>
+<span class="n">classDiagram</span>
+<span class="w">    </span><span class="s">class</span><span class="w"> </span><span class="s">TestToken</span><span class="w"> </span><span class="s">{</span>
+<span class="w">        </span><span class="o">+</span><span class="n">transfer</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">TestToken</span><span class="w"> </span><span class="o">--|&gt;</span><span class="w"> </span><span class="n">Ownable</span>
+</code></pre></div>
+
+<h3 id="dependencies">🔗 Dependencies</h3>
+<div class="codehilite"><pre><span></span><code><span class="o">%%</span><span class="err">{</span><span class="nl">init</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;theme&#39;</span><span class="err">:</span><span class="s1">&#39;dark&#39;</span><span class="err">}}</span><span class="o">%%</span>
+<span class="n">graph</span><span class="w"> </span><span class="n">TD</span>
+<span class="w">    </span><span class="n">TestToken</span><span class="o">[</span><span class="n">[TestToken</span><span class="o">]</span><span class="err">]</span>
+<span class="w">    </span><span class="n">Ownable</span><span class="p">(</span><span class="o">[</span><span class="n">Ownable</span><span class="o">]</span><span class="p">)</span>
+<span class="w">    </span><span class="n">TestToken</span><span class="w"> </span><span class="c1">--&gt; Ownable</span>
+</code></pre></div>
+
+<h3 id="imports">📦 Imports</h3>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Type</th>
+<th>Symbols</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@openzeppelin/contracts/access/Ownable.sol</td>
+<td>external</td>
+<td><code>*</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="inheritance">🧬 Inheritance</h3>
+<ul>
+<li><code>Ownable</code></li>
+</ul>
+</section>
+<section id='contracts' class='doc-section'>
+<h2 id="contract-details">📜 Contract Details</h2>
+<h3 id="state-variables">🔧 State Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Visibility</th>
+<th>Constant</th>
+<th>Immutable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalSupply</td>
+<td><code>uint256</code></td>
+<td>public</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>balanceOf</td>
+<td><code>public</code></td>
+<td>internal</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id='functions' class='doc-section'>
+<h2 id="functions">⚙️ Functions</h2>
+<div class='function-toc'>
+- [`transfer`](#transfer)
+</div>
+
+<h3 id="transfer"><code>transfer</code></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">function</span><span class="w"> </span><span class="nv">transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">to</span><span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">amount</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Description:</strong> Transfer tokens to another address</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>to</td>
+<td><code>address</code></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>uint256</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visibility:</strong> <code>public</code> | <strong>Mutability:</strong> <code>nonpayable</code> | <strong>Line:</strong> 32</p>
+<p><a href="#functions">🔝 Back to Functions</a></p>
+<hr />
+</section>
+<section id='events' class='doc-section'>
+<h2 id="events">📢 Events</h2>
+<h3 id="transfer"><code>Transfer</code></h3>
+<div class="codehilite"><pre><span></span><code><span class="kt">event</span><span class="w"> </span><span class="nv">Transfer</span><span class="p">(</span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>indexed<span class="p">,</span><span class="w"> </span><span class="kt">address</span><span class="w"> </span><span class="nv">indexed</span><span class="w"> </span>indexed<span class="p">,</span><span class="w"> </span><span class="kt">uint256</span><span class="w"> </span><span class="nv">value</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Indexed</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indexed</td>
+<td><code>address</code></td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>indexed</td>
+<td><code>address</code></td>
+<td>✓</td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>uint256</code></td>
+<td>✗</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Line:</strong> 19</p>
+<p><a href="#events">🔝 Back to Events</a></p>
+<hr />
+</section>
+<section id='security' class='doc-section'>
+<h2 id="security-analysis">🛡️ Security Analysis</h2>
+<h3 id="risk-assessment-low">Risk Assessment: 🟢 LOW</h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reentrancy Protection</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Access Control</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Pausable</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Safe Math</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Pull Payment</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Timelock</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Multisig</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Emergency Stop</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="security-recommendations">🔒 Security Recommendations</h3>
+<ul>
+<li>⚠️ <strong>Add ReentrancyGuard</strong> to prevent reentrancy attacks</li>
+</ul>
+</section>
+<section id='deployment' class='doc-section'>
+<h2 id="deployment">🚀 Deployment</h2>
+<h3 id="networks">Networks</h3>
+<h4 id="ethereum">Ethereum</h4>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>create<span class="w"> </span>TestToken<span class="w"> </span>--rpc-url<span class="w"> </span>ethereum<span class="w"> </span>--private-key<span class="w"> </span><span class="nv">$PRIVATE_KEY</span>
+</code></pre></div>
+
+<p><strong>Verification:</strong></p>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>verify-contract<span class="w"> </span>&lt;ADDRESS&gt;<span class="w"> </span>TestToken<span class="w"> </span>--chain<span class="w"> </span>ethereum
+</code></pre></div>
+
+<h4 id="polygon">Polygon</h4>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>create<span class="w"> </span>TestToken<span class="w"> </span>--rpc-url<span class="w"> </span>polygon<span class="w"> </span>--private-key<span class="w"> </span><span class="nv">$PRIVATE_KEY</span>
+</code></pre></div>
+
+<p><strong>Verification:</strong></p>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>verify-contract<span class="w"> </span>&lt;ADDRESS&gt;<span class="w"> </span>TestToken<span class="w"> </span>--chain<span class="w"> </span>polygon
+</code></pre></div>
+
+<h4 id="arbitrum">Arbitrum</h4>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>create<span class="w"> </span>TestToken<span class="w"> </span>--rpc-url<span class="w"> </span>arbitrum<span class="w"> </span>--private-key<span class="w"> </span><span class="nv">$PRIVATE_KEY</span>
+</code></pre></div>
+
+<p><strong>Verification:</strong></p>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>verify-contract<span class="w"> </span>&lt;ADDRESS&gt;<span class="w"> </span>TestToken<span class="w"> </span>--chain<span class="w"> </span>arbitrum
+</code></pre></div>
+
+<h4 id="optimism">Optimism</h4>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>create<span class="w"> </span>TestToken<span class="w"> </span>--rpc-url<span class="w"> </span>optimism<span class="w"> </span>--private-key<span class="w"> </span><span class="nv">$PRIVATE_KEY</span>
+</code></pre></div>
+
+<p><strong>Verification:</strong></p>
+<div class="codehilite"><pre><span></span><code>forge<span class="w"> </span>verify-contract<span class="w"> </span>&lt;ADDRESS&gt;<span class="w"> </span>TestToken<span class="w"> </span>--chain<span class="w"> </span>optimism
+</code></pre></div>
+
+<h3 id="constructor-parameters">Constructor Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id='examples' class='doc-section'>
+<h2 id="examples">💡 Examples</h2>
+<h3 id="deployment-example">Deployment Example</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Deploy with ethers.js</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">TestToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">ethers</span><span class="p">.</span><span class="nx">deployContract</span><span class="p">(</span><span class="s1">&#39;TestToken&#39;</span><span class="p">)</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">TestToken</span><span class="p">.</span><span class="nx">waitForDeployment</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Contract deployed to:&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">TestToken</span><span class="p">.</span><span class="nx">getAddress</span><span class="p">())</span>
+</code></pre></div>
+
+<h3 id="interaction-examples">Interaction Examples</h3>
+<h4 id="transfer"><code>transfer</code></h4>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Call transfer</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">contract</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span><span class="w"> </span><span class="nx">amount</span><span class="p">)</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">wait</span><span class="p">()</span>
+</code></pre></div>
+</section>
+<section id='changelog' class='doc-section'>
+<h2 id="changelog">📅 Changelog</h2>
+<h3 id="v100-initial-release">v1.0.0 (Initial Release)</h3>
+<h4 id="features">✨ Features</h4>
+<ul>
+<li>Initial implementation of TestToken</li>
+<li>1 functions</li>
+<li>1 events</li>
+</ul>
+<h4 id="security">🔒 Security</h4>
+<ul>
+<li>Standard security patterns implemented</li>
+<li>Audited by internal team</li>
+</ul>
+</section>
+    </div>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

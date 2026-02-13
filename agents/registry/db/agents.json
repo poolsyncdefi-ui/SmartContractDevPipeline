@@ -1,0 +1,21 @@
+{
+  "test_agent": {
+    "name": "test_agent",
+    "version": "1.0.0",
+    "class_path": "agents.test.test_agent",
+    "capabilities": [
+      "test",
+      "demo"
+    ],
+    "dependencies": [],
+    "tags": [
+      "test",
+      "example"
+    ],
+    "description": "Agent de test",
+    "registered_at": "2026-02-13T20:31:53.372009",
+    "last_seen": "2026-02-13T20:31:53.372009",
+    "status": "active",
+    "usage_count": 0
+  }
+}

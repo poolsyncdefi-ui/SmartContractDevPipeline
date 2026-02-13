@@ -39,3 +39,8 @@ TypeError: object NoneType can't be used in 'await' expression
 2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Agent smart_contract initialisé avec succès
 2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - ✅ Agent Smart Contract prêt
 2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - 🔨 Développement du contrat ERC20: TestToken
+2026-02-13 18:39:11 - agent.SmartContractAgent - INFO - Configuration chargée: smart_contract v1.0.0
+2026-02-13 18:39:11 - agent.SmartContractAgent - INFO - Agent smart_contract créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-02-13 18:39:11 - agent.SmartContractAgent - INFO - ✅ Configuration chargée: smart_contract v1.0.0
+2026-02-13 18:39:11 - agent.SmartContractAgent - INFO - ✅ 35 capacités chargées
+2026-02-13 18:39:11 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract initialisé - v1.0.0

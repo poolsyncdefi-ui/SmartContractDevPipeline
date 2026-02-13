@@ -1,0 +1,72 @@
+2026-02-13 20:01:09 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:01:09 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:01:09 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:01:09 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 0 agents
+2026-02-13 20:01:09 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: INITIALIZING
+2026-02-13 20:31:10 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:31:10 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:31:10 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:31:10 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 0 agents
+2026-02-13 20:31:10 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: INITIALIZING
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 0 agents
+2026-02-13 20:31:53 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: INITIALIZING
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - Changement de statut: created -> error
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-13 20:31:53 - agent.RegistryAgent - INFO - ✅ Agent test_agent v1.0.0 enregistré
+2026-02-13 20:31:53 - agent.RegistryAgent - ERROR - Erreur lors de l'envoi du message c86e9f35-d4db-4a34-9e6d-50621930833e: 'dict' object has no attribute 'messages_sent'
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-13 20:34:28 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: INITIALIZING
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - Changement de statut: created -> error
+2026-02-13 20:34:28 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-13 20:34:28 - agent.RegistryAgent - ERROR - Erreur lors de l'envoi du message c7a4848b-95a8-4423-8308-b76fa22f5862: 'dict' object has no attribute 'messages_sent'
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-13 20:41:40 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: INITIALIZING
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - Changement de statut: created -> error
+2026-02-13 20:41:40 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-13 20:45:36 - agent.RegistryAgent - ERROR - ❌ Erreur initialisation: 'RegistryAgent' object has no attribute '_registry_metrics_worker'
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - Changement de statut: initializing -> error
+2026-02-13 20:45:36 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-13 20:51:48 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-13 20:53:31 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent

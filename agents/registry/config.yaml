@@ -1,0 +1,272 @@
+# =====================================================================
+# REGISTRY AGENT - CONFIGURATION ULTIME
+# Catalogue intelligent des agents - Version 2.0.0
+# Découverte · Versioning · Dépendances · Cache · Métriques
+# =====================================================================
+
+agent:
+  name: "registry"
+  display_name: "🗄️ Registry Agent"
+  description: |-
+    Catalogue central et intelligent de tous les agents du pipeline.
+    Gestion des versions, résolution des dépendances, découverte par capacités,
+    cache d'instances, métriques d'utilisation, et API de registry.
+  version: "2.0.0"
+  log_level: "INFO"
+  
+  capabilities:
+    - name: "agent_registration"
+      description: "Enregistrement des agents avec métadonnées complètes"
+    - name: "agent_discovery"
+      description: "Découverte d'agents par nom, version, capacité, tags"
+    - name: "version_management"
+      description: "Gestion sémantique des versions (semver)"
+    - name: "dependency_resolution"
+      description: "Résolution de graphe de dépendances"
+    - name: "instance_caching"
+      description: "Cache intelligent des instances d'agents"
+    - name: "capability_search"
+      description: "Recherche avancée par capacités"
+    - name: "health_monitoring"
+      description: "Surveillance de santé des agents enregistrés"
+    - name: "metrics_collection"
+      description: "Collecte de métriques d'utilisation"
+    - name: "schema_validation"
+      description: "Validation des métadonnées contre schéma JSON"
+    - name: "agent_upgrade"
+      description: "Gestion des mises à jour d'agents"
+    - name: "backward_compatibility"
+      description: "Vérification de compatibilité descendante"
+    - name: "agent_aliasing"
+      description: "Alias et tags pour agents"
+    - name: "bulk_registration"
+      description: "Enregistrement en lot d'agents"
+    - name: "export_import"
+      description: "Export/Import du catalogue"
+  
+  dependencies: []  # Indépendant - socle du système
+
+
+# =====================================================================
+# CONFIGURATION PRINCIPALE DU REGISTRY
+# =====================================================================
+registry:
+  enabled: true
+  
+  # Stockage
+  storage:
+    path: "./agents/registry/db"
+    agents_file: "agents.json"
+    versions_file: "versions.json"
+    dependencies_file: "dependencies.json"
+    cache_dir: "cache"
+    backup_enabled: true
+    backup_interval: 3600  # 1 heure
+    backup_retention: 7     # jours
+  
+  # Cache
+  cache:
+    enabled: true
+    max_size_mb: 100
+    ttl_seconds: 300        # 5 minutes
+    eviction_policy: "LRU"  # Least Recently Used
+    persist_on_exit: true
+  
+  # Versioning
+  versioning:
+    strategy: "semver"       # semantic versioning
+    allow_prerelease: false
+    allow_multiple_versions: true
+    max_versions_per_agent: 10
+    auto_cleanup: true
+    cleanup_older_than_days: 90
+  
+  # Dépendances
+  dependencies:
+    resolve_transitive: true
+    detect_cycles: true
+    max_depth: 10
+    allow_multiple_versions: false
+    strict_mode: false
+  
+  # Découverte
+  discovery:
+    enable_wildcard: true
+    case_sensitive: false
+    fuzzy_search: true
+    max_results: 100
+    include_inactive: false
+
+
+# =====================================================================
+# SCHEMA DE VALIDATION DES AGENTS
+# =====================================================================
+schema:
+  required_fields:
+    - "name"
+    - "version"
+    - "class_path"
+    - "capabilities"
+  
+  optional_fields:
+    - "display_name"
+    - "description"
+    - "dependencies"
+    - "tags"
+    - "author"
+    - "license"
+    - "homepage"
+    - "documentation"
+    - "min_agent_version"
+    - "max_agent_version"
+    - "deprecated"
+    - "replaced_by"
+  
+  validation:
+    name_pattern: "^[a-z][a-z0-9_]{2,50}$"
+    version_pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    capabilities_max: 100
+    dependencies_max: 20
+    tags_max: 10
+
+
+# =====================================================================
+# MÉTRIQUES & MONITORING
+# =====================================================================
+metrics:
+  enabled: true
+  export_to: "monitoring_agent"
+  
+  collect:
+    - "registrations_total"
+    - "discovery_queries"
+    - "cache_hits"
+    - "cache_misses"
+    - "dependency_resolutions"
+    - "active_agents"
+    - "versions_per_agent_avg"
+    - "registry_size_bytes"
+  
+  alerts:
+    - metric: "cache_hit_ratio"
+      threshold: 0.80
+      condition: "less_than"
+      severity: "warning"
+    - metric: "dependency_cycles"
+      threshold: 1
+      condition: "greater_than"
+      severity: "critical"
+  
+  dashboards:
+    enabled: true
+    refresh_rate: 60
+    templates:
+      - "agent_inventory"
+      - "version_distribution"
+      - "dependency_graph"
+      - "cache_performance"
+
+
+# =====================================================================
+# API & INTÉGRATIONS
+# =====================================================================
+api:
+  enabled: true
+  rest:
+    enabled: true
+    host: "localhost"
+    port: 8500
+    base_path: "/api/v1/registry"
+    authentication: false
+    rate_limit: 100  # requêtes par minute
+  
+  grpc:
+    enabled: false
+    port: 8501
+  
+  websocket:
+    enabled: true
+    port: 8502
+    events:
+      - "agent_registered"
+      - "agent_updated"
+      - "agent_deprecated"
+      - "dependency_cycle_detected"
+
+
+# =====================================================================
+# INTÉGRATIONS AVEC AUTRES AGENTS
+# =====================================================================
+integrations:
+  monitoring:
+    enabled: true
+    push_metrics_interval: 30
+  
+  learning:
+    enabled: true
+    provide_training_data: true
+    features:
+      - "usage_patterns"
+      - "popular_agents"
+      - "version_adoption"
+  
+  orchestrator:
+    enabled: true
+    provide_resolution: true
+    cache_instances: true
+
+
+# =====================================================================
+# SÉCURITÉ
+# =====================================================================
+security:
+  validation:
+    validate_on_register: true
+    validate_on_update: true
+    reject_invalid: true
+  
+  access_control:
+    mode: "none"  # none, basic, rbac
+    admin_tokens: []
+  
+  encryption:
+    enabled: false
+    algorithm: "AES-256"
+  
+  audit:
+    enabled: true
+    log_all_operations: true
+    retention_days: 30
+
+
+# =====================================================================
+# PERFORMANCE
+# =====================================================================
+performance:
+  cache:
+    enabled: true
+    preload_on_start: true
+    warmup_agents: ["base_agent", "architect", "coder", "smart_contract"]
+  
+  indexing:
+    enabled: true
+    rebuild_on_start: true
+    rebuild_interval: 86400  # 24h
+  
+  concurrency:
+    max_workers: 4
+    thread_pool_size: 8
+
+
+# =====================================================================
+# MODE DÉVELOPPEMENT
+# =====================================================================
+development:
+  mode: "production"  # development, staging, production
+  debug:
+    enabled: false
+    log_queries: false
+    profile_operations: false
+  testing:
+    mock_data: false
+    synthetic_agents: 0

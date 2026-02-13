@@ -1,4 +1,5 @@
 # Package smart_contract
-from .agent import SmartContractAgent
+# Doit contenir
+from .smart_contract_agent import SmartContractAgent
 
-__all__ = ["SmartContractAgent"]
+__all__ = ['SmartContractAgent']

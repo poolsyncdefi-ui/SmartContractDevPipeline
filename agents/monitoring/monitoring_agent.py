@@ -242,7 +242,7 @@ class MonitoringAgent(BaseAgent):
         agent_modules = [
             ("architect", "ArchitectAgent", "agents.architect.architect", "🏗️"),
             ("coder", "CoderAgent", "agents.coder.coder", "💻"),
-            ("smart_contract", "SmartContractAgent", "agents.smart_contract.smart_contract_agent", "📜"),
+            ("smart_contract", "SmartContractAgent", "agents.smart_contract.smart_contract_agent", "📜"),  # ✅ ICI LA CORRECTION
             ("tester", "TesterAgent", "agents.tester.tester", "🧪"),
             ("formal_verification", "FormalVerificationAgent", "agents.formal_verification.formal_verification", "🔬"),
             ("fuzzing_simulation", "FuzzingSimulationAgent", "agents.fuzzing_simulation.fuzzing_agent", "🎲"),
