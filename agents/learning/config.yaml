@@ -1,0 +1,726 @@
+# =====================================================================
+# AGENT LEARNING 2.0 - CONFIGURATION ULTIME
+# Intelligence Artificielle & Machine Learning pour Smart Contracts
+# Périmètre total - Capacités maximales - Optimisation extrême
+# Version: 2.0.0 - YAML 100% VALIDE
+# =====================================================================
+
+agent:
+  name: "learning"
+  display_name: "🧠 SUPERLEARNER - AI CORE"
+  description: |-
+    Intelligence Artificielle centrale du pipeline SmartContractDevPipeline.
+    Apprentissage profond, reinforcement learning, analyse prédictive,
+    optimisation automatique, détection d'anomalies, scoring intelligent,
+    recommandations proactives, évolution continue.
+  version: "2.0.0"
+  log_level: "INFO"
+  
+  # =================================================================
+  # CAPACITÉS ÉTENDUES - 50+ CAPACITÉS
+  # =================================================================
+  capabilities:
+    - name: "gas_prediction_deep"
+      description: "Prédiction précise de consommation gas avec réseaux de neurones"
+    - name: "gas_optimization_suggestions"
+      description: "Recommandations automatiques d'optimisation gas"
+    - name: "gas_anomaly_detection"
+      description: "Détection des pics de gas anormaux"
+    - name: "vulnerability_classification_multi_class"
+      description: "Classification multi-classe de 20+ types de vulnérabilités"
+    - name: "vulnerability_severity_scoring"
+      description: "Scoring de sévérité avec calibration dynamique"
+    - name: "vulnerability_pattern_discovery"
+      description: "Découverte automatique de nouveaux patterns de vulnérabilités"
+    - name: "exploit_probability_forecast"
+      description: "Prédiction de probabilité d'exploitation"
+    - name: "test_optimization_dynamic"
+      description: "Optimisation dynamique des suites de tests"
+    - name: "test_coverage_prediction"
+      description: "Prédiction de couverture de tests avant exécution"
+    - name: "flaky_test_detection"
+      description: "Détection des tests instables (flaky)"
+    - name: "test_prioritization_intelligent"
+      description: "Priorisation intelligente basée sur l'historique"
+    - name: "contract_quality_scoring_deep"
+      description: "Score qualité profond (50+ métriques)"
+    - name: "complexity_analysis_advanced"
+      description: "Analyse de complexité cyclomatique et cognitive"
+    - name: "maintainability_index"
+      description: "Index de maintenabilité prédictif"
+    - name: "technical_debt_estimation"
+      description: "Estimation de dette technique automatique"
+    - name: "anomaly_detection_unsupervised"
+      description: "Détection d'anomalies non supervisée"
+    - name: "anomaly_clustering"
+      description: "Clustering automatique des types d'anomalies"
+    - name: "drift_detection"
+      description: "Détection de dérive des métriques"
+    - name: "seasonality_analysis"
+      description: "Analyse de saisonnalité des patterns"
+    - name: "parameter_tuning_auto"
+      description: "Optimisation automatique des hyperparamètres"
+    - name: "reinforcement_learning"
+      description: "Apprentissage par renforcement pour stratégies optimales"
+    - name: "resource_allocation_optimization"
+      description: "Optimisation allocation ressources pipeline"
+    - name: "multi_objective_optimization"
+      description: "Optimisation multi-objectifs (temps/gaz/sécurité)"
+    - name: "code_smell_detection"
+      description: "Détection de code smells Solidity"
+    - name: "pattern_recognition_advanced"
+      description: "Reconnaissance avancée de patterns sécurisés/risqués"
+    - name: "naming_convention_analysis"
+      description: "Analyse conventions nommage"
+    - name: "duplicate_code_detection"
+      description: "Détection de code dupliqué avec ML"
+    - name: "dead_code_identification"
+      description: "Identification code mort avec analyse statique"
+    - name: "threat_modeling_auto"
+      description: "Modélisation automatique des menaces"
+    - name: "risk_scoring_dynamic"
+      description: "Scoring de risque dynamique contextuel"
+    - name: "audit_findings_correlation"
+      description: "Corrélation des findings d'audit"
+    - name: "false_positive_reduction"
+      description: "Réduction des faux positifs par apprentissage"
+    - name: "trend_forecasting_time_series"
+      description: "Prévision séries temporelles"
+    - name: "market_correlation_analysis"
+      description: "Analyse corrélation avec marché crypto"
+    - name: "adoption_curve_prediction"
+      description: "Prédiction courbes d'adoption contrats"
+    - name: "gas_price_prediction"
+      description: "Prédiction prix du gas réseau"
+    - name: "architecture_recommendations"
+      description: "Recommandations architecture contrat"
+    - name: "library_suggestions"
+      description: "Suggestions de bibliothèques optimisées"
+    - name: "upgradeability_advisor"
+      description: "Conseiller stratégie d'upgrade"
+    - name: "deployment_strategy_optimizer"
+      description: "Optimisation stratégie déploiement"
+    - name: "performance_bottleneck_detection"
+      description: "Détection goulots d'étranglement performance"
+    - name: "scalability_prediction"
+      description: "Prédiction scalabilité contrat"
+    - name: "concurrency_analysis"
+      description: "Analyse concurrence et locking"
+    - name: "storage_optimization_advisor"
+      description: "Conseils optimisation stockage"
+    - name: "online_learning"
+      description: "Apprentissage en ligne temps réel"
+    - name: "transfer_learning"
+      description: "Transfer learning entre projets"
+    - name: "few_shot_learning"
+      description: "Apprentissage avec peu d'exemples"
+    - name: "active_learning"
+      description: "Requêtes actives pour données critiques"
+    - name: "ensemble_methods"
+      description: "Méthodes d'ensemble avancées"
+    - name: "shap_explanations"
+      description: "Explications SHAP des prédictions"
+    - name: "lime_explanations"
+      description: "Explications locales LIME"
+    - name: "feature_importance_analysis"
+      description: "Analyse importance des features"
+    - name: "counterfactual_explanations"
+      description: "Explications contrefactuelles"
+    - name: "github_actions_integration"
+      description: "Intégration CI/CD avec GitHub Actions"
+    - name: "slack_alerts_intelligent"
+      description: "Alertes intelligentes Slack"
+    - name: "jira_ticket_generation"
+      description: "Génération automatique tickets Jira"
+    - name: "pr_comments_auto"
+      description: "Commentaires automatiques sur PR"
+    - name: "executive_dashboards"
+      description: "Dashboards directionnels automatisés"
+    - name: "roi_calculator"
+      description: "Calculateur ROI des optimisations"
+    - name: "benchmarking_cross_project"
+      description: "Benchmarking inter-projets"
+    - name: "certificate_generation_ai"
+      description: "Génération certificats qualité IA"
+    - name: "experiment_tracking"
+      description: "Tracking d'expérimentations MLflow"
+    - name: "ab_testing_framework"
+      description: "Framework A/B testing pour stratégies"
+    - name: "hyperparameter_optimization"
+      description: "Optimisation hyperparamètres bayésienne"
+    - name: "neural_architecture_search"
+      description: "Recherche architecture neuronale NAS"
+    - name: "bias_detection"
+      description: "Détection de biais dans les modèles"
+    - name: "fairness_metrics"
+      description: "Métriques d'équité algorithmique"
+    - name: "explainable_ai_layer"
+      description: "Couche XAI pour transparence"
+    - name: "compliance_checking"
+      description: "Vérification conformité RGPD/IA Act"
+  
+  dependencies:
+    - "architect"
+    - "coder"
+    - "smart_contract"
+    - "tester"
+    - "formal_verification"
+    - "fuzzing_simulation"
+    - "frontend_web3"
+    - "monitoring"
+    - "orchestrator"
+
+
+# =====================================================================
+# CONFIGURATION LEARNING - MODÈLES MULTIPLES
+# =====================================================================
+learning:
+  enabled: true
+  auto_train: true
+  training_interval: 1800
+  min_samples_for_training: 25
+  model_storage_path: "./agents/learning/data/models"
+  data_storage_path: "./agents/learning/data/training"
+  reports_path: "./reports/learning"
+  experiments_path: "./agents/learning/experiments"
+  default_model: "ensemble"
+  simulation_mode: false
+  
+  modes:
+    supervised: true
+    unsupervised: true
+    reinforcement: true
+    online: true
+    transfer: true
+    meta: true
+  
+  resources:
+    max_memory_mb: 4096
+    max_cpu_cores: 4
+    enable_gpu: false
+    distributed_training: false
+    batch_size: 128
+    epochs: 100
+  
+  feature_store:
+    enabled: true
+    path: "./agents/learning/data/features"
+    cache_size_mb: 500
+    auto_feature_selection: true
+    feature_importance_threshold: 0.01
+  
+  validation:
+    cross_validation_folds: 5
+    test_split: 0.2
+    validation_split: 0.1
+    early_stopping: true
+    patience: 10
+    random_seed: 42
+
+
+# =====================================================================
+# MODÈLES SPÉCIALISÉS - 12 MODÈLES DE PRODUCTION
+# =====================================================================
+models:
+  gas_predictor_deep:
+    enabled: true
+    type: "ensemble"
+    algorithms:
+      - "random_forest"
+      - "gradient_boosting"
+      - "xgboost"
+      - "lightgbm"
+      - "neural_network"
+    random_forest:
+      n_estimators: 300
+      max_depth: 15
+      min_samples_split: 3
+    gradient_boosting:
+      n_estimators: 200
+      learning_rate: 0.05
+      max_depth: 8
+    xgboost:
+      n_estimators: 200
+      max_depth: 10
+      learning_rate: 0.03
+    lightgbm:
+      n_estimators: 200
+      num_leaves: 31
+      learning_rate: 0.03
+    neural_network:
+      hidden_layers: [128, 64, 32, 16]
+      activation: "relu"
+      dropout_rate: 0.2
+      epochs: 200
+    features:
+      - contract_size_bytes
+      - num_functions
+      - num_variables
+      - num_loops
+      - num_requires
+      - num_events
+      - uses_assembly
+      - solidity_version_major
+    target: "gas_consumption"
+    metric: "mae"
+    cross_validation: true
+    hyperparameter_tuning: true
+  
+  vulnerability_classifier_advanced:
+    enabled: true
+    type: "ensemble"
+    algorithms:
+      - "random_forest"
+      - "xgboost"
+      - "lightgbm"
+    classes:
+      - "SWC-100"
+      - "SWC-101"
+      - "SWC-104"
+      - "SWC-105"
+      - "SWC-107"
+      - "SWC-112"
+      - "SWC-115"
+      - "SWC-116"
+    multi_label: true
+    threshold: 0.35
+    metrics: ["accuracy", "precision", "recall", "f1"]
+    calibration:
+      enabled: true
+      method: "isotonic"
+    explainability:
+      enabled: true
+      methods: ["shap", "lime"]
+      top_features: 20
+  
+  test_optimizer_intelligent:
+    enabled: true
+    type: "reinforcement_learning"
+    algorithm: "ppo"
+    learning_rate: 0.0003
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    action_space:
+      - "execute_unit_tests"
+      - "execute_integration_tests"
+      - "execute_fuzzing"
+      - "execute_formal_verification"
+      - "execute_security_scan"
+    objectives:
+      - name: "execution_time"
+        weight: 0.3
+        minimize: true
+      - name: "fault_detection_rate"
+        weight: 0.5
+        maximize: true
+    memory_size: 10000
+    batch_size: 64
+    flaky_detection:
+      enabled: true
+      method: "isolation_forest"
+      contamination: 0.1
+  
+  anomaly_detector_advanced:
+    enabled: true
+    type: "ensemble"
+    algorithms:
+      - name: "isolation_forest"
+        contamination: 0.08
+        n_estimators: 200
+      - name: "one_class_svm"
+        kernel: "rbf"
+        nu: 0.1
+      - name: "autoencoder"
+        hidden_layers: [64, 32, 16, 32, 64]
+        bottleneck_size: 8
+        epochs: 100
+    anomaly_types:
+      - "gas_spike"
+      - "performance_degradation"
+      - "security_regression"
+      - "test_flakiness"
+    concept_drift:
+      enabled: true
+      method: "adwin"
+      delta: 0.01
+  
+  recommendation_engine:
+    enabled: true
+    type: "collaborative_filtering"
+    algorithms:
+      - "matrix_factorization"
+      - "neural_collaborative_filtering"
+    domains:
+      - "security_patterns"
+      - "gas_optimizations"
+      - "test_strategies"
+      - "deployment_targets"
+    personalization:
+      user_history_weight: 0.7
+      similar_projects_weight: 0.3
+    filtering:
+      min_confidence: 0.6
+      max_recommendations: 10
+    feedback:
+      enabled: true
+  
+  trend_predictor:
+    enabled: true
+    type: "time_series"
+    algorithms:
+      - name: "prophet"
+        growth: "logistic"
+        changepoint_prior_scale: 0.05
+      - name: "sarima"
+        order: [1, 1, 1]
+        seasonal_order: [1, 1, 1, 7]
+      - name: "lstm"
+        layers: [64, 64, 32]
+        dropout: 0.2
+        lookback: 30
+        horizon: 7
+    forecast_targets:
+      - "gas_prices"
+      - "transaction_volume"
+      - "vulnerability_discovery_rate"
+    horizon: [7, 30, 90]
+    confidence_interval: 0.95
+    seasonality:
+      daily: true
+      weekly: true
+      monthly: true
+  
+  code_analyzer:
+    enabled: true
+    type: "deep_learning"
+    language_model:
+      architecture: "transformer"
+      layers: 12
+      attention_heads: 12
+      embedding_dim: 768
+      max_position_embeddings: 512
+      dropout: 0.1
+    tasks:
+      - "bug_detection"
+      - "code_completion"
+      - "refactoring_suggestions"
+    tokenizer:
+      type: "byte_pair_encoding"
+      vocab_size: 32000
+      max_length: 512
+    fine_tuning:
+      enabled: true
+      batch_size: 16
+      learning_rate: 0.00002
+      epochs: 5
+  
+  multi_objective_optimizer:
+    enabled: true
+    type: "genetic_algorithm"
+    algorithm: "nsga2"
+    population_size: 100
+    generations: 50
+    crossover_probability: 0.9
+    mutation_probability: 0.1
+    objectives:
+      - name: "gas_efficiency"
+        weight: 0.4
+        maximize: true
+      - name: "security_score"
+        weight: 0.3
+        maximize: true
+      - name: "development_time"
+        weight: 0.15
+        minimize: true
+      - name: "maintainability"
+        weight: 0.15
+        maximize: true
+    decision_variables:
+      - name: "solidity_version"
+        type: "categorical"
+        values: ["0.8.0", "0.8.4", "0.8.7", "0.8.13", "0.8.19"]
+      - name: "optimization_runs"
+        type: "integer"
+        min: 200
+        max: 2000
+      - name: "use_assembly"
+        type: "boolean"
+  
+  quality_scorer:
+    enabled: true
+    type: "weighted_ensemble"
+    dimensions:
+      - name: "security"
+        weight: 0.35
+        metrics:
+          - "vulnerability_count"
+          - "severity_score"
+          - "audit_passed"
+      - name: "gas_efficiency"
+        weight: 0.20
+        metrics:
+          - "deployment_cost"
+          - "transaction_cost"
+          - "storage_optimization"
+      - name: "test_quality"
+        weight: 0.15
+        metrics:
+          - "coverage_percentage"
+          - "test_count"
+          - "fuzzing_runs"
+      - name: "maintainability"
+        weight: 0.15
+        metrics:
+          - "cyclomatic_complexity"
+          - "cognitive_complexity"
+          - "comment_ratio"
+      - name: "documentation"
+        weight: 0.10
+        metrics:
+          - "natspec_coverage"
+          - "readme_quality"
+      - name: "deployment"
+        weight: 0.05
+        metrics:
+          - "verified_contract"
+          - "multi_chain_deployment"
+    normalization:
+      method: "min_max"
+      range: [0, 100]
+    aggregation: "weighted_sum"
+    grades:
+      "S": [95, 100]
+      "A+": [90, 94]
+      "A": [85, 89]
+      "A-": [80, 84]
+      "B+": [75, 79]
+      "B": [70, 74]
+      "B-": [65, 69]
+      "C+": [60, 64]
+      "C": [55, 59]
+      "C-": [50, 54]
+      "D": [40, 49]
+      "F": [0, 39]
+  
+  inference_engine:
+    enabled: true
+    type: "distributed"
+    optimization:
+      quantization: "int8"
+      pruning: true
+      hardware_target: "cpu"
+    cache:
+      enabled: true
+      ttl: 3600
+      max_size_mb: 500
+      strategy: "lru"
+    batching:
+      enabled: true
+      max_batch_size: 32
+      max_latency_ms: 100
+    fallback:
+      enabled: true
+      timeout_ms: 500
+      retry_count: 2
+
+
+# =====================================================================
+# EXPLICABILITÉ & TRANSPARENCE
+# =====================================================================
+explainability:
+  enabled: true
+  default_method: "shap"
+  methods:
+    shap:
+      enabled: true
+      algorithm: "kernel"
+      nsamples: 100
+    lime:
+      enabled: true
+      num_features: 10
+      num_samples: 5000
+    counterfactual:
+      enabled: true
+      distance_metric: "euclidean"
+      max_iterations: 1000
+  reports:
+    enabled: true
+    formats: ["html", "json"]
+    include_visualizations: true
+    include_feature_importance: true
+  ui:
+    enabled: true
+    interactive: true
+    dashboard_port: 8050
+
+
+# =====================================================================
+# APPRENTISSAGE CONTINU & ADAPTATIF
+# =====================================================================
+continuous_learning:
+  enabled: true
+  online:
+    enabled: true
+    algorithm: "sgd"
+    learning_rate: 0.001
+    partial_fit: true
+    batch_size: 32
+  reinforcement:
+    enabled: true
+    environment: "pipeline_env"
+    agent: "ppo"
+    total_timesteps: 100000
+  transfer:
+    enabled: true
+    source_models: ["gas_predictor_deep", "vulnerability_classifier_advanced"]
+    fine_tuning_epochs: 10
+    freeze_layers: true
+  meta:
+    enabled: true
+    algorithm: "maml"
+    inner_lr: 0.01
+    outer_lr: 0.001
+    inner_steps: 5
+  active:
+    enabled: true
+    strategy: "uncertainty_sampling"
+    query_size: 10
+    labeling_budget: 1000
+
+
+# =====================================================================
+# INTÉGRATIONS & AUTOMATIONS
+# =====================================================================
+integrations:
+  github:
+    enabled: true
+    auto_pr_comments: true
+    auto_code_review: true
+    webhook_events: ["pull_request", "push"]
+  slack:
+    enabled: true
+    channel: "#ai-insights"
+    alerts:
+      - "critical_vulnerability"
+      - "high_confidence_prediction"
+      - "anomaly_detected"
+  jira:
+    enabled: true
+    auto_tickets: true
+    project_key: "SCDP"
+  email:
+    enabled: true
+    recipients: ["team@smartcontractdev.io"]
+    frequency: "daily"
+
+
+# =====================================================================
+# MÉTRIQUES & MONITORING
+# =====================================================================
+metrics:
+  enabled: true
+  export_to: "monitoring_agent"
+  track:
+    - "model_accuracy"
+    - "inference_latency"
+    - "training_time"
+    - "prediction_confidence"
+    - "feature_importance_drift"
+  alerts:
+    - metric: "model_accuracy"
+      threshold: 0.80
+      condition: "less_than"
+      severity: "warning"
+    - metric: "inference_latency"
+      threshold: 500
+      condition: "greater_than"
+      severity: "warning"
+    - metric: "prediction_confidence"
+      threshold: 0.60
+      condition: "less_than"
+      severity: "info"
+  dashboards:
+    enabled: true
+    refresh_rate: 60
+    templates:
+      - "model_performance"
+      - "prediction_accuracy"
+      - "anomaly_timeline"
+      - "recommendation_effectiveness"
+
+
+# =====================================================================
+# RESSOURCES & PERFORMANCE
+# =====================================================================
+resources:
+  cpu:
+    max_cores: 8
+    affinity: [0, 1, 2, 3]
+    process_priority: "high"
+  memory:
+    max_ram_mb: 8192
+    swap_enabled: true
+    swap_limit_mb: 2048
+    garbage_collection_interval: 3600
+  gpu:
+    enabled: false
+    device_ids: [0]
+    memory_fraction: 0.7
+    allow_growth: true
+  storage:
+    max_disk_gb: 50
+    retention_days: 90
+    compression: true
+    encryption: true
+  parallelism:
+    n_jobs: -1
+    backend: "loky"
+    prefer: "processes"
+
+
+# =====================================================================
+# SÉCURITÉ & CONFORMITÉ
+# =====================================================================
+security:
+  models:
+    encryption: true
+    access_control: "rbac"
+    backup_enabled: true
+    backup_frequency: 86400
+  data:
+    anonymization: true
+    pii_detection: true
+    retention_policy: "auto_delete"
+    encryption_at_rest: true
+    encryption_in_transit: true
+  compliance:
+    gdpr: true
+    ccpa: true
+    iso_27001: false
+    soc2: false
+  audit:
+    enabled: true
+    log_all_predictions: false
+    log_all_training: true
+    retention_days: 365
+
+
+# =====================================================================
+# MODE DÉVELOPPEMENT & DEBUG
+# =====================================================================
+development:
+  mode: "production"
+  debug:
+    enabled: false
+    log_level: "INFO"
+    trace_inference: false
+    profile_memory: false
+  testing:
+    mock_models: false
+    synthetic_data: false
+    test_coverage_threshold: 85
+  profiling:
+    enabled: false
+    save_profiles: true
+    analyze_bottlenecks: true

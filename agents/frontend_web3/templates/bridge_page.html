@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge - {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="max-w-2xl w-full bg-gray-800/50 rounded-2xl p-8">
+            <h1 class="text-2xl font-bold mb-6">Cross-Chain Bridge</h1>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-700/50 rounded-xl p-4">
+                    <label class="block text-sm text-gray-400 mb-2">From</label>
+                    <select class="w-full bg-gray-600 rounded-lg px-3 py-2">
+                        <option>Ethereum</option>
+                        <option>Polygon</option>
+                    </select>
+                </div>
+                <div class="bg-gray-700/50 rounded-xl p-4">
+                    <label class="block text-sm text-gray-400 mb-2">To</label>
+                    <select class="w-full bg-gray-600 rounded-lg px-3 py-2">
+                        <option>Polygon</option>
+                        <option>Ethereum</option>
+                    </select>
+                </div>
+            </div>
+            <div class="bg-gray-700/50 rounded-xl p-4 mb-6">
+                <div class="flex justify-between mb-2">
+                    <label class="text-sm text-gray-400">Token</label>
+                    <span class="text-sm text-gray-400">Balance: {{BALANCE}}</span>
+                </div>
+                <div class="flex space-x-2">
+                    <input type="number" placeholder="0.0" 
+                           class="flex-1 bg-transparent text-2xl outline-none">
+                    <select class="bg-gray-600 rounded-lg px-4 py-2">
+                        <option>ETH</option>
+                        <option>USDC</option>
+                    </select>
+                </div>
+            </div>
+            <button class="w-full gradient-bg text-white font-bold py-4 px-6 rounded-xl 
+                         hover:opacity-90 transition">
+                Bridge Tokens
+            </button>
+        </div>
+    </div>
+</body>
+</html>

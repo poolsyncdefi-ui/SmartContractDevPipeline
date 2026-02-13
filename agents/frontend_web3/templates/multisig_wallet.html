@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multisig - {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">Multisig Wallet</h1>
+            <button class="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition">+ New Transaction</button>
+        </div>
+        <div class="bg-gray-800/50 rounded-2xl p-6 mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-400 mb-2">Wallet Address</p>
+                    <p class="font-mono text-lg">{{WALLET_ADDRESS}}</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-400 mb-2">Balance</p>
+                    <p class="text-2xl font-bold">{{BALANCE}} ETH</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="text-xl font-bold mb-4">Pending Transactions</h2>
+        <div class="space-y-4">
+            <div class="bg-gray-800/30 rounded-xl p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="font-medium">Send 10.5 ETH to 0x742...3f2a</p>
+                        <p class="text-sm text-gray-400 mt-1">Created by 0x123...4e5f • 2 hours ago</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm">2/3 confirmations</span>
+                        <button class="px-4 py-2 bg-green-600 rounded-lg hover:bg-green-700 transition">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge • {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, {{PRIMARY_COLOR}} 0%, {{ACCENT_COLOR}} 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#0A0C12] text-white">
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-2xl w-full bg-gray-800/50 rounded-3xl p-8 border border-gray-700">
+            <h1 class="text-3xl font-bold mb-2">Cross-Chain Bridge</h1>
+            <p class="text-gray-400 mb-8">Transfer assets seamlessly between networks</p>
+            
+            <!-- Network Selection -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-900/50 rounded-2xl p-4 border border-gray-700">
+                    <label class="block text-sm text-gray-400 mb-2">From</label>
+                    <select class="w-full bg-gray-800 rounded-xl px-4 py-3 border border-gray-600">
+                        <option>Ethereum</option>
+                        <option>Polygon</option>
+                        <option>Arbitrum</option>
+                        <option>Optimism</option>
+                        <option>Base</option>
+                    </select>
+                </div>
+                <div class="bg-gray-900/50 rounded-2xl p-4 border border-gray-700">
+                    <label class="block text-sm text-gray-400 mb-2">To</label>
+                    <select class="w-full bg-gray-800 rounded-xl px-4 py-3 border border-gray-600">
+                        <option>Polygon</option>
+                        <option>Ethereum</option>
+                        <option>Arbitrum</option>
+                        <option>Optimism</option>
+                        <option>Base</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Token & Amount -->
+            <div class="bg-gray-900/50 rounded-2xl p-4 border border-gray-700 mb-6">
+                <div class="flex justify-between mb-2">
+                    <label class="text-sm text-gray-400">Token</label>
+                    <span class="text-sm text-gray-400">Balance: {{BALANCE}}</span>
+                </div>
+                <div class="flex space-x-3">
+                    <input type="number" placeholder="0.0" 
+                           class="flex-1 bg-gray-800 text-2xl outline-none px-4 py-3 rounded-xl border border-gray-600">
+                    <select class="bg-gray-800 rounded-xl px-6 py-3 border border-gray-600">
+                        <option>ETH</option>
+                        <option>USDC</option>
+                        <option>DAI</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bridge Info -->
+            <div class="bg-gray-900/30 rounded-xl p-4 text-sm mb-6">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-400">Estimated time</span>
+                    <span>≈ 10-15 minutes</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-400">Bridge fee</span>
+                    <span>0.1% (≈ $2.50)</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-400">You will receive</span>
+                    <span class="text-green-400 font-bold">1.998 ETH</span>
+                </div>
+            </div>
+
+            <!-- Bridge Button -->
+            <button class="w-full gradient-bg text-white font-bold py-4 px-6 rounded-xl 
+                         hover:opacity-90 transition transform hover:scale-[1.02]">
+                Bridge Tokens
+            </button>
+
+            <!-- Recent Transactions -->
+            <div class="mt-8">
+                <h3 class="text-lg font-bold mb-4">Recent Transactions</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center bg-gray-900/30 rounded-xl p-4">
+                        <div>
+                            <p class="font-medium">Bridge 5 ETH → Polygon</p>
+                            <p class="text-sm text-gray-400">2 minutes ago</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">Completed</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-gray-900/30 rounded-xl p-4">
+                        <div>
+                            <p class="font-medium">Bridge 1,000 USDC → Arbitrum</p>
+                            <p class="text-sm text-gray-400">15 minutes ago</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm">Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

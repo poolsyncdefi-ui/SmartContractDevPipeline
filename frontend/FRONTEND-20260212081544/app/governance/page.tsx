@@ -1,0 +1,76 @@
+'use client';
+
+export default function GovernancePage() {
+    return (
+        <>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governance - FullSuite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-bold mb-4">Governance</h1>
+                <p class="text-xl text-gray-400">Shape the future of FullSuite</p>
+            </div>
+            <button class="gradient-bg text-white font-bold py-3 px-6 rounded-xl hover:opacity-90 transition">
+                Create Proposal
+            </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Total Proposals</p>
+                <p class="text-2xl font-bold">24</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Active Proposals</p>
+                <p class="text-2xl font-bold">3</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Voting Power</p>
+                <p class="text-2xl font-bold">1,234</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Participation</p>
+                <p class="text-2xl font-bold">67%</p>
+            </div>
+        </div>
+        <div class="space-y-6">
+            <div class="bg-gray-800/30 rounded-xl p-6 border border-gray-700">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">Active</span>
+                        <h3 class="text-xl font-bold mt-3">Increase Treasury Allocation</h3>
+                        <p class="text-gray-400 mt-1">Proposal to increase treasury allocation to 15% for ecosystem grants</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-400">Ends in</p>
+                        <p class="text-lg font-bold">3 days</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span>For (1.2M votes)</span>
+                        <span class="text-green-400">72%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 72%"></div>
+                    </div>
+                </div>
+                <div class="flex space-x-4 mt-6">
+                    <button class="px-6 py-2 bg-green-600 rounded-lg hover:bg-green-700 transition">Vote For</button>
+                    <button class="px-6 py-2 bg-red-600 rounded-lg hover:bg-red-700 transition">Vote Against</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+        </>
+    );
+}

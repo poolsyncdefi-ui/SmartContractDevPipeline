@@ -1,0 +1,81 @@
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Agent de fuzzing initialisé
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 🎯 Démarrage campagne fuzzing: ./contracts/Token.sol
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 🧪 Mode simulation - fuzzing simulé
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - ✅ Campagne FUZZ-20260211211131 terminée
+2026-02-11 21:11:31 - agent.FuzzingSimulationAgent - INFO - 📄 Rapports générés: reports\fuzzing\FUZZ-20260211211131_report.html
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Changement de statut: created -> initializing
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Agent de fuzzing initialisé
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - 🎯 Démarrage campagne fuzzing: ./contracts/Token.sol
+2026-02-11 21:35:42 - agent.FuzzingSimulationAgent - INFO - 🧪 Mode simulation - fuzzing simulé
+2026-02-11 21:35:43 - agent.FuzzingSimulationAgent - INFO - ✅ Campagne FUZZ-20260211213542 terminée
+2026-02-12 18:51:22 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:51:22 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 18:57:26 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:57:26 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 19:01:48 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:01:48 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 19:23:31 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:23:31 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 19:26:36 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:26:36 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 19:28:39 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:28:39 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 19:30:16 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:30:16 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:11:08 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:11:08 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:19:02 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:19:02 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:22:07 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:22:07 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:29:50 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:29:50 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:35:35 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:35 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:40:29 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:40:29 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:43:37 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:43:37 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:56:19 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:56:19 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-02-12 21:59:53 - agent.FuzzingSimulationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:59:53 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé

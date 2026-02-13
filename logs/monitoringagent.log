@@ -1,0 +1,224 @@
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 18:51:22 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 18:51:22 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 18:51:23 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 18:51:23 - agent.MonitoringAgent - ERROR - Erreur dashboard: cannot access local variable 'session_id' where it is not associated with a value
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 18:57:26 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 18:57:26 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 18:57:27 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 18:57:27 - agent.MonitoringAgent - ERROR - Erreur dashboard: cannot access local variable 'session_id' where it is not associated with a value
+2026-02-12 19:01:47 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:01:47 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 19:01:47 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:01:47 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 19:01:48 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 19:01:48 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 19:01:48 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:01:48 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 19:01:48 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 19:01:48 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 19:01:49 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 19:01:49 - agent.MonitoringAgent - ERROR - Erreur dashboard: cannot access local variable 'session_id' where it is not associated with a value
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 19:23:31 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 19:23:31 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 19:23:32 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 19:23:32 - agent.MonitoringAgent - ERROR - Erreur dashboard: name 'trend_up' is not defined
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 19:26:36 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 19:26:36 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 19:26:37 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 19:26:37 - agent.MonitoringAgent - ERROR - Erreur dashboard: name 'last_scan' is not defined
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 19:28:39 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 19:28:39 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 19:28:40 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 19:28:40 - agent.MonitoringAgent - ERROR - Erreur dashboard: name 'active_alerts' is not defined
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 19:30:16 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.base_agent'
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - ✅ 6 agents découverts
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel
+2026-02-12 19:30:16 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 19:30:17 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 19:30:17 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour: reports\monitoring\command_center.html
+2026-02-12 21:11:08 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:11:08 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:11:08 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:11:08 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:11:08 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:11:10 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:11:11 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:11:11 - agent.MonitoringAgent - ERROR - Erreur dashboard: name 'ai_metrics' is not defined
+2026-02-12 21:19:02 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:19:02 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:19:02 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:19:02 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:19:02 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:19:03 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:19:04 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:19:04 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:22:07 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:22:07 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:22:07 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:22:07 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:22:07 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:22:09 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:22:10 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:22:10 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:29:50 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:29:50 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:29:50 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:29:50 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:29:50 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:29:51 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:29:53 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:29:53 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:35:35 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:35 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:35:35 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:35:35 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:35:35 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:35:37 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:35:38 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:35:38 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:40:29 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:40:29 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:40:29 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:40:29 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:40:29 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:40:30 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:40:31 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:40:31 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:43:37 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:43:37 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:43:37 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:43:37 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:43:37 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:43:38 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:43:39 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:43:39 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:46:28 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:46:28 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:46:28 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:46:28 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:46:28 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:46:28 - agent.MonitoringAgent - ERROR - ❌ Erreur initialisation: not enough values to unpack (expected 4, got 2)
+2026-02-12 21:46:28 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> error
+2026-02-12 21:56:19 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:56:19 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:56:19 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:56:19 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:56:19 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:56:21 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:56:22 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:56:22 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:59:53 - agent.MonitoringAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:59:53 - agent.MonitoringAgent - INFO - 🎮 Agent de monitoring - Command Center créé
+2026-02-12 21:59:53 - agent.MonitoringAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:59:53 - agent.MonitoringAgent - INFO - 🎮 Initialisation du Command Center Monitoring...
+2026-02-12 21:59:53 - agent.MonitoringAgent - WARNING - ⚠️ Agent smart_contract non disponible: No module named 'agents.smart_contract.agent'
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - ✅ 7 agents découverts
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - 🚨 INFO: 🎮 Command Center Online
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - ✅ Command Center opérationnel avec IA intégrée
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - 🚨 INFO: 🔍 IA SUPERLEARNER ACTIVE
+2026-02-12 21:59:54 - agent.MonitoringAgent - INFO - 🔄 Démarrage de la collecte continue
+2026-02-12 21:59:55 - agent.MonitoringAgent - INFO - 🎮 Génération du Command Center Dashboard...
+2026-02-12 21:59:55 - agent.MonitoringAgent - INFO - ✅ Command Center mis à jour avec IA SUPERLEARNER: reports\monitoring\command_center.html

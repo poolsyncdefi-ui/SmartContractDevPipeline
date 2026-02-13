@@ -200,3 +200,35 @@ TypeError: object dict can't be used in 'await' expression
 2026-02-11 20:11:28 - agent.FormalVerificationAgent - INFO - 🔍 Exécution Certora Prover sur Token
 2026-02-11 20:11:34 - agent.FormalVerificationAgent - INFO - 📄 Certificat généré: reports\formal\PROOF-20260211201128.pdf
 2026-02-11 20:11:34 - agent.FormalVerificationAgent - INFO - ✅ Vérification terminée: failed (5372ms)
+2026-02-12 18:51:22 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:51:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 18:57:26 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:57:26 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 19:01:48 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:01:48 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 19:23:31 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:23:31 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 19:26:36 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:26:36 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 19:28:39 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:28:39 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 19:30:16 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:30:16 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:11:08 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:11:08 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:19:02 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:19:02 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:22:07 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:22:07 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:29:50 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:29:50 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:35:35 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:35 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:40:29 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:40:29 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:43:37 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:43:37 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:56:19 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:56:19 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-12 21:59:53 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:59:53 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé

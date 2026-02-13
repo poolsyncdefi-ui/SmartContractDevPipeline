@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score • {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        * { font-family: 'Space Grotesk', sans-serif; }
+        .score-meter {
+            background: conic-gradient(
+                from 0deg,
+                #ef4444 0deg 72deg,
+                #f59e0b 72deg 144deg,
+                #10b981 144deg 216deg,
+                #3b82f6 216deg 288deg,
+                #8b5cf6 288deg 360deg
+            );
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+        }
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            background: #0f1219;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0C12] text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Score Card -->
+            <div class="glass-card p-8">
+                <h2 class="text-2xl font-bold mb-6">📊 Web3 Credit Score</h2>
+                <div class="flex flex-col items-center">
+                    <div class="score-meter flex items-center justify-center mb-6">
+                        <div class="score-inner">
+                            <span class="text-5xl font-bold">782</span>
+                            <span class="text-sm text-gray-400">/ 850</span>
+                        </div>
+                    </div>
+                    <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm">
+                        Excellent • Top 15%
+                    </span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 mt-8">
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <p class="text-xs text-gray-400">Historique</p>
+                        <p class="text-lg font-bold">Excellent</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <p class="text-xs text-gray-400">Utilisation</p>
+                        <p class="text-lg font-bold">23%</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <p class="text-xs text-gray-400">Âge du compte</p>
+                        <p class="text-lg font-bold">2 ans</p>
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl">
+                        <p class="text-xs text-gray-400">Transactions</p>
+                        <p class="text-lg font-bold">847</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score Simulator -->
+            <div class="glass-card p-8">
+                <h2 class="text-2xl font-bold mb-6">🎯 Simulateur de score</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Nouveau prêt</label>
+                        <input type="range" min="0" max="50000" value="10000" 
+                               class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between mt-2">
+                            <span class="text-xs text-gray-400">0 €</span>
+                            <span class="text-sm font-bold">10 000 €</span>
+                            <span class="text-xs text-gray-400">50 000 €</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Durée</label>
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-4 py-2 bg-blue-600 rounded-lg">12 mois</button>
+                            <button class="flex-1 px-4 py-2 bg-white/10 rounded-lg">24 mois</button>
+                            <button class="flex-1 px-4 py-2 bg-white/10 rounded-lg">36 mois</button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl">
+                        <p class="text-sm text-gray-300 mb-2">Score projeté</p>
+                        <p class="text-3xl font-bold text-blue-400">756</p>
+                        <p class="text-xs text-gray-400 mt-2">↓ -26 points (éligible)</p>
+                    </div>
+                    
+                    <button class="w-full px-6 py-3 bg-blue-600 rounded-xl font-medium hover:bg-blue-700">
+                        Simuler un emprunt
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loan Recommendations -->
+        <div class="mt-12">
+            <h2 class="text-xl font-bold mb-6">💡 Offres personnalisées</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-2xl">🏦</span>
+                        <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Pré-approuvé</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Prêt personnel</h3>
+                    <p class="text-sm text-gray-400 mb-4">TAEG 3.2% • Jusqu'à 50k€</p>
+                    <p class="text-xs text-gray-400">Mensualité estimée</p>
+                    <p class="text-xl font-bold">234 €</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-2xl">🚗</span>
+                        <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Auto</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Prêt automobile</h3>
+                    <p class="text-sm text-gray-400 mb-4">TAEG 2.8% • Jusqu'à 30k€</p>
+                    <p class="text-xs text-gray-400">Mensualité estimée</p>
+                    <p class="text-xl font-bold">312 €</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-2xl">💎</span>
+                        <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs">Premium</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Prêt immobilier</h3>
+                    <p class="text-sm text-gray-400 mb-4">TAEG 1.8% • Jusqu'à 300k€</p>
+                    <p class="text-xs text-gray-400">Mensualité estimée</p>
+                    <p class="text-xl font-bold">1,023 €</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

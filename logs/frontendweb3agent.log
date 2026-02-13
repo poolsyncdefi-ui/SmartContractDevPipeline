@@ -1,0 +1,273 @@
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'marketplace', 'nft_gallery', 'token_transfer']
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent base_agent...
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - WARNING - Aucune capacité définie pour l'agent
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - Agent base_agent initialisé avec succès
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: CryptoKitties Clone
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/Token.sol
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - WARNING - ⚠️ ABI non trouvée pour Token
+2026-02-11 21:51:21 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260211215121
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'nft_gallery', 'token_transfer', 'staking_page', 'governance_page', 'swap_page', 'bridge_page', 'analytics_dashboard', 'profile_page', 'auction_house', 'lending_page', 'multisig_wallet', 'airdrop_page', 'marketplace']
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: CryptoKitties Clone
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/Token.sol
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - WARNING - ⚠️ ABI non trouvée pour Token
+2026-02-12 07:53:57 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212075357
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'nft_gallery', 'token_transfer', 'staking_page', 'governance_page', 'swap_page', 'bridge_page', 'analytics_dashboard', 'profile_page', 'auction_house', 'lending_page', 'multisig_wallet', 'airdrop_page', 'marketplace']
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: CryptoKitties Clone
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/Token.sol
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - WARNING - ⚠️ ABI non trouvée pour Token
+2026-02-12 07:59:31 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212075931
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - WARNING - ⚠️ Erreur chargement config: name 'yaml' is not defined
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'nft_gallery', 'token_transfer', 'staking_page', 'governance_page', 'swap_page', 'bridge_page', 'analytics_dashboard', 'profile_page', 'auction_house', 'lending_page', 'multisig_wallet', 'airdrop_page', 'marketplace']
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend_web3...
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder']
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 initialisé avec succès
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - WARNING - ⚠️ ABI non trouvée pour SimpleNFT
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: NFTCollection
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - WARNING - ⚠️ ABI non trouvée pour SimpleNFT
+2026-02-12 08:04:02 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212080402
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'nft_gallery', 'token_transfer', 'staking_page', 'governance_page', 'swap_page', 'bridge_page', 'analytics_dashboard', 'profile_page', 'auction_house', 'lending_page', 'multisig_wallet', 'airdrop_page', 'marketplace']
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend_web3...
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder']
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 initialisé avec succès
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: NFTCollection
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 08:07:07 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212080707
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - 📋 Templates: ['mint_page', 'dashboard', 'nft_gallery', 'token_transfer', 'staking_page', 'governance_page', 'swap_page', 'bridge_page', 'analytics_dashboard', 'profile_page', 'auction_house', 'lending_page', 'multisig_wallet', 'airdrop_page', 'marketplace']
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend_web3...
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder']
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 initialisé avec succès
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: FullSuite
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 08:15:44 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212081544
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 09:10:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 18:21:34 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: NFTCollection
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:22:22 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212182222
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: BankingWeb3
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:22:40 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: BankingWeb3
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:28:01 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'FrontendWeb3Agent' object has no attribute '_create_bridge_page'
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: NFTCollection
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:28:19 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212182819
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend_web3...
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder']
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 initialisé avec succès
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: NFTCollection
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:35:37 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212183537
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Configuration chargée: frontend_web3 v1.0.0
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 créé (config: agents/frontend_web3/config.yaml)
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend_web3...
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder']
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - Agent frontend_web3 initialisé avec succès
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - 🚀 Génération projet Next.js: BankingWeb3
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - 🔍 Extraction ABI de ./contracts/SimpleNFT.sol
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - ✅ ABI extraite: agents\frontend_web3\contracts\abi\SimpleNFT.json
+2026-02-12 18:35:45 - agent.FrontendWeb3Agent - INFO - ✅ Projet généré: frontend\FRONTEND-20260212183545
+2026-02-12 18:51:22 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:51:22 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 18:57:26 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 18:57:26 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 19:01:48 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:01:48 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 19:23:31 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:23:31 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 19:26:36 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:26:36 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 19:28:39 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:28:39 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 19:30:16 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 19:30:16 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:11:08 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:11:08 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:19:02 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:19:02 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:22:07 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:22:07 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:29:50 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:29:50 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:35:35 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:35 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:40:29 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:40:29 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:43:37 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:43:37 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:56:19 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:56:19 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-12 21:59:53 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:59:53 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé

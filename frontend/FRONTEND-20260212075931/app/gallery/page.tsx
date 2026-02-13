@@ -1,0 +1,44 @@
+'use client';
+
+export default function GalleryPage() {
+    return (
+        <>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Gallery - CryptoKitties Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-4xl font-bold mb-8 gradient-text">CryptoKitties Clone</h1>
+        <div class="flex space-x-4 mb-8">
+            <input type="text" placeholder="Search NFTs..." 
+                   class="flex-1 px-4 py-2 bg-gray-800 rounded-lg border border-gray-700">
+            <select class="px-4 py-2 bg-gray-800 rounded-lg border border-gray-700">
+                <option>All Collections</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {% for nft in nfts %}
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition">
+                <img src="{{nft.image}}" alt="{{nft.name}}" class="w-full aspect-square object-cover">
+                <div class="p-4">
+                    <h3 class="font-bold">{{nft.name}}</h3>
+                    <p class="text-sm text-gray-400">{{nft.collection}}</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-blue-400 font-bold">{{nft.price}} ETH</span>
+                        <button class="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">Buy</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+        </>
+    );
+}

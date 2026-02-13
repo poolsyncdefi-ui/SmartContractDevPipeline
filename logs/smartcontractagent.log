@@ -1,0 +1,41 @@
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Configuration chargée: smart_contract v1.0.0
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Agent smart_contract créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - ✅ Configuration chargée: smart_contract v1.0.0
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - ✅ 35 capacités chargées
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract initialisé - v1.0.0
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect']
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer']
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Agent Smart Contract initialisé
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Initialisation de l'agent smart_contract...
+2026-02-12 19:49:51 - agent.SmartContractAgent - WARNING - Champ obligatoire manquant: version
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect']
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer']
+2026-02-12 19:49:51 - agent.SmartContractAgent - ERROR - Erreur lors de l'initialisation: object NoneType can't be used in 'await' expression
+2026-02-12 19:49:51 - agent.SmartContractAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 412, in initialize
+    success = await self._initialize_components()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object NoneType can't be used in 'await' expression
+
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> error
+2026-02-12 19:49:51 - agent.SmartContractAgent - INFO - 🔨 Développement du contrat ERC20: TestToken
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Configuration chargée: smart_contract v1.0.0
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Agent smart_contract créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - ✅ Configuration chargée: smart_contract v1.0.0
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - ✅ 35 capacités chargées
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract initialisé - v1.0.0
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect']
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Agent Smart Contract initialisé
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Initialisation de l'agent smart_contract...
+2026-02-12 19:54:29 - agent.SmartContractAgent - WARNING - Champ obligatoire manquant: version
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect']
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Initialisation des composants...
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer']
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - Agent smart_contract initialisé avec succès
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - ✅ Agent Smart Contract prêt
+2026-02-12 19:54:29 - agent.SmartContractAgent - INFO - 🔨 Développement du contrat ERC20: TestToken

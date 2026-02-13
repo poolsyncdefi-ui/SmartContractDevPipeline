@@ -1,0 +1,15 @@
+contract_patterns:
+- ++
+- --
+- +=
+- -=
+- '*='
+- /=
+description: "D\xE9tecte les d\xE9passements d'entiers"
+engine: echidna
+name: Integer Overflow Detection
+properties:
+- echidna_test_overflow()
+- echidna_test_underflow()
+strategy: structured
+test_limit: 30000

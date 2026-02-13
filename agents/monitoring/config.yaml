@@ -1,0 +1,41 @@
+agent:
+  name: "monitoring"
+  display_name: "🎮 Command Center"
+  description: "Monitoring et observabilité - Interface mission control"
+  version: "2.0.0"
+  log_level: "INFO"
+  capabilities:
+    - metric_collection
+    - anomaly_detection
+    - alerting
+    - dashboard_generation
+    - trend_analysis
+    - performance_scoring
+    - system_health
+    - predictive_analytics
+  dependencies: []
+
+monitoring:
+  collection_interval: 30
+  analysis_interval: 60
+  dashboard_refresh: 60
+  metrics_retention: 1000
+  alert_dedup_window: 300
+  performance_window: 100
+
+thresholds:
+  cpu_warning: 70
+  cpu_critical: 90
+  memory_warning: 80
+  memory_critical: 95
+  error_rate_warning: 5
+  error_rate_critical: 15
+  response_time_warning: 2.0
+  response_time_critical: 5.0
+
+dashboards:
+  output_path: "./reports/monitoring"
+  theme: "dark"
+  terminal_style: true
+  show_forecast: true
+  refresh_rate: 60

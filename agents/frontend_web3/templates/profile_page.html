@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-gray-800/50 rounded-2xl p-8 mb-8">
+            <div class="flex items-center space-x-6">
+                <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl">👤</div>
+                <div class="flex-1">
+                    <h1 class="text-2xl font-bold">{{USERNAME}}</h1>
+                    <p class="text-gray-400">{{ADDRESS}}</p>
+                    <div class="flex space-x-4 mt-4">
+                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Member since {{JOIN_DATE}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800/30 rounded-xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">Total Value</p>
+                <p class="text-2xl font-bold">${{TOTAL_VALUE}}</p>
+            </div>
+            <div class="bg-gray-800/30 rounded-xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">NFTs Owned</p>
+                <p class="text-2xl font-bold">{{NFT_COUNT}}</p>
+            </div>
+            <div class="bg-gray-800/30 rounded-xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">Transactions</p>
+                <p class="text-2xl font-bold">{{TX_COUNT}}</p>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div class="bg-gray-800/30 rounded-xl p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="text-2xl">💰</div>
+                    <div>
+                        <p class="font-medium">Ethereum</p>
+                        <p class="text-sm text-gray-400">ETH</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="font-bold">10.5 ETH</p>
+                    <p class="text-sm text-gray-400">$21,000.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

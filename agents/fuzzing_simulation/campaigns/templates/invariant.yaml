@@ -1,0 +1,7 @@
+description: "V\xE9rification d'invariants avec Foundry"
+engine: foundry
+fail_on_revert: false
+invariant_depth: 30
+invariant_runs: 512
+name: Invariant Testing
+strategy: invariant

@@ -1,0 +1,65 @@
+{
+  "id": "FUZZ-20260211211131",
+  "name": "Test Fuzzing",
+  "contract": "Token",
+  "engine": "simulation",
+  "strategy": "comprehensive",
+  "status": "completed",
+  "duration_ms": 503,
+  "total_tests": 1000,
+  "total_failures": 3,
+  "vulnerabilities": [
+    {
+      "id": "VULN-20260211211131-reentrancy",
+      "type": "reentrancy",
+      "severity": "high",
+      "description": "Fonction withdraw() sans protection contre la réentrance",
+      "contract": "Token",
+      "function": "withdraw",
+      "line": 42,
+      "swc_id": "SWC-107",
+      "remediation": "Utiliser ReentrancyGuard ou suivre le pattern Checks-Effects-Interactions",
+      "sequence": [
+        "call withdraw()",
+        "call withdraw()",
+        "call withdraw()"
+      ]
+    },
+    {
+      "id": "VULN-20260211211131-integer_overflow",
+      "type": "integer_overflow",
+      "severity": "medium",
+      "description": "Potential overflow dans addLiquidity()",
+      "contract": "Token",
+      "function": "addLiquidity",
+      "line": 78,
+      "swc_id": "SWC-101",
+      "remediation": "Utiliser SafeMath ou Solidity ^0.8.0",
+      "sequence": [
+        "addLiquidity(1, 0xffff...)",
+        "addLiquidity(2, 0xffff...)"
+      ]
+    },
+    {
+      "id": "VULN-20260211211131-access_control",
+      "type": "access_control",
+      "severity": "critical",
+      "description": "Fonction mint() publique sans restriction",
+      "contract": "Token",
+      "function": "mint",
+      "line": 23,
+      "swc_id": "SWC-115",
+      "remediation": "Ajouter des modificateurs onlyOwner, onlyRole ou Ownable",
+      "sequence": [
+        "mint(0xdead, 1000)"
+      ]
+    }
+  ],
+  "coverage": {
+    "lines": 85,
+    "branches": 72,
+    "functions": 94,
+    "percent": 83.7
+  },
+  "report": null
+}

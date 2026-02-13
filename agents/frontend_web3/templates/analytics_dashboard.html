@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-3xl font-bold mb-8">Protocol Analytics</h1>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Total Value Locked</p>
+                <p class="text-2xl font-bold">${{TVL}}M</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">24h Volume</p>
+                <p class="text-2xl font-bold">${{VOLUME}}M</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Active Users</p>
+                <p class="text-2xl font-bold">{{USERS}}</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <p class="text-sm text-gray-400 mb-2">Transactions</p>
+                <p class="text-2xl font-bold">{{TXNS}}K</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">TVL History</h3>
+                <canvas id="tvlChart" style="height: 300px;"></canvas>
+            </div>
+            <div class="bg-gray-800/50 rounded-xl p-6">
+                <h3 class="text-lg font-bold mb-4">Volume 7D</h3>
+                <canvas id="volumeChart" style="height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        const tvlCtx = document.getElementById('tvlChart').getContext('2d');
+        new Chart(tvlCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'TVL',
+                    data: [65, 72, 78, 85, 89, 94],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4
+                }]
+            }
+        });
+        const volumeCtx = document.getElementById('volumeChart').getContext('2d');
+        new Chart(volumeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Volume',
+                    data: [12, 19, 15, 17, 14, 13, 18],
+                    backgroundColor: '#10b981'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

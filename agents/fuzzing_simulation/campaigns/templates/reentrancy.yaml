@@ -1,0 +1,14 @@
+contract_patterns:
+- withdraw
+- transfer
+- send
+- call.value
+- .delegatecall
+description: "D\xE9tecte les vuln\xE9rabilit\xE9s de r\xE9entrance"
+engine: echidna
+name: Reentrancy Detection
+properties:
+- echidna_test_reentrancy()
+- echidna_test_checks_effects_interactions()
+strategy: guided
+test_limit: 50000

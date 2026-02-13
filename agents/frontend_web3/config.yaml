@@ -1,8 +1,14 @@
 # agents/frontend_web3/config.yaml
+# Configuration complète de l'agent Frontend Web3
+# Version: 1.0.0 - Adaptée au développement SmartContractDevPipeline
+
 agent:
   name: "frontend_web3"
+  display_name: "🎨 Agent Frontend Web3"
   type: "main_agent"
-  description: "Agent spécialisé dans le développement frontend avancé avec intégration Web3 complète, expérience utilisateur blockchain optimisée et interfaces DeFi/Web3"
+  description: "Agent spécialisé dans le développement frontend avancé avec intégration Web3 complète, expérience utilisateur blockchain optimisée et interfaces DeFi/Web3 - Génère des applications Next.js/React avec 15+ composants prêts à l'emploi"
+  version: "1.0.0"
+  log_level: "INFO"
   execution_order: 4
   dependencies: ["smart_contract", "coder"]
   
@@ -11,152 +17,226 @@ agent:
       description: "Valider la configuration frontend Web3 et les prérequis blockchain"
     - name: "design_ui_ux_complete"
       description: "Concevoir l'interface utilisateur et l'expérience complète pour applications Web3"
-    - name: "implement_react_ecosystem"
-      description: "Implémenter l'écosystème React complet avec Next.js, state management et routing"
+    - name: "react_generation"
+      description: "Générer des applications React avec Vite et ecosysteme Web3"
+    - name: "nextjs_generation"
+      description: "Générer des applications Next.js 14+ avec App Router et SSR"
+    - name: "vue_generation"
+      description: "Générer des applications Vue.js 3 avec Vite"
     - name: "integrate_web3_wallets_comprehensive"
-      description: "Intégrer la connexion de portefeuilles Web3 multi-chaînes avec fallbacks"
+      description: "Intégrer la connexion de portefeuilles Web3 multi-chaînes avec RainbowKit + Wagmi + Viem"
     - name: "connect_to_smart_contracts_advanced"
-      description: "Connecter l'interface aux smart contracts avec caching, polling et events"
+      description: "Connecter l'interface aux smart contracts avec ABI auto-extraction, caching et events"
     - name: "handle_blockchain_transactions_robust"
       description: "Gérer les transactions blockchain avec états, confirmations et error handling"
     - name: "display_blockchain_data_intuitive"
-      description: "Afficher les données blockchain de manière intuitive avec visualisations"
+      description: "Afficher les données blockchain de manière intuitive avec visualisations Chart.js"
     - name: "implement_real_time_updates_websocket"
-      description: "Mettre en place des mises à jour temps réel avec WebSockets et SSE"
+      description: "Mettre en place des mises à jour temps réel"
     - name: "create_responsive_design_system"
-      description: "Créer un design system responsive avec design tokens et theming"
+      description: "Créer un design system responsive avec Tailwind CSS et theming personnalisable"
     - name: "optimize_web3_performance_advanced"
-      description: "Optimiser les performances Web3 avec batching, caching et lazy loading"
+      description: "Optimiser les performances Web3 avec batching et caching"
     - name: "implement_state_management_sophisticated"
-      description: "Mettre en place la gestion d'état sophistiquée avec optimistic updates"
+      description: "Mettre en place la gestion d'état sophistiquée avec React Context"
     - name: "add_loading_states_feedback"
       description: "Ajouter des états de chargement et feedback utilisateur contextuel"
     - name: "implement_error_handling_resilient"
-      description: "Gérer les erreurs Web3 et transactions avec retry logic et user guidance"
+      description: "Gérer les erreurs Web3 et transactions avec retry logic"
     - name: "create_dashboard_components_advanced"
       description: "Créer des composants de dashboard DeFi avancés avec charts et analytics"
     - name: "implement_token_management_complete"
       description: "Implémenter la gestion de tokens complète avec balances, transfers et approvals"
+    - name: "mint_page_generation"
+      description: "Générer des pages de mint NFT complètes avec compteur et prix"
+    - name: "nft_gallery_generation"
+      description: "Générer des galeries NFT responsives avec grille"
+    - name: "staking_page_generation"
+      description: "Générer des pages de staking avec pools et APY"
+    - name: "governance_page_generation"
+      description: "Générer des pages de gouvernance DAO avec propositions et votes"
+    - name: "swap_page_generation"
+      description: "Générer des interfaces DEX swap"
+    - name: "bridge_page_generation"
+      description: "Générer des interfaces de bridge cross-chain"
+    - name: "analytics_dashboard_generation"
+      description: "Générer des dashboards d'analytics avec TVL, volume, utilisateurs"
+    - name: "profile_page_generation"
+      description: "Générer des pages de profil utilisateur avec portfolio"
+    - name: "auction_house_generation"
+      description: "Générer des maisons d'enchères NFT"
+    - name: "lending_page_generation"
+      description: "Générer des interfaces de lending/borrowing"
+    - name: "multisig_wallet_generation"
+      description: "Générer des wallets multi-signatures"
+    - name: "airdrop_page_generation"
+      description: "Générer des pages de claim airdrop"
     - name: "add_dark_light_mode_system"
-      description: "Ajouter le support mode sombre/clair avec persistence et system detection"
+      description: "Ajouter le support mode sombre/clair"
     - name: "optimize_seo_web3"
-      description: "Optimiser le SEO pour applications Web3 avec metadata et sitemaps"
+      description: "Optimiser le SEO pour applications Web3"
     - name: "implement_internationalization"
-      description: "Implémenter l'internationalisation complète avec i18n et locale detection"
+      description: "Implémenter l'internationalisation"
     - name: "ensure_accessibility_compliance"
-      description: "Assurer la conformité accessibilité WCAG 2.1 AA avec screen readers"
+      description: "Assurer la conformité accessibilité"
     - name: "implement_analytics_tracking"
-      description: "Implémenter le tracking analytics avec events, funnels et user behavior"
-    - name: "add_offline_support"
-      description: "Ajouter le support offline avec service workers et cache strategies"
-    - name: "implement_push_notifications"
-      description: "Implémenter les push notifications pour transactions et alerts"
-    - name: "create_animation_transitions"
-      description: "Créer des animations et transitions fluides pour meilleure UX"
-    - name: "optimize_bundle_size_advanced"
-      description: "Optimiser la taille du bundle avec code splitting et tree shaking"
+      description: "Implémenter le tracking analytics"
     - name: "implement_progressive_web_app"
-      description: "Implémenter Progressive Web App avec install prompt et offline mode"
-    - name: "add_share_functionality"
-      description: "Ajouter la fonctionnalité de partage social et deep linking"
-    - name: "implement_form_validation_advanced"
-      description: "Implémenter la validation de formulaires avancée avec schemas"
-    - name: "create_custom_hooks_library"
-      description: "Créer une bibliothèque de custom hooks réutilisables pour Web3"
-    - name: "implement_testing_strategy"
-      description: "Implémenter la stratégie de testing avec unit, integration et e2e tests"
-    - name: "optimize_image_performance"
-      description: "Optimiser les performances images avec lazy loading et formats modernes"
-    - name: "implement_csp_security_headers"
-      description: "Implémenter les headers de sécurité CSP et autres protections"
+      description: "Implémenter Progressive Web App"
+    - name: "ipfs_deployment"
+      description: "Déployer sur IPFS"
+    - name: "vercel_deployment"
+      description: "Déployer sur Vercel"
+    - name: "theme_customization"
+      description: "Personnaliser les thèmes et couleurs"
 
-  llm_config:
-    model: "ollama:deepseek-coder:6.7b"
-    temperature: 0.25
-    max_tokens: 12000
-    top_p: 0.92
-    frequency_penalty: 0.05
-    presence_penalty: 0.05
-    
-  tools:
-    - "react_nextjs_generator"
-    - "web3_integrator_complete"
-    - "ui_ux_designer_system"
-    - "wallet_connector_multi_chain"
-    - "transaction_handler_advanced"
-    - "responsive_design_system"
-    - "performance_optimizer_web3"
-    - "accessibility_checker"
-    - "seo_optimizer"
-    - "internationalization_manager"
-    - "analytics_integrator"
-    - "pwa_generator"
-    - "animation_designer"
-    - "bundle_analyzer"
-    - "security_header_validator"
-    
-  outputs:
-    - "react_nextjs_application"
-    - "web3_integration_complete"
-    - "ui_ux_design_system"
-    - "wallet_connection_system"
-    - "transaction_handling_system"
-    - "dashboard_components_library"
-    - "token_management_system"
-    - "internationalization_setup"
-    - "accessibility_implementation"
-    - "seo_optimization_config"
-    - "analytics_tracking_setup"
-    - "pwa_configuration"
-    - "performance_optimization_report"
-    - "security_implementation_report"
-    
-  validation_rules:
-    - "must_load_under_3_seconds_lcp"
-    - "must_be_fully_responsive_all_devices"
-    - "must_connect_to_all_specified_blockchains"
-    - "must_handle_transactions_with_proper_feedback"
-    - "must_be_wcag_2_1_aa_compliant"
-    - "must_have_comprehensive_error_handling"
-    - "must_optimize_bundle_size_under_200kb"
-    - "must_implement_proper_security_headers"
-    - "must_support_internationalization_min_5_languages"
-    - "must_implement_analytics_tracking_complete"
-    
-  performance_targets:
-    lighthouse_score: "> 90 all categories"
-    first_contentful_paint: "< 1.5s"
-    largest_contentful_paint: "< 2.5s"
-    cumulative_layout_shift: "< 0.1"
-    first_input_delay: "< 100ms"
-    time_to_interactive: "< 3.5s"
-    bundle_size_initial: "< 200kb"
-    wallet_connection_time: "< 3s"
-    transaction_confirmation_feedback: "< 2s"
-    
-  supported_technologies:
-    frameworks: ["Next.js 14+", "React 18+", "Vite", "Remix"]
-    state_management: ["Zustand", "Redux Toolkit", "React Query", "SWR", "Recoil"]
-    web3_libraries: ["wagmi", "viem", "ethers.js", "web3.js", "thirdweb"]
-    ui_libraries: ["shadcn/ui", "Tailwind CSS", "Radix UI", "Chakra UI", "MUI"]
-    testing: ["Playwright", "Cypress", "Jest", "React Testing Library", "Vitest"]
-    analytics: ["Google Analytics 4", "Mixpanel", "Amplitude", "PostHog"]
-    monitoring: ["Sentry", "LogRocket", "Hotjar", "FullStory"]
-    
-  blockchain_integration:
-    wallets: ["MetaMask", "WalletConnect", "Coinbase Wallet", "Rabby", "Phantom"]
-    networks: ["Ethereum Mainnet", "Polygon", "Arbitrum", "Optimism", "Base", "Avalanche"]
-    providers: ["Alchemy", "Infura", "QuickNode", "Public RPCs", "Anvil Local"]
-    standards: ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626", "EIP-712", "EIP-4337"]
-    
-  user_experience_requirements:
-    mobile_first_design: true
-    progressive_disclosure: true
-    contextual_help: true
-    transaction_status_visibility: true
-    gas_price_estimation: true
-    network_switching_seamless: true
-    error_recovery_guidance: true
-    loading_state_feedback: true
-    confirmation_modals_clear: true
-    success_feedback_visual: true
+frontend:
+  default_framework: "nextjs"
+  default_library: "wagmi"
+  output_path: "./frontend"
+  include_tests: true
+  include_docs: true
+  optimize_build: true
+  theme: "dark"
+  colors:
+    primary: "#3b82f6"      # Bleu
+    secondary: "#10b981"    # Vert
+    accent: "#8b5cf6"       # Violet
+    background: "#0f172a"   # Gris très foncé
+    text: "#f8fafc"        # Blanc cassé
+  components_available: [
+    "mint_page", "dashboard", "nft_gallery", "token_transfer",
+    "staking_page", "governance_page", "swap_page", "bridge_page",
+    "analytics_dashboard", "profile_page", "auction_house",
+    "lending_page", "multisig_wallet", "airdrop_page", "marketplace"
+  ]
+
+deployment:
+  auto_deploy: false
+  platform: "vercel"
+  vercel_token: null
+  ipfs_gateway: "https://ipfs.io/ipfs/"
+  domain: null
+
+templates_path: "./agents/frontend_web3/templates"
+abis_path: "./agents/frontend_web3/contracts/abi"
+
+llm_config:
+  model: "ollama:deepseek-coder:6.7b"
+  temperature: 0.25
+  max_tokens: 12000
+  top_p: 0.92
+  frequency_penalty: 0.05
+  presence_penalty: 0.05
+
+tools:
+  - "react_nextjs_generator"
+  - "web3_integrator_complete"
+  - "ui_ux_designer_system"
+  - "wallet_connector_multi_chain"
+  - "transaction_handler_advanced"
+  - "responsive_design_system"
+  - "performance_optimizer_web3"
+  - "accessibility_checker"
+  - "seo_optimizer"
+  - "internationalization_manager"
+  - "analytics_integrator"
+  - "pwa_generator"
+  - "animation_designer"
+  - "bundle_analyzer"
+  - "security_header_validator"
+  - "contract_abi_extractor"
+  - "chart_generator"
+  - "nft_mint_page_generator"
+  - "staking_interface_generator"
+  - "governance_dashboard_generator"
+  - "swap_interface_generator"
+  - "bridge_interface_generator"
+  - "multisig_wallet_generator"
+
+outputs:
+  - "react_nextjs_application"
+  - "web3_integration_complete"
+  - "ui_ux_design_system"
+  - "wallet_connection_system"
+  - "transaction_handling_system"
+  - "dashboard_components_library"
+  - "token_management_system"
+  - "internationalization_setup"
+  - "accessibility_implementation"
+  - "seo_optimization_config"
+  - "analytics_tracking_setup"
+  - "pwa_configuration"
+  - "performance_optimization_report"
+  - "security_implementation_report"
+  - "nft_mint_page"
+  - "nft_gallery"
+  - "staking_dashboard"
+  - "governance_portal"
+  - "dex_interface"
+  - "cross_chain_bridge"
+  - "protocol_analytics"
+  - "user_profile"
+  - "auction_house"
+  - "lending_protocol"
+  - "multisig_wallet"
+  - "airdrop_claimer"
+
+validation_rules:
+  - "must_load_under_3_seconds_lcp"
+  - "must_be_fully_responsive_all_devices"
+  - "must_connect_to_all_specified_blockchains"
+  - "must_handle_transactions_with_proper_feedback"
+  - "must_be_wcag_2_1_aa_compliant"
+  - "must_have_comprehensive_error_handling"
+  - "must_optimize_bundle_size_under_200kb"
+  - "must_implement_proper_security_headers"
+  - "must_support_internationalization_min_5_languages"
+  - "must_implement_analytics_tracking_complete"
+  - "must_generate_valid_nextjs_structure"
+  - "must_include_wallet_connection"
+
+performance_targets:
+  lighthouse_score: "> 90 all categories"
+  first_contentful_paint: "< 1.5s"
+  largest_contentful_paint: "< 2.5s"
+  cumulative_layout_shift: "< 0.1"
+  first_input_delay: "< 100ms"
+  time_to_interactive: "< 3.5s"
+  bundle_size_initial: "< 200kb"
+  wallet_connection_time: "< 3s"
+  transaction_confirmation_feedback: "< 2s"
+  project_generation_time: "< 5s"
+
+supported_technologies:
+  frameworks: ["Next.js 14+", "React 18+", "Vite", "Remix"]
+  state_management: ["Zustand", "Redux Toolkit", "React Query", "SWR", "Recoil"]
+  web3_libraries: ["wagmi", "viem", "ethers.js", "web3.js", "thirdweb"]
+  ui_libraries: ["shadcn/ui", "Tailwind CSS", "Radix UI", "Chakra UI", "MUI"]
+  testing: ["Playwright", "Cypress", "Jest", "React Testing Library", "Vitest"]
+  analytics: ["Google Analytics 4", "Mixpanel", "Amplitude", "PostHog"]
+  monitoring: ["Sentry", "LogRocket", "Hotjar", "FullStory"]
+  chart_libraries: ["Chart.js", "D3.js", "Recharts", "Victory"]
+
+blockchain_integration:
+  wallets: ["MetaMask", "WalletConnect", "Coinbase Wallet", "Rabby", "Phantom"]
+  networks: ["Ethereum Mainnet", "Polygon", "Arbitrum", "Optimism", "Base", "Avalanche"]
+  providers: ["Alchemy", "Infura", "QuickNode", "Public RPCs", "Anvil Local"]
+  standards: ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626", "EIP-712", "EIP-4337"]
+
+user_experience_requirements:
+  mobile_first_design: true
+  progressive_disclosure: true
+  contextual_help: true
+  transaction_status_visibility: true
+  gas_price_estimation: true
+  network_switching_seamless: true
+  error_recovery_guidance: true
+  loading_state_feedback: true
+  confirmation_modals_clear: true
+  success_feedback_visual: true
+  smooth_animations: true
+  skeleton_screens: true
+  infinite_scroll: true
+  search_functionality: true
+  filter_options: true

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROTOCOL_NAME}} • Lending 2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        * { font-family: 'Space Grotesk', sans-serif; }
+        .lending-card {
+            background: linear-gradient(145deg, #1a1e2a, #0f1219);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lending-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59,130,246,0.3);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+        }
+        .risk-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0C12] text-white">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-bold mb-2">{{PROTOCOL_NAME}}</h1>
+                <p class="text-gray-400">Lending & Borrowing • Cross-chain • {{TVL}}M TVL</p>
+            </div>
+            <div class="flex space-x-4">
+                <button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl font-medium">
+                    + Créer une offre
+                </button>
+                <button class="px-6 py-3 bg-gray-800 rounded-xl font-medium hover:bg-gray-700">
+                    Emprunter
+                </button>
+            </div>
+        </div>
+
+        <!-- Market Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="lending-card p-6">
+                <p class="text-sm text-gray-400 mb-2">Volume total prêts</p>
+                <p class="text-2xl font-bold">${{LOAN_VOLUME}}M</p>
+                <p class="text-xs text-green-400 mt-1">+{{VOLUME_CHANGE}}%</p>
+            </div>
+            <div class="lending-card p-6">
+                <p class="text-sm text-gray-400 mb-2">Prêteurs actifs</p>
+                <p class="text-2xl font-bold">{{LENDERS}}</p>
+            </div>
+            <div class="lending-card p-6">
+                <p class="text-sm text-gray-400 mb-2">Emprunteurs</p>
+                <p class="text-2xl font-bold">{{BORROWERS}}</p>
+            </div>
+            <div class="lending-card p-6">
+                <p class="text-sm text-gray-400 mb-2">Taux moyen</p>
+                <p class="text-2xl font-bold">{{AVG_RATE}}%</p>
+            </div>
+        </div>
+
+        <!-- Active Loans Marketplace -->
+        <h2 class="text-2xl font-bold mb-6">🏆 Offres de prêts disponibles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="lending-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xl font-bold">10,000 USDC</span>
+                        <p class="text-xs text-gray-400">Prêt personnel</p>
+                    </div>
+                    <span class="risk-badge bg-green-500/20 text-green-400">Faible</span>
+                </div>
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Taux</span>
+                        <span class="font-medium text-green-400">4.2% APY</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Durée</span>
+                        <span>90 jours</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Score</span>
+                        <span>720</span>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="flex-1 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                        Financer
+                    </button>
+                    <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
+                        Détails
+                    </button>
+                </div>
+            </div>
+            <div class="lending-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xl font-bold">5 ETH</span>
+                        <p class="text-xs text-gray-400">Prêt collatéralisé</p>
+                    </div>
+                    <span class="risk-badge bg-yellow-500/20 text-yellow-400">Moyen</span>
+                </div>
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Taux</span>
+                        <span class="font-medium text-green-400">3.8% APY</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">LTV</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Durée</span>
+                        <span>180 jours</span>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="flex-1 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                        Financer
+                    </button>
+                    <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
+                        Détails
+                    </button>
+                </div>
+            </div>
+            <div class="lending-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xl font-bold">50,000 DAI</span>
+                        <p class="text-xs text-gray-400">Prêt entreprise</p>
+                    </div>
+                    <span class="risk-badge bg-blue-500/20 text-blue-400">Stable</span>
+                </div>
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Taux</span>
+                        <span class="font-medium text-green-400">5.1% APY</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Durée</span>
+                        <span>365 jours</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Garantie</span>
+                        <span>120%</span>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="flex-1 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                        Financer
+                    </button>
+                    <button class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition">
+                        Détails
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liquidation Guard -->
+        <div class="mt-12 lending-card p-6 bg-gradient-to-r from-yellow-900/30 to-red-900/30 border border-yellow-500/30">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center">
+                        🛡️
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold">Liquidation Guard</h3>
+                        <p class="text-sm text-gray-300">Vos positions sont surveillées en temps réel</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div>
+                        <p class="text-xs text-gray-400">Niveau de risque</p>
+                        <p class="text-lg font-bold text-green-400">24% LTV</p>
+                    </div>
+                    <button class="px-6 py-2 bg-yellow-600 rounded-lg hover:bg-yellow-700">
+                        Ajouter du collatéral
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

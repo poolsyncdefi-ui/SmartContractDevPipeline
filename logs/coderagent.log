@@ -146,3 +146,54 @@
 2026-02-11 17:57:27 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
 2026-02-11 17:57:27 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
 2026-02-11 17:57:27 - agent.CoderAgent - INFO - Agent coder initialisé avec succès
+2026-02-12 18:51:22 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 18:51:22 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 18:51:22 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 18:57:26 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 18:57:26 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 18:57:26 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 19:01:48 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 19:01:48 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 19:01:48 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 19:23:31 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 19:23:31 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 19:23:31 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 19:26:36 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 19:26:36 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 19:26:36 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 19:28:39 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 19:28:39 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 19:28:39 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 19:30:16 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 19:30:16 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 19:30:16 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:11:08 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:11:08 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:11:08 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:19:02 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:19:02 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:19:02 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:22:07 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:22:07 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:22:07 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:29:50 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:29:50 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:29:50 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:35:35 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:35:35 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:35:35 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:40:29 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:40:29 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:40:29 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:43:37 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:43:37 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:43:37 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:46:28 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:46:28 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:46:28 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:56:19 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:56:19 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:56:19 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-02-12 21:59:53 - agent.CoderAgent - INFO - Configuration chargée: coder v1.0.0
+2026-02-12 21:59:53 - agent.CoderAgent - INFO - Agent coder créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-02-12 21:59:53 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml

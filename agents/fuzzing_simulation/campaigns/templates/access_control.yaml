@@ -1,0 +1,9 @@
+description: "D\xE9tecte les failles de contr\xF4le d'acc\xE8s"
+engine: foundry
+invariant_depth: 20
+invariant_runs: 256
+name: Access Control Detection
+properties:
+- test_onlyOwner_can_call_restricted()
+- test_role_based_access()
+strategy: invariant

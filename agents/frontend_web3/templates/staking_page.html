@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staking - {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">Staking Dashboard</h1>
+            <p class="text-xl text-gray-400">Stake your tokens and earn rewards</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gray-800/50 rounded-2xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">Total Value Locked</p>
+                <p class="text-3xl font-bold gradient-text">${{TVL}}M</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-2xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">APY</p>
+                <p class="text-3xl font-bold text-green-400">{{APY}}%</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-2xl p-6 text-center">
+                <p class="text-sm text-gray-400 mb-2">Total Stakers</p>
+                <p class="text-3xl font-bold">{{STAKERS}}</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-gray-800/30 rounded-2xl p-8 border border-gray-700">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold">ETH Staking Pool</h3>
+                        <p class="text-sm text-gray-400">Stake ETH, earn rewards</p>
+                    </div>
+                    <div class="text-3xl">💰</div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">APY</span>
+                        <span class="font-bold text-green-400">5.2%</span>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium mb-2">Amount to stake</label>
+                        <div class="flex space-x-2">
+                            <input type="number" placeholder="0.0" 
+                                   class="flex-1 px-4 py-3 bg-gray-700 rounded-xl border border-gray-600">
+                            <span class="px-4 py-3 bg-gray-600 rounded-xl">ETH</span>
+                        </div>
+                    </div>
+                    <button class="w-full gradient-bg text-white font-bold py-3 px-4 rounded-xl 
+                                 hover:opacity-90 transition mt-4">Stake Now</button>
+                </div>
+            </div>
+            <div class="bg-gray-800/30 rounded-2xl p-8 border border-gray-700">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-xl font-bold">USDC Staking Pool</h3>
+                        <p class="text-sm text-gray-400">Stablecoin staking</p>
+                    </div>
+                    <div class="text-3xl">💵</div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">APY</span>
+                        <span class="font-bold text-green-400">3.8%</span>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium mb-2">Amount to stake</label>
+                        <div class="flex space-x-2">
+                            <input type="number" placeholder="0.0" 
+                                   class="flex-1 px-4 py-3 bg-gray-700 rounded-xl border border-gray-600">
+                            <span class="px-4 py-3 bg-gray-600 rounded-xl">USDC</span>
+                        </div>
+                    </div>
+                    <button class="w-full gradient-bg text-white font-bold py-3 px-4 rounded-xl 
+                                 hover:opacity-90 transition mt-4">Stake Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

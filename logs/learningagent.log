@@ -1,0 +1,335 @@
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine']
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 20:11:40 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 20:11:40 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine']
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 20:11:40 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine']
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 20:17:54 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 20:17:54 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine']
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 20:17:54 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:10:04 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:10:04 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:10:04 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:10:04 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:11:10 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:11:10 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:11:10 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:18:48 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:18:48 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:18:48 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:18:48 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:19:03 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:19:03 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:19:03 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:21:48 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:21:48 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:21:48 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:21:48 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:22:09 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:22:09 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:22:09 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:24:48 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:24:48 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:24:48 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1108, column 5
+expected <block end>, but found '<scalar>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml", line 1111, column 23
+2026-02-12 21:24:48 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:28:46 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:28:46 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle gas_predictor_deep mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle vulnerability_classifier_advanced mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle test_optimizer_intelligent mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle anomaly_detector_advanced mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle recommendation_engine mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle trend_predictor mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle code_analyzer mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle multi_objective_optimizer mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle quality_scorer mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Modèle inference_engine mis à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:28:46 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:29:51 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:29:51 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:29:51 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:29:51 - agent.LearningAgent - ERROR - ❌ Erreur chargement config ultra: 'LearningAgent' object has no attribute '_components'
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Changement de statut: created -> initializing
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 🧠 Initialisation de l'agent Learning...
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Agent Learning initialisé
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Initialisation de l'agent base_agent...
+2026-02-12 21:35:27 - agent.LearningAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-02-12 21:35:27 - agent.LearningAgent - WARNING - Aucune capacité définie pour l'agent
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring']
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine', 'gas_predictor_deep', 'vulnerability_classifier_advanced', 'test_optimizer_intelligent', 'anomaly_detector_advanced', 'recommendation_engine', 'trend_predictor', 'code_analyzer', 'multi_objective_optimizer', 'quality_scorer', 'sentiment_analyzer', 'inference_engine', 'experimentation']
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - Agent base_agent initialisé avec succès
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Agent Learning prêt - Intelligence artificielle active
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ⛽ Prédiction de gas...
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 🔍 Classification des vulnérabilités...
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle gas_predictor_deep mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle vulnerability_classifier_advanced mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle test_optimizer_intelligent mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle anomaly_detector_advanced mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle recommendation_engine mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle trend_predictor mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle code_analyzer mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle multi_objective_optimizer mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle quality_scorer mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Modèle inference_engine mis à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:35:27 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: gas_predictor_deep
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: vulnerability_classifier_advanced
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: test_optimizer_intelligent
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: anomaly_detector_advanced
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: recommendation_engine
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: trend_predictor
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: code_analyzer
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: multi_objective_optimizer
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: quality_scorer
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: inference_engine
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:35:37 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: gas_predictor_deep
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: vulnerability_classifier_advanced
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: test_optimizer_intelligent
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: anomaly_detector_advanced
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: recommendation_engine
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: trend_predictor
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: code_analyzer
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: multi_objective_optimizer
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: quality_scorer
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: inference_engine
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:40:30 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: gas_predictor_deep
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: vulnerability_classifier_advanced
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: test_optimizer_intelligent
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: anomaly_detector_advanced
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: recommendation_engine
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: trend_predictor
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: code_analyzer
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: multi_objective_optimizer
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: quality_scorer
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: inference_engine
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:43:38 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: gas_predictor_deep
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: vulnerability_classifier_advanced
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: test_optimizer_intelligent
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: anomaly_detector_advanced
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: recommendation_engine
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: trend_predictor
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: code_analyzer
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: multi_objective_optimizer
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: quality_scorer
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: inference_engine
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:56:21 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - Agent base_agent créé (config: )
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ 69 capacités ultra chargées
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: gas_predictor_deep
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: vulnerability_classifier_advanced
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: test_optimizer_intelligent
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: anomaly_detector_advanced
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: recommendation_engine
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: trend_predictor
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: code_analyzer
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: multi_objective_optimizer
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: quality_scorer
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Nouveau modèle ajouté: inference_engine
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Configuration learning mise à jour
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Intégrations configurées
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Ressources configurées
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Explicabilité configurée
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - ✅ Apprentissage continu configuré
+2026-02-12 21:59:54 - agent.LearningAgent - INFO - 🎯 Configuration ULTIME chargée avec succès

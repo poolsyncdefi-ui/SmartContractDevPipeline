@@ -1,0 +1,13 @@
+description: "D\xE9tection exhaustive de vuln\xE9rabilit\xE9s"
+engine: medusa
+name: Comprehensive Security Audit
+strategy: comprehensive
+test_limit: 100000
+timeout: 3600
+vulnerabilities:
+- reentrancy
+- integer_overflow
+- integer_underflow
+- access_control
+- timestamp_dependence
+- unchecked_call
