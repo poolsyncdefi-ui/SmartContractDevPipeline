@@ -1,0 +1,102 @@
+{
+  "test_key": {
+    "path": "data\\storage\\default\\92\\48\\92488e1e3eeecdf99f3ed2ce59233efb4b4fb612d5655c0ce9ea52b5a502e655",
+    "type": "json",
+    "size": 30,
+    "original_size": 30,
+    "compressed": false,
+    "created": 1771528961.5414677,
+    "expiry": null,
+    "access_count": 0
+  },
+  "counter": {
+    "path": "data\\storage\\default\\ef\\e8\\efe899c74558f20b08bbc19bf0228c0c25bddb7871d80bd34ac8b33c030b3698",
+    "type": "pickle",
+    "size": 5,
+    "original_size": 5,
+    "compressed": false,
+    "created": 1771528961.5414677,
+    "expiry": null,
+    "access_count": 0
+  },
+  "mylist": {
+    "path": "data\\storage\\default\\0d\\ee\\0dee358e6b57d4684bd0f6b496194e72339bd535b0aee407220aca1b28f30666",
+    "type": "json",
+    "size": 69,
+    "original_size": 69,
+    "compressed": false,
+    "created": 1771528961.5414677,
+    "expiry": null,
+    "access_count": 0
+  },
+  "myset": {
+    "path": "data\\storage\\default\\b6\\2d\\b62dc2e8b470b65976323a29408f0125829981c2c60f6687350ef9eac0e99c8d",
+    "type": "pickle",
+    "size": 24,
+    "original_size": 24,
+    "compressed": false,
+    "created": 1771528961.5414677,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_195140": {
+    "path": "data\\storage\\default\\69\\6a\\696a167eb2c357cea4b4ea8b3eb7aae6ccbd211667a456727ca574999fdf8798",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771527100.486791,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_195535": {
+    "path": "data\\storage\\default\\55\\1e\\551e94d0fc890ff6d6ce7fbc79844ca52fbc0f21482514444e88accfe84fe814",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771527335.4834306,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_195554": {
+    "path": "data\\storage\\default\\bf\\02\\bf022d69cbcd958576bbf0b69c20a9e410bd4a5c8a12b6e765621bf676a0bda4",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771527354.6694844,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_200836": {
+    "path": "data\\storage\\default\\48\\7c\\487cc65a9cfb3b5af157c63934b0a66a812c56957399f0bffbe1f4c663ad3388",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771528116.2674363,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_201505": {
+    "path": "data\\storage\\default\\35\\e1\\35e18f8c2ed4df60af2358e792af182454accb9e87d86dc449561e43d237d7ca",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771528505.7190554,
+    "expiry": null,
+    "access_count": 0
+  },
+  "versioned_key__v20260219_202241": {
+    "path": "data\\storage\\default\\a3\\21\\a3210a2b8a3200be08fb34b9394ac040b9d7cd426a714579cf8dd987f4ab36c2",
+    "type": "string",
+    "size": 2,
+    "original_size": 2,
+    "compressed": false,
+    "created": 1771528961.5570908,
+    "expiry": null,
+    "access_count": 0
+  }
+}

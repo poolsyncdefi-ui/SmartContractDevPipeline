@@ -1,0 +1,79 @@
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:51:40 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:55:35 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:55:54 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 20:08:36 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 20:15:05 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - 💾 Storage Agent créé
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Configuration chargée: storage v1.0.0
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Backend 'default' initialisé (disk)
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Backend 'memory' initialisé (memory)
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Backend 'cache' initialisé (memory)
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Backend 'ipfs' initialisé (ipfs)
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - Initialisation des composants...
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning']
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - ✅ Storage Agent prêt - 4 backends actifs
+2026-02-19 20:22:41 - agent.StorageAgent - INFO - 💾 Travailleur de backup démarré (intervalle: 3600s)

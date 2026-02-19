@@ -1,0 +1,180 @@
+# =====================================================================
+# STORAGE AGENT - CONFIGURATION ULTIME
+# Gestion centralisée des données - Cache, persistance, IPFS
+# Version: 1.0.0
+# =====================================================================
+
+agent:
+  name: "storage"
+  display_name: "💾 Storage Agent"
+  description: |-
+    Agent de stockage centralisé gérant la persistance, le cache,
+    le versioning et l'accès aux données pour tous les agents.
+    Supporte mémoire, disque, IPFS, avec chiffrement et compression.
+  
+  version: "1.0.0"
+  log_level: "INFO"
+  
+  capabilities:
+    - name: "key_value_store"
+      description: "Stockage clé-valeur avec support TTL"
+    - name: "document_store"
+      description: "Stockage de documents JSON/BSON"
+    - name: "file_store"
+      description: "Stockage et gestion de fichiers"
+    - name: "ipfs_integration"
+      description: "Stockage décentralisé sur IPFS"
+    - name: "cache_manager"
+      description: "Gestion de cache LRU/LFU/TTL"
+    - name: "data_versioning"
+      description: "Versioning automatique des données"
+    - name: "data_encryption"
+      description: "Chiffrement AES-256 des données"
+    - name: "data_compression"
+      description: "Compression zstd/gzip/zlib"
+    - name: "backup_restore"
+      description: "Sauvegarde et restauration"
+    - name: "quota_management"
+      description: "Gestion des quotas par store"
+    - name: "ttl_auto_expire"
+      description: "Expiration automatique TTL"
+    - name: "data_migration"
+      description: "Migration entre backends"
+    - name: "deduplication"
+      description: "Déduplication des données"
+    - name: "atomic_operations"
+      description: "Opérations atomiques"
+    - name: "batch_operations"
+      description: "Opérations par lots"
+  
+  dependencies:
+    - "monitoring"
+    - "learning"
+
+
+# =====================================================================
+# CONFIGURATION PRINCIPALE
+# =====================================================================
+storage:
+  enabled: true
+  
+  # Stores disponibles
+  stores:
+    default:
+      type: "disk"
+      path: "./data/storage/default"
+      quota_mb: 1024
+      compression: true
+      encryption: false
+    
+    memory:
+      type: "memory"
+      max_size_mb: 512
+      ttl_default: 3600
+    
+    cache:
+      type: "memory"
+      max_size_mb: 256
+      ttl_default: 300
+      eviction_policy: "lru"
+    
+    ipfs:
+      type: "ipfs"
+      enabled: false
+      gateway: "http://localhost:5001"
+      pin_by_default: true
+      local_cache: true
+  
+  # Cache global
+  cache:
+    enabled: true
+    type: "lru"  # lru, lfu, ttl
+    max_size_mb: 1024
+    ttl_default: 3600
+    persist_on_exit: true
+    preload_on_start: false
+  
+  # Persistance
+  persistence:
+    path: "./data/storage"
+    backup_path: "./data/backups"
+    auto_backup: true
+    backup_interval: 3600
+    backup_retention: 7  # jours
+  
+  # Versioning
+  versioning:
+    enabled: true
+    max_versions_per_key: 10
+    auto_prune: true
+    prune_older_than_days: 30
+  
+  # IPFS
+  ipfs:
+    enabled: false
+    gateway: "http://localhost:5001"
+    pin_api: "http://localhost:5001/api/v0/pin/add"
+    local_cache_path: "./data/ipfs_cache"
+    timeout: 30
+
+
+# =====================================================================
+# CHIFFREMENT
+# =====================================================================
+encryption:
+  enabled: false
+  algorithm: "AES-256-GCM"
+  key_path: "./agents/storage/keys/master.key"
+  key_rotation_days: 30
+  per_store_keys: false
+
+
+# =====================================================================
+# COMPRESSION
+# =====================================================================
+compression:
+  enabled: true
+  algorithm: "zstd"  # zstd, gzip, zlib, lz4
+  level: 3
+  min_size_bytes: 1024
+
+
+# =====================================================================
+# MÉTRIQUES & MONITORING
+# =====================================================================
+metrics:
+  enabled: true
+  export_to: "monitoring_agent"
+  
+  collect:
+    - "store_count"
+    - "key_count"
+    - "total_size_bytes"
+    - "cache_hits"
+    - "cache_misses"
+    - "cache_hit_ratio"
+    - "operations_per_second"
+    - "avg_latency_ms"
+  
+  alerts:
+    - metric: "total_size_bytes"
+      threshold: 10737418240  # 10 GB
+      condition: "greater_than"
+      severity: "warning"
+    - metric: "cache_hit_ratio"
+      threshold: 0.7
+      condition: "less_than"
+      severity: "warning"
+
+
+# =====================================================================
+# QUOTAS
+# =====================================================================
+quotas:
+  enabled: true
+  default_store_mb: 1024
+  max_store_mb: 10240
+  per_agent_quotas:
+    learning: 512
+    monitoring: 256
+    frontend_web3: 2048
