@@ -1,0 +1,59 @@
+2026-02-19 18:54:06 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 18:54:06 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 18:54:06 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 18:57:03 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 18:57:03 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 18:57:03 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 18:57:03 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 18:57:03 - agent.CommunicationAgent - ERROR - ❌ Erreur initialisation: CommunicationAgent.send_message() missing 2 required positional arguments: 'message_type' and 'payload'
+2026-02-19 18:57:03 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> error
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-02-19 19:00:32 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-02-19 19:16:42 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:16:42 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 19:16:42 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 19:16:42 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:16:42 - agent.CommunicationAgent - ERROR - ❌ Erreur initialisation: CommunicationAgent.send_message() missing 2 required positional arguments: 'message_type' and 'payload'
+2026-02-19 19:16:42 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> error
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 📨 Traitement message a6bb20e0-fdae-4656-be92-b1195a131bcc pour test_agent
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-02-19 19:33:36 - agent.CommunicationAgent - INFO - 📨 Traitement message 2fdbc60e-81a4-4afc-a04f-6448496a84c6 pour test_agent
+2026-02-19 19:33:41 - agent.CommunicationAgent - INFO - 📋 Agent subscriber_1 souscrit au topic 'test.topic'
+2026-02-19 19:33:41 - agent.CommunicationAgent - INFO - 📋 Agent subscriber_2 souscrit au topic 'test.topic'
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - Agent base_agent créé (config: )
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-02-19 19:35:06 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 📨 Traitement message 3202032b-217d-40a1-b6c2-a5ded21b2214 pour test_agent
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-02-19 19:35:06 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-02-19 19:35:06 - agent.CommunicationAgent - INFO - 📨 Traitement message aeab4145-c38c-4ec5-8423-8d8e2b2a5d57 pour test_agent
+2026-02-19 19:35:11 - agent.CommunicationAgent - INFO - 📋 Agent subscriber_1 souscrit au topic 'test.topic'
+2026-02-19 19:35:11 - agent.CommunicationAgent - INFO - 📋 Agent subscriber_2 souscrit au topic 'test.topic'

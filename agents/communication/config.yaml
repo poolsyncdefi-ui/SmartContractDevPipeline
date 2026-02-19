@@ -1,0 +1,692 @@
+# =====================================================================
+# COMMUNICATION AGENT 2.0 - CONFIGURATION ULTIME
+# Système nerveux central haute performance
+# Messagerie inter-agents avec QoS, scalabilité, résilience
+# Version: 2.0.0
+# =====================================================================
+
+agent:
+  name: "communication"
+  display_name: "💬 Communication Agent 2.0"
+  description: |-
+    Agent de communication centralisé haute performance.
+    Gestion QoS, files prioritaires, persistance, pub/sub, 
+    load balancing, circuit breaker, monitoring avancé.
+    Capacité: 10K msg/s, latence < 10ms, 100% uptime.
+  
+  version: "2.0.0"
+  log_level: "INFO"
+  
+  # === CAPACITÉS ÉTENDUES (35+) ===
+  capabilities:
+    - name: "message_queuing_qos"
+      description: "Files d'attente avec Quality of Service (5 niveaux)"
+    - name: "priority_routing"
+      description: "Routage intelligent basé sur priorité"
+    - name: "content_based_routing"
+      description: "Routage basé sur le contenu des messages"
+    - name: "dynamic_routing"
+      description: "Routage dynamique selon charge"
+    
+    - name: "pubsub_scalable"
+      description: "Pub/Sub scalable avec partitions"
+    - name: "topic_wildcards"
+      description: "Support wildcards multi-niveaux (#, *)"
+    - name: "persistent_subscriptions"
+      description: "Souscriptions persistantes"
+    - name: "durable_topics"
+      description: "Topics durables avec rétention"
+    
+    - name: "request_reply_pool"
+      description: "Pool de requêtes/réponses avec multiplexage"
+    - name: "correlation_tracking"
+      description: "Suivi de corrélation avancé"
+    - name: "timeout_management"
+      description: "Gestion intelligente des timeouts"
+    
+    - name: "message_persistence_tiered"
+      description: "Persistance à plusieurs niveaux (memory, disk, archive)"
+    - name: "message_replay"
+      description: "Rejeu de messages historiques"
+    - name: "message_deduplication"
+      description: "Déduplication exact-once"
+    - name: "message_ordering"
+      description: "Garantie d'ordre FIFO par clé"
+    
+    - name: "dead_letter_analytics"
+      description: "Analyse des messages échoués"
+    - name: "automatic_retry"
+      description: "Réessai automatique avec backoff exponentiel"
+    - name: "retry_strategies"
+      description: "Stratégies de réessai configurables"
+    
+    - name: "load_balancing_dynamic"
+      description: "Équilibrage de charge dynamique"
+    - name: "circuit_breaker_advanced"
+      description: "Circuit breaker avec half-open state"
+    - name: "bulkhead_pattern"
+      description: "Isolation par bulkhead"
+    - name: "rate_limiting_adaptive"
+      description: "Rate limiting adaptatif"
+    
+    - name: "message_compression_smart"
+      description: "Compression adaptative selon taille"
+    - name: "batch_processing"
+      description: "Traitement par lots optimisé"
+    - name: "message_chunking"
+      description: "Fragmentation des gros messages"
+    
+    - name: "message_tracing_distributed"
+      description: "Tracing distribué OpenTelemetry"
+    - name: "message_audit"
+      description: "Audit trail complet"
+    - name: "message_sampling"
+      description: "Échantillonnage pour métriques"
+    
+    - name: "message_encryption_end_to_end"
+      description: "Chiffrement de bout en bout"
+    - name: "message_signing"
+      description: "Signature cryptographique"
+    - name: "message_validation_schema"
+      description: "Validation JSON Schema / Avro"
+    
+    - name: "message_filtering_dynamic"
+      description: "Filtrage dynamique par expressions"
+    - name: "message_transformation"
+      description: "Transformation de messages"
+    - name: "message_enrichment"
+      description: "Enrichissement avec métadonnées"
+    
+    - name: "message_scheduling_cron"
+      description: "Programmation cron"
+    - name: "message_delayed_delivery"
+      description: "Livraison différée"
+    - name: "message_recurring"
+      description: "Messages récurrents"
+    
+    - name: "message_monitoring_prometheus"
+      description: "Métriques Prometheus"
+    - name: "message_alerting"
+      description: "Alerting intelligent"
+    - name: "message_dashboards"
+      description: "Dashboards Grafana"
+  
+  dependencies:
+    - "registry"
+    - "monitoring"
+    - "learning"
+
+
+# =====================================================================
+# CONFIGURATION PRINCIPALE - HAUTE PERFORMANCE
+# =====================================================================
+communication:
+  enabled: true
+  instance_id: "comm-001"
+  cluster_mode: false
+  node_id: "node-1"
+  
+  # Performance cibles
+  performance_targets:
+    max_throughput: 10000  # messages/seconde
+    target_latency_ms: 10
+    max_latency_ms: 100
+    concurrency: 1000
+  
+  # Files d'attente avancées
+  queues:
+    default:
+      enabled: true
+      type: "priority"  # priority, fifo, lifo
+      max_size: 100000
+      priority_levels: 5
+      priority_mapping:
+        0: "low"
+        1: "normal"
+        2: "high"
+        3: "critical"
+        4: "system"
+      
+      # Stratégie de retry
+      retry:
+        max_attempts: 5
+        initial_delay_ms: 100
+        max_delay_ms: 30000
+        backoff_multiplier: 2.0
+        jitter: 0.1
+        retryable_errors: ["TimeoutError", "ConnectionError", "ServiceUnavailable"]
+      
+      timeout:
+        default_seconds: 30
+        max_seconds: 300
+      
+      # Politique de rejet
+        rejection_policy: "dead_letter"  # dead_letter, drop, backpressure
+    
+    high_priority:
+      enabled: true
+      type: "priority"
+      max_size: 50000
+      priority_levels: 3
+      dedicated_workers: 2
+      processing_quota: 0.5  # 50% des ressources
+    
+    batch:
+      enabled: true
+      max_size: 10000
+      batch_size: 100
+      batch_timeout_ms: 100
+      compression: true
+    
+    dead_letter:
+      enabled: true
+      max_size: 50000
+      retention_days: 30
+      analysis_enabled: true
+      replay_enabled: true
+      notification_threshold: 1000
+  
+  # Garanties de livraison
+  delivery:
+    default_guarantee: "at_least_once"  # at_most_once, at_least_once, exactly_once
+    enable_idempotency: true
+    deduplication_window_seconds: 3600
+    
+    # Garanties par priorité
+    guarantees_by_priority:
+      low: "at_most_once"
+      normal: "at_least_once"
+      high: "at_least_once"
+      critical: "exactly_once"
+      system: "exactly_once"
+    
+    # Acknowledgment
+    acks:
+      enabled: true
+      mode: "leader"  # leader, quorum, all
+      timeout_seconds: 10
+      retry_acks: true
+      ack_persistence: true
+  
+  # Persistance multi-niveaux
+  persistence:
+    enabled: true
+    mode: "hybrid"  # memory, disk, hybrid, distributed
+    
+    # Niveaux de persistance
+    levels:
+      memory:
+        enabled: true
+        max_size_mb: 1024
+        sync_interval_ms: 100
+      
+      disk:
+        enabled: true
+        path: "./agents/communication/storage"
+        max_size_gb: 10
+        sync_mode: "async"  # sync, async
+        compression: true
+        encryption: false
+      
+      archive:
+        enabled: true
+        path: "./agents/communication/archive"
+        retention_days: 90
+        compression: true
+        format: "parquet"  # json, parquet, avro
+    
+    # Indexation
+    indexing:
+      enabled: true
+      fields: ["id", "sender", "recipient", "message_type", "timestamp"]
+      full_text_search: false
+    
+    # Backup
+    backup:
+      enabled: true
+      interval_hours: 24
+      retention_days: 30
+      path: "./agents/communication/backup"
+
+
+# =====================================================================
+# ROUTAGE INTELLIGENT
+# =====================================================================
+routing:
+  enabled: true
+  strategy: "hybrid"  # direct, topic, content, hybrid
+  
+  # Routage par contenu
+  content_based:
+    enabled: true
+    rules_path: "./agents/communication/routing_rules.json"
+    refresh_interval: 300
+    max_rules: 1000
+  
+  # Routage dynamique
+  dynamic:
+    enabled: true
+    load_balancing: "least_loaded"  # round_robin, least_loaded, random, consistent_hash
+    health_check_interval: 10
+    circuit_breaker_threshold: 5
+  
+  # Table de routage
+  table:
+    path: "./agents/communication/routing.json"
+    auto_discover: true
+    sync_interval: 60
+    fallback_route: "broadcast"
+  
+  # Topologie
+  topology:
+    type: "mesh"  # star, mesh, tree
+    discovery: "registry"  # static, dns, registry
+    failover: true
+    prefer_local: true
+
+
+# =====================================================================
+# PROTOCOLES DE COMMUNICATION
+# =====================================================================
+protocols:
+  # Pub/Sub scalable
+  pubsub:
+    enabled: true
+    max_subscribers_per_topic: 1000
+    allow_wildcards: true
+    wildcard_levels: 5
+    persistent_subscriptions: true
+    
+    # Partitions
+    partitioning:
+      enabled: true
+      strategy: "hash"  # hash, range, random
+      partitions: 10
+      replication_factor: 1
+    
+    # Rétention
+    retention:
+      enabled: true
+      max_messages_per_topic: 100000
+      max_age_hours: 24
+      cleanup_policy: "delete"  # delete, compact
+  
+  # Request/Reply optimisé
+  request_reply:
+    enabled: true
+    pool_size: 1000
+    default_timeout: 30
+    max_timeout: 300
+    
+    # Multiplexage
+    multiplexing:
+      enabled: true
+      max_concurrent_per_connection: 100
+    
+    # Gestion des futures
+    future_pool_size: 10000
+    cleanup_interval: 60
+  
+  # Broadcast intelligent
+  broadcast:
+    enabled: true
+    strategy: "parallel"  # sequential, parallel, scatter_gather
+    max_parallel: 50
+    include_sender: false
+    gather_responses: false
+    timeout: 60
+
+
+# =====================================================================
+# PERFORMANCE ET SCALABILITÉ
+# =====================================================================
+performance:
+  # Threads et workers
+  threading:
+    worker_threads: 8
+    io_threads: 4
+    compute_threads: 2
+    
+    # Affinité
+    cpu_affinity: [0, 1, 2, 3]
+    thread_pool_size: 20
+  
+  # Pool de connexions
+  connection_pool:
+    max_size: 100
+    idle_timeout: 300
+    keep_alive: true
+  
+  # Batch processing
+  batching:
+    enabled: true
+    max_batch_size: 100
+    max_latency_ms: 50
+    compression: true
+  
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    global:
+      max_messages_per_second: 10000
+      max_messages_per_minute: 500000
+      max_bytes_per_second: 104857600  # 100 MB/s
+    
+    per_sender:
+      enabled: true
+      max_messages_per_second: 1000
+      max_messages_per_minute: 50000
+    
+    per_topic:
+      enabled: true
+      max_messages_per_second: 5000
+  
+  # Circuit breaker
+  circuit_breaker:
+    enabled: true
+    failure_threshold: 5
+    success_threshold: 2
+    timeout_seconds: 30
+    half_open_timeout: 10
+  
+  # Bulkhead
+  bulkhead:
+    enabled: true
+    max_concurrent_calls: 100
+    max_queue_size: 1000
+  
+  # Backpressure
+  backpressure:
+    strategy: "reject"  # block, reject, throttle
+    high_watermark: 0.8  # 80% de capacité
+    low_watermark: 0.3   # 30% de capacité
+
+
+# =====================================================================
+# MÉTRIQUES & MONITORING
+# =====================================================================
+metrics:
+  enabled: true
+  export_to: "monitoring_agent"
+  
+  # Collecte détaillée
+  collect:
+    # Messages
+    - "messages_sent_total"
+    - "messages_received_total"
+    - "messages_processed_total"
+    - "messages_failed_total"
+    - "messages_retried_total"
+    - "messages_expired_total"
+    - "messages_deduplicated"
+    
+    # Performance
+    - "processing_latency_p50"
+    - "processing_latency_p95"
+    - "processing_latency_p99"
+    - "queue_latency_p50"
+    - "queue_latency_p95"
+    - "throughput_current"
+    - "throughput_peak"
+    
+    # Files
+    - "queue_size_current"
+    - "queue_size_max"
+    - "dead_letter_size"
+    - "retry_queue_size"
+    
+    # Pub/Sub
+    - "active_subscribers"
+    - "active_topics"
+    - "messages_published"
+    
+    # Système
+    - "memory_usage_bytes"
+    - "disk_usage_bytes"
+    - "cpu_usage_percent"
+    - "connection_count"
+  
+  # Alertes intelligentes
+  alerts:
+    - name: "queue_backlog"
+      metric: "queue_size_current"
+      threshold: 10000
+      condition: "greater_than"
+      duration_seconds: 60
+      severity: "warning"
+      notification: ["slack", "email"]
+    
+    - name: "high_latency"
+      metric: "processing_latency_p95"
+      threshold: 1000  # ms
+      condition: "greater_than"
+      duration_seconds: 300
+      severity: "critical"
+      notification: ["pagerduty", "slack"]
+    
+    - name: "high_failure_rate"
+      metric: "messages_failed_total"
+      threshold: 100
+      condition: "greater_than"
+      window_minutes: 5
+      severity: "critical"
+    
+    - name: "dead_letter_growth"
+      metric: "dead_letter_size"
+      threshold: 1000
+      condition: "greater_than"
+      severity: "warning"
+  
+  # Dashboards Grafana
+  dashboards:
+    enabled: true
+    path: "./reports/communication/dashboards"
+    refresh_rate: 30
+    templates:
+      - name: "overview"
+        panels: ["throughput", "latency", "errors"]
+      - name: "queues"
+        panels: ["queue_sizes", "processing_times"]
+      - name: "pubsub"
+        panels: ["topics", "subscribers"]
+
+
+# =====================================================================
+# SÉCURITÉ AVANCÉE
+# =====================================================================
+security:
+  # Authentification
+  authentication:
+    enabled: false
+    method: "token"  # token, certificate, oauth2, jwt
+    token_ttl_seconds: 3600
+    refresh_token_enabled: true
+    
+    # JWT configuration
+    jwt:
+      algorithm: "HS256"
+      secret_key: "${JWT_SECRET}"
+      issuer: "communication-agent"
+      audience: ["agents", "clients"]
+  
+  # Chiffrement
+  encryption:
+    enabled: false
+    algorithm: "AES-256-GCM"
+    key_rotation_days: 30
+    key_path: "./agents/communication/keys"
+    
+    # TLS
+    tls:
+      enabled: false
+      cert_path: "./certs/communication.crt"
+      key_path: "./certs/communication.key"
+      min_version: "1.2"
+  
+  # Signatures
+  signing:
+    enabled: false
+    algorithm: "HMAC-SHA256"
+    key_path: "./agents/communication/signing.key"
+  
+  # Validation
+  validation:
+    enabled: true
+    validate_sender: true
+    validate_recipient: true
+    max_message_age: 3600
+    max_message_size_bytes: 10485760  # 10 MB
+    
+    # Schémas de validation
+    schemas:
+      enabled: true
+      path: "./agents/communication/schemas"
+      cache_ttl: 300
+  
+  # Rate limiting (renforcé)
+  rate_limiting:
+    enabled: true
+    default_limit: 1000
+    limits:
+      - sender: "monitoring"
+        limit: 5000
+      - sender: "learning"
+        limit: 2000
+      - topic: "system.*"
+        limit: 10000
+  
+  # Audit
+  audit:
+    enabled: true
+    log_all_messages: false
+    log_failures: true
+    log_security_events: true
+    retention_days: 90
+    path: "./agents/communication/audit"
+
+
+# =====================================================================
+# HAUTE DISPONIBILITÉ
+# =====================================================================
+high_availability:
+  enabled: false
+  
+  # Clustering
+  cluster:
+    nodes: ["node1", "node2", "node3"]
+    replication_factor: 3
+    sync_replication: false
+    auto_rebalance: true
+  
+  # Leader election
+  leader_election:
+    algorithm: "raft"
+    election_timeout_ms: 1000
+    heartbeat_interval_ms: 100
+  
+  # Failover
+  failover:
+    enabled: true
+    detection_interval: 5
+    promotion_delay: 10
+    auto_recover: true
+  
+  # Data replication
+  replication:
+    mode: "async"  # sync, async
+    max_lag_ms: 1000
+    retry_count: 3
+
+
+# =====================================================================
+# INTÉGRATIONS
+# =====================================================================
+integrations:
+  registry:
+    enabled: true
+    auto_discover: true
+    refresh_interval: 300
+    cache_ttl: 60
+  
+  monitoring:
+    enabled: true
+    push_metrics_interval: 30
+    expose_endpoint: true
+    endpoint_port: 9090
+  
+  learning:
+    enabled: true
+    provide_training_data: true
+    features:
+      - "communication_patterns"
+      - "peak_times_detection"
+      - "anomaly_detection"
+      - "failure_prediction"
+      - "load_forecasting"
+  
+  logging:
+    enabled: true
+    structured_logs: true
+    log_level: "INFO"
+    log_path: "./logs/communication"
+
+
+# =====================================================================
+# OPTIMISATIONS
+# =====================================================================
+optimizations:
+  # Compression
+  compression:
+    enabled: true
+    algorithm: "zstd"  # zstd, gzip, snappy, lz4
+    min_size_bytes: 1024
+    level: 3  # 1-9
+  
+  # Caching
+  caching:
+    enabled: true
+    type: "lru"  # lru, lfu, ttl
+    max_size_mb: 512
+    ttl_seconds: 300
+  
+  # Préchargement
+  prefetch:
+    enabled: true
+    max_prefetch: 100
+    adaptive: true
+  
+  # Zero-copy
+  zero_copy:
+    enabled: false
+    max_size_bytes: 65536
+  
+  # Memory pooling
+  memory_pool:
+    enabled: true
+    pool_size_mb: 256
+    preallocate: true
+
+
+# =====================================================================
+# MODE DÉVELOPPEMENT
+# =====================================================================
+development:
+  mode: "production"  # development, staging, production
+  
+  debug:
+    enabled: false
+    log_messages: false
+    trace_routing: false
+    profile_performance: false
+  
+  testing:
+    mock_mode: false
+    simulated_latency_ms: 0
+    error_injection_rate: 0.0
+    record_replay: false
+  
+  profiling:
+    enabled: false
+    cpu_profiling: false
+    memory_profiling: false
+    trace_allocation: false
