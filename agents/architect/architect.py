@@ -640,6 +640,99 @@ class ArchitectAgent(BaseAgent):
         # Par défaut
         return ArchitectureType.MICROSERVICES
     
+    async def split_spec_into_fragments(self, global_spec: Dict, strategy: str = "largeur_dabord") -> Dict[str, List[Dict]]:
+        """
+        Découpe une spécification globale en fragments individuels pour chaque instance de coder.py
+        
+        Args:
+            global_spec: Spécification globale du projet
+            strategy: Stratégie de découpage
+        
+        Returns:
+            Dictionnaire avec les fragments par domaine et les métadonnées
+        """
+        self._logger.info(f"🔪 Découpage de la spécification en fragments...")
+        
+        fragments = {
+            "by_domain": {},
+            "by_priority": [],
+            "by_complexity": [],
+            "dependencies": {},
+            "metadata": {
+                "total_fragments": 0,
+                "estimated_sprints": 0,
+                "parallel_possible": True
+            }
+        }
+        
+        # Extraire les fragments de la spec globale
+        for fragment in global_spec.get("fragments", []):
+            domain = fragment.get("domain", "unknown")
+            
+            # Ajouter des métadonnées utiles pour coder.py
+            fragment["coder_config"] = {
+                "max_iterations": 3,
+                "validation_level": "comprehensive",
+                "generate_tests": True,
+                "generate_docs": True
+            }
+            
+            # Stocker par domaine
+            if domain not in fragments["by_domain"]:
+                fragments["by_domain"][domain] = []
+            fragments["by_domain"][domain].append(fragment)
+            
+            # Index par complexité
+            complexity = fragment.get("complexity", 5)
+            fragments["by_complexity"].append((complexity, fragment))
+            
+            # Graphe de dépendances
+            deps = []
+            for dep in global_spec.get("dependencies", []):
+                if dep["from"] == fragment["id"]:
+                    deps.append(dep["to"])
+            if deps:
+                fragments["dependencies"][fragment["id"]] = deps
+        
+        # Trier par complexité
+        fragments["by_complexity"].sort(key=lambda x: x[0])
+        
+        # Calculer les métadonnées
+        fragments["metadata"]["total_fragments"] = len(global_spec.get("fragments", []))
+        fragments["metadata"]["estimated_sprints"] = self._estimate_sprints(fragments, strategy)
+        
+        # Sauvegarder chaque fragment dans un fichier individuel
+        base_dir = Path(f"./specs/fragments/{global_spec.get('project', 'unknown')}")
+        base_dir.mkdir(parents=True, exist_ok=True)
+        
+        for fragment in global_spec.get("fragments", []):
+            frag_file = base_dir / f"{fragment['id']}.json"
+            with open(frag_file, 'w', encoding='utf-8') as f:
+                json.dump(fragment, f, indent=2)
+            self._logger.debug(f"  ✅ Fragment sauvegardé: {frag_file}")
+        
+        # Sauvegarder l'index
+        index_file = base_dir / "_index.json"
+        with open(index_file, 'w', encoding='utf-8') as f:
+            json.dump({
+                "project": global_spec.get("project", "unknown"),
+                "fragments": [f["id"] for f in global_spec.get("fragments", [])],
+                "dependencies": fragments["dependencies"],
+                "metadata": fragments["metadata"]
+            }, f, indent=2)
+        
+        self._logger.info(f"✅ Découpage terminé: {fragments['metadata']['total_fragments']} fragments")
+        return fragments
+
+    def _estimate_sprints(self, fragments: Dict, strategy: str) -> int:
+        """Estime le nombre de sprints nécessaires"""
+        if strategy == "largeur_dabord":
+            # En largeur, on peut paralléliser
+            return max(len(f) for f in fragments["by_domain"].values())
+        else:
+            # En profondeur, on exécute séquentiellement
+            return sum(len(f) for f in fragments["by_domain"].values())  
+    
     def _create_design(self, analysis: Dict[str, Any], arch_type: ArchitectureType, 
                       requirements: Dict[str, Any]) -> ArchitectureDesign:
         """Crée une conception d'architecture complète"""

@@ -80,3 +80,41 @@ workflow:
         task: "run_full_tests"
         parameters:
           test_types: ["unit", "integration", "e2e"]
+    
+    name: "Pipeline complet avec sprints"
+    description: "Workflow complet du développement avec spint et un parcours en profondeur et en largeur"
+    steps:
+      - id: "sprint_planning"
+        agent: "orchestrator"
+        task: "plan_sprint"
+        parameters:
+          spec_file: "specs/token_erc20.json"
+          strategy: "largeur_dabord"
+      
+      - id: "execute_largeur"
+        agent: "orchestrator"
+        task: "execute_sprint_phase"
+        parameters:
+          phase: "largeur"
+          max_iterations: 3
+      
+      - id: "execute_profondeur"
+        agent: "orchestrator"
+        task: "execute_sprint_phase"
+        parameters:
+          phase: "profondeur"
+          max_iterations: 5
+      
+      - id: "validation_testnet"
+        agent: "tester"
+        task: "deploy_and_test"
+        parameters:
+          network: "sepolia"
+          test_level: "comprehensive"
+      
+      - id: "generate_report"
+        agent: "orchestrator"
+        task: "generate_sprint_report"
+        parameters:
+          include_metrics: true
+          recommendations: true

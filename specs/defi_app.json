@@ -1,0 +1,715 @@
+{
+  "sprint": "SPRINT-001",
+  "name": "Application DeFi - V1",
+  "description": "Plateforme DeFi complète avec token, staking, et interface web",
+  "strategy": "largeur_dabord",
+  "version": "1.0.0",
+  "domains": ["smart_contract", "backend", "frontend", "database", "devops"],
+  
+  "fragments": [
+    {
+      "id": "SC_001",
+      "domain": "smart_contract",
+      "name": "Token ERC20 de base",
+      "description": "Token standard avec mint, burn et transfers",
+      "language": "solidity",
+      "version": "0.8.19",
+      "framework": "foundry",
+      "complexity": 2,
+      "dependencies": ["openzeppelin/contracts@4.9.0"],
+      "specification": {
+        "contract_name": "DefiToken",
+        "symbol": "DFT",
+        "decimals": 18,
+        "initial_supply": "1000000 * 10**18",
+        "features": ["mint", "burn", "transfer", "approve"],
+        "security": ["reentrancy_guard", "ownable", "pausable"],
+        "interface": [
+          "function mint(address to, uint256 amount) external onlyOwner",
+          "function burn(uint256 amount) external",
+          "function transfer(address to, uint256 amount) returns (bool)",
+          "function approve(address spender, uint256 amount) returns (bool)",
+          "function pause() external onlyOwner",
+          "function unpause() external onlyOwner"
+        ],
+        "events": [
+          "event Mint(address indexed to, uint256 amount)",
+          "event Burn(address indexed from, uint256 amount)",
+          "event Paused(address account)",
+          "event Unpaused(address account)"
+        ]
+      },
+      "tests": {
+        "unit": [
+          {
+            "name": "test_initial_supply",
+            "input": {},
+            "expected": {"totalSupply": "1000000 * 10**18"}
+          },
+          {
+            "name": "test_mint",
+            "input": {"to": "0xUSER", "amount": 1000},
+            "expected": {"balanceOf[USER]": 1000}
+          },
+          {
+            "name": "test_transfer",
+            "input": {"to": "0xUSER2", "amount": 500},
+            "expected": {"balanceOf[USER2]": 500}
+          },
+          {
+            "name": "test_burn",
+            "input": {"amount": 200},
+            "expected": {"totalSupply": "decreased by 200"}
+          }
+        ],
+        "security": [
+          {"name": "test_only_owner_can_mint"},
+          {"name": "test_no_reentrancy"},
+          {"name": "test_pause_prevents_transfers"}
+        ],
+        "gas": [
+          {"name": "test_transfer_gas", "max_gas": 50000},
+          {"name": "test_mint_gas", "max_gas": 60000}
+        ]
+      }
+    },
+    
+    {
+      "id": "SC_002",
+      "domain": "smart_contract",
+      "name": "Staking Pool",
+      "description": "Pool de staking avec récompenses",
+      "language": "solidity",
+      "version": "0.8.19",
+      "framework": "foundry",
+      "complexity": 4,
+      "depends_on": ["SC_001"],
+      "dependencies": ["openzeppelin/contracts@4.9.0"],
+      "specification": {
+        "contract_name": "StakingPool",
+        "features": ["stake", "unstake", "claim_rewards", "compound"],
+        "reward_rate": "100 * 10**18 / 365 days",
+        "security": ["reentrancy_guard", "ownable", "pausable"],
+        "interface": [
+          "function stake(uint256 amount) external",
+          "function unstake(uint256 amount) external",
+          "function claimRewards() external",
+          "function compound() external",
+          "function getReward(address account) view returns (uint256)",
+          "function setRewardRate(uint256 newRate) external onlyOwner"
+        ],
+        "events": [
+          "event Staked(address indexed user, uint256 amount)",
+          "event Unstaked(address indexed user, uint256 amount)",
+          "event RewardPaid(address indexed user, uint256 reward)",
+          "event RewardRateUpdated(uint256 newRate)"
+        ]
+      },
+      "tests": {
+        "unit": [
+          {"name": "test_stake_increases_balance"},
+          {"name": "test_unstake_decreases_balance"},
+          {"name": "test_claim_rewards"},
+          {"name": "test_compound"}
+        ],
+        "integration": [
+          {"name": "test_stake_with_token", "depends_on": ["SC_001"]},
+          {"name": "test_rewards_accumulate_over_time"}
+        ],
+        "fuzzing": [
+          {"name": "test_stake_unstake_consistency", "iterations": 1000}
+        ]
+      }
+    },
+    
+    {
+      "id": "BE_001",
+      "domain": "backend",
+      "name": "API FastAPI de base",
+      "description": "API REST pour interagir avec les contrats",
+      "language": "python",
+      "version": "3.11",
+      "framework": "fastapi",
+      "complexity": 3,
+      "depends_on": ["SC_001", "DB_001"],
+      "dependencies": ["fastapi", "web3.py", "sqlalchemy", "pydantic", "redis"],
+      "specification": {
+        "endpoints": [
+          {
+            "path": "/api/v1/token/balance/{address}",
+            "method": "GET",
+            "response": {
+              "address": "string",
+              "balance": "string",
+              "formatted": "string"
+            }
+          },
+          {
+            "path": "/api/v1/token/transfer",
+            "method": "POST",
+            "auth": true,
+            "body": {
+              "to": "string",
+              "amount": "string",
+              "private_key": "string (encrypted)"
+            },
+            "response": {
+              "tx_hash": "string",
+              "status": "string"
+            }
+          },
+          {
+            "path": "/api/v1/staking/stake",
+            "method": "POST",
+            "auth": true,
+            "body": {
+              "amount": "string",
+              "private_key": "string (encrypted)"
+            },
+            "response": {
+              "tx_hash": "string",
+              "staked_amount": "string",
+              "new_total": "string"
+            }
+          },
+          {
+            "path": "/api/v1/staking/rewards/{address}",
+            "method": "GET",
+            "response": {
+              "address": "string",
+              "pending_rewards": "string",
+              "formatted": "string"
+            }
+          },
+          {
+            "path": "/api/v1/health",
+            "method": "GET",
+            "response": {
+              "status": "string",
+              "version": "string",
+              "blockchain": {
+                "connected": "boolean",
+                "chain_id": "number",
+                "block_number": "number"
+              },
+              "database": {
+                "connected": "boolean",
+                "latency_ms": "number"
+              }
+            }
+          }
+        ],
+        "auth": {
+          "type": "jwt",
+          "expiry": "24h",
+          "refresh_token": true
+        },
+        "database": {
+          "type": "postgresql",
+          "tables": ["users", "transactions", "staking_positions"]
+        },
+        "cache": {
+          "type": "redis",
+          "ttl": 60,
+          "enabled_endpoints": ["/balance", "/rewards"]
+        },
+        "rate_limiting": {
+          "enabled": true,
+          "requests_per_minute": 60,
+          "requests_per_hour": 1000
+        }
+      },
+      "tests": {
+        "unit": [
+          {"name": "test_health_endpoint"},
+          {"name": "test_balance_formatting"}
+        ],
+        "integration": [
+          {"name": "test_transfer_endpoint", "mock_contract": true},
+          {"name": "test_stake_endpoint", "mock_contract": true},
+          {"name": "test_database_connection"}
+        ],
+        "performance": [
+          {"name": "test_endpoint_latency", "max_ms": 200},
+          {"name": "test_concurrent_requests", "concurrent": 50}
+        ]
+      }
+    },
+    
+    {
+      "id": "DB_001",
+      "domain": "database",
+      "name": "Schéma PostgreSQL",
+      "description": "Base de données pour utilisateurs et transactions",
+      "language": "sql",
+      "version": "15",
+      "framework": "alembic",
+      "complexity": 2,
+      "specification": {
+        "tables": [
+          {
+            "name": "users",
+            "columns": [
+              {"name": "id", "type": "SERIAL PRIMARY KEY"},
+              {"name": "wallet_address", "type": "VARCHAR(42) UNIQUE NOT NULL"},
+              {"name": "email", "type": "VARCHAR(255) UNIQUE"},
+              {"name": "encrypted_private_key", "type": "TEXT"},
+              {"name": "created_at", "type": "TIMESTAMP DEFAULT NOW()"},
+              {"name": "last_login", "type": "TIMESTAMP"},
+              {"name": "kyc_status", "type": "VARCHAR(50) DEFAULT 'pending'"},
+              {"name": "settings", "type": "JSONB DEFAULT '{}'::jsonb"}
+            ],
+            "indexes": ["wallet_address_idx", "email_idx"]
+          },
+          {
+            "name": "transactions",
+            "columns": [
+              {"name": "id", "type": "SERIAL PRIMARY KEY"},
+              {"name": "user_id", "type": "INT REFERENCES users(id)"},
+              {"name": "tx_hash", "type": "VARCHAR(66) UNIQUE"},
+              {"name": "from_address", "type": "VARCHAR(42)"},
+              {"name": "to_address", "type": "VARCHAR(42)"},
+              {"name": "amount", "type": "NUMERIC(78,0)"},
+              {"name": "token_address", "type": "VARCHAR(42)"},
+              {"name": "tx_type", "type": "VARCHAR(50)"},  -- transfer, mint, burn, stake, unstake
+              {"name": "status", "type": "VARCHAR(50)"},  -- pending, confirmed, failed
+              {"name": "block_number", "type": "INTEGER"},
+              {"name": "gas_used", "type": "BIGINT"},
+              {"name": "created_at", "type": "TIMESTAMP DEFAULT NOW()"}
+            ],
+            "indexes": [
+              "user_id_idx",
+              "tx_hash_idx",
+              "from_address_idx",
+              "status_idx",
+              "created_at_idx"
+            ]
+          },
+          {
+            "name": "staking_positions",
+            "columns": [
+              {"name": "id", "type": "SERIAL PRIMARY KEY"},
+              {"name": "user_id", "type": "INT REFERENCES users(id)"},
+              {"name": "amount", "type": "NUMERIC(78,0)"},
+              {"name": "staked_at", "type": "TIMESTAMP DEFAULT NOW()"},
+              {"name": "last_claimed_at", "type": "TIMESTAMP"},
+              {"name": "pending_rewards", "type": "NUMERIC(78,0) DEFAULT 0"},
+              {"name": "is_active", "type": "BOOLEAN DEFAULT true"}
+            ],
+            "indexes": ["user_id_idx", "is_active_idx"]
+          }
+        ],
+        "migrations": {
+          "tool": "alembic",
+          "auto_generate": true,
+          "version_table": "alembic_version"
+        },
+        "backup": {
+          "enabled": true,
+          "schedule": "0 2 * * *",
+          "retention_days": 30
+        }
+      },
+      "tests": {
+        "integration": [
+          {"name": "test_create_user"},
+          {"name": "test_record_transaction"},
+          {"name": "test_staking_position"},
+          {"name": "test_foreign_key_constraints"},
+          {"name": "test_unique_constraints"}
+        ],
+        "performance": [
+          {"name": "test_batch_insert", "records": 1000, "max_ms": 500}
+        ]
+      }
+    },
+    
+    {
+      "id": "FE_001",
+      "domain": "frontend",
+      "name": "Interface React de base",
+      "description": "Application React avec WalletConnect",
+      "language": "typescript",
+      "version": "5.0",
+      "framework": "nextjs",
+      "complexity": 3,
+      "depends_on": ["BE_001"],
+      "dependencies": ["wagmi", "ethers", "tailwindcss", "react-query", "zustand"],
+      "specification": {
+        "pages": [
+          {
+            "name": "Dashboard",
+            "path": "/",
+            "components": [
+              {
+                "name": "WalletConnect",
+                "features": ["connect", "disconnect", "network_switch", "balance_display"]
+              },
+              {
+                "name": "TokenBalance",
+                "features": ["display_balance", "refresh"]
+              },
+              {
+                "name": "TokenTransfer",
+                "features": ["address_input", "amount_input", "send_button", "tx_status"]
+              }
+            ]
+          },
+          {
+            "name": "Staking",
+            "path": "/staking",
+            "components": [
+              {
+                "name": "StakingStats",
+                "features": ["total_staked", "apy", "user_staked", "pending_rewards"]
+              },
+              {
+                "name": "StakeForm",
+                "features": ["amount_input", "stake_button", "unstake_button", "claim_button"]
+              },
+              {
+                "name": "RewardsHistory",
+                "features": ["list_rewards", "pagination"]
+              }
+            ]
+          },
+          {
+            "name": "Admin",
+            "path": "/admin",
+            "auth_required": true,
+            "components": [
+              {
+                "name": "MintForm",
+                "features": ["address_input", "amount_input", "mint_button"]
+              },
+              {
+                "name": "PauseControl",
+                "features": ["pause_button", "unpause_button", "status_indicator"]
+              },
+              {
+                "name": "RewardRateControl",
+                "features": ["rate_input", "update_button"]
+              }
+            ]
+          }
+        ],
+        "web3_integration": {
+          "wallets": ["metamask", "walletconnect", "coinbase_wallet"],
+          "networks": [
+            {"name": "Ethereum Mainnet", "chain_id": 1},
+            {"name": "Sepolia Testnet", "chain_id": 11155111},
+            {"name": "Polygon", "chain_id": 137}
+          ],
+          "ipfs_gateway": "https://ipfs.io/ipfs/"
+        },
+        "state_management": {
+          "tool": "zustand",
+          "stores": ["auth", "token", "staking", "ui"]
+        },
+        "styling": {
+          "framework": "tailwindcss",
+          "theme": {
+            "colors": {
+              "primary": "#3b82f6",
+              "secondary": "#10b981",
+              "accent": "#8b5cf6",
+              "background": "#0f172a",
+              "text": "#f8fafc"
+            },
+            "dark_mode": true
+          }
+        }
+      },
+      "tests": {
+        "unit": [
+          {"name": "test_wallet_connection"},
+          {"name": "test_balance_formatting"},
+          {"name": "test_form_validation"}
+        ],
+        "integration": [
+          {"name": "test_dashboard_loads"},
+          {"name": "test_staking_interaction"},
+          {"name": "test_admin_controls"}
+        ],
+        "e2e": [
+          {"name": "test_full_transfer_flow"},
+          {"name": "test_staking_flow"},
+          {"name": "test_mint_flow"}
+        ]
+      }
+    },
+    
+    {
+      "id": "DO_001",
+      "domain": "devops",
+      "name": "Infrastructure Docker/K8s",
+      "description": "Déploiement conteneurisé de l'application",
+      "language": "yaml",
+      "version": "docker-compose-v3",
+      "complexity": 3,
+      "depends_on": ["BE_001", "FE_001", "DB_001"],
+      "specification": {
+        "dockerfile": {
+          "backend": {
+            "base": "python:3.11-slim",
+            "ports": [8000],
+            "env_file": ".env"
+          },
+          "frontend": {
+            "base": "node:18-alpine",
+            "build": "npm run build",
+            "serve": "next start",
+            "ports": [3000]
+          }
+        },
+        "docker_compose": {
+          "services": [
+            {
+              "name": "postgres",
+              "image": "postgres:15",
+              "volumes": ["postgres_data:/var/lib/postgresql/data"],
+              "environment": ["POSTGRES_DB", "POSTGRES_USER", "POSTGRES_PASSWORD"],
+              "healthcheck": {
+                "test": ["CMD", "pg_isready"],
+                "interval": "10s"
+              }
+            },
+            {
+              "name": "redis",
+              "image": "redis:7-alpine",
+              "volumes": ["redis_data:/data"],
+              "command": "redis-server --appendonly yes"
+            },
+            {
+              "name": "backend",
+              "build": "./backend",
+              "ports": ["8000:8000"],
+              "depends_on": ["postgres", "redis"],
+              "environment": {
+                "DATABASE_URL": "postgresql://postgres:password@postgres/defi",
+                "REDIS_URL": "redis://redis:6379",
+                "WEB3_PROVIDER": "${WEB3_PROVIDER}"
+              }
+            },
+            {
+              "name": "frontend",
+              "build": "./frontend",
+              "ports": ["3000:3000"],
+              "depends_on": ["backend"],
+              "environment": {
+                "NEXT_PUBLIC_API_URL": "http://localhost:8000",
+                "NEXT_PUBLIC_NETWORK": "${NEXT_PUBLIC_NETWORK}"
+              }
+            },
+            {
+              "name": "nginx",
+              "image": "nginx:alpine",
+              "ports": ["80:80", "443:443"],
+              "volumes": ["./nginx.conf:/etc/nginx/nginx.conf"],
+              "depends_on": ["frontend", "backend"]
+            }
+          ],
+          "volumes": ["postgres_data", "redis_data"],
+          "networks": ["defi_network"]
+        },
+        "kubernetes": {
+          "deployments": [
+            {
+              "name": "postgres-deployment",
+              "replicas": 1,
+              "stateful": true,
+              "storage": "10Gi"
+            },
+            {
+              "name": "redis-deployment",
+              "replicas": 1,
+              "stateful": true,
+              "storage": "5Gi"
+            },
+            {
+              "name": "backend-deployment",
+              "replicas": 3,
+              "autoscaling": {
+                "min": 2,
+                "max": 10,
+                "cpu_target": 70
+              }
+            },
+            {
+              "name": "frontend-deployment",
+              "replicas": 2,
+              "autoscaling": {
+                "min": 2,
+                "max": 5,
+                "cpu_target": 70
+              }
+            }
+          ],
+          "services": [
+            {"name": "postgres-service", "port": 5432},
+            {"name": "redis-service", "port": 6379},
+            {"name": "backend-service", "port": 8000},
+            {"name": "frontend-service", "port": 3000}
+          ],
+          "ingress": {
+            "host": "defi-app.example.com",
+            "tls": true,
+            "paths": {
+              "/api/*": "backend-service",
+              "/*": "frontend-service"
+            }
+          },
+          "config_maps": {
+            "backend-config": ["env", "config.yaml"],
+            "frontend-config": ["env"]
+          },
+          "secrets": {
+            "db-password": "base64-encoded",
+            "jwt-secret": "base64-encoded",
+            "private-keys": "encrypted"
+          }
+        },
+        "environments": {
+          "development": {
+            "docker_compose": true,
+            "kubernetes": false,
+            "local_blockchain": "anvil"
+          },
+          "staging": {
+            "docker_compose": false,
+            "kubernetes": true,
+            "replicas": 2,
+            "testnet": "sepolia"
+          },
+          "production": {
+            "docker_compose": false,
+            "kubernetes": true,
+            "replicas": 5,
+            "autoscaling": true,
+            "mainnet": true,
+            "monitoring": true
+          }
+        },
+        "monitoring": {
+          "prometheus": true,
+          "grafana": true,
+          "alerts": ["high_latency", "high_error_rate", "disk_space"],
+          "dashboards": ["backend", "frontend", "database", "blockchain"]
+        }
+      },
+      "tests": {
+        "integration": [
+          {"name": "test_docker_build"},
+          {"name": "test_docker_compose_up"},
+          {"name": "test_service_communication"}
+        ],
+        "deployment": [
+          {"name": "test_k8s_deploy"},
+          {"name": "test_health_checks"},
+          {"name": "test_rollback"}
+        ]
+      }
+    },
+    
+    {
+      "id": "DOC_001",
+      "domain": "documentation",
+      "name": "Documentation technique",
+      "description": "Documentation complète du projet",
+      "language": "markdown",
+      "framework": "mkdocs",
+      "complexity": 2,
+      "depends_on": ["SC_001", "BE_001", "FE_001", "DO_001"],
+      "specification": {
+        "sections": [
+          {
+            "name": "Introduction",
+            "description": "Présentation du projet et des objectifs"
+          },
+          {
+            "name": "Architecture",
+            "description": "Diagrammes et explications de l'architecture",
+            "diagrams": ["c4_context", "c4_container", "sequence"]
+          },
+          {
+            "name": "Smart Contracts",
+            "description": "Documentation des contrats (NatSpec)",
+            "format": "markdown",
+            "include": ["DefiToken", "StakingPool"]
+          },
+          {
+            "name": "API Reference",
+            "description": "Documentation OpenAPI des endpoints",
+            "format": "openapi",
+            "auto_generate": true
+          },
+          {
+            "name": "Frontend",
+            "description": "Guide des composants et pages",
+            "include": ["components", "pages", "state_management"]
+          },
+          {
+            "name": "Deployment",
+            "description": "Guide de déploiement",
+            "environments": ["development", "staging", "production"]
+          },
+          {
+            "name": "User Guide",
+            "description": "Guide utilisateur de l'application"
+          },
+          {
+            "name": "API Examples",
+            "description": "Exemples d'utilisation de l'API",
+            "languages": ["curl", "python", "javascript"]
+          }
+        ],
+        "formats": ["html", "pdf"],
+        "diagrams": ["mermaid", "plantuml"]
+      },
+      "tests": {
+        "validation": [
+          {"name": "test_no_broken_links"},
+          {"name": "test_all_sections_present"},
+          {"name": "test_diagrams_render"}
+        ]
+      }
+    }
+  ],
+  
+  "dependencies": [
+    {"from": "SC_002", "to": "SC_001"},
+    {"from": "BE_001", "to": "SC_001"},
+    {"from": "BE_001", "to": "DB_001"},
+    {"from": "FE_001", "to": "BE_001"},
+    {"from": "DO_001", "to": "BE_001"},
+    {"from": "DO_001", "to": "FE_001"},
+    {"from": "DO_001", "to": "DB_001"},
+    {"from": "DOC_001", "to": "*"}
+  ],
+  
+  "milestones": {
+    "sprint_goals": [
+      {"week": 1, "goal": "Smart contracts de base fonctionnels (SC_001, SC_002)"},
+      {"week": 2, "goal": "API backend et base de données (BE_001, DB_001)"},
+      {"week": 3, "goal": "Interface frontend de base (FE_001)"},
+      {"week": 4, "goal": "Infrastructure et documentation (DO_001, DOC_001)"}
+    ],
+    "acceptance_criteria": [
+      "Les smart contracts passent tous les tests unitaires",
+      "L'API répond avec une latence < 200ms",
+      "Le frontend se connecte correctement aux wallets",
+      "Le déploiement Docker fonctionne",
+      "La documentation est complète"
+    ]
+  },
+	"quality_gates": {
+		"test_coverage": 85,
+		"gas_limits": {
+			"transfer": 50000,
+			"mint": 60000,
+			"stake": 80000
+		},
+		"api_latency_ms": 200,
+		"security_audit_required": true
+    }
+]

@@ -1,0 +1,38 @@
+2026-02-21 22:08:53 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:08:53 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-21 22:08:53 - agent.OrchestratorAgent - ERROR - ❌ Erreur chargement config: 'OrchestratorAgent' object has no attribute 'config_path'
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-21 22:11:56 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 📋 Création du workflow: Test Workflow
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - ✅ Workflow créé: workflow_20260221221156 (1 étapes)
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 🚀 Exécution du workflow: Test Workflow (workflow_20260221221156)
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 📊 Ordre d'exécution: ['step1']
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - ⚙️ Exécution: step1 (test_agent.test_task)
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 🎉 Workflow Test Workflow terminé avec succès
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/defi_app.json
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/defi_app.json
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - ❌ Erreur chargement: Expecting value: line 274 column 60 (char 9262)
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 📋 Planification: 1 fragments à exécuter
+2026-02-21 22:11:56 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment TEST_001 (solidity)
+2026-02-21 22:11:57 - agent.OrchestratorAgent - WARNING -   ❌ Fragment TEST_001 échoué
+2026-02-21 22:11:57 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-001_report.json
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-21 22:18:02 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/test.json
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/test.json
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 📋 Planification: 2 fragments à exécuter
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_001 (solidity)
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO -   ✅ Fragment SC_001 validé
+2026-02-21 22:18:02 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment FE_001 (typescript)
+2026-02-21 22:18:03 - agent.OrchestratorAgent - INFO -   ✅ Fragment FE_001 validé
+2026-02-21 22:18:03 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-002_report.json

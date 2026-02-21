@@ -1,0 +1,68 @@
+{
+  "sprint": "SPRINT-002",
+  "name": "Sprint de test",
+  "timestamp": "2026-02-21T22:18:03.051913",
+  "metrics": {
+    "sprints_completed": 1,
+    "fragments_total": 2,
+    "fragments_completed": 2,
+    "fragments_failed": 0,
+    "iterations_total": 0,
+    "avg_iterations_per_fragment": 0.0,
+    "success_rate": 100.0,
+    "by_domain": {
+      "smart_contract": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "backend": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "frontend": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "database": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "devops": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "monitoring": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "documentation": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      }
+    }
+  },
+  "results": [
+    {
+      "fragment_id": "SC_001",
+      "domain": "smart_contract",
+      "success": true,
+      "iterations": 1,
+      "timestamp": "2026-02-21T22:18:02.750794"
+    },
+    {
+      "fragment_id": "FE_001",
+      "domain": "frontend",
+      "success": true,
+      "iterations": 2,
+      "timestamp": "2026-02-21T22:18:03.051913"
+    }
+  ],
+  "recommendations": []
+}

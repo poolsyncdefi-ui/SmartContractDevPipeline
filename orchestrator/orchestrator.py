@@ -1,1289 +1,1192 @@
-#!/usr/bin/env python3
 """
-Orchestrator Principal - SmartContractDevPipeline
-Version: 2.2.0
-Responsable: Gestion et coordination de tous les agents
+Orchestrator Agent - Orchestration des workflows et sprints
+Gère l'exécution des pipelines et le développement par sprints
+Version: 2.0.0
 """
 
 import os
 import sys
 import yaml
-import json
-import logging
 import asyncio
-import importlib
-import importlib.util
-import traceback
-import inspect
-import hashlib
-from datetime import datetime
-from typing import Dict, List, Optional, Any, Type, Union, Callable
-from dataclasses import dataclass, field
+import json
+from datetime import datetime, timedelta
 from enum import Enum
+from typing import Dict, List, Any, Optional, Union
 from pathlib import Path
-import threading
-import queue
-import time
+from collections import defaultdict
+import traceback
 
-# ============================================================================
-# CONFIGURATION ET CONSTANTES
-# ============================================================================
+# Ajouter le chemin pour l'import de BaseAgent
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-@dataclass
-class OrchestratorConfig:
-    """Configuration de l'orchestrator"""
-    config_path: str
-    agents_dir: str = "agents"
-    log_level: str = "INFO"
-    max_concurrent_tasks: int = 5
-    auto_discover: bool = True
-    health_check_interval: int = 30
-    task_timeout: int = 300
-    enable_api: bool = True
-    api_host: str = "127.0.0.1"
-    api_port: int = 8000
+try:
+    from agents.base_agent.base_agent import BaseAgent, AgentStatus
+except ImportError:
+    # Fallback pour les tests
+    class AgentStatus(Enum):
+        CREATED = "created"
+        INITIALIZING = "initializing"
+        READY = "ready"
+        ERROR = "error"
     
-    @classmethod
-    def from_yaml(cls, config_path: str) -> 'OrchestratorConfig':
-        """Charge la configuration depuis un fichier YAML"""
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
-                config_data = yaml.safe_load(f)
-            
-            # Extraire la section orchestrator
-            orch_config = config_data.get('orchestrator', {})
-            
-            return cls(
-                config_path=config_path,
-                agents_dir=orch_config.get('agents_dir', 'agents'),
-                log_level=orch_config.get('log_level', 'INFO'),
-                max_concurrent_tasks=orch_config.get('max_concurrent_tasks', 5),
-                auto_discover=orch_config.get('auto_discover', True),
-                health_check_interval=orch_config.get('health_check_interval', 30),
-                task_timeout=orch_config.get('task_timeout', 300),
-                enable_api=orch_config.get('enable_api', True),
-                api_host=orch_config.get('api_host', '127.0.0.1'),
-                api_port=orch_config.get('api_port', 8000)
-            )
-        except Exception as e:
-            print(f"⚠️ Erreur chargement config {config_path}: {e}")
-            return cls(config_path=config_path)
+    class BaseAgent:
+        def __init__(self, config_path: str = ""):
+            self.config_path = config_path
+            self._logger = print
+            self._name = "orchestrator"
+            self._status = AgentStatus.CREATED
+            self.config = {}
+            self._start_time = datetime.now()
+        
+        async def initialize(self) -> bool:
+            self._status = AgentStatus.READY
+            return True
+        
+        @property
+        def uptime(self):
+            return datetime.now() - self._start_time
 
-# ============================================================================
-# SYSTÈME DE LOGGING AVANCÉ
-# ============================================================================
 
-class OrchestratorLogger:
-    """Logger avancé pour l'orchestrator"""
+# =====================================================================
+# ÉNUMÉRATIONS
+# =====================================================================
+
+class WorkflowStatus(Enum):
+    """Statuts d'un workflow"""
+    PENDING = "pending"
+    PLANNING = "planning"
+    READY = "ready"
+    RUNNING = "running"
+    PAUSED = "paused"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    CANCELLED = "cancelled"
+
+
+class StepStatus(Enum):
+    """Statuts d'une étape"""
+    PENDING = "pending"
+    RUNNING = "running"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    SKIPPED = "skipped"
+    BLOCKED = "blocked"
+
+
+class DomainType(Enum):
+    """Types de domaines supportés"""
+    SMART_CONTRACT = "smart_contract"
+    BACKEND = "backend"
+    FRONTEND = "frontend"
+    DATABASE = "database"
+    DEVOPS = "devops"
+    MONITORING = "monitoring"
+    DOCUMENTATION = "documentation"
+
+
+class FragmentStatus(Enum):
+    """Statuts d'un fragment"""
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    VALIDATED = "validated"
+    FAILED = "failed"
+    BLOCKED = "blocked"
+
+
+# =====================================================================
+# CLASSES DE BASE
+# =====================================================================
+
+class WorkflowStep:
+    """Étape d'un workflow"""
     
-    COLOR_CODES = {
-        'DEBUG': '\033[36m',      # Cyan
-        'INFO': '\033[32m',       # Vert
-        'WARNING': '\033[33m',    # Jaune
-        'ERROR': '\033[31m',      # Rouge
-        'CRITICAL': '\033[35m',   # Magenta
-        'RESET': '\033[0m'
-    }
-    
-    def __init__(self, name: str = "orchestrator", log_file: Optional[str] = None):
+    def __init__(self, 
+                 name: str,
+                 agent_type: str,
+                 task_type: str,
+                 parameters: Dict[str, Any] = None,
+                 depends_on: List[str] = None,
+                 timeout: int = 300,
+                 retry_count: int = 0,
+                 max_retries: int = 3):
+        
+        self.id = f"step_{datetime.now().timestamp()}_{name}"
         self.name = name
-        self.log_file = log_file
-        self._lock = threading.RLock()
-        
-        # Créer le dossier de logs si nécessaire
-        if log_file:
-            log_dir = os.path.dirname(log_file)
-            if log_dir and not os.path.exists(log_dir):
-                os.makedirs(log_dir, exist_ok=True)
+        self.agent_type = agent_type
+        self.task_type = task_type
+        self.parameters = parameters or {}
+        self.depends_on = depends_on or []
+        self.timeout = timeout
+        self.retry_count = retry_count
+        self.max_retries = max_retries
+        self.status = StepStatus.PENDING
+        self.result = None
+        self.error = None
+        self.started_at = None
+        self.completed_at = None
     
-    def log(self, level: str, message: str, **kwargs):
-        """Log un message avec niveau"""
-        with self._lock:
-            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-            color = self.COLOR_CODES.get(level, self.COLOR_CODES['RESET'])
-            reset = self.COLOR_CODES['RESET']
-            
-            # Formater le message
-            log_msg = f"{color}[{timestamp}] [{level:8}] {self.name}: {message}{reset}"
-            
-            # Ajouter les détails si présents
-            if kwargs:
-                details = ' '.join(f'{k}={v}' for k, v in kwargs.items())
-                log_msg += f" {details}"
-            
-            # Afficher à l'écran
-            print(log_msg)
-            
-            # Écrire dans le fichier si configuré
-            if self.log_file:
-                try:
-                    with open(self.log_file, 'a', encoding='utf-8') as f:
-                        file_msg = f"[{timestamp}] [{level}] {self.name}: {message}"
-                        if kwargs:
-                            file_msg += f" {kwargs}"
-                        f.write(file_msg + '\n')
-                except Exception:
-                    pass  # Ne pas échouer sur une erreur de log
-    
-    def debug(self, message: str, **kwargs):
-        self.log('DEBUG', message, **kwargs)
-    
-    def info(self, message: str, **kwargs):
-        self.log('INFO', message, **kwargs)
-    
-    def warning(self, message: str, **kwargs):
-        self.log('WARNING', message, **kwargs)
-    
-    def error(self, message: str, **kwargs):
-        self.log('ERROR', message, **kwargs)
-    
-    def critical(self, message: str, **kwargs):
-        self.log('CRITICAL', message, **kwargs)
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "agent_type": self.agent_type,
+            "task_type": self.task_type,
+            "parameters": self.parameters,
+            "depends_on": self.depends_on,
+            "status": self.status.value,
+            "retry_count": self.retry_count,
+            "max_retries": self.max_retries
+        }
 
-# ============================================================================
-# CLASSES DE DONNÉES
-# ============================================================================
 
-@dataclass
-class AgentInfo:
-    """Informations sur un agent"""
-    name: str
-    display_name: str
-    config_path: str
-    agent_type: str
-    enabled: bool
-    instantiate: bool
-    dependencies: List[str]
-    initialization_order: int
-    parent: Optional[str]
-    purpose: str
-    mandatory: bool
+class Workflow:
+    """Workflow complet"""
     
-    @classmethod
-    def from_config(cls, agent_name: str, config_data: Dict[str, Any]) -> 'AgentInfo':
-        """Crée à partir de la configuration"""
-        return cls(
-            name=agent_name,
-            display_name=config_data.get('display_name', agent_name),
-            config_path=config_data.get('config_path', f"agents/{agent_name}/config.yaml"),
-            agent_type=config_data.get('agent_type', 'concrete'),
-            enabled=config_data.get('enabled', True),
-            instantiate=config_data.get('instantiate', True),
-            dependencies=config_data.get('dependencies', []),
-            initialization_order=config_data.get('initialization_order', 99),
-            parent=config_data.get('parent', None),
-            purpose=config_data.get('purpose', ''),
-            mandatory=config_data.get('mandatory', False)
-        )
-
-@dataclass
-class TaskInfo:
-    """Informations sur une tâche"""
-    task_id: str
-    agent_name: str
-    task_type: str
-    parameters: Dict[str, Any]
-    priority: int = 50
-    status: str = "PENDING"
-    result: Optional[Any] = None
-    error: Optional[str] = None
-    start_time: Optional[datetime] = None
-    end_time: Optional[datetime] = None
+    def __init__(self, name: str, workflow_type: str = "standard"):
+        self.id = f"workflow_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        self.name = name
+        self.workflow_type = workflow_type
+        self.status = WorkflowStatus.PENDING
+        self.steps: List[WorkflowStep] = []
+        self.created_at = datetime.now()
+        self.started_at = None
+        self.completed_at = None
+        self.context: Dict[str, Any] = {}
+        self.results: Dict[str, Any] = {}
+        self.artifacts: List[str] = []
+        self.report_path = None
     
-    @classmethod
-    def create(cls, agent_name: str, task_type: str, parameters: Dict[str, Any], 
-               priority: int = 50) -> 'TaskInfo':
-        """Crée une nouvelle tâche"""
-        task_id = hashlib.md5(
-            f"{agent_name}_{task_type}_{datetime.now().timestamp()}".encode()
-        ).hexdigest()[:12]
-        
-        return cls(
-            task_id=task_id,
-            agent_name=agent_name,
-            task_type=task_type,
-            parameters=parameters,
-            priority=priority
-        )
-
-# ============================================================================
-# ORCHESTRATOR PRINCIPAL
-# ============================================================================
-
-class Orchestrator:
-    """Orchestrator principal pour la gestion des agents"""
+    def add_step(self, step: WorkflowStep):
+        """Ajoute une étape au workflow"""
+        self.steps.append(step)
     
-    def __init__(self, config_path: str = "config/project_config.yaml"):
-        """
-        Initialise l'orchestrator.
-        
-        Args:
-            config_path: Chemin vers le fichier de configuration
-        """
-        # Configuration
-        self.config_path = config_path
-        self.config = OrchestratorConfig.from_yaml(config_path)
-        
-        # Logging
-        log_file = f"logs/orchestrator_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-        self.logger = OrchestratorLogger("orchestrator", log_file)
-        
-        # État
-        self.initialized = False
-        self.running = False
-        
-        # Agents
-        self.agent_configs: Dict[str, Dict[str, Any]] = {}
-        self.agent_infos: Dict[str, AgentInfo] = {}
-        self.agents: Dict[str, Any] = {}  # Agents instanciés
-        self.agent_classes: Dict[str, Type] = {}  # Classes d'agents
-        
-        # Tâches
-        self.task_queue = queue.PriorityQueue()
-        self.active_tasks: Dict[str, TaskInfo] = {}
-        self.task_history: List[TaskInfo] = []
-        
-        # Verrous
-        self._agents_lock = threading.RLock()
-        self._tasks_lock = threading.RLock()
-        
-        # API (optionnel)
-        self.api_server = None
-        
-        self.logger.info(f"Orchestrator initialisé avec config: {config_path}")
-    
-    # ============================================================================
-    # MÉTHODES D'INITIALISATION
-    # ============================================================================
-    
-    def initialize(self) -> bool:
-        """
-        Initialise complètement l'orchestrator.
-        
-        Returns:
-            bool: True si l'initialisation réussit
-        """
-        try:
-            self.logger.info("=" * 60)
-            self.logger.info("INITIALISATION DE L'ORCHESTRATOR")
-            self.logger.info("=" * 60)
-            
-            # Étape 1: Charger la configuration complète
-            self.logger.info("Étape 1: Chargement configuration...")
-            if not self._load_full_config():
-                self.logger.error("❌ Échec chargement configuration")
-                return False
-            
-            # Étape 2: Découvrir les agents
-            self.logger.info("Étape 2: Découverte des agents...")
-            discovered = self.discover_agents()
-            self.logger.info(f"  → {len(discovered)} agents découverts")
-            
-            # Étape 3: Charger les classes d'agents
-            self.logger.info("Étape 3: Chargement des classes...")
-            loaded = self._load_agent_classes()
-            self.logger.info(f"  → {len(loaded)} classes chargées")
-            
-            # Étape 4: Valider les dépendances
-            self.logger.info("Étape 4: Validation dépendances...")
-            if not self._validate_dependencies():
-                self.logger.warning("⚠️ Problèmes de dépendances détectés")
-            
-            # Étape 5: Initialiser les agents (dans le bon ordre)
-            self.logger.info("Étape 5: Initialisation des agents...")
-            initialized = self.initialize_agents()
-            self.logger.info(f"  → {len(initialized)} agents initialisés")
-            
-            # Étape 6: Démarrer l'API si activée
-            if self.config.enable_api:
-                self.logger.info("Étape 6: Démarrage API...")
-                self._start_api()
-            
-            # Étape 7: Démarrer le processeur de tâches
-            self.logger.info("Étape 7: Démarrage processeur tâches...")
-            self._start_task_processor()
-            
-            self.initialized = True
-            self.running = True
-            
-            self.logger.info("✅ INITIALISATION RÉUSSIE")
-            self.logger.info(f"   Agents actifs: {len(self.agents)}")
-            self.logger.info(f"   Classes disponibles: {len(self.agent_classes)}")
-            
-            # Afficher le résumé
-            self._print_summary()
-            
-            return True
-            
-        except Exception as e:
-            self.logger.critical(f"❌ ERREUR D'INITIALISATION: {e}")
-            self.logger.error(traceback.format_exc())
-            return False
-    
-    def _load_full_config(self) -> bool:
-        """Charge la configuration complète depuis le YAML"""
-        try:
-            with open(self.config_path, 'r', encoding='utf-8') as f:
-                full_config = yaml.safe_load(f)
-            
-            # Charger la configuration des agents
-            agents_config = full_config.get('agents', {})
-            
-            # Convertir en AgentInfo
-            for agent_name, agent_data in agents_config.items():
-                self.agent_infos[agent_name] = AgentInfo.from_config(agent_name, agent_data)
-                self.agent_configs[agent_name] = agent_data
-            
-            self.logger.info(f"Configuration chargée: {len(self.agent_infos)} agents configurés")
-            return True
-            
-        except Exception as e:
-            self.logger.error(f"Erreur chargement config: {e}")
-            return False
-    
-    # ============================================================================
-    # DÉCOUVERTE ET CHARGEMENT DES AGENTS
-    # ============================================================================
-    
-    def discover_agents(self) -> List[str]:
-        """
-        Découvre automatiquement les agents disponibles.
-        
-        Returns:
-            List[str]: Liste des noms d'agents découverts
-        """
-        discovered = []
-        
-        try:
-            agents_dir = Path(self.config.agents_dir)
-            
-            if not agents_dir.exists():
-                self.logger.warning(f"⚠️ Dossier agents non trouvé: {agents_dir}")
-                return discovered
-            
-            # Parcourir tous les sous-dossiers
-            for agent_dir in agents_dir.iterdir():
-                if agent_dir.is_dir():
-                    agent_name = agent_dir.name
-                    
-                    # Vérifier si l'agent a un config.yaml
-                    config_file = agent_dir / "config.yaml"
-                    if config_file.exists():
-                        discovered.append(agent_name)
-                        self.logger.debug(f"Découvert: {agent_name}")
-            
-            # Ajouter les agents de la config même sans dossier
-            for agent_name in self.agent_infos.keys():
-                if agent_name not in discovered:
-                    discovered.append(agent_name)
-                    self.logger.debug(f"Ajouté depuis config: {agent_name}")
-            
-            # Trier par ordre d'initialisation
-            discovered.sort(key=lambda x: self.agent_infos.get(x, AgentInfo(x, x, "", "", True, True, [], 99, None, "", False)).initialization_order)
-            
-            self.logger.info(f"Agents découverts: {', '.join(discovered)}")
-            return discovered
-            
-        except Exception as e:
-            self.logger.error(f"Erreur découverte agents: {e}")
-            return discovered
-    
-    def _load_agent_classes(self) -> Dict[str, Type]:
-        """
-        Charge les classes de tous les agents.
-        
-        Returns:
-            Dict[str, Type]: Dictionnaire nom_agent -> classe
-        """
-        loaded_classes = {}
-        
-        for agent_name, agent_info in self.agent_infos.items():
-            if not agent_info.enabled:
-                self.logger.debug(f"Agent désactivé: {agent_name}")
-                continue
-            
-            try:
-                # Charger la classe
-                agent_class = self._load_single_agent_class(agent_info)
-                
-                if agent_class:
-                    self.agent_classes[agent_name] = agent_class
-                    loaded_classes[agent_name] = agent_class
-                    self.logger.info(f"✅ Classe chargée: {agent_name}")
-                else:
-                    self.logger.warning(f"⚠️ Classe non chargée: {agent_name}")
-                    
-            except Exception as e:
-                self.logger.error(f"❌ Erreur chargement {agent_name}: {e}")
-        
-        return loaded_classes
-    
-    def _load_single_agent_class(self, agent_info: AgentInfo) -> Optional[Type]:
-        """
-        Charge la classe d'un agent spécifique.
-        
-        Args:
-            agent_info: Informations sur l'agent
-            
-        Returns:
-            Optional[Type]: La classe chargée ou None
-        """
-        try:
-            # CRITIQUE: Pour BaseAgent, on utilise l'import direct
-            if agent_info.name == "base_agent":
-                self.logger.info("Chargement BaseAgent (spécial)...")
-                
-                # Essayer plusieurs méthodes
-                try:
-                    # Méthode 1: Via agents.base_agent
-                    from agents.base_agent import BaseAgent
-                    self.logger.info("  → BaseAgent importé via agents.base_agent")
-                    return BaseAgent
-                except ImportError as e1:
-                    self.logger.debug(f"  → Échec méthode 1: {e1}")
-                    
-                    try:
-                        # Méthode 2: Direct depuis le fichier
-                        import sys
-                        sys.path.insert(0, os.getcwd())
-                        from agents.base_agent.base_agent import BaseAgent
-                        self.logger.info("  → BaseAgent importé directement")
-                        return BaseAgent
-                    except ImportError as e2:
-                        self.logger.debug(f"  → Échec méthode 2: {e2}")
-                        
-                        try:
-                            # Méthode 3: Via le proxy base_agent
-                            import base_agent
-                            if hasattr(base_agent, 'BaseAgent'):
-                                self.logger.info("  → BaseAgent importé via proxy")
-                                return base_agent.BaseAgent
-                        except ImportError as e3:
-                            self.logger.debug(f"  → Échec méthode 3: {e3}")
-                
-                # Si tout échoue, créer une classe de secours
-                self.logger.warning("Création classe BaseAgent de secours")
-                
-                class FallbackBaseAgent:
-                    def __init__(self, config=None):
-                        self.name = "FallbackBaseAgent"
-                        self.config = config or {}
-                        self.status = "FALLBACK"
-                    
-                    def execute_task(self, task):
-                        return {"error": "BaseAgent en mode secours"}
-                
-                return FallbackBaseAgent
-            
-            # Pour les autres agents, charger depuis leur config.yaml
-            config_path = Path(agent_info.config_path)
-            
-            if not config_path.exists():
-                self.logger.warning(f"Config non trouvée: {config_path}")
-                return None
-            
-            # Lire la configuration de l'agent
-            with open(config_path, 'r', encoding='utf-8') as f:
-                agent_config = yaml.safe_load(f)
-            
-            agent_spec = agent_config.get('agent', {})
-            module_path = agent_spec.get('module_path', '')
-            class_name = agent_spec.get('class_name', '')
-            
-            if not module_path or not class_name:
-                self.logger.error(f"Module ou classe manquant pour {agent_info.name}")
-                return None
-            
-            # Importer dynamiquement
-            self.logger.debug(f"Import dynamique: {module_path}.{class_name}")
-            
-            try:
-                module = importlib.import_module(module_path)
-                agent_class = getattr(module, class_name)
-                
-                # Vérifier que la classe hérite de BaseAgent
-                from agents.base_agent import BaseAgent as BaseAgentClass
-                if not issubclass(agent_class, BaseAgentClass):
-                    self.logger.warning(f"{agent_info.name} n'hérite pas de BaseAgent")
-                
-                return agent_class
-                
-            except Exception as e:
-                self.logger.error(f"Erreur import {module_path}.{class_name}: {e}")
-                return None
-                
-        except Exception as e:
-            self.logger.error(f"Erreur chargement classe {agent_info.name}: {e}")
-            return None
-    
-    # ============================================================================
-    # INITIALISATION DES AGENTS
-    # ============================================================================
-    
-    def initialize_agents(self) -> Dict[str, Any]:
-        """
-        Initialise tous les agents (dans le bon ordre).
-        
-        Returns:
-            Dict[str, Any]: Agents instanciés
-        """
-        # Trier les agents par ordre d'initialisation
-        agents_to_initialize = sorted(
-            self.agent_infos.items(),
-            key=lambda x: x[1].initialization_order
-        )
-        
-        initialized = {}
-        
-        for agent_name, agent_info in agents_to_initialize:
-            if not agent_info.enabled:
-                self.logger.debug(f"Agent désactivé: {agent_name}")
-                continue
-            
-            if not agent_info.instantiate:
-                self.logger.debug(f"Agent non instantiable: {agent_name}")
-                continue
-            
-            try:
-                # Initialiser l'agent
-                agent_instance = self._initialize_single_agent(agent_name, agent_info)
-                
-                if agent_instance:
-                    self.agents[agent_name] = agent_instance
-                    initialized[agent_name] = agent_instance
-                    
-                    self.logger.info(f"✅ Agent initialisé: {agent_name} ({agent_info.display_name})")
-                else:
-                    if agent_info.mandatory:
-                        self.logger.error(f"❌ Agent obligatoire non initialisé: {agent_name}")
-                    else:
-                        self.logger.warning(f"⚠️ Agent optionnel non initialisé: {agent_name}")
-                        
-            except Exception as e:
-                self.logger.error(f"❌ Erreur initialisation {agent_name}: {e}")
-                if agent_info.mandatory:
-                    raise
-        
-        return initialized
-    
-    def _initialize_single_agent(self, agent_name: str, agent_info: AgentInfo) -> Optional[Any]:
-        """
-        Initialise un agent spécifique.
-        
-        Args:
-            agent_name: Nom de l'agent
-            agent_info: Informations sur l'agent
-            
-        Returns:
-            Optional[Any]: Instance de l'agent ou None
-        """
-        try:
-            # Vérifier que la classe est chargée
-            if agent_name not in self.agent_classes:
-                self.logger.error(f"Classe non chargée pour {agent_name}")
-                return None
-            
-            agent_class = self.agent_classes[agent_name]
-            
-            # Charger la configuration spécifique
-            agent_config = self._load_agent_configuration(agent_name)
-            
-            # CRITIQUE: Pour BaseAgent, configuration spéciale
-            if agent_name == "base_agent":
-                from agents.base_agent.base_agent import AgentConfiguration
-                
-                # BaseAgent a besoin d'une configuration spéciale
-                base_config = AgentConfiguration(
-                    name="BaseAgent",
-                    capabilities=["ABSTRACT_BASE"],
-                    description="Classe de base abstraite pour tous les agents",
-                    version="2.2.0"
-                )
-                
-                # Instancier avec la configuration
-                agent_instance = agent_class(config=base_config)
-                
-            else:
-                # Pour les autres agents, utiliser la configuration du YAML
-                from agents.base_agent.base_agent import AgentConfiguration
-                
-                # Créer la configuration à partir du YAML
-                config_dict = agent_config.get('agent', {})
-                
-                # S'assurer que les champs requis sont présents
-                required_fields = ['name', 'capabilities', 'description']
-                for field in required_fields:
-                    if field not in config_dict:
-                        config_dict[field] = agent_info.display_name if field == 'name' else []
-                
-                # Créer l'objet de configuration
-                config_obj = AgentConfiguration(**config_dict)
-                
-                # Instancier l'agent
-                agent_instance = agent_class(config=config_obj)
-            
-            # Configurer les métadonnées
-            if hasattr(agent_instance, '_orchestrator'):
-                agent_instance._orchestrator = self
-            
-            if hasattr(agent_instance, '_logger'):
-                agent_instance._logger = self.logger
-            
-            return agent_instance
-            
-        except Exception as e:
-            self.logger.error(f"Erreur instanciation {agent_name}: {e}")
-            self.logger.error(traceback.format_exc())
-            return None
-    
-    def _load_agent_configuration(self, agent_name: str) -> Dict[str, Any]:
-        """
-        Charge la configuration d'un agent.
-        
-        Args:
-            agent_name: Nom de l'agent
-            
-        Returns:
-            Dict[str, Any]: Configuration de l'agent
-        """
-        try:
-            agent_info = self.agent_infos.get(agent_name)
-            if not agent_info:
-                return {}
-            
-            config_path = Path(agent_info.config_path)
-            
-            if config_path.exists():
-                with open(config_path, 'r', encoding='utf-8') as f:
-                    return yaml.safe_load(f)
-            else:
-                # Retourner une configuration par défaut
-                return {
-                    'agent': {
-                        'name': agent_info.display_name,
-                        'description': agent_info.purpose,
-                        'capabilities': [],
-                        'configuration': {}
-                    }
-                }
-                
-        except Exception as e:
-            self.logger.error(f"Erreur chargement config {agent_name}: {e}")
-            return {}
-    
-    # ============================================================================
-    # VALIDATION DES DÉPENDANCES
-    # ============================================================================
-    
-    def _validate_dependencies(self) -> bool:
-        """
-        Valide les dépendances entre agents.
-        
-        Returns:
-            bool: True si toutes les dépendances sont satisfaites
-        """
-        all_valid = True
-        
-        for agent_name, agent_info in self.agent_infos.items():
-            if not agent_info.dependencies:
-                continue
-            
-            for dep_name in agent_info.dependencies:
-                # Vérifier si la dépendance existe
-                if dep_name not in self.agent_infos:
-                    self.logger.error(f"❌ {agent_name}: Dépendance manquante: {dep_name}")
-                    all_valid = False
-                    continue
-                
-                # Vérifier si la dépendance est activée
-                dep_info = self.agent_infos[dep_name]
-                if not dep_info.enabled:
-                    self.logger.error(f"❌ {agent_name}: Dépendance désactivée: {dep_name}")
-                    all_valid = False
-                
-                # Vérifier l'ordre d'initialisation
-                if dep_info.initialization_order >= agent_info.initialization_order:
-                    self.logger.warning(
-                        f"⚠️ {agent_name}: Dépendance {dep_name} s'initialise après "
-                        f"({dep_info.initialization_order} >= {agent_info.initialization_order})"
-                    )
-        
-        return all_valid
-    
-    # ============================================================================
-    # GESTION DES TÂCHES
-    # ============================================================================
-    
-    def submit_task(self, agent_name: str, task_type: str, 
-                    parameters: Dict[str, Any], priority: int = 50) -> Optional[str]:
-        """
-        Soumet une tâche pour exécution.
-        
-        Args:
-            agent_name: Nom de l'agent
-            task_type: Type de tâche
-            parameters: Paramètres de la tâche
-            priority: Priorité (1-100)
-            
-        Returns:
-            Optional[str]: ID de la tâche ou None
-        """
-        try:
-            # Vérifier que l'agent existe
-            if agent_name not in self.agents:
-                self.logger.error(f"Agent inconnu: {agent_name}")
-                return None
-            
-            # Créer la tâche
-            task = TaskInfo.create(agent_name, task_type, parameters, priority)
-            
-            # Ajouter à la file d'attente
-            self.task_queue.put((-priority, task))  # Négatif pour priorité inversée
-            
-            # Enregistrer
-            with self._tasks_lock:
-                self.active_tasks[task.task_id] = task
-            
-            self.logger.info(f"Tâche soumise: {task.task_id} pour {agent_name}")
-            return task.task_id
-            
-        except Exception as e:
-            self.logger.error(f"Erreur soumission tâche: {e}")
-            return None
-    
-    def _start_task_processor(self):
-        """Démarre le processeur de tâches en arrière-plan"""
-        def process_tasks():
-            while self.running:
-                try:
-                    # Prendre une tâche de la file (bloquant avec timeout)
-                    priority, task = self.task_queue.get(timeout=1.0)
-                    
-                    # Exécuter la tâche
-                    self._execute_task(task)
-                    
-                    # Marquer comme terminée
-                    self.task_queue.task_done()
-                    
-                except queue.Empty:
-                    continue  # File vide, continuer
-                except Exception as e:
-                    self.logger.error(f"Erreur processeur tâches: {e}")
-        
-        # Démarrer le thread
-        processor_thread = threading.Thread(target=process_tasks, daemon=True)
-        processor_thread.start()
-        
-        self.logger.info("Processeur de tâches démarré")
-    
-    def _execute_task(self, task: TaskInfo):
-        """Exécute une tâche spécifique"""
-        try:
-            task.start_time = datetime.now()
-            task.status = "EXECUTING"
-            
-            self.logger.info(f"Exécution tâche {task.task_id}: {task.agent_name}.{task.task_type}")
-            
-            # Récupérer l'agent
-            agent = self.agents.get(task.agent_name)
-            if not agent:
-                task.status = "FAILED"
-                task.error = f"Agent non trouvé: {task.agent_name}"
-                return
-            
-            # Exécuter la tâche
-            if hasattr(agent, 'execute_task'):
-                result = agent.execute_task(task.task_type, task.parameters)
-                task.result = result
-                task.status = "COMPLETED"
-                
-                self.logger.info(f"Tâche {task.task_id} terminée avec succès")
-            else:
-                task.status = "FAILED"
-                task.error = f"Agent {task.agent_name} n'a pas de méthode execute_task"
-                self.logger.error(f"Agent sans execute_task: {task.agent_name}")
-                
-        except Exception as e:
-            task.status = "FAILED"
-            task.error = str(e)
-            self.logger.error(f"Erreur exécution tâche {task.task_id}: {e}")
-            
-        finally:
-            task.end_time = datetime.now()
-            
-            # Déplacer vers l'historique
-            with self._tasks_lock:
-                if task.task_id in self.active_tasks:
-                    del self.active_tasks[task.task_id]
-                self.task_history.append(task)
-    
-    def get_task_status(self, task_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Récupère le statut d'une tâche.
-        
-        Args:
-            task_id: ID de la tâche
-            
-        Returns:
-            Optional[Dict[str, Any]]: Statut de la tâche
-        """
-        with self._tasks_lock:
-            # Chercher dans les tâches actives
-            if task_id in self.active_tasks:
-                task = self.active_tasks[task_id]
-            else:
-                # Chercher dans l'historique
-                task = next((t for t in self.task_history if t.task_id == task_id), None)
-            
-            if task:
-                return {
-                    'task_id': task.task_id,
-                    'agent_name': task.agent_name,
-                    'task_type': task.task_type,
-                    'status': task.status,
-                    'error': task.error,
-                    'start_time': task.start_time.isoformat() if task.start_time else None,
-                    'end_time': task.end_time.isoformat() if task.end_time else None,
-                    'duration': (task.end_time - task.start_time).total_seconds() 
-                               if task.start_time and task.end_time else None
-                }
-        
+    def get_step(self, step_name: str) -> Optional[WorkflowStep]:
+        """Récupère une étape par son nom"""
+        for step in self.steps:
+            if step.name == step_name:
+                return step
         return None
     
-    # ============================================================================
-    # GESTION DES AGENTS
-    # ============================================================================
-    
-    def get_agent(self, agent_name: str) -> Optional[Any]:
-        """
-        Récupère un agent par son nom.
-        
-        Args:
-            agent_name: Nom de l'agent
-            
-        Returns:
-            Optional[Any]: Instance de l'agent ou None
-        """
-        return self.agents.get(agent_name)
-    
-    def get_agent_status(self, agent_name: str) -> Optional[Dict[str, Any]]:
-        """
-        Récupère le statut d'un agent.
-        
-        Args:
-            agent_name: Nom de l'agent
-            
-        Returns:
-            Optional[Dict[str, Any]]: Statut de l'agent
-        """
-        agent = self.get_agent(agent_name)
-        if not agent:
-            return None
-        
-        status = {
-            'name': agent_name,
-            'class': agent.__class__.__name__,
-            'initialized': True,
-            'timestamp': datetime.now().isoformat()
-        }
-        
-        # Ajouter des informations spécifiques si disponibles
-        if hasattr(agent, 'status'):
-            status['agent_status'] = agent.status
-        
-        if hasattr(agent, 'capabilities'):
-            status['capabilities'] = agent.capabilities
-        
-        return status
-    
-    def list_agents(self) -> List[Dict[str, Any]]:
-        """
-        Liste tous les agents disponibles.
-        
-        Returns:
-            List[Dict[str, Any]]: Liste des agents
-        """
-        agents_list = []
-        
-        for agent_name, agent_info in self.agent_infos.items():
-            agent_data = {
-                'name': agent_name,
-                'display_name': agent_info.display_name,
-                'type': agent_info.agent_type,
-                'enabled': agent_info.enabled,
-                'instantiate': agent_info.instantiate,
-                'initialized': agent_name in self.agents,
-                'dependencies': agent_info.dependencies,
-                'initialization_order': agent_info.initialization_order,
-                'purpose': agent_info.purpose,
-                'mandatory': agent_info.mandatory
-            }
-            
-            agents_list.append(agent_data)
-        
-        # Trier par nom
-        agents_list.sort(key=lambda x: x['name'])
-        
-        return agents_list
-    
-    # ============================================================================
-    # API REST (FASTAPI)
-    # ============================================================================
-    
-    def _start_api(self):
-        """Démarre l'API REST (optionnel)"""
-        try:
-            # Importer FastAPI dynamiquement
-            import fastapi
-            from fastapi import FastAPI, HTTPException
-            import uvicorn
-            
-            # Créer l'application
-            app = FastAPI(
-                title="SmartContractDevPipeline Orchestrator",
-                description="API de gestion des agents IA",
-                version="2.2.0"
-            )
-            
-            # ========== ENDPOINTS ==========
-            
-            @app.get("/")
-            async def root():
-                return {
-                    "service": "Orchestrator API",
-                    "version": "2.2.0",
-                    "status": "running",
-                    "agents_count": len(self.agents),
-                    "initialized": self.initialized
-                }
-            
-            @app.get("/agents")
-            async def get_agents():
-                return self.list_agents()
-            
-            @app.get("/agents/{agent_name}")
-            async def get_agent(agent_name: str):
-                agent = self.get_agent(agent_name)
-                if not agent:
-                    raise HTTPException(status_code=404, detail=f"Agent {agent_name} non trouvé")
-                
-                return self.get_agent_status(agent_name)
-            
-            @app.post("/tasks")
-            async def create_task(
-                agent_name: str,
-                task_type: str,
-                parameters: Dict[str, Any],
-                priority: int = 50
-            ):
-                task_id = self.submit_task(agent_name, task_type, parameters, priority)
-                if not task_id:
-                    raise HTTPException(status_code=400, detail="Échec création tâche")
-                
-                return {"task_id": task_id, "status": "submitted"}
-            
-            @app.get("/tasks/{task_id}")
-            async def get_task(task_id: str):
-                status = self.get_task_status(task_id)
-                if not status:
-                    raise HTTPException(status_code=404, detail=f"Tâche {task_id} non trouvée")
-                
-                return status
-            
-            @app.get("/health")
-            async def health_check():
-                return {
-                    "status": "healthy" if self.initialized else "initializing",
-                    "timestamp": datetime.now().isoformat(),
-                    "agents_initialized": len(self.agents),
-                    "tasks_pending": self.task_queue.qsize(),
-                    "tasks_active": len(self.active_tasks)
-                }
-            
-            # Démarrer le serveur dans un thread
-            def run_server():
-                uvicorn.run(
-                    app,
-                    host=self.config.api_host,
-                    port=self.config.api_port,
-                    log_level="warning"
-                )
-            
-            api_thread = threading.Thread(target=run_server, daemon=True)
-            api_thread.start()
-            
-            self.api_server = app
-            self.logger.info(f"API démarrée: http://{self.config.api_host}:{self.config.api_port}")
-            
-        except ImportError:
-            self.logger.warning("FastAPI non installé - API désactivée")
-        except Exception as e:
-            self.logger.error(f"Erreur démarrage API: {e}")
-    
-    # ============================================================================
-    # UTILITAIRES
-    # ============================================================================
-    
-    def _print_summary(self):
-        """Affiche un résumé de l'initialisation"""
-        self.logger.info("\n" + "=" * 60)
-        self.logger.info("RÉSUMÉ DE L'INITIALISATION")
-        self.logger.info("=" * 60)
-        
-        # Agents initialisés
-        initialized_count = len(self.agents)
-        total_agents = len([a for a in self.agent_infos.values() if a.enabled and a.instantiate])
-        
-        self.logger.info(f"Agents: {initialized_count}/{total_agents} initialisés")
-        
-        # Lister les agents
-        for agent_name, agent in self.agents.items():
-            agent_info = self.agent_infos.get(agent_name)
-            if agent_info:
-                status = "✅" if hasattr(agent, 'status') else "⚡"
-                self.logger.info(f"  {status} {agent_name:20} ({agent_info.display_name})")
-        
-        # Tâches en attente
-        self.logger.info(f"\nTâches en file d'attente: {self.task_queue.qsize()}")
-        
-        # API
-        if self.api_server:
-            self.logger.info(f"API: http://{self.config.api_host}:{self.config.api_port}")
-        
-        self.logger.info("=" * 60)
-    
-    def stop(self):
-        """Arrête proprement l'orchestrator"""
-        self.logger.info("Arrêt de l'orchestrator...")
-        
-        self.running = False
-        
-        # Arrêter tous les agents
-        for agent_name, agent in self.agents.items():
-            try:
-                if hasattr(agent, 'stop'):
-                    agent.stop()
-                    self.logger.info(f"Agent arrêté: {agent_name}")
-            except Exception as e:
-                self.logger.error(f"Erreur arrêt {agent_name}: {e}")
-        
-        # Nettoyer
-        self.agents.clear()
-        self.agent_classes.clear()
-        
-        self.logger.info("Orchestrator arrêté")
-    
-    def diagnose(self) -> Dict[str, Any]:
-        """
-        Génère un diagnostic complet.
-        
-        Returns:
-            Dict[str, Any]: Diagnostic détaillé
-        """
+    def to_dict(self) -> Dict[str, Any]:
         return {
-            'timestamp': datetime.now().isoformat(),
-            'orchestrator': {
-                'initialized': self.initialized,
-                'running': self.running,
-                'config': self.config.__dict__,
-                'api_enabled': self.config.enable_api and self.api_server is not None
-            },
-            'agents': {
-                'configured': len(self.agent_infos),
-                'classes_loaded': len(self.agent_classes),
-                'initialized': len(self.agents),
-                'list': self.list_agents()
-            },
-            'tasks': {
-                'queue_size': self.task_queue.qsize(),
-                'active_tasks': len(self.active_tasks),
-                'history_size': len(self.task_history)
-            },
-            'system': {
-                'python_version': sys.version,
-                'platform': sys.platform,
-                'cwd': os.getcwd(),
-                'sys_path': sys.path[:3]
-            }
+            "id": self.id,
+            "name": self.name,
+            "type": self.workflow_type,
+            "status": self.status.value,
+            "steps": [s.to_dict() for s in self.steps],
+            "created_at": self.created_at.isoformat(),
+            "started_at": self.started_at.isoformat() if self.started_at else None,
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None
         }
 
-# ============================================================================
-# FONCTIONS UTILITAIRES
-# ============================================================================
 
-def test_agent_initialization():
-    """Teste l'initialisation d'un agent simple"""
-    print("🧪 TEST D'INITIALISATION D'AGENT")
-    print("=" * 50)
-    
-    try:
-        # Importer BaseAgent
-        from agents.base_agent import BaseAgent, AgentConfiguration
-        
-        print("✅ BaseAgent importé")
-        
-        # Créer une configuration simple
-        config = AgentConfiguration(
-            name="TestAgent",
-            capabilities=["TESTING"],
-            description="Agent de test",
-            version="1.0.0"
-        )
-        
-        # Instancier
-        agent = BaseAgent(config=config)
-        
-        print(f"✅ Agent instancié: {agent.name}")
-        print(f"   - Status: {agent.status}")
-        print(f"   - Capabilities: {agent.capabilities}")
-        
-        # Tester une tâche simple
-        if hasattr(agent, 'execute_task'):
-            result = agent.execute_task("test", {"message": "Hello"})
-            print(f"✅ Tâche exécutée: {result}")
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Erreur: {e}")
-        import traceback
-        traceback.print_exc()
-        return False
+# =====================================================================
+# SPRINT MANAGER
+# =====================================================================
 
-def test_orchestrator_simple(config_path: str = "config/project_config.yaml"):
-    """Teste l'orchestrator de manière simple"""
-    print("\n🧪 TEST ORCHESTRATOR SIMPLE")
-    print("=" * 50)
+class SprintManager:
+    """
+    Gestionnaire de sprints multi-domaines
+    Coordonne le développement parallèle sur tous les aspects du projet
+    """
     
-    try:
-        # Initialiser l'orchestrator
-        orchestrator = Orchestrator(config_path)
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.current_sprint = None
+        self.fragments: Dict[str, Dict] = {}
+        self.dependency_graph: Dict[str, List[str]] = {}
+        self.results: Dict[str, Any] = {}
+        self.logger = print  # Sera remplacé par l'orchestrateur
         
-        # Initialiser
-        success = orchestrator.initialize()
+        self.metrics = {
+            "sprints_completed": 0,
+            "fragments_total": 0,
+            "fragments_completed": 0,
+            "fragments_failed": 0,
+            "iterations_total": 0,
+            "avg_iterations_per_fragment": 0.0,
+            "success_rate": 0.0,
+            
+            # Métriques par domaine
+            "by_domain": {
+                "smart_contract": {"total": 0, "completed": 0, "failed": 0},
+                "backend": {"total": 0, "completed": 0, "failed": 0},
+                "frontend": {"total": 0, "completed": 0, "failed": 0},
+                "database": {"total": 0, "completed": 0, "failed": 0},
+                "devops": {"total": 0, "completed": 0, "failed": 0},
+                "monitoring": {"total": 0, "completed": 0, "failed": 0},
+                "documentation": {"total": 0, "completed": 0, "failed": 0}
+            }
+        }
+    
+    def set_logger(self, logger):
+        """Définit le logger"""
+        self.logger = logger
+    
+    def load_specs(self, spec_file: str) -> Dict[str, Any]:
+        """Charge les spécifications depuis un fichier JSON"""
+        self.logger(f"📋 Chargement des spécifications: {spec_file}")
+        
+        try:
+            with open(spec_file, 'r', encoding='utf-8') as f:
+                specs = json.load(f)
+        except FileNotFoundError:
+            self.logger(f"❌ Fichier non trouvé: {spec_file}")
+            # Retourner des spécifications par défaut pour les tests
+            specs = self._get_default_specs()
+        except Exception as e:
+            self.logger(f"❌ Erreur chargement: {e}")
+            specs = self._get_default_specs()
+        
+        # Indexer les fragments par ID
+        for fragment in specs.get("fragments", []):
+            self.fragments[fragment["id"]] = fragment
+            self.metrics["fragments_total"] += 1
+            
+            # Statistiques par domaine
+            domain = fragment.get("domain", "unknown")
+            if domain in self.metrics["by_domain"]:
+                self.metrics["by_domain"][domain]["total"] += 1
+        
+        # Construire le graphe de dépendances
+        for dep in specs.get("dependencies", []):
+            from_id = dep["from"]
+            to_id = dep["to"]
+            
+            if from_id not in self.dependency_graph:
+                self.dependency_graph[from_id] = []
+            self.dependency_graph[from_id].append(to_id)
+        
+        self.current_sprint = {
+            "id": specs.get("sprint", "SPRINT-000"),
+            "name": specs.get("name", "Sans nom"),
+            "strategy": specs.get("strategy", "largeur_dabord"),
+            "fragments": list(self.fragments.keys()),
+            "dependencies": self.dependency_graph,
+            "specs": specs
+        }
+        
+        return specs
+    
+    def _get_default_specs(self) -> Dict[str, Any]:
+        """Retourne des spécifications par défaut pour les tests"""
+        return {
+            "sprint": "SPRINT-001",
+            "name": "Sprint de test",
+            "strategy": "largeur_dabord",
+            "fragments": [
+                {
+                    "id": "TEST_001",
+                    "domain": "smart_contract",
+                    "name": "Fragment test",
+                    "language": "solidity",
+                    "complexity": 2
+                }
+            ],
+            "dependencies": []
+        }
+    
+    def plan_sprint(self) -> List[Dict]:
+        """Planifie l'ordre d'exécution des fragments"""
+        if not self.current_sprint:
+            return []
+        
+        strategy = self.current_sprint["strategy"]
+        
+        if strategy == "largeur_dabord":
+            return self._plan_largeur()
+        elif strategy == "profondeur_dabord":
+            return self._plan_profondeur()
+        else:
+            return self._resolve_dependencies()
+    
+    def _plan_largeur(self) -> List[Dict]:
+        """Planification en largeur : tous les domaines en parallèle"""
+        fragments_by_domain = defaultdict(list)
+        
+        for fragment_id, fragment in self.fragments.items():
+            domain = fragment.get("domain", "unknown")
+            fragments_by_domain[domain].append(fragment)
+        
+        # Trier par complexité au sein de chaque domaine
+        for domain in fragments_by_domain:
+            fragments_by_domain[domain].sort(
+                key=lambda x: x.get("complexity", 5)
+            )
+        
+        # Entrelacer les fragments simples de tous les domaines
+        plan = []
+        max_len = max((len(f) for f in fragments_by_domain.values()), default=0)
+        
+        for i in range(max_len):
+            for domain in fragments_by_domain:
+                if i < len(fragments_by_domain[domain]):
+                    plan.append(fragments_by_domain[domain][i])
+        
+        return plan
+    
+    def _plan_profondeur(self) -> List[Dict]:
+        """Planification en profondeur : domaine par domaine"""
+        # Priorité : smart_contract → backend → frontend → database → devops
+        priority = ["smart_contract", "backend", "frontend", "database", "devops", "monitoring", "documentation"]
+        
+        plan = []
+        for domain in priority:
+            domain_fragments = [
+                f for f in self.fragments.values()
+                if f.get("domain") == domain
+            ]
+            domain_fragments.sort(key=lambda x: x.get("complexity", 5))
+            plan.extend(domain_fragments)
+        
+        return plan
+    
+    def _resolve_dependencies(self) -> List[Dict]:
+        """Résout le graphe de dépendances (tri topologique)"""
+        visited = set()
+        order = []
+        
+        def dfs(fragment_id):
+            if fragment_id in visited:
+                return
+            visited.add(fragment_id)
+            
+            for dep in self.dependency_graph.get(fragment_id, []):
+                dfs(dep)
+            
+            if fragment_id in self.fragments:
+                order.append(self.fragments[fragment_id])
+        
+        for fragment_id in self.fragments:
+            if fragment_id not in visited:
+                dfs(fragment_id)
+        
+        return order
+
+
+# =====================================================================
+# ORCHESTRATOR AGENT
+# =====================================================================
+
+class OrchestratorAgent(BaseAgent):
+    """
+    Agent orchestrateur principal
+    Gère l'exécution des workflows et des sprints
+    """
+    
+    def __init__(self, config_path: str = ""):
+        """Initialise l'orchestrateur"""
+        super().__init__(config_path)
+        
+        self._logger.info("🚀 Orchestrator Agent créé")
+        
+        # Charger la configuration
+        self._load_configuration()
+        
+        # État interne
+        self._agents: Dict[str, Any] = {}
+        self._workflows: Dict[str, Workflow] = {}
+        self._current_workflow: Optional[Workflow] = None
+        self._sprint_manager: Optional[SprintManager] = None
+        
+        # Statistiques
+        self._stats = {
+            "workflows_executed": 0,
+            "workflows_completed": 0,
+            "workflows_failed": 0,
+            "steps_executed": 0,
+            "steps_failed": 0,
+            "sprints_completed": 0,
+            "start_time": datetime.now()
+        }
+        
+        # Composants
+        self._components = {}
+    
+    def _load_configuration(self):
+        """Charge la configuration depuis le fichier YAML"""
+        try:
+            # Utiliser self._config_path au lieu de self.config_path
+            if self._config_path and os.path.exists(self._config_path):
+                with open(self._config_path, 'r', encoding='utf-8') as f:
+                    file_config = yaml.safe_load(f) or {}
+                
+                # Stocker dans self._agent_config (pas self.config)
+                self._agent_config = file_config
+                self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
+                
+                # Configuration par défaut pour les sprints
+                if "sprint_config" not in self._agent_config:
+                    self._agent_config["sprint_config"] = {
+                        "enabled": True,
+                        "default_strategy": "largeur_dabord",
+                        "max_iterations_per_fragment": 3,
+                        "reports_path": "./reports/sprints/"
+                    }
+            else:
+                self._logger.warning("⚠️ Fichier de configuration non trouvé")
+                self._agent_config = {
+                    "sprint_config": {
+                        "enabled": True,
+                        "default_strategy": "largeur_dabord",
+                        "max_iterations_per_fragment": 3,
+                        "reports_path": "./reports/sprints/"
+                    }
+                }
+        except Exception as e:
+            self._logger.error(f"❌ Erreur chargement config: {e}")
+            self._agent_config = {
+                "sprint_config": {
+                    "enabled": True,
+                    "default_strategy": "largeur_dabord",
+                    "max_iterations_per_fragment": 3,
+                    "reports_path": "./reports/sprints/"
+                }
+            }
+    
+    async def initialize(self) -> bool:
+        """Initialisation asynchrone"""
+        try:
+            self._status = AgentStatus.INITIALIZING
+            self._logger.info("Initialisation de l'orchestrateur...")
+            
+            # Initialiser les composants
+            await self._initialize_components()
+            
+            # Initialiser le sprint manager
+            self._sprint_manager = SprintManager(self.config.get("sprint_config", {}))
+            self._sprint_manager.set_logger(self._logger.info)
+            
+            self._status = AgentStatus.READY
+            self._logger.info("✅ Orchestrateur prêt")
+            return True
+            
+        except Exception as e:
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._logger.error(traceback.format_exc())
+            self._status = AgentStatus.ERROR
+            return False
+    
+    async def _initialize_components(self):
+        """Initialise les composants"""
+        self._logger.info("Initialisation des composants...")
+        
+        self._components = {
+            "workflow_engine": True,
+            "sprint_manager": True,
+            "agent_registry": False  # Sera activé quand le registry sera disponible
+        }
+        
+        self._logger.info(f"✅ Composants: {list(self._components.keys())}")
+        return self._components
+    
+    async def generate_project_spec(self, project_name: str, project_type: str = "defi") -> str:
+    """
+    Génère un fichier de spécification complet pour un projet
+    
+    Args:
+        project_name: Nom du projet
+        project_type: Type de projet (defi, nft, gaming, dao)
+    
+    Returns:
+        Chemin vers le fichier JSON généré
+    """
+    self._logger.info(f"📋 Génération de spécification pour projet: {project_name}")
+    
+    # Template de base selon le type de projet
+    templates = {
+        "defi": self._get_defi_template,
+        "nft": self._get_nft_template,
+        "gaming": self._get_gaming_template,
+        "dao": self._get_dao_template
+    }
+    
+    template_func = templates.get(project_type, self._get_defi_template)
+    spec = template_func(project_name)
+    
+    # Sauvegarder le fichier
+    specs_dir = Path("./specs/projects")
+    specs_dir.mkdir(parents=True, exist_ok=True)
+    
+    filename = f"{project_name.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.json"
+    filepath = specs_dir / filename
+    
+    with open(filepath, 'w', encoding='utf-8') as f:
+        json.dump(spec, f, indent=2, ensure_ascii=False)
+    
+    self._logger.info(f"✅ Spécification projet générée: {filepath}")
+    return str(filepath)
+
+    async def prepare_and_execute_sprint(self, 
+                                         project_name: str, 
+                                         project_type: str = "defi",
+                                         strategy: str = "largeur_dabord") -> Dict[str, Any]:
+        """
+        Prépare et exécute un sprint complet :
+        1. Génère la spec globale
+        2. Appelle architect pour découpage en fragments
+        3. Exécute le sprint
+        
+        Args:
+            project_name: Nom du projet
+            project_type: Type de projet
+            strategy: Stratégie de sprint
+        
+        Returns:
+            Rapport complet du sprint
+        """
+        self._logger.info(f"🚀 Préparation du sprint pour projet: {project_name}")
+        
+        # Étape 1: Générer la spec globale
+        spec_file = await self.generate_project_spec(project_name, project_type)
+        
+        # Étape 2: Appeler l'agent architect pour le découpage
+        architect_agent = await self._get_agent("architect")
+        if not architect_agent:
+            self._logger.warning("⚠️ Agent architect non disponible, utilisation du découpage par défaut")
+            fragments_info = {"by_domain": {}, "metadata": {"total_fragments": 0}}
+        else:
+            # Charger la spec
+            with open(spec_file, 'r') as f:
+                global_spec = json.load(f)
+            
+            # Demander le découpage
+            fragments_info = await architect_agent.split_spec_into_fragments(global_spec, strategy)
+        
+        # Étape 3: Exécuter le sprint
+        report = await self.execute_sprint(spec_file)
+        
+        # Ajouter les infos de découpage au rapport
+        report["fragments_info"] = {
+            "total": fragments_info["metadata"]["total_fragments"],
+            "by_domain": {k: len(v) for k, v in fragments_info["by_domain"].items()},
+            "estimated_sprints": fragments_info["metadata"]["estimated_sprints"]
+        }
+        
+        return report
+
+    def _get_defi_template(self, project_name: str) -> Dict:
+        """Template pour projet DeFi"""
+        return {
+            "project": project_name,
+            "type": "defi",
+            "version": "1.0.0",
+            "generated_at": datetime.now().isoformat(),
+            "description": "Plateforme DeFi complète avec token, staking, et interface web",
+            "domains": ["smart_contract", "backend", "frontend", "database", "devops", "documentation"],
+            "fragments": [
+                {
+                    "id": f"{project_name}_SC_001",
+                    "domain": "smart_contract",
+                    "name": "Token ERC20",
+                    "description": "Token standard avec mint/burn",
+                    "language": "solidity",
+                    "version": "0.8.19",
+                    "framework": "foundry",
+                    "complexity": 2,
+                    "dependencies": ["openzeppelin/contracts@4.9.0"],
+                    "specification": {
+                        "contract_name": f"{project_name}Token",
+                        "symbol": project_name[:5].upper(),
+                        "features": ["mint", "burn", "transfer", "approve"]
+                    }
+                },
+                {
+                    "id": f"{project_name}_SC_002",
+                    "domain": "smart_contract",
+                    "name": "Staking Pool",
+                    "description": "Pool de staking avec récompenses",
+                    "language": "solidity",
+                    "version": "0.8.19",
+                    "framework": "foundry",
+                    "complexity": 4,
+                    "depends_on": [f"{project_name}_SC_001"],
+                    "specification": {
+                        "contract_name": f"{project_name}Staking",
+                        "features": ["stake", "unstake", "claim", "compound"]
+                    }
+                },
+                {
+                    "id": f"{project_name}_BE_001",
+                    "domain": "backend",
+                    "name": "API FastAPI",
+                    "description": "API REST pour le projet",
+                    "language": "python",
+                    "version": "3.11",
+                    "framework": "fastapi",
+                    "complexity": 3,
+                    "depends_on": [f"{project_name}_SC_001", f"{project_name}_DB_001"],
+                    "specification": {
+                        "endpoints": ["/balance", "/transfer", "/stake", "/rewards"],
+                        "database": "postgresql",
+                        "cache": "redis"
+                    }
+                },
+                {
+                    "id": f"{project_name}_FE_001",
+                    "domain": "frontend",
+                    "name": "Interface React",
+                    "description": "Application React avec WalletConnect",
+                    "language": "typescript",
+                    "version": "5.0",
+                    "framework": "nextjs",
+                    "complexity": 3,
+                    "depends_on": [f"{project_name}_BE_001"],
+                    "specification": {
+                        "pages": ["dashboard", "staking", "admin"],
+                        "wallets": ["metamask", "walletconnect"]
+                    }
+                },
+                {
+                    "id": f"{project_name}_DB_001",
+                    "domain": "database",
+                    "name": "Schéma PostgreSQL",
+                    "description": "Base de données du projet",
+                    "language": "sql",
+                    "version": "15",
+                    "framework": "alembic",
+                    "complexity": 2,
+                    "specification": {
+                        "tables": ["users", "transactions", "staking_positions"]
+                    }
+                },
+                {
+                    "id": f"{project_name}_DO_001",
+                    "domain": "devops",
+                    "name": "Infrastructure Docker",
+                    "description": "Déploiement conteneurisé",
+                    "language": "yaml",
+                    "version": "docker-compose-v3",
+                    "complexity": 3,
+                    "depends_on": [f"{project_name}_BE_001", f"{project_name}_FE_001", f"{project_name}_DB_001"],
+                    "specification": {
+                        "services": ["postgres", "redis", "backend", "frontend", "nginx"],
+                        "environments": ["development", "staging", "production"]
+                    }
+                },
+                {
+                    "id": f"{project_name}_DOC_001",
+                    "domain": "documentation",
+                    "name": "Documentation",
+                    "description": "Documentation complète",
+                    "language": "markdown",
+                    "framework": "mkdocs",
+                    "complexity": 2,
+                    "depends_on": ["*"],
+                    "specification": {
+                        "sections": ["introduction", "architecture", "api", "deployment", "user_guide"]
+                    }
+                }
+            ],
+            "dependencies": [
+                {"from": f"{project_name}_SC_002", "to": f"{project_name}_SC_001"},
+                {"from": f"{project_name}_BE_001", "to": f"{project_name}_SC_001"},
+                {"from": f"{project_name}_BE_001", "to": f"{project_name}_DB_001"},
+                {"from": f"{project_name}_FE_001", "to": f"{project_name}_BE_001"},
+                {"from": f"{project_name}_DO_001", "to": f"{project_name}_BE_001"},
+                {"from": f"{project_name}_DO_001", "to": f"{project_name}_FE_001"},
+                {"from": f"{project_name}_DO_001", "to": f"{project_name}_DB_001"},
+                {"from": f"{project_name}_DOC_001", "to": "*"}
+            ]
+        }
+
+    def _get_nft_template(self, project_name: str) -> Dict:
+        """Template pour projet NFT"""
+        # Similaire mais adapté aux NFTs
+        template = self._get_defi_template(project_name)
+        template["type"] = "nft"
+        template["description"] = "Collection NFT avec mint, marketplace et royalties"
+        # Adapter les fragments pour NFT...
+        return template
+
+    def _get_gaming_template(self, project_name: str) -> Dict:
+        """Template pour projet Gaming"""
+        template = self._get_defi_template(project_name)
+        template["type"] = "gaming"
+        template["description"] = "Jeu Web3 avec tokens, items et marketplace"
+        return template
+
+    def _get_dao_template(self, project_name: str) -> Dict:
+        """Template pour projet DAO"""
+        template = self._get_defi_template(project_name)
+        template["type"] = "dao"
+        template["description"] = "DAO avec gouvernance, treasury et votes"
+        return template
+        
+    # =================================================================
+    # GESTION DES WORKFLOWS
+    # =================================================================
+    
+    async def create_workflow(self, 
+                             name: str,
+                             steps: List[Dict[str, Any]] = None,
+                             workflow_type: str = "standard") -> Workflow:
+        """
+        Crée un nouveau workflow
+        
+        Args:
+            name: Nom du workflow
+            steps: Liste des étapes
+            workflow_type: Type de workflow
+            
+        Returns:
+            Workflow créé
+        """
+        self._logger.info(f"📋 Création du workflow: {name}")
+        
+        workflow = Workflow(name, workflow_type)
+        
+        if steps:
+            for step_config in steps:
+                step = WorkflowStep(
+                    name=step_config["name"],
+                    agent_type=step_config["agent"],
+                    task_type=step_config["task"],
+                    parameters=step_config.get("parameters", {}),
+                    depends_on=step_config.get("depends_on", [])
+                )
+                workflow.add_step(step)
+        
+        self._workflows[workflow.id] = workflow
+        workflow.status = WorkflowStatus.READY
+        
+        self._logger.info(f"✅ Workflow créé: {workflow.id} ({len(workflow.steps)} étapes)")
+        return workflow
+    
+    async def execute_workflow(self, workflow_id: str) -> Dict[str, Any]:
+        """
+        Exécute un workflow
+        
+        Args:
+            workflow_id: ID du workflow
+            
+        Returns:
+            Résultats du workflow
+        """
+        if workflow_id not in self._workflows:
+            raise ValueError(f"Workflow {workflow_id} non trouvé")
+        
+        workflow = self._workflows[workflow_id]
+        workflow.status = WorkflowStatus.RUNNING
+        workflow.started_at = datetime.now()
+        
+        self._logger.info(f"🚀 Exécution du workflow: {workflow.name} ({workflow_id})")
+        self._stats["workflows_executed"] += 1
+        
+        try:
+            # Résoudre l'ordre d'exécution
+            execution_order = self._resolve_execution_order(workflow)
+            self._logger.info(f"📊 Ordre d'exécution: {[s.name for s in execution_order]}")
+            
+            # Exécuter les étapes
+            results = {}
+            
+            for step in execution_order:
+                # Vérifier les dépendances
+                deps_satisfied = all(
+                    results.get(dep, {}).get("success", False)
+                    for dep in step.depends_on
+                )
+                
+                if not deps_satisfied:
+                    self._logger.error(f"❌ Étape {step.name}: dépendances non satisfaites")
+                    step.status = StepStatus.BLOCKED
+                    workflow.status = WorkflowStatus.FAILED
+                    break
+                
+                # Exécuter l'étape
+                result = await self._execute_step(step, workflow.context)
+                results[step.name] = result
+                self._stats["steps_executed"] += 1
+                
+                if not result.get("success", False):
+                    self._stats["steps_failed"] += 1
+                    if not self.config.get("continue_on_error", False):
+                        workflow.status = WorkflowStatus.FAILED
+                        break
+            
+            # Finaliser le workflow
+            workflow.completed_at = datetime.now()
+            
+            if all(s.status == StepStatus.COMPLETED for s in workflow.steps):
+                workflow.status = WorkflowStatus.COMPLETED
+                self._stats["workflows_completed"] += 1
+                self._logger.info(f"🎉 Workflow {workflow.name} terminé avec succès")
+            else:
+                workflow.status = WorkflowStatus.FAILED
+                self._stats["workflows_failed"] += 1
+                self._logger.warning(f"⚠️ Workflow {workflow.name} terminé avec des échecs")
+            
+            return {
+                "workflow_id": workflow.id,
+                "status": workflow.status.value,
+                "steps_completed": sum(1 for s in workflow.steps if s.status == StepStatus.COMPLETED),
+                "steps_failed": sum(1 for s in workflow.steps if s.status == StepStatus.FAILED),
+                "duration_seconds": (workflow.completed_at - workflow.started_at).total_seconds(),
+                "results": results
+            }
+            
+        except Exception as e:
+            self._logger.error(f"❌ Erreur workflow: {e}")
+            workflow.status = WorkflowStatus.FAILED
+            self._stats["workflows_failed"] += 1
+            return {
+                "workflow_id": workflow.id,
+                "status": "failed",
+                "error": str(e)
+            }
+    
+    def _resolve_execution_order(self, workflow: Workflow) -> List[WorkflowStep]:
+        """Résout l'ordre d'exécution des étapes (tri topologique)"""
+        # Construire le graphe des dépendances
+        graph = {step.name: set(step.depends_on) for step in workflow.steps}
+        
+        # Tri topologique
+        visited = set()
+        order = []
+        
+        def dfs(node_name):
+            visited.add(node_name)
+            step = next(s for s in workflow.steps if s.name == node_name)
+            
+            for dep in step.depends_on:
+                if dep not in visited:
+                    dfs(dep)
+            
+            order.append(step)
+        
+        for step in workflow.steps:
+            if step.name not in visited:
+                dfs(step.name)
+        
+        return order
+    
+    async def _execute_step(self, step: WorkflowStep, context: Dict) -> Dict[str, Any]:
+        """Exécute une étape du workflow"""
+        self._logger.info(f"⚙️ Exécution: {step.name} ({step.agent_type}.{step.task_type})")
+        
+        step.status = StepStatus.RUNNING
+        step.started_at = datetime.now()
+        
+        try:
+            # Simuler l'exécution pour l'instant
+            await asyncio.sleep(0.5)
+            
+            step.status = StepStatus.COMPLETED
+            step.completed_at = datetime.now()
+            
+            return {
+                "success": True,
+                "step": step.name,
+                "result": {"message": "Étape exécutée avec succès"}
+            }
+            
+        except Exception as e:
+            step.status = StepStatus.FAILED
+            step.error = str(e)
+            step.completed_at = datetime.now()
+            
+            self._logger.error(f"❌ Étape {step.name} échouée: {e}")
+            
+            return {
+                "success": False,
+                "step": step.name,
+                "error": str(e)
+            }
+    
+    # =================================================================
+    # GESTION DES SPRINTS
+    # =================================================================
+    
+    async def execute_sprint(self, spec_file: str) -> Dict[str, Any]:
+        """
+        Exécute un sprint complet
+        
+        Args:
+            spec_file: Chemin vers le fichier de spécification
+            
+        Returns:
+            Rapport détaillé du sprint
+        """
+        self._logger.info(f"🚀 Démarrage du sprint avec spécifications: {spec_file}")
+        
+        # Vérifier que le sprint manager est initialisé
+        if not self._sprint_manager:
+            self._sprint_manager = SprintManager(self.config.get("sprint_config", {}))
+            self._sprint_manager.set_logger(self._logger.info)
+        
+        # Charger les spécifications
+        specs = self._sprint_manager.load_specs(spec_file)
+        
+        # Planifier le sprint
+        fragments = self._sprint_manager.plan_sprint()
+        self._logger.info(f"📋 Planification: {len(fragments)} fragments à exécuter")
+        
+        # Exécuter chaque fragment
+        results = []
+        for fragment in fragments:
+            result = await self._execute_fragment(fragment)
+            results.append(result)
+            
+            # Mettre à jour les métriques
+            if result.get("success"):
+                self._sprint_manager.metrics["fragments_completed"] += 1
+            else:
+                self._sprint_manager.metrics["fragments_failed"] += 1
+        
+        # Calculer les métriques finales
+        total = self._sprint_manager.metrics["fragments_total"]
+        completed = self._sprint_manager.metrics["fragments_completed"]
+        self._sprint_manager.metrics["success_rate"] = (completed / total * 100) if total > 0 else 0
+        self._sprint_manager.metrics["sprints_completed"] += 1
+        self._stats["sprints_completed"] += 1
+        
+        # Générer le rapport
+        report = self._generate_sprint_report(specs, results, self._sprint_manager.metrics)
+        
+        # Sauvegarder les artefacts
+        await self._save_sprint_artifacts(specs, results, report)
+        
+        return report
+    
+    async def _execute_fragment(self, fragment: Dict) -> Dict[str, Any]:
+        """
+        Exécute un fragment unique
+        """
+        fragment_id = fragment["id"]
+        domain = fragment.get("domain", "unknown")
+        language = fragment.get("language", "unknown")
+        
+        self._logger.info(f"📦 [{domain}] Fragment {fragment_id} ({language})")
+        
+        # Simulation d'exécution
+        await asyncio.sleep(0.3)
+        
+        # Succès aléatoire pour la simulation (80%)
+        import random
+        success = random.random() > 0.2
+        
+        result = {
+            "fragment_id": fragment_id,
+            "domain": domain,
+            "success": success,
+            "iterations": random.randint(1, 4) if success else 3,
+            "timestamp": datetime.now().isoformat()
+        }
         
         if success:
-            print("✅ Orchestrator initialisé avec succès")
-            
-            # Afficher les agents
-            agents = orchestrator.list_agents()
-            print(f"\n📋 Agents disponibles ({len(agents)}):")
-            for agent in agents[:5]:  # 5 premiers
-                status = "✅" if agent['initialized'] else "❌"
-                print(f"  {status} {agent['name']:20} ({agent['display_name']})")
-            
-            if len(agents) > 5:
-                print(f"  ... et {len(agents) - 5} autres")
-            
-            return True
+            self._logger.info(f"  ✅ Fragment {fragment_id} validé")
         else:
-            print("❌ Échec initialisation orchestrator")
-            return False
-            
-    except Exception as e:
-        print(f"❌ Erreur orchestrator: {e}")
-        import traceback
-        traceback.print_exc()
-        return False
+            self._logger.warning(f"  ❌ Fragment {fragment_id} échoué")
+        
+        return result
+    
+    def _generate_sprint_report(self, specs: Dict, results: List[Dict], metrics: Dict) -> Dict:
+        """Génère un rapport détaillé du sprint"""
+        report = {
+            "sprint": specs.get("sprint", "SPRINT-000"),
+            "name": specs.get("name", "Sans nom"),
+            "timestamp": datetime.now().isoformat(),
+            "metrics": metrics,
+            "results": results,
+            "recommendations": self._generate_recommendations(metrics, results)
+        }
+        
+        return report
+    
+    def _generate_recommendations(self, metrics: Dict, results: List[Dict]) -> List[str]:
+        """Génère des recommandations pour le prochain sprint"""
+        recommendations = []
+        
+        # Analyser les taux d'échec par domaine
+        for domain, stats in metrics["by_domain"].items():
+            if stats["total"] > 0:
+                fail_rate = stats["failed"] / stats["total"] * 100
+                if fail_rate > 30:
+                    recommendations.append(
+                        f"⚠️ Domaine '{domain}': taux d'échec élevé ({fail_rate:.1f}%). "
+                        "Revoir les spécifications."
+                    )
+        
+        # Recommandations globales
+        if metrics["success_rate"] < 70:
+            recommendations.append(
+                f"🎯 Taux de succès global faible ({metrics['success_rate']:.1f}%). "
+                "Envisager une phase de conception plus approfondie."
+            )
+        
+        # Fragments lents
+        slow_fragments = [r for r in results if r.get("iterations", 0) > 3]
+        if slow_fragments:
+            recommendations.append(
+                f"🐢 {len(slow_fragments)} fragments ont nécessité plus de 3 itérations. "
+                "Les détailler davantage."
+            )
+        
+        return recommendations
+    
+    async def _save_sprint_artifacts(self, specs: Dict, results: List[Dict], report: Dict):
+        """Sauvegarde les artefacts du sprint"""
+        sprint_id = specs.get("sprint", "SPRINT-000")
+        base_path = Path(self.config.get("sprint_config", {}).get("reports_path", "./reports/sprints/"))
+        base_path.mkdir(parents=True, exist_ok=True)
+        
+        # Rapport JSON
+        report_file = base_path / f"{sprint_id}_report.json"
+        with open(report_file, 'w', encoding='utf-8') as f:
+            json.dump(report, f, indent=2, ensure_ascii=False)
+        
+        self._logger.info(f"💾 Rapport sauvegardé: {report_file}")
+    
+    # =================================================================
+    # UTILITAIRES
+    # =================================================================
+    
+    async def get_workflow_status(self, workflow_id: str) -> Optional[Dict]:
+        """Retourne le statut d'un workflow"""
+        if workflow_id not in self._workflows:
+            return None
+        return self._workflows[workflow_id].to_dict()
+    
+    async def list_workflows(self, status: Optional[str] = None) -> List[Dict]:
+        """Liste tous les workflows"""
+        workflows = []
+        for workflow in self._workflows.values():
+            if status and workflow.status.value != status:
+                continue
+            workflows.append(workflow.to_dict())
+        return workflows
+    
+    async def get_statistics(self) -> Dict[str, Any]:
+        """Retourne les statistiques"""
+        return {
+            **self._stats,
+            "uptime_seconds": (datetime.now() - self._stats["start_time"]).total_seconds(),
+            "active_workflows": len([w for w in self._workflows.values() if w.status == WorkflowStatus.RUNNING])
+        }
+    
+    # =================================================================
+    # REQUIS PAR BASEAGENT
+    # =================================================================
+    
+    async def health_check(self) -> Dict[str, Any]:
+        """Vérifie la santé de l'agent"""
+        stats = await self.get_statistics()
+        
+        return {
+            "agent": self._name,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "ready": self._status == AgentStatus.READY,
+            "workflows_executed": stats["workflows_executed"],
+            "sprints_completed": stats["sprints_completed"],
+            "components": list(self._components.keys()),
+            "uptime": stats["uptime_seconds"]
+        }
+    
+    def get_agent_info(self) -> Dict[str, Any]:
+        """Informations de l'agent"""
+        return {
+            "id": self._name,
+            "name": "🚀 Orchestrator Agent",
+            "version": "2.0.0",
+            "description": "Orchestration des workflows et sprints",
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "capabilities": [
+                "workflow_orchestration",
+                "sprint_management",
+                "multi_domain_planning",
+                "fragment_execution",
+                "report_generation"
+            ],
+            "workflows_created": len(self._workflows),
+            "sprints_completed": self._stats["sprints_completed"]
+        }
+    
+    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        """Gestion des messages personnalisés"""
+        msg_type = message.get("type", "")
+        
+        if msg_type == "create_workflow":
+            workflow = await self.create_workflow(
+                name=message.get("name", "Workflow"),
+                steps=message.get("steps"),
+                workflow_type=message.get("type", "standard")
+            )
+            return {"workflow_id": workflow.id, "status": "created"}
+        
+        elif msg_type == "execute_workflow":
+            result = await self.execute_workflow(message["workflow_id"])
+            return result
+        
+        elif msg_type == "execute_sprint":
+            report = await self.execute_sprint(message["spec_file"])
+            return report
+        
+        elif msg_type == "list_workflows":
+            workflows = await self.list_workflows(message.get("status"))
+            return {"workflows": workflows}
+        
+        elif msg_type == "workflow_status":
+            status = await self.get_workflow_status(message["workflow_id"])
+            return status or {"error": "Workflow not found"}
+        
+        elif msg_type == "statistics":
+            return await self.get_statistics()
+        
+        return {"status": "received", "type": msg_type}
 
-# ============================================================================
-# POINT D'ENTRÉE PRINCIPAL
-# ============================================================================
 
-def main():
-    """Fonction principale"""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description="Orchestrator SmartContractDevPipeline")
-    parser.add_argument("--config", default="config/project_config.yaml", 
-                       help="Chemin vers le fichier de configuration")
-    parser.add_argument("--test", action="store_true", 
-                       help="Exécuter les tests")
-    parser.add_argument("--diagnose", action="store_true",
-                       help="Générer un diagnostic")
-    parser.add_argument("--simple", action="store_true",
-                       help="Mode simple sans API")
-    
-    args = parser.parse_args()
-    
-    print("\n" + "=" * 60)
-    print("ORCHESTRATOR - SmartContractDevPipeline v2.2.0")
-    print("=" * 60)
-    
-    if args.test:
-        # Mode test
-        print("Mode test activé")
-        
-        # Test 1: Initialisation agent simple
-        test1 = test_agent_initialization()
-        
-        # Test 2: Orchestrator simple
-        test2 = test_orchestrator_simple(args.config)
-        
-        print("\n" + "=" * 60)
-        print("RÉSULTATS DES TESTS:")
-        print(f"  Test agent: {'✅' if test1 else '❌'}")
-        print(f"  Test orchestrator: {'✅' if test2 else '❌'}")
-        print("=" * 60)
-        
-        exit(0 if test1 and test2 else 1)
-    
-    # Mode normal
-    try:
-        # Configurer l'orchestrator
-        if args.simple:
-            print("Mode simple - API désactivée")
-            config = OrchestratorConfig.from_yaml(args.config)
-            config.enable_api = False
-            orchestrator = Orchestrator(config_path=args.config)
-            orchestrator.config = config
-        else:
-            orchestrator = Orchestrator(config_path=args.config)
-        
-        # Initialiser
-        success = orchestrator.initialize()
-        
-        if not success:
-            print("❌ Échec initialisation orchestrator")
-            exit(1)
-        
-        # Mode diagnostic
-        if args.diagnose:
-            diagnosis = orchestrator.diagnose()
-            print("\n🔍 DIAGNOSTIC COMPLET:")
-            print(json.dumps(diagnosis, indent=2, default=str))
-            exit(0)
-        
-        # Mode interactif
-        print("\n🎯 Orchestrator prêt - En attente de tâches")
-        print("   Commande: Ctrl+C pour arrêter")
-        print("=" * 60)
-        
-        # Boucle principale
-        try:
-            while orchestrator.running:
-                time.sleep(1)
-                
-                # Afficher le statut toutes les 30 secondes
-                if int(time.time()) % 30 == 0:
-                    pending = orchestrator.task_queue.qsize()
-                    active = len(orchestrator.active_tasks)
-                    if pending > 0 or active > 0:
-                        print(f"📊 Statut: {pending} tâches en attente, {active} actives")
-                        
-        except KeyboardInterrupt:
-            print("\n\n🛑 Arrêt demandé...")
-        
-        finally:
-            # Arrêt propre
-            orchestrator.stop()
-            print("👋 Orchestrator arrêté")
-        
-    except Exception as e:
-        print(f"💥 ERREUR FATALE: {e}")
-        import traceback
-        traceback.print_exc()
-        exit(1)
+# =====================================================================
+# FONCTIONS D'USINE
+# =====================================================================
+
+def create_orchestrator_agent(config_path: str = "") -> OrchestratorAgent:
+    """Crée une instance de l'orchestrateur"""
+    return OrchestratorAgent(config_path)
+
+
+# =====================================================================
+# POINT D'ENTRÉE POUR EXÉCUTION DIRECTE
+# =====================================================================
 
 if __name__ == "__main__":
-    main()
+    async def main():
+        print("🚀 TEST ORCHESTRATOR AGENT")
+        print("="*60)
+        
+        agent = OrchestratorAgent()
+        await agent.initialize()
+        
+        print(f"✅ Agent: {agent.get_agent_info()['name']}")
+        print(f"✅ Statut: {agent._status.value if hasattr(agent._status, 'value') else agent._status}")
+        print(f"✅ Composants: {list(agent._components.keys())}")
+        
+        # Test création workflow
+        workflow = await agent.create_workflow(
+            name="Test Workflow",
+            steps=[
+                {
+                    "name": "step1",
+                    "agent": "test_agent",
+                    "task": "test_task",
+                    "parameters": {"param": "value"}
+                }
+            ]
+        )
+        print(f"\n📋 Workflow créé: {workflow.id}")
+        
+        # Test exécution
+        result = await agent.execute_workflow(workflow.id)
+        print(f"🚀 Exécution: {result['status']}")
+        
+        # Test sprint
+        print(f"\n📦 Test sprint manager...")
+        report = await agent.execute_sprint("specs/defi_app.json")
+        print(f"✅ Sprint {report['sprint']} terminé")
+        print(f"📊 Taux de succès: {report['metrics']['success_rate']:.1f}%")
+        
+        print("\n" + "="*60)
+        print("✅ ORCHESTRATOR AGENT OPÉRATIONNEL")
+        print("="*60)
+    
+    asyncio.run(main())

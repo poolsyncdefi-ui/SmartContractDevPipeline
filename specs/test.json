@@ -1,0 +1,22 @@
+{
+    "sprint": "SPRINT-002",
+    "name": "Sprint de test",
+    "strategy": "largeur_dabord",
+    "fragments": [
+        {
+            "id": "SC_001",
+            "domain": "smart_contract",
+            "name": "Token ERC20",
+            "language": "solidity",
+            "complexity": 2
+        },
+        {
+            "id": "FE_001",
+            "domain": "frontend",
+            "name": "Interface React",
+            "language": "typescript",
+            "complexity": 3
+        }
+    ],
+    "dependencies": []
+}
