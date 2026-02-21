@@ -1,0 +1,143 @@
+{
+  "sprint": "SPRINT-000",
+  "name": "Sans nom",
+  "timestamp": "2026-02-21T23:07:37.997661",
+  "metrics": {
+    "total_fragments": 7,
+    "successful": 7,
+    "failed": 0,
+    "success_rate": 100.0,
+    "by_domain": {
+      "smart_contract": {
+        "total": 2,
+        "completed": 0,
+        "failed": 0
+      },
+      "backend": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "frontend": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "database": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "devops": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "monitoring": {
+        "total": 0,
+        "completed": 0,
+        "failed": 0
+      },
+      "documentation": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      }
+    },
+    "sprints_completed": 1,
+    "fragments_total": 7,
+    "fragments_completed": 7,
+    "fragments_failed": 0,
+    "iterations_total": 0,
+    "avg_iterations_per_fragment": 0.0
+  },
+  "results": [
+    {
+      "fragment_id": "MyDeFiApp_SC_001",
+      "domain": "smart_contract",
+      "name": "Token ERC20",
+      "complexity": 2,
+      "success": true,
+      "iterations": 1,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-21T23:07:34.501306"
+    },
+    {
+      "fragment_id": "MyDeFiApp_BE_001",
+      "domain": "backend",
+      "name": "API FastAPI",
+      "complexity": 3,
+      "success": true,
+      "iterations": 1,
+      "success_rate": 90.0,
+      "bonuses": [
+        "backend_bonus"
+      ],
+      "timestamp": "2026-02-21T23:07:35.112870"
+    },
+    {
+      "fragment_id": "MyDeFiApp_FE_001",
+      "domain": "frontend",
+      "name": "Interface React",
+      "complexity": 3,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 95.0,
+      "bonuses": [
+        "frontend_bonus"
+      ],
+      "timestamp": "2026-02-21T23:07:35.730266"
+    },
+    {
+      "fragment_id": "MyDeFiApp_DB_001",
+      "domain": "database",
+      "name": "Schéma PostgreSQL",
+      "complexity": 2,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-21T23:07:36.134641"
+    },
+    {
+      "fragment_id": "MyDeFiApp_DO_001",
+      "domain": "devops",
+      "name": "Infrastructure Docker",
+      "complexity": 3,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 85.0,
+      "bonuses": [],
+      "timestamp": "2026-02-21T23:07:36.760354"
+    },
+    {
+      "fragment_id": "MyDeFiApp_DOC_001",
+      "domain": "documentation",
+      "name": "Documentation",
+      "complexity": 2,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 98.0,
+      "bonuses": [
+        "doc_bonus",
+        "dependencies_ok"
+      ],
+      "timestamp": "2026-02-21T23:07:37.175717"
+    },
+    {
+      "fragment_id": "MyDeFiApp_SC_002",
+      "domain": "smart_contract",
+      "name": "Staking Pool",
+      "complexity": 4,
+      "success": true,
+      "iterations": 4,
+      "success_rate": 65.0,
+      "bonuses": [],
+      "timestamp": "2026-02-21T23:07:37.996670"
+    }
+  ],
+  "recommendations": [
+    "🐢 1 fragments ont nécessité plus de 3 itérations. Les détailler davantage."
+  ]
+}

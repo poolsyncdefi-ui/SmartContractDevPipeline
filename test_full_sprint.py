@@ -13,8 +13,19 @@ async def test():
     )
     
     print(f'✅ Sprint {report["sprint"]} terminé')
-    print(f'📊 Fragments: {report["fragments_info"]["total"]}')
-    print(f'📈 Succès: {report["metrics"]["success_rate"]:.1f}%')
+    
+    # 🔥 CORRECTION ICI - Utilise la bonne clé
+    fragments_total = report["metrics"]["total_fragments"]
+    success_rate = report["metrics"]["success_rate"]
+    
+    print(f'📊 Fragments: {fragments_total}')
+    print(f'📈 Succès: {success_rate:.1f}%')
+    
+    # Affiche les recommandations
+    if "recommendations" in report and report["recommendations"]:
+        print("\n💡 Recommandations:")
+        for rec in report["recommendations"]:
+            print(f"  • {rec}")
 
 if __name__ == "__main__":
     asyncio.run(test())

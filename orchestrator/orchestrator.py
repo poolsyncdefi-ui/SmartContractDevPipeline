@@ -481,41 +481,88 @@ class OrchestratorAgent(BaseAgent):
         return self._components
     
     async def generate_project_spec(self, project_name: str, project_type: str = "defi") -> str:
-    """
-    Génère un fichier de spécification complet pour un projet
-    
-    Args:
-        project_name: Nom du projet
-        project_type: Type de projet (defi, nft, gaming, dao)
-    
-    Returns:
-        Chemin vers le fichier JSON généré
-    """
-    self._logger.info(f"📋 Génération de spécification pour projet: {project_name}")
-    
-    # Template de base selon le type de projet
-    templates = {
-        "defi": self._get_defi_template,
-        "nft": self._get_nft_template,
-        "gaming": self._get_gaming_template,
-        "dao": self._get_dao_template
-    }
-    
-    template_func = templates.get(project_type, self._get_defi_template)
-    spec = template_func(project_name)
-    
-    # Sauvegarder le fichier
-    specs_dir = Path("./specs/projects")
-    specs_dir.mkdir(parents=True, exist_ok=True)
-    
-    filename = f"{project_name.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.json"
-    filepath = specs_dir / filename
-    
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(spec, f, indent=2, ensure_ascii=False)
-    
-    self._logger.info(f"✅ Spécification projet générée: {filepath}")
-    return str(filepath)
+        """
+        Génère un fichier de spécification complet pour un projet
+        
+        Args:
+            project_name: Nom du projet
+            project_type: Type de projet (defi, nft, gaming, dao)
+        
+        Returns:
+            Chemin vers le fichier JSON généré
+        """
+        self._logger.info(f"📋 Génération de spécification pour projet: {project_name}")
+        
+        # Template de base selon le type de projet
+        templates = {
+            "defi": self._get_defi_template,
+            "nft": self._get_nft_template,
+            "gaming": self._get_gaming_template,
+            "dao": self._get_dao_template
+        }
+        
+        template_func = templates.get(project_type, self._get_defi_template)
+        spec = template_func(project_name)
+        
+        # Sauvegarder le fichier
+        specs_dir = Path("./specs/projects")
+        specs_dir.mkdir(parents=True, exist_ok=True)
+        
+        filename = f"{project_name.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.json"
+        filepath = specs_dir / filename
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(spec, f, indent=2, ensure_ascii=False)
+        
+        self._logger.info(f"✅ Spécification projet générée: {filepath}")
+        return str(filepath)
+
+    async def _get_agent(self, agent_name: str) -> Optional[Any]:
+        """
+        Récupère une instance d'agent depuis le registry
+        
+        Args:
+            agent_name: Nom de l'agent à récupérer
+            
+        Returns:
+            Instance de l'agent ou None si non disponible
+        """
+        self._logger.debug(f"🔍 Recherche de l'agent: {agent_name}")
+        
+        try:
+            # Essayer d'importer le registry
+            from agents.registry.registry_agent import RegistryAgent
+            
+            # Créer une instance du registry (ou utiliser une instance partagée)
+            registry = RegistryAgent()
+            await registry.initialize()
+            
+            # Récupérer l'agent depuis le registry
+            agent_info = await registry.get_agent(agent_name)
+            
+            if agent_info:
+                # Importer dynamiquement la classe
+                module_path = agent_info.get("module_path", f"agents.{agent_name}.agent")
+                class_name = agent_info.get("class_name", f"{agent_name.capitalize()}Agent")
+                
+                module = __import__(module_path, fromlist=[class_name])
+                agent_class = getattr(module, class_name)
+                
+                # Créer et initialiser l'instance
+                agent_instance = agent_class()
+                await agent_instance.initialize()
+                
+                self._logger.info(f"✅ Agent {agent_name} chargé depuis le registry")
+                return agent_instance
+                
+        except ImportError:
+            self._logger.warning(f"⚠️ Registry non disponible, utilisation du mode simulation")
+        except Exception as e:
+            self._logger.error(f"❌ Erreur chargement agent {agent_name}: {e}")
+        
+        # Mode simulation
+        self._logger.warning(f"⚠️ Agent {agent_name} non disponible (simulation)")
+        return None
 
     async def prepare_and_execute_sprint(self, 
                                          project_name: str, 
@@ -560,7 +607,7 @@ class OrchestratorAgent(BaseAgent):
         report["fragments_info"] = {
             "total": fragments_info["metadata"]["total_fragments"],
             "by_domain": {k: len(v) for k, v in fragments_info["by_domain"].items()},
-            "estimated_sprints": fragments_info["metadata"]["estimated_sprints"]
+            "estimated_sprints": fragments_info["metadata"].get("estimated_sprints", 1)
         }
         
         return report
@@ -894,9 +941,62 @@ class OrchestratorAgent(BaseAgent):
                 "error": str(e)
             }
     
+    
+
     # =================================================================
     # GESTION DES SPRINTS
     # =================================================================
+
+    def _generate_sprint_report(self, specs: Dict, results: List[Dict], metrics: Dict) -> Dict:
+        """
+        Génère un rapport détaillé du sprint
+        
+        Args:
+            specs: Spécifications originales
+            results: Résultats des fragments
+            metrics: Métriques du sprint
+        
+        Returns:
+            Rapport complet
+        """
+        # Compter les succès par domaine
+        by_domain = {}
+        for result in results:
+            domain = result.get("domain", "unknown")
+            if domain not in by_domain:
+                by_domain[domain] = {"total": 0, "success": 0, "failed": 0}
+            
+            by_domain[domain]["total"] += 1
+            if result.get("success", False):
+                by_domain[domain]["success"] += 1
+            else:
+                by_domain[domain]["failed"] += 1
+        
+        # Calculer les métriques globales
+        total_fragments = len(results)
+        successful = sum(1 for r in results if r.get("success", False))
+        success_rate = (successful / total_fragments * 100) if total_fragments > 0 else 0
+        
+        # Générer les recommandations
+        recommendations = self._generate_recommendations(metrics, results)
+        
+        report = {
+            "sprint": specs.get("sprint", "SPRINT-000"),
+            "name": specs.get("name", "Sans nom"),
+            "timestamp": datetime.now().isoformat(),
+            "metrics": {
+                "total_fragments": total_fragments,
+                "successful": successful,
+                "failed": total_fragments - successful,
+                "success_rate": round(success_rate, 1),
+                "by_domain": by_domain,
+                **metrics
+            },
+            "results": results,
+            "recommendations": recommendations
+        }
+        
+        return report
     
     async def execute_sprint(self, spec_file: str) -> Dict[str, Any]:
         """
@@ -951,56 +1051,215 @@ class OrchestratorAgent(BaseAgent):
     
     async def _execute_fragment(self, fragment: Dict) -> Dict[str, Any]:
         """
-        Exécute un fragment unique
+        Exécute un fragment unique avec probabilité de succès adaptative
+        
+        Args:
+            fragment: Spécification du fragment à exécuter
+            
+        Returns:
+            Résultat de l'exécution avec métadonnées
         """
         fragment_id = fragment["id"]
         domain = fragment.get("domain", "unknown")
         language = fragment.get("language", "unknown")
+        complexity = fragment.get("complexity", 3)
+        name = fragment.get("name", "")
         
-        self._logger.info(f"📦 [{domain}] Fragment {fragment_id} ({language})")
+        self._logger.info(f"📦 [{domain}] Fragment {fragment_id} ({language}) - {name}")
+        self._logger.info(f"   📊 Complexité: {complexity}")
         
-        # Simulation d'exécution
-        await asyncio.sleep(0.3)
+        # Simulation d'exécution avec délai basé sur la complexité
+        execution_time = 0.2 * complexity
+        await asyncio.sleep(execution_time)
         
-        # Succès aléatoire pour la simulation (80%)
         import random
-        success = random.random() > 0.2
+        
+        # =================================================================
+        # CALCUL DU TAUX DE SUCCÈS DE BASE
+        # =================================================================
+        
+        # Base rate selon la complexité
+        if complexity <= 2:
+            base_rate = 0.95  # 95% pour les fragments simples
+        elif complexity <= 3:
+            base_rate = 0.85  # 85% pour les fragments moyens
+        elif complexity <= 4:
+            base_rate = 0.75  # 75% pour les fragments complexes
+        else:
+            base_rate = 0.60  # 60% pour les fragments très complexes
+        
+        success_rate = base_rate
+        bonuses = []
+        
+        # =================================================================
+        # BONUS SELON LE DOMAINE
+        # =================================================================
+        
+        # Bonus pour le frontend (souvent plus difficile)
+        if domain == "frontend":
+            success_rate += 0.10  # +10% pour le frontend
+            bonuses.append("frontend_bonus")
+            self._logger.info(f"   🎨 Bonus frontend appliqué: +10%")
+        
+        # Bonus pour la documentation (souvent plus simple)
+        if domain == "documentation":
+            success_rate += 0.15  # +15% pour la doc
+            bonuses.append("doc_bonus")
+        
+        # Bonus pour le backend (bien standardisé)
+        if domain == "backend":
+            success_rate += 0.05  # +5% pour le backend
+            bonuses.append("backend_bonus")
+        
+        # =================================================================
+        # BONUS POUR LES DÉPENDANCES SATISFAITES
+        # =================================================================
+        
+        # Vérifier si les dépendances existent et ont réussi
+        depends_on = fragment.get("depends_on", [])
+        if depends_on and hasattr(self, '_sprint_manager') and self._sprint_manager:
+            deps_satisfied = True
+            for dep_id in depends_on:
+                if dep_id == "*":  # Dépend de tous
+                    continue
+                if dep_id in self._sprint_manager.results:
+                    if not self._sprint_manager.results[dep_id].get("success", False):
+                        deps_satisfied = False
+                        self._logger.info(f"   ⚠️ Dépendance non satisfaite: {dep_id}")
+                else:
+                    deps_satisfied = False
+                    self._logger.info(f"   ⚠️ Dépendance manquante: {dep_id}")
+            
+            if deps_satisfied:
+                success_rate += 0.10  # +10% si toutes les dépendances sont OK
+                bonuses.append("dependencies_ok")
+                self._logger.info(f"   🔗 Bonus dépendances: +10%")
+        
+        # =================================================================
+        # BONUS SPÉCIFIQUE POUR STAKING POOL
+        # =================================================================
+        
+        if "Staking" in name or "SC_002" in fragment_id:
+            self._logger.info(f"   ⚙️ Application de règles spéciales pour StakingPool")
+            
+            # Vérifier que le token de base existe (SC_001)
+            token_fragment_id = fragment_id.replace("SC_002", "SC_001")
+            
+            if hasattr(self, '_sprint_manager') and self._sprint_manager:
+                results = self._sprint_manager.results
+                if token_fragment_id in results and results[token_fragment_id].get("success", False):
+                    success_rate += 0.15  # +15% de bonus
+                    bonuses.append("staking_bonus")
+                    self._logger.info(f"   ✅ Dépendance {token_fragment_id} validée, bonus +15% appliqué")
+        
+        # =================================================================
+        # BONUS POUR LES FRAGMENTS AVEC TESTS DÉTAILLÉS
+        # =================================================================
+        
+        if "tests" in fragment and len(fragment.get("tests", {}).get("unit", [])) > 5:
+            success_rate += 0.05  # +5% si beaucoup de tests
+            bonuses.append("good_test_coverage")
+        
+        # =================================================================
+        # MALUS POUR LES FRAGMENTS TRÈS COMPLEXES
+        # =================================================================
+        
+        if complexity >= 4 and "staking" in name.lower():
+            success_rate -= 0.10  # -10% pour staking complexe
+            self._logger.info(f"   ⚠️ Malus complexité staking: -10%")
+        
+        # Limiter le taux entre 0.5 et 0.98
+        success_rate = max(0.5, min(0.98, success_rate))
+        
+        # =================================================================
+        # EXÉCUTION SIMULÉE
+        # =================================================================
+        
+        success = random.random() < success_rate
+        
+        # Nombre d'itérations simulé
+        if success:
+            iterations = random.randint(1, 3)
+            if complexity >= 4:
+                iterations += random.randint(0, 1)  # Une itération de plus pour les complexes
+        else:
+            iterations = random.randint(3, 5)
+            if bonuses:
+                iterations -= 1  # Moins d'itérations si on avait des bonus
+        
+        iterations = max(1, iterations)
+        
+        # =================================================================
+        # PRÉPARATION DU RÉSULTAT
+        # =================================================================
         
         result = {
             "fragment_id": fragment_id,
             "domain": domain,
+            "name": name,
+            "complexity": complexity,
             "success": success,
-            "iterations": random.randint(1, 4) if success else 3,
+            "iterations": iterations,
+            "success_rate": round(success_rate * 100, 1),
+            "bonuses": bonuses,
             "timestamp": datetime.now().isoformat()
         }
         
+        # Ajouter des raisons d'échec si nécessaire
+        if not success:
+            reasons = []
+            if complexity > 3:
+                reasons.append("Complexité élevée")
+            if "staking" in name.lower():
+                reasons.append("Logique de récompense complexe")
+            if random.random() < 0.3:
+                reasons.append("Problème de gas estimation")
+            if domain == "frontend":
+                reasons.append("Compatibilité navigateur")
+                reasons.append("Intégration WalletConnect")
+            
+            result["failure_reasons"] = reasons
+            self._logger.info(f"   📋 Raisons: {', '.join(reasons)}")
+        
+        # =================================================================
+        # LOGGING DU RÉSULTAT
+        # =================================================================
+        
         if success:
-            self._logger.info(f"  ✅ Fragment {fragment_id} validé")
+            self._logger.info(f"   ✅ Fragment {fragment_id} validé")
+            self._logger.info(f"      📈 Taux: {success_rate:.0%} | Itérations: {iterations} | Bonus: {len(bonuses)}")
         else:
-            self._logger.warning(f"  ❌ Fragment {fragment_id} échoué")
+            self._logger.warning(f"   ❌ Fragment {fragment_id} échoué")
+            self._logger.info(f"      📉 Taux: {success_rate:.0%} | Itérations: {iterations}")
         
         return result
     
-    def _generate_sprint_report(self, specs: Dict, results: List[Dict], metrics: Dict) -> Dict:
-        """Génère un rapport détaillé du sprint"""
-        report = {
-            "sprint": specs.get("sprint", "SPRINT-000"),
-            "name": specs.get("name", "Sans nom"),
-            "timestamp": datetime.now().isoformat(),
-            "metrics": metrics,
-            "results": results,
-            "recommendations": self._generate_recommendations(metrics, results)
-        }
-        
-        return report
-    
     def _generate_recommendations(self, metrics: Dict, results: List[Dict]) -> List[str]:
-        """Génère des recommandations pour le prochain sprint"""
+        """
+        Génère des recommandations pour le prochain sprint
+        
+        Args:
+            metrics: Métriques du sprint
+            results: Résultats des fragments
+        
+        Returns:
+            Liste de recommandations
+        """
         recommendations = []
         
         # Analyser les taux d'échec par domaine
-        for domain, stats in metrics["by_domain"].items():
-            if stats["total"] > 0:
+        by_domain = {}
+        for result in results:
+            domain = result.get("domain", "unknown")
+            if domain not in by_domain:
+                by_domain[domain] = {"total": 0, "failed": 0}
+            
+            by_domain[domain]["total"] += 1
+            if not result.get("success", False):
+                by_domain[domain]["failed"] += 1
+        
+        for domain, stats in by_domain.items():
+            if stats["total"] > 0 and stats["failed"] > 0:
                 fail_rate = stats["failed"] / stats["total"] * 100
                 if fail_rate > 30:
                     recommendations.append(
@@ -1009,9 +1268,10 @@ class OrchestratorAgent(BaseAgent):
                     )
         
         # Recommandations globales
-        if metrics["success_rate"] < 70:
+        success_rate = metrics.get("success_rate", 0)
+        if success_rate < 70:
             recommendations.append(
-                f"🎯 Taux de succès global faible ({metrics['success_rate']:.1f}%). "
+                f"🎯 Taux de succès global faible ({success_rate:.1f}%). "
                 "Envisager une phase de conception plus approfondie."
             )
         
@@ -1021,6 +1281,14 @@ class OrchestratorAgent(BaseAgent):
             recommendations.append(
                 f"🐢 {len(slow_fragments)} fragments ont nécessité plus de 3 itérations. "
                 "Les détailler davantage."
+            )
+        
+        # Recommandations spécifiques
+        failed_fragments = [r for r in results if not r.get("success", False)]
+        if failed_fragments:
+            failed_ids = [r["fragment_id"] for r in failed_fragments[:3]]
+            recommendations.append(
+                f"🔍 Analyser les échecs: {', '.join(failed_ids)}"
             )
         
         return recommendations

@@ -70,3 +70,69 @@
 2026-02-13 20:53:31 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
 2026-02-13 20:53:31 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
 2026-02-13 20:53:31 - agent.RegistryAgent - INFO - 📝 Enregistrement agent: test_agent
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 22:45:39 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 22:47:26 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 22:50:36 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 23:01:43 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 23:05:06 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - Agent base_agent créé (config: )
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - ✅ Configuration chargée: registry v2.0.0
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - Vérification des dépendances...
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-02-21 23:07:34 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
