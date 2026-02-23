@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 Storage Agent - Gestion des données</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: #f5f7fa;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-back {
+            background: white;
+            color: #6b7280;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+        
+        .filters-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .filters-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-select {
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        .filter-badge {
+            background: #6b7280;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .reset-btn {
+            background: #f3f4f6;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-left: 4px solid #6b7280;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1e24;
+        }
+        
+        .backends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .backend-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid;
+        }
+        
+        .backend-memory { border-left-color: #3b82f6; }
+        .backend-disk { border-left-color: #10b981; }
+        .backend-ipfs { border-left-color: #8b5cf6; }
+        .backend-redis { border-left-color: #ef4444; }
+        
+        .backend-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .backend-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .backend-stat {
+            text-align: center;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+        
+        .keys-table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        
+        .keys-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .keys-table th {
+            text-align: left;
+            padding: 15px 12px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 13px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .keys-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+        
+        .keys-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .backend-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            background: #e5e7eb;
+        }
+        
+        .key-detail {
+            display: none;
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        
+        .key-detail.active {
+            display: block;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .value-preview {
+            background: #1a1e24;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            max-height: 200px;
+        }
+        
+        .ttl-meter {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .ttl-fill {
+            height: 100%;
+            background: #6b7280;
+            border-radius: 4px;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1><span>💾</span> Storage Agent - Gestion des données</h1>
+                <div style="margin-top: 10px; opacity: 0.9;">
+                    4 backends • 12.4k clés • 2.3 Go utilisés
+                </div>
+            </div>
+            <a href="../index.html" class="btn-back">← Portail</a>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filters-section">
+            <div class="filters-title">
+                <span>🔍</span> Filtres
+                <span class="filter-badge" id="result-count">156 clés</span>
+            </div>
+            
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Backend</label>
+                    <select class="filter-select" id="filter-backend">
+                        <option value="all">Tous</option>
+                        <option value="memory">🧠 Mémoire</option>
+                        <option value="disk">💾 Disque</option>
+                        <option value="ipfs">🌐 IPFS</option>
+                        <option value="redis">⚡ Redis</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Type</label>
+                    <select class="filter-select" id="filter-type">
+                        <option value="all">Tous</option>
+                        <option value="kv">🔑 Clé-valeur</option>
+                        <option value="document">📄 Document</option>
+                        <option value="file">📁 Fichier</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>TTL</label>
+                    <select class="filter-select" id="filter-ttl">
+                        <option value="all">Tous</option>
+                        <option value="persistent">📦 Permanent</option>
+                        <option value="expiring">⏳ Avec expiration</option>
+                        <option value="expired">⚠️ Expiré</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Chiffrement</label>
+                    <select class="filter-select" id="filter-encrypted">
+                        <option value="all">Tous</option>
+                        <option value="encrypted">🔐 Chiffré</option>
+                        <option value="clear">🔓 Clair</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="reset-btn" onclick="resetFilters()">Réinitialiser</button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card" onclick="filterByBackend('memory')">
+                <div class="stat-value">8.2k</div>
+                <div>Clés mémoire</div>
+            </div>
+            <div class="stat-card" onclick="filterByBackend('disk')">
+                <div class="stat-value">3.1k</div>
+                <div>Clés disque</div>
+            </div>
+            <div class="stat-card" onclick="filterByType('file')">
+                <div class="stat-value">847</div>
+                <div>Fichiers stockés</div>
+            </div>
+            <div class="stat-card" onclick="showCacheStats()">
+                <div class="stat-value">94%</div>
+                <div>Cache hit ratio</div>
+            </div>
+        </div>
+        
+        <!-- Backends overview -->
+        <div class="backends-grid">
+            <div class="backend-card backend-memory">
+                <div class="backend-title">
+                    <span>🧠 Mémoire</span>
+                    <span>8,234 clés</span>
+                </div>
+                <div>Utilisation: 342 MB / 1 GB</div>
+                <div class="ttl-meter"><div class="ttl-fill" style="width: 34%"></div></div>
+                <div class="backend-stats">
+                    <div class="backend-stat">
+                        <div>94%</div>
+                        <small>hit ratio</small>
+                    </div>
+                    <div class="backend-stat">
+                        <div>2.3ms</div>
+                        <small>latence</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="backend-card backend-disk">
+                <div class="backend-title">
+                    <span>💾 Disque</span>
+                    <span>3,156 clés</span>
+                </div>
+                <div>Utilisation: 1.8 GB / 10 GB</div>
+                <div class="ttl-meter"><div class="ttl-fill" style="width: 18%"></div></div>
+                <div class="backend-stats">
+                    <div class="backend-stat">
+                        <div>8.4ms</div>
+                        <small>latence</small>
+                    </div>
+                    <div class="backend-stat">
+                        <div>124</div>
+                        <small>IOPS</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="backend-card backend-ipfs">
+                <div class="backend-title">
+                    <span>🌐 IPFS</span>
+                    <span>847 clés</span>
+                </div>
+                <div>Pins: 847 • Épinglé: ✅</div>
+                <div class="ttl-meter"><div class="ttl-fill" style="width: 100%"></div></div>
+                <div class="backend-stats">
+                    <div class="backend-stat">
+                        <div>1.2s</div>
+                        <small>latence</small>
+                    </div>
+                    <div class="backend-stat">
+                        <div>12</div>
+                        <small>gateways</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="backend-card backend-redis">
+                <div class="backend-title">
+                    <span>⚡ Redis</span>
+                    <span>1,234 clés</span>
+                </div>
+                <div>Utilisation: 156 MB / 512 MB</div>
+                <div class="ttl-meter"><div class="ttl-fill" style="width: 30%"></div></div>
+                <div class="backend-stats">
+                    <div class="backend-stat">
+                        <div>0.8ms</div>
+                        <small>latence</small>
+                    </div>
+                    <div class="backend-stat">
+                        <div>98%</div>
+                        <small>hit ratio</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau des clés -->
+        <div class="keys-table-container">
+            <table class="keys-table">
+                <thead>
+                    <tr>
+                        <th>Clé</th>
+                        <th>Backend</th>
+                        <th>Type</th>
+                        <th>Taille</th>
+                        <th>TTL</th>
+                        <th>Chiffré</th>
+                        <th>Création</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Clé 1 - Session utilisateur -->
+                    <tr onclick="toggleDetail('key1-detail')">
+                        <td><strong>user:0x742d:session</strong></td>
+                        <td><span class="backend-badge">🧠 mémoire</span></td>
+                        <td>JSON</td>
+                        <td>2.4 KB</td>
+                        <td>45 min</td>
+                        <td>🔐 oui</td>
+                        <td>22/02 14:32</td>
+                    </tr>
+                    <tr id="key1-detail" style="display: none;">
+                        <td colspan="7">
+                            <div class="key-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>Backend:</strong> Mémoire (cache LRU)</li>
+                                            <li><strong>Type:</strong> session utilisateur</li>
+                                            <li><strong>Taille:</strong> 2,456 octets</li>
+                                            <li><strong>Création:</strong> 22/02/2026 14:32:18</li>
+                                            <li><strong>Expiration:</strong> 22/02/2026 15:17:18</li>
+                                            <li><strong>Chiffrement:</strong> AES-256-GCM</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>⏳ TTL</h4>
+                                        <div class="ttl-meter"><div class="ttl-fill" style="width: 75%"></div></div>
+                                        <p>Expire dans 45 minutes</p>
+                                        <p>Politique: LRU • 3 accès récents</p>
+                                    </div>
+                                    <div style="grid-column: span 2;">
+                                        <h4>📦 Valeur</h4>
+                                        <div class="value-preview">
+{
+  "userId": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0",
+  "wallet": "metamask",
+  "chainId": 1,
+  "lastActivity": "2026-02-22T14:32:18Z",
+  "permissions": ["read", "transfer", "stake"],
+  "nonce": 42
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Clé 2 - Fichier IPFS -->
+                    <tr onclick="toggleDetail('key2-detail')">
+                        <td><strong>ipfs:QmX...3f2a</strong></td>
+                        <td><span class="backend-badge">🌐 ipfs</span></td>
+                        <td>image/png</td>
+                        <td>2.3 MB</td>
+                        <td>permanent</td>
+                        <td>🔓 non</td>
+                        <td>21/02 09:15</td>
+                    </tr>
+                    <tr id="key2-detail" style="display: none;">
+                        <td colspan="7">
+                            <div class="key-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>Backend:</strong> IPFS (épinglé)</li>
+                                            <li><strong>CID:</strong> QmX7h4YpYqK5w3f2aBcDeFgHiJkLmNoPqRsTuVwXyZ</li>
+                                            <li><strong>Type:</strong> image/png</li>
+                                            <li><strong>Taille:</strong> 2,345,678 octets</li>
+                                            <li><strong>Pin date:</strong> 21/02/2026 09:15:42</li>
+                                            <li><strong>Gateways:</strong> 8 répliques</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>🌐 URLs</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><a href="#" class="address-link">https://ipfs.io/ipfs/QmX...</a></li>
+                                            <li><a href="#" class="address-link">https://gateway.pinata.cloud/ipfs/QmX...</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Clé 3 - Cache Redis -->
+                    <tr onclick="toggleDetail('key3-detail')">
+                        <td><strong>api:balance:0x742d</strong></td>
+                        <td><span class="backend-badge">⚡ redis</span></td>
+                        <td>string</td>
+                        <td>84 B</td>
+                        <td>30 sec</td>
+                        <td>🔓 non</td>
+                        <td>22/02 15:30:22</td>
+                    </tr>
+                    <tr id="key3-detail" style="display: none;">
+                        <td colspan="7">
+                            <div class="key-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>Backend:</strong> Redis (cache)</li>
+                                            <li><strong>Valeur:</strong> "1250000000000000000" (1.25 ETH)</li>
+                                            <li><strong>TTL:</strong> 30 secondes</li>
+                                            <li><strong>Hit count:</strong> 156 accès depuis création</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>⏳ Expiration</h4>
+                                        <div class="ttl-meter"><div class="ttl-fill" style="width: 15%"></div></div>
+                                        <p>Expire dans 4 secondes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>4 backends • 12,437 clés • 2.34 Go utilisés • Cache hit ratio: 94%</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDetail(id) {
+            const detail = document.getElementById(id);
+            detail.style.display = detail.style.display === 'none' ? 'table-row' : 'none';
+        }
+        
+        function filterTable() {
+            const backend = document.getElementById('filter-backend').value;
+            const type = document.getElementById('filter-type').value;
+            const ttl = document.getElementById('filter-ttl').value;
+            const encrypted = document.getElementById('filter-encrypted').value;
+            
+            const rows = document.querySelectorAll('#table-body > tr:not([id^=detail])');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const cells = row.cells;
+                let show = true;
+                
+                if (backend !== 'all' && !cells[1].innerText.includes(backend)) show = false;
+                if (type !== 'all' && cells[2].innerText.toLowerCase() !== type) show = false;
+                if (ttl === 'expiring' && cells[4].innerText === 'permanent') show = false;
+                if (ttl === 'persistent' && cells[4].innerText !== 'permanent') show = false;
+                if (encrypted !== 'all' && cells[5].innerText !== (encrypted === 'encrypted' ? '🔐 oui' : '🔓 non')) show = false;
+                
+                row.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+                
+                const nextRow = row.nextElementSibling;
+                if (nextRow && nextRow.id) nextRow.style.display = 'none';
+            });
+            
+            document.getElementById('result-count').innerText = visibleCount + ' clés';
+        }
+        
+        function resetFilters() {
+            document.getElementById('filter-backend').value = 'all';
+            document.getElementById('filter-type').value = 'all';
+            document.getElementById('filter-ttl').value = 'all';
+            document.getElementById('filter-encrypted').value = 'all';
+            filterTable();
+        }
+        
+        function filterByBackend(backend) {
+            document.getElementById('filter-backend').value = backend;
+            filterTable();
+        }
+        
+        function filterByType(type) {
+            document.getElementById('filter-type').value = type;
+            filterTable();
+        }
+        
+        function showCacheStats() {
+            alert('Cache hit ratio: 94% (12,345 hits / 787 misses)');
+        }
+        
+        document.querySelectorAll('.filter-select').forEach(s => s.addEventListener('change', filterTable));
+        window.onload = filterTable;
+    </script>
+</body>
+</html>

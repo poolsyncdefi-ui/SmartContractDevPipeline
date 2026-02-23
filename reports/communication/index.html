@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 Communication Agent - Messages inter-agents</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: #f5f7fa;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-back {
+            background: white;
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+        
+        .filters-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .filters-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-badge {
+            background: #3b82f6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .filter-select {
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        .reset-btn {
+            background: #f3f4f6;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1e24;
+        }
+        
+        .queues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .queue-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid;
+        }
+        
+        .queue-default { border-left-color: #6b7280; }
+        .queue-high { border-left-color: #f59e0b; }
+        .queue-dead { border-left-color: #ef4444; }
+        
+        .queue-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .queue-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .messages-table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        
+        .messages-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .messages-table th {
+            text-align: left;
+            padding: 15px 12px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 13px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .messages-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+        }
+        
+        .messages-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .priority-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        
+        .priority-low { background: #e5e7eb; color: #4b5563; }
+        .priority-normal { background: #d1fae5; color: #065f46; }
+        .priority-high { background: #fed7aa; color: #92400e; }
+        .priority-critical { background: #fee2e2; color: #991b1b; }
+        
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        
+        .status-delivered { background: #d1fae5; color: #065f46; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-failed { background: #fee2e2; color: #991b1b; }
+        
+        .message-detail {
+            display: none;
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+        
+        .message-detail.active {
+            display: block;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .payload-preview {
+            background: #1a1e24;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            max-height: 200px;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .topic-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .topic-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .subscriber-list {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1><span>💬</span> Communication Agent - Messages inter-agents</h1>
+                <div style="margin-top: 10px; opacity: 0.9;">
+                    12.4k messages • 3 files d'attente • 8 topics actifs
+                </div>
+            </div>
+            <a href="../index.html" class="btn-back">← Portail</a>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filters-section">
+            <div class="filters-title">
+                <span>🔍</span> Filtres
+                <span class="filter-badge" id="result-count">156 messages</span>
+            </div>
+            
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label>Priorité</label>
+                    <select class="filter-select" id="filter-priority">
+                        <option value="all">Toutes</option>
+                        <option value="low">🟢 Basse</option>
+                        <option value="normal">🔵 Normale</option>
+                        <option value="high">🟠 Haute</option>
+                        <option value="critical">🔴 Critique</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Statut</label>
+                    <select class="filter-select" id="filter-status">
+                        <option value="all">Tous</option>
+                        <option value="delivered">✅ Délivré</option>
+                        <option value="pending">⏳ En attente</option>
+                        <option value="failed">❌ Échoué</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Expéditeur</label>
+                    <select class="filter-select" id="filter-sender">
+                        <option value="all">Tous</option>
+                        <option value="architect">🏗️ architect</option>
+                        <option value="coder">💻 coder</option>
+                        <option value="tester">🧪 tester</option>
+                        <option value="orchestrator">🚀 orchestrator</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Destinataire</label>
+                    <select class="filter-select" id="filter-recipient">
+                        <option value="all">Tous</option>
+                        <option value="architect">🏗️ architect</option>
+                        <option value="coder">💻 coder</option>
+                        <option value="tester">🧪 tester</option>
+                        <option value="storage">💾 storage</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="reset-btn" onclick="resetFilters()">Réinitialiser</button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card" onclick="filterByPriority('critical')">
+                <div class="stat-value">342</div>
+                <div>Messages critiques</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('delivered')">
+                <div class="stat-value">11.8k</div>
+                <div>Délivrés</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('pending')">
+                <div class="stat-value">234</div>
+                <div>En attente</div>
+            </div>
+            <div class="stat-card" onclick="filterByStatus('failed')">
+                <div class="stat-value">89</div>
+                <div>Échoués</div>
+            </div>
+        </div>
+        
+        <!-- Files d'attente -->
+        <div class="queues-grid">
+            <div class="queue-card queue-default">
+                <div class="queue-title">
+                    <span>📥 File par défaut</span>
+                    <span>1,234 messages</span>
+                </div>
+                <div>Priorité: normale</div>
+                <div>Latence moyenne: 124ms</div>
+                <div class="queue-stats">
+                    <span>✅ 1,198</span>
+                    <span>⏳ 36</span>
+                </div>
+            </div>
+            
+            <div class="queue-card queue-high">
+                <div class="queue-title">
+                    <span>⚡ Haute priorité</span>
+                    <span>89 messages</span>
+                </div>
+                <div>Priorité: haute/critique</div>
+                <div>Latence moyenne: 45ms</div>
+                <div class="queue-stats">
+                    <span>✅ 87</span>
+                    <span>⏳ 2</span>
+                </div>
+            </div>
+            
+            <div class="queue-card queue-dead">
+                <div class="queue-title">
+                    <span>💀 Dead letter</span>
+                    <span>45 messages</span>
+                </div>
+                <div>Messages échoués</div>
+                <div>Rétention: 7 jours</div>
+                <div class="queue-stats">
+                    <span>🔴 45 à analyser</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Topics Pub/Sub -->
+        <div style="margin: 30px 0;">
+            <h3 style="margin-bottom: 15px;">📢 Topics actifs</h3>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-name">📊 monitoring.metrics</div>
+                    <div class="subscriber-list">Abonnés: monitoring, learning, orchestrator</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-name">📜 contract.events</div>
+                    <div class="subscriber-list">Abonnés: frontend, monitoring, storage</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-name">⚡ system.alerts</div>
+                    <div class="subscriber-list">Abonnés: monitoring, orchestrator</div>
+                </div>
+                <div class="topic-card">
+                    <div class="topic-name">💾 storage.backup</div>
+                    <div class="subscriber-list">Abonnés: monitoring, storage</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tableau des messages -->
+        <div class="messages-table-container">
+            <table class="messages-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>De</th>
+                        <th>Vers</th>
+                        <th>Priorité</th>
+                        <th>Taille</th>
+                        <th>Statut</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Message 1 - Ping -->
+                    <tr onclick="toggleDetail('msg1-detail')">
+                        <td><strong>msg_8f3c...</strong></td>
+                        <td>ping</td>
+                        <td>orchestrator</td>
+                        <td>tester</td>
+                        <td><span class="priority-badge priority-normal">🔵 normale</span></td>
+                        <td>124 B</td>
+                        <td><span class="status-badge status-delivered">✅ délivré</span></td>
+                        <td>22/02 15:30:22</td>
+                    </tr>
+                    <tr id="msg1-detail" style="display: none;">
+                        <td colspan="8">
+                            <div class="message-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>ID:</strong> msg_8f3c7b2a1d5e9f4c</li>
+                                            <li><strong>Type:</strong> ping</li>
+                                            <li><strong>De:</strong> orchestrator</li>
+                                            <li><strong>Vers:</strong> tester</li>
+                                            <li><strong>Priorité:</strong> normale</li>
+                                            <li><strong>Timestamp:</strong> 22/02/2026 15:30:22.456</li>
+                                            <li><strong>TTL:</strong> 30 secondes</li>
+                                            <li><strong>Corrélation:</strong> req_42</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>📦 Payload</h4>
+                                        <div class="payload-preview">
+{
+  "action": "health_check",
+  "sender": "orchestrator",
+  "timestamp": "2026-02-22T15:30:22.456Z"
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Message 2 - Demande de donnée -->
+                    <tr onclick="toggleDetail('msg2-detail')">
+                        <td><strong>msg_a1b2...</strong></td>
+                        <td>request</td>
+                        <td>frontend</td>
+                        <td>storage</td>
+                        <td><span class="priority-badge priority-high">🟠 haute</span></td>
+                        <td>256 B</td>
+                        <td><span class="status-badge status-pending">⏳ en attente</span></td>
+                        <td>22/02 15:31:05</td>
+                    </tr>
+                    <tr id="msg2-detail" style="display: none;">
+                        <td colspan="8">
+                            <div class="message-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>ID:</strong> msg_a1b2c3d4e5f6g7h8</li>
+                                            <li><strong>Type:</strong> request</li>
+                                            <li><strong>De:</strong> frontend</li>
+                                            <li><strong>Vers:</strong> storage</li>
+                                            <li><strong>Priorité:</strong> haute</li>
+                                            <li><strong>Timestamp:</strong> 22/02/2026 15:31:05.123</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>📦 Payload</h4>
+                                        <div class="payload-preview">
+{
+  "action": "get",
+  "key": "user:0x742d:preferences",
+  "options": {
+    "consistent": true,
+    "timeout": 5000
+  }
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Message 3 - Échec -->
+                    <tr onclick="toggleDetail('msg3-detail')">
+                        <td><strong>msg_x7y8...</strong></td>
+                        <td>command</td>
+                        <td>orchestrator</td>
+                        <td>coder</td>
+                        <td><span class="priority-badge priority-critical">🔴 critique</span></td>
+                        <td>512 B</td>
+                        <td><span class="status-badge status-failed">❌ échoué</span></td>
+                        <td>22/02 15:28:45</td>
+                    </tr>
+                    <tr id="msg3-detail" style="display: none;">
+                        <td colspan="8">
+                            <div class="message-detail active">
+                                <div class="detail-grid">
+                                    <div>
+                                        <h4>📋 Métadonnées</h4>
+                                        <ul style="list-style: none; padding: 0;">
+                                            <li><strong>ID:</strong> msg_x7y8z9a0b1c2d3e4</li>
+                                            <li><strong>Type:</strong> command</li>
+                                            <li><strong>De:</strong> orchestrator</li>
+                                            <li><strong>Vers:</strong> coder</li>
+                                            <li><strong>Priorité:</strong> critique</li>
+                                            <li><strong>Timestamp:</strong> 22/02/2026 15:28:45.789</li>
+                                            <li><strong>Erreur:</strong> Timeout après 30s</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>📦 Payload</h4>
+                                        <div class="payload-preview">
+{
+  "action": "generate_fragment",
+  "fragment_id": "SC_002",
+  "params": {
+    "language": "solidity",
+    "features": ["stake", "unstake", "claim"]
+  }
+}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>12,437 messages • 3 files • 8 topics • Débit: 124 msg/s • Latence moyenne: 89ms</p>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDetail(id) {
+            const detail = document.getElementById(id);
+            detail.style.display = detail.style.display === 'none' ? 'table-row' : 'none';
+        }
+        
+        function filterTable() {
+            const priority = document.getElementById('filter-priority').value;
+            const status = document.getElementById('filter-status').value;
+            const sender = document.getElementById('filter-sender').value;
+            const recipient = document.getElementById('filter-recipient').value;
+            
+            const rows = document.querySelectorAll('#table-body > tr:not([id^=detail])');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const cells = row.cells;
+                let show = true;
+                
+                const priorityText = cells[4].innerText;
+                if (priority !== 'all') {
+                    if (priority === 'low' && !priorityText.includes('basse')) show = false;
+                    if (priority === 'normal' && !priorityText.includes('normale')) show = false;
+                    if (priority === 'high' && !priorityText.includes('haute')) show = false;
+                    if (priority === 'critical' && !priorityText.includes('critique')) show = false;
+                }
+                
+                const statusText = cells[6].innerText;
+                if (status !== 'all') {
+                    if (status === 'delivered' && !statusText.includes('délivré')) show = false;
+                    if (status === 'pending' && !statusText.includes('attente')) show = false;
+                    if (status === 'failed' && !statusText.includes('échoué')) show = false;
+                }
+                
+                if (sender !== 'all' && !cells[2].innerText.includes(sender)) show = false;
+                if (recipient !== 'all' && !cells[3].innerText.includes(recipient)) show = false;
+                
+                row.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+                
+                const nextRow = row.nextElementSibling;
+                if (nextRow && nextRow.id) nextRow.style.display = 'none';
+            });
+            
+            document.getElementById('result-count').innerText = visibleCount + ' messages';
+        }
+        
+        function resetFilters() {
+            document.getElementById('filter-priority').value = 'all';
+            document.getElementById('filter-status').value = 'all';
+            document.getElementById('filter-sender').value = 'all';
+            document.getElementById('filter-recipient').value = 'all';
+            filterTable();
+        }
+        
+        function filterByPriority(priority) {
+            document.getElementById('filter-priority').value = priority;
+            filterTable();
+        }
+        
+        function filterByStatus(status) {
+            document.getElementById('filter-status').value = status;
+            filterTable();
+        }
+        
+        document.querySelectorAll('.filter-select').forEach(s => s.addEventListener('change', filterTable));
+        window.onload = filterTable;
+    </script>
+</body>
+</html>

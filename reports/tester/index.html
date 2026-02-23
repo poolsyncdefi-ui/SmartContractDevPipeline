@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Tester Agent - Synthèse des tests</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: #f5f7fa;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn-back {
+            background: white;
+            color: #10b981;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        
+        .filters-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            width: 100%;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        
+        .stat-card:hover { transform: translateY(-5px); }
+        
+        .stat-value { font-size: 32px; font-weight: 700; }
+        
+        .tests-table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+        
+        .tests-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .tests-table th {
+            text-align: left;
+            padding: 15px 12px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .tests-table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .tests-table tbody tr {
+            cursor: pointer;
+        }
+        
+        .tests-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .test-pass { 
+            background: #d1fae5; 
+            color: #065f46; 
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        .test-fail { 
+            background: #fee2e2; 
+            color: #991b1b; 
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        .sprint-badge {
+            background: #e5e7eb;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        
+        .test-detail {
+            display: none;
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .test-detail.active {
+            display: table-row;
+        }
+        
+        .synthesis-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #10b981;
+            margin-bottom: 20px;
+        }
+        
+        .synthesis-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .synthesis-text {
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 15px;
+        }
+        
+        .synthesis-highlight {
+            background: #f0fdf4;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #10b981;
+        }
+        
+        .code-block {
+            background: #1a1e24;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1><span>🧪</span> Tester Agent - Synthèse des tests</h1>
+                <div style="margin-top: 10px;">1,284 tests • 94% succès</div>
+            </div>
+            <a href="../index.html" class="btn-back">← Portail</a>
+        </div>
+        
+        <!-- Filtres -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div><select class="filter-select" id="test-sprint"><option value="SPRINT-000" selected>SPRINT-000</option><option value="all">Tous</option></select></div>
+                <div><select class="filter-select" id="test-fragment"><option value="all">Tous fragments</option><option value="SC_001">SC_001</option></select></div>
+                <div><select class="filter-select" id="test-status"><option value="all">Tous statuts</option><option value="pass">Passé</option><option value="fail">Échoué</option></select></div>
+            </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card" onclick="filterTestsByStatus('pass')"><div class="stat-value">1,206</div><div>Tests passés</div></div>
+            <div class="stat-card" onclick="filterTestsByStatus('fail')"><div class="stat-value">78</div><div>Tests échoués</div></div>
+        </div>
+        
+        <!-- Tableau -->
+        <div class="tests-table-container">
+            <table class="tests-table">
+                <thead>
+                    <tr><th>Test</th><th>Fragment</th><th>Sprint</th><th>Type</th><th>Fonction testée</th><th>Résultat</th></tr>
+                </thead>
+                <tbody id="test-body">
+                    <!-- Test transfer avec synthèse -->
+                    <tr onclick="toggleTestDetail('test1-detail')">
+                        <td><strong>test_transfer</strong></td>
+                        <td>SC_001</td>
+                        <td><span class="sprint-badge">SPRINT-000</span></td>
+                        <td>unitaire</td>
+                        <td>transfer()</td>
+                        <td><span class="test-pass">✅ Passé</span></td>
+                    </tr>
+                    <tr id="test1-detail" style="display: none;">
+                        <td colspan="6">
+                            <div class="test-detail active">
+                                <div class="synthesis-card">
+                                    <div class="synthesis-title">📋 Synthèse du test : test_transfer</div>
+                                    
+                                    <div class="synthesis-text">
+                                        <strong>Objectif du test :</strong> Vérifier que la fonction transfer() déplace correctement les tokens entre deux adresses et émet l'événement Transfer.
+                                    </div>
+                                    
+                                    <div class="synthesis-highlight">
+                                        <strong>✅ Ce que le test valide :</strong>
+                                    </div>
+                                    
+                                    <ul class="feature-list" style="list-style: none; padding: 0;">
+                                        <li style="padding: 8px 0;">✓ Le solde de l'expéditeur diminue du montant transféré</li>
+                                        <li style="padding: 8px 0;">✓ Le solde du destinataire augmente du montant transféré</li>
+                                        <li style="padding: 8px 0;">✓ L'événement Transfer est émis avec les bonnes adresses et montant</li>
+                                        <li style="padding: 8px 0;">✓ La fonction revert si le solde est insuffisant</li>
+                                    </ul>
+                                    
+                                    <div class="code-block">
+function test_transfer() public {
+    uint256 amount = 1000;
+    uint256 balanceBefore = token.balanceOf(user1);
+    
+    vm.prank(owner);
+    vm.expectEmit(true, true, false, true);
+    emit Transfer(owner, user1, amount);
+    
+    token.transfer(user1, amount);
+    
+    assertEq(token.balanceOf(owner), balanceBefore - amount);
+    assertEq(token.balanceOf(user1), balanceBefore + amount);
+}
+                                    </div>
+                                    
+                                    <div class="synthesis-text">
+                                        <strong>Pourquoi ce test est important :</strong> transfer() est la fonction la plus utilisée du token. Un bug ici rendrait tout le token inutilisable.
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Test reentrancy avec synthèse d'échec -->
+                    <tr onclick="toggleTestDetail('test2-detail')">
+                        <td><strong>test_reentrancy</strong></td>
+                        <td>SC_002</td>
+                        <td><span class="sprint-badge">SPRINT-000</span></td>
+                        <td>sécurité</td>
+                        <td>withdraw()</td>
+                        <td><span class="test-fail">❌ Échoué</span></td>
+                    </tr>
+                    <tr id="test2-detail" style="display: none;">
+                        <td colspan="6">
+                            <div class="test-detail active">
+                                <div class="synthesis-card" style="border-left-color: #ef4444;">
+                                    <div class="synthesis-title" style="color: #ef4444;">⚠️ Analyse d'échec : test_reentrancy</div>
+                                    
+                                    <div class="synthesis-text">
+                                        <strong>Objectif du test :</strong> Vérifier que le contrat n'est pas vulnérable aux attaques par réentrance.
+                                    </div>
+                                    
+                                    <div class="synthesis-highlight" style="border-left-color: #ef4444; background: #fef2f2;">
+                                        <strong>🔴 Problème détecté :</strong> Reentrancy possible dans withdraw()
+                                    </div>
+                                    
+                                    <div class="code-block" style="border-left: 4px solid #ef4444;">
+// Le test simule un contrat attaquant
+contract Attacker {
+    StakingPool pool;
+    
+    function attack() external {
+        pool.deposit{value: 10 ether}();
+        pool.withdraw(10 ether); // Déclenche la reentrancy
+    }
+    
+    receive() external payable {
+        if (address(pool).balance >= 10 ether) {
+            pool.withdraw(10 ether); // Rappel pendant le withdraw
+        }
+    }
+}
+                                    </div>
+                                    
+                                    <div class="synthesis-text">
+                                        <strong>💡 Correction nécessaire :</strong> Ajouter ReentrancyGuard et suivre le pattern Checks-Effects-Interactions
+                                    </div>
+                                    
+                                    <div class="synthesis-highlight">
+                                        <strong>📋 Impact :</strong> Sans correction, un attaquant pourrait vider tout le pool de staking en une seule transaction.
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Test API avec synthèse -->
+                    <tr onclick="toggleTestDetail('test3-detail')">
+                        <td><strong>test_api_balance</strong></td>
+                        <td>BE_001</td>
+                        <td><span class="sprint-badge">SPRINT-001</span></td>
+                        <td>intégration</td>
+                        <td>get_balance()</td>
+                        <td><span class="test-pass">✅ Passé</span></td>
+                    </tr>
+                    <tr id="test3-detail" style="display: none;">
+                        <td colspan="6">
+                            <div class="test-detail active">
+                                <div class="synthesis-card">
+                                    <div class="synthesis-title">📋 Synthèse : test_api_balance</div>
+                                    <div class="synthesis-text">
+                                        <strong>Objectif :</strong> Vérifier que l'endpoint /balance retourne correctement le solde depuis la blockchain.
+                                    </div>
+                                    <div class="code-block">
+def test_get_balance(client, test_address):
+    response = client.get(f"/api/v1/balance/{test_address}")
+    assert response.status_code == 200
+    assert "balance" in response.json()
+    assert isinstance(response.json()["balance"], int)
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function toggleTestDetail(id) {
+            const detail = document.getElementById(id);
+            detail.style.display = detail.style.display === 'none' ? 'table-row' : 'none';
+        }
+        
+        function filterTestsByStatus(status) {
+            document.getElementById('test-status').value = status;
+            filterTests();
+        }
+        
+        function filterTests() {
+            const sprint = document.getElementById('test-sprint').value;
+            const fragment = document.getElementById('test-fragment').value;
+            const status = document.getElementById('test-status').value;
+            
+            const rows = document.querySelectorAll('#test-body > tr:not([id^=test])');
+            rows.forEach(row => {
+                const cells = row.cells;
+                let show = true;
+                if (sprint !== 'all' && !cells[2].innerText.includes(sprint)) show = false;
+                if (fragment !== 'all' && cells[1].innerText !== fragment) show = false;
+                if (status !== 'all' && !cells[5].innerText.includes(status === 'pass' ? 'Passé' : 'Échoué')) show = false;
+                
+                row.style.display = show ? '' : 'none';
+            });
+        }
+        
+        document.querySelectorAll('.filter-select').forEach(s => s.addEventListener('change', filterTests));
+    </script>
+</body>
+</html>
