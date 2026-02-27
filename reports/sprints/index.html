@@ -3,26 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Sprint Dashboard - SPRINT-000</title>
+    <title>🚀 Sprint Dashboard - Chargement...</title>
     <style>
+        /* ============================================================
+           STYLES COMPLETS - MODE CLAIR (DÉFAUT)
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
+
         body {
             background: #f5f7fa;
             padding: 30px;
+            transition: background-color 0.3s, color 0.3s;
         }
-        
+
+        /* MODE SOMBRE - INSPIRÉ DU BOUTON DEEPSEEK */
+        body.dark-mode {
+            background: #0d1117;
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .header {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+        }
+
+        /* Effet verre pour les cartes */
+        body.dark-mode .stat-card,
+        body.dark-mode .sprint-summary,
+        body.dark-mode .filters-section,
+        body.dark-mode .segments-table-container,
+        body.dark-mode .logs-section,
+        body.dark-mode .kpi-section {
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .stat-card {
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        body.dark-mode .stat-value,
+        body.dark-mode .stat-label,
+        body.dark-mode .filters-title,
+        body.dark-mode .filter-label,
+        body.dark-mode .kpi-label {
+            color: #e5e7eb;
+        }
+
+        /* Effet verre pour les cartes de résumé */
+        body.dark-mode .summary-card {
+            background: rgba(38, 44, 54, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* En-têtes des cartes - inspirés de l'image */
+        body.dark-mode .card-title {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: #f97316;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        /* Couleurs spécifiques pour chaque titre */
+        body.dark-mode .card-green .card-title { color: #10b981; border-bottom-color: rgba(16, 185, 129, 0.3); }
+        body.dark-mode .card-yellow .card-title { color: #f59e0b; border-bottom-color: rgba(245, 158, 11, 0.3); }
+        body.dark-mode .card-blue .card-title { color: #3b82f6; border-bottom-color: rgba(59, 130, 246, 0.3); }
+        body.dark-mode .card-purple .card-title { color: #8b5cf6; border-bottom-color: rgba(139, 92, 246, 0.3); }
+
+        body.dark-mode .list-title {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .list-desc {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .list-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+        }
+
+        /* Effet verre pour le tableau */
+        body.dark-mode .segments-table th {
+            background: rgba(38, 44, 54, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #e5e7eb;
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .segments-table td {
+            color: #d1d5db;
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+            background: transparent;
+        }
+
+        body.dark-mode .segments-table tbody tr.segment-main {
+            background: transparent;
+        }
+
+        body.dark-mode .segments-table tbody tr.segment-main:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .segment-detail-row {
+            background: transparent;
+        }
+
+        body.dark-mode .segment-detail {
+            background: rgba(22, 27, 34, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .synthesis-card {
+            background: rgba(38, 44, 54, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #e5e7eb;
+            border-left-color: #f97316;
+        }
+
+        body.dark-mode .synthesis-title {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .tech-specs {
+            background: rgba(22, 27, 34, 0.6);
+            color: #d1d5db;
+        }
+
+        body.dark-mode .spec-label {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .spec-value {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .agent-trace {
+            background: rgba(38, 44, 54, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .agent-trace h5 {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .trace-timeline {
+            color: #d1d5db;
+        }
+
+        body.dark-mode .trace-meta {
+            color: #9ca3af;
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .domain-tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .agent-tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .status-success { 
+            background: rgba(16, 185, 129, 0.2); 
+            color: #6ee7b7; 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        body.dark-mode .status-failed { 
+            background: rgba(239, 68, 68, 0.2); 
+            color: #fca5a5; 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        body.dark-mode .status-pending { 
+            background: rgba(107, 114, 128, 0.2); 
+            color: #d1d5db; 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* Boutons style DeepSeek (effet verre) */
+        body.dark-mode .btn-icon,
+        body.dark-mode .btn-filter,
+        body.dark-mode .btn-reset,
+        body.dark-mode .btn-small {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e5e7eb;
+            transition: all 0.2s;
+        }
+
+        body.dark-mode .btn-icon:hover,
+        body.dark-mode .btn-filter:hover,
+        body.dark-mode .btn-reset:hover,
+        body.dark-mode .btn-small:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .btn-filter {
+            background: rgba(249, 115, 22, 0.2);
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        body.dark-mode .btn-filter:hover {
+            background: rgba(249, 115, 22, 0.3);
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        body.dark-mode .filter-select {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #e5e7eb;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .filter-select option {
+            background: #1f2937;
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .logs-header {
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .logs-header:hover {
+            background: rgba(38, 44, 54, 0.8);
+        }
+
+        body.dark-mode .logs-container {
+            background: rgba(22, 27, 34, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .log-entry {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .log-entry:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode .log-message {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .log-agent {
+            color: #93c5fd;
+        }
+
+        body.dark-mode .log-timestamp {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .log-level-info { color: #93c5fd; }
+        body.dark-mode .log-level-warning { color: #fcd34d; }
+        body.dark-mode .log-level-error { color: #fca5a5; }
+        body.dark-mode .log-level-success { color: #6ee7b7; }
+
+        body.dark-mode .sprint-badge {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .filter-badge {
+            background: rgba(249, 115, 22, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #fed7aa;
+        }
+
+        body.dark-mode .segments-title h3 {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .segments-count {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: #e5e7eb;
+        }
+
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
-        
-        /* Header */
+
         .header {
             background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: white;
@@ -34,8 +336,9 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
         }
-        
+
         .header h1 {
             font-size: 28px;
             font-weight: 600;
@@ -43,7 +346,57 @@
             align-items: center;
             gap: 10px;
         }
-        
+
+        .header-subtitle {
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 16px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sprint-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .btn-icon:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon.dark-mode-toggle {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .btn-icon.dark-mode-toggle:hover {
+            background: rgba(0,0,0,0.3);
+        }
+
         .btn-back {
             background: white;
             color: #f97316;
@@ -51,62 +404,485 @@
             border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
+            transition: 0.2s;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s;
         }
-        
+
         .btn-back:hover {
             transform: translateX(-5px);
         }
-        
-        /* Stats grid */
+
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .stat-card {
             background: white;
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
+            transition: 0.2s;
+            border: 1px solid #e5e7eb;
         }
-        
+
         .stat-card:hover {
             transform: translateY(-5px);
             border-color: #f97316;
             box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
         }
-        
+
         .stat-value {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             color: #1a1e24;
         }
-        
+
         .stat-label {
             color: #666;
-            font-size: 14px;
             margin-top: 5px;
+            font-size: 14px;
         }
-        
-        /* Sections */
-        .section {
+
+        .sprint-summary {
             background: white;
             border-radius: 20px;
-            margin-bottom: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            overflow: hidden;
+            border: 1px solid #e5e7eb;
         }
-        
-        .section-header {
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .summary-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 20px;
+            border-top: 4px solid;
+        }
+
+        .card-green { border-color: #10b981; }
+        .card-yellow { border-color: #f59e0b; }
+        .card-blue { border-color: #3b82f6; }
+        .card-purple { border-color: #8b5cf6; }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .list-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .list-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .list-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .priority-high {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .priority-medium {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .priority-low {
+            display: inline-block;
+            background: #94a3b8;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .filters-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .filters-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1e24;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-badge {
+            background: #f97316;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .filter-select {
+            padding: 8px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .filter-select:hover {
+            border-color: #f97316;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+
+        .btn-filter {
+            padding: 8px 16px;
+            background: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-filter:hover {
+            background: #ea580c;
+        }
+
+        .btn-reset {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-reset:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            background: #f1f5f9;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-small:hover {
+            background: #e5e7eb;
+        }
+
+        .segments-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .segments-title h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1e24;
+        }
+
+        .segments-count {
+            background: #f1f5f9;
+            color: #4b5563;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .segments-table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .segments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .segments-table th {
+            text-align: left;
+            padding: 12px 10px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 12px;
+            border-bottom: 2px solid #e5e7eb;
+            cursor: pointer;
+        }
+
+        .th-content {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sort-icon {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+        .segments-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        .segments-table tbody tr.segment-main {
+            cursor: pointer;
+        }
+
+        .segments-table tbody tr.segment-main:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-success { background: #d1fae5; color: #065f46; }
+        .status-failed { background: #fee2e2; color: #991b1b; }
+        .status-pending { background: #f1f5f9; color: #4b5563; }
+
+        .agent-tag {
+            background: #f3e8ff;
+            color: #6b21a8;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        .domain-tag {
+            background: #e0e7ff;
+            color: #2d3748;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+
+        .segment-detail-row {
+            background: #f8fafc;
+        }
+
+        .segment-detail {
+            padding: 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .synthesis-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f97316;
+            margin-bottom: 15px;
+            grid-column: span 2;
+        }
+
+        .synthesis-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1e24;
+        }
+
+        .tech-specs {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .spec-item {
+            display: flex;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            width: 100px;
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .spec-value {
+            flex: 1;
+            color: #1a1e24;
+        }
+
+        .agent-trace {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .agent-trace h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trace-timeline {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .trace-timeline::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-size: 10px;
+        }
+
+        .trace-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .logs-section {
+            background: white;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .logs-header {
             padding: 20px 25px;
             background: white;
             cursor: pointer;
@@ -116,606 +892,823 @@
             border-bottom: 1px solid transparent;
             transition: all 0.2s;
         }
-        
-        .section-header:hover {
+
+        .logs-header:hover {
             background: #f9fafb;
         }
-        
-        .section-header.active {
-            border-bottom-color: #e5e7eb;
-        }
-        
-        .section-title {
-            font-size: 18px;
+
+        .logs-title {
+            font-size: 16px;
             font-weight: 600;
             color: #1a1e24;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
-        .section-icon {
-            font-size: 24px;
-        }
-        
-        .section-toggle {
-            color: #f97316;
+
+        .logs-icon {
             font-size: 20px;
+        }
+
+        .log-count {
+            background: #f1f5f9;
+            color: #4b5563;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .logs-toggle {
+            color: #f97316;
+            font-size: 18px;
             transition: transform 0.3s;
         }
-        
-        .section-toggle.rotated {
+
+        .logs-toggle.rotated {
             transform: rotate(180deg);
         }
-        
-        .section-content {
+
+        .logs-content {
             max-height: 0;
-            padding: 0 25px;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.3s;
-            background: #f9fafb;
+            transition: max-height 0.5s ease-out;
+            background: #f8fafc;
         }
-        
-        .section-content.expanded {
-            max-height: 2000px;
-            padding: 25px;
+
+        .logs-content.expanded {
+            max-height: 800px;
+            overflow-y: auto;
         }
-        
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e5e7eb;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-bottom: 25px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #f97316;
-            border: 2px solid white;
-        }
-        
-        .timeline-time {
-            font-weight: 600;
-            color: #f97316;
-            margin-bottom: 5px;
-        }
-        
-        .timeline-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .timeline-desc {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        /* Fragments grid */
-        .fragments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-        
-        .fragment-card {
-            background: white;
-            border-radius: 12px;
+
+        .logs-container {
             padding: 20px;
-            border-left: 4px solid;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .fragment-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .fragment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .fragment-id {
-            font-weight: 600;
-            font-size: 16px;
-        }
-        
-        .fragment-domain {
-            font-size: 11px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            background: #f3f4f6;
-        }
-        
-        .fragment-status {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
+            font-family: 'Fira Code', 'Courier New', monospace;
             font-size: 12px;
-            font-weight: 500;
+            line-height: 1.5;
         }
-        
-        .status-success { background: #d1fae5; color: #065f46; }
-        .status-failed { background: #fee2e2; color: #991b1b; }
-        .status-warning { background: #fed7aa; color: #92400e; }
-        
-        /* Tables */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        
-        .data-table th {
-            text-align: left;
-            padding: 12px;
-            background: #f3f4f6;
-            color: #4b5563;
-            font-weight: 500;
-            font-size: 13px;
-        }
-        
-        .data-table td {
-            padding: 12px;
+
+        .log-entry {
+            padding: 6px 10px;
             border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-family: monospace;
         }
-        
-        .data-table tr:hover {
-            background: #f9fafb;
+
+        .log-entry:last-child {
+            border-bottom: none;
         }
-        
-        /* Badges */
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+
+        .log-entry:hover {
+            background: #ffffff;
+        }
+
+        .log-timestamp {
+            color: #6b7280;
+            min-width: 140px;
+            font-size: 11px;
+        }
+
+        .log-agent {
+            color: #2563eb;
+            min-width: 200px;
+            font-size: 11px;
             font-weight: 500;
         }
-        
-        .badge-success { background: #d1fae5; color: #065f46; }
-        .badge-failed { background: #fee2e2; color: #991b1b; }
-        .badge-warning { background: #fed7aa; color: #92400e; }
-        
-        /* Progress bars */
-        .progress-bar {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 10px 0;
+
+        .log-level {
+            min-width: 70px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
         }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #f97316, #ea580c);
-            border-radius: 4px;
+
+        .log-level-info { color: #2563eb; }
+        .log-level-warning { color: #f97316; }
+        .log-level-error { color: #ef4444; }
+        .log-level-success { color: #10b981; }
+
+        .log-message {
+            flex: 1;
+            color: #1f2937;
+            word-break: break-word;
         }
-        
-        /* Footer */
+
+        .kpi-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .kpi-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            background: #fef3c7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f97316;
+            font-size: 20px;
+        }
+
+        .kpi-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kpi-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1e24;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .kpi-trend {
+            font-size: 11px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 50px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #666;
+        }
+        .error {
+            color: #991b1b;
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+        }
+
         .footer {
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 30px;
+            padding-top: 15px;
             text-align: center;
             color: #666;
-            font-size: 13px;
+            font-size: 12px;
             border-top: 1px solid #e5e7eb;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .header {
+                background: #f97316 !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .btn-icon, .btn-back, .filters-section, .logs-toggle {
+                display: none !important;
+            }
+            
+            .logs-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            
+            .segment-detail-row {
+                display: table-row !important;
+            }
+            
+            .status-badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div>
-                <h1><span>🚀</span> Sprint Dashboard</h1>
-                <div style="margin-top: 10px; opacity: 0.9;">
-                    SPRINT-000 • 7 fragments • 85% succès • Démarré le 22/02/2026
+                <h1><span>🚀</span> <span id="sprint-name">Sprint Dashboard</span></h1>
+                <div class="header-subtitle" id="sprint-subtitle">
+                    <span class="sprint-badge" id="sprint-id">Chargement...</span>
+                    <span id="sprint-stats">0 segments</span>
+                    <span id="sprint-dates"></span>
                 </div>
             </div>
-            <a href="../index.html" class="btn-back">← Portail</a>
-        </div>
-        
-        <!-- Stats cliquables -->
-        <div class="stats-grid">
-            <div class="stat-card" onclick="toggleSection('stats-overview')">
-                <div class="stat-value">7</div>
-                <div class="stat-label">Fragments totaux</div>
-            </div>
-            <div class="stat-card" onclick="toggleSection('stats-success')">
-                <div class="stat-value">6</div>
-                <div class="stat-label">Validés</div>
-            </div>
-            <div class="stat-card" onclick="toggleSection('stats-failed')">
-                <div class="stat-value">1</div>
-                <div class="stat-label">Échecs</div>
-            </div>
-            <div class="stat-card" onclick="toggleSection('stats-time')">
-                <div class="stat-value">2.4</div>
-                <div class="stat-label">Itérations moy.</div>
+            <div class="header-actions">
+                <button class="btn-icon dark-mode-toggle" onclick="SprintManager.toggleDarkMode()" id="darkModeBtn">
+                    <span>🌙</span> Sombre
+                </button>
+                <button class="btn-icon" onclick="SprintManager.printSprint()">
+                    <span>🖨️</span> PDF
+                </button>
+                <a href="../index.html" class="btn-back">← Portail</a>
             </div>
         </div>
-        
-        <!-- SECTION 1: Vue d'ensemble -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection('overview')">
-                <span class="section-title">
-                    <span class="section-icon">📊</span> Vue d'ensemble du sprint
-                </span>
-                <span class="section-toggle" id="toggle-overview">▼</span>
+
+        <div class="stats-grid" id="stats-container">
+            <div class="stat-card" onclick="SprintManager.filterByStatus('success')">
+                <div class="stat-value" id="stats-success">0</div>
+                <div class="stat-label">Segments validés</div>
             </div>
-            <div class="section-content" id="overview">
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 25px;">
-                    <div>
-                        <h4 style="margin-bottom: 15px;">📈 Progression</h4>
-                        <div class="progress-bar" style="height: 20px;">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin: 10px 0;">
-                            <span>✅ 6 fragments validés</span>
-                            <span>⏳ 1 en cours</span>
-                            <span>❌ 1 échec</span>
-                        </div>
-                        
-                        <h4 style="margin: 25px 0 15px;">⏱️ Timeline</h4>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-time">09:00</div>
-                                <div class="timeline-title">Démarrage</div>
-                                <div class="timeline-desc">Initialisation des 7 fragments</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">09:15</div>
-                                <div class="timeline-title">SC_001 terminé</div>
-                                <div class="timeline-desc">Token ERC20 validé après 3 itérations</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">10:30</div>
-                                <div class="timeline-title">BE_001 terminé</div>
-                                <div class="timeline-desc">API FastAPI validée</div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">11:45</div>
-                                <div class="timeline-title">SC_002 échoué</div>
-                                <div class="timeline-desc">Problème de reentrancy détecté</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h4 style="margin-bottom: 15px;">📊 Répartition par domaine</h4>
-                        <div style="margin-bottom: 15px;">
-                            <div>Smart Contract <span style="float:right">3 fragments</span></div>
-                            <div class="progress-bar"><div class="progress-fill" style="width:43%"></div></div>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <div>Backend <span style="float:right">1 fragment</span></div>
-                            <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <div>Frontend <span style="float:right">1 fragment</span></div>
-                            <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <div>Database <span style="float:right">1 fragment</span></div>
-                            <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
-                        </div>
-                        <div style="margin-bottom: 15px;">
-                            <div>DevOps <span style="float:right">1 fragment</span></div>
-                            <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
-                        </div>
-                    </div>
+            <div class="stat-card" onclick="SprintManager.filterByStatus('failed')">
+                <div class="stat-value" id="stats-failed">0</div>
+                <div class="stat-label">Points d'attention</div>
+            </div>
+            <div class="stat-card" onclick="SprintManager.filterByStatus('pending')">
+                <div class="stat-value" id="stats-pending">0</div>
+                <div class="stat-label">À suivre</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stats-success-rate">0%</div>
+                <div class="stat-label">Taux de succès</div>
+            </div>
+        </div>
+
+        <div class="sprint-summary">
+            <div class="summary-grid" id="summary-container"></div>
+        </div>
+
+        <div class="filters-section">
+            <div class="filters-title">
+                <span>🔍</span> Filtres
+                <span class="filter-badge" id="result-count">0 résultats</span>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Sprint</label>
+                    <select class="filter-select" id="filter-sprint">
+                        <option value="current" selected>Sprint en cours</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Domaine</label>
+                    <select class="filter-select" id="filter-domain">
+                        <option value="all">Tous</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Statut</label>
+                    <select class="filter-select" id="filter-status">
+                        <option value="all">Tous</option>
+                        <option value="success">✅ Validé</option>
+                        <option value="failed">⚠️ Point d'attention</option>
+                        <option value="pending">📋 À suivre</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Agent</label>
+                    <select class="filter-select" id="filter-agent">
+                        <option value="all">Tous</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Fonction</label>
+                    <select class="filter-select" id="filter-function">
+                        <option value="all">Toutes</option>
+                    </select>
                 </div>
             </div>
-        </div>
-        
-        <!-- SECTION 2: Liste des fragments -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection('fragments')">
-                <span class="section-title">
-                    <span class="section-icon">📋</span> Fragments du sprint
-                </span>
-                <span class="section-toggle" id="toggle-fragments">▼</span>
+            <div class="filter-actions">
+                <button class="btn-filter" onclick="SprintManager.applyFilters()">Appliquer</button>
+                <button class="btn-reset" onclick="SprintManager.resetFilters()">Réinitialiser</button>
             </div>
-            <div class="section-content" id="fragments">
-                <div class="fragments-grid">
-                    <!-- SC_001 -->
-                    <div class="fragment-card" style="border-left-color: #3b82f6;" onclick="toggleSubSection('sc001-detail')">
-                        <div class="fragment-header">
-                            <span class="fragment-id">SC_001</span>
-                            <span class="fragment-domain">Smart Contract</span>
-                        </div>
-                        <div style="font-weight: 600; margin-bottom: 10px;">Token ERC20</div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Itérations: 3</span>
-                            <span class="fragment-status status-success">✅ Validé</span>
-                        </div>
-                        
-                        <!-- Sous-détail (expandable) -->
-                        <div id="sc001-detail" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
-                            <h5 style="margin-bottom: 10px;">📄 Détail du fragment</h5>
-                            <p><strong>Fonctions:</strong> mint, burn, transfer, approve</p>
-                            <p><strong>Tests:</strong> 12/12 passés ✅</p>
-                            <p><strong>Events:</strong> Transfer, Approval, Mint</p>
-                            <p><strong>Lignes:</strong> 127</p>
-                            <p><strong>Dépendances:</strong> OpenZeppelin v4.9.0</p>
-                            <div style="margin-top: 15px;">
-                                <span class="badge badge-success">Solidity 0.8.19</span>
-                                <span class="badge badge-success" style="margin-left: 8px;">Gas: 1.2M</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- SC_002 -->
-                    <div class="fragment-card" style="border-left-color: #ef4444;" onclick="toggleSubSection('sc002-detail')">
-                        <div class="fragment-header">
-                            <span class="fragment-id">SC_002</span>
-                            <span class="fragment-domain">Smart Contract</span>
-                        </div>
-                        <div style="font-weight: 600; margin-bottom: 10px;">Staking Pool</div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Itérations: 5</span>
-                            <span class="fragment-status status-failed">❌ Échoué</span>
-                        </div>
-                        
-                        <!-- Sous-détail -->
-                        <div id="sc002-detail" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
-                            <h5 style="margin-bottom: 10px;">📄 Détail du fragment</h5>
-                            <p><strong>Fonctions:</strong> stake, unstake, claim, compound</p>
-                            <p><strong>Tests:</strong> 8/12 passés ❌</p>
-                            <p><strong>Erreurs:</strong> Reentrancy dans withdraw() • Ligne 42</p>
-                            <p><strong>Lignes:</strong> 245</p>
-                            <p><strong>Dépendances:</strong> SC_001 requis</p>
-                            <div style="margin-top: 15px; background: #fee2e2; padding: 15px; border-radius: 10px;">
-                                <strong>🔴 Actions correctives:</strong>
-                                <ul style="margin-top: 8px; margin-left: 20px;">
-                                    <li>Ajouter ReentrancyGuard</li>
-                                    <li>Appliquer pattern Checks-Effects-Interactions</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- BE_001 -->
-                    <div class="fragment-card" style="border-left-color: #10b981;" onclick="toggleSubSection('be001-detail')">
-                        <div class="fragment-header">
-                            <span class="fragment-id">BE_001</span>
-                            <span class="fragment-domain">Backend</span>
-                        </div>
-                        <div style="font-weight: 600; margin-bottom: 10px;">API FastAPI</div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Itérations: 2</span>
-                            <span class="fragment-status status-success">✅ Validé</span>
-                        </div>
-                        
-                        <!-- Sous-détail -->
-                        <div id="be001-detail" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
-                            <h5 style="margin-bottom: 10px;">📄 Détail du fragment</h5>
-                            <p><strong>Endpoints:</strong> 8 endpoints REST</p>
-                            <p><strong>Tests:</strong> 94% couverture</p>
-                            <p><strong>Dépendances:</strong> fastapi, web3.py, sqlalchemy</p>
-                            <p><strong>Performance:</strong> 124ms temps de réponse moyen</p>
-                        </div>
-                    </div>
-                    
-                    <!-- FE_001 -->
-                    <div class="fragment-card" style="border-left-color: #8b5cf6;" onclick="toggleSubSection('fe001-detail')">
-                        <div class="fragment-header">
-                            <span class="fragment-id">FE_001</span>
-                            <span class="fragment-domain">Frontend</span>
-                        </div>
-                        <div style="font-weight: 600; margin-bottom: 10px;">Interface React</div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span>Itérations: 4</span>
-                            <span class="fragment-status status-success">✅ Validé</span>
-                        </div>
-                        
-                        <!-- Sous-détail -->
-                        <div id="fe001-detail" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e5e7eb;">
-                            <h5 style="margin-bottom: 10px;">📄 Détail du fragment</h5>
-                            <p><strong>Pages:</strong> Dashboard, Staking, Admin</p>
-                            <p><strong>Wallets:</strong> MetaMask, WalletConnect</p>
-                            <p><strong>Tests E2E:</strong> 5 scénarios validés</p>
-                            <p><strong>Build size:</strong> 245 KB</p>
-                        </div>
-                    </div>
+        </div>
+
+        <div class="segments-table-container">
+            <div class="segments-title">
+                <h3>📋 Liste des segments</h3>
+                <span class="segments-count" id="segments-count">0</span>
+            </div>
+            <table class="segments-table" id="segments-table">
+                <thead>
+                    <tr>
+                        <th onclick="SprintManager.sortTable(0)"><span class="th-content">ID <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(1)"><span class="th-content">Segment <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(2)"><span class="th-content">Domaine <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(3)"><span class="th-content">Classes/Fonctions <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(4)"><span class="th-content">Agents <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(5)"><span class="th-content">Statut <span class="sort-icon">↕️</span></span></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+
+        <div class="logs-section">
+            <div class="logs-header" onclick="SprintManager.toggleLogs()">
+                <div class="logs-title">
+                    <span class="logs-icon">📋</span> 
+                    Logs d'exécution du sprint
+                    <span class="log-count" id="log-count">0 entrées</span>
                 </div>
+                <span class="logs-toggle" id="logs-toggle">▼</span>
+            </div>
+            <div class="logs-content" id="logs-content">
+                <div class="logs-container" id="logs-container"></div>
             </div>
         </div>
-        
-        <!-- SECTION 3: Résultats des tests -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection('tests')">
-                <span class="section-title">
-                    <span class="section-icon">🧪</span> Résultats des tests
-                </span>
-                <span class="section-toggle" id="toggle-tests">▼</span>
-            </div>
-            <div class="section-content" id="tests">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Fragment</th>
-                            <th>Tests unitaires</th>
-                            <th>Tests intégration</th>
-                            <th>Couverture</th>
-                            <th>Flaky</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr onclick="toggleSubSection('tests-sc001')" style="cursor: pointer;">
-                            <td><strong>SC_001</strong></td>
-                            <td>12 ✅</td>
-                            <td>5 ✅</td>
-                            <td>98%</td>
-                            <td>0</td>
-                        </tr>
-                        <tr id="tests-sc001" style="display: none; background: #f9fafb;">
-                            <td colspan="5" style="padding: 20px;">
-                                <h5>Détail des tests SC_001</h5>
-                                <ul>
-                                    <li>test_initial_supply ✅</li>
-                                    <li>test_mint ✅</li>
-                                    <li>test_transfer ✅</li>
-                                    <li>test_burn ✅</li>
-                                    <li>test_approve ✅</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr onclick="toggleSubSection('tests-sc002')" style="cursor: pointer;">
-                            <td><strong>SC_002</strong></td>
-                            <td>8 ✅ / 4 ❌</td>
-                            <td>2 ✅ / 2 ❌</td>
-                            <td>76%</td>
-                            <td>3</td>
-                        </tr>
-                        <tr id="tests-sc002" style="display: none; background: #f9fafb;">
-                            <td colspan="5" style="padding: 20px;">
-                                <h5 style="color: #ef4444;">Tests échoués</h5>
-                                <ul>
-                                    <li>❌ test_reentrancy</li>
-                                    <li>❌ test_stake_overflow</li>
-                                    <li>❌ test_compound</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr onclick="toggleSubSection('tests-be001')" style="cursor: pointer;">
-                            <td><strong>BE_001</strong></td>
-                            <td>24 ✅</td>
-                            <td>8 ✅</td>
-                            <td>94%</td>
-                            <td>1</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <!-- SECTION 4: Recommandations -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection('recommendations')">
-                <span class="section-title">
-                    <span class="section-icon">💡</span> Recommandations pour prochain sprint
-                </span>
-                <span class="section-toggle" id="toggle-recommendations">▼</span>
-            </div>
-            <div class="section-content" id="recommendations">
-                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; border-radius: 10px;">
-                    <h4 style="margin-bottom: 15px; color: #856404;">⚠️ Actions prioritaires</h4>
-                    <ul style="margin-left: 20px;">
-                        <li><strong>SC_002</strong> - Corriger la vulnérabilité de reentrancy</li>
-                        <li><strong>FE_001</strong> - Améliorer la couverture des tests (actuellement 65%)</li>
-                        <li><strong>BE_001</strong> - Réduire le nombre de tests flaky (3 détectés)</li>
-                    </ul>
-                </div>
-                
-                <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div style="background: #d1fae5; padding: 20px; border-radius: 10px;">
-                        <h5 style="color: #065f46;">✅ Points forts</h5>
-                        <ul style="margin-top: 10px; margin-left: 20px;">
-                            <li>Token ERC20 validé en 3 itérations</li>
-                            <li>API FastAPI avec 94% couverture</li>
-                            <li>Documentation complète générée</li>
-                        </ul>
-                    </div>
-                    <div style="background: #fee2e2; padding: 20px; border-radius: 10px;">
-                        <h5 style="color: #991b1b;">❌ Points faibles</h5>
-                        <ul style="margin-top: 10px; margin-left: 20px;">
-                            <li>Staking Pool non fonctionnel</li>
-                            <li>Tests frontend insuffisants</li>
-                            <li>3 tests flaky détectés</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SECTION 5: Métriques de performance -->
-        <div class="section">
-            <div class="section-header" onclick="toggleSection('metrics')">
-                <span class="section-title">
-                    <span class="section-icon">📊</span> Métriques de performance
-                </span>
-                <span class="section-toggle" id="toggle-metrics">▼</span>
-            </div>
-            <div class="section-content" id="metrics">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                    <div>
-                        <h5>Temps moyen par itération</h5>
-                        <div class="stat-value" style="font-size: 24px;">2.4 min</div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
-                    </div>
-                    <div>
-                        <h5>Efficacité des tests</h5>
-                        <div class="stat-value" style="font-size: 24px;">87%</div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:87%"></div></div>
-                    </div>
-                    <div>
-                        <h5>Gas moyen (contrats)</h5>
-                        <div class="stat-value" style="font-size: 24px;">1.4M</div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
+
+        <div class="kpi-section" id="kpi-container"></div>
+
         <div class="footer">
-            <p>Sprint SPRINT-000 • Généré le 22/02/2026 23:45 • Durée totale: 3h30</p>
+            <span id="footer-text">Sprint Dashboard • </span>
+            <span id="footer-date"></span>
         </div>
     </div>
-    
+
     <script>
-        function toggleSection(id) {
-            const content = document.getElementById(id);
-            const toggle = document.getElementById(`toggle-${id}`);
-            
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                if (toggle) toggle.classList.remove('rotated');
-            } else {
-                content.classList.add('expanded');
-                if (toggle) toggle.classList.add('rotated');
+        // ============================================================================
+        // GESTIONNAIRE DYNAMIQUE DU SPRINT
+        // ============================================================================
+
+        const SprintManager = {
+            // Données du sprint
+            sprintData: {
+                id: "SPRINT-000",
+                name: "Sprint en cours",
+                startDate: "",
+                endDate: "",
+                segments: [],
+                summary: {
+                    realized: [],
+                    attention: [],
+                    following: [],
+                    recommendations: []
+                },
+                logs: [],
+                kpis: []
+            },
+
+            // État interne
+            currentSprint: "SPRINT-000",
+            sortColumn: 0,
+            sortDirection: {},
+            isDarkMode: false,
+
+            // Initialisation
+            async init() {
+                console.log('🚀 Initialisation du Sprint Dashboard...');
+                try {
+                    // Vérifier le mode sombre sauvegardé
+                    const savedMode = localStorage.getItem('darkMode');
+                    if (savedMode === 'true') {
+                        this.toggleDarkMode(true);
+                    }
+                    
+                    this.renderEmpty();
+                } catch (error) {
+                    console.error('❌ Erreur:', error);
+                    document.getElementById('table-body').innerHTML = 
+                        `<tr><td colspan="6" class="error">❌ Erreur de chargement: ${error.message}</td></tr>`;
+                }
+            },
+
+            // Rendu d'état vide
+            renderEmpty() {
+                document.getElementById('sprint-name').textContent = this.sprintData.name;
+                document.getElementById('sprint-id').textContent = this.sprintData.id;
+                document.getElementById('sprint-stats').textContent = '0 segments';
+                document.getElementById('footer-date').textContent = `Généré le ${new Date().toLocaleDateString('fr-FR')}`;
+                document.getElementById('footer-text').textContent = `Sprint Dashboard • ${this.sprintData.id} • `;
+                
+                document.getElementById('summary-container').innerHTML = `
+                    <div class="summary-card card-green"><div class="card-title">✅ Réalisé</div><ul class="card-list"></ul></div>
+                    <div class="summary-card card-yellow"><div class="card-title">⚠️ Points d'attention</div><ul class="card-list"></ul></div>
+                    <div class="summary-card card-blue"><div class="card-title">📋 À suivre</div><ul class="card-list"></ul></div>
+                    <div class="summary-card card-purple"><div class="card-title">💡 Recommandations</div><ul class="card-list"></ul></div>
+                `;
+                
+                document.getElementById('table-body').innerHTML = `
+                    <tr><td colspan="6" class="loading">Aucune donnée de sprint disponible</td></tr>
+                `;
+                
+                document.getElementById('logs-container').innerHTML = '<div class="log-entry">Aucun log disponible</div>';
+                document.getElementById('kpi-container').innerHTML = '';
+                document.getElementById('segments-count').textContent = '0';
+                this.updateStats();
+            },
+
+            // Mise à jour des statistiques
+            updateStats() {
+                const segments = this.sprintData.segments;
+                const success = segments.filter(s => s.status === 'success').length;
+                const failed = segments.filter(s => s.status === 'failed').length;
+                const pending = segments.filter(s => s.status === 'pending').length;
+                const total = segments.length;
+                const successRate = total > 0 ? Math.round((success / total) * 100) : 0;
+                
+                document.getElementById('stats-success').textContent = success;
+                document.getElementById('stats-failed').textContent = failed;
+                document.getElementById('stats-pending').textContent = pending;
+                document.getElementById('stats-success-rate').textContent = successRate + '%';
+                document.getElementById('sprint-stats').textContent = total + ' segments';
+                document.getElementById('segments-count').textContent = total;
+            },
+
+            // Rendu complet
+            render() {
+                this.renderHeader();
+                this.updateStats();
+                this.renderSummary();
+                this.renderSegments();
+                this.renderLogs();
+                this.renderKPIs();
+                this.updateFiltersCount();
+                this.populateFilters();
+            },
+
+            renderHeader() {
+                document.getElementById('sprint-name').textContent = this.sprintData.name;
+                document.getElementById('sprint-id').textContent = this.sprintData.id;
+                
+                if (this.sprintData.startDate && this.sprintData.endDate) {
+                    const start = new Date(this.sprintData.startDate).toLocaleDateString('fr-FR');
+                    const end = new Date(this.sprintData.endDate).toLocaleDateString('fr-FR');
+                    document.getElementById('sprint-dates').textContent = `${start} - ${end}`;
+                }
+                
+                document.getElementById('footer-text').textContent = `Sprint Dashboard • ${this.sprintData.id} • `;
+                document.getElementById('footer-date').textContent = `Généré le ${new Date().toLocaleDateString('fr-FR')}`;
+            },
+
+            renderSummary() {
+                const summary = this.sprintData.summary;
+                const container = document.getElementById('summary-container');
+                
+                const cards = [
+                    { title: '✅ Réalisé', items: summary.realized, color: 'green' },
+                    { title: '⚠️ Points d\'attention', items: summary.attention, color: 'yellow' },
+                    { title: '📋 À suivre', items: summary.following, color: 'blue' },
+                    { title: '💡 Recommandations', items: summary.recommendations, color: 'purple' }
+                ];
+                
+                container.innerHTML = cards.map(card => {
+                    return `
+                        <div class="summary-card card-${card.color}">
+                            <div class="card-title">${card.title}</div>
+                            <ul class="card-list">
+                                ${card.items.map(item => {
+                                    let priorityBadge = '';
+                                    if (item.priority) {
+                                        if (item.priority === 'high') priorityBadge = '<span class="priority-high">Haute</span>';
+                                        else if (item.priority === 'medium') priorityBadge = '<span class="priority-medium">Moyenne</span>';
+                                        else if (item.priority === 'low') priorityBadge = '<span class="priority-low">Basse</span>';
+                                    }
+                                    
+                                    return `
+                                        <li>
+                                            <div class="list-title">
+                                                ${item.name || item.title}
+                                                ${item.id ? `<span class="list-badge">${item.id}</span>` : ''}
+                                                ${priorityBadge}
+                                            </div>
+                                            <div class="list-desc">${item.desc}</div>
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            renderSegments() {
+                const tbody = document.getElementById('table-body');
+                
+                if (this.sprintData.segments.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="loading">Aucun segment disponible</td></tr>';
+                    return;
+                }
+                
+                tbody.innerHTML = this.sprintData.segments.map((segment, index) => {
+                    const detailId = `detail-${segment.id.toLowerCase()}`;
+                    
+                    const mainRow = `
+                        <tr class="segment-main" onclick="SprintManager.toggleDetail('${detailId}')"
+                            data-sprint="${this.sprintData.id}"
+                            data-domain="${segment.domain}"
+                            data-status="${segment.status}"
+                            data-agent="${segment.agents.join(',')}">
+                            <td><strong>${segment.id}</strong></td>
+                            <td>${segment.name}</td>
+                            <td><span class="domain-tag">${segment.domainLabel}</span></td>
+                            <td>${segment.functions.join(', ')}</td>
+                            <td>${segment.agents.map(a => `<span class="agent-tag">${this.getAgentIcon(a)} ${a}</span>`).join(' ')}</td>
+                            <td><span class="status-badge status-${segment.status}">${this.getStatusLabel(segment.status)}</span></td>
+                        </tr>
+                    `;
+                    
+                    const detailRow = `
+                        <tr id="${detailId}" class="segment-detail-row" style="display: none;">
+                            <td colspan="6">
+                                <div class="segment-detail">
+                                    <div class="synthesis-card">
+                                        <div class="synthesis-title">📋 ${segment.name} (${segment.id})</div>
+                                        <div class="synthesis-text">${segment.synthesis}</div>
+                                        <div class="tech-specs">
+                                            ${Object.entries(segment.technical).map(([key, value]) => `
+                                                <div class="spec-item">
+                                                    <span class="spec-label">${key}</span>
+                                                    <span class="spec-value">${Array.isArray(value) ? value.join(', ') : value}</span>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    ${segment.traces.length > 0 ? `
+                                        <div class="detail-grid">
+                                            ${this.groupTracesByAgent(segment.traces).map(group => `
+                                                <div class="agent-trace">
+                                                    <h5><span>${this.getAgentIcon(group.agent)}</span> ${this.getAgentName(group.agent)}</h5>
+                                                    ${group.traces.map(trace => `
+                                                        <div class="trace-timeline">${trace.time} - ${trace.action}</div>
+                                                    `).join('')}
+                                                    <div class="trace-meta">${group.meta}</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    return mainRow + detailRow;
+                }).join('');
+            },
+
+            renderLogs() {
+                const container = document.getElementById('logs-container');
+                const countSpan = document.getElementById('log-count');
+                
+                if (!this.sprintData.logs || this.sprintData.logs.length === 0) {
+                    container.innerHTML = '<div class="log-entry">Aucun log disponible</div>';
+                    countSpan.textContent = '0 entrée';
+                    return;
+                }
+                
+                container.innerHTML = this.sprintData.logs.map(log => {
+                    let levelClass = 'log-level-info';
+                    if (log.level === 'WARNING' || log.level === 'WARN') levelClass = 'log-level-warning';
+                    else if (log.level === 'ERROR') levelClass = 'log-level-error';
+                    else if (log.level === 'SUCCESS') levelClass = 'log-level-success';
+                    
+                    return `
+                        <div class="log-entry">
+                            <span class="log-timestamp">${log.timestamp}</span>
+                            <span class="log-agent">agent.${log.agent}</span>
+                            <span class="log-level ${levelClass}">${log.level}</span>
+                            <span class="log-message">${log.message}</span>
+                        </div>
+                    `;
+                }).join('');
+                
+                countSpan.textContent = this.sprintData.logs.length + ' entrées';
+            },
+
+            renderKPIs() {
+                const container = document.getElementById('kpi-container');
+                
+                if (this.sprintData.kpis.length === 0) {
+                    container.innerHTML = '';
+                    return;
+                }
+                
+                container.innerHTML = this.sprintData.kpis.map(kpi => `
+                    <div class="kpi-item">
+                        <div class="kpi-icon">${kpi.icon}</div>
+                        <div class="kpi-content">
+                            <div class="kpi-value">${kpi.value}</div>
+                            <div class="kpi-label">${kpi.label}</div>
+                            ${kpi.trend ? `<div class="kpi-trend">${kpi.trend}</div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            populateFilters() {
+                if (this.sprintData.segments.length === 0) return;
+                
+                const domains = [...new Set(this.sprintData.segments.map(s => s.domain))];
+                const domainSelect = document.getElementById('filter-domain');
+                domains.forEach(domain => {
+                    const count = this.sprintData.segments.filter(s => s.domain === domain).length;
+                    const label = this.sprintData.segments.find(s => s.domain === domain)?.domainLabel || domain;
+                    domainSelect.innerHTML += `<option value="${domain}">${label} (${count})</option>`;
+                });
+
+                const allAgents = this.sprintData.segments.flatMap(s => s.agents);
+                const agents = [...new Set(allAgents)];
+                const agentSelect = document.getElementById('filter-agent');
+                agents.forEach(agent => {
+                    const count = this.sprintData.segments.filter(s => s.agents.includes(agent)).length;
+                    agentSelect.innerHTML += `<option value="${agent}">${this.getAgentName(agent)} (${count})</option>`;
+                });
+            },
+
+            // Mode sombre/clair
+            toggleDarkMode(initialize = false) {
+                const body = document.body;
+                const btn = document.getElementById('darkModeBtn');
+                
+                if (initialize) {
+                    if (this.isDarkMode) {
+                        body.classList.add('dark-mode');
+                        btn.innerHTML = '<span>☀️</span> Clair';
+                    }
+                    return;
+                }
+                
+                this.isDarkMode = !this.isDarkMode;
+                
+                if (this.isDarkMode) {
+                    body.classList.add('dark-mode');
+                    btn.innerHTML = '<span>☀️</span> Clair';
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    body.classList.remove('dark-mode');
+                    btn.innerHTML = '<span>🌙</span> Sombre';
+                    localStorage.setItem('darkMode', 'false');
+                }
+            },
+
+            // Impression PDF
+            printSprint() {
+                // Ouvrir tous les détails pour l'impression
+                const details = document.querySelectorAll('.segment-detail-row');
+                details.forEach(detail => {
+                    detail.style.display = 'table-row';
+                });
+                
+                // Étendre les logs
+                const logsContent = document.getElementById('logs-content');
+                const logsToggle = document.getElementById('logs-toggle');
+                logsContent.classList.add('expanded');
+                logsToggle.classList.add('rotated');
+                
+                // Imprimer
+                window.print();
+                
+                // Restaurer l'état après impression
+                details.forEach(detail => {
+                    detail.style.display = 'none';
+                });
+                
+                logsContent.classList.remove('expanded');
+                logsToggle.classList.remove('rotated');
+            },
+
+            getAgentIcon(agent) {
+                const icons = { 'architect': '🏗️', 'coder': '👨‍💻', 'tester': '🧪', 'documenter': '📚' };
+                return icons[agent] || '🤖';
+            },
+
+            getAgentName(agent) {
+                const names = { 'architect': 'Architect', 'coder': 'Coder', 'tester': 'Tester', 'documenter': 'Documenter' };
+                return names[agent] || agent;
+            },
+
+            getStatusLabel(status) {
+                const labels = { 'success': '✅ Validé', 'failed': '⚠️ Point d\'attention', 'pending': '📋 À suivre' };
+                return labels[status] || status;
+            },
+
+            groupTracesByAgent(traces) {
+                const groups = {};
+                traces.forEach(trace => {
+                    if (!groups[trace.agent]) {
+                        groups[trace.agent] = { agent: trace.agent, traces: [], meta: '' };
+                    }
+                    groups[trace.agent].traces.push(trace);
+                    if (trace.meta) {
+                        groups[trace.agent].meta += (groups[trace.agent].meta ? ' • ' : '') + trace.meta;
+                    }
+                });
+                return Object.values(groups);
+            },
+
+            toggleDetail(detailId) {
+                const detailRow = document.getElementById(detailId);
+                if (detailRow) {
+                    detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
+                }
+            },
+
+            toggleLogs() {
+                const content = document.getElementById('logs-content');
+                const toggle = document.getElementById('logs-toggle');
+                
+                if (content && toggle) {
+                    content.classList.toggle('expanded');
+                    toggle.classList.toggle('rotated');
+                }
+            },
+
+            applyFilters() {
+                const selectedDomain = document.getElementById('filter-domain').value;
+                const selectedStatus = document.getElementById('filter-status').value;
+                const selectedAgent = document.getElementById('filter-agent').value;
+                
+                const mainRows = document.querySelectorAll('.segment-main');
+                let visibleCount = 0;
+                
+                mainRows.forEach(row => {
+                    let visible = true;
+                    
+                    if (selectedDomain !== 'all' && row.dataset.domain !== selectedDomain) visible = false;
+                    if (visible && selectedStatus !== 'all' && row.dataset.status !== selectedStatus) visible = false;
+                    if (visible && selectedAgent !== 'all') {
+                        const rowAgents = row.dataset.agent?.split(',') || [];
+                        if (!rowAgents.includes(selectedAgent)) visible = false;
+                    }
+                    
+                    row.style.display = visible ? '' : 'none';
+                    
+                    const onclickAttr = row.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const match = onclickAttr.match(/'([^']+)'/);
+                        if (match) {
+                            const detailRow = document.getElementById(match[1]);
+                            if (detailRow) detailRow.style.display = 'none';
+                        }
+                    }
+                    
+                    if (visible) visibleCount++;
+                });
+                
+                this.updateFiltersCount(visibleCount);
+            },
+
+            resetFilters() {
+                document.getElementById('filter-sprint').value = 'current';
+                document.getElementById('filter-domain').value = 'all';
+                document.getElementById('filter-status').value = 'all';
+                document.getElementById('filter-agent').value = 'all';
+                document.getElementById('filter-function').value = 'all';
+                this.applyFilters();
+            },
+
+            filterByStatus(status) {
+                document.getElementById('filter-status').value = status;
+                this.applyFilters();
+            },
+
+            updateFiltersCount(count) {
+                const total = this.sprintData.segments.length;
+                document.getElementById('result-count').textContent = 
+                    (count !== undefined ? count : total) + ' résultats';
+            },
+
+            sortTable(columnIndex) {
+                const tbody = document.getElementById('table-body');
+                const rows = Array.from(tbody.querySelectorAll('.segment-main'));
+                
+                this.sortDirection[columnIndex] = !this.sortDirection[columnIndex];
+                
+                rows.sort((a, b) => {
+                    const aVal = a.cells[columnIndex].textContent.trim();
+                    const bVal = b.cells[columnIndex].textContent.trim();
+                    return this.sortDirection[columnIndex] ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                });
+                
+                rows.forEach(row => {
+                    tbody.appendChild(row);
+                    const onclickAttr = row.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const match = onclickAttr.match(/'([^']+)'/);
+                        if (match) {
+                            const detailRow = document.getElementById(match[1]);
+                            if (detailRow) tbody.appendChild(detailRow);
+                        }
+                    }
+                });
             }
-        }
-        
-        function toggleSubSection(id) {
-            const element = document.getElementById(id);
-            if (element.style.display === 'none') {
-                element.style.display = 'block';
-            } else {
-                element.style.display = 'none';
-            }
-        }
-        
-        // Ouvrir la première section par défaut
-        window.onload = function() {
-            document.getElementById('overview').classList.add('expanded');
-            document.getElementById('toggle-overview').classList.add('rotated');
-        }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => SprintManager.init());
     </script>
 </body>
 </html>

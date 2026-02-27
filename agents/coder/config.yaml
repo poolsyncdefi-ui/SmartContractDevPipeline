@@ -1,162 +1,583 @@
+# ============================================================================
+# agents/coder/config.yaml
+# Configuration complète de l'Agent Coder - Version 2.2.0
+# ============================================================================
+
 agent:
-  # === IDENTIFICATION ===
-  name: "coder"
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  name: "CoderAgent"
   class_name: "CoderAgent"
   module_path: "agents.coder.coder"
   display_name: "Développeur Principal"
-  description: "Agent principal responsable du développement complet du code backend, frontend, DevOps, tests et documentation"
-  extends: "BaseAgent"
+  version: "2.2.0"
+  description: "Agent principal responsable du développement complet du code backend, frontend, DevOps, tests et documentation. Implémente une approche TDD et garantit la qualité du code."
+  purpose: "Développement et implémentation de code complet avec validation continue et respect des standards."
   
-  # === TYPE ET STATUT ===
+  # === TYPE ET CARACTÉRISTIQUES ===
   agent_type: "concrete"
   abstract: false
   instantiate: true
   enabled: true
   mandatory: true
-  
-  # === DÉPENDANCES ===
-  dependencies: ["architect"]
-  initialization_order: 2
+  singleton: false
+
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: "BaseAgent"
   parent: "BaseAgent"
-  purpose: "Développement et implémentation de code complet"
-  
-  # === CAPACITÉS (FORMAT CORRIGÉ) ===
+  dependencies:
+    - "architect"
+  initialization_order: 2
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.8  # Plus élevé que le base_agent car le code doit être fiable
+    
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_code_compilation"
+      - "check_syntax_validity"
+      - "validate_imports_exist"
+      - "detect_dead_code"
+      - "ensure_no_hardcoded_secrets"
+    
+    # Patterns de code interdits (hallucinations fréquentes)
+    forbidden_code_patterns:
+      - pattern: "tx\\.origin"
+        reason: "Vulnérabilité de sécurité"
+        severity: "critical"
+      - pattern: "block\\.timestamp.*=="
+        reason: "Manipulation possible par les mineurs"
+        severity: "high"
+      - pattern: "address\\.call\\.value.*\\(.*\\)"
+        reason: "Risque de réentrance sans mutex"
+        severity: "high"
+      - pattern: "require\\(.*,.*\\);"  # Sans message d'erreur
+        reason: "Message d'erreur obligatoire pour le débogage"
+        severity: "medium"
+      - pattern: "function.*external.*{.*}"
+        reason: "Fonction externe sans documentation NatSpec"
+        severity: "medium"
+      - pattern: "pragma.*\\^"
+        reason: "Version flottante, utiliser une version fixe"
+        severity: "low"
+    
+    # Vérifications de cohérence
+    consistency_checks:
+      - "function_names_match_documentation"
+      - "parameters_match_events"
+      - "return_values_match_specs"
+      - "gas_estimates_are_plausible"
+    
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.7
+      markers:
+        - code: "// ⚠️ OPTIMISATION POSSIBLE"
+        - code: "// 🔍 À REVOIR: Logique complexe"
+        - code: "// ❓ CHOIX D'ARCHITECTURE À CONFIRMER"
+        - code: "// TODO: Vérifier cette condition limite"
+      fallback_action: "generate_with_comments"
+      require_human_review_if_below: 0.5
+
+  # === CAPACITÉS SPÉCIFIQUES ===
   capabilities:
-    - "VALIDATE_CONFIG"
-    - "ANALYZE_ARCHITECTURE_DETAILED"
-    - "GENERATE_BACKEND_MICROSERVICES"
-    - "GENERATE_FRONTEND_APPLICATION"
-    - "GENERATE_DEVOPS_INFRASTRUCTURE"
-    - "IMPLEMENT_REST_APIS"
-    - "IMPLEMENT_GRAPHQL_APIS"
-    - "IMPLEMENT_WEBSOCKET_SERVICES"
-    - "INTEGRATE_RELATIONAL_DATABASES"
-    - "INTEGRATE_NOSQL_DATABASES"
-    - "INTEGRATE_CACHING_LAYERS"
-    - "INTEGRATE_MESSAGE_QUEUES"
-    - "SETUP_WEB3_INTEGRATION_COMPLETE"
-    - "IMPLEMENT_STATE_MANAGEMENT_ADVANCED"
-    - "CREATE_UI_COMPONENT_LIBRARY"
-    - "IMPLEMENT_AUTHENTICATION_AUTHORIZATION"
-    - "OPTIMIZE_PERFORMANCE_COMPREHENSIVE"
-    - "WRITE_UNIT_TESTS_COMPREHENSIVE"
-    - "WRITE_INTEGRATION_TESTS"
-    - "WRITE_E2E_TESTS"
-    - "DOCUMENT_CODE_COMPREHENSIVE"
-    - "ENFORCE_CODING_STANDARDS_STRICT"
-    - "REFACTOR_CODE_CONTINUOUSLY"
-    - "IMPLEMENT_ERROR_HANDLING"
-    - "IMPLEMENT_LOGGING_TRACING"
-    - "SETUP_CI_CD_PIPELINES"
-    - "CONTAINERIZE_APPLICATIONS"
-    - "ORCHESTRATE_WITH_KUBERNETES"
-    - "IMPLEMENT_MONITORING_METRICS"
-    - "OPTIMIZE_SECURITY_POSTURE"
-  
-  # === CONFIGURATION COMPLÈTE ===
-  configuration:
-    # Configuration d'exécution
-    execution_order: 2
+    - name: "VALIDATE_CONFIG"
+      description: "Valide la configuration du projet"
+      confidence_required: 0.9
+    - name: "ANALYZE_ARCHITECTURE_DETAILED"
+      description: "Analyse détaillée de l'architecture"
+      confidence_required: 0.8
+    - name: "GENERATE_BACKEND_MICROSERVICES"
+      description: "Génère des microservices backend complets"
+      confidence_required: 0.8
+    - name: "GENERATE_FRONTEND_APPLICATION"
+      description: "Génère des applications frontend"
+      confidence_required: 0.8
+    - name: "GENERATE_DEVOPS_INFRASTRUCTURE"
+      description: "Génère l'infrastructure DevOps (Docker, K8s)"
+      confidence_required: 0.8
+    - name: "IMPLEMENT_REST_APIS"
+      description: "Implémente des APIs REST"
+      confidence_required: 0.85
+    - name: "IMPLEMENT_GRAPHQL_APIS"
+      description: "Implémente des APIs GraphQL"
+      confidence_required: 0.85
+    - name: "IMPLEMENT_WEBSOCKET_SERVICES"
+      description: "Implémente des services WebSocket"
+      confidence_required: 0.8
+    - name: "INTEGRATE_RELATIONAL_DATABASES"
+      description: "Intègre des bases de données relationnelles"
+      confidence_required: 0.85
+    - name: "INTEGRATE_NOSQL_DATABASES"
+      description: "Intègre des bases de données NoSQL"
+      confidence_required: 0.8
+    - name: "INTEGRATE_CACHING_LAYERS"
+      description: "Intègre des couches de cache (Redis)"
+      confidence_required: 0.8
+    - name: "INTEGRATE_MESSAGE_QUEUES"
+      description: "Intègre des queues de messages (RabbitMQ, Kafka)"
+      confidence_required: 0.8
+    - name: "SETUP_WEB3_INTEGRATION_COMPLETE"
+      description: "Configure l'intégration Web3 complète"
+      confidence_required: 0.9
+    - name: "IMPLEMENT_STATE_MANAGEMENT_ADVANCED"
+      description: "Implémente la gestion d'état avancée"
+      confidence_required: 0.8
+    - name: "CREATE_UI_COMPONENT_LIBRARY"
+      description: "Crée une librairie de composants UI"
+      confidence_required: 0.7
+    - name: "IMPLEMENT_AUTHENTICATION_AUTHORIZATION"
+      description: "Implémente l'authentification et l'autorisation"
+      confidence_required: 0.95  # Critique
+    - name: "OPTIMIZE_PERFORMANCE_COMPREHENSIVE"
+      description: "Optimise les performances de façon complète"
+      confidence_required: 0.8
+    - name: "WRITE_UNIT_TESTS_COMPREHENSIVE"
+      description: "Écrit des tests unitaires complets"
+      confidence_required: 0.9
+    - name: "WRITE_INTEGRATION_TESTS"
+      description: "Écrit des tests d'intégration"
+      confidence_required: 0.9
+    - name: "WRITE_E2E_TESTS"
+      description: "Écrit des tests end-to-end"
+      confidence_required: 0.9
+    - name: "DOCUMENT_CODE_COMPREHENSIVE"
+      description: "Documente le code de façon complète"
+      confidence_required: 0.7
+    - name: "ENFORCE_CODING_STANDARDS_STRICT"
+      description: "Applique strictement les standards de codage"
+      confidence_required: 0.95
+    - name: "REFACTOR_CODE_CONTINUOUSLY"
+      description: "Refactorise le code en continu"
+      confidence_required: 0.8
+    - name: "IMPLEMENT_ERROR_HANDLING"
+      description: "Implémente la gestion d'erreurs"
+      confidence_required: 0.9
+    - name: "IMPLEMENT_LOGGING_TRACING"
+      description: "Implémente le logging et le tracing"
+      confidence_required: 0.85
+    - name: "SETUP_CI_CD_PIPELINES"
+      description: "Configure les pipelines CI/CD"
+      confidence_required: 0.8
+    - name: "CONTAINERIZE_APPLICATIONS"
+      description: "Conteneurise les applications"
+      confidence_required: 0.8
+    - name: "ORCHESTRATE_WITH_KUBERNETES"
+      description: "Orchestre avec Kubernetes"
+      confidence_required: 0.8
+    - name: "IMPLEMENT_MONITORING_METRICS"
+      description: "Implémente le monitoring et les métriques"
+      confidence_required: 0.8
+    - name: "OPTIMIZE_SECURITY_POSTURE"
+      description: "Optimise la posture de sécurité"
+      confidence_required: 0.9
+
+  # === CONFIGURATION LLM AVANCÉE ===
+  llm_config:
+    enabled: true
+    model: "ollama:deepseek-coder:6.7b"
+    temperature: 0.15  # Bas pour plus de déterminisme
+    max_tokens: 16000
+    top_p: 0.9
+    frequency_penalty: 0.1
+    presence_penalty: 0.1
     
-    # Configuration LLM
-    llm_config:
-      model: "ollama:deepseek-coder:6.7b"
-      temperature: 0.15
-      max_tokens: 16000
-      top_p: 0.9
-      frequency_penalty: 0.1
-      presence_penalty: 0.1
+    # Paramètres anti-hallucination
+    anti_hallucination_params:
+      repetition_penalty: 1.2
+      length_penalty: 1.0
+      no_repeat_ngram_size: 3
+      do_sample: false  # Mode déterministe pour le code
+      num_beams: 3  # Beam search pour meilleure qualité
+      
+    # Validation des réponses
+    response_validation:
+      require_syntax_check: true
+      require_compilation_check: true
+      max_attempts: 3
+      fallback_model: "ollama:codellama:13b"  # Modèle plus gros si échec
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "code_generator_multi_language"
+      description: "Génère du code dans plusieurs langages"
+      validation_required: true
+    - name: "api_designer_rest_graphql"
+      description: "Conçoit des APIs REST et GraphQL"
+      validation_required: true
+    - name: "database_designer_sql_nosql"
+      description: "Conçoit des bases de données"
+      validation_required: true
+    - name: "web3_integrator_complete"
+      description: "Intègre des composants Web3"
+      validation_required: true
+    - name: "test_generator_unit_integration_e2e"
+      description: "Génère des tests"
+      validation_required: true
+    - name: "documentation_generator_comprehensive"
+      description: "Génère de la documentation"
+      validation_required: false
+    - name: "security_scanner_static_dynamic"
+      description: "Scanne la sécurité"
+      validation_required: true
+    - name: "performance_analyzer_profiling"
+      description: "Analyse les performances"
+      validation_required: true
+    - name: "ci_cd_pipeline_builder"
+      description: "Construit des pipelines CI/CD"
+      validation_required: true
+    - name: "container_orchestration_designer"
+      description: "Conçoit l'orchestration de conteneurs"
+      validation_required: true
+    - name: "monitoring_observability_setup"
+      description: "Configure le monitoring"
+      validation_required: true
+    - name: "code_review_automation"
+      description: "Automatise les revues de code"
+      validation_required: true
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "backend_microservices_code"
+      type: "code"
+      format: "multiple_files"
+      validation: "compilation+testing"
+    - name: "frontend_application_code"
+      type: "code"
+      format: "multiple_files"
+      validation: "build+testing"
+    - name: "devops_infrastructure_code"
+      type: "code"
+      format: "yaml/dockerfile"
+      validation: "syntax+deployment"
+    - name: "api_specifications_implemented"
+      type: "documentation"
+      format: "openapi/graphql"
+      validation: "spec_validator"
+    - name: "database_schemas_migrations"
+      type: "code"
+      format: "sql/migrations"
+      validation: "execution_test"
+    - name: "test_suites_comprehensive"
+      type: "code"
+      format: "test_files"
+      validation: "coverage+execution"
+    - name: "documentation_technical_user"
+      type: "documentation"
+      format: "markdown"
+      validation: "completeness"
+    - name: "ci_cd_pipeline_configs"
+      type: "code"
+      format: "yaml"
+      validation: "syntax+simulation"
+    - name: "docker_kubernetes_configs"
+      type: "code"
+      format: "dockerfile/yaml"
+      validation: "build+deploy_test"
+    - name: "monitoring_dashboards_alerts"
+      type: "configuration"
+      format: "json/yaml"
+      validation: "syntax+simulation"
+    - name: "security_scans_reports"
+      type: "report"
+      format: "json/html"
+      validation: "findings_review"
+    - name: "performance_benchmarks"
+      type: "report"
+      format: "json"
+      validation: "trend_analysis"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "all_code_must_compile_with_zero_warnings"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "test_coverage_must_exceed_90_percent"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "security_scans_must_pass_critical_high"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "performance_benchmarks_must_meet_sla"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "api_response_times_p95_under_200ms"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "docker_images_must_be_multi_stage_optimized"
+      severity: "medium"
+      action_on_failure: "auto_correct"
+      auto_correct: true
+    - name: "kubernetes_manifests_must_follow_best_practices"
+      severity: "high"
+      action_on_failure: "auto_correct"
+      auto_correct: true
+    - name: "documentation_must_be_comprehensive_updated"
+      severity: "low"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "ci_cd_pipelines_must_be_fully_automated"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "error_handling_must_be_comprehensive_logged"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "no_hardcoded_secrets_allowed"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+
+  # === MÉTRIQUES DE QUALITÉ DE CODE ===
+  code_quality_metrics:
+    cyclomatic_complexity:
+      max_per_function: 10
+      action_if_exceeded: "refactor"
+    cognitive_complexity:
+      max_per_function: 15
+      action_if_exceeded: "refactor"
+    lines_of_code_per_function:
+      max: 50
+      action_if_exceeded: "split"
+    test_coverage:
+      minimum: 90
+      target: 95
+      action_if_below: "generate_tests"
+    security_vulnerabilities:
+      critical: 0
+      high: 0
+      medium: "< 3"
+      action_if_found: "fix_automatically"
+    performance_bottlenecks:
+      max_identified: 0
+      action_if_found: "optimize"
+    duplication_rate:
+      max_percent: 5
+      action_if_exceeded: "refactor"
+    comment_ratio:
+      minimum_percent: 20
+      action_if_below: "add_comments"
+    documentation_coverage:
+      minimum_percent: 80
+      action_if_below: "generate_docs"
+
+  # === LANGAGES ET FRAMEWORKS SUPPORTÉS ===
+  supported_languages_frameworks:
+    backend:
+      - name: "Python/FastAPI"
+        version: "0.104+"
+        confidence: 0.95
+      - name: "Node.js/Express"
+        version: "18+"
+        confidence: 0.9
+      - name: "Go/Gin"
+        version: "1.21+"
+        confidence: 0.85
+      - name: "Java/Spring"
+        version: "3.x"
+        confidence: 0.8
+      - name: ".NET Core"
+        version: "8.0"
+        confidence: 0.8
+    frontend:
+      - name: "React/Next.js"
+        version: "18/14"
+        confidence: 0.95
+      - name: "Vue/Nuxt.js"
+        version: "3/3"
+        confidence: 0.9
+      - name: "Angular"
+        version: "17"
+        confidence: 0.8
+      - name: "Svelte/SvelteKit"
+        version: "4/1"
+        confidence: 0.85
+    mobile:
+      - name: "React Native"
+        version: "0.72"
+        confidence: 0.85
+      - name: "Flutter"
+        version: "3.16"
+        confidence: 0.8
+      - name: "Swift UI"
+        version: "iOS 17"
+        confidence: 0.7
+      - name: "Kotlin Compose"
+        version: "Android 14"
+        confidence: 0.7
+    blockchain:
+      - name: "Solidity/Hardhat"
+        version: "0.8.19"
+        confidence: 0.9
+      - name: "Rust/Anchor"
+        version: "1.70/0.29"
+        confidence: 0.8
+      - name: "Move/Aptos"
+        version: "1.0"
+        confidence: 0.7
+      - name: "Cairo/Starknet"
+        version: "2.4"
+        confidence: 0.7
+    devops:
+      - name: "Docker"
+        version: "24+"
+        confidence: 0.95
+      - name: "Kubernetes"
+        version: "1.28+"
+        confidence: 0.9
+      - name: "Terraform"
+        version: "1.5+"
+        confidence: 0.85
+      - name: "Ansible"
+        version: "9.0"
+        confidence: 0.8
+      - name: "GitHub Actions"
+        version: "v4"
+        confidence: 0.9
+      - name: "GitLab CI"
+        version: "16+"
+        confidence: 0.85
+    databases:
+      - name: "PostgreSQL"
+        version: "15+"
+        confidence: 0.95
+      - name: "MySQL"
+        version: "8+"
+        confidence: 0.9
+      - name: "MongoDB"
+        version: "7+"
+        confidence: 0.9
+      - name: "Redis"
+        version: "7+"
+        confidence: 0.95
+      - name: "Cassandra"
+        version: "4+"
+        confidence: 0.8
+      - name: "Elasticsearch"
+        version: "8+"
+        confidence: 0.85
+
+  # === WORKFLOW DE COLLABORATION ===
+  collaboration_workflow:
+    steps:
+      - step: "receive_architecture_from_architect_agent"
+        input: "architecture_design"
+        validation: "completeness_check"
+        timeout: 300
+      - step: "implement_features_with_tdd_approach"
+        process: "test_driven_development"
+        validation: "test_coverage"
+      - step: "collaborate_with_tester_agent_for_validation"
+        agent: "tester"
+        validation_type: "cross_validation"
+        required: true
+      - step: "integrate_with_smart_contract_agent_for_blockchain"
+        agent: "smart_contract"
+        condition: "blockchain_features_needed"
+      - step: "collaborate_with_frontend_web3_agent_for_ui"
+        agent: "frontend_web3"
+        condition: "frontend_needed"
+      - step: "deploy_with_devops_automation"
+        agent: "devops"
+        validation: "deployment_success"
+      - step: "monitor_with_observability_stack"
+        agent: "monitoring"
+        validation: "metrics_collected"
+
+  # === CONFIGURATION SYSTÈME ===
+  system:
+    timeout_seconds: 3600
+    max_retries: 5
+    concurrent_tasks: 3
+    log_level: "DEBUG"
+    enable_auto_format: true
+    enable_linting: true
     
-    # Outils disponibles
-    tools:
-      - "code_generator_multi_language"
-      - "api_designer_rest_graphql"
-      - "database_designer_sql_nosql"
-      - "web3_integrator_complete"
-      - "test_generator_unit_integration_e2e"
-      - "documentation_generator_comprehensive"
-      - "security_scanner_static_dynamic"
-      - "performance_analyzer_profiling"
-      - "ci_cd_pipeline_builder"
-      - "container_orchestration_designer"
-      - "monitoring_observability_setup"
-      - "code_review_automation"
-    
-    # Sorties produites
-    outputs:
-      - "backend_microservices_code"
-      - "frontend_application_code"
-      - "devops_infrastructure_code"
-      - "api_specifications_implemented"
-      - "database_schemas_migrations"
-      - "test_suites_comprehensive"
-      - "documentation_technical_user"
-      - "ci_cd_pipeline_configs"
-      - "docker_kubernetes_configs"
-      - "monitoring_dashboards_alerts"
-      - "security_scans_reports"
-      - "performance_benchmarks"
-    
-    # Règles de validation
-    validation_rules:
-      - "all_code_must_compile_with_zero_warnings"
-      - "test_coverage_must_exceed_90_percent"
-      - "security_scans_must_pass_critical_high"
-      - "performance_benchmarks_must_meet_sla"
-      - "api_response_times_p95_under_200ms"
-      - "docker_images_must_be_multi_stage_optimized"
-      - "kubernetes_manifests_must_follow_best_practices"
-      - "documentation_must_be_comprehensive_updated"
-      - "ci_cd_pipelines_must_be_fully_automated"
-      - "error_handling_must_be_comprehensive_logged"
-    
-    # Métriques de qualité
-    code_quality_metrics:
-      cyclomatic_complexity: "< 10 per function"
-      cognitive_complexity: "< 15 per function"
-      lines_of_code_per_function: "< 50"
-      test_coverage: "> 90%"
-      security_vulnerabilities: "0 critical/high"
-      performance_bottlenecks: "0 identified"
-    
-    # Langages et frameworks supportés
-    supported_languages_frameworks:
-      backend: ["Python/FastAPI", "Node.js/Express", "Go/Gin", "Java/Spring", ".NET Core"]
-      frontend: ["React/Next.js", "Vue/Nuxt.js", "Angular", "Svelte/SvelteKit"]
-      mobile: ["React Native", "Flutter", "Swift UI", "Kotlin Compose"]
-      blockchain: ["Solidity/Hardhat", "Rust/Anchor", "Move/Aptos", "Cairo/Starknet"]
-      devops: ["Docker", "Kubernetes", "Terraform", "Ansible", "GitHub Actions", "GitLab CI"]
-      databases: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Cassandra", "Elasticsearch"]
-    
-    # Workflow de collaboration
-    collaboration_workflow:
-      - "receive_architecture_from_architect_agent"
-      - "implement_features_with_tdd_approach"
-      - "collaborate_with_tester_agent_for_validation"
-      - "integrate_with_smart_contract_agent_for_blockchain"
-      - "collaborate_with_frontend_web3_agent_for_ui"
-      - "deploy_with_devops_automation"
-      - "monitor_with_observability_stack"
-    
-    # Paramètres système
-    system:
-      timeout_seconds: 3600
-      max_retries: 5
-      concurrent_tasks: 3
-      log_level: "DEBUG"
-      enable_auto_format: true
-      enable_linting: true
-    
-    # Environnements supportés
-    environments:
-      development: true
-      staging: true
-      production: true
-    
-    # Tests
-    testing:
-      unit_tests: true
-      integration_tests: true
-      e2e_tests: true
-      performance_tests: true
-      security_tests: true
+    # Politique de retry
+    retry_policy:
+      max_attempts: 3
+      backoff_factor: 2.0
+      jitter: 0.1
+      retryable_errors:
+        - "TimeoutError"
+        - "CompilationError"
+        - "LLMUnavailableError"
+
+  # === ENVIRONNEMENTS ===
+  environments:
+    development:
+      enabled: true
+      validation_level: "basic"
+      auto_deploy: false
+    staging:
+      enabled: true
+      validation_level: "comprehensive"
+      auto_deploy: true
+    production:
+      enabled: true
+      validation_level: "strict"
+      auto_deploy: false
+      require_human_approval: true
+
+  # === TESTS ===
+  testing:
+    unit_tests:
+      enabled: true
+      required: true
+      min_coverage: 90
+    integration_tests:
+      enabled: true
+      required: true
+      min_coverage: 80
+    e2e_tests:
+      enabled: true
+      required: false
+      critical_paths_only: true
+    performance_tests:
+      enabled: true
+      required: false
+      sla_check: true
+    security_tests:
+      enabled: true
+      required: true
+      scan_type: "comprehensive"
+
+  # === SOUS-AGENTS ===
+  subAgents:
+    - id: "backend_coder"
+      name: "Backend Development"
+      display_name: "Backend Development"
+      config_path: "agents/coder/sous_agents/backend_coder/config.yaml"
+      dependencies: ["coder"]
+      specialization: "backend_development"
+      
+    - id: "devops_coder"
+      name: "DevOps"
+      display_name: "DevOps"
+      config_path: "agents/coder/sous_agents/devops_coder/config.yaml"
+      dependencies: ["coder"]
+      specialization: "devops_automation"
+      
+    - id: "frontend_coder"
+      name: "Frontend Development"
+      display_name: "Frontend Development"
+      config_path: "agents/coder/sous_agents/frontend_coder/config.yaml"
+      dependencies: ["coder"]
+      specialization: "frontend_development"
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["development", "coding", "backend", "frontend", "devops"]
+    capabilities_count: 35
+    last_reviewed: "2026-02-25"
+    next_review: "2026-03-25"

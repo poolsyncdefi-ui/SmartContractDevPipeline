@@ -1,3 +1,7 @@
+import os
+import sys
+from datetime import datetime
+
 """
 Sous-agent DevOps
 Spécialisation: DevOps
@@ -6,10 +10,15 @@ from typing import Dict, Any
 import yaml
 import logging
 
-class DevopsCoderSubAgent:
+class DevopsCoderSubAgent(BaseAgent):
     """Sous-agent spécialisé en DevOps"""
     
-    def __init__(self, config_path: str = ""):
+    def __init__
+    async def _initialize_components(self):
+        """Initialise les composants spécifiques."""
+        self.logger.info(f"Initialisation des composants de {class_name}...")
+        return True
+(self, config_path: str = ""):
         self.config_path = config_path
         self.config = self._load_config()
         self.logger = logging.getLogger(__name__)
@@ -82,3 +91,9 @@ class DevopsCoderSubAgent:
             "specialization": "DevOps",
             "version": "1.0.0"
         }
+
+    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        """Gère les messages personnalisés."""
+        msg_type = message.get("type", "unknown")
+        self.logger.info(f"Message reçu: {msg_type}")
+        return {"status": "received", "type": msg_type}

@@ -1,186 +1,544 @@
+# ============================================================================
 # agents/tester/config.yaml
+# Configuration complète de l'Agent Tester - Version 2.2.0
+# Tests complets, assurance qualité, performance, sécurité et validation
+# ============================================================================
+
 agent:
-  name: "tester"
-  type: "main_agent"
-  description: "Agent spécialisé dans les tests complets, assurance qualité, performance testing, security testing et validation de toutes les composantes du système"
+  # === IDENTIFICATION ===
+  name: "TesterAgent"
+  class_name: "TesterAgent"
+  module_path: "agents.tester.agent"
+  display_name: "🧪 Agent de Tests & Assurance Qualité"
+  version: "2.2.0"
+  description: |-
+    Agent spécialisé dans les tests complets, assurance qualité, performance testing,
+    security testing, validation blockchain et qualité du code.
+  purpose: "Garantir la qualité, la sécurité et la fiabilité de toutes les composantes du système"
+
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  singleton: false
   execution_order: 5
-  dependencies: ["coder", "frontend_web3", "smart_contract"]
-  
+
+  # === HÉRITAGE & DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "coder"
+    - "frontend_web3"
+    - "smart_contract"
+    - "architect"
+  initialization_order: 5
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.9  # Très élevé car les tests sont critiques
+
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_test_execution"
+      - "validate_assertions"
+      - "detect_flaky_tests"
+      - "check_reproducibility"
+      - "ensure_isolation"
+
+    # Patterns de tests risqués / incorrects
+    forbidden_patterns:
+      - pattern: "test passe aléatoirement"
+        reason: "Test flaky non détecté"
+        severity: "high"
+      - pattern: "assertion trop vague"
+        reason: "Vérification insuffisante"
+        severity: "medium"
+      - pattern: "ignore cet échec"
+        reason: "Masquage d'erreur"
+        severity: "critical"
+      - pattern: "skip sans raison"
+        reason: "Test contourné"
+        severity: "medium"
+      - pattern: "données de test non réalistes"
+        reason: "Scénario non représentatif"
+        severity: "high"
+
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.7
+      markers:
+        - report: "⚠️ TEST INSTABLE"
+        - report: "🔍 RÉSULTAT À CONFIRMER"
+        - report: "❓ SCÉNARIO NON REPRODUIT"
+      fallback_action: "rerun_isolated"
+      require_human_review_if_below: 0.5
+
+  # === CAPACITÉS SPÉCIFIQUES ===
   capabilities:
     - name: "validate_config"
       description: "Valider la configuration des tests et environnement de test"
+      confidence_required: 0.8
     - name: "write_unit_tests_comprehensive"
       description: "Écrire des tests unitaires complets avec coverage maximale"
+      confidence_required: 0.85
+      min_coverage: 95
     - name: "write_integration_tests_advanced"
       description: "Écrire des tests d'intégration avancés avec mocks et stubs"
+      confidence_required: 0.85
     - name: "write_e2e_tests_complete"
       description: "Écrire des tests end-to-end complets avec scenarios business"
+      confidence_required: 0.85
     - name: "perform_fuzzing_intensive"
       description: "Effectuer des tests de fuzzing intensifs avec edge case generation"
+      confidence_required: 0.8
     - name: "run_security_tests_penetration"
       description: "Exécuter des tests de sécurité et penetration testing"
+      confidence_required: 0.9
     - name: "run_performance_tests_load"
       description: "Exécuter des tests de performance et load testing à grande échelle"
+      confidence_required: 0.85
     - name: "generate_test_reports_detailed"
       description: "Générer des rapports de tests détaillés avec analytics"
+      confidence_required: 0.7
     - name: "setup_test_environment_complete"
       description: "Configurer l'environnement de test complet avec fixtures"
+      confidence_required: 0.8
     - name: "automate_testing_pipeline"
       description: "Automatiser le pipeline de testing avec CI/CD integration"
+      confidence_required: 0.8
     - name: "monitor_test_coverage_real_time"
       description: "Surveiller la couverture de code en temps réel avec alerts"
+      confidence_required: 0.8
     - name: "debug_test_failures_detailed"
       description: "Déboguer les échecs de tests avec root cause analysis"
+      confidence_required: 0.85
     - name: "optimize_test_suite_performance"
       description: "Optimiser la suite de tests pour performance et maintenance"
+      confidence_required: 0.8
     - name: "create_test_data_realistic"
       description: "Créer des données de test réalistes avec generators"
+      confidence_required: 0.8
     - name: "validate_test_results_statistical"
       description: "Valider les résultats des tests avec analysis statistique"
+      confidence_required: 0.85
     - name: "implement_chaos_engineering"
       description: "Implémenter le chaos engineering avec failure injection"
+      confidence_required: 0.8
     - name: "run_compliance_tests"
       description: "Exécuter des tests de compliance avec regulations"
+      confidence_required: 0.9
     - name: "perform_accessibility_tests"
       description: "Effectuer des tests d'accessibilité avec screen readers"
+      confidence_required: 0.8
     - name: "run_usability_tests"
       description: "Exécuter des tests d'usabilité avec user testing"
+      confidence_required: 0.7
     - name: "implement_contract_testing"
       description: "Implémenter le contract testing pour APIs"
+      confidence_required: 0.85
     - name: "perform_visual_regression_testing"
       description: "Effectuer des tests de regression visuelle"
+      confidence_required: 0.8
     - name: "run_mobile_testing"
       description: "Exécuter des tests mobile avec device farms"
+      confidence_required: 0.8
     - name: "perform_cross_browser_testing"
       description: "Effectuer des tests cross-browser avec automation"
+      confidence_required: 0.8
     - name: "implement_mutation_testing"
       description: "Implémenter le mutation testing pour test quality"
+      confidence_required: 0.8
     - name: "run_api_performance_tests"
       description: "Exécuter des tests de performance API avec load generation"
+      confidence_required: 0.85
     - name: "perform_database_testing"
       description: "Effectuer des tests de base de données avec transactions"
+      confidence_required: 0.8
     - name: "run_security_scanning_automated"
       description: "Exécuter le scanning de sécurité automatisé"
+      confidence_required: 0.9
     - name: "implement_performance_monitoring"
       description: "Implémenter le monitoring de performance continu"
+      confidence_required: 0.8
     - name: "create_test_strategy_document"
       description: "Créer le document de stratégie de test complet"
+      confidence_required: 0.7
     - name: "setup_test_automation_framework"
       description: "Configurer le framework d'automatisation de tests"
+      confidence_required: 0.8
     - name: "implement_continuous_testing"
       description: "Implémenter le continuous testing dans le pipeline"
+      confidence_required: 0.8
     - name: "run_blockchain_specific_tests"
       description: "Exécuter des tests spécifiques blockchain avec fork testing"
+      confidence_required: 0.9
     - name: "perform_smart_contract_security_tests"
       description: "Effectuer des tests de sécurité pour smart contracts"
+      confidence_required: 0.95
     - name: "run_gas_optimization_tests"
       description: "Exécuter des tests d'optimisation de gas"
+      confidence_required: 0.9
     - name: "implement_test_data_management"
       description: "Implémenter la gestion des données de test"
+      confidence_required: 0.8
     - name: "create_performance_baselines"
       description: "Créer les baselines de performance pour comparison"
+      confidence_required: 0.8
     - name: "run_reliability_testing"
       description: "Exécuter des tests de fiabilité avec long-running tests"
+      confidence_required: 0.85
     - name: "perform_recovery_testing"
       description: "Effectuer des tests de recovery avec disaster scenarios"
+      confidence_required: 0.85
     - name: "implement_ai_based_testing"
       description: "Implémenter le testing basé sur AI pour test generation"
+      confidence_required: 0.7
 
+  # === CONFIGURATION LLM ===
   llm_config:
+    enabled: true
     model: "ollama:deepseek-coder:6.7b"
-    temperature: 0.1
+    temperature: 0.1  # Très bas pour des tests déterministes
     max_tokens: 12000
     top_p: 0.95
     frequency_penalty: 0.05
     presence_penalty: 0.05
-    
+
+    # Paramètres anti-hallucination
+    anti_hallucination_params:
+      repetition_penalty: 1.2
+      length_penalty: 1.0
+      no_repeat_ngram_size: 3
+      do_sample: false  # Mode déterministe
+      num_beams: 3
+
+    # Validation des réponses
+    response_validation:
+      require_test_execution: true
+      require_assertion_check: true
+      max_attempts: 3
+      fallback_model: "ollama:codellama:13b"
+
+  # === OUTILS DISPONIBLES ===
   tools:
-    - "test_generator_comprehensive"
-    - "test_runner_distributed"
-    - "coverage_analyzer_advanced"
-    - "fuzzing_tool_intensive"
-    - "security_scanner_deep"
-    - "performance_load_tester"
-    - "chaos_engineering_platform"
-    - "accessibility_testing_suite"
-    - "visual_regression_tool"
-    - "mobile_testing_platform"
-    - "api_testing_framework"
-    - "mutation_testing_tool"
-    - "blockchain_testing_framework"
-    - "test_data_management_system"
-    - "ai_test_generator"
-    
+    - name: "test_generator_comprehensive"
+      description: "Génère des tests complets"
+      validation_required: true
+    - name: "test_runner_distributed"
+      description: "Exécute les tests en mode distribué"
+      validation_required: true
+    - name: "coverage_analyzer_advanced"
+      description: "Analyse la couverture de code"
+      validation_required: true
+    - name: "fuzzing_tool_intensive"
+      description: "Effectue du fuzzing intensif"
+      validation_required: true
+    - name: "security_scanner_deep"
+      description: "Scanne la sécurité en profondeur"
+      validation_required: true
+    - name: "performance_load_tester"
+      description: "Teste les performances en charge"
+      validation_required: true
+    - name: "chaos_engineering_platform"
+      description: "Injecte des défaillances"
+      validation_required: true
+    - name: "accessibility_testing_suite"
+      description: "Teste l'accessibilité"
+      validation_required: true
+    - name: "visual_regression_tool"
+      description: "Détecte les régressions visuelles"
+      validation_required: true
+    - name: "mobile_testing_platform"
+      description: "Teste sur appareils mobiles"
+      validation_required: true
+    - name: "api_testing_framework"
+      description: "Teste les APIs"
+      validation_required: true
+    - name: "mutation_testing_tool"
+      description: "Évalue la qualité des tests"
+      validation_required: true
+    - name: "blockchain_testing_framework"
+      description: "Teste les smart contracts"
+      validation_required: true
+    - name: "test_data_management_system"
+      description: "Gère les données de test"
+      validation_required: true
+    - name: "ai_test_generator"
+      description: "Génère des tests par IA"
+      validation_required: false
+
+  # === OUTPUTS PRODUITS ===
   outputs:
-    - "test_cases_comprehensive"
-    - "test_reports_detailed"
-    - "coverage_reports_advanced"
-    - "bug_reports_prioritized"
-    - "performance_metrics_baseline"
-    - "security_vulnerability_reports"
-    - "test_automation_scripts"
-    - "test_strategy_documentation"
-    - "test_environment_configs"
-    - "continuous_testing_pipeline"
-    - "blockchain_test_results"
-    - "gas_optimization_reports"
-    - "accessibility_compliance_reports"
-    - "performance_baseline_documents"
-    
+    - name: "test_cases_comprehensive"
+      type: "code"
+      format: "multiple_files"
+      validation: "execution+coverage"
+    - name: "test_reports_detailed"
+      type: "report"
+      format: "json/html"
+      validation: "completeness"
+    - name: "coverage_reports_advanced"
+      type: "report"
+      format: "html/json"
+      validation: "threshold_check"
+    - name: "bug_reports_prioritized"
+      type: "report"
+      format: "json"
+      validation: "severity_classification"
+    - name: "performance_metrics_baseline"
+      type: "metrics"
+      format: "json"
+      validation: "trend_analysis"
+    - name: "security_vulnerability_reports"
+      type: "report"
+      format: "json"
+      validation: "cvss_scoring"
+    - name: "test_automation_scripts"
+      type: "code"
+      format: "scripts"
+      validation: "execution"
+    - name: "test_strategy_documentation"
+      type: "document"
+      format: "markdown"
+      validation: "completeness"
+    - name: "test_environment_configs"
+      type: "configuration"
+      format: "yaml/json"
+      validation: "syntax"
+    - name: "continuous_testing_pipeline"
+      type: "configuration"
+      format: "yaml"
+      validation: "simulation"
+    - name: "blockchain_test_results"
+      type: "report"
+      format: "json"
+      validation: "fork_validity"
+    - name: "gas_optimization_reports"
+      type: "report"
+      format: "json"
+      validation: "benchmark"
+    - name: "accessibility_compliance_reports"
+      type: "report"
+      format: "html"
+      validation: "wcag_check"
+
+  # === RÈGLES DE VALIDATION ===
   validation_rules:
-    - "must_achieve_95_percent_test_coverage"
-    - "must_catch_all_critical_bugs_pre_production"
-    - "must_run_all_tests_under_10_minutes"
-    - "must_validate_all_security_requirements"
-    - "must_meet_all_performance_slas"
-    - "must_pass_all_compliance_requirements"
-    - "must_be_fully_automated_no_manual"
-    - "must_have_comprehensive_documentation"
-    - "must_support_parallel_execution"
-    - "must_integrate_with_ci_cd_seamlessly"
-    
+    - name: "must_achieve_95_percent_test_coverage"
+      severity: "critical"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "must_catch_all_critical_bugs_pre_production"
+      severity: "critical"
+      action_on_failure: "block_release"
+      auto_correct: false
+    - name: "must_run_all_tests_under_10_minutes"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: true
+    - name: "must_validate_all_security_requirements"
+      severity: "critical"
+      action_on_failure: "block_release"
+      auto_correct: false
+    - name: "must_meet_all_performance_slas"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "must_pass_all_compliance_requirements"
+      severity: "critical"
+      action_on_failure: "block_release"
+      auto_correct: false
+    - name: "must_be_fully_automated_no_manual"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: true
+    - name: "must_have_comprehensive_documentation"
+      severity: "low"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "must_support_parallel_execution"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "must_integrate_with_ci_cd_seamlessly"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "must_detect_all_severe_vulnerabilities"
+      severity: "critical"
+      action_on_failure: "block_release"
+      auto_correct: false
+    - name: "tests_must_be_reproducible"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+
+  # === MÉTRIQUES DE TEST ===
   testing_metrics:
-    code_coverage: "> 95%"
-    test_automation_rate: "100%"
-    test_execution_time: "< 10 minutes"
-    bug_escape_rate: "< 1% to production"
-    test_flakiness: "< 1% flaky tests"
-    security_vulnerabilities: "0 critical in production"
-    performance_deviations: "< 5% from baseline"
-    accessibility_compliance: "WCAG 2.1 AA 100%"
-    
+    code_coverage:
+      target: 95
+      minimum: 85
+      unit: "%"
+    test_automation_rate:
+      target: 100
+      minimum: 90
+      unit: "%"
+    test_execution_time:
+      target: 10
+      maximum: 15
+      unit: "minutes"
+    bug_escape_rate:
+      target: 0.5
+      maximum: 1
+      unit: "% to production"
+    test_flakiness:
+      target: 0.5
+      maximum: 1
+      unit: "%"
+    security_vulnerabilities:
+      critical: 0
+      high: 0
+      medium: "< 5"
+    performance_deviations:
+      target: 5
+      maximum: 10
+      unit: "% from baseline"
+    accessibility_compliance:
+      target: 100
+      minimum: 95
+      unit: "% WCAG 2.1 AA"
+
+  # === COUVERTURE PAR TYPE DE TEST ===
   testing_types_coverage:
-    unit_testing: "100% of business logic"
-    integration_testing: "All service integrations"
-    e2e_testing: "All critical user journeys"
-    performance_testing: "All performance SLAs"
-    security_testing: "OWASP Top 10 coverage"
-    accessibility_testing: "All WCAG criteria"
-    compatibility_testing: "All supported platforms"
-    usability_testing: "All major user flows"
-    chaos_testing: "All critical failure scenarios"
-    recovery_testing: "All disaster recovery plans"
-    
+    unit_testing:
+      target: 100
+      description: "% of business logic"
+    integration_testing:
+      target: 100
+      description: "All service integrations"
+    e2e_testing:
+      target: 100
+      description: "All critical user journeys"
+    performance_testing:
+      target: 100
+      description: "All performance SLAs"
+    security_testing:
+      target: 100
+      description: "OWASP Top 10 coverage"
+    accessibility_testing:
+      target: 100
+      description: "All WCAG criteria"
+    compatibility_testing:
+      target: 100
+      description: "All supported platforms"
+    usability_testing:
+      target: 80
+      description: "All major user flows"
+    chaos_testing:
+      target: 50
+      description: "All critical failure scenarios"
+    recovery_testing:
+      target: 80
+      description: "All disaster recovery plans"
+
+  # === FRAMEWORKS DE TEST SUPPORTÉS ===
   testing_frameworks_supported:
-    unit_testing: ["pytest", "Jest", "Mocha", "unittest", "RSpec"]
-    integration_testing: ["Postman", "Supertest", "REST Assured", "Karate"]
-    e2e_testing: ["Playwright", "Cypress", "Selenium", "Appium", "Detox"]
-    performance_testing: ["k6", "Locust", "JMeter", "Gatling", "Artillery"]
-    security_testing: ["OWASP ZAP", "Burp Suite", "Nessus", "Nmap", "SonarQube"]
-    accessibility_testing: ["axe-core", "Lighthouse", "Pa11y", "WAVE"]
-    mobile_testing: ["Appium", "Espresso", "XCUITest", "Detox", "Maestro"]
-    api_testing: ["Postman", "Insomnia", "Bruno", "HTTPie", "RestClient"]
-    visual_testing: ["Percy", "Chromatic", "Applitools", "Storybook"]
-    mutation_testing: ["Stryker", "PITest", "Mutmut", "Jumble"]
-    
+    unit_testing:
+      - "pytest"
+      - "Jest"
+      - "Mocha"
+      - "unittest"
+      - "RSpec"
+    integration_testing:
+      - "Postman"
+      - "Supertest"
+      - "REST Assured"
+      - "Karate"
+      - "Pact"
+    e2e_testing:
+      - "Playwright"
+      - "Cypress"
+      - "Selenium"
+      - "Appium"
+      - "Detox"
+    performance_testing:
+      - "k6"
+      - "Locust"
+      - "JMeter"
+      - "Gatling"
+      - "Artillery"
+    security_testing:
+      - "OWASP ZAP"
+      - "Burp Suite"
+      - "Nessus"
+      - "Nmap"
+      - "SonarQube"
+    accessibility_testing:
+      - "axe-core"
+      - "Lighthouse"
+      - "Pa11y"
+      - "WAVE"
+    mobile_testing:
+      - "Appium"
+      - "Espresso"
+      - "XCUITest"
+      - "Detox"
+      - "Maestro"
+    api_testing:
+      - "Postman"
+      - "Insomnia"
+      - "Bruno"
+      - "HTTPie"
+      - "RestClient"
+    visual_testing:
+      - "Percy"
+      - "Chromatic"
+      - "Applitools"
+      - "Storybook"
+    mutation_testing:
+      - "Stryker"
+      - "PITest"
+      - "Mutmut"
+      - "Jumble"
+
+  # === TESTS SPÉCIFIQUES BLOCKCHAIN ===
   blockchain_specific_testing:
-    smart_contract_testing: ["Hardhat", "Foundry", "Truffle", "Brownie", "Waffle"]
-    fork_testing: ["Anvil", "Hardhat Network", "Ganache", "Foundry Anvil"]
-    gas_profiling: ["Hardhat Gas Reporter", "Foundry Gas Snapshots", "Eth Gas Reporter"]
-    security_scanners: ["Slither", "Mythril", "Securify", "SmartCheck", "Oyente"]
-    formal_verification: ["Certora", "Halmos", "KEVM", "Scribble"]
-    fuzzing_tools: ["Echidna", "Medusa", "Harvey", "Diligence Fuzzing"]
-    
+    smart_contract_testing:
+      - "Hardhat"
+      - "Foundry"
+      - "Truffle"
+      - "Brownie"
+      - "Waffle"
+    fork_testing:
+      - "Anvil"
+      - "Hardhat Network"
+      - "Ganache"
+      - "Foundry Anvil"
+    gas_profiling:
+      - "Hardhat Gas Reporter"
+      - "Foundry Gas Snapshots"
+      - "Eth Gas Reporter"
+    security_scanners:
+      - "Slither"
+      - "Mythril"
+      - "Securify"
+      - "SmartCheck"
+      - "Oyente"
+    formal_verification:
+      - "Certora"
+      - "Halmos"
+      - "KEVM"
+      - "Scribble"
+    fuzzing_tools:
+      - "Echidna"
+      - "Medusa"
+      - "Harvey"
+      - "Diligence Fuzzing"
+
+  # === EXIGENCES ENVIRONNEMENT DE TEST ===
   test_environment_requirements:
     isolated_environments: "Dedicated per test run"
     test_data_management: "Automated setup/teardown"
@@ -192,3 +550,61 @@ agent:
     mobile_devices: "All targeted device models"
     blockchain_forks: "Mainnet fork for testing"
     load_generators: "Distributed load testing"
+    parallel_execution: "Up to 50 concurrent workers"
+
+  # === SOUS-AGENTS ===
+  subAgents:
+    - id: "e2e_tester"
+      name: "E2E Testing"
+      display_name: "E2E Testing"
+      config_path: "agents/tester/sous_agents/e2e_tester/config.yaml"
+      dependencies: ["tester"]
+      specialization: "end_to_end_testing"
+    - id: "fuzzing_expert"
+      name: "Fuzzing"
+      display_name: "Fuzzing"
+      config_path: "agents/tester/sous_agents/fuzzing_expert/config.yaml"
+      dependencies: ["tester"]
+      specialization: "fuzzing_security"
+    - id: "integration_tester"
+      name: "Integration Testing"
+      display_name: "Integration Testing"
+      config_path: "agents/tester/sous_agents/integration_tester/config.yaml"
+      dependencies: ["tester"]
+      specialization: "integration_testing"
+    - id: "unit_tester"
+      name: "Unit Testing"
+      display_name: "Unit Testing"
+      config_path: "agents/tester/sous_agents/unit_tester/config.yaml"
+      dependencies: ["tester"]
+      specialization: "unit_testing"
+    - id: "security_tester"
+      name: "Security Testing"
+      display_name: "Security Testing"
+      config_path: "agents/tester/sous_agents/security_tester/config.yaml"
+      dependencies: ["tester"]
+      specialization: "security_penetration"
+    - id: "performance_tester"
+      name: "Performance Testing"
+      display_name: "Performance Testing"
+      config_path: "agents/tester/sous_agents/performance_tester/config.yaml"
+      dependencies: ["tester"]
+      specialization: "load_performance"
+    - id: "blockchain_tester"
+      name: "Blockchain Testing"
+      display_name: "Blockchain Testing"
+      config_path: "agents/tester/sous_agents/blockchain_tester/config.yaml"
+      dependencies: ["tester", "smart_contract"]
+      specialization: "smart_contract_testing"
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["testing", "qa", "security", "performance", "blockchain", "automation"]
+    capabilities_count: 42
+    tools_count: 15
+    subagents_count: 7
+    last_reviewed: "2026-02-26"
+    next_review: "2026-03-26"

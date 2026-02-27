@@ -301,3 +301,1419 @@
 2026-02-21 23:07:37 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
 2026-02-21 23:07:37 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 4 | Bonus: 0
 2026-02-21 23:07:37 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-25 20:18:56 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:18:56 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-25 20:18:56 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-25 20:18:56 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-25 20:18:57 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_BE_001 échoué
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -       📉 Taux: 90% | Itérations: 3
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-25 20:18:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-25 20:18:58 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-25 20:18:59 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-25 20:19:00 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 4
+2026-02-25 20:19:00 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-25 20:20:15 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:20:15 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-25 20:20:15 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-25 20:20:15 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation
+2026-02-25 20:20:16 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_BE_001 échoué
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -       📉 Taux: 90% | Itérations: 4
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-25 20:20:16 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-25 20:20:17 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_DB_001 échoué
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 5
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-25 20:20:17 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-25 20:20:18 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 2 | Bonus: 0
+2026-02-25 20:20:19 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-25 20:28:21 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:28:21 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-25 20:28:21 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260225.json
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-25 20:28:21 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-25 20:28:22 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-25 20:28:23 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-25 20:28:24 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-25 20:28:25 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 08:58:49 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 08:58:49 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 08:58:49 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 08:58:49 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 08:58:50 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 08:58:51 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 08:58:52 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 08:58:53 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 3
+2026-02-26 08:58:53 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 09:04:27 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:04:27 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 09:04:27 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 09:04:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 09:04:28 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 09:04:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 09:04:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 09:04:31 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 3
+2026-02-26 09:04:31 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 09:08:40 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:08:40 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 09:08:40 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 09:08:40 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 09:08:41 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 09:08:42 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 09:08:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-26 09:08:44 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 09:15:30 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:15:30 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 09:15:30 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 09:15:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 09:15:31 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 09:15:32 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 09:15:33 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 1 | Bonus: 0
+2026-02-26 09:15:34 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 17:28:07 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:07 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 17:28:07 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 17:28:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 17:28:08 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 17:28:09 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 17:28:10 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-26 17:28:11 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 17:28:24 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:24 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 17:28:24 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 17:28:24 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 17:28:25 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 17:28:26 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 17:28:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 17:28:28 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 5
+2026-02-26 17:28:28 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 17:46:14 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:46:14 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 17:46:14 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation
+2026-02-26 17:46:14 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_001 échoué
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 5
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 17:46:14 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 17:46:15 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 17:46:16 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:46:17 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 17:46:17 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 17:46:17 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 17:46:17 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 17:46:17 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 1 | Bonus: 0
+2026-02-26 17:46:18 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 17:55:42 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:55:42 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 17:55:42 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 17:55:42 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 17:55:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 17:55:44 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 17:55:45 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 17:55:45 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 17:55:45 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 17:55:45 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 17:55:45 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-26 17:55:46 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:03:05 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:05 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:03:05 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:03:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-26 18:03:06 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_BE_001 échoué
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO -       📉 Taux: 90% | Itérations: 2
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:03:06 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:03:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:03:08 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 18:03:09 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 3
+2026-02-26 18:03:09 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:03:23 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:23 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:03:23 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:03:23 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 1 | Bonus: 1
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:03:24 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:03:25 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:03:26 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:03:26 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:03:26 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 18:03:26 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:03:26 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 18:03:27 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 3
+2026-02-26 18:03:27 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:04:02 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:04:02 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:04:02 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:04:02 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 1 | Bonus: 1
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:04:03 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation
+2026-02-26 18:04:04 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_DB_001 échoué
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 4
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:04:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:04:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 18:04:06 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 5
+2026-02-26 18:04:06 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:15:43 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:43 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:15:43 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:15:43 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:15:44 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:15:45 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:15:46 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:15:46 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:15:46 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-26 18:15:46 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:15:46 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe
+2026-02-26 18:15:47 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 4
+2026-02-26 18:15:47 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:15:59 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:59 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:15:59 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:15:59 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:16:00 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:16:01 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:16:02 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 2 | Bonus: 0
+2026-02-26 18:16:03 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:32:38 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:32:38 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:32:39 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:32:39 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:32:39 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 3 | Bonus: 1
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:32:40 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:32:41 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 2
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 2 | Bonus: 0
+2026-02-26 18:32:42 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 18:42:27 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 🚀 Préparation du sprint pour projet: MyDeFiApp
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 📋 Génération de spécification pour projet: MyDeFiApp
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - ✅ Spécification projet générée: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:42:27 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible (simulation)
+2026-02-26 18:42:27 - agent.OrchestratorAgent - WARNING - ⚠️ Agent architect non disponible, utilisation du découpage par défaut
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs\projects\mydefiapp_20260226.json
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 18:42:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-26 18:42:28 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_BE_001 échoué
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO -       📉 Taux: 90% | Itérations: 4
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 18:42:28 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 18:42:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 18:42:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 2 | Bonus: 0
+2026-02-26 18:42:31 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 19:00:03 - agent.OrchestratorAgent - ERROR - Erreur YAML dans la configuration agents/orchestrator/config.yaml: while parsing a block mapping
+  in "agents\orchestrator\config.yaml", line 333, column 5
+expected <block end>, but found '<block mapping start>'
+  in "agents\orchestrator\config.yaml", line 404, column 6
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:00:03 - agent.OrchestratorAgent - ERROR - ❌ Erreur chargement config: while parsing a block mapping
+  in "agents/orchestrator/config.yaml", line 333, column 5
+expected <block end>, but found '<block mapping start>'
+  in "agents/orchestrator/config.yaml", line 404, column 6
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:00:03 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 19:00:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 19:00:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 19:00:06 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -    📋 Raisons: Complexité élevée, Logique de récompense complexe, Problème de gas estimation
+2026-02-26 19:00:07 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_SC_002 échoué
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO -       📉 Taux: 65% | Itérations: 4
+2026-02-26 19:00:07 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 19:03:26 - agent.OrchestratorAgent - ERROR - Erreur YAML dans la configuration agents/orchestrator/config.yaml: while parsing a block mapping
+  in "agents\orchestrator\config.yaml", line 333, column 5
+expected <block end>, but found '<block mapping start>'
+  in "agents\orchestrator\config.yaml", line 404, column 6
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:03:26 - agent.OrchestratorAgent - ERROR - ❌ Erreur chargement config: while parsing a block mapping
+  in "agents/orchestrator/config.yaml", line 333, column 5
+expected <block end>, but found '<block mapping start>'
+  in "agents/orchestrator/config.yaml", line 404, column 6
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 19:03:26 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 19:03:27 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 19:03:28 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 19:03:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-26 19:03:30 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis agents/orchestrator/config.yaml
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 19:11:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 1 | Bonus: 1
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 1
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 19:11:58 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-26 19:11:59 - agent.OrchestratorAgent - WARNING -    ❌ Fragment MyDeFiApp_DB_001 échoué
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 4
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 19:11:59 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:12:00 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 19:12:00 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 19:12:00 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 2 | Bonus: 2
+2026-02-26 19:12:00 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 19:12:00 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 4 | Bonus: 0
+2026-02-26 19:12:01 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis agents/orchestrator/config.yaml
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/mydefiapp_20260226.json
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 📋 Planification: 7 fragments à exécuter
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_001 (solidity) - Token ERC20
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_001 validé
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment MyDeFiApp_BE_001 (python) - API FastAPI
+2026-02-26 19:14:45 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_BE_001 validé
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 1 | Bonus: 1
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment MyDeFiApp_FE_001 (typescript) - Interface React
+2026-02-26 19:14:46 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_FE_001 validé
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment MyDeFiApp_DB_001 (sql) - Schéma PostgreSQL
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DB_001 validé
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment MyDeFiApp_DO_001 (yaml) - Infrastructure Docker
+2026-02-26 19:14:47 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_BE_001
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_FE_001
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_DB_001
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DO_001 validé
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment MyDeFiApp_DOC_001 (markdown) - Documentation
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    🔗 Bonus dépendances: +10%
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_DOC_001 validé
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 2
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment MyDeFiApp_SC_002 (solidity) - Staking Pool
+2026-02-26 19:14:48 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO -    ⚠️ Dépendance manquante: MyDeFiApp_SC_001
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO -    ✅ Fragment MyDeFiApp_SC_002 validé
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 3 | Bonus: 0
+2026-02-26 19:14:49 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-000_report.json
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis agents/orchestrator/config.yaml
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:26:38 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis agents/orchestrator/config.yaml
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/sprint_all_agents_20260226_192904.json
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/sprint_all_agents_20260226_192904.json
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 📋 Planification: 11 fragments à exécuter
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_001 (solidity) - Token ERC20 Complet
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation
+2026-02-26 19:29:04 - agent.OrchestratorAgent - WARNING -    ❌ Fragment SC_001 échoué
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 4
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment BE_001 (python) - API FastAPI Complète
+2026-02-26 19:29:04 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:29:05 - agent.OrchestratorAgent - INFO -    ✅ Fragment BE_001 validé
+2026-02-26 19:29:05 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-26 19:29:05 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment FE_001 (typescript) - Interface Web3 Complète
+2026-02-26 19:29:05 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -    ✅ Fragment FE_001 validé
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 1
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment DB_001 (sql) - Schéma PostgreSQL Optimisé
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -    ✅ Fragment DB_001 validé
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment DO_001 (yaml) - Infrastructure Docker/K8s Complète
+2026-02-26 19:29:06 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment DO_001 validé
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment DOC_001 (markdown) - Documentation Technique Complète
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment DOC_001 validé
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 1
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO - 📦 [communication] Fragment COM_001 (python) - Système de Communication Inter-Agents
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    ✅ Fragment COM_001 validé
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO - 📦 [security] Fragment SEC_001 (python) - Tests de Sécurité Complets
+2026-02-26 19:29:07 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation
+2026-02-26 19:29:08 - agent.OrchestratorAgent - WARNING -    ❌ Fragment SEC_001 échoué
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -       📉 Taux: 85% | Itérations: 5
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO - 📦 [monitoring] Fragment MON_001 (yaml) - Système de Monitoring Complet
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -    ✅ Fragment MON_001 validé
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO - 📦 [learning] Fragment LRN_001 (python) - Analyse Prédictive
+2026-02-26 19:29:08 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:29:09 - agent.OrchestratorAgent - INFO -    ✅ Fragment LRN_001 validé
+2026-02-26 19:29:09 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 19:29:09 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_002 (solidity) - Staking Pool Complexe
+2026-02-26 19:29:09 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:29:10 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:29:10 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:29:10 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_002 validé
+2026-02-26 19:29:10 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 1 | Bonus: 0
+2026-02-26 19:29:10 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-ALL-AGENTS_report.json
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: agents/orchestrator/config.yaml)
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis agents/orchestrator/config.yaml
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/sprint_all_agents_20260226_193328.json
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/sprint_all_agents_20260226_193328.json
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - 📋 Planification: 11 fragments à exécuter
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_001 (solidity) - Token ERC20 Complet
+2026-02-26 19:33:28 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_001 validé
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment BE_001 (python) - API FastAPI Complète
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -    ✅ Fragment BE_001 validé
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -       📈 Taux: 90% | Itérations: 2 | Bonus: 1
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment FE_001 (typescript) - Interface Web3 Complète
+2026-02-26 19:33:29 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -    📋 Raisons: Problème de gas estimation, Compatibilité navigateur, Intégration WalletConnect
+2026-02-26 19:33:30 - agent.OrchestratorAgent - WARNING -    ❌ Fragment FE_001 échoué
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -       📉 Taux: 95% | Itérations: 3
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment DB_001 (sql) - Schéma PostgreSQL Optimisé
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -    ✅ Fragment DB_001 validé
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment DO_001 (yaml) - Infrastructure Docker/K8s Complète
+2026-02-26 19:33:30 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -    ✅ Fragment DO_001 validé
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 3 | Bonus: 0
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment DOC_001 (markdown) - Documentation Technique Complète
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -    ✅ Fragment DOC_001 validé
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 3 | Bonus: 1
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO - 📦 [communication] Fragment COM_001 (python) - Système de Communication Inter-Agents
+2026-02-26 19:33:31 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -    ✅ Fragment COM_001 validé
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO - 📦 [security] Fragment SEC_001 (python) - Tests de Sécurité Complets
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -    ✅ Fragment SEC_001 validé
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 1 | Bonus: 0
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO - 📦 [monitoring] Fragment MON_001 (yaml) - Système de Monitoring Complet
+2026-02-26 19:33:32 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -    ✅ Fragment MON_001 validé
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO - 📦 [learning] Fragment LRN_001 (python) - Analyse Prédictive
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -    ✅ Fragment LRN_001 validé
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_002 (solidity) - Staking Pool Complexe
+2026-02-26 19:33:33 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 19:33:34 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 19:33:34 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 19:33:34 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_002 validé
+2026-02-26 19:33:34 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 2 | Bonus: 0
+2026-02-26 19:33:34 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-ALL-AGENTS_report.json
+2026-02-26 21:35:34 - agent.OrchestratorAgent - INFO - Agent base_agent créé (config: )
+2026-02-26 21:35:34 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 21:35:34 - agent.OrchestratorAgent - WARNING - ⚠️ Fichier de configuration non trouvé
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/sprint_all_agents_20260226_213552.json
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - 📋 Chargement des spécifications: specs/projects/sprint_all_agents_20260226_213552.json
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - 📋 Planification: 11 fragments à exécuter
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_001 (solidity) - Token ERC20 Complet
+2026-02-26 21:35:52 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_001 validé
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 2 | Bonus: 0
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment BE_001 (python) - API FastAPI Complète
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-26 21:35:53 - agent.OrchestratorAgent - WARNING -    ❌ Fragment BE_001 échoué
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -       📉 Taux: 90% | Itérations: 4
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment FE_001 (typescript) - Interface Web3 Complète
+2026-02-26 21:35:53 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -    🎨 Bonus frontend appliqué: +10%
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -    ✅ Fragment FE_001 validé
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 1
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO - 📦 [database] Fragment DB_001 (sql) - Schéma PostgreSQL Optimisé
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -    ✅ Fragment DB_001 validé
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO - 📦 [devops] Fragment DO_001 (yaml) - Infrastructure Docker/K8s Complète
+2026-02-26 21:35:54 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -    📋 Raisons: 
+2026-02-26 21:35:55 - agent.OrchestratorAgent - WARNING -    ❌ Fragment DO_001 échoué
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -       📉 Taux: 85% | Itérations: 5
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO - 📦 [documentation] Fragment DOC_001 (markdown) - Documentation Technique Complète
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -    ✅ Fragment DOC_001 validé
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -       📈 Taux: 98% | Itérations: 1 | Bonus: 1
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO - 📦 [communication] Fragment COM_001 (python) - Système de Communication Inter-Agents
+2026-02-26 21:35:55 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 21:35:56 - agent.OrchestratorAgent - INFO -    ✅ Fragment COM_001 validé
+2026-02-26 21:35:56 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 1 | Bonus: 0
+2026-02-26 21:35:56 - agent.OrchestratorAgent - INFO - 📦 [security] Fragment SEC_001 (python) - Tests de Sécurité Complets
+2026-02-26 21:35:56 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -    ✅ Fragment SEC_001 validé
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO - 📦 [monitoring] Fragment MON_001 (yaml) - Système de Monitoring Complet
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 2
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -    ✅ Fragment MON_001 validé
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -       📈 Taux: 95% | Itérations: 3 | Bonus: 0
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO - 📦 [learning] Fragment LRN_001 (python) - Analyse Prédictive
+2026-02-26 21:35:57 - agent.OrchestratorAgent - INFO -    📊 Complexité: 3
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment LRN_001 validé
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 85% | Itérations: 2 | Bonus: 0
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_002 (solidity) - Staking Pool Complexe
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -    📊 Complexité: 4
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -    ⚙️ Application de règles spéciales pour StakingPool
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -    ⚠️ Malus complexité staking: -10%
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_002 validé
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO -       📈 Taux: 65% | Itérations: 4 | Bonus: 0
+2026-02-26 21:35:58 - agent.OrchestratorAgent - INFO - 💾 Rapport sauvegardé: reports\sprints\SPRINT-ALL-AGENTS_report.json

@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Sprint Dashboard - Chargement...</title>
+    <style>
+        /* ============================================================
+           STYLES COMPLETS
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-subtitle {
+            margin-top: 10px;
+            opacity: 0.9;
+            font-size: 16px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .sprint-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .btn-back {
+            background: white;
+            color: #f97316;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #f97316;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.1);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1e24;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* Bilan sprint - 4 colonnes épurées */
+        .sprint-summary {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .summary-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 20px;
+            border-top: 4px solid;
+        }
+
+        .card-green { border-color: #10b981; }
+        .card-yellow { border-color: #f59e0b; }
+        .card-blue { border-color: #3b82f6; }
+        .card-purple { border-color: #8b5cf6; }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .list-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .list-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .list-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Signalétique d'importance (sans fond violet) */
+        .priority-high {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .priority-medium {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        .priority-low {
+            display: inline-block;
+            background: #94a3b8;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 6px;
+            text-transform: uppercase;
+        }
+
+        /* Zone de filtres */
+        .filters-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .filters-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1e24;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-badge {
+            background: #f97316;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .filter-select {
+            padding: 8px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 13px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+
+        .btn-filter {
+            padding: 8px 16px;
+            background: #f97316;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-filter:hover {
+            background: #ea580c;
+        }
+
+        .btn-reset {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-reset:hover {
+            background: #f1f5f9;
+        }
+
+        /* Tableau des segments */
+        .segments-table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .segments-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .segments-table th {
+            text-align: left;
+            padding: 12px 10px;
+            background: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 12px;
+            border-bottom: 2px solid #e5e7eb;
+            cursor: pointer;
+        }
+
+        .th-content {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sort-icon {
+            font-size: 10px;
+            color: #94a3b8;
+        }
+
+        .segments-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        .segments-table tbody tr.segment-main {
+            cursor: pointer;
+        }
+
+        .segments-table tbody tr.segment-main:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .status-success { background: #d1fae5; color: #065f46; }
+        .status-failed { background: #fee2e2; color: #991b1b; }
+        .status-pending { background: #f1f5f9; color: #4b5563; }
+
+        .agent-tag {
+            background: #f3e8ff;
+            color: #6b21a8;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        .domain-tag {
+            background: #e0e7ff;
+            color: #2d3748;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+
+        /* Ligne de détail */
+        .segment-detail-row {
+            background: #f8fafc;
+        }
+
+        .segment-detail {
+            padding: 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .synthesis-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f97316;
+            margin-bottom: 15px;
+            grid-column: span 2;
+        }
+
+        .synthesis-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1e24;
+        }
+
+        .tech-specs {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .spec-item {
+            display: flex;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            width: 100px;
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .spec-value {
+            flex: 1;
+            color: #1a1e24;
+        }
+
+        .agent-trace {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .agent-trace h5 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trace-timeline {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .trace-timeline::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-size: 10px;
+        }
+
+        .trace-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* KPI synthétiques */
+        .kpi-section {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .kpi-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kpi-icon {
+            width: 40px;
+            height: 40px;
+            background: #fef3c7;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f97316;
+            font-size: 20px;
+        }
+
+        .kpi-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kpi-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1e24;
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .kpi-trend {
+            font-size: 11px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 50px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #666;
+        }
+        .error {
+            color: #991b1b;
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header dynamique -->
+        <div class="header">
+            <div>
+                <h1><span>🚀</span> <span id="sprint-name">Sprint Dashboard</span></h1>
+                <div class="header-subtitle" id="sprint-subtitle">
+                    <span class="sprint-badge" id="sprint-id">Chargement...</span>
+                    <span id="sprint-stats">0 segments</span>
+                    <span id="sprint-dates"></span>
+                </div>
+            </div>
+            <a href="../index.html" class="btn-back">← Portail</a>
+        </div>
+
+        <!-- Stats 4 bulles dynamiques -->
+        <div class="stats-grid" id="stats-container">
+            <div class="stat-card" onclick="SprintManager.filterByStatus('success')">
+                <div class="stat-value" id="stats-success">0</div>
+                <div class="stat-label">Segments validés</div>
+            </div>
+            <div class="stat-card" onclick="SprintManager.filterByStatus('failed')">
+                <div class="stat-value" id="stats-failed">0</div>
+                <div class="stat-label">Points d'attention</div>
+            </div>
+            <div class="stat-card" onclick="SprintManager.filterByStatus('pending')">
+                <div class="stat-value" id="stats-pending">0</div>
+                <div class="stat-label">À suivre</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stats-success-rate">0%</div>
+                <div class="stat-label">Taux de succès</div>
+            </div>
+        </div>
+
+        <!-- Bilan sprint - 4 colonnes épurées -->
+        <div class="sprint-summary">
+            <div class="summary-grid" id="summary-container">
+                <!-- Les 4 colonnes seront générées dynamiquement -->
+            </div>
+        </div>
+
+        <!-- Zone de filtres -->
+        <div class="filters-section">
+            <div class="filters-title">
+                <span>🔍</span> Filtres
+                <span class="filter-badge" id="result-count">0 résultats</span>
+            </div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Sprint</label>
+                    <select class="filter-select" id="filter-sprint">
+                        <option value="current" selected>Sprint en cours</option>
+                        <!-- Les options seront générées dynamiquement -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Domaine</label>
+                    <select class="filter-select" id="filter-domain">
+                        <option value="all">Tous</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Statut</label>
+                    <select class="filter-select" id="filter-status">
+                        <option value="all">Tous</option>
+                        <option value="success">✅ Validé</option>
+                        <option value="failed">⚠️ Point d'attention</option>
+                        <option value="pending">📋 À suivre</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Agent</label>
+                    <select class="filter-select" id="filter-agent">
+                        <option value="all">Tous</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Fonction</label>
+                    <select class="filter-select" id="filter-function">
+                        <option value="all">Toutes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="btn-filter" onclick="SprintManager.applyFilters()">Appliquer</button>
+                <button class="btn-reset" onclick="SprintManager.resetFilters()">Réinitialiser</button>
+            </div>
+        </div>
+
+        <!-- Tableau des segments dynamique -->
+        <div class="segments-table-container">
+            <table class="segments-table" id="segments-table">
+                <thead>
+                    <tr>
+                        <th onclick="SprintManager.sortTable(0)"><span class="th-content">ID <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(1)"><span class="th-content">Segment <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(2)"><span class="th-content">Domaine <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(3)"><span class="th-content">Classes/Fonctions <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(4)"><span class="th-content">Agents <span class="sort-icon">↕️</span></span></th>
+                        <th onclick="SprintManager.sortTable(5)"><span class="th-content">Statut <span class="sort-icon">↕️</span></span></th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Les lignes seront générées dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- KPI synthétiques dynamiques -->
+        <div class="kpi-section" id="kpi-container">
+            <!-- Les KPI seront générés dynamiquement -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span id="footer-text">Sprint Dashboard • </span>
+            <span id="footer-date"></span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================================
+        // GESTIONNAIRE DYNAMIQUE DU SPRINT
+        // ============================================================================
+
+        const SprintManager = {
+            // Données du sprint (à remplacer par un fetch vers votre API)
+            sprintData: {
+                id: "SPRINT-000",
+                name: "Sprint 0 - Initialisation",
+                startDate: "2026-02-22",
+                endDate: "2026-02-25",
+                segments: [
+                    {
+                        id: "SC_001",
+                        name: "Token ERC20",
+                        domain: "sc",
+                        domainLabel: "Smart Contract",
+                        functions: ["mint()", "burn()", "transfer()", "approve()"],
+                        agents: ["coder", "tester", "architect"],
+                        status: "success",
+                        synthesis: "Implémentation d'un token ERC20 complet avec fonctionnalités de mint et burn.",
+                        technical: {
+                            classe: "Token (Token.sol)",
+                            functions: ["mint(address,uint256)", "burn(uint256)", "transfer(address,uint256)", "approve(address,uint256)"],
+                            events: ["Transfer", "Approval", "Mint", "Burn"]
+                        },
+                        traces: [
+                            { agent: "architect", time: "09:05", action: "Conception", meta: "Pattern: OpenZeppelin • Durée: 25min" },
+                            { agent: "coder", time: "09:15", action: "Génération du code", meta: "Itérations: 3" },
+                            { agent: "coder", time: "09:45", action: "Optimisation gas", meta: "" },
+                            { agent: "tester", time: "10:05", action: "Tests unitaires", meta: "Tests: 24 • Couverture: 95%" }
+                        ]
+                    },
+                    {
+                        id: "SC_002",
+                        name: "Staking Pool",
+                        domain: "sc",
+                        domainLabel: "Smart Contract",
+                        functions: ["stake()", "withdraw()", "claim()"],
+                        agents: ["coder", "tester"],
+                        status: "failed",
+                        priority: "high",
+                        synthesis: "Pool de staking avec vulnérabilité de réentrance détectée.",
+                        technical: {
+                            classe: "StakingPool (Staking.sol)",
+                            functions: ["stake(uint256)", "withdraw(uint256)", "claim()"],
+                            vulnerability: "Reentrancy dans withdraw() à la ligne 42"
+                        },
+                        traces: [
+                            { agent: "coder", time: "10:55", action: "Implémentation", meta: "Itérations: 2" },
+                            { agent: "tester", time: "11:25", action: "Tests unitaires", meta: "OK" },
+                            { agent: "tester", time: "11:40", action: "Test reentrancy", meta: "ÉCHEC - Vulnérabilité détectée" }
+                        ]
+                    },
+                    {
+                        id: "BE_001",
+                        name: "API FastAPI",
+                        domain: "be",
+                        domainLabel: "Backend",
+                        functions: ["get_balance()", "post_transfer()", "stake()", "rewards()"],
+                        agents: ["coder", "tester"],
+                        status: "success",
+                        synthesis: "API REST complète avec 4 endpoints.",
+                        technical: {
+                            fichier: "api.py",
+                            endpoints: ["/balance", "/transfer", "/stake", "/rewards"]
+                        },
+                        traces: [
+                            { agent: "coder", time: "10:30", action: "Développement API", meta: "Framework: FastAPI" },
+                            { agent: "tester", time: "11:15", action: "Tests intégration", meta: "Endpoints validés" }
+                        ]
+                    },
+                    {
+                        id: "FE_001",
+                        name: "Interface React",
+                        domain: "fe",
+                        domainLabel: "Frontend",
+                        functions: ["Dashboard", "Wallet connect", "Staking UI"],
+                        agents: ["coder"],
+                        status: "pending",
+                        synthesis: "Interface utilisateur à développer.",
+                        technical: {
+                            pages: ["dashboard", "staking", "admin"],
+                            libs: ["ethers.js", "web3-react"]
+                        },
+                        traces: []
+                    },
+                    {
+                        id: "DB_001",
+                        name: "Schéma PostgreSQL",
+                        domain: "db",
+                        domainLabel: "Database",
+                        functions: ["users", "transactions", "staking_positions"],
+                        agents: ["architect"],
+                        status: "success",
+                        synthesis: "Modélisation de la base de données.",
+                        technical: {
+                            tables: ["users", "transactions", "staking_positions"],
+                            relations: "1-n entre users et transactions"
+                        },
+                        traces: [
+                            { agent: "architect", time: "08:30", action: "Conception schéma", meta: "3 tables" }
+                        ]
+                    }
+                ],
+                summary: {
+                    realized: [
+                        { id: "SC_001", name: "Token ERC20", desc: "Mint, burn, transfer" },
+                        { id: "BE_001", name: "API FastAPI", desc: "4 endpoints REST" },
+                        { id: "DB_001", name: "Schéma PostgreSQL", desc: "3 tables" }
+                    ],
+                    attention: [
+                        { id: "SC_002", name: "Staking Pool", desc: "Reentrancy dans withdraw()", priority: "high" }
+                    ],
+                    following: [
+                        { id: "FE_001", name: "Interface React", desc: "Sprint+1" }
+                    ],
+                    recommendations: [
+                        { title: "Corriger SC_002", desc: "Ajouter ReentrancyGuard", priority: "high" },
+                        { title: "Optimiser endpoints", desc: "Cache Redis", priority: "medium" },
+                        { title: "Compléter documentation", desc: "Guide utilisateur", priority: "low" }
+                    ]
+                },
+                kpis: [
+                    { icon: "📊", value: "85%", label: "Succès", trend: "+12%" },
+                    { icon: "🧪", value: "94%", label: "Couverture tests", trend: "+5%" },
+                    { icon: "⏱️", value: "2.4", label: "Itérations moy.", trend: "-0.3" },
+                    { icon: "📦", value: "8.5h", label: "Temps moyen", trend: "" },
+                    { icon: "⚠️", value: "3", label: "Blocages", trend: "+1" },
+                    { icon: "💡", value: "12", label: "Améliorations", trend: "+4" }
+                ]
+            },
+
+            // État interne
+            currentSprint: "SPRINT-000",
+            sortColumn: 0,
+            sortDirection: {},
+
+            // Initialisation
+            async init() {
+                console.log('🚀 Initialisation du Sprint Dashboard...');
+                try {
+                    // Ici, vous pourrez plus tard charger les données depuis une API
+                    // const response = await fetch('/api/sprints/current');
+                    // this.sprintData = await response.json();
+                    
+                    this.render();
+                    this.populateFilters();
+                } catch (error) {
+                    console.error('❌ Erreur:', error);
+                    document.getElementById('table-body').innerHTML = 
+                        `<tr><td colspan="6" class="error">❌ Erreur de chargement: ${error.message}</td></tr>`;
+                }
+            },
+
+            // Rendu complet
+            render() {
+                this.renderHeader();
+                this.renderStats();
+                this.renderSummary();
+                this.renderSegments();
+                this.renderKPIs();
+                this.updateFiltersCount();
+            },
+
+            renderHeader() {
+                document.getElementById('sprint-name').textContent = this.sprintData.name || 'Sprint Dashboard';
+                document.getElementById('sprint-id').textContent = this.sprintData.id;
+                document.getElementById('sprint-stats').textContent = `${this.sprintData.segments.length} segments`;
+                
+                if (this.sprintData.startDate && this.sprintData.endDate) {
+                    const start = new Date(this.sprintData.startDate).toLocaleDateString('fr-FR');
+                    const end = new Date(this.sprintData.endDate).toLocaleDateString('fr-FR');
+                    document.getElementById('sprint-dates').textContent = `${start} - ${end}`;
+                }
+                
+                document.getElementById('footer-text').textContent = `Sprint Dashboard • ${this.sprintData.id} • `;
+                document.getElementById('footer-date').textContent = `Généré le ${new Date().toLocaleDateString('fr-FR')}`;
+            },
+
+            renderStats() {
+                const segments = this.sprintData.segments;
+                const success = segments.filter(s => s.status === 'success').length;
+                const failed = segments.filter(s => s.status === 'failed').length;
+                const pending = segments.filter(s => s.status === 'pending').length;
+                const total = segments.length;
+                const successRate = total > 0 ? Math.round((success / total) * 100) : 0;
+                
+                document.getElementById('stats-success').textContent = success;
+                document.getElementById('stats-failed').textContent = failed;
+                document.getElementById('stats-pending').textContent = pending;
+                document.getElementById('stats-success-rate').textContent = successRate + '%';
+            },
+
+            renderSummary() {
+                const summary = this.sprintData.summary;
+                const container = document.getElementById('summary-container');
+                
+                const cards = [
+                    { 
+                        title: '✅ Réalisé', 
+                        items: summary.realized, 
+                        color: 'green'
+                    },
+                    { 
+                        title: '⚠️ Points d\'attention', 
+                        items: summary.attention, 
+                        color: 'yellow'
+                    },
+                    { 
+                        title: '📋 À suivre', 
+                        items: summary.following, 
+                        color: 'blue'
+                    },
+                    { 
+                        title: '💡 Recommandations', 
+                        items: summary.recommendations, 
+                        color: 'purple'
+                    }
+                ];
+                
+                container.innerHTML = cards.map(card => {
+                    return `
+                        <div class="summary-card card-${card.color}">
+                            <div class="card-title">
+                                ${card.title}
+                            </div>
+                            <ul class="card-list">
+                                ${card.items.map(item => {
+                                    let priorityBadge = '';
+                                    if (item.priority) {
+                                        if (item.priority === 'high') {
+                                            priorityBadge = '<span class="priority-high">Haute</span>';
+                                        } else if (item.priority === 'medium') {
+                                            priorityBadge = '<span class="priority-medium">Moyenne</span>';
+                                        } else if (item.priority === 'low') {
+                                            priorityBadge = '<span class="priority-low">Basse</span>';
+                                        }
+                                    }
+                                    
+                                    return `
+                                        <li>
+                                            <div class="list-title">
+                                                ${item.name || item.title}
+                                                ${item.id ? `<span class="list-badge">${item.id}</span>` : ''}
+                                                ${priorityBadge}
+                                            </div>
+                                            <div class="list-desc">${item.desc}</div>
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            renderSegments() {
+                const tbody = document.getElementById('table-body');
+                
+                tbody.innerHTML = this.sprintData.segments.map((segment, index) => {
+                    const detailId = `detail-${segment.id.toLowerCase()}`;
+                    
+                    // Ligne principale
+                    const mainRow = `
+                        <tr class="segment-main" onclick="SprintManager.toggleDetail('${detailId}')"
+                            data-sprint="${this.sprintData.id}"
+                            data-domain="${segment.domain}"
+                            data-status="${segment.status}"
+                            data-agent="${segment.agents.join(',')}">
+                            <td><strong>${segment.id}</strong></td>
+                            <td>${segment.name}</td>
+                            <td><span class="domain-tag">${segment.domainLabel}</span></td>
+                            <td>${segment.functions.join(', ')}</td>
+                            <td>${segment.agents.map(a => `<span class="agent-tag">${this.getAgentIcon(a)} ${a}</span>`).join(' ')}</td>
+                            <td><span class="status-badge status-${segment.status}">${this.getStatusLabel(segment.status)}</span></td>
+                        </tr>
+                    `;
+                    
+                    // Ligne de détail
+                    const detailRow = `
+                        <tr id="${detailId}" class="segment-detail-row" style="display: none;">
+                            <td colspan="6">
+                                <div class="segment-detail">
+                                    <div class="synthesis-card">
+                                        <div class="synthesis-title">📋 ${segment.name} (${segment.id})</div>
+                                        <div class="synthesis-text">${segment.synthesis}</div>
+                                        <div class="tech-specs">
+                                            ${Object.entries(segment.technical).map(([key, value]) => `
+                                                <div class="spec-item">
+                                                    <span class="spec-label">${key}</span>
+                                                    <span class="spec-value">${Array.isArray(value) ? value.join(', ') : value}</span>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                    ${segment.traces.length > 0 ? `
+                                        <div class="detail-grid">
+                                            ${this.groupTracesByAgent(segment.traces).map(group => `
+                                                <div class="agent-trace">
+                                                    <h5><span>${this.getAgentIcon(group.agent)}</span> ${this.getAgentName(group.agent)}</h5>
+                                                    ${group.traces.map(trace => `
+                                                        <div class="trace-timeline">${trace.time} - ${trace.action}</div>
+                                                    `).join('')}
+                                                    <div class="trace-meta">${group.meta}</div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    return mainRow + detailRow;
+                }).join('');
+            },
+
+            renderKPIs() {
+                const container = document.getElementById('kpi-container');
+                
+                container.innerHTML = this.sprintData.kpis.map(kpi => `
+                    <div class="kpi-item">
+                        <div class="kpi-icon">${kpi.icon}</div>
+                        <div class="kpi-content">
+                            <div class="kpi-value">${kpi.value}</div>
+                            <div class="kpi-label">${kpi.label}</div>
+                            ${kpi.trend ? `<div class="kpi-trend">${kpi.trend}</div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            populateFilters() {
+                // Domaines uniques
+                const domains = [...new Set(this.sprintData.segments.map(s => s.domain))];
+                const domainSelect = document.getElementById('filter-domain');
+                domains.forEach(domain => {
+                    const count = this.sprintData.segments.filter(s => s.domain === domain).length;
+                    const label = this.sprintData.segments.find(s => s.domain === domain)?.domainLabel || domain;
+                    domainSelect.innerHTML += `<option value="${domain}">${label} (${count})</option>`;
+                });
+
+                // Agents uniques
+                const allAgents = this.sprintData.segments.flatMap(s => s.agents);
+                const agents = [...new Set(allAgents)];
+                const agentSelect = document.getElementById('filter-agent');
+                agents.forEach(agent => {
+                    const count = this.sprintData.segments.filter(s => s.agents.includes(agent)).length;
+                    agentSelect.innerHTML += `<option value="${agent}">${this.getAgentName(agent)} (${count})</option>`;
+                });
+
+                // Fonctions (pour l'exemple, on garde statique)
+            },
+
+            getAgentIcon(agent) {
+                const icons = {
+                    'architect': '🏗️',
+                    'coder': '👨‍💻',
+                    'tester': '🧪',
+                    'documenter': '📚'
+                };
+                return icons[agent] || '🤖';
+            },
+
+            getAgentName(agent) {
+                const names = {
+                    'architect': 'Architect',
+                    'coder': 'Coder',
+                    'tester': 'Tester',
+                    'documenter': 'Documenter'
+                };
+                return names[agent] || agent;
+            },
+
+            getStatusLabel(status) {
+                const labels = {
+                    'success': '✅ Validé',
+                    'failed': '⚠️ Point d\'attention',
+                    'pending': '📋 À suivre'
+                };
+                return labels[status] || status;
+            },
+
+            groupTracesByAgent(traces) {
+                const groups = {};
+                traces.forEach(trace => {
+                    if (!groups[trace.agent]) {
+                        groups[trace.agent] = { agent: trace.agent, traces: [], meta: '' };
+                    }
+                    groups[trace.agent].traces.push(trace);
+                    
+                    // Concaténer les meta (pour simplifier)
+                    if (trace.meta) {
+                        groups[trace.agent].meta += (groups[trace.agent].meta ? ' • ' : '') + trace.meta;
+                    }
+                });
+                return Object.values(groups);
+            },
+
+            toggleDetail(detailId) {
+                const detailRow = document.getElementById(detailId);
+                if (detailRow) {
+                    detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
+                }
+            },
+
+            applyFilters() {
+                const selectedDomain = document.getElementById('filter-domain').value;
+                const selectedStatus = document.getElementById('filter-status').value;
+                const selectedAgent = document.getElementById('filter-agent').value;
+                
+                const mainRows = document.querySelectorAll('.segment-main');
+                let visibleCount = 0;
+                
+                mainRows.forEach(row => {
+                    let visible = true;
+                    
+                    // Filtre domaine
+                    if (selectedDomain !== 'all' && row.dataset.domain !== selectedDomain) {
+                        visible = false;
+                    }
+                    
+                    // Filtre statut
+                    if (visible && selectedStatus !== 'all' && row.dataset.status !== selectedStatus) {
+                        visible = false;
+                    }
+                    
+                    // Filtre agent
+                    if (visible && selectedAgent !== 'all') {
+                        const rowAgents = row.dataset.agent?.split(',') || [];
+                        if (!rowAgents.includes(selectedAgent)) {
+                            visible = false;
+                        }
+                    }
+                    
+                    row.style.display = visible ? '' : 'none';
+                    
+                    // Masquer également la ligne de détail associée
+                    const onclickAttr = row.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const match = onclickAttr.match(/'([^']+)'/);
+                        if (match) {
+                            const detailRow = document.getElementById(match[1]);
+                            if (detailRow) {
+                                detailRow.style.display = 'none';
+                            }
+                        }
+                    }
+                    
+                    if (visible) visibleCount++;
+                });
+                
+                this.updateFiltersCount(visibleCount);
+            },
+
+            resetFilters() {
+                document.getElementById('filter-sprint').value = 'current';
+                document.getElementById('filter-domain').value = 'all';
+                document.getElementById('filter-status').value = 'all';
+                document.getElementById('filter-agent').value = 'all';
+                document.getElementById('filter-function').value = 'all';
+                this.applyFilters();
+            },
+
+            filterByStatus(status) {
+                document.getElementById('filter-status').value = status;
+                this.applyFilters();
+            },
+
+            updateFiltersCount(count) {
+                const total = this.sprintData.segments.length;
+                document.getElementById('result-count').textContent = 
+                    (count !== undefined ? count : total) + ' résultats';
+            },
+
+            sortTable(columnIndex) {
+                const tbody = document.getElementById('table-body');
+                const rows = Array.from(tbody.querySelectorAll('.segment-main'));
+                
+                // Inverser la direction du tri
+                this.sortDirection[columnIndex] = !this.sortDirection[columnIndex];
+                
+                rows.sort((a, b) => {
+                    const aVal = a.cells[columnIndex].textContent.trim();
+                    const bVal = b.cells[columnIndex].textContent.trim();
+                    
+                    if (this.sortDirection[columnIndex]) {
+                        return aVal.localeCompare(bVal);
+                    } else {
+                        return bVal.localeCompare(aVal);
+                    }
+                });
+                
+                // Réorganiser le tableau
+                rows.forEach(row => {
+                    tbody.appendChild(row);
+                    const onclickAttr = row.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const match = onclickAttr.match(/'([^']+)'/);
+                        if (match) {
+                            const detailRow = document.getElementById(match[1]);
+                            if (detailRow) tbody.appendChild(detailRow);
+                        }
+                    }
+                });
+            }
+        };
+
+        // Initialisation au chargement
+        document.addEventListener('DOMContentLoaded', () => SprintManager.init());
+    </script>
+</body>
+</html>

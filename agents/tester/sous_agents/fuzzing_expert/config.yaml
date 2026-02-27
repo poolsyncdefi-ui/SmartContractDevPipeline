@@ -1,18 +1,16 @@
-# Configuration du sous-agent fuzzing_expert
 sub_agent:
-  id: "fuzzing_expert_01"
-  name: "Fuzzing"
-  parent: "tester"
-  specialization: "Fuzzing"
-  version: "1.0.0"
-
+  id: fuzzing_expert_01
+  name: Fuzzing
+  parent: tester
+  specialization: Fuzzing
+  version: 1.0.0
 capabilities:
-  - "specialized_task_execution"
-  - "domain_expertise"
-
+- name: specialized_task_execution
+  description: Capacité specialized task execution
+- name: domain_expertise
+  description: Capacité domain expertise
 parameters:
   timeout_seconds: 60
   max_retries: 2
-
 logging:
-  level: "INFO"
+  level: INFO

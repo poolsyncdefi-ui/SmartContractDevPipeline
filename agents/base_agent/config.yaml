@@ -21,6 +21,66 @@ agent:
   mandatory: true
   singleton: true
   
+  # === RÈGLES GLOBALES (héritées par tous les agents) ===
+  global_constraints:
+    # Limites générales
+    max_response_length: 4000
+    max_tokens: 2000
+    timeout_seconds: 30
+    
+    # Patterns interdits (hallucinations typiques)
+    forbidden_patterns:
+      - "je ne suis pas sûr mais"
+      - "probablement"
+      - "selon mes sources"  # Sans citation
+      - "d'après mes connaissances"  # Trop vague
+      - "je pense que"
+      - "il me semble que"
+    
+    # Éléments requis dans toute réponse
+    required_elements:
+      - name: "confidence_score"
+        description: "Score de confiance (0-1)"
+      - name: "uncertainties"
+        description: "Liste des points d'incertitude"
+      - name: "reasoning_steps"
+        description: "Étapes du raisonnement"
+      - name: "sources"
+        description: "Sources ou références"
+    
+    # Validation automatique
+    auto_validation:
+      check_consistency: true
+      detect_contradictions: true
+      min_confidence: 0.7
+    
+    # Comportement en cas de doute
+    uncertainty_handling:
+      threshold: 0.7
+      fallback_action: "signal_human"  # ou "regenerate", "simplify"
+      markers:
+        - "⚠️ Incertitude détectée"
+        - "🔍 À vérifier"
+    
+    # Validation des faits
+    fact_checking:
+      require_source_citation: true
+      verify_with_second_ai: true
+      confidence_decay_without_source: 0.3  # Pénalité si pas de source
+    
+    # Marqueurs d incertitude
+    uncertainty_markers:
+      - "⚠️ Incertitude: [raison]"
+      - "🔍 À vérifier: [point]"
+      - "❓ Donnée manquante: [champ]"
+      
+    # Validation de l orchestrateur
+    orchestrator_integration:
+      supervised_by: "orchestrator"
+      cross_validation_required: true
+      quality_reports: true
+      escalation_threshold: 0.5  # En dessous, l'orchestrateur est notifié
+  
   # === HÉRITAGE ET DÉPENDANCES ===
   extends: null
   parent: null
@@ -41,6 +101,7 @@ agent:
     - "learning"
     - "registry"
     - "workflow"
+    - "orchestrator"
   
   # === CAPACITÉS FONDAMENTALES ===
   capabilities:

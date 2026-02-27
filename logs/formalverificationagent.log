@@ -236,3 +236,12 @@ TypeError: object dict can't be used in 'await' expression
 2026-02-13 18:31:40 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
 2026-02-13 18:39:11 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: )
 2026-02-13 18:39:11 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-26 19:26:36 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-26 19:26:36 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: agents/formal_verification/config.yaml)
+2026-02-26 19:26:36 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-26 19:29:03 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-26 19:29:03 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: agents/formal_verification/config.yaml)
+2026-02-26 19:29:03 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: agents/formal_verification/config.yaml)
+2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé

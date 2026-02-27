@@ -1,0 +1,52 @@
+# ============================================================================
+# agents/database/config.yaml
+# Configuration de l'Agent Database - Version 1.0.0
+# Conception, optimisation et gestion de bases de données
+# ============================================================================
+
+agent:
+  name: "DatabaseAgent"
+  class_name: "DatabaseAgent"
+  module_path: "agents.database.agent"
+  display_name: "🗄️ Agent Base de Données"
+  version: "1.0.0"
+  description: |-
+    Agent spécialisé dans la conception, l'optimisation et la gestion
+    de bases de données relationnelles et NoSQL. Expertise en modélisation,
+    requêtes, indexation, migration et performance.
+  purpose: "Concevoir des schémas de base de données optimisés et performants"
+
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "design_relational_schema"
+      description: "Concevoir des schémas relationnels normalisés"
+      confidence_required: 0.9
+    - name: "design_nosql_schema"
+      description: "Concevoir des schémas NoSQL (MongoDB, Cassandra)"
+      confidence_required: 0.8
+    - name: "optimize_queries"
+      description: "Optimiser les requêtes SQL"
+      confidence_required: 0.85
+    - name: "create_indexes"
+      description: "Créer des index optimaux"
+      confidence_required: 0.85
+    - name: "estimate_gas_for_db_operations"
+      description: "Estimer le coût des opérations DB (pour blockchain)"
+      confidence_required: 0.8
+    - name: "design_migrations"
+      description: "Concevoir des stratégies de migration"
+      confidence_required: 0.85
+    - name: "optimize_storage"
+      description: "Optimiser le stockage des données"
+      confidence_required: 0.8
+
+  # === GESTION DE L'ESTIMATION GAS ===
+  gas_estimation:
+    enabled: true
+    accuracy_target: 0.9
+    factors:
+      - "row_count"
+      - "index_usage"
+      - "join_complexity"
+      - "data_size"
+    fallback_strategy: "over_estimate_by_20_percent"

@@ -122,3 +122,155 @@
 2026-02-13 18:31:40 - agent.TesterAgent - INFO - Agent tester créé (config: )
 2026-02-13 18:39:11 - agent.TesterAgent - INFO - Agent base_agent créé (config: )
 2026-02-13 18:39:11 - agent.TesterAgent - INFO - Agent tester créé (config: )
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: agents/tester/config.yaml)
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Agent tester créé (config: agents/tester/config.yaml)
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 19:26:38 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: agents/tester/config.yaml)
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Agent tester créé (config: agents/tester/config.yaml)
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 19:29:04 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: agents/tester/config.yaml)
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Agent tester créé (config: agents/tester/config.yaml)
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 19:33:28 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 20:05:29 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:05:29 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:05:29 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:05:29 - agent.TesterAgent - ERROR - Erreur lors de l'initialisation: name 'AgentStatus' is not defined
+2026-02-26 20:44:43 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:44:43 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:44:43 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:44:43 - agent.TesterAgent - ERROR - Erreur lors de l'initialisation: name 'AgentStatus' is not defined
+2026-02-26 20:46:11 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:46:11 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:46:11 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:46:11 - agent.TesterAgent - ERROR - Erreur lors de l'initialisation: name 'AgentStatus' is not defined
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 20:48:48 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 20:50:32 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 20:54:12 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 21:02:19 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 21:06:40 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 21:30:34 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent tester initialisé avec succès

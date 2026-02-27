@@ -1,18 +1,16 @@
-# Configuration du sous-agent web3_integration
 sub_agent:
-  id: "web3_integration_01"
-  name: "Web3 Integration"
-  parent: "frontend_web3"
-  specialization: "Web3 Integration"
-  version: "1.0.0"
-
+  id: web3_integration_01
+  name: Web3 Integration
+  parent: frontend_web3
+  specialization: Web3 Integration
+  version: 1.0.0
 capabilities:
-  - "specialized_task_execution"
-  - "domain_expertise"
-
+- name: specialized_task_execution
+  description: Capacité specialized task execution
+- name: domain_expertise
+  description: Capacité domain expertise
 parameters:
   timeout_seconds: 60
   max_retries: 2
-
 logging:
-  level: "INFO"
+  level: INFO

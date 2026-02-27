@@ -260,24 +260,24 @@ agents:
     purpose: "Apprentissage automatique pour optimisation et prédictions"
     mandatory: false
     
-  workflow:
-    display_name: "Gestionnaire de Workflow"
-    specialization: "workflow_management"
-    config_path: "agents/workflow/config.yaml"
+  orchestrator:
+    display_name: "Orchestrateur de Workflows"
+    specialization: "workflow_orchestration"
+    config_path: "agents/orchestrator/config.yaml"  # Chemin correct vers la racine
     agent_type: "concrete"
     enabled: true
     instantiate: true
     dependencies: ["base_agent"]
-    initialization_order: 140
+    initialization_order: 15
     parent: "base_agent"
-    purpose: "Orchestre les workflows complexes entre agents"
-    mandatory: false
+    purpose: "Orchestration globale des workflows et sprints du pipeline"
+    mandatory: true
+    version: "2.0.0"
 
 # ----------------------------------------------------------------------------
 # MAPPING DES TÂCHES VERS LES AGENTS
 # ----------------------------------------------------------------------------
 task_mapping:
-  # === TÂCHES D'ARCHITECTURE ===
   design_system_architecture:
     primary_agent: "architect"
     fallback_agent: "smart_contract"
@@ -290,7 +290,6 @@ task_mapping:
     timeout: 300
     required_capabilities: ["PATTERN_RECOGNITION", "CONTRACT_PATTERNS"]
     
-  # === TÂCHES DE DÉVELOPPEMENT ===
   generate_contract_code:
     primary_agent: "coder"
     fallback_agent: "smart_contract"
@@ -308,7 +307,6 @@ task_mapping:
     timeout: 600
     required_capabilities: ["GAS_OPTIMIZATION", "PERFORMANCE_ANALYSIS"]
     
-  # === TÂCHES DE TEST ===
   write_unit_tests:
     primary_agent: "tester"
     secondary_agents: ["coder"]
@@ -331,7 +329,6 @@ task_mapping:
     timeout: 1800
     required_capabilities: ["FUZZING", "SIMULATION"]
     
-  # === TÂCHES DE SUPPORT ===
   generate_documentation:
     primary_agent: "documenter"
     secondary_agents: ["coder", "smart_contract"]
@@ -343,7 +340,6 @@ task_mapping:
     timeout: 600
     required_capabilities: ["REACT", "WEB3_JS", "UI_UX_DESIGN"]
     
-  # === TÂCHES SYSTÈME ===
   manage_agent_lifecycle:
     primary_agent: "registry"
     timeout: 60
@@ -359,7 +355,6 @@ task_mapping:
     timeout: 30
     required_capabilities: ["METRICS_COLLECTION", "ALERTING"]
     
-  # === TÂCHES COMPLEXES (multi-agents) ===
   full_contract_development:
     agent_chain: ["architect", "coder", "smart_contract", "tester"]
     orchestrator: "workflow"
@@ -376,7 +371,6 @@ task_mapping:
 # HIÉRARCHIE ET DÉPENDANCES
 # ----------------------------------------------------------------------------
 dependencies:
-  # === HIÉRARCHIE DES AGENTS ===
   hierarchy:
     root: "base_agent"
     layers:
@@ -409,7 +403,6 @@ dependencies:
         description: "Agents d'infrastructure"
         depends_on: ["registry"]
   
-  # === ORDRE D'INITIALISATION ===
   initialization_order:
     phase_1:
       agents: ["base_agent"]
@@ -458,39 +451,41 @@ dependencies:
       required: false
       depends_on: ["phase_2"]
   
-  # === VALIDATION DES DÉPENDANCES ===
   validation:
     check_circular_deps: true
     validate_on_startup: true
     auto_resolve_deps: true
-    missing_deps_action: "warn"  # warn, error, ignore
+    missing_deps_action: "warn"
     
-  # === GROUPE D'AGENTS ===
   agent_groups:
     core_development:
-      - "architect"
-      - "coder"
-      - "smart_contract"
-      - "tester"
+      agents:
+        - "architect"
+        - "coder"
+        - "smart_contract"
+        - "tester"
       description: "Pipeline de développement principal"
       
     security_suite:
-      - "tester"
-      - "formal_verification"
-      - "fuzzing_simulation"
+      agents:
+        - "tester"
+        - "formal_verification"
+        - "fuzzing_simulation"
       description: "Suite complète de sécurité"
       
     user_experience:
-      - "documenter"
-      - "frontend_web3"
-      - "communication"
+      agents:
+        - "documenter"
+        - "frontend_web3"
+        - "communication"
       description: "Expérience utilisateur et documentation"
       
     infrastructure:
-      - "registry"
-      - "storage"
-      - "monitoring"
-      - "workflow"
+      agents:
+        - "registry"
+        - "storage"
+        - "monitoring"
+        - "workflow"
       description: "Infrastructure système"
 
 # ----------------------------------------------------------------------------
@@ -505,7 +500,7 @@ environments:
     
     agents:
       enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", "registry"]
-      disabled: ["learning"]  # Trop lourd en dev
+      disabled: ["learning"]
     
     ollama:
       models: ["llama2:7b", "codellama:7b"]
@@ -530,8 +525,7 @@ environments:
     enabled: false
     
     agents:
-      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", 
-                "formal_verification", "registry", "monitoring"]
+      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", "formal_verification", "registry", "monitoring"]
       
     ollama:
       models: ["llama2:13b", "codellama:13b"]
@@ -555,10 +549,8 @@ environments:
     enabled: false
     
     agents:
-      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester",
-                "formal_verification", "fuzzing_simulation", "registry", 
-                "monitoring", "workflow"]
-      disabled: ["learning"]  # Risques de stabilité
+      enabled: ["base_agent", "architect", "coder", "smart_contract", "tester", "formal_verification", "fuzzing_simulation", "registry", "monitoring", "workflow"]
+      disabled: ["learning"]
       
     ollama:
       models: ["llama2:13b", "codellama:13b", "mistral:7b"]
@@ -601,15 +593,14 @@ environments:
 # SÉCURITÉ ET SECRETS
 # ----------------------------------------------------------------------------
 security:
-  # === AUTHENTIFICATION ===
   authentication:
-    enabled: false  # À activer en production
+    enabled: false
     provider: "jwt"
     
     jwt:
       secret_key: "${JWT_SECRET_KEY}"
       algorithm: "HS256"
-      token_expire_minutes: 1440  # 24 heures
+      token_expire_minutes: 1440
       refresh_token_expire_days: 7
       
     api_keys:
@@ -617,7 +608,6 @@ security:
       rotation_days: 90
       max_keys_per_user: 3
       
-  # === CHIFFREMENT ===
   encryption:
     enabled: true
     
@@ -634,11 +624,10 @@ security:
       encrypt_configs: true
       
     in_transit:
-      require_tls: false  # True en production
+      require_tls: false
       tls_version: "TLSv1.2"
       cipher_suites: ["ECDHE-RSA-AES256-GCM-SHA384"]
       
-  # === GESTION DES SECRETS ===
   secrets:
     management: "environment"
     
@@ -665,7 +654,6 @@ security:
       rotation_interval_days: 30
       notify_before_days: 7
       
-  # === CONTRÔLES D'ACCÈS ===
   access_control:
     rbac_enabled: true
     
@@ -691,7 +679,6 @@ security:
       separation_of_duties: true
       audit_all_changes: true
       
-  # === AUDIT ET CONFORMITÉ ===
   audit:
     enabled: true
     
@@ -705,7 +692,6 @@ security:
       data_minimization: true
       right_to_be_forgotten: true
       
-  # === RÉSEAU ET PARE-FEU ===
   network:
     firewall:
       enabled: true
@@ -713,11 +699,9 @@ security:
         - action: "allow"
           source: "127.0.0.1"
           port: "8000"
-          
         - action: "allow"
           source: "127.0.0.1"
-          port: "11434"  # Ollama
-          
+          port: "11434"
         - action: "deny"
           source: "0.0.0.0/0"
           port: "*"
@@ -728,20 +712,17 @@ security:
       burst_limit: 20
       
     intrusion_detection:
-      enabled: false  # À activer en production
-      alert_on_suspicious: true
+      enabled: false
 
 # ----------------------------------------------------------------------------
 # VERSIONS ET COMPATIBILITÉ
 # ----------------------------------------------------------------------------
 versions:
-  # === VERSIONS DU SYSTÈME ===
   system:
     pipeline: "2.2.0"
     api: "1.0.0"
     config_schema: "1.2.0"
     
-  # === VERSIONS DES AGENTS ===
   agents:
     base_agent:
       min_version: "1.0.0"
@@ -776,10 +757,9 @@ versions:
       current: "1.1.0"
       depends_on_base: ">=1.0.0"
   
-  # === COMPATIBILITÉ ===
   compatibility:
     check_on_startup: true
-    enforcement_level: "strict"  # strict, warning, none
+    enforcement_level: "strict"
     
     backward_compatibility:
       agents: true
@@ -790,7 +770,6 @@ versions:
       notice_period_days: 90
       migration_guide_required: true
       
-  # === MISE À JOUR ===
   updates:
     auto_check: true
     check_interval_hours: 24
@@ -799,11 +778,9 @@ versions:
       stable:
         url: "https://updates.poolsync.io/stable"
         recommended: true
-        
       beta:
         url: "https://updates.poolsync.io/beta"
         recommended: false
-        
       nightly:
         url: "https://updates.poolsync.io/nightly"
         recommended: false
@@ -814,7 +791,6 @@ versions:
       allow_patch_upgrades: true
       require_approval: true
       
-  # === HISTORIQUE DES VERSIONS ===
   history:
     keep_versions: 5
     auto_cleanup: true
@@ -823,53 +799,3 @@ versions:
       enabled: true
       location: "scripts/migrations/"
       auto_apply: false
-
-# ----------------------------------------------------------------------------
-# SERVICES EXTERNES (inchangé mais inclus pour complétude)
-# ----------------------------------------------------------------------------
-database:
-  type: "sqlite"
-  path: "data/agents.db"
-  # ... [reste identique à la version précédente]
-
-ollama:
-  enabled: true
-  base_url: "http://localhost:11434"
-  # ... [reste identique à la version précédente]
-
-blockchain:
-  networks:
-    development:
-      name: "localhost"
-      chain_id: 1337
-      # ... [reste identique à la version précédente]
-
-# ----------------------------------------------------------------------------
-# PATHS & DIRECTORIES (inchangé)
-# ----------------------------------------------------------------------------
-paths:
-  root: "D:/Web3Projects/SmartContractDevPipeline"
-  # ... [reste identique à la version précédente]
-
-# ----------------------------------------------------------------------------
-# EXECUTION PIPELINE (inchangé)
-# ----------------------------------------------------------------------------
-pipeline:
-  stages:
-    - name: "architecture"
-      agent: "architect"
-      # ... [reste identique à la version précédente]
-
-# ----------------------------------------------------------------------------
-# MONITORING & TELEMETRY (inchangé)
-# ----------------------------------------------------------------------------
-monitoring:
-  enabled: true
-  # ... [reste identique à la version précédente]
-
-# ----------------------------------------------------------------------------
-# BACKUP & RECOVERY (inchangé)
-# ----------------------------------------------------------------------------
-backup:
-  enabled: true
-  # ... [reste identique à la version précédente]

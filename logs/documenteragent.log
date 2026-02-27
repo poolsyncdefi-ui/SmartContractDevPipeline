@@ -7,3 +7,15 @@
 2026-02-13 21:59:00 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
 2026-02-13 21:59:00 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
 2026-02-13 21:59:00 - agent.DocumenterAgent - INFO - 📄 Génération documentation pour temp_test_contract.sol
+2026-02-26 19:26:35 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-26 19:26:35 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: agents/documenter/config.yaml)
+2026-02-26 19:26:35 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-26 19:26:36 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-26 19:29:02 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-26 19:29:02 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: agents/documenter/config.yaml)
+2026-02-26 19:29:02 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-26 19:29:03 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: agents/documenter/config.yaml)
+2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0

@@ -1,166 +1,864 @@
+# ============================================================================
 # agents/smart_contract/config.yaml
-agent:
-  name: "smart_contract"
-  type: "main_agent"
-  description: "Agent spécialisé dans le développement, audit, optimisation et déploiement de smart contracts sécurisés et efficaces pour applications DeFi et Web3"
-  execution_order: 3
-  dependencies: ["architect"]
-  
-  capabilities:
-    - name: "validate_config"
-      description: "Valider la configuration des smart contracts et environnement de développement"
-    - name: "analyze_requirements_deep"
-      description: "Analyser les exigences techniques et fonctionnelles pour smart contracts"
-    - name: "design_contract_architecture_comprehensive"
-      description: "Concevoir l'architecture complète des smart contracts avec patterns et standards"
-    - name: "write_solidity_code_advanced"
-      description: "Écrire le code Solidity avancé avec assembly, libraries et interfaces"
-    - name: "implement_security_measures_robust"
-      description: "Implémenter les mesures de sécurité robustes avec defense-in-depth"
-    - name: "optimize_gas_usage_extreme"
-      description: "Optimiser l'utilisation du gas à l'extrême avec profiling et techniques avancées"
-    - name: "write_comprehensive_test_suite"
-      description: "Écrire une suite de tests complète avec edge cases et property-based testing"
-    - name: "perform_formal_verification_rigorous"
-      description: "Effectuer la vérification formelle rigoureuse avec theorem provers"
-    - name: "audit_contracts_thorough"
-      description: "Auditer les contrats de manière approfondie avec tools et manual review"
-    - name: "generate_contract_documentation_complete"
-      description: "Générer la documentation complète des contrats avec NatSpec et diagrams"
-    - name: "deploy_contracts_multi_network"
-      description: "Déployer les contrats sur multiples réseaux avec scripts et verification"
-    - name: "implement_upgradeability_patterns"
-      description: "Implémenter les patterns d'upgradeability avec proxies et storage layouts"
-    - name: "design_token_economics"
-      description: "Concevoir la tokenomics avec vesting, staking et distribution models"
-    - name: "implement_governance_mechanisms"
-      description: "Implémenter les mécanismes de gouvernance avec voting et delegation"
-    - name: "create_oracle_integrations"
-      description: "Créer les intégrations oracles avec price feeds et custom data"
-    - name: "design_bridge_mechanisms"
-      description: "Concevoir les mécanismes de bridge cross-chain avec security models"
-    - name: "implement_flash_loan_protections"
-      description: "Implémenter les protections contre flash loans et arbitrage attacks"
-    - name: "create_emergency_mechanisms"
-      description: "Créer les mécanismes d'urgence avec pause, withdrawal et recovery"
-    - name: "optimize_storage_layout"
-      description: "Optimiser le layout de stockage pour minimiser gas costs"
-    - name: "implement_erc_standards_compliant"
-      description: "Implémenter les standards ERC avec full compliance et extensions"
-    - name: "create_factory_patterns"
-      description: "Créer les patterns factory pour deployment dynamique"
-    - name: "design_access_control_systems"
-      description: "Concevoir les systèmes de contrôle d'accès avec roles et permissions"
-    - name: "implement_meta_transactions"
-      description: "Implémenter les meta-transactions avec gas abstraction"
-    - name: "create_batch_operations"
-      description: "Créer les opérations batch pour optimiser gas et user experience"
-    - name: "design_event_systems"
-      description: "Concevoir les systèmes d'événements pour monitoring et indexing"
-    - name: "implement_circuit_breaker_patterns"
-      description: "Implémenter les patterns circuit breaker pour risk management"
-    - name: "create_insurance_mechanisms"
-      description: "Créer les mécanismes d'assurance pour protection des utilisateurs"
-    - name: "design_liquidity_mining"
-      description: "Concevoir les systèmes de liquidity mining avec rewards et vesting"
-    - name: "implement_vesting_schedules"
-      description: "Implémenter les schedules de vesting avec cliffs et linear release"
-    - name: "create_analytics_hooks"
-      description: "Créer les hooks analytics pour tracking et reporting"
-    - name: "design_multisig_wallets"
-      description: "Concevoir les multisig wallets avec threshold signatures"
-    - name: "implement_time_locks"
-      description: "Implémenter les time locks pour delayed execution"
-    - name: "create_reentrancy_guards"
-      description: "Créer les guards contre reentrancy attacks"
-    - name: "design_fallback_mechanisms"
-      description: "Concevoir les mécanismes de fallback pour error recovery"
-    - name: "implement_signature_verification"
-      description: "Implémenter la vérification de signatures avec EIP-712"
+# Configuration ULTIME de l'Agent Smart Contract - Version 2.5.0
+# Développement, audit, optimisation et déploiement de smart contracts sécurisés
+# ============================================================================
 
-  llm_config:
-    model: "ollama:deepseek-coder:6.7b"
-    temperature: 0.1
-    max_tokens: 16000
-    top_p: 0.9
-    frequency_penalty: 0.15
-    presence_penalty: 0.1
+agent:
+  # === IDENTIFICATION ===
+  name: "SmartContractAgent"
+  class_name: "SmartContractAgent"
+  module_path: "agents.smart_contract.agent"
+  display_name: "📝 Agent Smart Contract & Blockchain (Ultime)"
+  version: "2.5.0"
+  description: |-
+    Agent spécialisé dans le développement, audit, optimisation et déploiement
+    de smart contracts sécurisés et efficaces pour applications DeFi, NFT, Gaming et Web3.
+    Expertise multi-langages (Solidity, Vyper, Rust), vérification formelle,
+    analyse économique et gestion de la complexité.
+  purpose: "Garantir la sécurité, l'efficacité et la fiabilité des smart contracts, même pour les protocoles les plus complexes"
+
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  singleton: false
+  execution_order: 3
+  max_concurrent_tasks: 2  # Les contrats complexes nécessitent de l'attention
+
+  # === HÉRITAGE & DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "architect"
+    - "coder"
+    - "tester"
+    - "formal_verification"
+    - "fuzzing_simulation"
+  initialization_order: 3
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.85  # Légèrement abaissé pour permettre les designs complexes
+    base_confidence: 0.7  # Confiance de départ avant validation
+
+    # Vérifications obligatoires avant tout déploiement
+    mandatory_checks:
+      - "verify_no_reentrancy_vulnerability"
+      - "check_integer_overflow_underflow"
+      - "validate_access_control_complete"
+      - "ensure_proxy_upgrade_safety"
+      - "verify_eth_value_handling"
+      - "check_timestamp_dependence"
+      - "validate_external_call_safety"
+      - "ensure_gas_limit_compatibility"
+      - "verify_eip_compliance"
+      - "check_economic_logic_consistency"
+
+    # Patterns interdits (vulnérabilités critiques)
+    forbidden_patterns:
+      - pattern: "tx\\.origin"
+        reason: "Vulnérabilité de phishing - utiliser msg.sender"
+        severity: "critical"
+        cwe: "CWE-807"
+      - pattern: "delegatecall.*msg\\.data"
+        reason: "Risque de corruption d'état"
+        severity: "critical"
+        cwe: "CWE-670"
+      - pattern: "call\\.value.*\\(.*\\)"
+        reason: "Risque de réentrance sans mutex"
+        severity: "critical"
+        cwe: "CWE-841"
+      - pattern: "require\\(.*,.*\\);"
+        reason: "Message d'erreur manquant - débogage difficile"
+        severity: "medium"
+      - pattern: "unchecked\\s*\\{.*\\}"
+        reason: "Overflow non vérifié - justifier absolument"
+        severity: "high"
+      - pattern: "block\\.timestamp.*[<>]=.*"
+        reason: "Manipulation possible par mineurs (15s)"
+        severity: "high"
+      - pattern: "assembly\\s*\\{.*\\}"
+        reason: "Code non vérifié par analyse statique"
+        severity: "medium"
+      - pattern: "selfdestruct"
+        reason: "Destruction définitive - risque de perte"
+        severity: "critical"
+      - pattern: "transfer\\(.*\\)"
+        reason: "Limitation de gas - utiliser call avec vérification"
+        severity: "medium"
+
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.8
+      markers:
+        - comment: "⚠️ VULNÉRABILITÉ POTENTIELLE"
+        - comment: "🔍 LOGIQUE À VALIDER"
+        - comment: "❓ COMPORTEMENT NON DÉTERMINISTE"
+        - comment: "🛡️ MESURE DE SÉCURITÉ À RENFORCER"
+        - comment: "📊 LOGIQUE ÉCONOMIQUE COMPLEXE"
+      fallback_action: "require_audit"
+      require_human_review_if_below: 0.7
+
+    # Gestion de la complexité (NOUVEAU)
+    complexity_management:
+      enabled: true
+      auto_split_threshold: 3  # Complexité >= 3 = découpage automatique
+      max_iterations_before_split: 4
+      split_strategy: "functional_components"  # Découpage par fonction
+      complexity_factors:
+        - "interactions_externes"
+        - "logique_conditionnelle"
+        - "calculs_financiers"
+        - "gestion_etat"
+      notify_on_split: true
+
+  # === CAPACITÉS SPÉCIFIQUES (ENRICHIES - 56 capacités) ===
+  capabilities:
+    # === CAPACITÉS FONDAMENTALES ===
+    - name: "validate_config"
+      description: "Valider la configuration des smart contracts"
+      confidence_required: 0.9
+    - name: "analyze_requirements_deep"
+      description: "Analyser les exigences techniques et fonctionnelles"
+      confidence_required: 0.85
+    - name: "design_contract_architecture_comprehensive"
+      description: "Concevoir l'architecture complète avec patterns"
+      confidence_required: 0.9
+    - name: "estimate_complexity"
+      description: "Estimer la complexité d'un contrat"
+      confidence_required: 0.8
+      output: "complexity_score (1-5)"
+
+    # === CAPACITÉS DE DÉVELOPPEMENT MULTI-LANGAGE ===
+    - name: "write_solidity_code_advanced"
+      description: "Écrire du code Solidity avancé avec assembly optimisé"
+      confidence_required: 0.9
+      frameworks: ["hardhat", "foundry", "truffle"]
+    - name: "write_vyper_code_advanced"
+      description: "Écrire du code Vyper pour contrats sécurisés"
+      confidence_required: 0.8
+    - name: "write_rust_wasm_contracts"
+      description: "Écrire des contrats Rust pour environnements WASM"
+      confidence_required: 0.7
+    - name: "write_yul_code"
+      description: "Écrire du code Yul pour optimisations extrêmes"
+      confidence_required: 0.7
+    - name: "write_cairo_code"
+      description: "Écrire du code Cairo pour StarkNet"
+      confidence_required: 0.6
+
+    # === CAPACITÉS DE SÉCURITÉ ===
+    - name: "implement_security_measures_robust"
+      description: "Implémenter des mesures de sécurité defense-in-depth"
+      confidence_required: 0.95
+    - name: "perform_slither_analysis"
+      description: "Effectuer analyse statique avec Slither"
+      confidence_required: 0.9
+    - name: "run_echidna_fuzzing"
+      description: "Exécuter fuzzing avec Echidna"
+      confidence_required: 0.85
+    - name: "run_medusa_fuzzing"
+      description: "Exécuter fuzzing avancé avec Medusa"
+      confidence_required: 0.85
+    - name: "detect_reentrancy_patterns"
+      description: "Détecter les patterns de réentrance"
+      confidence_required: 0.95
+    - name: "analyze_access_control"
+      description: "Analyser les systèmes de contrôle d'accès"
+      confidence_required: 0.95
+    - name: "audit_contracts_thorough"
+      description: "Auditer les contrats avec outils et revue manuelle"
+      confidence_required: 0.95
+    - name: "check_well_known_vulnerabilities"
+      description: "Vérifier les vulnérabilités connues (SWC Registry)"
+      confidence_required: 0.9
+    - name: "analyze_private_key_management"
+      description: "Analyser la gestion des clés privées"
+      confidence_required: 0.9
+
+    # === CAPACITÉS DE VÉRIFICATION FORMELLE ===
+    - name: "perform_formal_verification_rigorous"
+      description: "Effectuer vérification formelle avec theorem provers"
+      confidence_required: 0.95
+    - name: "certora_verification"
+      description: "Vérification formelle avec Certora"
+      confidence_required: 0.95
+    - name: "halmos_symbolic_execution"
+      description: "Exécution symbolique avec Halmos"
+      confidence_required: 0.9
+    - name: "scribble_instrumentation"
+      description: "Instrumenter le code avec Scribble"
+      confidence_required: 0.85
+    - name: "dafny_verification"
+      description: "Vérification avec Dafny"
+      confidence_required: 0.7
+    - name: "create_invariants"
+      description: "Créer des invariants pour vérification"
+      confidence_required: 0.85
+    - name: "verify_property_based_tests"
+      description: "Vérifier les tests property-based"
+      confidence_required: 0.85
+
+    # === CAPACITÉS D'OPTIMISATION ===
+    - name: "optimize_gas_usage_extreme"
+      description: "Optimiser l'utilisation du gas à l'extrême"
+      confidence_required: 0.85
+    - name: "optimize_storage_layout"
+      description: "Optimiser layout de stockage"
+      confidence_required: 0.85
+    - name: "optimize_calldata_usage"
+      description: "Optimiser l'utilisation des calldata"
+      confidence_required: 0.8
+    - name: "profile_gas_usage"
+      description: "Profiler l'utilisation du gas"
+      confidence_required: 0.85
+    - name: "minimize_deployment_cost"
+      description: "Minimiser les coûts de déploiement"
+      confidence_required: 0.8
+    - name: "optimize_batch_operations"
+      description: "Optimiser les opérations par lots"
+      confidence_required: 0.8
+
+    # === CAPACITÉS DE TEST ===
+    - name: "write_comprehensive_test_suite"
+      description: "Écrire suite de tests complète"
+      confidence_required: 0.9
+      min_coverage: 95
+      required_test_types:
+        - "unit"
+        - "integration"
+        - "property-based"
+        - "fuzzing"
+        - "invariant"
+    - name: "generate_test_coverage_report"
+      description: "Générer rapport de couverture de tests"
+      confidence_required: 0.7
+    - name: "perform_mutation_testing"
+      description: "Effectuer du mutation testing"
+      confidence_required: 0.8
+    - name: "run_fork_tests"
+      description: "Exécuter des tests sur fork mainnet"
+      confidence_required: 0.85
+    - name: "simulate_flash_loan_attacks"
+      description: "Simuler des attaques de flash loans"
+      confidence_required: 0.9
+
+    # === CAPACITÉS DE DÉPLOIEMENT ===
+    - name: "deploy_contracts_multi_network"
+      description: "Déployer sur multiples réseaux avec vérification"
+      confidence_required: 0.9
+    - name: "verify_on_block_explorers"
+      description: "Vérifier le code sur les explorateurs"
+      confidence_required: 0.85
+    - name: "create_deployment_scripts"
+      description: "Créer des scripts de déploiement"
+      confidence_required: 0.8
+    - name: "manage_deployment_addresses"
+      description: "Gérer les adresses de déploiement"
+      confidence_required: 0.7
+
+    # === CAPACITÉS DE DESIGN ARCHITECTURAL ===
+    - name: "implement_upgradeability_patterns"
+      description: "Implémenter patterns d'upgradeability sécurisés"
+      confidence_required: 0.9
+    - name: "design_proxy_patterns"
+      description: "Concevoir des patterns proxy"
+      confidence_required: 0.9
+    - name: "implement_diamond_pattern"
+      description: "Implémenter le pattern Diamond (EIP-2535)"
+      confidence_required: 0.85
+    - name: "create_factory_patterns"
+      description: "Créer patterns factory pour déploiement"
+      confidence_required: 0.85
+    - name: "design_modular_contracts"
+      description: "Concevoir des contrats modulaires"
+      confidence_required: 0.85
+
+    # === CAPACITÉS D'INTÉGRATION ===
+    - name: "implement_erc_standards_compliant"
+      description: "Implémenter standards ERC avec compliance totale"
+      confidence_required: 0.9
+    - name: "create_oracle_integrations"
+      description: "Créer intégrations oracles sécurisées"
+      confidence_required: 0.9
+    - name: "design_bridge_mechanisms"
+      description: "Concevoir mécanismes de bridge cross-chain"
+      confidence_required: 0.85
+    - name: "implement_meta_transactions"
+      description: "Implémenter meta-transactions (EIP-2771)"
+      confidence_required: 0.85
+    - name: "implement_signature_verification"
+      description: "Implémenter vérification EIP-712"
+      confidence_required: 0.9
+
+    # === CAPACITÉS DE GESTION DES RISQUES ===
+    - name: "create_emergency_mechanisms"
+      description: "Créer mécanismes d'urgence (pause, recovery)"
+      confidence_required: 0.9
+    - name: "implement_circuit_breaker_patterns"
+      description: "Implémenter circuit breakers"
+      confidence_required: 0.9
+    - name: "design_insurance_mechanisms"
+      description: "Concevoir mécanismes d'assurance"
+      confidence_required: 0.85
+    - name: "implement_time_locks"
+      description: "Implémenter time locks"
+      confidence_required: 0.95
+    - name: "create_reentrancy_guards"
+      description: "Créer guards anti-reentrance"
+      confidence_required: 0.95
+    - name: "design_multisig_wallets"
+      description: "Concevoir multisig wallets"
+      confidence_required: 0.9
+
+    # === CAPACITÉS DE TOKENOMICS ===
+    - name: "design_token_economics"
+      description: "Concevoir tokenomics avec vesting et staking"
+      confidence_required: 0.85
+    - name: "implement_vesting_schedules"
+      description: "Implémenter vesting schedules"
+      confidence_required: 0.9
+    - name: "design_liquidity_mining"
+      description: "Concevoir liquidity mining"
+      confidence_required: 0.85
+    - name: "implement_reward_distribution"
+      description: "Implémenter la distribution de récompenses"
+      confidence_required: 0.85
+    - name: "calculate_apr_apy"
+      description: "Calculer APR/APY pour les protocoles DeFi"
+      confidence_required: 0.9
+    - name: "design_bonding_curves"
+      description: "Concevoir des bonding curves"
+      confidence_required: 0.85
+
+    # === CAPACITÉS DE GOUVERNANCE ===
+    - name: "implement_governance_mechanisms"
+      description: "Implémenter mécanismes de gouvernance"
+      confidence_required: 0.9
+    - name: "design_voting_systems"
+      description: "Concevoir systèmes de vote"
+      confidence_required: 0.9
+    - name: "implement_delegation"
+      description: "Implémenter la délégation de vote"
+      confidence_required: 0.85
+    - name: "design_timelock_governance"
+      description: "Concevoir gouvernance avec timelock"
+      confidence_required: 0.9
+
+    # === CAPACITÉS DE DOCUMENTATION ===
+    - name: "generate_contract_documentation_complete"
+      description: "Générer documentation NatSpec avec diagrammes"
+      confidence_required: 0.8
+    - name: "generate_technical_whitepaper"
+      description: "Générer whitepaper technique"
+      confidence_required: 0.7
+    - name: "create_audit_readiness_report"
+      description: "Créer rapport de préparation à l'audit"
+      confidence_required: 0.8
+
+    # === CAPACITÉS D'ANALYSE ÉCONOMIQUE ===
+    - name: "simulate_economic_scenarios"
+      description: "Simuler des scénarios économiques"
+      confidence_required: 0.8
+    - name: "analyze_game_theory"
+      description: "Analyser les aspects de théorie des jeux"
+      confidence_required: 0.8
+    - name: "detect_economic_vulnerabilities"
+      description: "Détecter les vulnérabilités économiques"
+      confidence_required: 0.85
+    - name: "assess_protocol_risk"
+      description: "Évaluer les risques du protocole"
+      confidence_required: 0.85
+
+  # === GESTION DES FRAGMENTS COMPLEXES (NOUVEAU) ===
+  complex_fragment_management:
+    enabled: true
+    detection:
+      complexity_threshold: 3
+      analyze_dependencies: true
+      detect_circular_deps: true
     
+    strategies:
+      - name: "auto_split"
+        enabled: true
+        method: "functional_decomposition"
+        max_subfragments: 4
+      
+      - name: "phased_implementation"
+        enabled: true
+        phases:
+          - "core_logic"
+          - "security_features"
+          - "economic_mechanisms"
+          - "optimizations"
+      
+      - name: "parallel_design"
+        enabled: true
+        max_parallel_attempts: 3
+        vote_on_best_design: true
+    
+    fallback:
+      if_still_failing: "human_expert_review"
+      max_iterations_before_fallback: 6
+
+  # === SOUS-AGENTS SPÉCIALISÉS (ENRICHIS - 10 sous-agents) ===
+  subAgents:
+    - id: "formal_verification"
+      name: "Formal Verification Expert"
+      display_name: "Vérification Formelle"
+      config_path: "agents/smart_contract/sous_agents/formal_verification/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "formal_verification"
+      tools: ["certora", "halmos", "scribble", "dafny"]
+      confidence: 0.95
+    
+    - id: "gas_optimizer"
+      name: "Gas Optimization Expert"
+      display_name: "Optimisation Gas"
+      config_path: "agents/smart_contract/sous_agents/gas_optimizer/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "gas_optimization"
+      tools: ["hardhat-gas-reporter", "foundry-gas-snapshots", "tenderly"]
+      confidence: 0.9
+    
+    - id: "security_expert"
+      name: "Smart Contract Security Expert"
+      display_name: "Expert Sécurité"
+      config_path: "agents/smart_contract/sous_agents/security_expert/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "security_auditing"
+      tools: ["slither", "mythril", "echidna", "medusa", "securify"]
+      confidence: 0.95
+    
+    - id: "solidity_expert"
+      name: "Solidity Development Expert"
+      display_name: "Expert Solidity"
+      config_path: "agents/smart_contract/sous_agents/solidity_expert/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "solidity_implementation"
+      confidence: 0.95
+    
+    - id: "vyper_expert"
+      name: "Vyper Development Expert"
+      display_name: "Expert Vyper"
+      config_path: "agents/smart_contract/sous_agents/vyper_expert/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "vyper_implementation"
+      confidence: 0.85
+    
+    - id: "defi_specialist"
+      name: "DeFi Protocol Specialist"
+      display_name: "Expert DeFi"
+      config_path: "agents/smart_contract/sous_agents/defi_specialist/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "defi_protocols"
+      sub_specializations: ["lending", "dex", "yield", "stablecoin"]
+      confidence: 0.9
+    
+    - id: "tokenomics_engineer"
+      name: "Tokenomics Engineer"
+      display_name: "Tokenomics"
+      config_path: "agents/smart_contract/sous_agents/tokenomics_engineer/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "economic_design"
+      tools: ["economic_simulator", "game_theory_analyzer"]
+      confidence: 0.85
+    
+    - id: "complex_contract_expert"
+      name: "Complex Contract Expert"
+      display_name: "Expert Contrats Complexes"
+      config_path: "agents/smart_contract/sous_agents/complex_contract_expert/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "complex_defi_protocols"
+      handles_complexity_above: 3
+      max_iterations: 10
+      confidence: 0.8
+    
+    - id: "cross_chain_specialist"
+      name: "Cross-Chain Specialist"
+      display_name: "Expert Cross-Chain"
+      config_path: "agents/smart_contract/sous_agents/cross_chain_specialist/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "bridges_messaging"
+      protocols: ["layerzero", "wormhole", "axelar", "ccip"]
+      confidence: 0.85
+    
+    - id: "nft_specialist"
+      name: "NFT Protocol Specialist"
+      display_name: "Expert NFT"
+      config_path: "agents/smart_contract/sous_agents/nft_specialist/config.yaml"
+      dependencies: ["smart_contract"]
+      specialization: "nft_protocols"
+      standards: ["ERC721", "ERC1155", "ERC2981", "ERC4907"]
+      confidence: 0.9
+
+  # === OUTILS DISPONIBLES (ENRICHIS - 28 outils) ===
   tools:
-    - "solidity_developer_advanced"
-    - "security_auditor_comprehensive"
-    - "gas_optimizer_extreme"
-    - "formal_verification_toolkit"
-    - "test_generator_property_based"
-    - "documentation_generator_natspec"
-    - "deployment_automation_multi_chain"
-    - "upgradeability_designer"
-    - "tokenomics_modeler"
-    - "governance_framework_builder"
-    - "oracle_integrator"
-    - "bridge_designer"
-    - "emergency_recovery_planner"
-    - "storage_layout_optimizer"
+    # === OUTILS DE DÉVELOPPEMENT ===
+    - name: "solidity_developer_advanced"
+      description: "Développement Solidity avancé"
+      validation_required: true
+    - name: "vyper_developer"
+      description: "Développement Vyper"
+      validation_required: true
+    - name: "yul_developer"
+      description: "Développement Yul pour assembly"
+      validation_required: true
+    - name: "cairo_developer"
+      description: "Développement Cairo pour StarkNet"
+      validation_required: true
     
+    # === OUTILS DE SÉCURITÉ ===
+    - name: "security_auditor_comprehensive"
+      description: "Audit de sécurité complet"
+      validation_required: true
+    - name: "slither_analyzer"
+      description: "Analyse statique Slither"
+      validation_required: true
+    - name: "mythril_analyzer"
+      description: "Analyse symbolique Mythril"
+      validation_required: true
+    - name: "echidna_fuzzer"
+      description: "Fuzzing Echidna"
+      validation_required: true
+    - name: "medusa_fuzzer"
+      description: "Fuzzing avancé Medusa"
+      validation_required: true
+    - name: "securify_scanner"
+      description: "Scanner de sécurité Securify"
+      validation_required: true
+    - name: "swc_registry_checker"
+      description: "Vérification des vulnérabilités SWC"
+      validation_required: true
+    
+    # === OUTILS D'OPTIMISATION ===
+    - name: "gas_optimizer_extreme"
+      description: "Optimisation gas extrême"
+      validation_required: true
+    - name: "storage_layout_optimizer"
+      description: "Optimisation stockage"
+      validation_required: true
+    - name: "gas_profiler"
+      description: "Profilage gas"
+      validation_required: true
+    - name: "bytecode_optimizer"
+      description: "Optimisation bytecode"
+      validation_required: true
+    
+    # === OUTILS DE VÉRIFICATION FORMELLE ===
+    - name: "formal_verification_toolkit"
+      description: "Toolkit vérification formelle"
+      validation_required: true
+    - name: "certora_prover"
+      description: "Vérification Certora"
+      validation_required: true
+    - name: "halmos_executor"
+      description: "Exécution symbolique Halmos"
+      validation_required: true
+    - name: "scribble_instrumenter"
+      description: "Instrumentation Scribble"
+      validation_required: true
+    
+    # === OUTILS DE TEST ===
+    - name: "test_generator_property_based"
+      description: "Génération tests property-based"
+      validation_required: true
+    - name: "foundry_test_runner"
+      description: "Exécuteur de tests Foundry"
+      validation_required: true
+    - name: "mutation_tester"
+      description: "Mutation testing"
+      validation_required: true
+    - name: "fork_testing_framework"
+      description: "Framework de fork testing"
+      validation_required: true
+    
+    # === OUTILS DE DÉPLOIEMENT ===
+    - name: "deployment_automation_multi_chain"
+      description: "Automatisation déploiement multi-chaînes"
+      validation_required: true
+    - name: "contract_verifier"
+      description: "Vérification sur explorateurs"
+      validation_required: true
+    
+    # === OUTILS DE DESIGN ===
+    - name: "upgradeability_designer"
+      description: "Design upgradeability"
+      validation_required: true
+    - name: "tokenomics_modeler"
+      description: "Modélisation tokenomics"
+      validation_required: true
+    - name: "economic_simulator"
+      description: "Simulation économique"
+      validation_required: true
+    - name: "game_theory_analyzer"
+      description: "Analyse théorie des jeux"
+      validation_required: true
+
+  # === OUTPUTS PRODUITS (ENRICHIS - 20 outputs) ===
   outputs:
-    - "solidity_contracts_production_ready"
-    - "security_audit_reports_detailed"
-    - "gas_optimization_reports"
-    - "formal_verification_certificates"
-    - "comprehensive_test_suites"
-    - "contract_documentation_complete"
-    - "deployment_scripts_multi_network"
-    - "upgradeability_implementation"
-    - "tokenomics_design_documents"
-    - "governance_framework_implementation"
-    - "oracle_integration_configs"
-    - "bridge_implementation"
-    - "emergency_recovery_plans"
-    - "storage_optimization_analysis"
+    - name: "solidity_contracts_production_ready"
+      type: "code"
+      format: "solidity"
+      validation: "compilation+security"
+    - name: "vyper_contracts"
+      type: "code"
+      format: "vyper"
+      validation: "compilation"
+    - name: "yul_optimized_code"
+      type: "code"
+      format: "yul"
+      validation: "assembly_check"
+    - name: "cairo_contracts"
+      type: "code"
+      format: "cairo"
+      validation: "compilation"
     
+    - name: "security_audit_reports_detailed"
+      type: "report"
+      format: "markdown/pdf"
+      validation: "findings_classification"
+    - name: "gas_optimization_reports"
+      type: "report"
+      format: "json/markdown"
+      validation: "benchmark"
+    - name: "formal_verification_certificates"
+      type: "certificate"
+      format: "pdf"
+      validation: "proof_validity"
+    - name: "slither_analysis_report"
+      type: "report"
+      format: "json"
+      validation: "findings_count"
+    - name: "echidna_fuzzing_report"
+      type: "report"
+      format: "json"
+      validation: "coverage"
+    
+    - name: "comprehensive_test_suites"
+      type: "code"
+      format: "javascript/solidity"
+      validation: "coverage+execution"
+    - name: "test_coverage_report"
+      type: "report"
+      format: "html"
+      validation: "threshold_check"
+    - name: "mutation_testing_report"
+      type: "report"
+      format: "json"
+      validation: "mutation_score"
+    
+    - name: "deployment_scripts_multi_network"
+      type: "code"
+      format: "javascript"
+      validation: "execution"
+    - name: "verified_contract_addresses"
+      type: "data"
+      format: "json"
+      validation: "explorer_check"
+    
+    - name: "upgradeability_implementation"
+      type: "code"
+      format: "solidity"
+      validation: "proxy_safety"
+    - name: "diamond_implementation"
+      type: "code"
+      format: "solidity"
+      validation: "eip2535"
+    
+    - name: "tokenomics_design_documents"
+      type: "document"
+      format: "markdown"
+      validation: "economic_analysis"
+    - name: "economic_simulation_results"
+      type: "data"
+      format: "json"
+      validation: "scenario_coverage"
+    
+    - name: "contract_documentation_complete"
+      type: "documentation"
+      format: "markdown/html"
+      validation: "completeness"
+    - name: "audit_readiness_report"
+      type: "report"
+      format: "markdown"
+      validation: "checklist_complete"
+
+  # === RÈGLES DE VALIDATION (ENRICHIES) ===
   validation_rules:
-    - "must_pass_all_security_audits_zero_critical"
-    - "must_optimize_gas_costs_below_industry_average"
-    - "must_have_100_percent_test_coverage"
-    - "must_pass_formal_verification_key_properties"
-    - "must_comply_with_all_relevant_erc_standards"
-    - "must_implement_upgradeability_safely"
-    - "must_have_comprehensive_emergency_mechanisms"
-    - "must_document_all_functions_with_natspec"
-    - "must_deploy_to_all_specified_networks"
-    - "must_verify_source_code_on_all_block_explorers"
+    - name: "must_pass_all_security_audits_zero_critical"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
     
+    - name: "must_optimize_gas_costs_below_industry_average"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: true
+    
+    - name: "must_have_100_percent_test_coverage"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+      exception_for_complex_contracts: true  # NOUVEAU
+    
+    - name: "must_pass_formal_verification_key_properties"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+      key_properties: ["no_reentrancy", "access_control", "arithmetic_safety"]
+    
+    - name: "must_comply_with_all_relevant_erc_standards"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+    
+    - name: "must_implement_upgradeability_safely"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+    
+    - name: "must_have_comprehensive_emergency_mechanisms"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    
+    - name: "must_document_all_functions_with_natspec"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: true
+    
+    - name: "must_verify_source_code_on_all_block_explorers"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    
+    - name: "no_unchecked_external_calls"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+    
+    - name: "all_loops_must_have_gas_limits"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: true
+    
+    - name: "access_control_must_be_comprehensive"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+    
+    - name: "economic_logic_must_be_arbitrage_resistant"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+      check_with: "economic_simulator"
+    
+    - name: "flash_loan_attack_vectors_must_be_mitigated"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+    
+    - name: "oracle_price_manipulation_must_be_prevented"
+      severity: "critical"
+      action_on_failure: "block_deployment"
+      auto_correct: false
+
+  # === EXIGENCES DE SÉCURITÉ ===
   security_requirements:
-    audit_requirements: "3 independent audits required"
-    bug_bounty: "Minimum $1M bug bounty program"
-    insurance_coverage: "Minimum $10M insurance coverage"
-    formal_verification: "All core functions formally verified"
-    time_locks: "Critical functions have 24h+ time locks"
-    multisig_threshold: "Admin functions require 3/5 multisig"
-    emergency_pause: "Contracts have emergency pause mechanism"
-    withdrawal_safety: "Funds can be recovered in emergencies"
+    audit_requirements:
+      independent_audits: 3
+      audit_firms: ["trail_of_bits", "consensys_diligence", "certik", "quantstamp", "spearbit"]
+      remediation_verification: true
+      audit_before_mainnet: true
     
+    bug_bounty:
+      minimum_pool: "$1,000,000"
+      platform: "immunefi"
+      coverage_duration: "permanent"
+      requirements: ["public_repo", "documentation", "test_suite"]
+    
+    insurance_coverage:
+      minimum: "$10,000,000"
+      provider: "nexus_mutual"
+      coverage_types: ["smart_contract_failure", "economic_loss"]
+    
+    formal_verification:
+      core_functions: true
+      invariants: true
+      property_testing: true
+      critical_paths: true
+    
+    time_locks:
+      critical_functions: 86400  # 24h
+      admin_functions: 172800     # 48h
+      emergency_functions: 3600   # 1h
+    
+    multisig_threshold:
+      signers: 7
+      required: 4
+      signer_requirements: "distinct_entities"
+      fallback: "delayed_timelock"
+    
+    emergency_mechanisms:
+      pause: true
+      withdraw: true
+      migrate: true
+      recover: true
+      circuit_breaker: true
+    
+    monitoring:
+      events: true
+      alerts: true
+      dashboard: true
+      on_chain_monitoring: true
+
+  # === CIBLES D'OPTIMISATION GAS ===
   gas_optimization_targets:
-    deployment_cost: "< 5M gas for main contract"
-    transaction_cost: "< 200k gas for common operations"
-    storage_cost: "Minimal storage usage with packing"
-    computation_cost: "Optimized algorithms and data structures"
-    call_data: "Minimal call data usage with compression"
+    deployment_cost:
+      main_contract: 5000000  # 5M gas
+      factory: 3000000
+      library: 2000000
+      complex_contract: 8000000  # Pour contrats complexes (SC_002)
     
-  supported_standards:
-    token_standards: ["ERC-20", "ERC-721", "ERC-1155", "ERC-4626", "ERC-2981", "ERC-3525"]
-    interface_standards: ["EIP-165", "EIP-721", "EIP-1155", "EIP-1820", "EIP-1967"]
-    security_standards: ["EIP-150", "EIP-1884", "EIP-2200", "EIP-2929", "EIP-3529"]
-    metadata_standards: ["EIP-712", "EIP-2612", "EIP-4758", "EIP-5267"]
+    transaction_cost:
+      common_operations: 200000  # 200k gas
+      write_operations: 80000
+      read_operations: 20000
+      complex_operations: 500000  # Pour opérations complexes
     
-  development_frameworks:
-    primary: ["Hardhat", "Foundry", "Brownie"]
-    testing: ["Hardhat", "Foundry", "Truffle", "Waffle"]
-    deployment: ["Hardhat", "Foundry", "Tenderly", "OpenZeppelin Defender"]
-    verification: ["Etherscan", "Sourcify", "Blockscout", "Arbiscan", "Polygonscan"]
+    storage_cost:
+      slots_per_contract: 50
+      packing_efficiency: 0.9
+      minimal_storage: true
+      complex_contract_storage: 100
     
-  network_support:
-    ethereum: ["Mainnet", "Goerli", "Sepolia", "Holesky"]
-    layer_2: ["Arbitrum", "Optimism", "Base", "zkSync", "Polygon zkEVM"]
-    sidechains: ["Polygon", "Gnosis Chain", "Avalanche", "Fantom", "Celo"]
-    testnets: ["All major testnets with faucet support"]
+    computation_cost:
+      loops: "bounded"
+      recursion: false
+      algorithms: "optimized"
+      complex_calculations: "off_chain_oracle"
+    
+    call_data:
+      optimization: "calldata_compression"
+      min_size: 32
+      max_size: 1024
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["smart-contracts", "solidity", "security", "defi", "web3", "blockchain", "audit", "formal-verification", "complex-contracts", "tokenomics"]
+    capabilities_count: 56
+    tools_count: 28
+    subagents_count: 10
+    standards_supported: 35
+    networks_supported: 28
+    max_complexity_handled: 5
+    last_reviewed: "2026-02-27"
+    next_review: "2026-03-27"

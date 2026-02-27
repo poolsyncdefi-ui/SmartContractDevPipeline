@@ -1,0 +1,479 @@
+# ============================================================================
+# orchestrator/config.yaml
+# Configuration complète de l'Agent Orchestrateur - Version 2.2.0
+# ============================================================================
+
+agent:
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  name: "OrchestratorAgent"
+  class_name: "OrchestratorAgent"
+  module_path: "orchestrator.orchestrator"
+  display_name: "Orchestrateur de Workflows"
+  version: "2.2.0"
+  description: "Agent principal d'orchestration, responsable de la gestion des workflows complexes, de la coordination des sprints et de la supervision de la qualité inter-agents."
+  purpose: "Orchestration globale des workflows, gestion des dépendances et supervision de la qualité des réponses des agents."
+
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  singleton: true
+
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "base_agent"
+  dependencies:
+    - "base_agent"
+    - "registry"
+  initialization_order: 15
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION POUR L'ORCHESTRATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.8
+
+    mandatory_checks:
+      - "verify_agent_availability"
+      - "check_dependency_graph_integrity"
+      - "validate_workflow_definition"
+      - "ensure_no_circular_dependencies"
+      - "verify_resource_availability"
+
+    risky_patterns:
+      - pattern: "ignorer les dépendances manquantes"
+        reason: "Peut causer des échecs en chaîne"
+        severity: "critical"
+      - pattern: "exécuter en parallèle sans vérification"
+        reason: "Risque de conflit de ressources"
+        severity: "high"
+      - pattern: "estimer le temps sans historique"
+        reason: "Planification potentiellement erronée"
+        severity: "medium"
+      - pattern: "forcer l'exécution malgré alertes"
+        reason: "Ignore les signaux d'erreur"
+        severity: "critical"
+
+    uncertainty_handling:
+      threshold: 0.7
+      markers:
+        - report: "⚠️ ESTIMATION INCERTAINE"
+        - report: "🔍 DÉPENDANCE NON VÉRIFIÉE"
+        - report: "❓ PLANIFICATION À CONFIRMER"
+      fallback_action: "pause_workflow"
+      require_human_review_if_below: 0.5
+
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "WORKFLOW_ORCHESTRATION"
+      description: "Orchestration de workflows complexes"
+      confidence_required: 0.85
+      metrics:
+        - "success_rate"
+        - "execution_time"
+        - "resource_usage"
+
+    - name: "SPRINT_MANAGEMENT"
+      description: "Gestion de sprints et planification"
+      confidence_required: 0.8
+      metrics:
+        - "velocity"
+        - "burndown"
+        - "completion_rate"
+
+    - name: "TASK_SCHEDULING"
+      description: "Planification et ordonnancement des tâches"
+      confidence_required: 0.85
+      metrics:
+        - "queue_length"
+        - "wait_time"
+        - "bottleneck_detection"
+
+    - name: "RESOURCE_ALLOCATION"
+      description: "Allocation et gestion des ressources"
+      confidence_required: 0.9
+      metrics:
+        - "utilization_rate"
+        - "contention_score"
+
+    - name: "DEADLINE_MANAGEMENT"
+      description: "Gestion des délais et échéances"
+      confidence_required: 0.85
+      metrics:
+        - "on_time_rate"
+        - "delay_prediction"
+
+    - name: "PARALLEL_EXECUTION"
+      description: "Exécution parallèle de workflows"
+      confidence_required: 0.8
+      max_concurrent: 10
+
+    - name: "DEPENDENCY_RESOLUTION"
+      description: "Résolution des dépendances entre tâches"
+      confidence_required: 0.9
+      metrics:
+        - "resolution_time"
+        - "deadlock_detection"
+
+    - name: "STATE_TRACKING"
+      description: "Suivi d'état des workflows"
+      confidence_required: 0.8
+
+    - name: "QUALITY_SUPERVISION"
+      description: "Supervision de la qualité des réponses des agents"
+      confidence_required: 0.9
+      methods:
+        - "cross_validation"
+        - "hallucination_detection"
+        - "consistency_check"
+
+  # === CONFIGURATION LLM ===
+  llm_config:
+    enabled: true
+    model: "ollama:llama2:13b"
+    temperature: 0.2
+    max_tokens: 8000
+    top_p: 0.9
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+    anti_hallucination_params:
+      repetition_penalty: 1.1
+      length_penalty: 1.0
+      no_repeat_ngram_size: 3
+      do_sample: false
+      num_beams: 4
+
+    response_validation:
+      require_consistency_check: true
+      require_dependency_check: true
+      max_attempts: 3
+      fallback_model: "ollama:llama2:13b"
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "workflow_designer"
+      description: "Conçoit et valide des workflows"
+      validation_required: true
+    - name: "sprint_planner"
+      description: "Planifie les sprints"
+      validation_required: true
+    - name: "dependency_analyzer"
+      description: "Analyse les dépendances"
+      validation_required: true
+    - name: "resource_optimizer"
+      description: "Optimise l'allocation des ressources"
+      validation_required: true
+    - name: "quality_supervisor"
+      description: "Supervise la qualité des réponses"
+      validation_required: true
+    - name: "conflict_resolver"
+      description: "Résout les conflits entre agents"
+      validation_required: true
+    - name: "report_generator"
+      description: "Génère des rapports d'exécution"
+      validation_required: false
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "workflow_execution_plan"
+      type: "plan"
+      format: "json"
+      validation: "dependency_check"
+    - name: "sprint_report"
+      type: "report"
+      format: "json/html"
+      validation: "completeness_check"
+    - name: "quality_metrics"
+      type: "metrics"
+      format: "json"
+      validation: "trend_analysis"
+    - name: "resource_allocation_plan"
+      type: "plan"
+      format: "json"
+      validation: "feasibility_check"
+    - name: "conflict_resolution_report"
+      type: "report"
+      format: "json"
+      validation: "consistency_check"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "all_dependencies_must_be_resolvable"
+      severity: "critical"
+      action_on_failure: "pause_workflow"
+      auto_correct: false
+    - name: "workflow_must_not_have_circular_deps"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "resources_must_be_sufficient"
+      severity: "high"
+      action_on_failure: "warn_and_adapt"
+      auto_correct: true
+    - name: "agent_availability_must_be_confirmed"
+      severity: "high"
+      action_on_failure: "wait_and_retry"
+      auto_correct: false
+    - name: "quality_checks_must_pass"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "conflicting_agent_responses_must_be_resolved"
+      severity: "high"
+      action_on_failure: "escalate_human"
+      auto_correct: false
+
+  # === MÉTRIQUES DE PERFORMANCE ===
+  performance_metrics:
+    workflow_success_rate:
+      target: 0.95
+      action_if_below: "analyze_failures"
+    average_execution_time:
+      max_seconds: 300
+      action_if_exceeded: "optimize_parallelism"
+    resource_utilization:
+      target_range: [0.6, 0.8]
+      action_if_outside: "rebalance"
+    conflict_rate:
+      max_per_workflow: 2
+      action_if_exceeded: "review_dependencies"
+    human_escalation_rate:
+      max_per_sprint: 1
+      action_if_exceeded: "review_confidence_thresholds"
+
+  # === SUPERVISION GLOBALE (QUALITY AGENT INTÉGRÉ) ===
+  quality_supervision:
+    enabled: true
+    supervise_agents: true
+    generate_reports: true
+
+    cross_validation:
+      enabled: true
+      check_consistency: true
+      detect_contradictions: true
+      alert_on_discrepancy: true
+      discrepancy_threshold: 0.3
+      required_pairs:
+        - ["coder", "tester"]
+        - ["architect", "smart_contract"]
+
+    hallucination_detection:
+      enabled: true
+      methods:
+        - "pattern_matching"
+        - "consistency_check"
+        - "dual_ai_validation"
+        - "test_with_variants"
+      threshold: 0.7
+      auto_correct: false
+      escalation_on_detection: true
+
+    conflict_resolution:
+      strategy: "weighted_vote"
+      min_agreement: 0.6
+      weighting_factors:
+        - "historical_accuracy"
+        - "confidence_score"
+        - "domain_expertise"
+      escalation_threshold: 0.3
+
+    meta_rules:
+      - rule: "Toute réponse avec confiance < 0.5 doit être revue"
+        action: "request_revision"
+      - rule: "Deux agents contradictoires = escalade humaine"
+        action: "human_review"
+      - rule: "Incertitude non signalée = alerte"
+        action: "log_and_notify"
+      - rule: "Trois échecs consécutifs = pause workflow"
+        action: "pause_and_notify"
+
+  # === WORKFLOWS PRÉDÉFINIS (SOUS-AGENTS) ===
+  subAgents:
+    - id: "workflow_full_pipeline"
+      name: "Pipeline complet avec sprints"
+      display_name: "Pipeline complet avec sprints"
+      description: "Workflow complet du développement avec sprint et parcours en profondeur et largeur"
+      version: "1.0.0"
+      enabled: true
+      config_path: null
+      dependencies: []
+      capabilities:
+        - name: "STEP_SPRINT_PLANNING"
+          description: "Étape: plan_sprint"
+        - name: "STEP_EXECUTE_LARGEUR"
+          description: "Étape: execute_sprint_phase (largeur)"
+        - name: "STEP_EXECUTE_PROFONDEUR"
+          description: "Étape: execute_sprint_phase (profondeur)"
+        - name: "STEP_VALIDATION_TESTNET"
+          description: "Étape: deploy_and_test"
+        - name: "STEP_GENERATE_REPORT"
+          description: "Étape: generate_sprint_report"
+      validation_rules:
+        - max_parallel_tasks: 5
+        - require_sequential_dependencies: true
+
+    - id: "workflow_quality_validation"
+      name: "Validation qualité"
+      display_name: "Validation qualité inter-agents"
+      description: "Workflow de validation croisée des réponses des agents"
+      version: "1.0.0"
+      enabled: true
+      config_path: null
+      dependencies: []
+      capabilities:
+        - name: "STEP_COLLECT_RESPONSES"
+        - name: "STEP_CROSS_VALIDATE"
+        - name: "STEP_DETECT_HALLUCINATIONS"
+        - name: "STEP_GENERATE_QUALITY_REPORT"
+
+  # === AGENTS GÉRÉS ===
+  managed_agents:
+    architect:
+      enabled: true
+      module: "agents.architect.agent"
+      class: "ArchitectAgent"
+      config_path: "agents/architect/config.yaml"
+      priority: 1
+      critical_path: true
+      description: "Conception architecture système"
+
+    base_agent:
+      enabled: true
+      module: "agents.base_agent.base_agent"
+      class: "BaseAgent"
+      config_path: "agents/base_agent/config.yaml"
+      priority: 0
+      critical_path: true
+      abstract: true
+      description: "Classe de base abstraite"
+
+    coder:
+      enabled: true
+      module: "agents.coder.agent"
+      class: "CoderAgent"
+      config_path: "agents/coder/config.yaml"
+      priority: 2
+      critical_path: true
+      description: "Développement complet (backend, frontend, DevOps)"
+
+    communication:
+      enabled: true
+      module: "agents.communication.agent"
+      class: "CommunicationAgent"
+      config_path: "agents/communication/config.yaml"
+      priority: 6
+      critical_path: false
+      description: "Gestion communication inter-agents"
+
+    documenter:
+      enabled: true
+      module: "agents.documenter.agent"
+      class: "DocumenterAgent"
+      config_path: "agents/documenter/config.yaml"
+      priority: 7
+      critical_path: false
+      description: "Génération documentation technique"
+
+    formal_verification:
+      enabled: true
+      module: "agents.formal_verification.agent"
+      class: "FormalVerificationAgent"
+      config_path: "agents/formal_verification/config.yaml"
+      priority: 8
+      critical_path: false
+      description: "Vérification formelle des propriétés"
+
+    frontend_web3:
+      enabled: true
+      module: "agents.frontend_web3.agent"
+      class: "FrontendWeb3Agent"
+      config_path: "agents/frontend_web3/config.yaml"
+      priority: 4
+      critical_path: false
+      description: "Développement interfaces Web3"
+
+    fuzzing_simulation:
+      enabled: true
+      module: "agents.fuzzing_simulation.agent"
+      class: "FuzzingSimulationAgent"
+      config_path: "agents/fuzzing_simulation/config.yaml"
+      priority: 9
+      critical_path: false
+      description: "Tests de sécurité par fuzzing"
+
+    learning:
+      enabled: true
+      module: "agents.learning.agent"
+      class: "LearningAgent"
+      config_path: "agents/learning/config.yaml"
+      priority: 10
+      critical_path: false
+      description: "Modèles IA et apprentissage"
+
+    monitoring:
+      enabled: true
+      module: "agents.monitoring.agent"
+      class: "MonitoringAgent"
+      config_path: "agents/monitoring/config.yaml"
+      priority: 11
+      critical_path: false
+      description: "Surveillance performances et métriques"
+
+    registry:
+      enabled: true
+      module: "agents.registry.registry_agent"
+      class: "RegistryAgent"
+      config_path: "agents/registry/config.yaml"
+      priority: 0
+      critical_path: true
+      description: "Gestion du registre des agents"
+
+    smart_contract:
+      enabled: true
+      module: "agents.smart_contract.agent"
+      class: "SmartContractAgent"
+      config_path: "agents/smart_contract/config.yaml"
+      priority: 3
+      critical_path: true
+      description: "Expertise contrats intelligents"
+
+    storage:
+      enabled: true
+      module: "agents.storage.agent"
+      class: "StorageAgent"
+      config_path: "agents/storage/config.yaml"
+      priority: 12
+      critical_path: false
+      description: "Gestion des données et persistance"
+
+    tester:
+      enabled: true
+      module: "agents.tester.agent"
+      class: "TesterAgent"
+      config_path: "agents/tester/config.yaml"
+      priority: 5
+      critical_path: true
+      description: "Tests et assurance qualité"
+
+    workflow:
+      enabled: true
+      module: "agents.workflow.agent"
+      class: "WorkflowAgent"
+      config_path: "agents/workflow/config.yaml"
+      priority: 13
+      critical_path: false
+      description: "Gestionnaire de workflows"
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["orchestration", "workflow", "sprint", "quality", "supervision"]
+    capabilities_count: 9
+    subagents_count: 2
+    managed_agents_count: 16
+    last_reviewed: "2026-02-26"
+    next_review: "2026-03-26"

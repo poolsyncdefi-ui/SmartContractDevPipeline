@@ -1,0 +1,210 @@
+{
+  "project": "MyDeFiApp",
+  "type": "defi",
+  "version": "1.0.0",
+  "generated_at": "2026-02-26T18:42:27.459657",
+  "description": "Plateforme DeFi complète avec token, staking, et interface web",
+  "domains": [
+    "smart_contract",
+    "backend",
+    "frontend",
+    "database",
+    "devops",
+    "documentation"
+  ],
+  "fragments": [
+    {
+      "id": "MyDeFiApp_SC_001",
+      "domain": "smart_contract",
+      "name": "Token ERC20",
+      "description": "Token standard avec mint/burn",
+      "language": "solidity",
+      "version": "0.8.19",
+      "framework": "foundry",
+      "complexity": 2,
+      "dependencies": [
+        "openzeppelin/contracts@4.9.0"
+      ],
+      "specification": {
+        "contract_name": "MyDeFiAppToken",
+        "symbol": "MYDEF",
+        "features": [
+          "mint",
+          "burn",
+          "transfer",
+          "approve"
+        ]
+      }
+    },
+    {
+      "id": "MyDeFiApp_SC_002",
+      "domain": "smart_contract",
+      "name": "Staking Pool",
+      "description": "Pool de staking avec récompenses",
+      "language": "solidity",
+      "version": "0.8.19",
+      "framework": "foundry",
+      "complexity": 4,
+      "depends_on": [
+        "MyDeFiApp_SC_001"
+      ],
+      "specification": {
+        "contract_name": "MyDeFiAppStaking",
+        "features": [
+          "stake",
+          "unstake",
+          "claim",
+          "compound"
+        ]
+      }
+    },
+    {
+      "id": "MyDeFiApp_BE_001",
+      "domain": "backend",
+      "name": "API FastAPI",
+      "description": "API REST pour le projet",
+      "language": "python",
+      "version": "3.11",
+      "framework": "fastapi",
+      "complexity": 3,
+      "depends_on": [
+        "MyDeFiApp_SC_001",
+        "MyDeFiApp_DB_001"
+      ],
+      "specification": {
+        "endpoints": [
+          "/balance",
+          "/transfer",
+          "/stake",
+          "/rewards"
+        ],
+        "database": "postgresql",
+        "cache": "redis"
+      }
+    },
+    {
+      "id": "MyDeFiApp_FE_001",
+      "domain": "frontend",
+      "name": "Interface React",
+      "description": "Application React avec WalletConnect",
+      "language": "typescript",
+      "version": "5.0",
+      "framework": "nextjs",
+      "complexity": 3,
+      "depends_on": [
+        "MyDeFiApp_BE_001"
+      ],
+      "specification": {
+        "pages": [
+          "dashboard",
+          "staking",
+          "admin"
+        ],
+        "wallets": [
+          "metamask",
+          "walletconnect"
+        ]
+      }
+    },
+    {
+      "id": "MyDeFiApp_DB_001",
+      "domain": "database",
+      "name": "Schéma PostgreSQL",
+      "description": "Base de données du projet",
+      "language": "sql",
+      "version": "15",
+      "framework": "alembic",
+      "complexity": 2,
+      "specification": {
+        "tables": [
+          "users",
+          "transactions",
+          "staking_positions"
+        ]
+      }
+    },
+    {
+      "id": "MyDeFiApp_DO_001",
+      "domain": "devops",
+      "name": "Infrastructure Docker",
+      "description": "Déploiement conteneurisé",
+      "language": "yaml",
+      "version": "docker-compose-v3",
+      "complexity": 3,
+      "depends_on": [
+        "MyDeFiApp_BE_001",
+        "MyDeFiApp_FE_001",
+        "MyDeFiApp_DB_001"
+      ],
+      "specification": {
+        "services": [
+          "postgres",
+          "redis",
+          "backend",
+          "frontend",
+          "nginx"
+        ],
+        "environments": [
+          "development",
+          "staging",
+          "production"
+        ]
+      }
+    },
+    {
+      "id": "MyDeFiApp_DOC_001",
+      "domain": "documentation",
+      "name": "Documentation",
+      "description": "Documentation complète",
+      "language": "markdown",
+      "framework": "mkdocs",
+      "complexity": 2,
+      "depends_on": [
+        "*"
+      ],
+      "specification": {
+        "sections": [
+          "introduction",
+          "architecture",
+          "api",
+          "deployment",
+          "user_guide"
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "MyDeFiApp_SC_002",
+      "to": "MyDeFiApp_SC_001"
+    },
+    {
+      "from": "MyDeFiApp_BE_001",
+      "to": "MyDeFiApp_SC_001"
+    },
+    {
+      "from": "MyDeFiApp_BE_001",
+      "to": "MyDeFiApp_DB_001"
+    },
+    {
+      "from": "MyDeFiApp_FE_001",
+      "to": "MyDeFiApp_BE_001"
+    },
+    {
+      "from": "MyDeFiApp_DO_001",
+      "to": "MyDeFiApp_BE_001"
+    },
+    {
+      "from": "MyDeFiApp_DO_001",
+      "to": "MyDeFiApp_FE_001"
+    },
+    {
+      "from": "MyDeFiApp_DO_001",
+      "to": "MyDeFiApp_DB_001"
+    },
+    {
+      "from": "MyDeFiApp_DOC_001",
+      "to": "*"
+    }
+  ]
+}

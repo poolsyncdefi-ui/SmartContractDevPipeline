@@ -1,7 +1,7 @@
 {
   "sprint": "SPRINT-000",
   "name": "Sans nom",
-  "timestamp": "2026-02-21T23:07:37.997661",
+  "timestamp": "2026-02-26T19:14:49.430468",
   "metrics": {
     "total_fragments": 7,
     "successful": 7,
@@ -58,10 +58,10 @@
       "name": "Token ERC20",
       "complexity": 2,
       "success": true,
-      "iterations": 1,
+      "iterations": 2,
       "success_rate": 95.0,
       "bonuses": [],
-      "timestamp": "2026-02-21T23:07:34.501306"
+      "timestamp": "2026-02-26T19:14:45.997734"
     },
     {
       "fragment_id": "MyDeFiApp_BE_001",
@@ -74,7 +74,7 @@
       "bonuses": [
         "backend_bonus"
       ],
-      "timestamp": "2026-02-21T23:07:35.112870"
+      "timestamp": "2026-02-26T19:14:46.621359"
     },
     {
       "fragment_id": "MyDeFiApp_FE_001",
@@ -82,12 +82,12 @@
       "name": "Interface React",
       "complexity": 3,
       "success": true,
-      "iterations": 3,
+      "iterations": 1,
       "success_rate": 95.0,
       "bonuses": [
         "frontend_bonus"
       ],
-      "timestamp": "2026-02-21T23:07:35.730266"
+      "timestamp": "2026-02-26T19:14:47.223623"
     },
     {
       "fragment_id": "MyDeFiApp_DB_001",
@@ -95,10 +95,10 @@
       "name": "Schéma PostgreSQL",
       "complexity": 2,
       "success": true,
-      "iterations": 3,
+      "iterations": 2,
       "success_rate": 95.0,
       "bonuses": [],
-      "timestamp": "2026-02-21T23:07:36.134641"
+      "timestamp": "2026-02-26T19:14:47.624468"
     },
     {
       "fragment_id": "MyDeFiApp_DO_001",
@@ -106,10 +106,10 @@
       "name": "Infrastructure Docker",
       "complexity": 3,
       "success": true,
-      "iterations": 3,
+      "iterations": 1,
       "success_rate": 85.0,
       "bonuses": [],
-      "timestamp": "2026-02-21T23:07:36.760354"
+      "timestamp": "2026-02-26T19:14:48.226364"
     },
     {
       "fragment_id": "MyDeFiApp_DOC_001",
@@ -117,13 +117,13 @@
       "name": "Documentation",
       "complexity": 2,
       "success": true,
-      "iterations": 3,
+      "iterations": 1,
       "success_rate": 98.0,
       "bonuses": [
         "doc_bonus",
         "dependencies_ok"
       ],
-      "timestamp": "2026-02-21T23:07:37.175717"
+      "timestamp": "2026-02-26T19:14:48.627854"
     },
     {
       "fragment_id": "MyDeFiApp_SC_002",
@@ -131,13 +131,11 @@
       "name": "Staking Pool",
       "complexity": 4,
       "success": true,
-      "iterations": 4,
+      "iterations": 3,
       "success_rate": 65.0,
       "bonuses": [],
-      "timestamp": "2026-02-21T23:07:37.996670"
+      "timestamp": "2026-02-26T19:14:49.430468"
     }
   ],
-  "recommendations": [
-    "🐢 1 fragments ont nécessité plus de 3 itérations. Les détailler davantage."
-  ]
+  "recommendations": []
 }

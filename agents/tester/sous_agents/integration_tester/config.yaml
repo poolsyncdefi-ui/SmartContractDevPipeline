@@ -1,18 +1,16 @@
-# Configuration du sous-agent integration_tester
 sub_agent:
-  id: "integration_tester_01"
-  name: "Integration Testing"
-  parent: "tester"
-  specialization: "Integration Testing"
-  version: "1.0.0"
-
+  id: integration_tester_01
+  name: Integration Testing
+  parent: tester
+  specialization: Integration Testing
+  version: 1.0.0
 capabilities:
-  - "specialized_task_execution"
-  - "domain_expertise"
-
+- name: specialized_task_execution
+  description: Capacité specialized task execution
+- name: domain_expertise
+  description: Capacité domain expertise
 parameters:
   timeout_seconds: 60
   max_retries: 2
-
 logging:
-  level: "INFO"
+  level: INFO

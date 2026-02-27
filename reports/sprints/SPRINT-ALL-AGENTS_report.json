@@ -1,0 +1,191 @@
+{
+  "sprint": "SPRINT-ALL-AGENTS",
+  "name": "Sprint de test de tous les agents",
+  "timestamp": "2026-02-26T21:35:58.845706",
+  "metrics": {
+    "total_fragments": 11,
+    "successful": 9,
+    "failed": 2,
+    "success_rate": 81.81818181818183,
+    "by_domain": {
+      "smart_contract": {
+        "total": 2,
+        "completed": 0,
+        "failed": 0
+      },
+      "backend": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "frontend": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "database": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "devops": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "monitoring": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      },
+      "documentation": {
+        "total": 1,
+        "completed": 0,
+        "failed": 0
+      }
+    },
+    "sprints_completed": 1,
+    "fragments_total": 11,
+    "fragments_completed": 9,
+    "fragments_failed": 2,
+    "iterations_total": 0,
+    "avg_iterations_per_fragment": 0.0
+  },
+  "results": [
+    {
+      "fragment_id": "SC_001",
+      "domain": "smart_contract",
+      "name": "Token ERC20 Complet",
+      "complexity": 2,
+      "success": true,
+      "iterations": 2,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:53.313709"
+    },
+    {
+      "fragment_id": "BE_001",
+      "domain": "backend",
+      "name": "API FastAPI Complète",
+      "complexity": 3,
+      "success": false,
+      "iterations": 4,
+      "success_rate": 90.0,
+      "bonuses": [
+        "backend_bonus"
+      ],
+      "timestamp": "2026-02-26T21:35:53.903585",
+      "failure_reasons": []
+    },
+    {
+      "fragment_id": "FE_001",
+      "domain": "frontend",
+      "name": "Interface Web3 Complète",
+      "complexity": 3,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 95.0,
+      "bonuses": [
+        "frontend_bonus"
+      ],
+      "timestamp": "2026-02-26T21:35:54.526222"
+    },
+    {
+      "fragment_id": "DB_001",
+      "domain": "database",
+      "name": "Schéma PostgreSQL Optimisé",
+      "complexity": 2,
+      "success": true,
+      "iterations": 1,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:54.944865"
+    },
+    {
+      "fragment_id": "DO_001",
+      "domain": "devops",
+      "name": "Infrastructure Docker/K8s Complète",
+      "complexity": 3,
+      "success": false,
+      "iterations": 5,
+      "success_rate": 85.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:55.569254",
+      "failure_reasons": []
+    },
+    {
+      "fragment_id": "DOC_001",
+      "domain": "documentation",
+      "name": "Documentation Technique Complète",
+      "complexity": 2,
+      "success": true,
+      "iterations": 1,
+      "success_rate": 98.0,
+      "bonuses": [
+        "doc_bonus"
+      ],
+      "timestamp": "2026-02-26T21:35:55.974274"
+    },
+    {
+      "fragment_id": "COM_001",
+      "domain": "communication",
+      "name": "Système de Communication Inter-Agents",
+      "complexity": 2,
+      "success": true,
+      "iterations": 1,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:56.382191"
+    },
+    {
+      "fragment_id": "SEC_001",
+      "domain": "security",
+      "name": "Tests de Sécurité Complets",
+      "complexity": 3,
+      "success": true,
+      "iterations": 2,
+      "success_rate": 85.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:57.001181"
+    },
+    {
+      "fragment_id": "MON_001",
+      "domain": "monitoring",
+      "name": "Système de Monitoring Complet",
+      "complexity": 2,
+      "success": true,
+      "iterations": 3,
+      "success_rate": 95.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:57.403743"
+    },
+    {
+      "fragment_id": "LRN_001",
+      "domain": "learning",
+      "name": "Analyse Prédictive",
+      "complexity": 3,
+      "success": true,
+      "iterations": 2,
+      "success_rate": 85.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:58.011979"
+    },
+    {
+      "fragment_id": "SC_002",
+      "domain": "smart_contract",
+      "name": "Staking Pool Complexe",
+      "complexity": 4,
+      "success": true,
+      "iterations": 4,
+      "success_rate": 65.0,
+      "bonuses": [],
+      "timestamp": "2026-02-26T21:35:58.842746"
+    }
+  ],
+  "recommendations": [
+    "⚠️ Domaine 'backend': taux d'échec élevé (100.0%). Revoir les spécifications.",
+    "⚠️ Domaine 'devops': taux d'échec élevé (100.0%). Revoir les spécifications.",
+    "🐢 3 fragments ont nécessité plus de 3 itérations. Les détailler davantage.",
+    "🔍 Analyser les échecs: BE_001, DO_001"
+  ]
+}

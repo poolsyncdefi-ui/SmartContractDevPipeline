@@ -1,133 +1,629 @@
+# ============================================================================
+# agents/architect/config.yaml
+# Configuration ULTIME de l'Agent Architect - Version 3.0.0
+# Expert en architecture système avec spécialisations métier
+# (Assurance, Banque, Finance, Crypto, Web3, Sécurité, Réglementation)
+# ============================================================================
+
 agent:
   # === IDENTIFICATION ===
-  name: "architect"
+  name: "ArchitectAgent"
   class_name: "ArchitectAgent"
-  module_path: "agents.architect.architect"
-  display_name: "Architecte Principal"
-  description: "Agent principal responsable de la conception architecturale complète et de la stratégie technique du projet"
-  extends: "BaseAgent"
-  
-  # === TYPE ET STATUT ===
+  module_path: "agents.architect.agent"
+  display_name: "🏗️ Agent Architecte Système - Expert Multi-Domaine"
+  version: "3.0.0"
+  description: |-
+    Agent principal responsable de la conception architecturale complète,
+    avec expertise approfondie dans les domaines métier spécialisés :
+    Assurance, Banque, Finance, Crypto-actifs, Web3, NFT, Sécurité,
+    et conformité réglementaire internationale.
+  purpose: "Concevoir l'architecture système optimale intégrant les contraintes métier, techniques et réglementaires"
+
+  # === TYPE ET CARACTÉRISTIQUES ===
   agent_type: "concrete"
   abstract: false
   instantiate: true
   enabled: true
   mandatory: true
-  
-  # === DÉPENDANCES ===
-  dependencies: []
+  singleton: false
+  execution_order: 1
   initialization_order: 1
+
+  # === HÉRITAGE & DÉPENDANCES ===
+  extends: "BaseAgent"
   parent: "BaseAgent"
-  purpose: "Conception d'architecture système complète"
-  
-  # === CAPACITÉS (FORMAT CORRIGÉ) ===
+  dependencies: []  # L'architecte est à la base, il orchestre les connaissances métier
+  initialization_order: 1
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.85
+    base_confidence: 0.7
+
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_architecture_coherence"
+      - "check_pattern_consistency"
+      - "validate_scalability_claims"
+      - "detect_utopian_designs"
+      - "ensure_technology_feasibility"
+      - "verify_cost_estimates_plausible"
+      - "check_compliance_requirements"
+      - "validate_regulatory_compliance"
+      - "verify_security_standards"
+      - "check_domain_specific_constraints"
+
+    # Patterns de conceptions risquées
+    risky_patterns:
+      - pattern: "silver bullet"
+        reason: "Solution universelle inexistante - nécessite des compromis"
+        severity: "high"
+      - pattern: "ignorer les contraintes"
+        reason: "Design non réaliste"
+        severity: "critical"
+      - pattern: "pas de trade-offs"
+        reason: "Toute architecture implique des compromis"
+        severity: "high"
+      - pattern: "over-engineering"
+        reason: "Complexité excessive pour le besoin"
+        severity: "medium"
+      - pattern: "under-engineering"
+        reason: "Ne répondra pas aux exigences futures"
+        severity: "medium"
+      - pattern: "vendor lock-in"
+        reason: "Dépendance critique non justifiée"
+        severity: "high"
+      - pattern: "single point of failure"
+        reason: "Absence de redondance"
+        severity: "critical"
+      - pattern: "non-compliance"
+        reason: "Non-conformité réglementaire"
+        severity: "critical"
+
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.7
+      markers:
+        - doc: "⚠️ HYPOTHÈSE À VALIDER"
+        - doc: "🔍 COMPROMIS À ÉVALUER"
+        - doc: "❓ IMPACT INCERTAIN"
+        - doc: "📊 DONNÉES MANQUANTES"
+        - doc: "⚖️ À VALIDER RÉGLEMENTAIREMENT"
+      fallback_action: "flag_for_review"
+      require_human_review_if_below: 0.6
+
+  # === CAPACITÉS FONDAMENTALES ===
   capabilities:
-    - "VALIDATE_CONFIG"
-    - "ANALYZE_BUSINESS_REQUIREMENTS"
-    - "ANALYZE_TECHNICAL_CONSTRAINTS"
-    - "DESIGN_SYSTEM_ARCHITECTURE"
-    - "DESIGN_CLOUD_INFRASTRUCTURE"
-    - "DESIGN_BLOCKCHAIN_ARCHITECTURE"
-    - "DESIGN_MICROSERVICES_ECOSYSTEM"
-    - "DESIGN_API_GATEWAY"
-    - "DESIGN_DATA_ARCHITECTURE"
-    - "DESIGN_SECURITY_ARCHITECTURE"
-    - "DESIGN_MONITORING_OBSERVABILITY"
-    - "DESIGN_DISASTER_RECOVERY"
-    - "DESIGN_SCALABILITY_STRATEGY"
-    - "CREATE_TECHNICAL_SPECIFICATIONS"
-    - "REVIEW_ARCHITECTURE_DECISIONS"
-    - "OPTIMIZE_ARCHITECTURE_PERFORMANCE"
-    - "OPTIMIZE_ARCHITECTURE_COST"
-    - "DOCUMENT_ARCHITECTURE_COMPREHENSIVE"
-  
-  # === CONFIGURATION COMPLÈTE ===
-  configuration:
-    # Configuration d'exécution
-    execution_order: 1
+    - name: "VALIDATE_CONFIG"
+      description: "Valider la configuration du projet"
+      confidence_required: 0.8
+    - name: "ANALYZE_BUSINESS_REQUIREMENTS"
+      description: "Analyser les exigences métier"
+      confidence_required: 0.85
+    - name: "ANALYZE_TECHNICAL_CONSTRAINTS"
+      description: "Analyser les contraintes techniques"
+      confidence_required: 0.85
+    - name: "DESIGN_SYSTEM_ARCHITECTURE"
+      description: "Concevoir l'architecture système globale"
+      confidence_required: 0.9
+    - name: "DESIGN_CLOUD_INFRASTRUCTURE"
+      description: "Concevoir l'infrastructure cloud"
+      confidence_required: 0.85
+    - name: "DESIGN_BLOCKCHAIN_ARCHITECTURE"
+      description: "Concevoir l'architecture blockchain"
+      confidence_required: 0.85
+    - name: "DESIGN_MICROSERVICES_ECOSYSTEM"
+      description: "Concevoir l'écosystème microservices"
+      confidence_required: 0.9
+    - name: "DESIGN_API_GATEWAY"
+      description: "Concevoir l'API Gateway"
+      confidence_required: 0.85
+    - name: "DESIGN_DATA_ARCHITECTURE"
+      description: "Concevoir l'architecture des données"
+      confidence_required: 0.85
+    - name: "DESIGN_SECURITY_ARCHITECTURE"
+      description: "Concevoir l'architecture de sécurité"
+      confidence_required: 0.95
+    - name: "DESIGN_MONITORING_OBSERVABILITY"
+      description: "Concevoir le monitoring et l'observabilité"
+      confidence_required: 0.8
+    - name: "DESIGN_DISASTER_RECOVERY"
+      description: "Concevoir le plan de reprise d'activité"
+      confidence_required: 0.85
+    - name: "DESIGN_SCALABILITY_STRATEGY"
+      description: "Concevoir la stratégie de scalabilité"
+      confidence_required: 0.9
+    - name: "CREATE_TECHNICAL_SPECIFICATIONS"
+      description: "Créer les spécifications techniques"
+      confidence_required: 0.8
+    - name: "REVIEW_ARCHITECTURE_DECISIONS"
+      description: "Réviser les décisions d'architecture"
+      confidence_required: 0.9
+    - name: "OPTIMIZE_ARCHITECTURE_PERFORMANCE"
+      description: "Optimiser les performances architecturales"
+      confidence_required: 0.85
+    - name: "OPTIMIZE_ARCHITECTURE_COST"
+      description: "Optimiser les coûts architecturaux"
+      confidence_required: 0.8
+    - name: "DOCUMENT_ARCHITECTURE_COMPREHENSIVE"
+      description: "Documenter l'architecture de façon exhaustive"
+      confidence_required: 0.7
+
+  # === CAPACITÉS SPÉCIALISÉES PAR DOMAINE MÉTIER ===
+
+  # === DOMAINE ASSURANCE ===
+    - name: "DESIGN_INSURANCE_CORE_SYSTEMS"
+      description: "Concevoir les systèmes cœur d'assurance (contrats, sinistres, primes)"
+      confidence_required: 0.9
+      sub_domains: ["life_insurance", "property_casualty", "health_insurance", "reinsurance"]
+    - name: "DESIGN_CLAIMS_MANAGEMENT"
+      description: "Concevoir le système de gestion des sinistres"
+      confidence_required: 0.9
+    - name: "DESIGN_POLICY_ADMINISTRATION"
+      description: "Concevoir le système d'administration des polices"
+      confidence_required: 0.9
+    - name: "DESIGN_PREMIUM_CALCULATION_ENGINE"
+      description: "Concevoir le moteur de calcul des primes"
+      confidence_required: 0.9
+    - name: "DESIGN_UNDERWRITING_WORKFLOW"
+      description: "Concevoir le workflow de souscription"
+      confidence_required: 0.85
+    - name: "DESIGN_REINSURANCE_INTEGRATION"
+      description: "Concevoir l'intégration avec la réassurance"
+      confidence_required: 0.85
+    - name: "DESIGN_INSURANCE_REGULATORY_REPORTING"
+      description: "Concevoir le reporting réglementaire (Solvabilité II, etc.)"
+      confidence_required: 0.9
+    - name: "DESIGN_INSURANCE_DISTRIBUTION_CHANNELS"
+      description: "Concevoir les canaux de distribution (courtiers, agents, direct)"
+      confidence_required: 0.8
+
+  # === DOMAINE BANQUE ET FINANCE ===
+    - name: "DESIGN_BANKING_CORE_SYSTEMS"
+      description: "Concevoir les systèmes cœur bancaires (comptes, transactions, dépôts)"
+      confidence_required: 0.9
+    - name: "DESIGN_PAYMENT_PROCESSING"
+      description: "Concevoir le système de traitement des paiements"
+      confidence_required: 0.95
+    - name: "DESIGN_CREDIT_SCORING_ENGINE"
+      description: "Concevoir le moteur de scoring de crédit"
+      confidence_required: 0.85
+    - name: "DESIGN_LOAN_ORIGINATION"
+      description: "Concevoir le système d'octroi de prêts"
+      confidence_required: 0.9
+    - name: "DESIGN_LOAN_SERVICING"
+      description: "Concevoir le système de gestion des prêts"
+      confidence_required: 0.9
+    - name: "DESIGN_MORTGAGE_SYSTEMS"
+      description: "Concevoir les systèmes hypothécaires"
+      confidence_required: 0.85
+    - name: "DESIGN_INVESTMENT_PLATFORMS"
+      description: "Concevoir les plateformes d'investissement"
+      confidence_required: 0.85
+    - name: "DESIGN_WEALTH_MANAGEMENT"
+      description: "Concevoir les systèmes de gestion de patrimoine"
+      confidence_required: 0.85
+    - name: "DESIGN_TRADING_PLATFORMS"
+      description: "Concevoir les plateformes de trading"
+      confidence_required: 0.9
+    - name: "DESIGN_RISK_MANAGEMENT_FRAMEWORK"
+      description: "Concevoir le framework de gestion des risques"
+      confidence_required: 0.95
+    - name: "DESIGN_AML_KYC_SYSTEMS"
+      description: "Concevoir les systèmes AML/KYC"
+      confidence_required: 0.95
+    - name: "DESIGN_FRAUD_DETECTION"
+      description: "Concevoir les systèmes de détection de fraude"
+      confidence_required: 0.95
+
+  # === DOMAINE CRÉDIT ET PRÊT PARTICIPATIF ===
+    - name: "DESIGN_P2P_LENDING_PLATFORM"
+      description: "Concevoir les plateformes de prêt entre particuliers"
+      confidence_required: 0.9
+    - name: "DESIGN_CROWDFUNDING_PLATFORM"
+      description: "Concevoir les plateformes de financement participatif"
+      confidence_required: 0.9
+    - name: "DESIGN_MICROFINANCE_SYSTEMS"
+      description: "Concevoir les systèmes de microfinance"
+      confidence_required: 0.85
+    - name: "DESIGN_INVESTOR_MATCHING"
+      description: "Concevoir le matching investisseurs-emprunteurs"
+      confidence_required: 0.8
+    - name: "DESIGN_REPAYMENT_SCHEDULING"
+      description: "Concevoir le calendrier de remboursement"
+      confidence_required: 0.85
+    - name: "DESIGN_DEFAULT_MANAGEMENT"
+      description: "Concevoir la gestion des défauts de paiement"
+      confidence_required: 0.85
+
+  # === DOMAINE CRYPTO, WEB3 ET NFT ===
+    - name: "DESIGN_DEX_ARCHITECTURE"
+      description: "Concevoir l'architecture d'exchange décentralisé"
+      confidence_required: 0.9
+      models: ["amm", "order_book", "hybrid"]
+    - name: "DESIGN_LENDING_PROTOCOL"
+      description: "Concevoir les protocoles de prêt décentralisé"
+      confidence_required: 0.9
+    - name: "DESIGN_STAKING_MECHANISMS"
+      description: "Concevoir les mécanismes de staking"
+      confidence_required: 0.9
+    - name: "DESIGN_YIELD_OPTIMIZERS"
+      description: "Concevoir les optimiseurs de rendement"
+      confidence_required: 0.85
+    - name: "DESIGN_NFT_MARKETPLACE"
+      description: "Concevoir les marketplaces NFT"
+      confidence_required: 0.9
+    - name: "DESIGN_NFT_MINTING_PLATFORM"
+      description: "Concevoir les plateformes de mint NFT"
+      confidence_required: 0.85
+    - name: "DESIGN_GAMING_ECONOMY"
+      description: "Concevoir l'économie des jeux blockchain"
+      confidence_required: 0.85
+    - name: "DESIGN_METAVERSE_ARCHITECTURE"
+      description: "Concevoir l'architecture métaverse"
+      confidence_required: 0.8
+    - name: "DESIGN_CROSS_CHAIN_BRIDGES"
+      description: "Concevoir les bridges cross-chain"
+      confidence_required: 0.85
+    - name: "DESIGN_DAO_GOVERNANCE"
+      description: "Concevoir les systèmes de gouvernance DAO"
+      confidence_required: 0.9
+    - name: "DESIGN_TOKENOMICS_ARCHITECTURE"
+      description: "Concevoir l'architecture tokenomics"
+      confidence_required: 0.9
+    - name: "DESIGN_WALLET_INFRASTRUCTURE"
+      description: "Concevoir l'infrastructure wallet (custodial/non-custodial)"
+      confidence_required: 0.95
+
+  # === DOMAINE SÉCURITÉ INFORMATIQUE ===
+    - name: "DESIGN_ZERO_TRUST_ARCHITECTURE"
+      description: "Concevoir l'architecture Zero Trust"
+      confidence_required: 0.95
+    - name: "DESIGN_IDENTITY_ACCESS_MANAGEMENT"
+      description: "Concevoir l'IAM (Identity & Access Management)"
+      confidence_required: 0.95
+    - name: "DESIGN_PKI_INFRASTRUCTURE"
+      description: "Concevoir l'infrastructure PKI"
+      confidence_required: 0.9
+    - name: "DESIGN_ENCRYPTION_STRATEGY"
+      description: "Concevoir la stratégie de chiffrement"
+      confidence_required: 0.95
+    - name: "DESIGN_SECURE_SDLC"
+      description: "Concevoir le cycle de développement sécurisé"
+      confidence_required: 0.9
+    - name: "DESIGN_SOC_ARCHITECTURE"
+      description: "Concevoir l'architecture du SOC"
+      confidence_required: 0.9
+    - name: "DESIGN_SIEM_SENTINEL"
+      description: "Concevoir l'architecture SIEM"
+      confidence_required: 0.85
+    - name: "DESIGN_INTRUSION_DETECTION"
+      description: "Concevoir les systèmes de détection d'intrusion"
+      confidence_required: 0.85
+    - name: "DESIGN_WAF_ARCHITECTURE"
+      description: "Concevoir l'architecture WAF"
+      confidence_required: 0.85
+    - name: "DESIGN_DDOS_PROTECTION"
+      description: "Concevoir la protection DDoS"
+      confidence_required: 0.85
+
+  # === DOMAINE RÉGLEMENTAIRE ET CONFORMITÉ ===
+    - name: "DESIGN_GDPR_COMPLIANT_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme RGPD"
+      confidence_required: 0.95
+      requirements: ["data_minimization", "right_to_erasure", "consent_management"]
+    - name: "DESIGN_HIPAA_COMPLIANT_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme HIPAA"
+      confidence_required: 0.95
+    - name: "DESIGN_PCI_DSS_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme PCI DSS"
+      confidence_required: 0.95
+    - name: "DESIGN_SOC2_COMPLIANT_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme SOC2"
+      confidence_required: 0.95
+    - name: "DESIGN_CRYPTO_REGULATORY_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme réglementation crypto"
+      confidence_required: 0.95
+    - name: "DESIGN_MICA_COMPLIANT_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme MiCA"
+      confidence_required: 0.95
+      jurisdictions: ["EU"]
+    - name: "DESIGN_FINMA_COMPLIANT_ARCHITECTURE"
+      description: "Concevoir l'architecture conforme FINMA"
+      confidence_required: 0.95
+      jurisdiction: "Switzerland"
+    - name: "DESIGN_CRYPTO_FRIENDLY_JURISDICTIONS"
+      description: "Concevoir l'architecture adaptée aux juridictions crypto-friendly"
+      confidence_required: 0.9
+      jurisdictions: ["Singapore", "UAE", "Portugal", "Switzerland", "Dubai"]
+    - name: "DESIGN_AML_CTF_ARCHITECTURE"
+      description: "Concevoir l'architecture anti-blanchiment"
+      confidence_required: 0.95
+    - name: "DESIGN_KYC_IDENTITY_VERIFICATION"
+      description: "Concevoir les systèmes KYC"
+      confidence_required: 0.95
+    - name: "DESIGN_TRAVEL_RULE_COMPLIANCE"
+      description: "Concevoir la conformité Travel Rule (FATF)"
+      confidence_required: 0.95
+    - name: "DESIGN_MARKET_ABUSE_MONITORING"
+      description: "Concevoir la surveillance des abus de marché"
+      confidence_required: 0.9
+
+  # === CONFIGURATION LLM ===
+  llm_config:
+    enabled: true
+    model: "ollama:llama2:13b"  # Modèle plus gros pour la connaissance métier
+    temperature: 0.15
+    max_tokens: 12000
+    top_p: 0.95
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+
+    anti_hallucination_params:
+      repetition_penalty: 1.15
+      length_penalty: 1.0
+      no_repeat_ngram_size: 3
+      do_sample: false
+      num_beams: 4
+
+    response_validation:
+      require_consistency_check: true
+      require_pattern_validation: true
+      require_regulatory_check: true
+      max_attempts: 3
+      fallback_model: "ollama:llama2:13b"
+
+  # === ARCHITECTURE VALIDATION ===
+  architecture_validation:
+    require_diagrams: true
+    require_pattern_motivation: true
+    max_complexity: 50
+    require_scalability_analysis: true
+    require_security_review: true
+    require_cost_estimate: true
+    require_regulatory_compliance_check: true
+    require_domain_specific_validation: true
     
-    # Configuration LLM (section originale préservée)
-    llm_config:
-      model: "ollama:deepseek-coder:6.7b"
-      temperature: 0.1
-      max_tokens: 8000
-      top_p: 0.95
-      frequency_penalty: 0.0
-      presence_penalty: 0.0
+    required_sections:
+      - "décisions_architecture"
+      - "alternatives_considérées"
+      - "compromis_assumés"
+      - "contraintes_techniques"
+      - "contraintes_réglementaires"
+      - "analyse_des_risques_métier"
+      - "conformité_domaine"
+      - "hypothèses_de_scaling"
+      - "gouvernance_technique"
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "architecture_designer"
+      description: "Conçoit l'architecture globale"
+    - name: "cloud_designer"
+      description: "Conçoit l'infrastructure cloud"
+    - name: "blockchain_designer"
+      description: "Conçoit l'architecture blockchain"
+    - name: "microservices_designer"
+      description: "Conçoit l'écosystème microservices"
+    - name: "diagram_generator"
+      description: "Génère des diagrammes d'architecture"
+    - name: "cost_optimizer"
+      description: "Optimise les coûts architecturaux"
+    - name: "performance_analyzer"
+      description: "Analyse les performances"
+    - name: "security_scanner"
+      description: "Analyse la sécurité"
+    - name: "regulatory_checker"
+      description: "Vérifie la conformité réglementaire"
+    - name: "domain_specific_validator"
+      description: "Valide les contraintes métier spécifiques"
     
-    # Outils disponibles
-    tools:
-      - "architecture_designer"
-      - "cloud_designer"
-      - "blockchain_designer"
-      - "microservices_designer"
-      - "diagram_generator"
-      - "cost_optimizer"
-      - "performance_analyzer"
-      - "security_scanner"
-    
-    # Sorties produites
-    outputs:
-      - "architecture_diagrams_c4"
-      - "technical_specifications_detailed"
-      - "component_specifications"
-      - "deployment_strategy_document"
-      - "infrastructure_as_code_templates"
-      - "api_specifications_openapi"
-      - "database_schema_designs"
-      - "security_policy_document"
-      - "monitoring_dashboard_configs"
-      - "disaster_recovery_plan"
-    
-    # Règles de validation
-    validation_rules:
-      - "must_be_highly_scalable_to_millions_users"
-      - "must_have_99_99_availability"
-      - "must_comply_with_gdpr_hipaa_pci_dss"
-      - "must_support_zero_downtime_deployments"
-      - "must_have_comprehensive_monitoring"
-      - "must_be_cost_optimized_monthly_budget"
-      - "must_support_multi_region_deployment"
-      - "must_have_automated_disaster_recovery"
-      - "must_implement_defense_in_depth_security"
-      - "must_support_blue_green_canary_deployments"
-    
-    # Métriques de performance
-    performance_metrics:
-      response_time_target: "P95 < 200ms"
-      throughput_target: "10,000 req/sec"
-      availability_target: "99.99%"
-      cost_target: "< $5000/month at scale"
-      security_compliance: "SOC2, ISO27001 ready"
-    
-    # Points d'intégration
-    integration_points:
-      - "coder_agent_for_implementation"
-      - "smart_contract_agent_for_blockchain"
-      - "tester_agent_for_validation"
-      - "frontend_web3_agent_for_ui"
-    
-    # Escalations
-    escalation_paths:
-      - "complex_design_decisions_to_human_review"
-      - "security_critical_components_to_expert_review"
-      - "cost_overruns_to_project_manager"
-    
-    # Boucle d'apprentissage
-    learning_feedback_loop:
-      store_architecture_decisions: true
-      learn_from_implementation_feedback: true
-      adjust_design_patterns_based_on_performance: true
-    
-    # Paramètres système
-    system:
-      timeout_seconds: 1800
-      max_retries: 3
-      concurrent_tasks: 2
-      log_level: "INFO"
-    
-    # Formats supportés
-    supported_formats:
-      diagrams: ["C4", "UML", "Sequence", "Component"]
-      documentation: ["Markdown", "AsciiDoc", "PDF"]
-      code: ["Terraform", "CloudFormation", "Kubernetes"]
+    # Outils métier spécialisés
+    - name: "insurance_core_designer"
+      description: "Conçoit les systèmes d'assurance"
+    - name: "banking_core_designer"
+      description: "Conçoit les systèmes bancaires"
+    - name: "p2p_lending_designer"
+      description: "Conçoit les plateformes de prêt P2P"
+    - name: "defi_protocol_designer"
+      description: "Conçoit les protocoles DeFi"
+    - name: "nft_platform_designer"
+      description: "Conçoit les plateformes NFT"
+    - name: "crypto_exchange_designer"
+      description: "Conçoit les exchanges crypto"
+    - name: "security_framework_designer"
+      description: "Conçoit les frameworks de sécurité"
+    - name: "compliance_framework_designer"
+      description: "Conçoit les frameworks de conformité"
+
+  # === SOUS-AGENTS SPÉCIALISÉS PAR DOMAINE ===
+  subAgents:
+    # === DOMAINE ASSURANCE ===
+    - id: "insurance_architect"
+      name: "Insurance Systems Architect"
+      display_name: "Expert en Architecture Assurance"
+      config_path: "agents/architect/sous_agents/insurance_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "insurance"
+      sub_specializations: ["life", "property", "health", "reinsurance"]
+      standards: ["ACORD", "Solvency II", "IFRS17"]
+      confidence: 0.9
+
+    - id: "claims_management_architect"
+      name: "Claims Management Architect"
+      display_name: "Expert en Gestion des Sinistres"
+      config_path: "agents/architect/sous_agents/claims_management_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "claims"
+      confidence: 0.9
+
+    # === DOMAINE BANQUE ===
+    - id: "banking_architect"
+      name: "Banking Systems Architect"
+      display_name: "Expert en Architecture Bancaire"
+      config_path: "agents/architect/sous_agents/banking_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "banking"
+      sub_specializations: ["retail", "corporate", "private"]
+      standards: ["ISO20022", "PCI DSS", "PSD2"]
+      confidence: 0.95
+
+    - id: "payment_architect"
+      name: "Payment Systems Architect"
+      display_name: "Expert en Systèmes de Paiement"
+      config_path: "agents/architect/sous_agents/payment_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "payments"
+      schemes: ["SEPA", "SWIFT", "ACH", "RTP", "FedNow"]
+      confidence: 0.95
+
+    - id: "credit_risk_architect"
+      name: "Credit & Risk Architect"
+      display_name: "Expert en Crédit et Risques"
+      config_path: "agents/architect/sous_agents/credit_risk_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "credit_risk"
+      frameworks: ["Basel III", "IRB", "IFRS9"]
+      confidence: 0.9
+
+    # === DOMAINE CRÉDIT PARTICIPATIF ===
+    - id: "p2p_lending_architect"
+      name: "P2P Lending Architect"
+      display_name: "Expert en Prêt Participatif"
+      config_path: "agents/architect/sous_agents/p2p_lending_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "p2p_lending"
+      models: ["auction", "instant_matching", "fractional"]
+      confidence: 0.9
+
+    - id: "crowdfunding_architect"
+      name: "Crowdfunding Architect"
+      display_name: "Expert en Financement Participatif"
+      config_path: "agents/architect/sous_agents/crowdfunding_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "crowdfunding"
+      models: ["reward", "equity", "donation", "debt"]
+      confidence: 0.9
+
+    # === DOMAINE CRYPTO & WEB3 ===
+    - id: "defi_architect"
+      name: "DeFi Architect"
+      display_name: "Expert en Finance Décentralisée"
+      config_path: "agents/architect/sous_agents/defi_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "defi"
+      protocols: ["lending", "dex", "derivatives", "yield"]
+      confidence: 0.95
+
+    - id: "nft_architect"
+      name: "NFT Architect"
+      display_name: "Expert en NFT"
+      config_path: "agents/architect/sous_agents/nft_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "nft"
+      standards: ["ERC721", "ERC1155", "ERC2981"]
+      confidence: 0.9
+
+    - id: "gaming_architect"
+      name: "Gaming Architect"
+      display_name: "Expert en Jeux Blockchain"
+      config_path: "agents/architect/sous_agents/gaming_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "gaming"
+      concepts: ["play_to_earn", "asset_tokenization", "guilds"]
+      confidence: 0.85
+
+    - id: "dao_architect"
+      name: "DAO Architect"
+      display_name: "Expert en Gouvernance Décentralisée"
+      config_path: "agents/architect/sous_agents/dao_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "dao"
+      models: ["token_voting", "quadratic", "conviction"]
+      confidence: 0.9
+
+    - id: "cross_chain_architect"
+      name: "Cross-Chain Architect"
+      display_name: "Expert en Interopérabilité Blockchain"
+      config_path: "agents/architect/sous_agents/cross_chain_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "cross_chain"
+      technologies: ["IBC", "LayerZero", "CCIP", "Wormhole"]
+      confidence: 0.85
+
+    # === DOMAINE SÉCURITÉ ===
+    - id: "security_architect"
+      name: "Security Architect"
+      display_name: "Expert en Architecture de Sécurité"
+      config_path: "agents/architect/sous_agents/security_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "security"
+      frameworks: ["NIST", "ISO27001", "CIS"]
+      confidence: 0.95
+
+    - id: "crypto_security_architect"
+      name: "Crypto Security Architect"
+      display_name: "Expert en Sécurité Crypto"
+      config_path: "agents/architect/sous_agents/crypto_security_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "crypto_security"
+      domains: ["key_management", "smart_contract_security", "wallet_security"]
+      confidence: 0.95
+
+    # === DOMAINE RÉGLEMENTAIRE ===
+    - id: "regulatory_architect"
+      name: "Regulatory Compliance Architect"
+      display_name: "Expert en Conformité Réglementaire"
+      config_path: "agents/architect/sous_agents/regulatory_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "regulatory"
+      regulations: ["GDPR", "MiCA", "FINMA", "PSD2", "AMLD"]
+      confidence: 0.95
+
+    - id: "crypto_regulatory_architect"
+      name: "Crypto Regulatory Architect"
+      display_name: "Expert en Réglementation Crypto"
+      config_path: "agents/architect/sous_agents/crypto_regulatory_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "crypto_regulatory"
+      jurisdictions: ["EU_MiCA", "Switzerland_FINMA", "Singapore", "Dubai_VARA", "US"]
+      confidence: 0.95
+
+    - id: "aml_kyc_architect"
+      name: "AML/KYC Architect"
+      display_name: "Expert en AML/KYC"
+      config_path: "agents/architect/sous_agents/aml_kyc_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "aml_kyc"
+      requirements: ["CDD", "EDD", "PEP", "Sanctions"]
+      confidence: 0.95
+
+    # === DOMAINE JURIDIQUE ===
+    - id: "legal_tech_architect"
+      name: "Legal Tech Architect"
+      display_name: "Expert en Architecture Juridique"
+      config_path: "agents/architect/sous_agents/legal_tech_architect/config.yaml"
+      dependencies: ["architect"]
+      specialization: "legal_tech"
+      domains: ["smart_legal_contracts", "regtech", "compliance_automation"]
+      confidence: 0.85
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: [
+      "architecture", "system-design", "cloud", "security", "regulatory",
+      "insurance", "banking", "finance", "crypto", "web3", "defi", "nft",
+      "p2p-lending", "crowdfunding", "compliance", "mica", "finma", "gdpr"
+    ]
+    capabilities_count: 75
+    subagents_count: 18
+    domains_covered: [
+      "assurance", "banque", "crédit", "participatif",
+      "crypto", "web3", "nft", "sécurité", "réglementaire"
+    ]
+    last_reviewed: "2026-02-27"
+    next_review: "2026-03-27"

@@ -1,18 +1,16 @@
-# Configuration du sous-agent cloud_architect
 sub_agent:
-  id: "cloud_architect_01"
-  name: "Cloud Architecture"
-  parent: "architect"
-  specialization: "Cloud Architecture"
-  version: "1.0.0"
-
+  id: cloud_architect_01
+  name: Cloud Architecture
+  parent: architect
+  specialization: Cloud Architecture
+  version: 1.0.0
 capabilities:
-  - "specialized_task_execution"
-  - "domain_expertise"
-
+- name: specialized_task_execution
+  description: Capacité specialized task execution
+- name: domain_expertise
+  description: Capacité domain expertise
 parameters:
   timeout_seconds: 60
   max_retries: 2
-
 logging:
-  level: "INFO"
+  level: INFO

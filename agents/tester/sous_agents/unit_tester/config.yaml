@@ -1,18 +1,16 @@
-# Configuration du sous-agent unit_tester
 sub_agent:
-  id: "unit_tester_01"
-  name: "Unit Testing"
-  parent: "tester"
-  specialization: "Unit Testing"
-  version: "1.0.0"
-
+  id: unit_tester_01
+  name: Unit Testing
+  parent: tester
+  specialization: Unit Testing
+  version: 1.0.0
 capabilities:
-  - "specialized_task_execution"
-  - "domain_expertise"
-
+- name: specialized_task_execution
+  description: Capacité specialized task execution
+- name: domain_expertise
+  description: Capacité domain expertise
 parameters:
   timeout_seconds: 60
   max_retries: 2
-
 logging:
-  level: "INFO"
+  level: INFO
