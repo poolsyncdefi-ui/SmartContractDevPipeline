@@ -3,7 +3,7 @@ Package Communication - Système nerveux central
 Gestion des messages inter-agents avec files d'attente, persistance, pub/sub
 """
 
-from .communication_agent import (
+from .agent import (
     CommunicationAgent,
     MessagePriority,
     MessageStatus,

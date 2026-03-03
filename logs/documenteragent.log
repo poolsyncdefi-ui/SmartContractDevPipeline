@@ -19,3 +19,211 @@
 2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: agents/documenter/config.yaml)
 2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
 2026-02-26 19:33:27 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:30:49 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:30:49 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:30:49 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:30:49 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:36:26 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:36:26 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:36:26 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:36:26 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:40:55 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:40:55 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:40:55 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:40:55 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:43:29 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:43:29 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:43:29 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:43:29 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:48:44 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:48:44 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:48:44 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:48:44 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:54:36 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:54:36 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:54:36 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:54:36 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 20:59:45 - agent.DocumenterAgent - ERROR - ❌ Configuration invalide : section 'documenter' manquante
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 20:59:45 - agent.DocumenterAgent - ERROR - ❌ Erreur initialisation: 'styling'
+2026-02-28 20:59:45 - agent.DocumenterAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\documenter\agent.py", line 185, in initialize
+    await self._load_templates()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\documenter\agent.py", line 215, in _load_templates
+    "base_html": self._get_base_html_template(),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\documenter\agent.py", line 1741, in _get_base_html_template
+    colors = self._config["styling"]["colors"]
+             ~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'styling'
+
+2026-02-28 20:59:45 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> error
+2026-02-28 21:20:28 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 21:20:28 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 21:20:28 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 21:20:28 - agent.DocumenterAgent - ERROR - ❌ Erreur chargement config: 'DocumenterAgent' object has no attribute '_get_default_config'
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:24:41 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 21:24:41 - agent.DocumenterAgent - ERROR - ❌ Erreur initialisation: name 'jinja2' is not defined
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:28:10 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:33:30 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:38:49 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:26:21 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:30:39 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:36:40 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-02-28 22:44:27 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-02-28 22:44:27 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-02-28 22:44:27 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:44:28 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 19:56:22 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:04:34 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:07:43 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:14:25 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:22:19 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:26:45 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:34:48 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:09 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:30 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - 📚 Documenter Pro Agent créé
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - ✅ Configuration chargée: documenter v2.2.0
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:51:44 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt

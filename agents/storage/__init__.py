@@ -3,7 +3,7 @@ Package Storage - Gestion centralisée des données
 Stockage clé-valeur, documents, fichiers, cache, IPFS, chiffrement
 """
 
-from .storage_agent import (
+from .agent import (
     StorageAgent,
     StorageType,
     DataType,

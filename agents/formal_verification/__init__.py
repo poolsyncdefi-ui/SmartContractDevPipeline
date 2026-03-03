@@ -2,7 +2,7 @@
 Package de vérification formelle pour smart contracts
 """
 
-from .formal_verification import (
+from .agent import (
     FormalVerificationAgent,
     VerificationType,
     VerificationStatus,

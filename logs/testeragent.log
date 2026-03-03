@@ -274,3 +274,613 @@
 2026-02-26 21:35:52 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
 2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
 2026-02-26 21:35:52 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 20:43:34 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 20:48:47 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 21:08:57 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 21:40:19 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 21:48:20 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 21:49:42 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Agent tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Initialisation de l'agent tester...
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Initialisé 4 templates de tests
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Agent Tester initialisé
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Initialisation des composants du TesterAgent...
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Composants initialisés: ['test_generator', 'test_executor', 'security_scanner', 'coverage_analyzer', 'report_generator']
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 21:52:34 - agent.TesterAgent - INFO - Agent tester initialisé avec succès
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-27 22:06:05 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 22:06:05 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-27 22:12:59 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 22:12:59 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-27 22:15:16 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-27 22:15:16 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:22:32 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:22:32 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:30:49 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:30:49 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:36:26 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:36:26 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:40:55 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:40:55 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:43:29 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:43:29 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:48:44 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:48:44 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:54:36 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:54:36 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 20:59:46 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 20:59:46 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:04:06 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:04:06 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:16:52 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:16:52 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:20:28 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:20:28 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:24:41 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:24:41 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:28:10 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:28:10 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:33:30 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:33:30 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 21:38:49 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 21:38:49 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 22:26:21 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 22:26:21 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 22:30:40 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 22:30:40 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 22:36:40 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 22:36:40 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-02-28 22:44:28 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-02-28 22:44:28 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 19:56:22 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 19:56:22 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:04:35 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:04:35 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:07:43 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:07:43 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:14:25 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:14:25 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:22:19 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:22:19 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:26:45 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:26:45 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:34:48 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:34:48 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:44:09 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:44:09 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:44:31 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:44:31 - agent.TesterAgent - INFO - ✅ Agent Tester prêt
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Configuration chargée: TesterAgent v2.2.0
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Agent TesterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - ✅ Agent Tester créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\tester\config.yaml)
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Initialisation de l'agent Tester...
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Vérification des frameworks de test...
+2026-03-02 20:51:45 - agent.TesterAgent - INFO -    ✅ Frameworks disponibles: aucun
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Initialisation de l'agent TesterAgent...
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Vérification des dépendances: ['coder', 'frontend_web3', 'smart_contract', 'architect']
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Initialisation des composants...
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - ✅ Composants: ['unit_test_runner', 'integration_test_runner', 'e2e_test_runner', 'security_scanner', 'fuzzing_engine', 'performance_analyzer', 'coverage_analyzer', 'report_generator']
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - Agent TesterAgent initialisé avec succès
+2026-03-02 20:51:45 - agent.TesterAgent - INFO - ✅ Agent Tester prêt

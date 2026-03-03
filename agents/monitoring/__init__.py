@@ -3,7 +3,7 @@ Package Monitoring - Command Center
 Interface mission control pour la surveillance du pipeline
 """
 
-from .monitoring_agent import (
+from .agent import (
     MonitoringAgent,
     MetricType,
     AlertSeverity,

@@ -245,3 +245,243 @@ TypeError: object dict can't be used in 'await' expression
 2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
 2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: agents/formal_verification/config.yaml)
 2026-02-26 19:33:27 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 21:33:30 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 21:33:30 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 21:33:30 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'spec_generation'
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 393, in _initialize_components
+    "spec_generator": self._init_spec_generator(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 407, in _init_spec_generator
+    "templates": self._load_spec_templates(),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 478, in _load_spec_templates
+    full_path = Path(self._agent_config["spec_generation"]["template_dir"]) / Path(path).name
+                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'spec_generation'
+
+2026-02-28 21:38:49 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'spec_generation'
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 393, in _initialize_components
+    "spec_generator": self._init_spec_generator(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 409, in _init_spec_generator
+    "auto_generate": self._agent_config["spec_generation"]["auto_generate"],
+                     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'spec_generation'
+
+2026-02-28 22:26:21 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'certora'
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 394, in _initialize_components
+    "certora_integrator": self._init_certora_integrator(),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 417, in _init_certora_integrator
+    "enabled": self._agent_config["certora"]["enabled"],
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'certora'
+
+2026-02-28 22:30:39 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'certora'
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 394, in _initialize_components
+    "certora_integrator": self._init_certora_integrator(),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 417, in _init_certora_integrator
+    "enabled": self._agent_config["certora"]["enabled"],
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'certora'
+
+2026-02-28 22:36:40 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'certora'
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 394, in _initialize_components
+    "certora_integrator": self._init_certora_integrator(),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 417, in _init_certora_integrator
+    "enabled": self._agent_config["certora"]["enabled"],
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'certora'
+
+2026-02-28 22:44:28 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'certora'
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 394, in _initialize_components
+    "certora_integrator": self._init_certora_integrator(),
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 417, in _init_certora_integrator
+    "enabled": self._agent_config["certora"]["enabled"],
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'certora'
+
+2026-03-02 19:56:22 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent vérification formelle...
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'halo2'
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 262, in initialize
+    await self._initialize_components()  # ← GARDER await !
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 395, in _initialize_components
+    "halo2_integrator": self._init_halo2_integrator(),
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 429, in _init_halo2_integrator
+    "enabled": self._agent_config["halo2"]["enabled"],
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^
+KeyError: 'halo2'
+
+2026-03-02 20:04:34 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:07:43 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:14:25 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:22:19 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:26:45 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:34:48 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:44:09 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:44:30 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - WARNING - ⚠️ Section 'verification' manquante, utilisation des valeurs par défaut
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Agent vérification formelle créé
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent Smart Contract...
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: []
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - ERROR - ❌ Erreur initialisation: 'mythril'
+2026-03-02 20:51:44 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> error

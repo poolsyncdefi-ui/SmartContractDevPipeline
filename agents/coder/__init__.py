@@ -1,9 +1,30 @@
-# agents/coder/__init__.py
 """
 Package Coder Agent - Agent principal de développement de code
+Génération de code backend, frontend, smart contracts, tests et documentation
 """
 
-from .coder import CoderAgent
+from .agent import (
+    CoderAgent,
+    CodeLanguage,
+    Framework,
+    ComponentType,
+    GenerationStatus,
+    CodeComponent,
+    GeneratedFile,
+    GenerationResult,
+    create_coder_agent
+)
 
-__all__ = ['CoderAgent']
-__version__ = '1.0.0'
+__all__ = [
+    'CoderAgent',
+    'CodeLanguage',
+    'Framework',
+    'ComponentType',
+    'GenerationStatus',
+    'CodeComponent',
+    'GeneratedFile',
+    'GenerationResult',
+    'create_coder_agent'
+]
+
+__version__ = '2.2.0'

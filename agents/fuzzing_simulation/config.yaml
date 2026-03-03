@@ -1,63 +1,571 @@
+# =============================================================================
 # agents/fuzzing_simulation/config.yaml
-agent_id: "fuzzing_master_001"
-specialization: "Advanced Fuzzing & Multi-Chain Simulation"
-model: "ollama:llama3.1:8b"  # Bon pour la génération de scénarios
-temperature: 0.7  # Créatif pour générer des edge cases
+# Configuration complète de l'Agent Fuzzing & Simulation - Version 1.0.0
+# =============================================================================
 
-# Contexte
-context:
-  fuzzing_strategies:
-    - "Generation-based fuzzing"
-    - "Mutation-based fuzzing"
-    - "Coverage-guided fuzzing"
-  simulation_environments:
-    - "Mainnet fork"
-    - "Testnet simulation"
-    - "Custom EVM instance"
+agent:
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  id: "fuzzing_master_001"
+  name: "FuzzingSimulationAgent"
+  class_name: "FuzzingSimulationAgent"
+  module_path: "agents.fuzzing_simulation.agent"
+  display_name: "🧪 Agent de Fuzzing & Simulation"
+  version: "1.0.0"
+  description: "Détection automatique de vulnérabilités par tests aléatoires, invariants et simulation multi-chaînes. Identifie les failles de sécurité avant le déploiement."
+  purpose: "Assurer la sécurité et la robustesse des smart contracts via des tests intensifs et la simulation d'attaques."
 
-# Objectifs de fuzzing
-fuzzing_targets:
-  input_validation: "Tous les inputs"
-  state_transitions: "Tous les états possibles"
-  edge_cases:
-    - "Boundary values"
-    - "Overflows"
-    - "Reentrancy scenarios"
-    - "Front-running simulations"
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  singleton: false
 
-# Processus
-process:
-  1: "Analyse statique pour identifier les points d'entrée"
-  2: "Génération de seeds intelligents"
-  3: "Exécution avec instrumentation"
-  4: "Mutation basée sur la couverture"
-  5: "Tri des crashs et anomalies"
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "tester"
+    - "smart_contract"
+  initialization_order: 3
 
-# Outils
-tools:
-  - name: "foundry_fuzzer"
-    type: "forge_fuzz"
-    params:
-      runs: 10000
-      depth: 30
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.75  # Équilibré entre créativité et fiabilité
+
+    # Vérifications obligatoires pour chaque vulnérabilité signalée
+    mandatory_checks:
+      - "verify_exploit_sequence_reproducible"  # La séquence doit reproduire le bug
+      - "validate_vulnerability_in_source_code" # Le pattern doit exister dans le code
+      - "check_false_positive_database"          # Vérifier les faux positifs connus
+      - "ensure_minimum_evidence_count"          # Au moins 2 preuves différentes
+      - "verify_solidity_version_compatibility"  # Version Solidity pertinente
+
+    # Patterns de code à haut risque (augmentent la confiance)
+    high_risk_patterns:
+      - pattern: "call\\.value.*\\(.*\\)"
+        risk: "critical"
+        confidence_boost: 0.3
+      - pattern: "delegatecall"
+        risk: "critical"
+        confidence_boost: 0.3
+      - pattern: "selfdestruct"
+        risk: "critical"
+        confidence_boost: 0.3
+      - pattern: "tx\\.origin"
+        risk: "high"
+        confidence_boost: 0.2
+      - pattern: "block\\.timestamp.*[<>]="
+        risk: "medium"
+        confidence_boost: 0.15
+
+    # Patterns de faux positifs connus (réduisent la confiance)
+    false_positive_patterns:
+      - pattern: "using SafeMath for uint256"
+        reason: "Bibliothèque de sécurité - réduit les risques"
+        confidence_penalty: 0.2
+      - pattern: "import \"@openzeppelin/.*\""
+        reason: "Bibliothèques auditées - plus sûres"
+        confidence_penalty: 0.1
+      - pattern: "require\\(.*, \"SafeMath:.*\"\\)"
+        reason: "Protection déjà implémentée"
+        confidence_penalty: 0.15
+      - pattern: "nonReentrant"
+        reason: "Protection contre réentrance déjà présente"
+        confidence_penalty: 0.25
+
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.6  # En dessous, on marque l'incertitude
+      markers:
+        - code: "// ⚠️ VULNÉRABILITÉ POTENTIELLE À CONFIRMER"
+        - code: "// 🔍 NÉCESSITE UNE REVUE MANUELLE"
+        - code: "// ❓ FAUX POSITIF POSSIBLE - VÉRIFIER"
+      fallback_action: "flag_for_review"
+      require_human_review_if_below: 0.4  # En dessous, on demande validation humaine
+
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "ECHIDNA_INTEGRATION"
+      description: "Intégration avec le moteur de fuzzing Echidna"
+      confidence_required: 0.8
+      enabled: true
+    - name: "FOUNDRY_INVARIANT_TESTING"
+      description: "Tests d'invariants avec Foundry"
+      confidence_required: 0.85
+      enabled: true
+    - name: "MEDUSA_FUZZING"
+      description: "Fuzzing parallélisé avec Medusa"
+      confidence_required: 0.7
+      enabled: false
+    - name: "VULNERABILITY_DETECTION"
+      description: "Détection et classification des vulnérabilités"
+      confidence_required: 0.8
+      enabled: true
+    - name: "ATTACK_SEQUENCE_GENERATION"
+      description: "Génération de séquences d'attaque reproductibles"
+      confidence_required: 0.75
+      enabled: true
+    - name: "COVERAGE_ANALYSIS"
+      description: "Analyse de la couverture de code"
+      confidence_required: 0.9
+      enabled: true
+    - name: "CORPUS_MANAGEMENT"
+      description: "Gestion et optimisation du corpus de fuzzing"
+      confidence_required: 0.7
+      enabled: true
+    - name: "REPORT_GENERATION"
+      description: "Génération de rapports (HTML, JSON, Markdown)"
+      confidence_required: 0.9
+      enabled: true
+    - name: "MULTI_CHAIN_SIMULATION"
+      description: "Simulation sur différentes blockchains (fork mainnet)"
+      confidence_required: 0.8
+      enabled: true
+    - name: "PROPERTY_BASED_TESTING"
+      description: "Tests basés sur des propriétés formelles"
+      confidence_required: 0.85
+      enabled: true
+
+  # === CONFIGURATION LLM AVANCÉE ===
+  llm_config:
+    enabled: true
+    model: "ollama:llama3.1:8b"
+    temperature: 0.7  # Créatif pour générer des edge cases
+    max_tokens: 8000
+    top_p: 0.95
+    frequency_penalty: 0.2
+    presence_penalty: 0.2
+
+    # Paramètres anti-hallucination pour la génération de scénarios
+    anti_hallucination_params:
+      repetition_penalty: 1.1
+      length_penalty: 1.0
+      no_repeat_ngram_size: 4
+      do_sample: true
+      num_beams: 2
+
+    # Validation des réponses
+    response_validation:
+      require_syntax_check: false  # Pas applicable pour les scénarios
+      require_compilation_check: false
+      max_attempts: 2
+      fallback_model: "ollama:mixtral:8x7b"
+
+  # === CONFIGURATION DU FUZZING ===
+  fuzzing:
+    default_engine: "echidna"
+    default_strategy: "comprehensive"
     
-  - name: "echidna_runner"
-    type: "property_based_fuzzing"
+    # Limites de tests
+    test_limit: 100000
+    timeout_seconds: 3600
+    shrink_limit: 5000
+    sequence_length: 100
     
-  - name: "multi_chain_simulator"
-    type: "anvil_fork_manager"
-    params:
-      chains: ["mainnet", "arbitrum", "optimism"]
-    
-  - name: "coverage_analyzer"
-    type: "branch_coverage"
-    
-  - name: "scenario_generator"
-    type: "edge_case_generator"
+    # Stratégies disponibles
+    strategies:
+      - name: "generation_based"
+        description: "Génération d'entrées aléatoires"
+        enabled: true
+      - name: "mutation_based"
+        description: "Mutation d'entrées existantes"
+        enabled: true
+      - name: "coverage_guided"
+        description: "Guidé par la couverture de code"
+        enabled: true
+      - name: "invariant_based"
+        description: "Vérification d'invariants"
+        enabled: true
+      - name: "property_based"
+        description: "Test de propriétés formelles"
+        enabled: true
 
-# Outputs
-outputs:
-  fuzzing_reports: "fuzz_reports/"
-  discovered_bugs: "bugs/fuzzing/"
-  coverage_data: "coverage/fuzzing.json"
-  test_cases: "test_cases/generated/"
+    # Environnements de simulation
+    simulation_environments:
+      - name: "mainnet_fork"
+        description: "Fork de la blockchain principale"
+        rpc_url: "https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+        chain_id: 1
+      - name: "arbitrum_fork"
+        description: "Fork Arbitrum"
+        rpc_url: "https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+        chain_id: 42161
+      - name: "optimism_fork"
+        description: "Fork Optimism"
+        rpc_url: "https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}"
+        chain_id: 10
+      - name: "local_testnet"
+        description: "Instance EVM locale (Anvil)"
+        rpc_url: "http://localhost:8545"
+        chain_id: 31337
+
+    # Cibles de fuzzing prioritaires
+    priority_targets:
+      - "input_validation_functions"
+      - "state_transition_functions"
+      - "asset_transfer_functions"
+      - "permissioned_functions"
+      - "mathematical_operations"
+
+  # === CONFIGURATION DES MOTEURS ===
+  engines:
+    echidna:
+      enabled: true
+      executable: "echidna"
+      test_limit: 100000
+      shrink_limit: 5000
+      seq_len: 100
+      coverage: true
+      format: "text"
+      timeout_seconds: 3000
+      config_format: "yaml"
+      
+    foundry:
+      enabled: true
+      executable: "forge"
+      invariant_runs: 256
+      invariant_depth: 15
+      fuzz_runs: 1000
+      fuzz_depth: 1000
+      verbosity: 2
+      timeout_seconds: 1800
+      
+    medusa:
+      enabled: false
+      executable: "medusa"
+      test_limit: 50000
+      coverage: true
+      workers: 4
+      timeout_seconds: 3600
+
+  # === DÉTECTION DES VULNÉRABILITÉS ===
+  vulnerability_detection:
+    severity_threshold: "medium"
+    max_findings: 50
+    auto_remediation: true
+    generate_proofs: true
+    classify_vulnerabilities: true
+
+    # === RÈGLES DE VALIDATION ===
+    validation_rules:
+      require_reproducible_sequence: true
+      validate_in_source: true
+      exclude_known_false_positives: true
+      min_evidence_count: 2
+      check_solidity_version_compatibility: true
+      verify_impact_scope: true
+      check_for_existing_mitigations: true
+
+    # === SEUILS DE CONFIANCE ===
+    confidence_thresholds:
+      report_confidence_min: 0.7
+      
+      evidence_weights:
+        pattern_match: 0.3
+        test_failure: 0.5
+        attack_sequence: 0.4
+        coverage_increase: 0.2
+        invariant_violation: 0.6
+        historical_cve_match: 0.4
+        swc_classification_match: 0.35
+
+      classification:
+        critical: 0.9
+        high: 0.7
+        medium: 0.5
+        low: 0.3
+
+    # Classification SWC
+    swc_mapping:
+      reentrancy: "SWC-107"
+      integer_overflow: "SWC-101"
+      integer_underflow: "SWC-101"
+      access_control: "SWC-115"
+      timestamp_dependence: "SWC-116"
+      front_running: "SWC-114"
+      unchecked_call: "SWC-104"
+      delegatecall: "SWC-112"
+      self_destruct: "SWC-106"
+
+    # Suggestions de remédiation
+    remediation_templates:
+      reentrancy: "Utiliser ReentrancyGuard ou suivre le pattern Checks-Effects-Interactions"
+      integer_overflow: "Utiliser SafeMath ou Solidity ^0.8.0"
+      access_control: "Ajouter des modificateurs onlyOwner, onlyRole ou Ownable"
+      timestamp_dependence: "Éviter de dépendre de block.timestamp pour des décisions critiques"
+      unchecked_call: "Toujours vérifier la valeur de retour des appels externes"
+
+  # === GESTION DU CORPUS ===
+  corpus:
+    path: "./agents/fuzzing_simulation/corpus"
+    max_size_mb: 100
+    deduplicate: true
+    optimize_sequences: true
+    initial_corpus:
+      - "0x0000000000000000000000000000000000000000"
+      - "0xffffffffffffffffffffffffffffffffffffffff"
+      - "0x0000000000000000000000000000000000000001"
+      - "1000000000000000000"
+      - "0x01"
+      - "0xff"
+      - "0xdeadbeef"
+      - "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      - "0x0000000000000000000000000000000000000000000000000000000000000000"
+
+  # === GÉNÉRATION DE RAPPORTS ===
+  reporting:
+    output_path: "./agents/fuzzing_simulation/reports"
+    formats: ["html", "json", "markdown"]
+    include_sequences: true
+    include_coverage: true
+    include_remediation: true
+    include_swc_references: true
+    include_proof_of_concept: true
+    template: "fuzzing_report.html"
+    executive_summary_threshold: "high"
+    
+    # Métriques à inclure
+    metrics:
+      - "total_tests"
+      - "unique_failures"
+      - "coverage_percent"
+      - "vulnerabilities_by_severity"
+      - "attack_vectors_found"
+      - "test_duration"
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "foundry_fuzzer"
+      type: "forge_fuzz"
+      params:
+        runs: 10000
+        depth: 30
+      validation_required: false
+      
+    - name: "echidna_runner"
+      type: "property_based_fuzzing"
+      validation_required: true
+      
+    - name: "multi_chain_simulator"
+      type: "anvil_fork_manager"
+      params:
+        chains: ["mainnet", "arbitrum", "optimism"]
+      validation_required: false
+      
+    - name: "coverage_analyzer"
+      type: "branch_coverage"
+      validation_required: true
+      
+    - name: "scenario_generator"
+      type: "edge_case_generator"
+      validation_required: false
+      
+    - name: "slither_analyzer"
+      type: "static_analysis"
+      validation_required: true
+      
+    - name: "mythril_integrator"
+      type: "security_scanner"
+      validation_required: true
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "fuzzing_reports"
+      type: "report"
+      format: "html/json"
+      validation: "completeness"
+      path: "fuzz_reports/"
+      
+    - name: "discovered_bugs"
+      type: "data"
+      format: "json"
+      validation: "reproducibility"
+      path: "bugs/fuzzing/"
+      
+    - name: "coverage_data"
+      type: "data"
+      format: "json"
+      validation: "accuracy"
+      path: "coverage/fuzzing.json"
+      
+    - name: "test_cases"
+      type: "code"
+      format: "solidity"
+      validation: "execution"
+      path: "test_cases/generated/"
+      
+    - name: "attack_sequences"
+      type: "data"
+      format: "txt/json"
+      validation: "reproducibility"
+      path: "attacks/sequences/"
+      
+    - name: "proof_of_concept"
+      type: "code"
+      format: "solidity/js"
+      validation: "execution"
+      path: "attacks/proofs/"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "all_vulnerabilities_must_be_reproducible"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+      
+    - name: "coverage_must_exceed_70_percent"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+      
+    - name: "no_false_positives_in_critical_findings"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+      
+    - name: "attack_sequences_must_be_minimal"
+      severity: "low"
+      action_on_failure: "auto_correct"
+      auto_correct: true
+      
+    - name: "solidity_version_must_be_compatible_with_tests"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+      
+    - name: "proofs_must_compile_and_execute"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+
+  # === MÉTRIQUES DE QUALITÉ ===
+  quality_metrics:
+    coverage_percentage:
+      minimum: 70
+      target: 85
+      action_if_below: "extend_campaign"
+      
+    vulnerability_accuracy:
+      minimum: 80
+      target: 95
+      action_if_below: "refine_patterns"
+      
+    false_positive_rate:
+      maximum: 15
+      target: 5
+      action_if_exceeded: "update_false_positive_db"
+      
+    test_execution_speed:
+      maximum_seconds_per_1000_tests: 60
+      action_if_exceeded: "optimize_engine"
+      
+    reproducibility_rate:
+      minimum_percent: 95
+      target: 100
+      action_if_below: "improve_sequence_recording"
+
+  # === WORKFLOW DE COLLABORATION ===
+  collaboration_workflow:
+    steps:
+      - step: "receive_contract_from_architect_agent"
+        input: "smart_contract_code"
+        validation: "compilation_check"
+        timeout: 60
+        
+      - step: "perform_static_analysis_with_slither"
+        tool: "slither_analyzer"
+        output: "initial_findings"
+        
+      - step: "configure_fuzzing_campaign_based_on_contract"
+        process: "auto_configuration"
+        validation: "config_validity"
+        
+      - step: "execute_fuzzing_campaign"
+        engine: "selected_engine"
+        validation: "completion_check"
+        
+      - step: "analyze_results_with_tester_agent"
+        agent: "tester"
+        validation_type: "cross_validation"
+        required: true
+        
+      - step: "generate_comprehensive_report"
+        output: "fuzzing_report"
+        validation: "completeness"
+        
+      - step: "flag_critical_findings_for_security_expert"
+        agent: "security_expert"
+        condition: "critical_findings_exist"
+        priority: "high"
+
+  # === CONFIGURATION SYSTÈME ===
+  system:
+    timeout_seconds: 7200  # 2 heures max pour les campagnes longues
+    max_retries: 3
+    concurrent_tasks: 2
+    log_level: "INFO"
+    enable_auto_format: false
+    
+    retry_policy:
+      max_attempts: 2
+      backoff_factor: 1.5
+      jitter: 0.1
+      retryable_errors:
+        - "TimeoutError"
+        - "EngineExecutionError"
+        - "NetworkError"
+        - "RPCTimeoutError"
+
+  # === GESTION DES ERREURS ===
+  error_handling:
+    max_retries: 3
+    retry_delay_seconds: 5
+    fallback_to_simulation: true
+    error_logging: "detailed"
+    
+    error_scenarios:
+      engine_crash:
+        action: "restart_engine"
+        max_attempts: 2
+      rpc_timeout:
+        action: "switch_endpoint"
+        fallback: "local_simulation"
+      insufficient_coverage:
+        action: "extend_campaign"
+        extension_factor: 1.5
+
+  # === SOUS-AGENTS ===
+  subAgents:
+    - id: "fuzzing_executor"
+      name: "Fuzzing Executor"
+      display_name: "Exécuteur de Fuzzing"
+      config_path: "agents/fuzzing_simulation/sous_agents/fuzzing_executor/config.yaml"
+      dependencies: ["fuzzing_simulation"]
+      specialization: "engine_execution"
+      
+    - id: "vulnerability_analyzer"
+      name: "Vulnerability Analyzer"
+      display_name: "Analyseur de Vulnérabilités"
+      config_path: "agents/fuzzing_simulation/sous_agents/vulnerability_analyzer/config.yaml"
+      dependencies: ["fuzzing_simulation"]
+      specialization: "finding_classification"
+      
+    - id: "coverage_optimizer"
+      name: "Coverage Optimizer"
+      display_name: "Optimiseur de Couverture"
+      config_path: "agents/fuzzing_simulation/sous_agents/coverage_optimizer/config.yaml"
+      dependencies: ["fuzzing_simulation"]
+      specialization: "coverage_improvement"
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "security@poolsync.io"
+    license: "Proprietary"
+    tags: ["fuzzing", "security", "testing", "simulation", "blockchain"]
+    capabilities_count: 10
+    last_reviewed: "2026-02-27"
+    next_review: "2026-03-27"

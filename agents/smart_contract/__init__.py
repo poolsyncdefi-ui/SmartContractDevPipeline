@@ -1,5 +1,16 @@
-# Package smart_contract
-# Doit contenir
-from .smart_contract_agent import SmartContractAgent
+"""
+Package Smart Contract Agent
+Génération, audit, optimisation et déploiement de smart contracts
+"""
 
-__all__ = ['SmartContractAgent']
+from .agent import (
+    SmartContractAgent,
+    create_smart_contract_agent
+)
+
+__all__ = [
+    'SmartContractAgent',
+    'create_smart_contract_agent'
+]
+
+__version__ = '2.5.0'

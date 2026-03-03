@@ -4,7 +4,7 @@ Apprentissage automatique pour l'optimisation du pipeline
 """
 
 # Import direct depuis le module
-from agents.learning.learning_agent import (
+from .agent import (
     LearningAgent,
     LearningTaskType,
     ModelType,

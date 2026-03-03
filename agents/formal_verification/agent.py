@@ -8,6 +8,8 @@ Certora Prover, Halo2, exécution symbolique, invariants
 Version: 1.0.0
 """
 
+import logging
+import traceback
 import os
 import sys
 import json
@@ -24,7 +26,7 @@ import re
 # Ajout du chemin pour l'import de BaseAgent
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, AgentStatus, Message
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
 
 
 class VerificationType(Enum):
@@ -136,12 +138,7 @@ class FormalVerificationAgent(BaseAgent):
     """
     
     def __init__(self, config_path: str = ""):
-        """
-        Initialise l'agent de vérification formelle
-        
-        Args:
-            config_path: Chemin vers le fichier de configuration
-        """
+        """Initialise l'agent de vérification formelle"""
         # Appel du parent
         super().__init__(config_path)
         
@@ -151,6 +148,11 @@ class FormalVerificationAgent(BaseAgent):
         # Si pas de config chargée, utiliser la config par défaut
         if not self._agent_config:
             self._agent_config = self._default_config
+        
+        # 🔍 Vérifier que la section 'verification' existe
+        if "verification" not in self._agent_config:
+            self._logger.warning("⚠️ Section 'verification' manquante, utilisation des valeurs par défaut")
+            self._agent_config["verification"] = self._default_config["verification"]
         
         self._logger.info("Agent vérification formelle créé")
         
@@ -234,10 +236,10 @@ class FormalVerificationAgent(BaseAgent):
     def _create_directories(self):
         """Crée les répertoires nécessaires"""
         dirs = [
-            self._agent_config["verification"]["specs_path"],
-            self._agent_config["verification"]["certificates_path"],
-            self._agent_config["verification"]["logs_path"],
-            self._agent_config["spec_generation"]["template_dir"]
+            self._agent_config.get("verification", {}).get("specs_path", "./specs"),
+            self._agent_config.get("verification", {}).get("certificates_path", "./reports/formal"),
+            self._agent_config.get("verification", {}).get("logs_path", "./logs/formal"),
+            self._agent_config.get("spec_generation", {}).get("template_dir", "./templates/specs")
         ]
         
         for dir_path in dirs:
@@ -245,36 +247,29 @@ class FormalVerificationAgent(BaseAgent):
             self._logger.debug(f"Répertoire créé: {dir_path}")
     
     async def initialize(self) -> bool:
-        """
-        Initialisation asynchrone de l'agent
-        Surcharge la méthode de BaseAgent
-        """
         try:
             self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation de l'agent vérification formelle...")
-        
+            self._logger.info("Initialisation de l'agent Smart Contract...")
+            
             # Vérifier les dépendances
             await self._check_dependencies()
-        
-            # Initialiser les composants - GARDER await car la méthode est async
-            await self._initialize_components()  # ← GARDER await !
-        
-            # Vérifier la disponibilité des outils
-            await self._check_tools_availability()
-        
-            # Initialiser les templates de spécifications
-            await self._initialize_spec_templates()
-        
-            self._logger.info("Agent vérification formelle initialisé")
-        
-            # Appel au parent
+            
+            # Initialiser les composants - AJOUTER await !
+            await self._initialize_components()  # ← CORRIGÉ !
+            
+            self._logger.info("Agent Smart Contract initialisé")
+            
             result = await super().initialize()
-        
+            
             if result:
                 self._set_status(AgentStatus.READY)
-                self._logger.info("Agent vérification formelle initialisé avec succès")
-        
+                self._logger.info("✅ Agent Smart Contract prêt")
+            
             return result
+        except Exception as e:
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._set_status(AgentStatus.ERROR)
+            return False
         
         except Exception as e:
             self._logger.error(f"Erreur lors de l'initialisation: {e}")
@@ -401,32 +396,35 @@ class FormalVerificationAgent(BaseAgent):
     
     def _init_spec_generator(self) -> Dict[str, Any]:
         """Initialise le générateur de spécifications"""
+        spec_gen = self._agent_config.get("spec_generation", {})
         return {
             "templates": self._load_spec_templates(),
-            "output_path": self._agent_config["verification"]["specs_path"],
-            "auto_generate": self._agent_config["spec_generation"]["auto_generate"],
-            "inference_depth": self._agent_config["spec_generation"]["inference_depth"]
+            "output_path": self._agent_config.get("verification", {}).get("specs_path", "./specs"),
+            "auto_generate": spec_gen.get("auto_generate", True),
+            "inference_depth": spec_gen.get("inference_depth", 3)
         }
 
     def _init_certora_integrator(self) -> Dict[str, Any]:
         """Initialise l'intégrateur Certora"""
+        certora_config = self._agent_config.get("certora", {})
         return {
-            "enabled": self._agent_config["certora"]["enabled"],
-            "prover_version": self._agent_config["certora"]["prover_version"],
-            "solc_version": self._agent_config["certora"]["solc_version"],
-            "timeout": self._agent_config["certora"]["timeout"],
+            "enabled": certora_config.get("enabled", True),
+            "prover_version": certora_config.get("prover_version", "5.0"),
+            "solc_version": certora_config.get("solc_version", "0.8.19"),
+            "timeout": certora_config.get("timeout", 1800),
             "available": self._certora_available,
-            "settings": self._agent_config["certora"]["settings"]
+            "settings": certora_config.get("settings", {})
         }
 
     def _init_halo2_integrator(self) -> Dict[str, Any]:
         """Initialise l'intégrateur Halo2"""
+        halo2_config = self._agent_config.get("halo2", {})
         return {
-            "enabled": self._agent_config["halo2"]["enabled"],
-            "circuit_type": self._agent_config["halo2"]["circuit_type"],
-            "k": self._agent_config["halo2"]["k"],
-            "timeout": self._agent_config["halo2"]["timeout"],
-            "proof_system": self._agent_config["halo2"]["proof_system"],
+            "enabled": halo2_config.get("enabled", False),
+            "circuit_type": halo2_config.get("circuit_type", "plonk"),
+            "k": halo2_config.get("k", 12),
+            "timeout": halo2_config.get("timeout", 3600),
+            "proof_system": halo2_config.get("proof_system", "groth16"),
             "available": self._halo2_available
         }
 
@@ -470,10 +468,14 @@ class FormalVerificationAgent(BaseAgent):
             "reentrancy_guard": "templates/specs/reentrancy_guard.spec"
         }
         
+        # Récupérer le chemin des templates de manière sécurisée
+        spec_gen_config = self._agent_config.get("spec_generation", {})
+        template_dir = spec_gen_config.get("template_dir", "./templates/specs")
+        
         # Vérifier quels templates existent
         available = {}
         for name, path in templates.items():
-            full_path = Path(self._agent_config["spec_generation"]["template_dir"]) / Path(path).name
+            full_path = Path(template_dir) / Path(path).name
             if full_path.exists():
                 with open(full_path, 'r', encoding='utf-8') as f:
                     available[name] = f.read()

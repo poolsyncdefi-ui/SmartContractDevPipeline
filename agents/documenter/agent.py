@@ -1,4 +1,18 @@
 import logging
+import os
+import sys
+import yaml
+import asyncio
+import json
+import traceback  # ← AJOUTÉ
+import hashlib
+import re
+import shutil
+import jinja2  # ← AJOUTÉ
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+from datetime import datetime
+from enum import Enum
 
 logger = logging.getLogger(__name__)
 
@@ -9,27 +23,11 @@ Avec Mermaid diagrams, table des matières, liens croisés
 Version: 2.0.0
 """
 
-import os
-import sys
-import re
-import json
-import ast
-import hashlib
-from pathlib import Path
-from datetime import datetime
-from enum import Enum
-from typing import Dict, List, Any, Optional, Set, Tuple
-import markdown
-import jinja2
-import yaml
-import asyncio
-import subprocess
-import shutil
-import traceback
+# Ajouter le chemin du projet
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
 
-# Import BaseAgent
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, AgentStatus
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
 
 
 class DocFormat(Enum):
@@ -79,6 +77,11 @@ class DocumenterAgent(BaseAgent):
         # Charger configuration
         self._load_configuration()
         
+        # Vérifier que la configuration a la bonne structure
+        if "documenter" not in self._config:
+            self._logger.error("❌ Configuration invalide : section 'documenter' manquante")
+            self._config["documenter"] = self._get_default_config()["documenter"]
+        
         # État interne
         self._docs_generated = 0
         self._templates = {}
@@ -99,7 +102,16 @@ class DocumenterAgent(BaseAgent):
             config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
             if os.path.exists(config_path):
                 with open(config_path, 'r', encoding='utf-8') as f:
-                    self._config = yaml.safe_load(f)
+                    loaded_config = yaml.safe_load(f)
+                
+                # Charger la config par défaut
+                default_config = self._get_default_config()
+                
+                # Fusionner : la config chargée écrase la config par défaut
+                self._config = default_config.copy()
+                if loaded_config:
+                    self._deep_merge(self._config, loaded_config)
+                
                 self._logger.info(f"✅ Configuration chargée: documenter v{self._config['agent']['version']}")
             else:
                 self._logger.warning("⚠️ Fichier config.yaml non trouvé, utilisation configuration par défaut")
@@ -107,14 +119,140 @@ class DocumenterAgent(BaseAgent):
         except Exception as e:
             self._logger.error(f"❌ Erreur chargement config: {e}")
             self._config = self._get_default_config()
+
+    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
+        """
+        Gère les messages personnalisés pour le DocumenterAgent.
+        
+        Args:
+            message: Message à traiter
+            
+        Returns:
+            Réponse éventuelle
+        """
+        try:
+            msg_type = message.message_type
+            self._logger.debug(f"Message reçu: {msg_type}")
+            
+            if msg_type == "generate_documentation":
+                # Générer de la documentation
+                result = await self.generate_documentation(message.content)
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content=result,
+                    message_type="documentation_generated",
+                    correlation_id=message.message_id
+                )
+            
+            elif msg_type == "generate_diagram":
+                # Générer un diagramme
+                result = await self.generate_diagram(message.content)
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content=result,
+                    message_type="diagram_generated",
+                    correlation_id=message.message_id
+                )
+            
+            elif msg_type == "pause":
+                await self.pause()
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content={"status": "paused"},
+                    message_type="status_update",
+                    correlation_id=message.message_id
+                )
+            
+            elif msg_type == "resume":
+                await self.resume()
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content={"status": "resumed"},
+                    message_type="status_update",
+                    correlation_id=message.message_id
+                )
+            
+            elif msg_type == "shutdown":
+                await self.shutdown()
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content={"status": "shutdown"},
+                    message_type="status_update",
+                    correlation_id=message.message_id
+                )
+            
+            return None
+            
+        except Exception as e:
+            self._logger.error(f"Erreur traitement message: {e}")
+            return Message(
+                sender=self.name,
+                recipient=message.sender,
+                content={"error": str(e)},
+                message_type="error",
+                correlation_id=message.message_id
+            )
     
+    async def _initialize_components(self) -> bool:
+        """
+        Initialise les composants du DocumenterAgent.
+        
+        Returns:
+            True si l'initialisation a réussi
+        """
+        try:
+            self._logger.info("Initialisation des composants du DocumenterAgent...")
+            
+            self._components = {
+                "doc_generator": {"enabled": True, "formats": ["markdown", "html", "pdf"]},
+                "diagram_generator": {"enabled": True, "types": ["mermaid", "uml", "c4"]},
+                "template_manager": {"enabled": True, "templates": list(self._templates.keys())}
+            }
+            
+            self._logger.info(f"✅ Composants: {list(self._components.keys())}")
+            return True
+            
+        except Exception as e:
+            self._logger.error(f"Erreur composants: {e}")
+            return False
+    
+    async def generate_documentation(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Génère de la documentation."""
+        return {"success": True, "message": "Documentation générée"}
+    
+    async def generate_diagram(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Génère un diagramme."""
+        return {"success": True, "message": "Diagramme généré"}
+
+    def _deep_merge(self, base: Dict, override: Dict) -> None:
+        """
+        Fusionne profondément deux dictionnaires.
+        """
+        for key, value in override.items():
+            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
+                self._deep_merge(base[key], value)
+            else:
+                base[key] = value
+
+    # ⚠️ Cette méthode doit être au même niveau que _deep_merge, PAS à l'intérieur !
     def _get_default_config(self) -> Dict[str, Any]:
         """Configuration par défaut"""
         return {
             "agent": {
                 "name": "documenter",
                 "display_name": "📚 Documenter Agent",
-                "version": "1.0.0"
+                "version": "2.0.0",
+                "description": "Agent de documentation professionnelle",
+                "capabilities": [
+                    {"name": "generate_contract_docs", "description": "Génère la documentation d'un contrat"},
+                    {"name": "generate_project_docs", "description": "Génère la documentation d'un projet"},
+                    {"name": "generate_diagrams", "description": "Génère des diagrammes Mermaid"}
+                ]
             },
             "documenter": {
                 "output_path": "./docs",

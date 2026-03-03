@@ -275,3 +275,229 @@
 2026-02-13 18:31:40 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
 2026-02-13 18:39:11 - agent.FrontendWeb3Agent - INFO - Agent base_agent créé (config: )
 2026-02-13 18:39:11 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-28 22:26:21 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-02-28 22:26:21 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-02-28 22:26:21 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-28 22:30:39 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-02-28 22:30:39 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'deployment'
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 321, in initialize
+    await self._initialize_components()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 352, in _initialize_components
+    "deployment_manager": self._init_deployment_manager()
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 428, in _init_deployment_manager
+    "auto_deploy": self._agent_config["deployment"]["auto_deploy"],
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'deployment'
+
+2026-02-28 22:30:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'templates_path'
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 324, in initialize
+    await self._load_templates()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 435, in _load_templates
+    templates_path = Path(self._agent_config["templates_path"])
+                          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'templates_path'
+
+2026-02-28 22:36:40 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - ERROR - ❌ Erreur initialisation: 'templates_path'
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 324, in initialize
+    await self._load_templates()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\agent.py", line 435, in _load_templates
+    templates_path = Path(self._agent_config["templates_path"])
+                          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'templates_path'
+
+2026-02-28 22:44:28 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> error
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 19:56:22 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:04:34 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:07:43 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:14:25 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:22:19 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:26:45 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:34:48 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:44:09 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:44:30 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent frontend Web3...
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: ['banking_dashboard_2_0', 'virtual_cards', 'savings_pods', 'round_up_savings', 'spending_insights', 'budget_forecast', 'bill_splitting', 'direct_debit', 'lending_marketplace_2_0', 'collateral_management', 'liquidation_guard', 'yield_optimizer', 'loan_builder', 'credit_scoring', 'nft_lending', 'gasless_interface', 'social_recovery', 'passkey_auth', 'defi_composer', 'cross_chain_swap', 'bridge_page', 'session_keys']
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Agent frontend Web3 initialisé
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Initialisation des composants...
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-02 20:51:45 - agent.FrontendWeb3Agent - INFO - ✅ Agent frontend Web3 prêt

@@ -60,7 +60,12 @@ class RegistryAgent(BaseAgent):
     Gère l'enregistrement, la découverte, le versioning et les dépendances
     """
     
-    def __init__
+    def __init__(self, config_path: str = ""):  # ← CORRIGÉ : ajout des parenthèses et paramètres
+        """Initialise le registry agent"""
+        super().__init__(config_path)  # ← CORRIGÉ : appel correct avec config_path
+        
+        self._logger.info("🗄️ Registry Agent créé")
+        
     async def _initialize_components(self):
         """Initialise les composants spécifiques."""
         self.logger.info(f"Initialisation des composants de {class_name}...")

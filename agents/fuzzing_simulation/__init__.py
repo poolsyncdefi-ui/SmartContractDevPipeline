@@ -3,7 +3,7 @@ Package Fuzzing Simulation
 Détection automatique de vulnérabilités par tests aléatoires et invariants
 """
 
-from .fuzzing_agent import (
+from .agent import (
     FuzzingSimulationAgent,
     FuzzingEngine,
     FuzzingStrategy,

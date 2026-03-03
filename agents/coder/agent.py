@@ -22,7 +22,8 @@ from enum import Enum
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, AgentStatus, Message
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
+from dataclasses import dataclass, field
 
 # -----------------------------------------------------------------------------
 # CLASSES DE DONNÉES
@@ -57,9 +58,18 @@ class ComponentType(Enum):
     DATABASE = "database"
     API_GATEWAY = "api_gateway"
 
+class GenerationStatus(Enum):
+    """Statuts de génération de code"""
+    PENDING = "pending"
+    GENERATING = "generating"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    VALIDATING = "validating"
+
 @dataclass
 class CodeComponent:
     """Représente un composant de code à générer"""
+    id: str
     name: str
     component_type: ComponentType
     language: CodeLanguage
@@ -68,16 +78,33 @@ class CodeComponent:
     dependencies: List[str] = field(default_factory=list)
     output_path: Optional[Path] = None
     config: Dict[str, Any] = field(default_factory=dict)
+    status: GenerationStatus = GenerationStatus.PENDING
+    created_at: datetime = field(default_factory=datetime.now)
+    updated_at: datetime = field(default_factory=datetime.now)
+
+
+@dataclass
+class GeneratedFile:
+    """Représente un fichier généré"""
+    path: Path
+    content: str
+    language: CodeLanguage
+    size_bytes: int
+    line_count: int
+    generated_at: datetime = field(default_factory=datetime.now)
+
 
 @dataclass
 class GenerationResult:
     """Résultat de la génération de code"""
     success: bool
+    component_id: str
     component_name: str
     output_path: Path
-    files_created: List[Path] = field(default_factory=list)
+    files_created: List[GeneratedFile] = field(default_factory=list)
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
+    timestamp: datetime = field(default_factory=datetime.now)
 
 # -----------------------------------------------------------------------------
 # CLASSE CODER AGENT
@@ -691,6 +718,21 @@ const {{ component_name }} = () => {
 
 export default {{ component_name }};
 '''
+# ============================================================================
+# FONCTION FACTORY (À PLACER ICI, APRÈS LA CLASSE, AVANT LE TEST)
+# ============================================================================
+
+def create_coder_agent(config_path: Optional[str] = None) -> CoderAgent:
+    """
+    Crée une instance de l'agent Coder.
+    
+    Args:
+        config_path: Chemin vers le fichier de configuration
+        
+    Returns:
+        Instance de CoderAgent
+    """
+    return CoderAgent(config_path)
 
 # -----------------------------------------------------------------------------
 # POINT D'ENTRÉE POUR LES TESTS

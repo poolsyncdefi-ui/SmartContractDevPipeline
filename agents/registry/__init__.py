@@ -3,7 +3,7 @@ Package Registry - Catalogue intelligent des agents
 Découverte · Versioning · Dépendances · Cache
 """
 
-from .registry_agent import (
+from .agent import (
     RegistryAgent,
     RegistryEvent,
     AgentStatus,

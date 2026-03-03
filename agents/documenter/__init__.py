@@ -3,7 +3,7 @@ Package Documenter Pro - Documentation professionnelle
 Génération de documentation structurée avec Mermaid et navigation
 """
 
-from .documenter_agent import (
+from .agent import (
     DocumenterAgent,
     DocFormat,
     DocSection,
