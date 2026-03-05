@@ -1,12 +1,9 @@
-import logging
-
-logger = logging.getLogger(__name__)
-
 """
 Registry Agent - Catalogue intelligent des agents
 Version 2.0.0 - Découverte · Versioning · Dépendances · Cache
 """
 
+import logging
 import os
 import sys
 import json
@@ -14,6 +11,7 @@ import yaml
 import asyncio
 import hashlib
 import semver
+import traceback
 from datetime import datetime, timedelta
 from enum import Enum
 from pathlib import Path
@@ -21,15 +19,26 @@ from typing import Dict, List, Any, Optional, Set, Tuple
 from collections import defaultdict, deque
 import pickle
 import shutil
-import traceback
 
-# Import BaseAgent
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, AgentStatus
+logger = logging.getLogger(__name__)
 
-# =====================================================================
+# ============================================================================
+# CONFIGURATION DES IMPORTS - Chemin absolu
+# ============================================================================
+
+# Déterminer la racine du projet
+current_dir = Path(__file__).parent.absolute()
+project_root = current_dir.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+# Import absolu de BaseAgent
+from agents.base_agent.base_agent import BaseAgent, AgentStatus as BaseAgentStatus, Message, MessageType
+
+
+# ============================================================================
 # ENUMS
-# =====================================================================
+# ============================================================================
 
 class RegistryEvent(Enum):
     """Événements du registry"""
@@ -40,19 +49,19 @@ class RegistryEvent(Enum):
     DEPENDENCY_CYCLE = "dependency_cycle_detected"
 
 
-class RegistryAgentStatus(Enum):
-    """Statut d'un agent dans le registry"""
+class AgentRegistryStatus(Enum):
+    """Statut d'un agent dans le registry (différent de BaseAgent.Status)"""
     ACTIVE = "active"
     DEPRECATED = "deprecated"
     ARCHIVED = "archived"
     BETA = "beta"
     EXPERIMENTAL = "experimental"
-    ERROR = "error"  # 🔥 AJOUTE CETTE LIGNE
+    ERROR = "error"
 
 
-# =====================================================================
+# ============================================================================
 # AGENT PRINCIPAL
-# =====================================================================
+# ============================================================================
 
 class RegistryAgent(BaseAgent):
     """
@@ -60,42 +69,38 @@ class RegistryAgent(BaseAgent):
     Gère l'enregistrement, la découverte, le versioning et les dépendances
     """
     
-    def __init__(self, config_path: str = ""):  # ← CORRIGÉ : ajout des parenthèses et paramètres
+    def __init__(self, config_path: Optional[str] = None):
         """Initialise le registry agent"""
-        super().__init__(config_path)  # ← CORRIGÉ : appel correct avec config_path
+        if config_path is None:
+            config_path = str(project_root / "agents" / "registry" / "config.yaml")
+        
+        super().__init__(config_path)
+        
+        # Surcharger le nom d'affichage
+        agent_config = self._agent_config.get('agent', {})
+        self._display_name = agent_config.get('display_name', '🗄️ Registry Agent')
         
         self._logger.info("🗄️ Registry Agent créé")
         
-    async def _initialize_components(self):
-        """Initialise les composants spécifiques."""
-        self.logger.info(f"Initialisation des composants de {class_name}...")
-        return True
-(self, config_path: str = ""):
-        """Initialise le registry agent"""
-        super().__init__
-    async def _initialize_components(self):
-        """Initialise les composants spécifiques."""
-        self.logger.info(f"Initialisation des composants de {class_name}...")
-        return True
-(config_path)
+        # =====================================================================
+        # CONFIGURATION
+        # =====================================================================
+        self._registry_config = self._agent_config.get('registry', {})
+        self._schema_config = self._agent_config.get('schema', {})
+        self._metrics_config = self._agent_config.get('metrics', {})
         
-        self._logger.info("🗄️ Registry Agent créé")
-        
-        # Charger configuration
-        self._load_configuration()
-        
-        # =================================================================
+        # =====================================================================
         # BASES DE DONNÉES
-        # =================================================================
+        # =====================================================================
         self._agents: Dict[str, Dict] = {}           # nom → métadonnées
         self._versions: Dict[str, List[Dict]] = defaultdict(list)  # nom → versions
         self._dependencies: Dict[str, List[str]] = defaultdict(list)  # nom → dépendances
         self._capabilities_index: Dict[str, Set[str]] = defaultdict(set)  # capacité → agents
         self._tags_index: Dict[str, Set[str]] = defaultdict(set)  # tag → agents
         
-        # =================================================================
+        # =====================================================================
         # CACHE
-        # =================================================================
+        # =====================================================================
         self._instance_cache: Dict[str, Tuple[Any, datetime]] = {}  # nom → (instance, timestamp)
         self._cache_stats = {
             "hits": 0,
@@ -103,16 +108,16 @@ class RegistryAgent(BaseAgent):
             "size_bytes": 0
         }
         
-        # =================================================================
+        # =====================================================================
         # GRAPHE DE DÉPENDANCES
-        # =================================================================
+        # =====================================================================
         self._dependency_graph: Dict[str, Set[str]] = defaultdict(set)
         self._reverse_deps: Dict[str, Set[str]] = defaultdict(set)
         
-        # =================================================================
+        # =====================================================================
         # MÉTRIQUES
-        # =================================================================
-        self._registry_metrics = {  # 🔥 Nouveau nom
+        # =====================================================================
+        self._registry_metrics = {
             "registrations_total": 0,
             "discovery_queries": 0,
             "dependency_resolutions": 0,
@@ -123,12 +128,15 @@ class RegistryAgent(BaseAgent):
             "dependency_cycles": 0
         }
         
-        # =================================================================
+        # =====================================================================
         # ÉTAT INTERNE
-        # =================================================================
+        # =====================================================================
         self._events_queue = asyncio.Queue()
         self._websocket_connections = []
         self._background_tasks = []
+        self._components: Dict[str, Any] = {}
+        self._initialized = False
+        self._events: List[Dict] = []  # Historique des événements
         
         # Créer les répertoires
         self._create_directories()
@@ -138,29 +146,108 @@ class RegistryAgent(BaseAgent):
         
         self._logger.info(f"✅ Registry initialisé avec {len(self._agents)} agents")
     
-    def _load_configuration(self):
-        """Charge la configuration depuis le fichier YAML"""
+    # ============================================================================
+    # INITIALISATION
+    # ============================================================================
+    
+    async def initialize(self) -> bool:
+        """Initialisation asynchrone"""
         try:
-            config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
-            if os.path.exists(config_path):
-                with open(config_path, 'r', encoding='utf-8') as f:
-                    file_config = yaml.safe_load(f)
-                    if file_config:
-                        self._agent_config.update(file_config)
-                        
-                        # Extraire les infos de l'agent
-                        agent_info = file_config.get('agent', {})
-                        self._name = agent_info.get('name', self._name)
-                        self._display_name = agent_info.get('display_name', self._display_name)
-                        self._version = agent_info.get('version', self._version)
-                        
-                        self._logger.info(f"✅ Configuration chargée: {self._name} v{self._version}")
+            self._set_status(BaseAgentStatus.INITIALIZING)
+            self._logger.info("🗄️ Initialisation du Registry...")
+            
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
+            
+            # Initialiser les composants
+            await self._initialize_components()
+            
+            # Vérifier les cycles de dépendances
+            await self._detect_dependency_cycles()
+            
+            # Démarrer les tâches de fond
+            self._background_tasks = [
+                asyncio.create_task(self._backup_worker()),
+                asyncio.create_task(self._metrics_worker()),
+                asyncio.create_task(self._events_worker())
+            ]
+            
+            self._set_status(BaseAgentStatus.READY)
+            self._initialized = True
+            
+            self._logger.info(f"✅ Registry prêt - {len(self._agents)} agents enregistrés")
+            return True
+            
         except Exception as e:
-            self._logger.warning(f"⚠️ Erreur chargement config: {e}")
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._logger.error(traceback.format_exc())
+            self._set_status(BaseAgentStatus.ERROR)
+            return False
+    
+    async def _initialize_components(self) -> bool:
+        """
+        Initialise les composants spécifiques (appelé par BaseAgent.initialize()).
+        
+        Returns:
+            True si l'initialisation a réussi
+        """
+        self._logger.info("Initialisation des composants...")
+        
+        try:
+            self._components = {
+                "agent_registry": self._init_agent_registry(),
+                "version_manager": self._init_version_manager(),
+                "dependency_resolver": self._init_dependency_resolver(),
+                "cache_manager": self._init_cache_manager(),
+                "metrics_collector": self._init_metrics_collector()
+            }
+            
+            self._logger.info(f"✅ Composants: {list(self._components.keys())}")
+            return True
+            
+        except Exception as e:
+            self._logger.error(f"Erreur composants: {e}")
+            return False
+    
+    def _init_agent_registry(self) -> Dict[str, Any]:
+        return {
+            "agents_count": len(self._agents),
+            "capabilities_count": len(self._capabilities_index),
+            "tags_count": len(self._tags_index)
+        }
+    
+    def _init_version_manager(self) -> Dict[str, Any]:
+        return {
+            "versions_count": sum(len(v) for v in self._versions.values()),
+            "strategy": self._registry_config.get("versioning", {}).get("strategy", "semver")
+        }
+    
+    def _init_dependency_resolver(self) -> Dict[str, Any]:
+        return {
+            "max_depth": self._registry_config.get("dependencies", {}).get("max_depth", 10),
+            "detect_cycles": self._registry_config.get("dependencies", {}).get("detect_cycles", True)
+        }
+    
+    def _init_cache_manager(self) -> Dict[str, Any]:
+        cache_config = self._registry_config.get("cache", {})
+        return {
+            "enabled": cache_config.get("enabled", True),
+            "max_size_mb": cache_config.get("max_size_mb", 100),
+            "ttl_seconds": cache_config.get("ttl_seconds", 300)
+        }
+    
+    def _init_metrics_collector(self) -> Dict[str, Any]:
+        return {
+            "metrics": self._registry_metrics.copy()
+        }
     
     def _create_directories(self):
         """Crée les répertoires nécessaires"""
-        storage_path = Path(self._agent_config["registry"]["storage"]["path"])
+        storage_config = self._registry_config.get("storage", {})
+        storage_path = Path(storage_config.get("path", "./agents/registry/db"))
+        
         dirs = [
             storage_path,
             storage_path / "cache",
@@ -173,11 +260,11 @@ class RegistryAgent(BaseAgent):
     
     def _load_data(self):
         """Charge les données depuis le disque"""
-        storage = self._agent_config["registry"]["storage"]
-        base_path = Path(storage["path"])
+        storage_config = self._registry_config.get("storage", {})
+        base_path = Path(storage_config.get("path", "./agents/registry/db"))
         
         # Charger les agents
-        agents_file = base_path / storage["agents_file"]
+        agents_file = base_path / storage_config.get("agents_file", "agents.json")
         if agents_file.exists():
             try:
                 with open(agents_file, 'r', encoding='utf-8') as f:
@@ -187,16 +274,17 @@ class RegistryAgent(BaseAgent):
                 self._logger.error(f"❌ Erreur chargement agents: {e}")
         
         # Charger les versions
-        versions_file = base_path / storage["versions_file"]
+        versions_file = base_path / storage_config.get("versions_file", "versions.json")
         if versions_file.exists():
             try:
                 with open(versions_file, 'r', encoding='utf-8') as f:
-                    self._versions = defaultdict(list, json.load(f))
+                    loaded_versions = json.load(f)
+                    self._versions = defaultdict(list, loaded_versions)
             except Exception as e:
                 self._logger.error(f"❌ Erreur chargement versions: {e}")
         
         # Charger les dépendances
-        deps_file = base_path / storage["dependencies_file"]
+        deps_file = base_path / storage_config.get("dependencies_file", "dependencies.json")
         if deps_file.exists():
             try:
                 with open(deps_file, 'r', encoding='utf-8') as f:
@@ -216,20 +304,20 @@ class RegistryAgent(BaseAgent):
     
     def _save_data(self):
         """Sauvegarde les données sur le disque"""
-        storage = self._agent_config["registry"]["storage"]
-        base_path = Path(storage["path"])
+        storage_config = self._registry_config.get("storage", {})
+        base_path = Path(storage_config.get("path", "./agents/registry/db"))
         
         try:
             # Sauvegarder les agents
-            with open(base_path / storage["agents_file"], 'w', encoding='utf-8') as f:
+            with open(base_path / storage_config.get("agents_file", "agents.json"), 'w', encoding='utf-8') as f:
                 json.dump(self._agents, f, indent=2, ensure_ascii=False)
             
             # Sauvegarder les versions
-            with open(base_path / storage["versions_file"], 'w', encoding='utf-8') as f:
+            with open(base_path / storage_config.get("versions_file", "versions.json"), 'w', encoding='utf-8') as f:
                 json.dump(dict(self._versions), f, indent=2, ensure_ascii=False)
             
             # Sauvegarder les dépendances
-            with open(base_path / storage["dependencies_file"], 'w', encoding='utf-8') as f:
+            with open(base_path / storage_config.get("dependencies_file", "dependencies.json"), 'w', encoding='utf-8') as f:
                 json.dump(dict(self._dependencies), f, indent=2, ensure_ascii=False)
             
             self._logger.debug("💾 Données sauvegardées")
@@ -251,87 +339,9 @@ class RegistryAgent(BaseAgent):
             for tag in agent_info.get("tags", []):
                 self._tags_index[tag].add(agent_name)
     
-    async def initialize(self) -> bool:
-        """Initialisation asynchrone"""
-        try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("🗄️ Initialisation du Registry...")
-            
-            # Vérifier les dépendances
-            await self._check_dependencies()
-            
-            # Initialiser les composants
-            self._initialize_components()
-            
-            # Vérifier les cycles de dépendances
-            await self._detect_dependency_cycles()
-            
-            # Démarrer les tâches de fond
-            self._background_tasks = [
-                asyncio.create_task(self._backup_worker()),
-                asyncio.create_task(self._metrics_worker()),
-                asyncio.create_task(self._events_worker())
-            ]
-            
-            self._set_status(AgentStatus.READY)
-            self._logger.info(f"✅ Registry prêt - {len(self._agents)} agents enregistrés")
-            return True
-            
-        except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._set_status(AgentStatus.ERROR)
-            return False
-    
-    async def _check_dependencies(self) -> bool:
-        """Vérifie les dépendances"""
-        self._logger.info("Vérification des dépendances...")
-        return True  # Indépendant
-    
-    def _initialize_components(self):
-        """Initialise les composants internes"""
-        self._components = {
-            "agent_registry": self._init_agent_registry(),
-            "version_manager": self._init_version_manager(),
-            "dependency_resolver": self._init_dependency_resolver(),
-            "cache_manager": self._init_cache_manager(),
-            "metrics_collector": self._init_metrics_collector()
-        }
-        self._logger.info(f"✅ Composants: {list(self._components.keys())}")
-    
-    def _init_agent_registry(self) -> Dict[str, Any]:
-        return {
-            "agents_count": len(self._agents),
-            "capabilities_count": len(self._capabilities_index),
-            "tags_count": len(self._tags_index)
-        }
-    
-    def _init_version_manager(self) -> Dict[str, Any]:
-        return {
-            "versions_count": sum(len(v) for v in self._versions.values()),
-            "strategy": self._agent_config["registry"]["versioning"]["strategy"]
-        }
-    
-    def _init_dependency_resolver(self) -> Dict[str, Any]:
-        return {
-            "max_depth": self._agent_config["registry"]["dependencies"]["max_depth"],
-            "detect_cycles": self._agent_config["registry"]["dependencies"]["detect_cycles"]
-        }
-    
-    def _init_cache_manager(self) -> Dict[str, Any]:
-        return {
-            "enabled": self._agent_config["registry"]["cache"]["enabled"],
-            "max_size_mb": self._agent_config["registry"]["cache"]["max_size_mb"],
-            "ttl_seconds": self._agent_config["registry"]["cache"]["ttl_seconds"]
-        }
-    
-    def _init_metrics_collector(self) -> Dict[str, Any]:
-        return {
-            "metrics": self._registry_metrics.copy()
-        }
-    
-    # -----------------------------------------------------------------
+    # ============================================================================
     # API PUBLIQUE - ENREGISTREMENT
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def register_agent(self, agent_data: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -357,18 +367,25 @@ class RegistryAgent(BaseAgent):
         if name in self._agents:
             existing = self._agents[name]
             # Comparer les versions
-            if semver.compare(version, existing["version"]) > 0:
-                # Nouvelle version
-                await self._archive_version(name, existing)
-            else:
-                return {"error": f"Agent {name} déjà enregistré en version {existing['version']}", "success": False}
+            try:
+                if semver.compare(version, existing["version"]) > 0:
+                    # Nouvelle version
+                    await self._archive_version(name, existing)
+                else:
+                    return {"error": f"Agent {name} déjà enregistré en version {existing['version']}", "success": False}
+            except:
+                # Si semver échoue, comparaison simple
+                if version > existing["version"]:
+                    await self._archive_version(name, existing)
+                else:
+                    return {"error": f"Agent {name} déjà enregistré en version {existing['version']}", "success": False}
         
         # Ajouter les métadonnées
         agent_entry = {
             **agent_data,
             "registered_at": datetime.now().isoformat(),
             "last_seen": datetime.now().isoformat(),
-            "status": "active",  # ✅ String, pas l'enum
+            "status": AgentRegistryStatus.ACTIVE.value,
             "usage_count": 0
         }
         
@@ -395,7 +412,8 @@ class RegistryAgent(BaseAgent):
         
         # Métriques
         self._registry_metrics["registrations_total"] += 1
-        self._registry_metrics["active_agents"] = len([a for a in self._agents.values() if a.get("status") == "active"])
+        active_count = len([a for a in self._agents.values() if a.get("status") == AgentRegistryStatus.ACTIVE.value])
+        self._registry_metrics["active_agents"] = active_count
         
         # Sauvegarder
         self._save_data()
@@ -416,7 +434,7 @@ class RegistryAgent(BaseAgent):
         errors = []
         
         # Champs requis
-        required = self._agent_config["schema"]["required_fields"]
+        required = self._schema_config.get("required_fields", ["name", "version", "class_path", "capabilities"])
         for field in required:
             if field not in data:
                 errors.append(f"Champ requis manquant: {field}")
@@ -426,28 +444,31 @@ class RegistryAgent(BaseAgent):
         
         # Validation du nom
         import re
-        name_pattern = self._agent_config["schema"]["validation"]["name_pattern"]
+        validation = self._schema_config.get("validation", {})
+        name_pattern = validation.get("name_pattern", "^[a-z][a-z0-9_]{2,50}$")
         if not re.match(name_pattern, data["name"]):
             errors.append(f"Nom invalide: doit correspondre à {name_pattern}")
         
         # Validation de la version
-        version_pattern = self._agent_config["schema"]["validation"]["version_pattern"]
+        version_pattern = validation.get("version_pattern", "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$")
         if not re.match(version_pattern, data["version"]):
             errors.append(f"Version invalide: doit être semver")
         
         # Validation des capacités
-        if len(data.get("capabilities", [])) > self._agent_config["schema"]["validation"]["capabilities_max"]:
-            errors.append(f"Trop de capacités: max {self._agent_config['schema']['validation']['capabilities_max']}")
+        capabilities_max = validation.get("capabilities_max", 100)
+        if len(data.get("capabilities", [])) > capabilities_max:
+            errors.append(f"Trop de capacités: max {capabilities_max}")
         
         # Validation des dépendances
-        if len(data.get("dependencies", [])) > self._agent_config["schema"]["validation"]["dependencies_max"]:
-            errors.append(f"Trop de dépendances: max {self._agent_config['schema']['validation']['dependencies_max']}")
+        dependencies_max = validation.get("dependencies_max", 20)
+        if len(data.get("dependencies", [])) > dependencies_max:
+            errors.append(f"Trop de dépendances: max {dependencies_max}")
         
         return {"valid": len(errors) == 0, "errors": errors}
     
     async def _archive_version(self, name: str, agent_data: Dict):
         """Archive une ancienne version"""
-        agent_data["status"] = "archived"
+        agent_data["status"] = AgentRegistryStatus.ARCHIVED.value
         agent_data["archived_at"] = datetime.now().isoformat()
         self._versions[name].append({
             "version": agent_data["version"],
@@ -455,9 +476,9 @@ class RegistryAgent(BaseAgent):
             "data": agent_data
         })
     
-    # -----------------------------------------------------------------
+    # ============================================================================
     # API PUBLIQUE - DÉCOUVERTE
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def discover_agents(self, query: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
@@ -490,7 +511,7 @@ class RegistryAgent(BaseAgent):
             results.update(self._tags_index.get(query["tag"], set()))
         
         # Si aucun critère, tous les agents
-        if not results:
+        if not results and "name" not in query and "capability" not in query and "tag" not in query:
             results = set(self._agents.keys())
         
         # Filtrer par version
@@ -508,10 +529,15 @@ class RegistryAgent(BaseAgent):
             if "status" in query and agent.get("status") != query["status"]:
                 continue
             
+            # Ne pas inclure les inactifs sauf demande explicite
+            discovery_config = self._registry_config.get("discovery", {})
+            if not discovery_config.get("include_inactive", False) and agent.get("status") not in [AgentRegistryStatus.ACTIVE.value, AgentRegistryStatus.BETA.value]:
+                continue
+            
             agents_list.append(agent)
         
         # Limiter les résultats
-        max_results = self._agent_config["registry"]["discovery"]["max_results"]
+        max_results = discovery_config.get("max_results", 100)
         return agents_list[:max_results]
     
     async def get_agent(self, name: str, version: Optional[str] = None) -> Optional[Dict]:
@@ -538,9 +564,9 @@ class RegistryAgent(BaseAgent):
         """Récupère l'historique des versions d'un agent"""
         return self._versions.get(name, [])
     
-    # -----------------------------------------------------------------
+    # ============================================================================
     # API PUBLIQUE - DÉPENDANCES
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def resolve_dependencies(self, agent_name: str, 
                                    transitive: bool = True) -> Dict[str, Any]:
@@ -566,7 +592,8 @@ class RegistryAgent(BaseAgent):
         def dfs(name, depth=0):
             if name in visited:
                 return
-            if depth > self._agent_config["registry"]["dependencies"]["max_depth"]:
+            max_depth = self._registry_config.get("dependencies", {}).get("max_depth", 10)
+            if depth > max_depth:
                 return
             
             visited.add(name)
@@ -596,6 +623,9 @@ class RegistryAgent(BaseAgent):
     
     async def _detect_dependency_cycles(self) -> List[List[str]]:
         """Détecte les cycles dans le graphe de dépendances"""
+        if not self._registry_config.get("dependencies", {}).get("detect_cycles", True):
+            return []
+        
         cycles = []
         visited = set()
         stack = []
@@ -626,9 +656,9 @@ class RegistryAgent(BaseAgent):
         
         return cycles
     
-    # -----------------------------------------------------------------
+    # ============================================================================
     # API PUBLIQUE - CACHE
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def get_instance(self, agent_name: str, 
                           create_if_missing: bool = False) -> Optional[Any]:
@@ -642,16 +672,17 @@ class RegistryAgent(BaseAgent):
         Returns:
             Instance de l'agent ou None
         """
-        cache_config = self._agent_config["registry"]["cache"]
-        if not cache_config["enabled"]:
+        cache_config = self._registry_config.get("cache", {})
+        if not cache_config.get("enabled", True):
             return None
         
         # Vérifier le cache
         if agent_name in self._instance_cache:
             instance, timestamp = self._instance_cache[agent_name]
             age = (datetime.now() - timestamp).total_seconds()
+            ttl = cache_config.get("ttl_seconds", 300)
             
-            if age < cache_config["ttl_seconds"]:
+            if age < ttl:
                 self._cache_stats["hits"] += 1
                 self._registry_metrics["cache_hits"] += 1
                 return instance
@@ -671,8 +702,12 @@ class RegistryAgent(BaseAgent):
         
         try:
             # Importer dynamiquement la classe
-            module_path = agent_info["class_path"]
-            class_name = agent_info.get("class_name", agent_info["name"].title() + "Agent")
+            module_path = agent_info.get("class_path", "")
+            if not module_path:
+                self._logger.error(f"❌ Agent {agent_name}: class_path manquant")
+                return None
+            
+            class_name = agent_info.get("class_name", agent_info.get("name", "").title() + "Agent")
             
             module = __import__(module_path, fromlist=[class_name])
             agent_class = getattr(module, class_name)
@@ -701,25 +736,25 @@ class RegistryAgent(BaseAgent):
             self._instance_cache.clear()
         self._logger.info("🧹 Cache vidé")
     
-    # -----------------------------------------------------------------
+    # ============================================================================
     # TÂCHES DE FOND
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def _backup_worker(self):
         """Sauvegarde périodique des données"""
-        backup_config = self._agent_config["registry"]["storage"]
-        if not backup_config.get("backup_enabled", False):
+        storage_config = self._registry_config.get("storage", {})
+        if not storage_config.get("backup_enabled", False):
             return
         
-        interval = backup_config.get("backup_interval", 3600)
+        interval = storage_config.get("backup_interval", 3600)
         
-        while self._status == AgentStatus.READY:  # ✅ CORRIGÉ
+        while self._status == BaseAgentStatus.READY:
             try:
                 await asyncio.sleep(interval)
                 self._save_data()
                 
                 # Backup
-                backup_dir = Path(backup_config["path"]) / "backups"
+                backup_dir = Path(storage_config.get("path", "./agents/registry/db")) / "backups"
                 backup_dir.mkdir(exist_ok=True)
                 
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -738,12 +773,15 @@ class RegistryAgent(BaseAgent):
                 # Nettoyer les vieux backups
                 await self._cleanup_old_backups(backup_dir)
                 
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 self._logger.error(f"❌ Erreur backup: {e}")
     
     async def _cleanup_old_backups(self, backup_dir: Path):
         """Nettoie les vieux backups"""
-        retention = self._agent_config["registry"]["storage"].get("backup_retention", 7)
+        storage_config = self._registry_config.get("storage", {})
+        retention = storage_config.get("backup_retention", 7)
         cutoff = datetime.now() - timedelta(days=retention)
         
         for backup_file in backup_dir.glob("registry_backup_*.json"):
@@ -760,31 +798,38 @@ class RegistryAgent(BaseAgent):
     
     async def _metrics_worker(self):
         """Collecte et exporte les métriques"""
-        while self._status == AgentStatus.READY:  # ✅ CORRIGÉ
+        while self._status == BaseAgentStatus.READY:
             try:
                 await asyncio.sleep(60)
                 
                 # Mettre à jour les métriques
-                self._registry_metrics["active_agents"] = len([a for a in self._agents.values() if a.get("status") == "active"])
-                self._registry_metrics["deprecated_agents"] = len([a for a in self._agents.values() if a.get("status") == "deprecated"])
+                active_count = len([a for a in self._agents.values() if a.get("status") == AgentRegistryStatus.ACTIVE.value])
+                deprecated_count = len([a for a in self._agents.values() if a.get("status") == AgentRegistryStatus.DEPRECATED.value])
                 
+                self._registry_metrics["active_agents"] = active_count
+                self._registry_metrics["deprecated_agents"] = deprecated_count
+                
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 self._logger.error(f"❌ Erreur métriques: {e}")
     
     async def _events_worker(self):
         """Traite les événements en file d'attente"""
-        while self._status == AgentStatus.READY:  # ✅ CORRIGÉ
+        while self._status == BaseAgentStatus.READY:
             try:
                 event = await self._events_queue.get()
                 await self._process_event(event)
+            except asyncio.CancelledError:
+                break
             except Exception as e:
                 self._logger.error(f"❌ Erreur traitement événement: {e}")
     
     async def _emit_event(self, event_type: RegistryEvent, data: Dict[str, Any]):
-        """Émet un événement - Version simplifiée sans send_message"""
+        """Émet un événement via le bus de messages"""
         self._logger.debug(f"📢 Événement: {event_type.value}")
         
-        # Stocker l'événement en interne seulement
+        # Stocker l'événement en interne
         if not hasattr(self, '_events'):
             self._events = []
         self._events.append({
@@ -796,24 +841,38 @@ class RegistryAgent(BaseAgent):
         # Limiter la taille de l'historique
         if len(self._events) > 100:
             self._events = self._events[-100:]
+        
+        # Mettre dans la queue pour traitement asynchrone
+        await self._events_queue.put({
+            "type": event_type.value,
+            "data": data,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        # Si l'agent communication est disponible, envoyer un message
+        # (dans une vraie implémentation, on utiliserait le bus)
     
     async def _process_event(self, event: Dict[str, Any]):
         """Traite un événement"""
-        self._logger.debug(f"📢 Événement: {event['type']}")
+        self._logger.debug(f"📢 Traitement événement: {event['type']}")
         
         # Notifier les websockets
-        for ws in self._websocket_connections:
+        for ws in self._websocket_connections[:]:  # Copie pour éviter les modifications pendant l'itération
             try:
                 await ws.send(json.dumps(event))
             except:
                 self._websocket_connections.remove(ws)
     
-    # -----------------------------------------------------------------
+    # ============================================================================
     # API PUBLIQUE - UTILITAIRES
-    # -----------------------------------------------------------------
+    # ============================================================================
     
     async def get_statistics(self) -> Dict[str, Any]:
         """Retourne des statistiques sur le registry"""
+        total_hits = self._cache_stats["hits"]
+        total_misses = self._cache_stats["misses"]
+        hit_ratio = total_hits / (total_hits + total_misses) if (total_hits + total_misses) > 0 else 0
+        
         return {
             "agents": {
                 "total": len(self._agents),
@@ -826,7 +885,7 @@ class RegistryAgent(BaseAgent):
             },
             "capabilities": {
                 "total": len(self._capabilities_index),
-                "unique": len(set().union(*self._capabilities_index.values()))
+                "unique": len(set().union(*self._capabilities_index.values())) if self._capabilities_index else 0
             },
             "dependencies": {
                 "total": sum(len(d) for d in self._dependencies.values()),
@@ -835,10 +894,10 @@ class RegistryAgent(BaseAgent):
             "cache": {
                 "hits": self._cache_stats["hits"],
                 "misses": self._cache_stats["misses"],
-                "hit_ratio": self._cache_stats["hits"] / max(self._cache_stats["hits"] + self._cache_stats["misses"], 1),
+                "hit_ratio": round(hit_ratio, 3),
                 "size_bytes": self._cache_stats["size_bytes"]
             },
-            "metrics": self._registry_metrics  # 🔥 ICI
+            "metrics": self._registry_metrics
         }
     
     async def export_catalog(self, format: str = "json") -> Dict[str, Any]:
@@ -853,94 +912,265 @@ class RegistryAgent(BaseAgent):
             "exported_at": datetime.now().isoformat()
         }
     
+    # ============================================================================
+    # GESTION DES MESSAGES
+    # ============================================================================
+    
+    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
+        """Gère les messages personnalisés"""
+        try:
+            msg_type = message.message_type
+            self._logger.debug(f"Message reçu: {msg_type} de {message.sender}")
+            
+            # Mapping des types de messages vers les méthodes
+            handlers = {
+                "registry.register": self._handle_register,
+                "registry.discover": self._handle_discover,
+                "registry.get_agent": self._handle_get_agent,
+                "registry.get_versions": self._handle_get_versions,
+                "registry.resolve_deps": self._handle_resolve_deps,
+                "registry.get_dependents": self._handle_get_dependents,
+                "registry.get_instance": self._handle_get_instance,
+                "registry.clear_cache": self._handle_clear_cache,
+                "registry.statistics": self._handle_statistics,
+                "registry.export": self._handle_export,
+            }
+            
+            if msg_type in handlers:
+                return await handlers[msg_type](message)
+            
+            return None
+            
+        except Exception as e:
+            self._logger.error(f"Erreur traitement message: {e}")
+            return Message(
+                sender=self.name,
+                recipient=message.sender,
+                content={"error": str(e), "traceback": traceback.format_exc()},
+                message_type=MessageType.ERROR.value,
+                correlation_id=message.message_id
+            )
+    
+    async def _handle_register(self, message: Message) -> Message:
+        result = await self.register_agent(message.content.get("agent_data", {}))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="registry.register_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_discover(self, message: Message) -> Message:
+        agents = await self.discover_agents(message.content.get("query", {}))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"agents": agents, "count": len(agents)},
+            message_type="registry.discover_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_get_agent(self, message: Message) -> Message:
+        agent = await self.get_agent(
+            message.content.get("name"),
+            message.content.get("version")
+        )
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"agent": agent} if agent else {"error": "Agent not found"},
+            message_type="registry.get_agent_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_get_versions(self, message: Message) -> Message:
+        versions = await self.get_versions(message.content.get("name"))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"versions": versions, "count": len(versions)},
+            message_type="registry.get_versions_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_resolve_deps(self, message: Message) -> Message:
+        result = await self.resolve_dependencies(
+            message.content.get("agent_name"),
+            message.content.get("transitive", True)
+        )
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="registry.resolve_deps_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_get_dependents(self, message: Message) -> Message:
+        dependents = await self.get_dependents(message.content.get("agent_name"))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"dependents": dependents, "count": len(dependents)},
+            message_type="registry.get_dependents_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_get_instance(self, message: Message) -> Message:
+        instance = await self.get_instance(
+            message.content.get("agent_name"),
+            message.content.get("create_if_missing", False)
+        )
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"instance_available": instance is not None},
+            message_type="registry.get_instance_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_clear_cache(self, message: Message) -> Message:
+        await self.clear_cache(message.content.get("agent_name"))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "cache cleared"},
+            message_type="registry.clear_cache_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_statistics(self, message: Message) -> Message:
+        stats = await self.get_statistics()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=stats,
+            message_type="registry.statistics_response",
+            correlation_id=message.message_id
+        )
+    
+    async def _handle_export(self, message: Message) -> Message:
+        catalog = await self.export_catalog(message.content.get("format", "json"))
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=catalog,
+            message_type="registry.export_response",
+            correlation_id=message.message_id
+        )
+    
+    # ============================================================================
+    # GESTION DU CYCLE DE VIE
+    # ============================================================================
+    
+    async def shutdown(self) -> bool:
+        """Arrête l'agent proprement"""
+        self._logger.info("Arrêt de l'agent Registry...")
+        self._set_status(BaseAgentStatus.SHUTTING_DOWN)
+        
+        # Annuler les tâches de fond
+        for task in self._background_tasks:
+            if task and not task.done():
+                task.cancel()
+                try:
+                    await task
+                except asyncio.CancelledError:
+                    pass
+        
+        # Sauvegarder les données
+        self._save_data()
+        
+        # Appeler la méthode parent
+        await super().shutdown()
+        
+        self._logger.info("✅ Agent Registry arrêté")
+        return True
+    
+    async def pause(self) -> bool:
+        """Met l'agent en pause"""
+        self._logger.info("Pause de l'agent Registry...")
+        self._set_status(BaseAgentStatus.PAUSED)
+        return True
+    
+    async def resume(self) -> bool:
+        """Reprend l'activité"""
+        self._logger.info("Reprise de l'agent Registry...")
+        self._set_status(BaseAgentStatus.READY)
+        return True
+    
+    # ============================================================================
+    # MÉTRIQUES DE SANTÉ
+    # ============================================================================
+    
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
+        base = await super().health_check()
         stats = await self.get_statistics()
+        
+        # Calculer l'uptime
+        uptime = None
+        if hasattr(self, '_stats') and self._stats.get('uptime_start'):
+            start = self._stats['uptime_start']
+            uptime = str(datetime.now() - start)
+        
         return {
-            "agent": self._name,
-            "status": self._status.value,  # ✅ C'est le statut BaseAgent, pas le registry
-            "ready": self._status == RegistryAgentStatus.READY,
-            "agents_registered": len(self._agents),
-            "cache_hit_ratio": stats["cache"]["hit_ratio"],
-            "dependency_cycles": stats["dependencies"]["cycles"],
-            "components": list(self._components.keys()),
-            "uptime": self.uptime.total_seconds()
+            **base,
+            "agent": self.name,
+            "display_name": self._display_name,
+            "status": self._status.value,
+            "ready": self._status == BaseAgentStatus.READY,
+            "initialized": self._initialized,
+            "uptime": uptime,
+            "registry_specific": {
+                "agents_registered": len(self._agents),
+                "versions_count": sum(len(v) for v in self._versions.values()),
+                "cache_hit_ratio": stats["cache"]["hit_ratio"],
+                "dependency_cycles": stats["dependencies"]["cycles"],
+                "capabilities_count": stats["capabilities"]["total"],
+                "components": list(self._components.keys())
+            },
+            "stats": stats,
+            "timestamp": datetime.now().isoformat()
         }
     
     def get_agent_info(self) -> Dict[str, Any]:
-        """Informations de l'agent"""
+        """Informations de l'agent pour le registre"""
+        agent_config = self._agent_config.get('agent', {})
         return {
-            "id": self._name,
-            "name": self._display_name,
-            "version": self._version,
-            "description": self._description,
+            "id": self.name,
+            "name": "🗄️ Registry Agent",
+            "display_name": self._display_name,
+            "version": agent_config.get('version', '2.0.0'),
+            "description": agent_config.get('description', 'Catalogue intelligent des agents'),
             "status": self._status.value,
-            "capabilities": self._agent_config["agent"]["capabilities"],
-            "agents_count": len(self._agents),
-            "cache_stats": self._cache_stats
+            "capabilities": [cap["name"] for cap in agent_config.get('capabilities', [])],
+            "features": {
+                "agents_registered": len(self._agents),
+                "cache_enabled": self._registry_config.get("cache", {}).get("enabled", True),
+                "versioning_strategy": self._registry_config.get("versioning", {}).get("strategy", "semver"),
+                "detect_cycles": self._registry_config.get("dependencies", {}).get("detect_cycles", True)
+            },
+            "stats": {
+                "agents_count": len(self._agents),
+                "versions_count": sum(len(v) for v in self._versions.values()),
+                "cache_hit_ratio": self._cache_stats["hits"] / max(self._cache_stats["hits"] + self._cache_stats["misses"], 1)
+            }
         }
-    
-    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
-        """Gestion des messages personnalisés"""
-        msg_type = message.get("type", "")
-        
-        if msg_type == "register":
-            return await self.register_agent(message.get("agent_data", {}))
-        
-        elif msg_type == "discover":
-            return {"agents": await self.discover_agents(message.get("query", {}))}
-        
-        elif msg_type == "get_agent":
-            agent = await self.get_agent(
-                message["name"],
-                message.get("version")
-            )
-            return {"agent": agent} if agent else {"error": "Agent not found"}
-        
-        elif msg_type == "get_versions":
-            return {"versions": await self.get_versions(message["name"])}
-        
-        elif msg_type == "resolve_deps":
-            return await self.resolve_dependencies(
-                message["agent_name"],
-                message.get("transitive", True)
-            )
-        
-        elif msg_type == "get_dependents":
-            return {"dependents": await self.get_dependents(message["agent_name"])}
-        
-        elif msg_type == "get_instance":
-            instance = await self.get_instance(
-                message["agent_name"],
-                message.get("create_if_missing", False)
-            )
-            return {"instance": instance is not None, "cached": instance is not None}
-        
-        elif msg_type == "clear_cache":
-            await self.clear_cache(message.get("agent_name"))
-            return {"status": "cache cleared"}
-        
-        elif msg_type == "statistics":
-            return await self.get_statistics()
-        
-        elif msg_type == "export":
-            return await self.export_catalog(message.get("format", "json"))
-        
-        return {"status": "received", "type": msg_type}
 
 
-# ------------------------------------------------------------------------
+# ============================================================================
 # FONCTIONS D'USINE
-# ------------------------------------------------------------------------
+# ============================================================================
 
-def create_registry_agent(config_path: str = "") -> RegistryAgent:
+def create_registry_agent(config_path: Optional[str] = None) -> RegistryAgent:
     """Crée une instance du registry agent"""
     return RegistryAgent(config_path)
 
 
-# ------------------------------------------------------------------------
+# ============================================================================
 # POINT D'ENTRÉE POUR EXÉCUTION DIRECTE
-# ------------------------------------------------------------------------
+# ============================================================================
 
 if __name__ == "__main__":
     async def main():
@@ -950,9 +1180,10 @@ if __name__ == "__main__":
         agent = RegistryAgent()
         await agent.initialize()
         
-        print(f"✅ Agent: {agent._display_name} v{agent._version}")
-        print(f"✅ Statut: {agent._status.value}")
-        print(f"✅ Agents enregistrés: {len(agent._agents)}")
+        agent_info = agent.get_agent_info()
+        print(f"✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Agents enregistrés: {agent_info['stats']['agents_count']}")
         
         # Test d'enregistrement
         test_agent = {
@@ -975,11 +1206,14 @@ if __name__ == "__main__":
         
         # Test de dépendances
         deps = await agent.resolve_dependencies("test_agent")
-        print(f"\n📊 Dépendances résolues: {deps['resolution_order']}")
+        print(f"\n📊 Dépendances résolues: {deps.get('resolution_order', [])}")
         
         # Statistiques
         stats = await agent.get_statistics()
         print(f"\n📈 Statistiques: {stats['agents']['total']} agents, {stats['capabilities']['total']} capacités")
+        
+        health = await agent.health_check()
+        print(f"\n❤️  Health: {health['status']}")
         
         print("\n" + "="*60)
         print("✅ REGISTRY AGENT OPÉRATIONNEL")

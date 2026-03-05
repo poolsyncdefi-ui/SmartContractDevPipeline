@@ -6,14 +6,14 @@ Découverte · Versioning · Dépendances · Cache
 from .agent import (
     RegistryAgent,
     RegistryEvent,
-    AgentStatus,
+    AgentRegistryStatus,  # Renommé pour éviter la confusion
     create_registry_agent
 )
 
 __all__ = [
     'RegistryAgent',
     'RegistryEvent',
-    'AgentStatus',
+    'AgentRegistryStatus',
     'create_registry_agent'
 ]
 

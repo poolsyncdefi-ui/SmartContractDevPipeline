@@ -1,9 +1,8 @@
 """
-Package Learning & Intelligence Artificielle
-Apprentissage automatique pour l'optimisation du pipeline
+Learning Agent Package - Intelligence Artificielle pour l'optimisation du pipeline
 """
 
-# Import direct depuis le module
+# Import depuis le module principal
 from .agent import (
     LearningAgent,
     LearningTaskType,
@@ -26,4 +25,4 @@ __all__ = [
     'create_learning_agent'
 ]
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'

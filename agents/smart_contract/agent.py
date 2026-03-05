@@ -219,7 +219,10 @@ class SmartContractAgent(BaseAgent):
     def _load_configuration(self):
         """Charge la configuration depuis le fichier YAML"""
         try:
-            config_path = Path(self._agent_config.get("config_path", ""))
+            # NE PAS utiliser self._agent_config.get("config_path")
+            # Utiliser plutôt le chemin standard
+            config_path = Path(__file__).parent / "config.yaml"
+            
             if config_path.exists():
                 with open(config_path, 'r', encoding='utf-8') as f:
                     file_config = yaml.safe_load(f)
@@ -235,6 +238,11 @@ class SmartContractAgent(BaseAgent):
                         self._version = agent_info.get('version', self._version)
                         
                         self._logger.info(f"✅ Configuration chargée: {self._name} v{self._version}")
+            else:
+                self._logger.warning(f"⚠️ Fichier de configuration non trouvé: {config_path}")
+                
+        except PermissionError:
+            self._logger.error(f"❌ Permission refusée pour lire {config_path}")
         except Exception as e:
             self._logger.warning(f"⚠️ Erreur chargement config: {e}")
 

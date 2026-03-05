@@ -1,41 +1,406 @@
+# agents/monitoring/config.yaml
+# Version enrichie - Command Center avec IA SUPERLEARNER
+# ============================================================================
+
 agent:
+  # === IDENTIFICATION ===
   name: "monitoring"
+  class_name: "MonitoringAgent"
+  module_path: "agents.monitoring.agent"
   display_name: "🎮 Command Center"
-  description: "Monitoring et observabilité - Interface mission control"
+  description: "Monitoring et observabilité - Interface mission control avec IA SUPERLEARNER"
+  extends: "BaseAgent"
   version: "2.0.0"
-  log_level: "INFO"
+
+  # === TYPE ET STATUT ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: false
+
+  # === DÉPENDANCES ===
+  dependencies:
+    - "communication"
+    - "storage"
+    - "learning"  # Pour les métriques IA
+    - "orchestrator"
+  initialization_order: 120
+  parent: "BaseAgent"
+  purpose: "Monitoring centralisé, métriques temps réel et interface Command Center"
+
+  # === CAPACITÉS ÉTENDUES ===
   capabilities:
-    - metric_collection
-    - anomaly_detection
-    - alerting
-    - dashboard_generation
-    - trend_analysis
-    - performance_scoring
-    - system_health
-    - predictive_analytics
-  dependencies: []
+    - name: "metric_collection"
+      description: "Collecte les métriques de tous les agents"
+      version: "1.0.0"
+      parameters: ["interval"]
+      return_type: "Dict[str, Any]"
+      
+    - name: "anomaly_detection"
+      description: "Détecte les anomalies dans les métriques"
+      version: "1.0.0"
+      parameters: ["metrics", "threshold"]
+      return_type: "List[Dict]"
+      
+    - name: "alerting"
+      description: "Gère les alertes système"
+      version: "1.0.0"
+      parameters: ["severity", "source"]
+      return_type: "Dict[str, Any]"
+      
+    - name: "dashboard_generation"
+      description: "Génère le dashboard Command Center"
+      version: "1.0.0"
+      parameters: ["theme", "refresh_rate"]
+      return_type: "str"
+      
+    - name: "trend_analysis"
+      description: "Analyse les tendances de performance"
+      version: "1.0.0"
+      parameters: ["metric_name", "window"]
+      return_type: "Dict[str, Any]"
+      
+    - name: "performance_scoring"
+      description: "Calcule les scores de performance des agents"
+      version: "1.0.0"
+      parameters: ["agent_metrics"]
+      return_type: "Dict[str, int]"
+      
+    - name: "system_health"
+      description: "Évalue la santé globale du système"
+      version: "1.0.0"
+      parameters: []
+      return_type: "Dict[str, Any]"
+      
+    - name: "predictive_analytics"
+      description: "Prédit les tendances futures"
+      version: "1.0.0"
+      parameters: ["historical_data", "horizon"]
+      return_type: "Dict[str, Any]"
+      
+    - name: "ai_integration"
+      description: "Intègre les métriques de l'agent Learning"
+      version: "1.0.0"
+      parameters: []
+      return_type: "Dict[str, Any]"
 
+# ============================================================================
+# CONFIGURATION DU MONITORING (enrichie)
+# ============================================================================
 monitoring:
-  collection_interval: 30
-  analysis_interval: 60
-  dashboard_refresh: 60
-  metrics_retention: 1000
-  alert_dedup_window: 300
-  performance_window: 100
+  # === INTERVALLES DE COLLECTE ===
+  collection_interval: 30  # secondes
+  analysis_interval: 60  # secondes
+  dashboard_refresh: 60  # secondes
+  ai_metrics_interval: 45  # secondes
+  
+  # === RÉTENTION DES DONNÉES ===
+  metrics_retention: 1000  # nombre maximum de points par métrique
+  alert_history_size: 500
+  performance_window: 100  # fenêtre pour les calculs de performance
+  
+  # === GESTION DES ALERTES ===
+  alert_dedup_window: 300  # secondes (déduplication)
+  max_alerts_per_hour: 50
+  auto_resolve_alerts: true
+  
+  # === SEUILS DE PERFORMANCE ===
+  performance_thresholds:
+    excellent: 90  # Grade S
+    good: 75      # Grade A
+    fair: 60      # Grade B
+    poor: 40      # Grade C
+    critical: 0   # Grade D
+  
+  # === MÉTRIQUES SYSTÈME ===
+  system_metrics:
+    - "cpu_usage"
+    - "memory_usage"
+    - "disk_usage"
+    - "network_io"
+    - "open_files"
+    - "thread_count"
+  
+  # === MÉTRIQUES SPÉCIFIQUES ===
+  agent_metrics:
+    - "status"
+    - "tasks_completed"
+    - "error_rate"
+    - "response_time"
+    - "memory_usage"
+    - "cpu_usage"
+    - "uptime"
+    - "performance_score"
 
+# ============================================================================
+# SEUILS D'ALERTE (enrichis)
+# ============================================================================
 thresholds:
-  cpu_warning: 70
-  cpu_critical: 90
+  # === CPU ===
+  cpu_warning: 70    # % - Alerte jaune
+  cpu_critical: 90   # % - Alerte rouge
+  cpu_emergency: 95  # % - Alerte critique
+  
+  # === MÉMOIRE ===
   memory_warning: 80
   memory_critical: 95
-  error_rate_warning: 5
+  memory_emergency: 98
+  
+  # === TAUX D'ERREUR ===
+  error_rate_warning: 5    # %
   error_rate_critical: 15
-  response_time_warning: 2.0
+  error_rate_emergency: 25
+  
+  # === TEMPS DE RÉPONSE ===
+  response_time_warning: 2.0  # secondes
   response_time_critical: 5.0
+  response_time_emergency: 10.0
+  
+  # === DISQUE ===
+  disk_warning: 80
+  disk_critical: 90
+  disk_emergency: 95
+  
+  # === AGENTS HORS LIGNE ===
+  offline_agents_warning: 2
+  offline_agents_critical: 5
+  
+  # === ALERTES EN SUSPENS ===
+  pending_alerts_warning: 10
+  pending_alerts_critical: 20
 
+# ============================================================================
+# CONFIGURATION DU DASHBOARD (enrichie)
+# ============================================================================
 dashboards:
+  # === GÉNÉRAL ===
   output_path: "./reports/monitoring"
-  theme: "dark"
+  theme: "dark"  # dark, light, matrix
   terminal_style: true
   show_forecast: true
-  refresh_rate: 60
+  refresh_rate: 60  # secondes
+  
+  # === SECTIONS DU DASHBOARD ===
+  sections:
+    - "system_status"
+    - "agent_status"
+    - "performance_metrics"
+    - "security_metrics"
+    - "test_coverage"
+    - "gas_optimization"
+    - "alerts"
+    - "ai_superlearner"
+  
+  # === PALETTE DE COULEURS ===
+  colors:
+    primary: "#00ff88"
+    secondary: "#8b5cf6"
+    success: "#00ff88"
+    warning: "#ffd700"
+    danger: "#ff4444"
+    info: "#3b82f6"
+    background: "#0a0c0e"
+    surface: "#0f1215"
+    border: "#2a2f35"
+    text: "#d4d4d4"
+    text_muted: "#888"
+  
+  # === GRADES DE PERFORMANCE ===
+  grades:
+    S:
+      color: "#00ff88"
+      label: "EXCELLENT"
+      min_score: 90
+    A:
+      color: "#88ff88"
+      label: "GOOD"
+      min_score: 75
+    B:
+      color: "#ffd700"
+      label: "FAIR"
+      min_score: 60
+    C:
+      color: "#ff8844"
+      label: "POOR"
+      min_score: 40
+    D:
+      color: "#ff4444"
+      label: "CRITICAL"
+      min_score: 0
+
+# ============================================================================
+# CONFIGURATION IA - SUPERLEARNER INTEGRATION
+# ============================================================================
+ai_integration:
+  # === ACTIVATION ===
+  enabled: true
+  require_learning_agent: true
+  
+  # === MÉTRIQUES IA À COLLECTER ===
+  ai_metrics:
+    - "models_active"
+    - "models_trained"
+    - "accuracy"
+    - "insights_count"
+    - "recommendations_count"
+    - "confidence"
+    - "last_training"
+    - "next_training"
+  
+  # === VISUALISATION IA ===
+  ai_dashboard:
+    show_model_list: true
+    show_recommendations: true
+    show_training_progress: true
+    show_confidence_levels: true
+    max_recommendations: 5
+  
+  # === PRÉDICTIONS IA ===
+  ai_predictions:
+    enabled: true
+    horizon_hours: 24
+    confidence_threshold: 0.85
+    models:
+      - "gas_prediction"
+      - "vulnerability_prediction"
+      - "performance_trend"
+
+# ============================================================================
+# SYSTÈME (enrichi)
+# ============================================================================
+system:
+  # === PERFORMANCE ===
+  timeout_seconds: 30
+  max_retries: 3
+  concurrent_collectors: 5
+  
+  # === LOGGING ===
+  log_level: "INFO"
+  log_file: "logs/monitoring_agent.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_max_size_mb: 100
+  log_backup_count: 5
+  
+  # === MÉTRIQUES ===
+  enable_metrics: true
+  metrics_interval: 30  # secondes
+  metrics_storage: "./agents/monitoring/data/metrics"
+  export_metrics:
+    - "console"
+    - "file"
+    - "dashboard"
+  
+  # === HEALTH CHECKS ===
+  enable_health_checks: true
+  health_check_interval: 30  # secondes
+  health_check_endpoint: "/health"
+  
+  # === CACHE ===
+  cache_enabled: true
+  cache_ttl: 60  # secondes
+  cache_max_size_mb: 50
+  cache_type: "memory"
+
+# ============================================================================
+# PERSISTANCE
+# ============================================================================
+persistence:
+  # === SAUVEGARDE ===
+  save_metrics_on_shutdown: true
+  save_alerts_on_shutdown: true
+  save_dashboards_on_shutdown: true
+  
+  # === SAUVEGARDE AUTOMATIQUE ===
+  auto_save_interval: 300  # secondes
+  backup_interval_hours: 24
+  backup_retention_days: 7
+  
+  # === FORMATS ===
+  serialization_format: "json"
+  compression: true
+
+# ============================================================================
+# COMMUNICATION
+# ============================================================================
+communication:
+  # === MESSAGES ===
+  message_prefix: "monitoring"
+  supported_message_types:
+    - "get_dashboard"
+    - "get_agent_status"
+    - "get_performance"
+    - "get_ai_metrics"
+    - "create_alert"
+    - "ack_alert"
+    - "get_system_health"
+    - "get_trends"
+  
+  # === BROADCAST ===
+  broadcast_alerts: true
+  broadcast_targets:
+    - "orchestrator"
+    - "learning"
+    - "all"
+  
+  # === RÉPONSES ===
+  response_timeout: 10  # secondes
+  max_retries_on_failure: 2
+  require_ack: false
+
+# ============================================================================
+# API (optionnelle)
+# ============================================================================
+api:
+  enabled: false
+  host: "127.0.0.1"
+  port: 8012
+  endpoints:
+    - "/api/v1/monitoring/status"
+    - "/api/v1/monitoring/alerts"
+    - "/api/v1/monitoring/dashboard"
+    - "/api/v1/monitoring/agents"
+    - "/api/v1/monitoring/performance"
+    - "/api/v1/monitoring/ai"
+  
+  # === AUTHENTIFICATION ===
+  auth_required: false
+  api_key_header: "X-API-Key"
+  
+  # === RATE LIMITING ===
+  rate_limit: "60/minute"
+  rate_limit_by_ip: true
+
+# ============================================================================
+# SÉCURITÉ
+# ============================================================================
+security:
+  # === DONNÉES SENSIBLES ===
+  mask_sensitive_data: true
+  sensitive_fields:
+    - "private_key"
+    - "password"
+    - "token"
+    - "api_key"
+    - "secret"
+  
+  # === VALIDATION ===
+  validate_inputs: true
+  validate_outputs: false
+  max_input_size_kb: 512
+  
+  # === ALERTES DE SÉCURITÉ ===
+  security_alerts:
+    - "multiple_login_failures"
+    - "unusual_activity"
+    - "permission_changes"
+    - "configuration_changes"
+  
+  # === AUDIT ===
+  audit_logging: true
+  audit_retention_days: 90
+  audit_events:
+    - "alert_created"
+    - "alert_acknowledged"
+    - "dashboard_generated"
+    - "configuration_changed"

@@ -1,692 +1,583 @@
-# =====================================================================
-# COMMUNICATION AGENT 2.0 - CONFIGURATION ULTIME
-# Système nerveux central haute performance
-# Messagerie inter-agents avec QoS, scalabilité, résilience
-# Version: 2.0.0
-# =====================================================================
+# ============================================================================
+# agents/communication/config.yaml
+# Configuration complète de l'Agent Communication - Version 2.0.0
+# Système nerveux central haute performance - Messagerie inter-agents
+# ============================================================================
 
 agent:
-  name: "communication"
-  display_name: "💬 Communication Agent 2.0"
-  description: |-
-    Agent de communication centralisé haute performance.
-    Gestion QoS, files prioritaires, persistance, pub/sub, 
-    load balancing, circuit breaker, monitoring avancé.
-    Capacité: 10K msg/s, latence < 10ms, 100% uptime.
-  
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  name: "CommunicationAgent"
+  class_name: "CommunicationAgent"
+  module_path: "agents.communication.agent"
+  display_name: "💬 Système de Communication"
   version: "2.0.0"
-  log_level: "INFO"
+  description: "Agent de communication centralisé haute performance. Gestion QoS, files prioritaires, persistance, pub/sub, load balancing, circuit breaker, monitoring avancé."
+  purpose: "Fournir un système de messagerie fiable et performant entre tous les agents avec garanties de livraison, QoS et monitoring temps réel."
   
-  # === CAPACITÉS ÉTENDUES (35+) ===
-  capabilities:
-    - name: "message_queuing_qos"
-      description: "Files d'attente avec Quality of Service (5 niveaux)"
-    - name: "priority_routing"
-      description: "Routage intelligent basé sur priorité"
-    - name: "content_based_routing"
-      description: "Routage basé sur le contenu des messages"
-    - name: "dynamic_routing"
-      description: "Routage dynamique selon charge"
-    
-    - name: "pubsub_scalable"
-      description: "Pub/Sub scalable avec partitions"
-    - name: "topic_wildcards"
-      description: "Support wildcards multi-niveaux (#, *)"
-    - name: "persistent_subscriptions"
-      description: "Souscriptions persistantes"
-    - name: "durable_topics"
-      description: "Topics durables avec rétention"
-    
-    - name: "request_reply_pool"
-      description: "Pool de requêtes/réponses avec multiplexage"
-    - name: "correlation_tracking"
-      description: "Suivi de corrélation avancé"
-    - name: "timeout_management"
-      description: "Gestion intelligente des timeouts"
-    
-    - name: "message_persistence_tiered"
-      description: "Persistance à plusieurs niveaux (memory, disk, archive)"
-    - name: "message_replay"
-      description: "Rejeu de messages historiques"
-    - name: "message_deduplication"
-      description: "Déduplication exact-once"
-    - name: "message_ordering"
-      description: "Garantie d'ordre FIFO par clé"
-    
-    - name: "dead_letter_analytics"
-      description: "Analyse des messages échoués"
-    - name: "automatic_retry"
-      description: "Réessai automatique avec backoff exponentiel"
-    - name: "retry_strategies"
-      description: "Stratégies de réessai configurables"
-    
-    - name: "load_balancing_dynamic"
-      description: "Équilibrage de charge dynamique"
-    - name: "circuit_breaker_advanced"
-      description: "Circuit breaker avec half-open state"
-    - name: "bulkhead_pattern"
-      description: "Isolation par bulkhead"
-    - name: "rate_limiting_adaptive"
-      description: "Rate limiting adaptatif"
-    
-    - name: "message_compression_smart"
-      description: "Compression adaptative selon taille"
-    - name: "batch_processing"
-      description: "Traitement par lots optimisé"
-    - name: "message_chunking"
-      description: "Fragmentation des gros messages"
-    
-    - name: "message_tracing_distributed"
-      description: "Tracing distribué OpenTelemetry"
-    - name: "message_audit"
-      description: "Audit trail complet"
-    - name: "message_sampling"
-      description: "Échantillonnage pour métriques"
-    
-    - name: "message_encryption_end_to_end"
-      description: "Chiffrement de bout en bout"
-    - name: "message_signing"
-      description: "Signature cryptographique"
-    - name: "message_validation_schema"
-      description: "Validation JSON Schema / Avro"
-    
-    - name: "message_filtering_dynamic"
-      description: "Filtrage dynamique par expressions"
-    - name: "message_transformation"
-      description: "Transformation de messages"
-    - name: "message_enrichment"
-      description: "Enrichissement avec métadonnées"
-    
-    - name: "message_scheduling_cron"
-      description: "Programmation cron"
-    - name: "message_delayed_delivery"
-      description: "Livraison différée"
-    - name: "message_recurring"
-      description: "Messages récurrents"
-    
-    - name: "message_monitoring_prometheus"
-      description: "Métriques Prometheus"
-    - name: "message_alerting"
-      description: "Alerting intelligent"
-    - name: "message_dashboards"
-      description: "Dashboards Grafana"
-  
-  dependencies:
-    - "registry"
-    - "monitoring"
-    - "learning"
-
-
-# =====================================================================
-# CONFIGURATION PRINCIPALE - HAUTE PERFORMANCE
-# =====================================================================
-communication:
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
   enabled: true
-  instance_id: "comm-001"
-  cluster_mode: false
-  node_id: "node-1"
-  
-  # Performance cibles
-  performance_targets:
-    max_throughput: 10000  # messages/seconde
-    target_latency_ms: 10
-    max_latency_ms: 100
-    concurrency: 1000
-  
-  # Files d'attente avancées
-  queues:
-    default:
-      enabled: true
-      type: "priority"  # priority, fifo, lifo
+  mandatory: true
+  singleton: true  # Un seul agent de communication dans le système
+
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "registry"      # Pour la découverte d'agents
+    - "monitoring"    # Pour les métriques
+    - "learning"      # Pour l'optimisation des patterns
+  initialization_order: 0  # Premier à être initialisé (critique)
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.98  # Très élevé car le messaging est critique
+    
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_message_schema_before_routing"
+      - "validate_recipient_exists"
+      - "check_queue_capacity_before_enqueue"
+      - "ensure_delivery_guarantee_respected"
+      - "verify_correlation_id_uniqueness"
+    
+    # Patterns de messages interdits
+    forbidden_message_patterns:
+      - pattern: ".*[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F].*"
+        reason: "Caractères de contrôle non autorisés"
+        severity: "critical"
+      - pattern: "^\\..*"
+        reason: "En-têtes système réservés"
+        severity: "high"
+      - pattern: ".*\\\\x1b\\[.*m.*"
+        reason: "Codes d'échappement ANSI interdits"
+        severity: "medium"
+      - pattern: ".*<script>.*"
+        reason: "Tentative d'injection"
+        severity: "critical"
+      - pattern: ".*\\.\\./.*"
+        reason: "Path traversal"
+        severity: "critical"
+    
+    # Vérifications de cohérence des messages
+    consistency_checks:
+      - "message_size_within_limits"
+      - "correlation_id_matches_request"
+      - "timestamp_is_plausible"
+      - "ttl_not_expired_at_routing"
+      - "priority_level_valid"
+    
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.85
+      markers:
+        - code: "// ⚠️ ROUTAGE NON CONFIRMÉ"
+        - code: "// 🔍 DELIVERY À VÉRIFIER"
+        - code: "// ❓ CORRÉLATION INCERTAINE"
+        - code: "// TODO: Confirmer la livraison"
+      fallback_action: "route_to_dead_letter"
+      require_human_review_if_below: 0.75
+
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    # Messagerie de base (5)
+    - name: "MESSAGE_QUEUING_QOS"
+      description: "Files d'attente avec Quality of Service (5 niveaux)"
+      confidence_required: 0.99
+    - name: "PRIORITY_ROUTING"
+      description: "Routage intelligent basé sur priorité"
+      confidence_required: 0.98
+    - name: "CONTENT_BASED_ROUTING"
+      description: "Routage basé sur le contenu des messages"
+      confidence_required: 0.95
+    - name: "DYNAMIC_ROUTING"
+      description: "Routage dynamique selon charge"
+      confidence_required: 0.9
+    - name: "MESSAGE_FILTERING"
+      description: "Filtrage dynamique par expressions"
+      confidence_required: 0.95
+
+    # Pub/Sub (4)
+    - name: "PUBSUB_SCALABLE"
+      description: "Pub/Sub scalable avec partitions"
+      confidence_required: 0.95
+    - name: "TOPIC_WILDCARDS"
+      description: "Support wildcards multi-niveaux (#, *)"
+      confidence_required: 0.98
+    - name: "PERSISTENT_SUBSCRIPTIONS"
+      description: "Souscriptions persistantes"
+      confidence_required: 0.95
+    - name: "DURABLE_TOPICS"
+      description: "Topics durables avec rétention"
+      confidence_required: 0.9
+
+    # Request/Reply (3)
+    - name: "REQUEST_REPLY_POOL"
+      description: "Pool de requêtes/réponses avec multiplexage"
+      confidence_required: 0.95
+    - name: "CORRELATION_TRACKING"
+      description: "Suivi de corrélation avancé"
+      confidence_required: 0.98
+    - name: "TIMEOUT_MANAGEMENT"
+      description: "Gestion intelligente des timeouts"
+      confidence_required: 0.95
+
+    # Persistance et garanties (4)
+    - name: "MESSAGE_PERSISTENCE_TIERED"
+      description: "Persistance à plusieurs niveaux (memory, disk, archive)"
+      confidence_required: 0.95
+    - name: "MESSAGE_REPLAY"
+      description: "Rejeu de messages historiques"
+      confidence_required: 0.9
+    - name: "MESSAGE_DEDUPLICATION"
+      description: "Déduplication exactly-once"
+      confidence_required: 0.98
+    - name: "MESSAGE_ORDERING"
+      description: "Garantie d'ordre FIFO par clé"
+      confidence_required: 0.95
+
+    # Résilience (4)
+    - name: "DEAD_LETTER_ANALYTICS"
+      description: "Analyse des messages échoués"
+      confidence_required: 0.9
+    - name: "AUTOMATIC_RETRY"
+      description: "Réessai automatique avec backoff exponentiel"
+      confidence_required: 0.95
+    - name: "RETRY_STRATEGIES"
+      description: "Stratégies de réessai configurables"
+      confidence_required: 0.9
+    - name: "CIRCUIT_BREAKER_ADVANCED"
+      description: "Circuit breaker avec half-open state"
+      confidence_required: 0.95
+
+    # Load Management (4)
+    - name: "LOAD_BALANCING_DYNAMIC"
+      description: "Équilibrage de charge dynamique"
+      confidence_required: 0.95
+    - name: "BULKHEAD_PATTERN"
+      description: "Isolation par bulkhead"
+      confidence_required: 0.9
+    - name: "RATE_LIMITING_ADAPTIVE"
+      description: "Rate limiting adaptatif"
+      confidence_required: 0.95
+    - name: "BACKPRESSURE_CONTROL"
+      description: "Contrôle de backpressure"
+      confidence_required: 0.95
+
+    # Optimisation (3)
+    - name: "MESSAGE_COMPRESSION_SMART"
+      description: "Compression adaptative selon taille"
+      confidence_required: 0.9
+    - name: "BATCH_PROCESSING"
+      description: "Traitement par lots optimisé"
+      confidence_required: 0.9
+    - name: "MESSAGE_CHUNKING"
+      description: "Fragmentation des gros messages"
+      confidence_required: 0.85
+
+    # Observabilité (3)
+    - name: "MESSAGE_TRACING_DISTRIBUTED"
+      description: "Tracing distribué OpenTelemetry"
+      confidence_required: 0.9
+    - name: "MESSAGE_AUDIT"
+      description: "Audit trail complet"
+      confidence_required: 0.95
+    - name: "MESSAGE_SAMPLING"
+      description: "Échantillonnage pour métriques"
+      confidence_required: 0.85
+
+    # Sécurité (3)
+    - name: "MESSAGE_ENCRYPTION_END_TO_END"
+      description: "Chiffrement de bout en bout"
+      confidence_required: 0.98
+    - name: "MESSAGE_SIGNING"
+      description: "Signature cryptographique"
+      confidence_required: 0.98
+    - name: "MESSAGE_VALIDATION_SCHEMA"
+      description: "Validation JSON Schema / Avro"
+      confidence_required: 0.95
+
+    # Transformation (2)
+    - name: "MESSAGE_TRANSFORMATION"
+      description: "Transformation de messages"
+      confidence_required: 0.9
+    - name: "MESSAGE_ENRICHMENT"
+      description: "Enrichissement avec métadonnées"
+      confidence_required: 0.85
+
+    # Planification (3)
+    - name: "MESSAGE_SCHEDULING_CRON"
+      description: "Programmation cron"
+      confidence_required: 0.95
+    - name: "MESSAGE_DELAYED_DELIVERY"
+      description: "Livraison différée"
+      confidence_required: 0.9
+    - name: "MESSAGE_RECURRING"
+      description: "Messages récurrents"
+      confidence_required: 0.9
+
+    # Monitoring (2)
+    - name: "MESSAGE_MONITORING_PROMETHEUS"
+      description: "Métriques Prometheus"
+      confidence_required: 0.95
+    - name: "MESSAGE_ALERTING"
+      description: "Alerting intelligent"
+      confidence_required: 0.9
+
+  # === CONFIGURATION LLM AVANCÉE ===
+  llm_config:
+    enabled: false  # L'agent de communication n'a pas besoin de LLM
+    model: "none"
+    temperature: 0.0
+    max_tokens: 0
+    
+    anti_hallucination_params:
+      do_sample: false
+      
+    response_validation:
+      require_syntax_check: false
+      require_compilation_check: false
+      max_attempts: 1
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "message_router"
+      description: "Route les messages selon règles configurables"
+      validation_required: true
+    - name: "queue_manager"
+      description: "Gère les files d'attente avec QoS"
+      validation_required: true
+    - name: "pubsub_broker"
+      description: "Gère les topics pub/sub"
+      validation_required: true
+    - name: "request_reply_handler"
+      description: "Gère les patterns request/reply"
+      validation_required: true
+    - name: "dead_letter_analyzer"
+      description: "Analyse les messages en dead letter"
+      validation_required: false
+    - name: "circuit_breaker"
+      description: "Implémente le circuit breaker pattern"
+      validation_required: true
+    - name: "rate_limiter"
+      description: "Applique le rate limiting"
+      validation_required: true
+    - name: "message_validator"
+      description: "Valide les messages contre des schémas"
+      validation_required: true
+    - name: "message_compressor"
+      description: "Compresse/décompresse les messages"
+      validation_required: false
+    - name: "message_tracer"
+      description: "Trace les messages distribués"
+      validation_required: false
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "routed_messages"
+      type: "message"
+      format: "json/msgpack"
+      validation: "delivery_confirmation"
+    - name: "queue_metrics"
+      type: "metrics"
+      format: "json"
+      validation: "consistency"
+    - name: "dead_letter_analysis"
+      type: "report"
+      format: "json"
+      validation: "completeness"
+    - name: "message_audit_trail"
+      type: "audit"
+      format: "jsonl"
+      validation: "integrity"
+    - name: "performance_stats"
+      type: "metrics"
+      format: "prometheus"
+      validation: "accuracy"
+    - name: "circuit_breaker_events"
+      type: "event"
+      format: "json"
+      validation: "timestamp"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "delivery_guarantee_must_be_respected"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "queue_backlog_below_threshold"
+      severity: "high"
+      action_on_failure: "scale_workers"
+      auto_correct: true
+    - name: "latency_p99_under_100ms"
+      severity: "high"
+      action_on_failure: "optimize_routing"
+      auto_correct: true
+    - name: "message_size_under_10MB"
+      severity: "medium"
+      action_on_failure: "chunk_message"
+      auto_correct: true
+    - name: "dead_letter_queue_not_growing"
+      severity: "medium"
+      action_on_failure: "investigate_failures"
+      auto_correct: false
+    - name: "circuit_breaker_not_tripped"
+      severity: "high"
+      action_on_failure: "alert"
+      auto_correct: false
+    - name: "rate_limit_not_exceeded"
+      severity: "medium"
+      action_on_failure: "throttle"
+      auto_correct: true
+    - name: "message_schema_valid"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "correlation_ids_unique"
+      severity: "medium"
+      action_on_failure: "deduplicate"
+      auto_correct: true
+    - name: "message_ttl_not_expired"
+      severity: "medium"
+      action_on_failure: "drop"
+      auto_correct: false
+
+  # === MÉTRIQUES DE QUALITÉ DE SERVICE ===
+  service_quality_metrics:
+    availability:
+      target: 99.999  # 5 nines pour le messaging
+      measurement_window: "30d"
+      action_if_below: "critical_alert"
+    throughput:
+      target_messages_per_second: 10000
+      max_messages_per_second: 20000
+      action_if_below: "scale_out"
+      action_if_above: "rate_limit"
+    latency_p99_get:
+      target_ms: 10
+      max_ms: 50
+      action_if_exceeded: "optimize"
+    latency_p99_set:
+      target_ms: 20
+      max_ms: 100
+      action_if_exceeded: "optimize"
+    delivery_success_rate:
+      minimum_percent: 99.99
+      target_percent: 99.999
+      action_if_below: "investigate"
+    message_duplication_rate:
+      max_percent: 0.001
+      action_if_exceeded: "fix_deduplication"
+    dead_letter_rate:
+      max_percent: 0.1
+      action_if_exceeded: "analyze_failures"
+    queue_backlog_ratio:
+      warning: 0.7
+      critical: 0.9
+      action_if_critical: "scale_consumers"
+
+  # === STRATÉGIES DE LIVRAISON ===
+  delivery_strategies:
+    - name: "at_most_once"
+      description: "Au plus une fois - meilleure performance"
+      use_case: "logs, métriques non critiques"
+      guarantees: "no_duplicates, possible_loss"
+      confidence: 0.99
+    - name: "at_least_once"
+      description: "Au moins une fois - équilibre"
+      use_case: "messages standards, notifications"
+      guarantees: "no_loss, possible_duplicates"
+      confidence: 0.98
+    - name: "exactly_once"
+      description: "Exactement une fois - maximum garantie"
+      use_case: "transactions, paiements, commandes critiques"
+      guarantees: "no_loss, no_duplicates"
+      confidence: 0.95
+
+  # === POLITIQUES DE RETRY ===
+  retry_policies:
+    - name: "linear"
+      description: "Retry linéaire simple"
+      backoff_factor: 1.0
+      max_attempts: 3
+      initial_delay_ms: 100
+      use_case: "opérations légères"
+    - name: "exponential"
+      description: "Backoff exponentiel avec jitter"
+      backoff_factor: 2.0
+      max_attempts: 5
+      initial_delay_ms: 100
+      max_delay_ms: 30000
+      jitter: 0.1
+      use_case: "appels externes, services instables"
+    - name: "progressive"
+      description: "Progressif avec escalade"
+      backoff_factor: 3.0
+      max_attempts: 10
+      initial_delay_ms: 50
+      max_delay_ms: 60000
+      escalate_after: 3
+      use_case: "récupération après panne"
+
+  # === TYPES DE FILES D'ATTENTE ===
+  queue_types:
+    - name: "fifo"
+      description: "First In First Out - ordre strict"
+      max_size: 100000
+      use_case: "traitement séquentiel requis"
+      ordering: "strict"
+    - name: "priority"
+      description: "File prioritaire à 5 niveaux"
       max_size: 100000
       priority_levels: 5
-      priority_mapping:
-        0: "low"
-        1: "normal"
-        2: "high"
-        3: "critical"
-        4: "system"
-      
-      # Stratégie de retry
-      retry:
-        max_attempts: 5
-        initial_delay_ms: 100
-        max_delay_ms: 30000
-        backoff_multiplier: 2.0
-        jitter: 0.1
-        retryable_errors: ["TimeoutError", "ConnectionError", "ServiceUnavailable"]
-      
-      timeout:
-        default_seconds: 30
-        max_seconds: 300
-      
-      # Politique de rejet
-        rejection_policy: "dead_letter"  # dead_letter, drop, backpressure
-    
-    high_priority:
-      enabled: true
-      type: "priority"
+      use_case: "messages avec niveaux d'urgence"
+      scheduling: "priority_queue"
+    - name: "lifo"
+      description: "Last In First Out - pile"
       max_size: 50000
-      priority_levels: 3
-      dedicated_workers: 2
-      processing_quota: 0.5  # 50% des ressources
-    
-    batch:
-      enabled: true
-      max_size: 10000
-      batch_size: 100
-      batch_timeout_ms: 100
-      compression: true
-    
-    dead_letter:
-      enabled: true
+      use_case: "cache, derniers messages prioritaires"
+      ordering: "stack"
+    - name: "dead_letter"
+      description: "File des messages échoués"
       max_size: 50000
       retention_days: 30
-      analysis_enabled: true
+      use_case: "analyse des échecs"
       replay_enabled: true
-      notification_threshold: 1000
-  
-  # Garanties de livraison
-  delivery:
-    default_guarantee: "at_least_once"  # at_most_once, at_least_once, exactly_once
-    enable_idempotency: true
-    deduplication_window_seconds: 3600
-    
-    # Garanties par priorité
-    guarantees_by_priority:
-      low: "at_most_once"
-      normal: "at_least_once"
-      high: "at_least_once"
-      critical: "exactly_once"
-      system: "exactly_once"
-    
-    # Acknowledgment
-    acks:
-      enabled: true
-      mode: "leader"  # leader, quorum, all
-      timeout_seconds: 10
-      retry_acks: true
-      ack_persistence: true
-  
-  # Persistance multi-niveaux
-  persistence:
-    enabled: true
-    mode: "hybrid"  # memory, disk, hybrid, distributed
-    
-    # Niveaux de persistance
-    levels:
-      memory:
-        enabled: true
-        max_size_mb: 1024
-        sync_interval_ms: 100
-      
-      disk:
-        enabled: true
-        path: "./agents/communication/storage"
-        max_size_gb: 10
-        sync_mode: "async"  # sync, async
-        compression: true
-        encryption: false
-      
-      archive:
-        enabled: true
-        path: "./agents/communication/archive"
-        retention_days: 90
-        compression: true
-        format: "parquet"  # json, parquet, avro
-    
-    # Indexation
-    indexing:
-      enabled: true
-      fields: ["id", "sender", "recipient", "message_type", "timestamp"]
-      full_text_search: false
-    
-    # Backup
-    backup:
-      enabled: true
-      interval_hours: 24
-      retention_days: 30
-      path: "./agents/communication/backup"
 
+  # === WORKFLOW DE COLLABORATION ===
+  collaboration_workflow:
+    steps:
+      - step: "receive_message_from_sender"
+        input: "any_agent"
+        validation: "schema_check + size_check"
+        timeout: 1
+      - step: "apply_quality_of_service"
+        process: "priority_assignment + ttl_check"
+        validation: "qos_respected"
+      - step: "route_to_recipient"
+        strategy: "content_based + load_balancing"
+        validation: "recipient_exists"
+      - step: "handle_delivery_guarantees"
+        process: "ack_tracking + retry_management"
+        validation: "guarantee_met"
+      - step: "monitor_and_metrics"
+        agent: "monitoring"
+        data: "latency + throughput + errors"
+        required: true
+      - step: "analyze_failures"
+        agent: "dead_letter_queue"
+        condition: "delivery_failed"
+      - step: "learn_patterns"
+        agent: "learning"
+        data: "communication_patterns"
+        required: false
 
-# =====================================================================
-# ROUTAGE INTELLIGENT
-# =====================================================================
-routing:
-  enabled: true
-  strategy: "hybrid"  # direct, topic, content, hybrid
-  
-  # Routage par contenu
-  content_based:
-    enabled: true
-    rules_path: "./agents/communication/routing_rules.json"
-    refresh_interval: 300
-    max_rules: 1000
-  
-  # Routage dynamique
-  dynamic:
-    enabled: true
-    load_balancing: "least_loaded"  # round_robin, least_loaded, random, consistent_hash
-    health_check_interval: 10
-    circuit_breaker_threshold: 5
-  
-  # Table de routage
-  table:
-    path: "./agents/communication/routing.json"
-    auto_discover: true
-    sync_interval: 60
-    fallback_route: "broadcast"
-  
-  # Topologie
-  topology:
-    type: "mesh"  # star, mesh, tree
-    discovery: "registry"  # static, dns, registry
-    failover: true
-    prefer_local: true
+  # === PARTITIONS PAR AGENT ===
+  partitions_per_agent:
+    default:
+      max_concurrent_messages: 1000
+      priority_level: "normal"
+      retry_policy: "exponential"
+    orchestrator:
+      max_concurrent_messages: 500
+      priority_level: "high"
+      retry_policy: "progressive"
+    storage:
+      max_concurrent_messages: 2000
+      priority_level: "normal"
+      retry_policy: "linear"
+    coder:
+      max_concurrent_messages: 1000
+      priority_level: "normal"
+      retry_policy: "exponential"
+    architect:
+      max_concurrent_messages: 500
+      priority_level: "high"
+      retry_policy: "progressive"
+    monitoring:
+      max_concurrent_messages: 5000
+      priority_level: "low"
+      retry_policy: "linear"
+      deduplication: true
+    learning:
+      max_concurrent_messages: 2000
+      priority_level: "low"
+      retry_policy: "linear"
+    frontend_web3:
+      max_concurrent_messages: 1000
+      priority_level: "normal"
+      retry_policy: "exponential"
+    smart_contract:
+      max_concurrent_messages: 500
+      priority_level: "high"
+      retry_policy: "progressive"
+    tester:
+      max_concurrent_messages: 2000
+      priority_level: "normal"
+      retry_policy: "exponential"
+    registry:
+      max_concurrent_messages: 500
+      priority_level: "critical"
+      retry_policy: "progressive"
 
-
-# =====================================================================
-# PROTOCOLES DE COMMUNICATION
-# =====================================================================
-protocols:
-  # Pub/Sub scalable
-  pubsub:
-    enabled: true
-    max_subscribers_per_topic: 1000
-    allow_wildcards: true
-    wildcard_levels: 5
-    persistent_subscriptions: true
-    
-    # Partitions
-    partitioning:
-      enabled: true
-      strategy: "hash"  # hash, range, random
-      partitions: 10
-      replication_factor: 1
-    
-    # Rétention
-    retention:
-      enabled: true
-      max_messages_per_topic: 100000
-      max_age_hours: 24
-      cleanup_policy: "delete"  # delete, compact
-  
-  # Request/Reply optimisé
-  request_reply:
-    enabled: true
-    pool_size: 1000
-    default_timeout: 30
-    max_timeout: 300
-    
-    # Multiplexage
-    multiplexing:
-      enabled: true
-      max_concurrent_per_connection: 100
-    
-    # Gestion des futures
-    future_pool_size: 10000
-    cleanup_interval: 60
-  
-  # Broadcast intelligent
-  broadcast:
-    enabled: true
-    strategy: "parallel"  # sequential, parallel, scatter_gather
-    max_parallel: 50
-    include_sender: false
-    gather_responses: false
-    timeout: 60
-
-
-# =====================================================================
-# PERFORMANCE ET SCALABILITÉ
-# =====================================================================
-performance:
-  # Threads et workers
-  threading:
-    worker_threads: 8
-    io_threads: 4
-    compute_threads: 2
-    
-    # Affinité
-    cpu_affinity: [0, 1, 2, 3]
-    thread_pool_size: 20
-  
-  # Pool de connexions
-  connection_pool:
-    max_size: 100
-    idle_timeout: 300
-    keep_alive: true
-  
-  # Batch processing
-  batching:
-    enabled: true
-    max_batch_size: 100
-    max_latency_ms: 50
-    compression: true
-  
-  # Rate limiting
-  rate_limiting:
-    enabled: true
-    global:
-      max_messages_per_second: 10000
-      max_messages_per_minute: 500000
-      max_bytes_per_second: 104857600  # 100 MB/s
-    
-    per_sender:
-      enabled: true
-      max_messages_per_second: 1000
-      max_messages_per_minute: 50000
-    
-    per_topic:
-      enabled: true
-      max_messages_per_second: 5000
-  
-  # Circuit breaker
-  circuit_breaker:
-    enabled: true
-    failure_threshold: 5
-    success_threshold: 2
-    timeout_seconds: 30
-    half_open_timeout: 10
-  
-  # Bulkhead
-  bulkhead:
-    enabled: true
-    max_concurrent_calls: 100
-    max_queue_size: 1000
-  
-  # Backpressure
-  backpressure:
-    strategy: "reject"  # block, reject, throttle
-    high_watermark: 0.8  # 80% de capacité
-    low_watermark: 0.3   # 30% de capacité
-
-
-# =====================================================================
-# MÉTRIQUES & MONITORING
-# =====================================================================
-metrics:
-  enabled: true
-  export_to: "monitoring_agent"
-  
-  # Collecte détaillée
-  collect:
-    # Messages
-    - "messages_sent_total"
-    - "messages_received_total"
-    - "messages_processed_total"
-    - "messages_failed_total"
-    - "messages_retried_total"
-    - "messages_expired_total"
-    - "messages_deduplicated"
-    
-    # Performance
-    - "processing_latency_p50"
-    - "processing_latency_p95"
-    - "processing_latency_p99"
-    - "queue_latency_p50"
-    - "queue_latency_p95"
-    - "throughput_current"
-    - "throughput_peak"
-    
-    # Files
-    - "queue_size_current"
-    - "queue_size_max"
-    - "dead_letter_size"
-    - "retry_queue_size"
-    
-    # Pub/Sub
-    - "active_subscribers"
-    - "active_topics"
-    - "messages_published"
-    
-    # Système
-    - "memory_usage_bytes"
-    - "disk_usage_bytes"
-    - "cpu_usage_percent"
-    - "connection_count"
-  
-  # Alertes intelligentes
-  alerts:
-    - name: "queue_backlog"
-      metric: "queue_size_current"
-      threshold: 10000
-      condition: "greater_than"
-      duration_seconds: 60
-      severity: "warning"
-      notification: ["slack", "email"]
-    
-    - name: "high_latency"
-      metric: "processing_latency_p95"
-      threshold: 1000  # ms
-      condition: "greater_than"
-      duration_seconds: 300
-      severity: "critical"
-      notification: ["pagerduty", "slack"]
-    
-    - name: "high_failure_rate"
-      metric: "messages_failed_total"
-      threshold: 100
-      condition: "greater_than"
-      window_minutes: 5
-      severity: "critical"
-    
-    - name: "dead_letter_growth"
-      metric: "dead_letter_size"
-      threshold: 1000
-      condition: "greater_than"
-      severity: "warning"
-  
-  # Dashboards Grafana
-  dashboards:
-    enabled: true
-    path: "./reports/communication/dashboards"
-    refresh_rate: 30
-    templates:
-      - name: "overview"
-        panels: ["throughput", "latency", "errors"]
-      - name: "queues"
-        panels: ["queue_sizes", "processing_times"]
-      - name: "pubsub"
-        panels: ["topics", "subscribers"]
-
-
-# =====================================================================
-# SÉCURITÉ AVANCÉE
-# =====================================================================
-security:
-  # Authentification
-  authentication:
-    enabled: false
-    method: "token"  # token, certificate, oauth2, jwt
-    token_ttl_seconds: 3600
-    refresh_token_enabled: true
-    
-    # JWT configuration
-    jwt:
-      algorithm: "HS256"
-      secret_key: "${JWT_SECRET}"
-      issuer: "communication-agent"
-      audience: ["agents", "clients"]
-  
-  # Chiffrement
-  encryption:
-    enabled: false
-    algorithm: "AES-256-GCM"
-    key_rotation_days: 30
-    key_path: "./agents/communication/keys"
-    
-    # TLS
-    tls:
-      enabled: false
-      cert_path: "./certs/communication.crt"
-      key_path: "./certs/communication.key"
-      min_version: "1.2"
-  
-  # Signatures
-  signing:
-    enabled: false
-    algorithm: "HMAC-SHA256"
-    key_path: "./agents/communication/signing.key"
-  
-  # Validation
-  validation:
-    enabled: true
-    validate_sender: true
-    validate_recipient: true
-    max_message_age: 3600
-    max_message_size_bytes: 10485760  # 10 MB
-    
-    # Schémas de validation
-    schemas:
-      enabled: true
-      path: "./agents/communication/schemas"
-      cache_ttl: 300
-  
-  # Rate limiting (renforcé)
-  rate_limiting:
-    enabled: true
-    default_limit: 1000
-    limits:
-      - sender: "monitoring"
-        limit: 5000
-      - sender: "learning"
-        limit: 2000
-      - topic: "system.*"
-        limit: 10000
-  
-  # Audit
-  audit:
-    enabled: true
-    log_all_messages: false
-    log_failures: true
-    log_security_events: true
-    retention_days: 90
-    path: "./agents/communication/audit"
-
-
-# =====================================================================
-# HAUTE DISPONIBILITÉ
-# =====================================================================
-high_availability:
-  enabled: false
-  
-  # Clustering
-  cluster:
-    nodes: ["node1", "node2", "node3"]
-    replication_factor: 3
-    sync_replication: false
-    auto_rebalance: true
-  
-  # Leader election
-  leader_election:
-    algorithm: "raft"
-    election_timeout_ms: 1000
-    heartbeat_interval_ms: 100
-  
-  # Failover
-  failover:
-    enabled: true
-    detection_interval: 5
-    promotion_delay: 10
-    auto_recover: true
-  
-  # Data replication
-  replication:
-    mode: "async"  # sync, async
-    max_lag_ms: 1000
-    retry_count: 3
-
-
-# =====================================================================
-# INTÉGRATIONS
-# =====================================================================
-integrations:
-  registry:
-    enabled: true
-    auto_discover: true
-    refresh_interval: 300
-    cache_ttl: 60
-  
-  monitoring:
-    enabled: true
-    push_metrics_interval: 30
-    expose_endpoint: true
-    endpoint_port: 9090
-  
-  learning:
-    enabled: true
-    provide_training_data: true
-    features:
-      - "communication_patterns"
-      - "peak_times_detection"
-      - "anomaly_detection"
-      - "failure_prediction"
-      - "load_forecasting"
-  
-  logging:
-    enabled: true
-    structured_logs: true
+  # === CONFIGURATION SYSTÈME ===
+  system:
+    timeout_seconds: 300
+    max_retries: 5
+    concurrent_connections: 1000
     log_level: "INFO"
-    log_path: "./logs/communication"
+    enable_auto_scaling: true
+    enable_circuit_breakers: true
+    
+    # Politique de retry système
+    retry_policy:
+      max_attempts: 3
+      backoff_factor: 2.0
+      jitter: 0.1
+      retryable_errors:
+        - "TimeoutError"
+        - "ConnectionError"
+        - "ServiceUnavailable"
+        - "TemporaryQueueFull"
 
+  # === ENVIRONNEMENTS ===
+  environments:
+    development:
+      enabled: true
+      persistence: "memory_only"
+      delivery_guarantee: "at_most_once"
+      circuit_breakers: false
+      rate_limiting: false
+      encryption: false
+      audit_level: "errors_only"
+    staging:
+      enabled: true
+      persistence: "disk"
+      delivery_guarantee: "at_least_once"
+      circuit_breakers: true
+      rate_limiting: true
+      encryption: true
+      audit_level: "all"
+    production:
+      enabled: true
+      persistence: "hybrid"
+      delivery_guarantee: "exactly_once"
+      circuit_breakers: true
+      rate_limiting: true
+      encryption: true
+      audit_level: "all"
+      replication_factor: 3
+      cluster_mode: true
 
-# =====================================================================
-# OPTIMISATIONS
-# =====================================================================
-optimizations:
-  # Compression
-  compression:
-    enabled: true
-    algorithm: "zstd"  # zstd, gzip, snappy, lz4
-    min_size_bytes: 1024
-    level: 3  # 1-9
-  
-  # Caching
-  caching:
-    enabled: true
-    type: "lru"  # lru, lfu, ttl
-    max_size_mb: 512
-    ttl_seconds: 300
-  
-  # Préchargement
-  prefetch:
-    enabled: true
-    max_prefetch: 100
-    adaptive: true
-  
-  # Zero-copy
-  zero_copy:
-    enabled: false
-    max_size_bytes: 65536
-  
-  # Memory pooling
-  memory_pool:
-    enabled: true
-    pool_size_mb: 256
-    preallocate: true
-
-
-# =====================================================================
-# MODE DÉVELOPPEMENT
-# =====================================================================
-development:
-  mode: "production"  # development, staging, production
-  
-  debug:
-    enabled: false
-    log_messages: false
-    trace_routing: false
-    profile_performance: false
-  
-  testing:
-    mock_mode: false
-    simulated_latency_ms: 0
-    error_injection_rate: 0.0
-    record_replay: false
-  
-  profiling:
-    enabled: false
-    cpu_profiling: false
-    memory_profiling: false
-    trace_allocation: false
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["messaging", "queue", "pubsub", "realtime", "high-performance"]
+    capabilities_count: 38
+    last_reviewed: "2026-03-05"
+    next_review: "2026-04-05"

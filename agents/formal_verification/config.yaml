@@ -1,58 +1,223 @@
-# agents/formal_verification/config.yaml
-agent_id: "formal_verifier_001"
-specialization: "Formal Methods & Mathematical Proofs"
-model: "ollama:codellama:13b"  # Bon pour le raisonnement
-temperature: 0.05  # Extrêmement déterministe
+# =====================================================================
+# FORMAL VERIFICATION AGENT - CONFIGURATION ULTIME
+# Vérification formelle de smart contracts - Certora, Halo2, Mythril
+# Version: 2.0.0
+# =====================================================================
 
-# Contexte
-context:
-  verification_methods:
-    - "Model Checking"
-    - "Theorem Proving"
-    - "Symbolic Execution"
-  tools:
-    theorem_provers: ["Coq", "Isabelle", "Lean"]
-    model_checkers: ["Halmos", "KEVM"]
-    symbolic_execution: ["Manticore", "Mythril"]
+agent:
+  name: "formal_verification"
+  display_name: "🔬 Agent Vérification Formelle"
+  description: |-
+    Agent de vérification formelle garantissant mathématiquement
+    la correction des smart contracts via Certora Prover, Halo2,
+    exécution symbolique et vérification d'invariants.
+  version: "2.0.0"
+  log_level: "INFO"
+  
+  capabilities:
+    - name: "certora_integration"
+      description: "Vérification avec Certora Prover"
+    - name: "halo2_proofs"
+      description: "Génération de preuves ZK avec Halo2"
+    - name: "mythril_analysis"
+      description: "Analyse de sécurité avec Mythril"
+    - name: "symbolic_execution"
+      description: "Exécution symbolique de contrats"
+    - name: "invariant_checking"
+      description: "Vérification d'invariants"
+    - name: "counterexample_generation"
+      description: "Génération de contre-exemples"
+    - name: "automated_spec_generation"
+      description: "Génération automatique de spécifications"
+    - name: "certificate_generation"
+      description: "Certificats de vérification"
+    - name: "multi_tool_comparison"
+      description: "Comparaison multi-outils"
+    - name: "bulk_verification"
+      description: "Vérification par lots"
+  
+  dependencies:
+    - "smart_contract"
+    - "tester"
 
-# Objectifs spécifiques
-verification_goals:
-  safety_properties:
-    - "No reentrancy"
-    - "No unauthorized access"
-    - "No fund loss"
-  liveness_properties:
-    - "All functions terminate"
-    - "No deadlocks"
-  functional_correctness:
-    - "Matches specification"
-    - "Invariants preserved"
 
-# Processus de vérification
-process:
-  1: "Extraire les invariants du code"
-  2: "Formaliser les spécifications"
-  3: "Générer les preuves"
-  4: "Vérifier avec multiple provers"
-  5: "Produire un certificat de vérification"
+# =====================================================================
+# CONFIGURATION PRINCIPALE DE VÉRIFICATION
+# =====================================================================
+verification:
+  enabled: true
+  timeout_seconds: 3600
+  max_rules: 100
+  generate_certificates: true
+  certificates_path: "./reports/formal"
+  specs_path: "./specs"
+  logs_path: "./logs/formal"
+  supported_tools: ["certora", "halo2", "mythril"]
+  default_tool: "certora"
+  confidence_threshold: 0.95
 
-# Outils
-tools:
-  - name: "spec_extractor"
-    type: "specification_mining"
-    
-  - name: "invariant_generator"
-    type: "auto_invariant"
-    
-  - name: "proof_generator"
-    type: "coq_generator | lean_generator"
-    
-  - name: "cross_checker"
-    type: "multi_prover_verification"
 
-# Outputs
-outputs:
-  formal_specs: "specs/formal/"
-  proofs: "proofs/verified/"
-  certificates: "certs/verification/"
-  counterexamples: "counterexamples/"  # Si échec
+# =====================================================================
+# CERTORA PROVER
+# =====================================================================
+certora:
+  enabled: true
+  prover_version: "5.0"
+  optimistic_loop: true
+  solc_version: "0.8.19"
+  timeout: 1800
+  settings:
+    rule_sanity: "basic"
+    server: "production"
+    wait_for_results: true
+    multi_assert: true
+    prover_args:
+      - "-depth": 100
+      - "-split": "none"
+
+
+# =====================================================================
+# HALO2 (ZK PROOFS)
+# =====================================================================
+halo2:
+  enabled: false
+  circuit_type: "plonk"  # plonk, ultraplonk
+  k: 12  # taille du circuit (2^k contraintes)
+  timeout: 3600
+  proof_system: "groth16"  # groth16, plonk
+  backend: "bn256"
+  optimization: true
+
+
+# =====================================================================
+# MYTHRIL (SECURITY ANALYSIS)
+# =====================================================================
+mythril:
+  enabled: true
+  analysis_depth: 20
+  execution_timeout: 300
+  solver_timeout: 10000
+  max_depth: 128
+  create_markdown_report: true
+  fire_lasers: false
+  parallelism: 4
+
+
+# =====================================================================
+# GÉNÉRATION DE SPÉCIFICATIONS
+# =====================================================================
+spec_generation:
+  auto_generate: true
+  template_dir: "./templates/specs"
+  inference_depth: 3
+  use_llm: false
+  llm_model: "ollama:codellama:13b"
+  
+  templates:
+    erc20: true
+    erc721: true
+    erc1155: true
+    ownable: true
+    pausable: true
+    reentrancy_guard: true
+
+
+# =====================================================================
+# VÉRIFICATION D'INVARIANTS
+# =====================================================================
+invariants:
+  check_always: true
+  generate_from_code: true
+  max_invariants: 20
+  include:
+    - "balance_invariants"
+    - "supply_invariants"
+    - "access_control"
+    - "reentrancy_guards"
+    - "pausable_behavior"
+
+
+# =====================================================================
+# CONTRE-EXEMPLES
+# =====================================================================
+counterexamples:
+  generate_on_failure: true
+  max_counterexamples: 5
+  save_to_file: true
+  format: "json"
+  include_call_trace: true
+
+
+# =====================================================================
+# CERTIFICATS
+# =====================================================================
+certificates:
+  enabled: true
+  formats: ["pdf", "json", "html"]
+  include_proof_details: true
+  include_counterexamples: true
+  include_metadata: true
+  template: "certificate_template.html"
+  output_path: "./reports/formal/certificates"
+
+
+# =====================================================================
+# MÉTRIQUES & MONITORING
+# =====================================================================
+metrics:
+  enabled: true
+  export_to: "monitoring_agent"
+  
+  collect:
+    - "verifications_total"
+    - "verified_count"
+    - "failed_count"
+    - "timeout_count"
+    - "avg_confidence"
+    - "tools_available"
+    - "avg_duration_ms"
+  
+  alerts:
+    - metric: "failed_count"
+      threshold: 10
+      condition: "greater_than"
+      window: 3600
+      severity: "warning"
+    - metric: "avg_confidence"
+      threshold: 0.7
+      condition: "less_than"
+      window: 3600
+      severity: "critical"
+
+
+# =====================================================================
+# INTÉGRATIONS
+# =====================================================================
+integrations:
+  monitoring:
+    enabled: true
+    push_metrics_interval: 60
+  
+  learning:
+    enabled: true
+    provide_training_data: true
+    features:
+      - "verification_success_rate"
+      - "common_failures"
+      - "tool_performance"
+  
+  smart_contract:
+    enabled: true
+    auto_verify_on_deploy: false
+
+
+# =====================================================================
+# SYSTÈME
+# =====================================================================
+system:
+  timeout_seconds: 3600
+  max_retries: 2
+  concurrent_verifications: 2
+  log_level: "INFO"
+  enable_cache: true
+  cache_ttl: 3600

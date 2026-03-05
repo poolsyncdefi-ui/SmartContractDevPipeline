@@ -1,180 +1,566 @@
-# =====================================================================
-# STORAGE AGENT - CONFIGURATION ULTIME
-# Gestion centralisée des données - Cache, persistance, IPFS
-# Version: 1.0.0
-# =====================================================================
+# ============================================================================
+# agents/storage/config.yaml
+# Configuration complète de l'Agent Storage - Version 1.0.0
+# Gestion centralisée des données - Cache, persistance, IPFS, chiffrement
+# ============================================================================
 
 agent:
-  name: "storage"
-  display_name: "💾 Storage Agent"
-  description: |-
-    Agent de stockage centralisé gérant la persistance, le cache,
-    le versioning et l'accès aux données pour tous les agents.
-    Supporte mémoire, disque, IPFS, avec chiffrement et compression.
-  
+  # === IDENTIFICATION ET MÉTADONNÉES ===
+  name: "StorageAgent"
+  class_name: "StorageAgent"
+  module_path: "agents.storage.agent"
+  display_name: "💾 Gestionnaire de Données"
   version: "1.0.0"
-  log_level: "INFO"
+  description: "Agent de stockage centralisé gérant la persistance, le cache, le versioning et l'accès aux données pour tous les agents. Supporte mémoire, disque, IPFS, avec chiffrement et compression."
+  purpose: "Fournir une couche de persistance unifiée avec cache intelligent, versioning des données et quotas par agent."
   
-  capabilities:
-    - name: "key_value_store"
-      description: "Stockage clé-valeur avec support TTL"
-    - name: "document_store"
-      description: "Stockage de documents JSON/BSON"
-    - name: "file_store"
-      description: "Stockage et gestion de fichiers"
-    - name: "ipfs_integration"
-      description: "Stockage décentralisé sur IPFS"
-    - name: "cache_manager"
-      description: "Gestion de cache LRU/LFU/TTL"
-    - name: "data_versioning"
-      description: "Versioning automatique des données"
-    - name: "data_encryption"
-      description: "Chiffrement AES-256 des données"
-    - name: "data_compression"
-      description: "Compression zstd/gzip/zlib"
-    - name: "backup_restore"
-      description: "Sauvegarde et restauration"
-    - name: "quota_management"
-      description: "Gestion des quotas par store"
-    - name: "ttl_auto_expire"
-      description: "Expiration automatique TTL"
-    - name: "data_migration"
-      description: "Migration entre backends"
-    - name: "deduplication"
-      description: "Déduplication des données"
-    - name: "atomic_operations"
-      description: "Opérations atomiques"
-    - name: "batch_operations"
-      description: "Opérations par lots"
-  
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: true
+  singleton: true  # Un seul Storage Agent dans le système
+
+  # === HÉRITAGE ET DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
   dependencies:
-    - "monitoring"
-    - "learning"
+    - "monitoring"  # Pour les métriques
+    - "learning"    # Pour l'optimisation du cache
+  initialization_order: 1  # Doit être initialisé tôt car beaucoup d'agents dépendent du stockage
 
-
-# =====================================================================
-# CONFIGURATION PRINCIPALE
-# =====================================================================
-storage:
-  enabled: true
-  
-  # Stores disponibles
-  stores:
-    default:
-      type: "disk"
-      path: "./data/storage/default"
-      quota_mb: 1024
-      compression: true
-      encryption: false
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.95  # Très élevé car l'intégrité des données est critique
     
-    memory:
-      type: "memory"
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_data_integrity"
+      - "check_storage_quota_before_write"
+      - "validate_data_serialization"
+      - "ensure_backup_completion"
+      - "verify_encryption_before_persist"
+    
+    # Patterns de données interdits
+    forbidden_data_patterns:
+      - pattern: ".*[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F].*"
+        reason: "Caractères de contrôle non autorisés dans les clés"
+        severity: "critical"
+      - pattern: "^\\..*"
+        reason: "Clés commençant par un point réservées au système"
+        severity: "high"
+      - pattern: ".*__.*__.*"
+        reason: "Double underscore réservé pour le versioning interne"
+        severity: "medium"
+      - pattern: ".*[<>:\"/\\\\|?*].*"
+        reason: "Caractères non autorisés dans les noms de fichiers"
+        severity: "high"
+      - pattern: ".*\\.\\./.*"
+        reason: "Tentative de path traversal"
+        severity: "critical"
+    
+    # Vérifications de cohérence des données
+    consistency_checks:
+      - "data_size_matches_metadata"
+      - "checksum_verification_for_critical_data"
+      - "ttl_expiry_consistency"
+      - "backup_integrity_check"
+      - "cache_coherence_verification"
+    
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.8
+      markers:
+        - code: "// ⚠️ DONNÉES NON VÉRIFIÉES"
+        - code: "// 🔍 INTÉGRITÉ À CONFIRMER"
+        - code: "// ❓ CACHE POTENTIELLEMENT INVALIDE"
+        - code: "// TODO: Vérifier cette opération"
+      fallback_action: "log_and_continue"
+      require_human_review_if_below: 0.7
+
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "KEY_VALUE_STORE"
+      description: "Stockage clé-valeur avec support TTL"
+      confidence_required: 0.95
+    - name: "DOCUMENT_STORE"
+      description: "Stockage de documents JSON/BSON"
+      confidence_required: 0.95
+    - name: "FILE_STORE"
+      description: "Stockage et gestion de fichiers"
+      confidence_required: 0.9
+    - name: "IPFS_INTEGRATION"
+      description: "Stockage décentralisé sur IPFS"
+      confidence_required: 0.85
+    - name: "CACHE_MANAGER"
+      description: "Gestion de cache LRU/LFU/TTL"
+      confidence_required: 0.95
+    - name: "DATA_VERSIONING"
+      description: "Versioning automatique des données"
+      confidence_required: 0.9
+    - name: "DATA_ENCRYPTION"
+      description: "Chiffrement AES-256 des données sensibles"
+      confidence_required: 0.98
+    - name: "DATA_COMPRESSION"
+      description: "Compression zstd/gzip/zlib"
+      confidence_required: 0.9
+    - name: "BACKUP_RESTORE"
+      description: "Sauvegarde et restauration automatiques"
+      confidence_required: 0.95
+    - name: "QUOTA_MANAGEMENT"
+      description: "Gestion des quotas par store et par agent"
+      confidence_required: 0.95
+    - name: "TTL_AUTO_EXPIRE"
+      description: "Expiration automatique TTL avec cleanup"
+      confidence_required: 0.98
+    - name: "DATA_MIGRATION"
+      description: "Migration entre backends (memory <-> disk <-> ipfs)"
+      confidence_required: 0.9
+    - name: "DEDUPLICATION"
+      description: "Déduplication des données"
+      confidence_required: 0.85
+    - name: "ATOMIC_OPERATIONS"
+      description: "Opérations atomiques (compare-and-swap)"
+      confidence_required: 0.95
+    - name: "BATCH_OPERATIONS"
+      description: "Opérations par lots optimisées"
+      confidence_required: 0.9
+    - name: "DATA_INDEXING"
+      description: "Indexation secondaire des données"
+      confidence_required: 0.85
+    - name: "FULL_TEXT_SEARCH"
+      description: "Recherche plein texte sur les documents"
+      confidence_required: 0.8
+    - name: "DATA_EXPORT_IMPORT"
+      description: "Export/Import en masse des données"
+      confidence_required: 0.9
+
+  # === CONFIGURATION LLM AVANCÉE ===
+  llm_config:
+    enabled: false  # Le Storage Agent n'a pas besoin de LLM par défaut
+    model: "none"
+    temperature: 0.0
+    max_tokens: 0
+    
+    # Paramètres anti-hallucination
+    anti_hallucination_params:
+      do_sample: false
+      
+    # Validation des réponses
+    response_validation:
+      require_syntax_check: false
+      require_compilation_check: false
+      max_attempts: 1
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "kv_store_manager"
+      description: "Gestion complète du store clé-valeur"
+      validation_required: true
+    - name: "cache_optimizer"
+      description: "Optimise les politiques de cache"
+      validation_required: true
+    - name: "data_migrator"
+      description: "Migre les données entre backends"
+      validation_required: true
+    - name: "backup_scheduler"
+      description: "Planifie et exécute les sauvegardes"
+      validation_required: true
+    - name: "quota_enforcer"
+      description: "Applique les quotas par agent"
+      validation_required: true
+    - name: "ttl_cleaner"
+      description: "Nettoie les données expirées"
+      validation_required: false
+    - name: "data_encryptor"
+      description: "Chiffre/déchiffre les données sensibles"
+      validation_required: true
+    - name: "compression_engine"
+      description: "Compresse/décompresse les données"
+      validation_required: false
+    - name: "version_controller"
+      description: "Gère le versioning des données"
+      validation_required: true
+    - name: "stats_collector"
+      description: "Collecte les métriques d'utilisation"
+      validation_required: false
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "stored_data"
+      type: "data"
+      format: "binary/json/pickle"
+      validation: "integrity_check"
+    - name: "cache_entries"
+      type: "data"
+      format: "memory"
+      validation: "coherence_check"
+    - name: "backup_archives"
+      type: "file"
+      format: "tar.gz"
+      validation: "restore_test"
+    - name: "data_versions"
+      type: "metadata"
+      format: "json"
+      validation: "completeness"
+    - name: "storage_stats"
+      type: "metrics"
+      format: "json"
+      validation: "consistency"
+    - name: "quota_reports"
+      type: "report"
+      format: "json"
+      validation: "accuracy"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "data_integrity_must_be_preserved"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "quotas_must_never_be_exceeded"
+      severity: "high"
+      action_on_failure: "block_write"
+      auto_correct: false
+    - name: "backups_must_be_completable"
+      severity: "critical"
+      action_on_failure: "alert"
+      auto_correct: true
+    - name: "ttl_expiry_must_be_respected"
+      severity: "medium"
+      action_on_failure: "auto_cleanup"
+      auto_correct: true
+    - name: "cache_hit_ratio_minimum_70_percent"
+      severity: "medium"
+      action_on_failure: "optimize_cache"
+      auto_correct: true
+    - name: "encryption_keys_must_be_rotated"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "disk_usage_below_80_percent"
+      severity: "medium"
+      action_on_failure: "cleanup_old_data"
+      auto_correct: true
+    - name: "ipfs_pins_must_be_verified"
+      severity: "low"
+      action_on_failure: "re_pin"
+      auto_correct: true
+    - name: "version_history_limited_to_10"
+      severity: "low"
+      action_on_failure: "auto_prune"
+      auto_correct: true
+
+  # === MÉTRIQUES DE QUALITÉ DE SERVICE ===
+  service_quality_metrics:
+    availability:
+      target: 99.99
+      measurement_window: "30d"
+      action_if_below: "alert"
+    latency_p99_get:
+      max_ms: 50
+      target_ms: 20
+      action_if_exceeded: "optimize"
+    latency_p99_set:
+      max_ms: 100
+      target_ms: 50
+      action_if_exceeded: "optimize"
+    throughput:
+      min_ops_per_second: 1000
+      target_ops_per_second: 5000
+      action_if_below: "scale"
+    cache_hit_ratio:
+      minimum: 70
+      target: 85
+      action_if_below: "adjust_cache_policy"
+    error_rate:
+      max_percent: 0.1
+      target_percent: 0.01
+      action_if_exceeded: "investigate"
+    data_durability:
+      target: "11_nines"  # 99.999999999%
+      action_if_below: "increase_replication"
+    backup_success_rate:
+      minimum: 99
+      target: 100
+      action_if_below: "fix_backup_job"
+
+  # === BACKENDS DE STOCKAGE SUPPORTÉS ===
+  supported_storage_backends:
+    - name: "memory"
+      type: "volatile"
       max_size_mb: 512
-      ttl_default: 3600
-    
-    cache:
-      type: "memory"
+      latency_ns: "< 100"
+      use_case: "cache rapide, données temporaires"
+      confidence: 0.99
+    - name: "disk"
+      type: "persistent"
+      max_size_gb: 1024
+      latency_ms: "< 10"
+      use_case: "stockage principal, données durables"
+      confidence: 0.98
+    - name: "ipfs"
+      type: "decentralized"
+      max_size: "unlimited"
+      latency_sec: "< 5"
+      use_case: "stockage décentralisé, partage public"
+      confidence: 0.85
+    - name: "redis"
+      type: "distributed_cache"
+      max_size_gb: 64
+      latency_ms: "< 1"
+      use_case: "cache distribué, sessions"
+      confidence: 0.9
+    - name: "s3_compatible"
+      type: "object_storage"
+      max_size: "unlimited"
+      latency_ms: "< 100"
+      use_case: "archivage, backups"
+      confidence: 0.9
+
+  # === FORMATS DE DONNÉES SUPPORTÉS ===
+  supported_data_formats:
+    - name: "json"
+      serialization: "json.dumps/loads"
+      compression: "gzip"
+      use_case: "documents structurés"
+      confidence: 0.99
+    - name: "pickle"
+      serialization: "pickle.dumps/loads"
+      compression: "zlib"
+      use_case: "objets Python complexes"
+      confidence: 0.95
+    - name: "msgpack"
+      serialization: "msgpack.pack/unpack"
+      compression: "zstd"
+      use_case: "performance optimale"
+      confidence: 0.9
+    - name: "binary"
+      serialization: "raw bytes"
+      compression: "lz4"
+      use_case: "fichiers, images"
+      confidence: 0.98
+    - name: "string"
+      serialization: "utf-8"
+      compression: "none"
+      use_case: "texte simple"
+      confidence: 0.99
+
+  # === POLITIQUES DE CACHE ===
+  cache_policies:
+    - name: "lru"
+      description: "Least Recently Used"
+      algorithm: "ordered_dict"
+      use_case: "accès avec localité temporelle"
+      eviction_complexity: "O(1)"
+    - name: "lfu"
+      description: "Least Frequently Used"
+      algorithm: "heap+counter"
+      use_case: "données avec popularité variable"
+      eviction_complexity: "O(log n)"
+    - name: "ttl"
+      description: "Time To Live"
+      algorithm: "priority_queue"
+      use_case: "données avec expiration fixe"
+      eviction_complexity: "O(1)"
+    - name: "fifo"
+      description: "First In First Out"
+      algorithm: "queue"
+      use_case: "données séquentielles"
+      eviction_complexity: "O(1)"
+    - name: "adaptive"
+      description: "Adaptatif selon les patterns"
+      algorithm: "ml_based"
+      use_case: "workloads variables"
+      eviction_complexity: "O(log n)"
+
+  # === ALGORITHMES DE COMPRESSION ===
+  compression_algorithms:
+    - name: "zlib"
+      level_range: "1-9"
+      default_level: 6
+      speed_mb_per_sec: 50
+      ratio: "medium"
+      use_case: "équilibre vitesse/taille"
+    - name: "gzip"
+      level_range: "1-9"
+      default_level: 6
+      speed_mb_per_sec: 40
+      ratio: "medium"
+      use_case: "compatibilité maximale"
+    - name: "zstd"
+      level_range: "1-22"
+      default_level: 3
+      speed_mb_per_sec: 200
+      ratio: "high"
+      use_case: "performance optimale"
+    - name: "lz4"
+      level_range: "1-16"
+      default_level: 1
+      speed_mb_per_sec: 500
+      ratio: "low"
+      use_case: "vitesse maximale"
+    - name: "snappy"
+      level_range: "fixed"
+      default_level: "n/a"
+      speed_mb_per_sec: 300
+      ratio: "low"
+      use_case: "Google生态系统"
+
+  # === ALGORITHMES DE CHIFFREMENT ===
+  encryption_algorithms:
+    - name: "AES-256-GCM"
+      key_size: 256
+      mode: "GCM"
+      authentication: "AEAD"
+      use_case: "données sensibles par défaut"
+      confidence: 0.99
+    - name: "AES-256-CBC"
+      key_size: 256
+      mode: "CBC"
+      authentication: "HMAC"
+      use_case: "compatibilité legacy"
+      confidence: 0.95
+    - name: "ChaCha20-Poly1305"
+      key_size: 256
+      mode: "stream"
+      authentication: "AEAD"
+      use_case: "performance mobile"
+      confidence: 0.98
+    - name: "Fernet"
+      key_size: 128
+      mode: "CBC+HMAC"
+      authentication: "built-in"
+      use_case: "simplicité d'usage"
+      confidence: 0.95
+
+  # === WORKFLOW DE COLLABORATION ===
+  collaboration_workflow:
+    steps:
+      - step: "receive_data_from_agent"
+        input: "any_agent"
+        validation: "quota_check"
+        timeout: 30
+      - step: "process_and_store_data"
+        process: "encrypt+compress+persist"
+        validation: "integrity_check"
+      - step: "update_cache_accordingly"
+        policy: "adaptive"
+        validation: "cache_coherence"
+      - step: "notify_monitoring_agent"
+        agent: "monitoring"
+        data: "metrics_and_stats"
+        required: true
+      - step: "create_backup_if_needed"
+        agent: "self"
+        condition: "backup_schedule_reached"
+      - step: "cleanup_expired_data"
+        agent: "self"
+        schedule: "hourly"
+      - step: "report_quota_usage_to_learning"
+        agent: "learning"
+        data: "usage_patterns"
+        required: false
+
+  # === QUOTAS PAR AGENT ===
+  quotas_per_agent:
+    default:
+      max_size_mb: 1024
+      max_ops_per_second: 100
+      max_keys: 10000
+    learning:
+      max_size_mb: 512
+      max_ops_per_second: 50
+      max_keys: 5000
+    monitoring:
       max_size_mb: 256
-      ttl_default: 300
-      eviction_policy: "lru"
+      max_ops_per_second: 200
+      max_keys: 1000
+    coder:
+      max_size_mb: 2048
+      max_ops_per_second: 150
+      max_keys: 20000
+    architect:
+      max_size_mb: 512
+      max_ops_per_second: 50
+      max_keys: 5000
+    frontend_web3:
+      max_size_mb: 2048
+      max_ops_per_second: 100
+      max_keys: 15000
+    smart_contract:
+      max_size_mb: 1024
+      max_ops_per_second: 80
+      max_keys: 10000
+    tester:
+      max_size_mb: 1024
+      max_ops_per_second: 200
+      max_keys: 15000
+    orchestrator:
+      max_size_mb: 256
+      max_ops_per_second: 50
+      max_keys: 2000
+    registry:
+      max_size_mb: 128
+      max_ops_per_second: 100
+      max_keys: 1000
+
+  # === CONFIGURATION SYSTÈME ===
+  system:
+    timeout_seconds: 300
+    max_retries: 3
+    concurrent_operations: 1000
+    log_level: "INFO"
+    enable_auto_cleanup: true
+    enable_periodic_backup: true
     
-    ipfs:
-      type: "ipfs"
-      enabled: false
-      gateway: "http://localhost:5001"
-      pin_by_default: true
-      local_cache: true
-  
-  # Cache global
-  cache:
-    enabled: true
-    type: "lru"  # lru, lfu, ttl
-    max_size_mb: 1024
-    ttl_default: 3600
-    persist_on_exit: true
-    preload_on_start: false
-  
-  # Persistance
-  persistence:
-    path: "./data/storage"
-    backup_path: "./data/backups"
-    auto_backup: true
-    backup_interval: 3600
-    backup_retention: 7  # jours
-  
-  # Versioning
-  versioning:
-    enabled: true
-    max_versions_per_key: 10
-    auto_prune: true
-    prune_older_than_days: 30
-  
-  # IPFS
-  ipfs:
-    enabled: false
-    gateway: "http://localhost:5001"
-    pin_api: "http://localhost:5001/api/v0/pin/add"
-    local_cache_path: "./data/ipfs_cache"
-    timeout: 30
+    # Politique de retry
+    retry_policy:
+      max_attempts: 3
+      backoff_factor: 1.5
+      jitter: 0.1
+      retryable_errors:
+        - "TimeoutError"
+        - "ConnectionError"
+        - "TemporaryQuotaExceeded"
+        - "BackupInProgress"
 
+  # === ENVIRONNEMENTS ===
+  environments:
+    development:
+      enabled: true
+      persistence: "memory_only"
+      backup_enabled: false
+      encryption_enabled: false
+      compression_enabled: true
+      quota_enforcement: false
+    staging:
+      enabled: true
+      persistence: "disk"
+      backup_enabled: true
+      backup_frequency_hours: 24
+      encryption_enabled: true
+      compression_enabled: true
+      quota_enforcement: true
+    production:
+      enabled: true
+      persistence: "disk+ipfs"
+      backup_enabled: true
+      backup_frequency_hours: 6
+      backup_retention_days: 30
+      encryption_enabled: true
+      compression_enabled: true
+      quota_enforcement: true
+      replication_factor: 3
 
-# =====================================================================
-# CHIFFREMENT
-# =====================================================================
-encryption:
-  enabled: false
-  algorithm: "AES-256-GCM"
-  key_path: "./agents/storage/keys/master.key"
-  key_rotation_days: 30
-  per_store_keys: false
-
-
-# =====================================================================
-# COMPRESSION
-# =====================================================================
-compression:
-  enabled: true
-  algorithm: "zstd"  # zstd, gzip, zlib, lz4
-  level: 3
-  min_size_bytes: 1024
-
-
-# =====================================================================
-# MÉTRIQUES & MONITORING
-# =====================================================================
-metrics:
-  enabled: true
-  export_to: "monitoring_agent"
-  
-  collect:
-    - "store_count"
-    - "key_count"
-    - "total_size_bytes"
-    - "cache_hits"
-    - "cache_misses"
-    - "cache_hit_ratio"
-    - "operations_per_second"
-    - "avg_latency_ms"
-  
-  alerts:
-    - metric: "total_size_bytes"
-      threshold: 10737418240  # 10 GB
-      condition: "greater_than"
-      severity: "warning"
-    - metric: "cache_hit_ratio"
-      threshold: 0.7
-      condition: "less_than"
-      severity: "warning"
-
-
-# =====================================================================
-# QUOTAS
-# =====================================================================
-quotas:
-  enabled: true
-  default_store_mb: 1024
-  max_store_mb: 10240
-  per_agent_quotas:
-    learning: 512
-    monitoring: 256
-    frontend_web3: 2048
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["storage", "cache", "persistence", "ipfs", "encryption"]
+    capabilities_count: 18
+    last_reviewed: "2026-03-05"
+    next_review: "2026-04-05"

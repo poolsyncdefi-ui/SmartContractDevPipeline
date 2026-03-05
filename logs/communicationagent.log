@@ -477,3 +477,367 @@
 2026-03-02 20:51:45 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
 2026-03-02 20:51:45 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
 2026-03-02 20:51:45 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 19:35:28 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 19:35:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 19:35:29 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 19:35:29 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 19:35:29 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 19:35:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 19:59:41 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 19:59:42 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 19:59:42 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 19:59:42 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 19:59:42 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 19:59:42 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 20:20:29 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 20:20:32 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:20:32 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 20:20:32 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 20:20:32 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 20:20:32 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 20:27:10 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 20:27:12 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:27:12 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 20:27:12 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 20:27:12 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 20:27:12 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 20:31:23 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 20:31:25 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 20:31:25 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 20:31:25 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 20:31:25 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 20:31:25 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-03 21:06:52 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-03 21:06:54 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-03 21:06:54 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-03 21:06:54 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-03 21:06:54 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-03 21:06:54 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-04 08:44:22 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-04 08:44:24 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-04 08:44:24 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-04 08:44:24 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-04 08:44:24 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-04 08:44:24 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-04 09:14:06 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-04 09:14:08 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-04 09:14:08 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-04 09:14:08 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-04 09:14:08 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-04 09:14:08 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 08:37:27 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 08:37:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:37:29 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 08:37:29 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 08:37:29 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 08:37:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 08:50:14 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 08:50:16 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:50:16 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 08:50:16 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 08:50:16 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 08:50:16 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 08:56:57 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 08:56:59 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 08:56:59 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 08:56:59 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 08:56:59 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 08:56:59 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 09:01:27 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 09:01:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 09:01:29 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 09:01:29 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 09:01:29 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 09:01:29 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 09:10:38 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 09:10:41 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 09:10:41 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 09:10:41 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 09:10:41 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 09:10:41 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 17:53:35 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 17:53:38 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 17:53:38 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 17:53:38 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 17:53:38 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 17:53:38 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:11:33 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 18:11:36 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 18:11:36 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:11:36 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 18:11:36 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 18:11:36 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - Configuration chargée: communication v2.0.0
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - Agent communication créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - Initialisation des composants...
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - ✅ Composants: ['message_queue', 'topic_manager', 'persistence', 'dead_letter_queue', 'scheduler']
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:18:19 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-05 18:18:21 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 18:18:21 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:18:21 - agent.CommunicationAgent - INFO - 🧹 Nettoyeur démarré
+2026-03-05 18:18:21 - agent.CommunicationAgent - INFO - 🔄 Planificateur démarré
+2026-03-05 18:18:21 - agent.CommunicationAgent - ERROR - ❌ Type de message non supporté: <class 'agents.base_agent.base_agent.Message'>
+2026-03-05 18:24:48 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:24:48 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:24:48 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:24:48 - agent.CommunicationAgent - INFO - ✅ Configuration chargée: communication v2.0.0
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:34:51 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: CommunicationAgent.send_message() missing 1 required positional argument: 'content'
+2026-03-05 18:34:51 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 396, in initialize
+    self._set_status(AgentStatus.INITIALIZING)
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 923, in _set_status
+    asyncio.create_task(self.send_message(notification))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: CommunicationAgent.send_message() missing 1 required positional argument: 'content'
+
+2026-03-05 18:34:51 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> error
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:40:46 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 18:40:46 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 18:40:46 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 18:40:48 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:42:05 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 18:42:05 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 18:42:05 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 18:42:07 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:44:19 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 18:44:19 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 18:44:19 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 18:44:21 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:44:30 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 18:44:30 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 18:44:30 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 18:44:32 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 18:45:14 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 18:45:14 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 18:45:17 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
