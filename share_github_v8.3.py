@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Share GitHub V9.4 - Version FINALE
+Share GitHub V9.7 - Version FINALE avec corrections
 Génération de PROJECT_SHARE.txt et upload vers GitHub Gists
-Configuration depuis D:\Web3Projects\project_config.json
+Affichage simplifié des liens
 """
 
 import json
 import os
 import sys
 import datetime
-import subprocess
 import math
 import fnmatch
+import subprocess  # ← IMPORT AJOUTÉ
 from pathlib import Path
 import requests
 
@@ -46,7 +46,6 @@ class Config:
             except Exception as e:
                 print(f"⚠ Erreur lecture config: {e}")
         
-        # Configuration par défaut
         print("⚠ Utilisation configuration par défaut")
         return {
             "PROJECT_NAME": "SmartContractDevPipeline",
@@ -69,7 +68,8 @@ class Config:
                 "pnpm-lock.yaml", "shrinkwrap.json", "*.log", "*.tmp", "*.cache",
                 "*.pyc", "*.pyo", "*.pyd", "*.so", "*.dylib", "*.dll", "*.exe",
                 "*.class", "*.jar", "*.o", "*.obj", ".env*", "*.key", "*.pem",
-                "*.crt", "*.cert", "*.p12", "*.pfx", "*.keystore"
+                "*.crt", "*.cert", "*.p12", "*.pfx", "*.keystore",
+                "PROJECT_SHARE.txt"
             ],
             "EXCLUDE_DIRS": [
                 "node_modules", ".git", ".vscode", ".idea", ".vs", "__pycache__",
@@ -272,71 +272,33 @@ def create_full_share(config):
 def estimate_gist_size(content):
     return len(content.encode('utf-8'))
 
-def parse_project_share_file(input_file):
-    """Parse PROJECT_SHARE.txt pour récupérer la structure"""
-    if not os.path.exists(input_file):
-        return None
+def split_files_into_gists(project_root, config):
+    """
+    Divise les fichiers du projet en Gists sans inclure PROJECT_SHARE.txt
+    """
+    all_files = collect_files(project_root, config)
     
-    try:
-        with open(input_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-    except:
-        return None
+    # Exclure PROJECT_SHARE.txt explicitement
+    all_files = [f for f in all_files if f.name != "PROJECT_SHARE.txt"]
     
-    lines = content.split('\n')
-    
-    # En-tête
-    header = {"project": "", "date": "", "files_count": 0}
-    for i in range(min(10, len(lines))):
-        if lines[i].startswith("PROJECT: "):
-            header["project"] = lines[i].replace("PROJECT: ", "").strip()
-        elif lines[i].startswith("DATE: "):
-            header["date"] = lines[i].replace("DATE: ", "").strip()
-        elif lines[i].startswith("FILES: "):
-            try:
-                header["files_count"] = int(lines[i].replace("FILES: ", "").strip())
-            except:
-                pass
-    
-    # Fichiers
-    file_contents = []
-    i = 0
-    while i < len(lines):
-        if lines[i].startswith("FICHIER : "):
-            file_info = {
-                "path": lines[i].replace("FICHIER : ", "").strip(),
-                "content_lines": []
-            }
-            i += 1
-            
-            while i < len(lines) and not lines[i].startswith("FICHIER : "):
-                if lines[i].strip():
-                    file_info["content_lines"].append(lines[i])
-                i += 1
-            
-            file_contents.append(file_info)
-        else:
-            i += 1
-    
-    return {"header": header, "files": file_contents}
-
-def split_files_into_gists(parsed_data, config):
-    """Divise les fichiers en Gists"""
-    files = parsed_data["files"]
     max_size_bytes = config.get("MAX_GIST_SIZE_MB", 45) * 1024 * 1024
     
+    # Calculer la taille de chaque fichier
     file_sizes = []
-    for file_info in files:
-        content = '\n'.join(file_info["content_lines"])
+    for file_path in all_files:
+        content = '\n'.join(read_file_with_line_numbers(file_path))
         size = estimate_gist_size(content)
         file_sizes.append({
-            "path": file_info["path"],
+            "path": str(file_path),
+            "name": file_path.name,
             "size": size,
-            "content_lines": file_info["content_lines"]
+            "content": content
         })
     
+    # Trier par taille (plus gros d'abord)
     file_sizes.sort(key=lambda x: x["size"], reverse=True)
     
+    # Algorithme de bin packing
     gist_parts = []
     current_gist = {"index": 1, "files": [], "size": 0}
     
@@ -353,14 +315,14 @@ def split_files_into_gists(parsed_data, config):
     
     return gist_parts
 
-def create_gist_content(gist_data, part_index, total_parts, parsed_data):
+def create_gist_content(gist_data, part_index, total_parts, project_name):
     """Crée le contenu d'un Gist"""
     timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
     content = []
     content.append("=" * 80)
     content.append(f"PROJECT_SHARE - PARTIE {part_index}/{total_parts}")
-    content.append(f"Projet: {parsed_data['header']['project']}")
+    content.append(f"Projet: {project_name}")
     content.append(f"Date: {timestamp}")
     content.append(f"Fichiers: {len(gist_data['files'])}")
     content.append("=" * 80)
@@ -369,13 +331,13 @@ def create_gist_content(gist_data, part_index, total_parts, parsed_data):
     for file_info in gist_data["files"]:
         content.append("")
         content.append(f"FICHIER : {file_info['path']}")
-        content.extend(file_info["content_lines"])
+        content.extend(file_info["content"].split('\n'))
         content.append("")
     
     return '\n'.join(content)
 
-def upload_gists_to_github(gist_parts, parsed_data, config, project_root):
-    """Upload les Gists"""
+def upload_gists_to_github(gist_parts, config, project_root):
+    """Upload les Gists sans confirmation"""
     print("\n" + "="*60)
     print("UPLOAD VERS GITHUB GISTS")
     print("="*60)
@@ -386,7 +348,7 @@ def upload_gists_to_github(gist_parts, parsed_data, config, project_root):
         github_token = input("Collez votre token GitHub: ").strip()
         if not github_token:
             print("✗ Token requis")
-            return False
+            return None
         config.save_token(github_token)
     
     headers = {"Authorization": f"token {github_token}"}
@@ -398,21 +360,23 @@ def upload_gists_to_github(gist_parts, parsed_data, config, project_root):
             print(f"✓ Connecté: {user}")
         else:
             print(f"✗ Token invalide")
-            return False
+            return None
     except:
         print(f"✗ Erreur connexion")
-        return False
+        return None
     
     uploaded_gists = []
+    total_size_mb = 0
+    
     print(f"\n🚀 Création de {len(gist_parts)} Gist(s)...")
     
     for i, gist_data in enumerate(gist_parts):
         part_index = i + 1
         total_parts = len(gist_parts)
+        size_mb = gist_data["size"] / (1024 * 1024)
+        total_size_mb += size_mb
         
-        print(f"\n📤 Partie {part_index}/{total_parts} ({gist_data['size']/(1024*1024):.2f} MB)")
-        
-        content = create_gist_content(gist_data, part_index, total_parts, parsed_data)
+        content = create_gist_content(gist_data, part_index, total_parts, config.get('PROJECT_NAME'))
         filename = f"PROJECT_PART{part_index:02d}_of_{total_parts:02d}.txt"
         
         data = {
@@ -426,21 +390,31 @@ def upload_gists_to_github(gist_parts, parsed_data, config, project_root):
             
             if response.status_code == 201:
                 gist_response = response.json()
+                gist_url = gist_response["html_url"]
+                
+                print(f"  ✅ Partie {part_index}/{total_parts} - {gist_url}")
+                
                 uploaded_gists.append({
                     "part": part_index,
-                    "url": gist_response["html_url"],
-                    "id": gist_response["id"]
+                    "url": gist_url,
+                    "size_mb": round(size_mb, 2),
+                    "files": len(gist_data["files"])
                 })
-                print(f"  ✅ Créé")
+                
             else:
-                print(f"  ❌ Erreur {response.status_code}")
-        except:
-            print(f"  ❌ Exception")
+                print(f"  ❌ Erreur part {part_index}: {response.status_code}")
+        except Exception as e:
+            print(f"  ❌ Exception part {part_index}: {e}")
+    
+    if uploaded_gists:
+        print(f"\n📊 RÉCAPITULATIF:")
+        for gist in uploaded_gists:
+            print(f"  Partie {gist['part']:02d}: {gist['url']} ({gist['size_mb']:.2f} MB)")
     
     return uploaded_gists
 
-def create_gist_index(uploaded_gists, config, project_root):
-    """Crée l'index des Gists"""
+def save_gist_index(uploaded_gists, config, project_root):
+    """Sauvegarde l'index des Gists dans un fichier"""
     if not uploaded_gists:
         return
     
@@ -453,39 +427,39 @@ def create_gist_index(uploaded_gists, config, project_root):
         f.write("="*80 + "\n")
         f.write(f"Date: {timestamp}\n")
         f.write(f"Total Gists: {len(uploaded_gists)}\n")
+        f.write(f"Taille totale: {sum(g['size_mb'] for g in uploaded_gists):.2f} MB\n")
         f.write("-"*80 + "\n\n")
-        f.write("LIENS:\n")
+        
         for gist in sorted(uploaded_gists, key=lambda x: x['part']):
-            f.write(f"\nPartie {gist['part']:02d}: {gist['url']}")
-        f.write("\n\n" + "="*80 + "\n")
+            f.write(f"Partie {gist['part']:02d}: {gist['url']}\n")
+        
+        f.write("\n" + "="*80 + "\n")
     
-    print(f"\n📄 Index créé: {index_file.name}")
+    print(f"\n📄 Index sauvegardé: {index_file.name}")
 
 def share_to_github_gists(config, project_root):
-    """Partage sur GitHub Gists"""
+    """Partage les fichiers du projet sur GitHub Gists"""
     print("\n" + "="*60)
     print("SHARE TO GITHUB GISTS")
     print("="*60)
     
-    project_share = project_root / "PROJECT_SHARE.txt"
-    if not project_share.exists():
-        print("✗ PROJECT_SHARE.txt introuvable!")
-        print("   Générez-le d'abord avec l'option 1")
-        return False
+    print("Analyse des fichiers du projet...")
+    gist_parts = split_files_into_gists(str(project_root), config)
     
-    parsed_data = parse_project_share_file(project_share)
-    if not parsed_data:
-        return False
-    
-    gist_parts = split_files_into_gists(parsed_data, config)
     if not gist_parts:
+        print("✗ Aucun fichier à partager")
         return False
     
-    uploaded = upload_gists_to_github(gist_parts, parsed_data, config, project_root)
+    total_files = sum(len(p['files']) for p in gist_parts)
+    total_size = sum(p['size'] for p in gist_parts) / (1024 * 1024)
+    
+    print(f"📊 {total_files} fichiers - {total_size:.2f} MB - {len(gist_parts)} Gist(s)")
+    
+    uploaded = upload_gists_to_github(gist_parts, config, project_root)
     
     if uploaded:
-        create_gist_index(uploaded, config, project_root)
-        print("\n✅ OPÉRATION TERMINÉE")
+        save_gist_index(uploaded, config, project_root)
+        print("\n✅ PARTAGE TERMINÉ")
         return True
     else:
         print("\n❌ Aucun Gist créé")
@@ -493,34 +467,8 @@ def share_to_github_gists(config, project_root):
 
 
 # ============================================================================
-# AUTRES FONCTIONS
+# GIT COMMIT + PUSH
 # ============================================================================
-
-def create_diff_share(config, project_root):
-    """Crée un rapport des différences Git"""
-    print("\n" + "="*60)
-    print("CREATE DIFF SHARE")
-    print("="*60)
-    
-    try:
-        result = subprocess.run(["git", "diff", "HEAD"], capture_output=True, text=True, cwd=project_root)
-        
-        if not result.stdout.strip():
-            print("ℹ Aucune différence")
-            return True
-        
-        timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-        diff_file = project_root / f"DIFF_REPORT_{timestamp}.txt"
-        
-        with open(diff_file, 'w', encoding='utf-8') as f:
-            f.write(result.stdout)
-        
-        print(f"✅ Diff: {diff_file.name}")
-    except:
-        print("✗ Erreur Git")
-        return False
-    
-    return True
 
 def git_commit_push_publish(config, project_root):
     """Commit et push Git"""
@@ -529,18 +477,34 @@ def git_commit_push_publish(config, project_root):
     print("="*60)
     
     try:
-        subprocess.run(["git", "add", "."], cwd=project_root)
+        # Vérifier si on est dans un repo Git
+        subprocess.run(["git", "status"], check=True, capture_output=True, text=True, cwd=project_root)
+        
+        # Voir les changements
         status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, cwd=project_root)
         
         if not status.stdout.strip():
-            print("ℹ Aucun changement")
+            print("ℹ Aucun changement à commiter")
             return True
         
+        # Afficher les fichiers modifiés
+        files_changed = len(status.stdout.strip().split('\n'))
+        print(f"📝 {files_changed} fichier(s) modifié(s)")
+        
+        # Message de commit
         default_msg = f"Mise à jour {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
-        commit_msg = input(f"Message (défaut: {default_msg}): ").strip() or default_msg
+        commit_msg = input(f"\nMessage commit (défaut: {default_msg}): ").strip() or default_msg
         
-        subprocess.run(["git", "commit", "-m", commit_msg], cwd=project_root)
+        # Git add
+        print("📦 Ajout des fichiers...")
+        subprocess.run(["git", "add", "."], cwd=project_root, check=True)
         
+        # Git commit
+        print("📝 Création du commit...")
+        subprocess.run(["git", "commit", "-m", commit_msg], cwd=project_root, check=True)
+        
+        # Git push
+        print("☁ Push vers GitHub...")
         branch = subprocess.run(["git", "branch", "--show-current"], capture_output=True, text=True, cwd=project_root)
         current_branch = branch.stdout.strip() or "main"
         
@@ -550,10 +514,14 @@ def git_commit_push_publish(config, project_root):
             print("✓ Push réussi")
             return True
         else:
-            print("✗ Échec push")
+            print("✗ Échec du push")
             return False
-    except:
-        print("✗ Erreur Git")
+            
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Erreur Git: {e}")
+        return False
+    except FileNotFoundError:
+        print("✗ Git non installé")
         return False
 
 
@@ -568,29 +536,26 @@ def main_menu(config, project_root):
     while True:
         clear_screen()
         print("\n" + "="*60)
-        print(f"SHARE GITHUB V9.4 - {config.get('PROJECT_NAME')}")
+        print(f"SHARE GITHUB V9.7 - {config.get('PROJECT_NAME')}")
         print("="*60)
         print(f"Projet: {project_root}")
         print(f"Config: {config.config_path}")
         print("\n" + "="*60)
         print("1. GÉNÉRER PROJECT_SHARE.txt")
-        print("2. CREATE DIFF SHARE")
-        print("3. GIT COMMIT + PUSH")
-        print("4. SHARE TO GITHUB GISTS")
-        print("5. EXIT")
+        print("2. GIT COMMIT + PUSH")
+        print("3. SHARE TO GITHUB GISTS")
+        print("4. EXIT")
         print("="*60)
         
-        choice = input("\nChoix (1-5): ").strip()
+        choice = input("\nChoix (1-4): ").strip()
         
         if choice == "1":
             create_full_share(config)
         elif choice == "2":
-            create_diff_share(config, project_root)
-        elif choice == "3":
             git_commit_push_publish(config, project_root)
-        elif choice == "4":
+        elif choice == "3":
             share_to_github_gists(config, project_root)
-        elif choice == "5":
+        elif choice == "4":
             print("\nAu revoir!")
             break
         
@@ -610,3 +575,5 @@ if __name__ == "__main__":
         print("\n\nInterrompu.")
     except Exception as e:
         print(f"\n✗ Erreur: {e}")
+        import traceback
+        traceback.print_exc()
