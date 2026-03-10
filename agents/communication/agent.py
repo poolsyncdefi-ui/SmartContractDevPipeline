@@ -1,7 +1,7 @@
 """
 Communication Agent - Système de messagerie centralisé haute performance
 Gestion des files d'attente, QoS, pub/sub, routage intelligent
-Version: 2.0.0 (ALIGNÉ SUR ARCHITECT/CODER/STORAGE)
+Version: 2.1.0 (ALIGNÉ SUR ARCHITECT/CODER/SMARTCONTRACT/FRONTEND)
 """
 
 import logging
@@ -255,7 +255,7 @@ class TopicManager:
 
 
 # ============================================================================
-# AGENT PRINCIPAL - COMMUNICATION
+# AGENT PRINCIPAL - COMMUNICATION (ALIGNÉ)
 # ============================================================================
 
 class CommunicationAgent(BaseAgent):
@@ -273,11 +273,11 @@ class CommunicationAgent(BaseAgent):
         # Appel au constructeur parent
         super().__init__(config_path)
 
-        # IMPORTANT: La configuration est dans self._agent_config, pas à la racine
+        # Configuration spécifique
         agent_config = self._agent_config.get('agent', {})
         self._display_name = agent_config.get('display_name', '💬 Communication Agent')
         
-        # Récupérer la configuration spécifique depuis la section 'communication' de _agent_config
+        # Récupérer la configuration spécifique
         self._comm_config = self._agent_config.get('communication', {})
         
         # Configuration des files d'attente
@@ -311,6 +311,7 @@ class CommunicationAgent(BaseAgent):
         
         self._circuit_breakers: Dict[str, Dict[str, Any]] = {}  # recipient -> state
         
+        # Statistiques internes (avec underscore pour cohérence)
         self._stats = {
             "messages_received": 0,
             "messages_sent": 0,
@@ -331,6 +332,7 @@ class CommunicationAgent(BaseAgent):
             "uptime_start": datetime.now()
         }
 
+        self._sub_agents: Dict[str, Any] = {}  # Pour les sous-agents
         self._components: Dict[str, Any] = {}
         self._initialized = False
         
@@ -363,7 +365,7 @@ class CommunicationAgent(BaseAgent):
         )
 
     # ============================================================================
-    # CYCLE DE VIE
+    # CYCLE DE VIE (ALIGNÉ)
     # ============================================================================
 
     async def initialize(self) -> bool:
@@ -388,6 +390,9 @@ class CommunicationAgent(BaseAgent):
                 "rate_limiting_enabled": self._comm_config.get('rate_limiting', {}).get('enabled', True)
             }
 
+            # Initialiser les sous-agents
+            await self._initialize_sub_agents()
+
             # Démarrer les tâches de fond
             self._processor_task = asyncio.create_task(self._message_processor())
             self._cleanup_task = asyncio.create_task(self._cleanup_worker())
@@ -401,9 +406,39 @@ class CommunicationAgent(BaseAgent):
             self._logger.error(f"Erreur composants: {e}")
             return False
 
+    async def _initialize_sub_agents(self):
+        """Initialise les sous-agents spécialisés (optionnel)"""
+        try:
+            # Tentative d'import des sous-agents (à créer si besoin)
+            try:
+                from .sous_agents import (
+                    QueueManagerSubAgent,
+                    PubSubManagerSubAgent,
+                    CircuitBreakerSubAgent
+                )
+                
+                self._sub_agents = {
+                    "queue_manager": QueueManagerSubAgent(),
+                    "pubsub_manager": PubSubManagerSubAgent(),
+                    "circuit_breaker": CircuitBreakerSubAgent()
+                }
+                self._logger.info(f"✅ Sous-agents: {list(self._sub_agents.keys())}")
+            except ImportError as e:
+                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
+                self._sub_agents = {}
+                
+        except Exception as e:
+            self._logger.error(f"Erreur sous-agents: {e}")
+            self._sub_agents = {}
+
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent Communication...")
+        return await super().shutdown()
+
+    async def _cleanup(self):
+        """Nettoie les ressources spécifiques"""
+        self._logger.info("Nettoyage des ressources Communication...")
         
         # Annuler les tâches de fond
         for task in [self._processor_task, self._cleanup_task, self._retry_task]:
@@ -413,12 +448,6 @@ class CommunicationAgent(BaseAgent):
                     await task
                 except asyncio.CancelledError:
                     pass
-        
-        return await super().shutdown()
-
-    async def _cleanup(self):
-        """Nettoie les ressources spécifiques"""
-        self._logger.info("Nettoyage des ressources Communication...")
         
         # Vider les files
         for queue in self._queues.values():
@@ -430,7 +459,91 @@ class CommunicationAgent(BaseAgent):
         self._pending_requests.clear()
 
     # ============================================================================
-    # API PUBLIQUE - MÉTHODES SPÉCIFIQUES (RENOMMÉES POUR ÉVITER CONFLIT)
+    # MÉTHODES DE SANTÉ ET D'INFORMATION (ALIGNÉES)
+    # ============================================================================
+
+    async def health_check(self) -> Dict[str, Any]:
+        """Vérifie la santé de l'agent"""
+        base_health = await super().health_check()
+        
+        try:
+            stats = await self.get_stats()
+            
+            # Vérifier les métriques critiques
+            queue_sizes = [q["current_size"] for q in stats["queues"].values()]
+            total_queue_size = sum(queue_sizes)
+            
+            health_status = "healthy"
+            issues = []
+            
+            if total_queue_size > 10000:
+                issues.append(f"Files d'attente élevées: {total_queue_size}")
+                health_status = "degraded"
+            
+            if stats["processing_latency_p95"] > 1000:  # > 1s
+                issues.append(f"Latence élevée: {stats['processing_latency_p95']}ms")
+                health_status = "degraded"
+            
+            if stats["success_rate"] < 95:
+                issues.append(f"Taux de succès bas: {stats['success_rate']}%")
+                health_status = "degraded"
+            
+            base_health["communication_specific"] = {
+                "queues": {
+                    "total_size": total_queue_size,
+                    "by_queue": queue_sizes
+                },
+                "throughput": stats["throughput_current"],
+                "latency_p95": stats["processing_latency_p95"],
+                "success_rate": stats["success_rate"],
+                "dead_letter_size": stats["dead_letter_size"],
+                "circuit_breakers": len(stats["circuit_breakers"]),
+                "health_status": health_status,
+                "issues": issues,
+                "sub_agents": list(self._sub_agents.keys())
+            }
+            
+        except Exception as e:
+            self._logger.error(f"Erreur dans health_check: {e}")
+            base_health["communication_specific"] = {"error": str(e)}
+        
+        return base_health
+
+    def get_agent_info(self) -> Dict[str, Any]:
+        """Informations de l'agent pour le registre"""
+        agent_config = self._agent_config.get('agent', {})
+        capabilities = agent_config.get('capabilities', [])
+        
+        if capabilities and isinstance(capabilities[0], dict):
+            capabilities = [cap["name"] for cap in capabilities]
+
+        return {
+            "id": self.name,
+            "name": "CommunicationAgent",
+            "display_name": self._display_name,
+            "version": agent_config.get('version', '2.1.0'),
+            "description": agent_config.get('description', 'Système de communication centralisé'),
+            "status": self._status.value,
+            "capabilities": capabilities,
+            "features": {
+                "queues": list(self._queues.keys()),
+                "priority_levels": self._default_queue_config.get('priority_levels', 5),
+                "pubsub_enabled": self._components.get("pubsub_enabled", True),
+                "circuit_breakers_enabled": self._components.get("circuit_breakers_enabled", True),
+                "sub_agents": list(self._sub_agents.keys())
+            },
+            "stats": {
+                "messages_processed": self._stats["messages_processed"],
+                "throughput": round(self._stats["throughput_current"], 2),
+                "queue_size": self._stats["queue_size_current"],
+                "success_rate": round(
+                    (self._stats["messages_processed"] / max(1, self._stats["messages_received"])) * 100, 2
+                )
+            }
+        }
+
+    # ============================================================================
+    # API PUBLIQUE - MÉTHODES SPÉCIFIQUES (INCHANGÉES)
     # ============================================================================
 
     async def send_communication(self, 
@@ -976,84 +1089,6 @@ class CommunicationAgent(BaseAgent):
         
         return stats
 
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé de l'agent"""
-        base_health = await super().health_check()
-        
-        try:
-            stats = await self.get_stats()
-            
-            # Vérifier les métriques critiques
-            queue_sizes = [q["current_size"] for q in stats["queues"].values()]
-            total_queue_size = sum(queue_sizes)
-            
-            health_status = "healthy"
-            issues = []
-            
-            if total_queue_size > 10000:
-                issues.append(f"Files d'attente élevées: {total_queue_size}")
-                health_status = "degraded"
-            
-            if stats["processing_latency_p95"] > 1000:  # > 1s
-                issues.append(f"Latence élevée: {stats['processing_latency_p95']}ms")
-                health_status = "degraded"
-            
-            if stats["success_rate"] < 95:
-                issues.append(f"Taux de succès bas: {stats['success_rate']}%")
-                health_status = "degraded"
-            
-            base_health["communication_specific"] = {
-                "queues": {
-                    "total_size": total_queue_size,
-                    "by_queue": queue_sizes
-                },
-                "throughput": stats["throughput_current"],
-                "latency_p95": stats["processing_latency_p95"],
-                "success_rate": stats["success_rate"],
-                "dead_letter_size": stats["dead_letter_size"],
-                "circuit_breakers": len(stats["circuit_breakers"]),
-                "health_status": health_status,
-                "issues": issues
-            }
-            
-        except Exception as e:
-            self._logger.error(f"Erreur dans health_check: {e}")
-            base_health["communication_specific"] = {"error": str(e)}
-        
-        return base_health
-
-    def get_agent_info(self) -> Dict[str, Any]:
-        """Informations de l'agent pour le registre"""
-        agent_config = self._agent_config.get('agent', {})
-        capabilities = agent_config.get('capabilities', [])
-        
-        if capabilities and isinstance(capabilities[0], dict):
-            capabilities = [cap["name"] for cap in capabilities]
-        
-        return {
-            "id": self.name,
-            "name": "CommunicationAgent",
-            "display_name": self._display_name,
-            "version": agent_config.get('version', '2.0.0'),
-            "description": agent_config.get('description', 'Système de communication centralisé'),
-            "status": self._status.value,
-            "capabilities": capabilities,
-            "features": {
-                "queues": list(self._queues.keys()),
-                "priority_levels": self._default_queue_config.get('priority_levels', 5),
-                "pubsub_enabled": self._components.get("pubsub_enabled", True),
-                "circuit_breakers_enabled": self._components.get("circuit_breakers_enabled", True)
-            },
-            "stats": {
-                "messages_processed": self._stats["messages_processed"],
-                "throughput": round(self._stats["throughput_current"], 2),
-                "queue_size": self._stats["queue_size_current"],
-                "success_rate": round(
-                    (self._stats["messages_processed"] / max(1, self._stats["messages_received"])) * 100, 2
-                )
-            }
-        }
-
     # ============================================================================
     # GESTION DES MESSAGES (hérités de BaseAgent)
     # ============================================================================
@@ -1062,8 +1097,8 @@ class CommunicationAgent(BaseAgent):
         """Gère les messages personnalisés"""
         try:
             msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type} de {message.sender}")
-            
+            self._logger.debug(f"Message personnalisé reçu: {msg_type} de {message.sender}")
+
             handlers = {
                 "communication.send": self._handle_send_request,
                 "communication.request": self._handle_request,
@@ -1074,13 +1109,13 @@ class CommunicationAgent(BaseAgent):
                 "communication.queue_stats": self._handle_queue_stats,
                 "communication.topic_stats": self._handle_topic_stats,
             }
-            
+
             if msg_type in handlers:
                 return await handlers[msg_type](message)
-            
-            self._logger.warning(f"Type de message non reconnu: {msg_type}")
+
+            self._logger.warning(f"Aucun handler pour le type: {msg_type}")
             return None
-            
+
         except Exception as e:
             self._logger.error(f"Erreur traitement message: {e}")
             return Message(
@@ -1221,6 +1256,7 @@ if __name__ == "__main__":
         print(f"✅ Agent: {agent_info['name']} v{agent_info['version']}")
         print(f"✅ Statut: {agent_info['status']}")
         print(f"✅ Files: {agent_info['features']['queues']}")
+        print(f"✅ Sous-agents: {agent_info['features']['sub_agents']}")
         
         # Test send
         print(f"\n📨 Test send...")
@@ -1230,9 +1266,6 @@ if __name__ == "__main__":
             message_type="test"
         )
         print(f"✅ Envoyé: {result}")
-        
-        # Test request/reply (simulé)
-        print(f"\n🔄 Test request (simulé)...")
         
         # Test publish/subscribe
         print(f"\n📢 Test publish...")
@@ -1253,8 +1286,6 @@ if __name__ == "__main__":
         
         health = await agent.health_check()
         print(f"\n❤️  Health: {health['status']}")
-        if health.get("communication_specific", {}).get("issues"):
-            print(f"  Issues: {health['communication_specific']['issues']}")
         
         print("\n" + "="*60)
         print("✅ COMMUNICATION AGENT OPÉRATIONNEL")

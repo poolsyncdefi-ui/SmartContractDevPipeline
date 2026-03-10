@@ -1,7 +1,7 @@
 """
 Orchestrator Agent - Orchestration des workflows et sprints
-Version corrigée avec imports standardisés
-Version: 2.0.0
+Version corrigée avec compatibilité infrastructure existante
+Version: 2.0.1
 """
 
 import os
@@ -9,15 +9,42 @@ import sys
 import yaml
 import asyncio
 import json
+import random
+import traceback
 from datetime import datetime, timedelta
 from enum import Enum
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional, Union, Set
 from pathlib import Path
 from collections import defaultdict
-import traceback
 
-# IMPORT CORRIGÉ - plus de fallback
+# Import compatible avec l'infrastructure existante
 from agents.base_agent.base_agent import BaseAgent, AgentStatus
+
+
+# =====================================================================
+# CONSTANTES
+# =====================================================================
+
+DEFAULT_CONFIG = {
+    "sprint_config": {
+        "enabled": True,
+        "default_strategy": "largeur_dabord",
+        "max_iterations_per_fragment": 3,
+        "reports_path": "./reports/sprints/",
+        "timeout_per_fragment": 300
+    },
+    "workflow_config": {
+        "continue_on_error": False,
+        "max_concurrent_steps": 5,
+        "default_timeout": 300
+    },
+    "paths": {
+        "specs_dir": "./specs/projects/",
+        "reports_dir": "./reports/sprints/",
+        "artifacts_dir": "./artifacts/workflows/"
+    }
+}
+
 
 # =====================================================================
 # ÉNUMÉRATIONS
@@ -66,6 +93,30 @@ class FragmentStatus(Enum):
 
 
 # =====================================================================
+# EXCEPTIONS SPÉCIFIQUES
+# =====================================================================
+
+class WorkflowError(Exception):
+    """Erreur lors de l'exécution d'un workflow"""
+    pass
+
+
+class SprintError(Exception):
+    """Erreur lors de l'exécution d'un sprint"""
+    pass
+
+
+class StepExecutionError(Exception):
+    """Erreur lors de l'exécution d'une étape"""
+    pass
+
+
+class FragmentExecutionError(Exception):
+    """Erreur lors de l'exécution d'un fragment"""
+    pass
+
+
+# =====================================================================
 # CLASSES DE BASE
 # =====================================================================
 
@@ -80,9 +131,10 @@ class WorkflowStep:
                  depends_on: List[str] = None,
                  timeout: int = 300,
                  retry_count: int = 0,
-                 max_retries: int = 3):
+                 max_retries: int = 3,
+                 metadata: Dict[str, Any] = None):
         
-        self.id = f"step_{datetime.now().timestamp()}_{name}"
+        self.id = f"step_{int(datetime.now().timestamp())}_{name}"
         self.name = name
         self.agent_type = agent_type
         self.task_type = task_type
@@ -91,6 +143,7 @@ class WorkflowStep:
         self.timeout = timeout
         self.retry_count = retry_count
         self.max_retries = max_retries
+        self.metadata = metadata or {}
         self.status = StepStatus.PENDING
         self.result = None
         self.error = None
@@ -98,6 +151,7 @@ class WorkflowStep:
         self.completed_at = None
     
     def to_dict(self) -> Dict[str, Any]:
+        """Convertit l'étape en dictionnaire"""
         return {
             "id": self.id,
             "name": self.name,
@@ -107,19 +161,48 @@ class WorkflowStep:
             "depends_on": self.depends_on,
             "status": self.status.value,
             "retry_count": self.retry_count,
-            "max_retries": self.max_retries
+            "max_retries": self.max_retries,
+            "metadata": self.metadata,
+            "started_at": self.started_at.isoformat() if self.started_at else None,
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None,
+            "error": self.error
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'WorkflowStep':
+        """Crée une étape depuis un dictionnaire"""
+        step = cls(
+            name=data["name"],
+            agent_type=data["agent_type"],
+            task_type=data["task_type"],
+            parameters=data.get("parameters", {}),
+            depends_on=data.get("depends_on", []),
+            timeout=data.get("timeout", 300),
+            max_retries=data.get("max_retries", 3),
+            metadata=data.get("metadata", {})
+        )
+        step.id = data.get("id", step.id)
+        step.status = StepStatus(data.get("status", "pending"))
+        step.retry_count = data.get("retry_count", 0)
+        step.error = data.get("error")
+        return step
 
 
 class Workflow:
     """Workflow complet"""
     
-    def __init__(self, name: str, workflow_type: str = "standard"):
-        self.id = f"workflow_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+    def __init__(self, 
+                 name: str, 
+                 workflow_type: str = "standard",
+                 metadata: Dict[str, Any] = None):
+        
+        self.id = f"workflow_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         self.name = name
         self.workflow_type = workflow_type
+        self.metadata = metadata or {}
         self.status = WorkflowStatus.PENDING
         self.steps: List[WorkflowStep] = []
+        self.steps_by_id: Dict[str, WorkflowStep] = {}
         self.created_at = datetime.now()
         self.started_at = None
         self.completed_at = None
@@ -127,29 +210,101 @@ class Workflow:
         self.results: Dict[str, Any] = {}
         self.artifacts: List[str] = []
         self.report_path = None
+        self.error = None
     
-    def add_step(self, step: WorkflowStep):
+    def add_step(self, step: WorkflowStep) -> None:
         """Ajoute une étape au workflow"""
         self.steps.append(step)
+        self.steps_by_id[step.id] = step
     
-    def get_step(self, step_name: str) -> Optional[WorkflowStep]:
-        """Récupère une étape par son nom"""
+    def get_step(self, step_identifier: str) -> Optional[WorkflowStep]:
+        """Récupère une étape par son nom ou son ID"""
+        # Chercher par ID d'abord
+        if step_identifier in self.steps_by_id:
+            return self.steps_by_id[step_identifier]
+        
+        # Sinon chercher par nom
         for step in self.steps:
-            if step.name == step_name:
+            if step.name == step_identifier:
                 return step
         return None
     
+    def get_step_by_name(self, name: str) -> Optional[WorkflowStep]:
+        """Récupère une étape par son nom"""
+        return self.get_step(name)
+    
+    def update_step_status(self, step_id: str, status: StepStatus, 
+                          result: Any = None, error: str = None) -> None:
+        """Met à jour le statut d'une étape"""
+        step = self.steps_by_id.get(step_id)
+        if step:
+            step.status = status
+            if result is not None:
+                step.result = result
+            if error:
+                step.error = error
+            if status == StepStatus.RUNNING:
+                step.started_at = datetime.now()
+            elif status in [StepStatus.COMPLETED, StepStatus.FAILED, StepStatus.SKIPPED]:
+                step.completed_at = datetime.now()
+    
+    def is_completed(self) -> bool:
+        """Vérifie si le workflow est terminé"""
+        return self.status in [WorkflowStatus.COMPLETED, WorkflowStatus.FAILED, WorkflowStatus.CANCELLED]
+    
+    def get_pending_steps(self) -> List[WorkflowStep]:
+        """Retourne les étapes en attente"""
+        return [s for s in self.steps if s.status == StepStatus.PENDING]
+    
+    def get_running_steps(self) -> List[WorkflowStep]:
+        """Retourne les étapes en cours"""
+        return [s for s in self.steps if s.status == StepStatus.RUNNING]
+    
+    def get_completed_steps(self) -> List[WorkflowStep]:
+        """Retourne les étapes terminées"""
+        return [s for s in self.steps if s.status == StepStatus.COMPLETED]
+    
+    def get_failed_steps(self) -> List[WorkflowStep]:
+        """Retourne les étapes en échec"""
+        return [s for s in self.steps if s.status == StepStatus.FAILED]
+    
     def to_dict(self) -> Dict[str, Any]:
+        """Convertit le workflow en dictionnaire"""
         return {
             "id": self.id,
             "name": self.name,
             "type": self.workflow_type,
             "status": self.status.value,
             "steps": [s.to_dict() for s in self.steps],
+            "metadata": self.metadata,
             "created_at": self.created_at.isoformat(),
             "started_at": self.started_at.isoformat() if self.started_at else None,
-            "completed_at": self.completed_at.isoformat() if self.completed_at else None
+            "completed_at": self.completed_at.isoformat() if self.completed_at else None,
+            "results": self.results,
+            "artifacts": self.artifacts,
+            "error": self.error
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'Workflow':
+        """Crée un workflow depuis un dictionnaire"""
+        workflow = cls(
+            name=data["name"],
+            workflow_type=data.get("type", "standard"),
+            metadata=data.get("metadata", {})
+        )
+        workflow.id = data.get("id", workflow.id)
+        workflow.status = WorkflowStatus(data.get("status", "pending"))
+        workflow.results = data.get("results", {})
+        workflow.artifacts = data.get("artifacts", [])
+        workflow.error = data.get("error")
+        
+        # Restaurer les étapes
+        for step_data in data.get("steps", []):
+            step = WorkflowStep.from_dict(step_data)
+            workflow.add_step(step)
+        
+        return workflow
 
 
 # =====================================================================
@@ -162,13 +317,13 @@ class SprintManager:
     Coordonne le développement parallèle sur tous les aspects du projet
     """
     
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: Dict[str, Any], logger=None):
         self.config = config
         self.current_sprint = None
         self.fragments: Dict[str, Dict] = {}
         self.dependency_graph: Dict[str, List[str]] = {}
         self.results: Dict[str, Any] = {}
-        self.logger = print  # Sera remplacé par l'orchestrateur
+        self.logger = logger or print
         
         self.metrics = {
             "sprints_completed": 0,
@@ -195,19 +350,35 @@ class SprintManager:
         """Définit le logger"""
         self.logger = logger
     
+    def _log_info(self, msg):
+        """Log niveau info"""
+        self.logger(f"ℹ️ {msg}")
+    
+    def _log_error(self, msg):
+        """Log niveau erreur"""
+        self.logger(f"❌ {msg}")
+    
+    def _log_warning(self, msg):
+        """Log niveau avertissement"""
+        self.logger(f"⚠️ {msg}")
+    
+    def _log_debug(self, msg):
+        """Log niveau debug"""
+        self.logger(f"🔍 {msg}")
+    
     def load_specs(self, spec_file: str) -> Dict[str, Any]:
         """Charge les spécifications depuis un fichier JSON"""
-        self.logger(f"📋 Chargement des spécifications: {spec_file}")
+        self._log_info(f"Chargement des spécifications: {spec_file}")
         
         try:
             with open(spec_file, 'r', encoding='utf-8') as f:
                 specs = json.load(f)
         except FileNotFoundError:
-            self.logger(f"❌ Fichier non trouvé: {spec_file}")
+            self._log_error(f"Fichier non trouvé: {spec_file}")
             # Retourner des spécifications par défaut pour les tests
             specs = self._get_default_specs()
         except Exception as e:
-            self.logger(f"❌ Erreur chargement: {e}")
+            self._log_error(f"Erreur chargement: {e}")
             specs = self._get_default_specs()
         
         # Indexer les fragments par ID
@@ -318,7 +489,7 @@ class SprintManager:
         visited = set()
         order = []
         
-        def dfs(fragment_id):
+        def dfs(fragment_id: str) -> None:
             if fragment_id in visited:
                 return
             visited.add(fragment_id)
@@ -360,6 +531,7 @@ class OrchestratorAgent(BaseAgent):
         self._workflows: Dict[str, Workflow] = {}
         self._current_workflow: Optional[Workflow] = None
         self._sprint_manager: Optional[SprintManager] = None
+        self._initialized = False
         
         # Statistiques
         self._stats = {
@@ -369,6 +541,7 @@ class OrchestratorAgent(BaseAgent):
             "steps_executed": 0,
             "steps_failed": 0,
             "sprints_completed": 0,
+            "fragments_executed": 0,
             "start_time": datetime.now()
         }
         
@@ -382,43 +555,36 @@ class OrchestratorAgent(BaseAgent):
                 with open(self._config_path, 'r', encoding='utf-8') as f:
                     file_config = yaml.safe_load(f) or {}
                 
-                self._agent_config = file_config
+                # Merge avec la config par défaut
+                self._agent_config = self._merge_configs(DEFAULT_CONFIG, file_config)
                 self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
-                
-                # Configuration par défaut pour les sprints
-                if "sprint_config" not in self._agent_config:
-                    self._agent_config["sprint_config"] = {
-                        "enabled": True,
-                        "default_strategy": "largeur_dabord",
-                        "max_iterations_per_fragment": 3,
-                        "reports_path": "./reports/sprints/"
-                    }
             else:
-                self._logger.warning("⚠️ Fichier de configuration non trouvé")
-                self._agent_config = {
-                    "sprint_config": {
-                        "enabled": True,
-                        "default_strategy": "largeur_dabord",
-                        "max_iterations_per_fragment": 3,
-                        "reports_path": "./reports/sprints/"
-                    }
-                }
+                self._logger.warning("⚠️ Fichier de configuration non trouvé, utilisation des valeurs par défaut")
+                self._agent_config = DEFAULT_CONFIG.copy()
         except Exception as e:
             self._logger.error(f"❌ Erreur chargement config: {e}")
-            self._agent_config = {
-                "sprint_config": {
-                    "enabled": True,
-                    "default_strategy": "largeur_dabord",
-                    "max_iterations_per_fragment": 3,
-                    "reports_path": "./reports/sprints/"
-                }
-            }
+            self._agent_config = DEFAULT_CONFIG.copy()
+    
+    def _merge_configs(self, default: Dict, override: Dict) -> Dict:
+        """Fusionne deux configurations récursivement"""
+        result = default.copy()
+        
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._merge_configs(result[key], value)
+            else:
+                result[key] = value
+        
+        return result
     
     async def initialize(self) -> bool:
         """Initialisation asynchrone"""
         try:
             self._status = AgentStatus.INITIALIZING
             self._logger.info("Initialisation de l'orchestrateur...")
+            
+            # Créer les répertoires nécessaires
+            await self._ensure_directories()
             
             # Initialiser les composants
             await self._initialize_components()
@@ -427,6 +593,7 @@ class OrchestratorAgent(BaseAgent):
             self._sprint_manager = SprintManager(self._agent_config.get("sprint_config", {}))
             self._sprint_manager.set_logger(self._logger.info)
             
+            self._initialized = True
             self._status = AgentStatus.READY
             self._logger.info("✅ Orchestrateur prêt")
             return True
@@ -436,6 +603,14 @@ class OrchestratorAgent(BaseAgent):
             self._logger.error(traceback.format_exc())
             self._status = AgentStatus.ERROR
             return False
+    
+    async def _ensure_directories(self):
+        """Crée les répertoires nécessaires"""
+        paths = self._agent_config.get("paths", {})
+        for path_name, path_value in paths.items():
+            path = Path(path_value)
+            path.mkdir(parents=True, exist_ok=True)
+            self._logger.debug(f"📁 Répertoire créé/vérifié: {path}")
     
     async def _initialize_components(self):
         """Initialise les composants"""
@@ -450,18 +625,22 @@ class OrchestratorAgent(BaseAgent):
         self._logger.info(f"✅ Composants: {list(self._components.keys())}")
         return self._components
     
-    async def generate_project_spec(self, project_name: str, project_type: str = "defi") -> str:
+    async def generate_project_spec(self, 
+                                   project_name: str, 
+                                   project_type: str = "defi",
+                                   output_dir: Optional[str] = None) -> str:
         """
         Génère un fichier de spécification complet pour un projet
         
         Args:
             project_name: Nom du projet
             project_type: Type de projet (defi, nft, gaming, dao)
+            output_dir: Répertoire de sortie (optionnel)
         
         Returns:
             Chemin vers le fichier JSON généré
         """
-        self._logger.info(f"📋 Génération de spécification pour projet: {project_name}")
+        self._logger.info(f"📋 Génération de spécification pour projet: {project_name} (type: {project_type})")
         
         # Template de base selon le type de projet
         templates = {
@@ -474,13 +653,20 @@ class OrchestratorAgent(BaseAgent):
         template_func = templates.get(project_type, self._get_defi_template)
         spec = template_func(project_name)
         
-        # Sauvegarder le fichier
-        specs_dir = Path("./specs/projects")
+        # Déterminer le répertoire de sortie
+        if output_dir:
+            specs_dir = Path(output_dir)
+        else:
+            specs_dir = Path(self._agent_config.get("paths", {}).get("specs_dir", "./specs/projects/"))
+        
         specs_dir.mkdir(parents=True, exist_ok=True)
         
-        filename = f"{project_name.lower().replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.json"
+        # Générer le nom du fichier
+        safe_name = project_name.lower().replace(' ', '_')
+        filename = f"{safe_name}_{project_type}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         filepath = specs_dir / filename
         
+        # Sauvegarder le fichier
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(spec, f, indent=2, ensure_ascii=False)
         
@@ -501,9 +687,9 @@ class OrchestratorAgent(BaseAgent):
         
         try:
             # Essayer d'importer le registry
-            from agents.registry.registry_agent import RegistryAgent
+            from agents.registry.agent import RegistryAgent
             
-            # Créer une instance du registry (ou utiliser une instance partagée)
+            # Créer une instance du registry
             registry = RegistryAgent()
             await registry.initialize()
             
@@ -535,9 +721,9 @@ class OrchestratorAgent(BaseAgent):
         return None
 
     async def prepare_and_execute_sprint(self, 
-                                         project_name: str, 
-                                         project_type: str = "defi",
-                                         strategy: str = "largeur_dabord") -> Dict[str, Any]:
+                                        project_name: str, 
+                                        project_type: str = "defi",
+                                        strategy: str = "largeur_dabord") -> Dict[str, Any]:
         """
         Prépare et exécute un sprint complet :
         1. Génère la spec globale
@@ -552,7 +738,7 @@ class OrchestratorAgent(BaseAgent):
         Returns:
             Rapport complet du sprint
         """
-        self._logger.info(f"🚀 Préparation du sprint pour projet: {project_name}")
+        self._logger.info(f"🚀 Préparation du sprint pour projet: {project_name} (stratégie: {strategy})")
         
         # Étape 1: Générer la spec globale
         spec_file = await self.generate_project_spec(project_name, project_type)
@@ -580,10 +766,16 @@ class OrchestratorAgent(BaseAgent):
             "estimated_sprints": fragments_info["metadata"].get("estimated_sprints", 1)
         }
         
+        # Mettre à jour les métriques
+        self._stats["sprints_completed"] += 1
+        
         return report
 
     def _get_defi_template(self, project_name: str) -> Dict:
         """Template pour projet DeFi"""
+        safe_name = project_name.lower().replace(' ', '_')
+        symbol = project_name[:5].upper()
+        
         return {
             "project": project_name,
             "type": "defi",
@@ -593,7 +785,7 @@ class OrchestratorAgent(BaseAgent):
             "domains": ["smart_contract", "backend", "frontend", "database", "devops", "documentation"],
             "fragments": [
                 {
-                    "id": f"{project_name}_SC_001",
+                    "id": f"{safe_name}_SC_001",
                     "domain": "smart_contract",
                     "name": "Token ERC20",
                     "description": "Token standard avec mint/burn",
@@ -603,13 +795,17 @@ class OrchestratorAgent(BaseAgent):
                     "complexity": 2,
                     "dependencies": ["openzeppelin/contracts@4.9.0"],
                     "specification": {
-                        "contract_name": f"{project_name}Token",
-                        "symbol": project_name[:5].upper(),
+                        "contract_name": f"{safe_name}Token",
+                        "symbol": symbol,
                         "features": ["mint", "burn", "transfer", "approve"]
+                    },
+                    "tests": {
+                        "unit": 8,
+                        "integration": 3
                     }
                 },
                 {
-                    "id": f"{project_name}_SC_002",
+                    "id": f"{safe_name}_SC_002",
                     "domain": "smart_contract",
                     "name": "Staking Pool",
                     "description": "Pool de staking avec récompenses",
@@ -617,14 +813,18 @@ class OrchestratorAgent(BaseAgent):
                     "version": "0.8.19",
                     "framework": "foundry",
                     "complexity": 4,
-                    "depends_on": [f"{project_name}_SC_001"],
+                    "depends_on": [f"{safe_name}_SC_001"],
                     "specification": {
-                        "contract_name": f"{project_name}Staking",
+                        "contract_name": f"{safe_name}Staking",
                         "features": ["stake", "unstake", "claim", "compound"]
+                    },
+                    "tests": {
+                        "unit": 12,
+                        "integration": 5
                     }
                 },
                 {
-                    "id": f"{project_name}_BE_001",
+                    "id": f"{safe_name}_BE_001",
                     "domain": "backend",
                     "name": "API FastAPI",
                     "description": "API REST pour le projet",
@@ -632,15 +832,19 @@ class OrchestratorAgent(BaseAgent):
                     "version": "3.11",
                     "framework": "fastapi",
                     "complexity": 3,
-                    "depends_on": [f"{project_name}_SC_001", f"{project_name}_DB_001"],
+                    "depends_on": [f"{safe_name}_SC_001", f"{safe_name}_DB_001"],
                     "specification": {
                         "endpoints": ["/balance", "/transfer", "/stake", "/rewards"],
                         "database": "postgresql",
                         "cache": "redis"
+                    },
+                    "tests": {
+                        "unit": 10,
+                        "integration": 4
                     }
                 },
                 {
-                    "id": f"{project_name}_FE_001",
+                    "id": f"{safe_name}_FE_001",
                     "domain": "frontend",
                     "name": "Interface React",
                     "description": "Application React avec WalletConnect",
@@ -648,14 +852,18 @@ class OrchestratorAgent(BaseAgent):
                     "version": "5.0",
                     "framework": "nextjs",
                     "complexity": 3,
-                    "depends_on": [f"{project_name}_BE_001"],
+                    "depends_on": [f"{safe_name}_BE_001"],
                     "specification": {
                         "pages": ["dashboard", "staking", "admin"],
                         "wallets": ["metamask", "walletconnect"]
+                    },
+                    "tests": {
+                        "unit": 8,
+                        "e2e": 3
                     }
                 },
                 {
-                    "id": f"{project_name}_DB_001",
+                    "id": f"{safe_name}_DB_001",
                     "domain": "database",
                     "name": "Schéma PostgreSQL",
                     "description": "Base de données du projet",
@@ -668,21 +876,21 @@ class OrchestratorAgent(BaseAgent):
                     }
                 },
                 {
-                    "id": f"{project_name}_DO_001",
+                    "id": f"{safe_name}_DO_001",
                     "domain": "devops",
                     "name": "Infrastructure Docker",
                     "description": "Déploiement conteneurisé",
                     "language": "yaml",
                     "version": "docker-compose-v3",
                     "complexity": 3,
-                    "depends_on": [f"{project_name}_BE_001", f"{project_name}_FE_001", f"{project_name}_DB_001"],
+                    "depends_on": [f"{safe_name}_BE_001", f"{safe_name}_FE_001", f"{safe_name}_DB_001"],
                     "specification": {
                         "services": ["postgres", "redis", "backend", "frontend", "nginx"],
                         "environments": ["development", "staging", "production"]
                     }
                 },
                 {
-                    "id": f"{project_name}_DOC_001",
+                    "id": f"{safe_name}_DOC_001",
                     "domain": "documentation",
                     "name": "Documentation",
                     "description": "Documentation complète",
@@ -696,24 +904,34 @@ class OrchestratorAgent(BaseAgent):
                 }
             ],
             "dependencies": [
-                {"from": f"{project_name}_SC_002", "to": f"{project_name}_SC_001"},
-                {"from": f"{project_name}_BE_001", "to": f"{project_name}_SC_001"},
-                {"from": f"{project_name}_BE_001", "to": f"{project_name}_DB_001"},
-                {"from": f"{project_name}_FE_001", "to": f"{project_name}_BE_001"},
-                {"from": f"{project_name}_DO_001", "to": f"{project_name}_BE_001"},
-                {"from": f"{project_name}_DO_001", "to": f"{project_name}_FE_001"},
-                {"from": f"{project_name}_DO_001", "to": f"{project_name}_DB_001"},
-                {"from": f"{project_name}_DOC_001", "to": "*"}
+                {"from": f"{safe_name}_SC_002", "to": f"{safe_name}_SC_001"},
+                {"from": f"{safe_name}_BE_001", "to": f"{safe_name}_SC_001"},
+                {"from": f"{safe_name}_BE_001", "to": f"{safe_name}_DB_001"},
+                {"from": f"{safe_name}_FE_001", "to": f"{safe_name}_BE_001"},
+                {"from": f"{safe_name}_DO_001", "to": f"{safe_name}_BE_001"},
+                {"from": f"{safe_name}_DO_001", "to": f"{safe_name}_FE_001"},
+                {"from": f"{safe_name}_DO_001", "to": f"{safe_name}_DB_001"},
+                {"from": f"{safe_name}_DOC_001", "to": "*"}
             ]
         }
 
     def _get_nft_template(self, project_name: str) -> Dict:
         """Template pour projet NFT"""
-        # Similaire mais adapté aux NFTs
         template = self._get_defi_template(project_name)
         template["type"] = "nft"
         template["description"] = "Collection NFT avec mint, marketplace et royalties"
-        # Adapter les fragments pour NFT...
+        
+        # Adapter pour NFT
+        safe_name = project_name.lower().replace(' ', '_')
+        for fragment in template["fragments"]:
+            if fragment["domain"] == "smart_contract" and "SC_001" in fragment["id"]:
+                fragment["name"] = "NFT ERC721"
+                fragment["specification"]["contract_name"] = f"{safe_name}NFT"
+                fragment["specification"]["features"] = ["mint", "transfer", "burn", "royalties"]
+            elif fragment["domain"] == "smart_contract" and "SC_002" in fragment["id"]:
+                fragment["name"] = "Marketplace"
+                fragment["specification"]["features"] = ["list", "buy", "offer", "auction"]
+        
         return template
 
     def _get_gaming_template(self, project_name: str) -> Dict:
@@ -721,6 +939,16 @@ class OrchestratorAgent(BaseAgent):
         template = self._get_defi_template(project_name)
         template["type"] = "gaming"
         template["description"] = "Jeu Web3 avec tokens, items et marketplace"
+        
+        # Adapter pour Gaming
+        safe_name = project_name.lower().replace(' ', '_')
+        for fragment in template["fragments"]:
+            if fragment["domain"] == "smart_contract" and "SC_001" in fragment["id"]:
+                fragment["name"] = "Game Token ERC20"
+            elif fragment["domain"] == "smart_contract" and "SC_002" in fragment["id"]:
+                fragment["name"] = "Items NFT"
+                fragment["specification"]["features"] = ["mint", "transfer", "burn", "upgrade"]
+        
         return template
 
     def _get_dao_template(self, project_name: str) -> Dict:
@@ -728,6 +956,16 @@ class OrchestratorAgent(BaseAgent):
         template = self._get_defi_template(project_name)
         template["type"] = "dao"
         template["description"] = "DAO avec gouvernance, treasury et votes"
+        
+        # Adapter pour DAO
+        safe_name = project_name.lower().replace(' ', '_')
+        for fragment in template["fragments"]:
+            if fragment["domain"] == "smart_contract" and "SC_001" in fragment["id"]:
+                fragment["name"] = "Governance Token"
+            elif fragment["domain"] == "smart_contract" and "SC_002" in fragment["id"]:
+                fragment["name"] = "DAO Contract"
+                fragment["specification"]["features"] = ["propose", "vote", "execute", "treasury"]
+        
         return template
         
     # =================================================================
@@ -737,7 +975,8 @@ class OrchestratorAgent(BaseAgent):
     async def create_workflow(self, 
                              name: str,
                              steps: List[Dict[str, Any]] = None,
-                             workflow_type: str = "standard") -> Workflow:
+                             workflow_type: str = "standard",
+                             metadata: Dict[str, Any] = None) -> Workflow:
         """
         Crée un nouveau workflow
         
@@ -745,22 +984,26 @@ class OrchestratorAgent(BaseAgent):
             name: Nom du workflow
             steps: Liste des étapes
             workflow_type: Type de workflow
+            metadata: Métadonnées additionnelles
             
         Returns:
             Workflow créé
         """
-        self._logger.info(f"📋 Création du workflow: {name}")
+        self._logger.info(f"📋 Création du workflow: {name} (type: {workflow_type})")
         
-        workflow = Workflow(name, workflow_type)
+        workflow = Workflow(name, workflow_type, metadata)
         
         if steps:
-            for step_config in steps:
+            for i, step_config in enumerate(steps):
                 step = WorkflowStep(
                     name=step_config["name"],
                     agent_type=step_config["agent"],
                     task_type=step_config["task"],
                     parameters=step_config.get("parameters", {}),
-                    depends_on=step_config.get("depends_on", [])
+                    depends_on=step_config.get("depends_on", []),
+                    timeout=step_config.get("timeout", 300),
+                    max_retries=step_config.get("max_retries", 3),
+                    metadata=step_config.get("metadata", {"order": i})
                 )
                 workflow.add_step(step)
         
@@ -768,6 +1011,7 @@ class OrchestratorAgent(BaseAgent):
         workflow.status = WorkflowStatus.READY
         
         self._logger.info(f"✅ Workflow créé: {workflow.id} ({len(workflow.steps)} étapes)")
+        
         return workflow
     
     async def execute_workflow(self, workflow_id: str) -> Dict[str, Any]:
@@ -781,9 +1025,14 @@ class OrchestratorAgent(BaseAgent):
             Résultats du workflow
         """
         if workflow_id not in self._workflows:
-            raise ValueError(f"Workflow {workflow_id} non trouvé")
+            raise WorkflowError(f"Workflow {workflow_id} non trouvé")
         
         workflow = self._workflows[workflow_id]
+        
+        if workflow.is_completed():
+            self._logger.warning(f"⚠️ Workflow {workflow_id} déjà terminé")
+            return workflow.to_dict()
+        
         workflow.status = WorkflowStatus.RUNNING
         workflow.started_at = datetime.now()
         
@@ -807,19 +1056,23 @@ class OrchestratorAgent(BaseAgent):
                 
                 if not deps_satisfied:
                     self._logger.error(f"❌ Étape {step.name}: dépendances non satisfaites")
-                    step.status = StepStatus.BLOCKED
+                    workflow.update_step_status(step.id, StepStatus.BLOCKED)
                     workflow.status = WorkflowStatus.FAILED
+                    workflow.error = f"Étape {step.name} bloquée par dépendances"
                     break
                 
                 # Exécuter l'étape
                 result = await self._execute_step(step, workflow.context)
                 results[step.name] = result
+                workflow.results[step.name] = result
                 self._stats["steps_executed"] += 1
                 
                 if not result.get("success", False):
                     self._stats["steps_failed"] += 1
-                    if not self._agent_config.get("continue_on_error", False):
+                    
+                    if not self._agent_config.get("workflow_config", {}).get("continue_on_error", False):
                         workflow.status = WorkflowStatus.FAILED
+                        workflow.error = f"Étape {step.name} en échec"
                         break
             
             # Finaliser le workflow
@@ -830,28 +1083,25 @@ class OrchestratorAgent(BaseAgent):
                 self._stats["workflows_completed"] += 1
                 self._logger.info(f"🎉 Workflow {workflow.name} terminé avec succès")
             else:
-                workflow.status = WorkflowStatus.FAILED
+                if workflow.status != WorkflowStatus.FAILED:
+                    workflow.status = WorkflowStatus.FAILED
                 self._stats["workflows_failed"] += 1
                 self._logger.warning(f"⚠️ Workflow {workflow.name} terminé avec des échecs")
             
-            return {
-                "workflow_id": workflow.id,
-                "status": workflow.status.value,
-                "steps_completed": sum(1 for s in workflow.steps if s.status == StepStatus.COMPLETED),
-                "steps_failed": sum(1 for s in workflow.steps if s.status == StepStatus.FAILED),
-                "duration_seconds": (workflow.completed_at - workflow.started_at).total_seconds(),
-                "results": results
-            }
+            # Sauvegarder les résultats
+            await self._save_workflow_artifacts(workflow)
+            
+            return workflow.to_dict()
             
         except Exception as e:
             self._logger.error(f"❌ Erreur workflow: {e}")
+            self._logger.error(traceback.format_exc())
             workflow.status = WorkflowStatus.FAILED
+            workflow.error = str(e)
+            workflow.completed_at = datetime.now()
             self._stats["workflows_failed"] += 1
-            return {
-                "workflow_id": workflow.id,
-                "status": "failed",
-                "error": str(e)
-            }
+            
+            return workflow.to_dict()
     
     def _resolve_execution_order(self, workflow: Workflow) -> List[WorkflowStep]:
         """Résout l'ordre d'exécution des étapes (tri topologique)"""
@@ -862,15 +1112,18 @@ class OrchestratorAgent(BaseAgent):
         visited = set()
         order = []
         
-        def dfs(node_name):
+        def dfs(node_name: str) -> None:
+            if node_name in visited:
+                return
             visited.add(node_name)
-            step = next(s for s in workflow.steps if s.name == node_name)
             
-            for dep in step.depends_on:
-                if dep not in visited:
-                    dfs(dep)
-            
-            order.append(step)
+            step = workflow.get_step_by_name(node_name)
+            if step:
+                for dep in step.depends_on:
+                    if dep not in visited:
+                        dfs(dep)
+                
+                order.append(step)
         
         for step in workflow.steps:
             if step.name not in visited:
@@ -886,16 +1139,20 @@ class OrchestratorAgent(BaseAgent):
         step.started_at = datetime.now()
         
         try:
-            # Simuler l'exécution pour l'instant
+            # TODO: Implémenter l'appel réel aux agents
+            # Simulation pour l'instant
             await asyncio.sleep(0.5)
             
             step.status = StepStatus.COMPLETED
             step.completed_at = datetime.now()
+            step.result = {"message": "Étape exécutée avec succès", "timestamp": datetime.now().isoformat()}
+            
+            self._logger.debug(f"✅ Étape {step.name} terminée")
             
             return {
                 "success": True,
                 "step": step.name,
-                "result": {"message": "Étape exécutée avec succès"}
+                "result": step.result
             }
             
         except Exception as e:
@@ -911,8 +1168,19 @@ class OrchestratorAgent(BaseAgent):
                 "error": str(e)
             }
     
+    async def _save_workflow_artifacts(self, workflow: Workflow) -> None:
+        """Sauvegarde les artefacts du workflow"""
+        artifacts_dir = Path(self._agent_config.get("paths", {}).get("artifacts_dir", "./artifacts/workflows/"))
+        artifacts_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Sauvegarder le workflow
+        workflow_file = artifacts_dir / f"{workflow.id}.json"
+        with open(workflow_file, 'w', encoding='utf-8') as f:
+            json.dump(workflow.to_dict(), f, indent=2, ensure_ascii=False)
+        
+        workflow.artifacts.append(str(workflow_file))
+        self._logger.debug(f"💾 Workflow sauvegardé: {workflow_file}")
     
-
     # =================================================================
     # GESTION DES SPRINTS
     # =================================================================
@@ -999,10 +1267,14 @@ class OrchestratorAgent(BaseAgent):
             results.append(result)
             
             # Mettre à jour les métriques
+            self._sprint_manager.results[fragment["id"]] = result
+            
             if result.get("success"):
                 self._sprint_manager.metrics["fragments_completed"] += 1
             else:
                 self._sprint_manager.metrics["fragments_failed"] += 1
+            
+            self._sprint_manager.metrics["iterations_total"] += result.get("iterations", 1)
         
         # Calculer les métriques finales
         total = self._sprint_manager.metrics["fragments_total"]
@@ -1010,12 +1282,15 @@ class OrchestratorAgent(BaseAgent):
         self._sprint_manager.metrics["success_rate"] = (completed / total * 100) if total > 0 else 0
         self._sprint_manager.metrics["sprints_completed"] += 1
         self._stats["sprints_completed"] += 1
+        self._stats["fragments_executed"] += len(results)
         
         # Générer le rapport
         report = self._generate_sprint_report(specs, results, self._sprint_manager.metrics)
         
         # Sauvegarder les artefacts
         await self._save_sprint_artifacts(specs, results, report)
+        
+        self._logger.info(f"✅ Sprint {report['sprint']} terminé - Taux de succès: {report['metrics']['success_rate']:.1f}%")
         
         return report
     
@@ -1036,13 +1311,11 @@ class OrchestratorAgent(BaseAgent):
         name = fragment.get("name", "")
         
         self._logger.info(f"📦 [{domain}] Fragment {fragment_id} ({language}) - {name}")
-        self._logger.info(f"   📊 Complexité: {complexity}")
+        self._logger.debug(f"   📊 Complexité: {complexity}")
         
         # Simulation d'exécution avec délai basé sur la complexité
         execution_time = 0.2 * complexity
         await asyncio.sleep(execution_time)
-        
-        import random
         
         # =================================================================
         # CALCUL DU TAUX DE SUCCÈS DE BASE
@@ -1069,7 +1342,7 @@ class OrchestratorAgent(BaseAgent):
         if domain == "frontend":
             success_rate += 0.10  # +10% pour le frontend
             bonuses.append("frontend_bonus")
-            self._logger.info(f"   🎨 Bonus frontend appliqué: +10%")
+            self._logger.debug(f"   🎨 Bonus frontend appliqué: +10%")
         
         # Bonus pour la documentation (souvent plus simple)
         if domain == "documentation":
@@ -1087,7 +1360,7 @@ class OrchestratorAgent(BaseAgent):
         
         # Vérifier si les dépendances existent et ont réussi
         depends_on = fragment.get("depends_on", [])
-        if depends_on and hasattr(self, '_sprint_manager') and self._sprint_manager:
+        if depends_on and self._sprint_manager:
             deps_satisfied = True
             for dep_id in depends_on:
                 if dep_id == "*":  # Dépend de tous
@@ -1095,32 +1368,32 @@ class OrchestratorAgent(BaseAgent):
                 if dep_id in self._sprint_manager.results:
                     if not self._sprint_manager.results[dep_id].get("success", False):
                         deps_satisfied = False
-                        self._logger.info(f"   ⚠️ Dépendance non satisfaite: {dep_id}")
+                        self._logger.debug(f"   ⚠️ Dépendance non satisfaite: {dep_id}")
                 else:
                     deps_satisfied = False
-                    self._logger.info(f"   ⚠️ Dépendance manquante: {dep_id}")
+                    self._logger.debug(f"   ⚠️ Dépendance manquante: {dep_id}")
             
             if deps_satisfied:
                 success_rate += 0.10  # +10% si toutes les dépendances sont OK
                 bonuses.append("dependencies_ok")
-                self._logger.info(f"   🔗 Bonus dépendances: +10%")
+                self._logger.debug(f"   🔗 Bonus dépendances: +10%")
         
         # =================================================================
         # BONUS SPÉCIFIQUE POUR STAKING POOL
         # =================================================================
         
         if "Staking" in name or "SC_002" in fragment_id:
-            self._logger.info(f"   ⚙️ Application de règles spéciales pour StakingPool")
+            self._logger.debug(f"   ⚙️ Application de règles spéciales pour StakingPool")
             
             # Vérifier que le token de base existe (SC_001)
             token_fragment_id = fragment_id.replace("SC_002", "SC_001")
             
-            if hasattr(self, '_sprint_manager') and self._sprint_manager:
+            if self._sprint_manager:
                 results = self._sprint_manager.results
                 if token_fragment_id in results and results[token_fragment_id].get("success", False):
                     success_rate += 0.15  # +15% de bonus
                     bonuses.append("staking_bonus")
-                    self._logger.info(f"   ✅ Dépendance {token_fragment_id} validée, bonus +15% appliqué")
+                    self._logger.debug(f"   ✅ Dépendance {token_fragment_id} validée, bonus +15% appliqué")
         
         # =================================================================
         # BONUS POUR LES FRAGMENTS AVEC TESTS DÉTAILLÉS
@@ -1136,7 +1409,7 @@ class OrchestratorAgent(BaseAgent):
         
         if complexity >= 4 and "staking" in name.lower():
             success_rate -= 0.10  # -10% pour staking complexe
-            self._logger.info(f"   ⚠️ Malus complexité staking: -10%")
+            self._logger.debug(f"   ⚠️ Malus complexité staking: -10%")
         
         # Limiter le taux entre 0.5 et 0.98
         success_rate = max(0.5, min(0.98, success_rate))
@@ -1189,7 +1462,7 @@ class OrchestratorAgent(BaseAgent):
                 reasons.append("Intégration WalletConnect")
             
             result["failure_reasons"] = reasons
-            self._logger.info(f"   📋 Raisons: {', '.join(reasons)}")
+            self._logger.debug(f"   📋 Raisons: {', '.join(reasons)}")
         
         # =================================================================
         # LOGGING DU RÉSULTAT
@@ -1197,10 +1470,10 @@ class OrchestratorAgent(BaseAgent):
         
         if success:
             self._logger.info(f"   ✅ Fragment {fragment_id} validé")
-            self._logger.info(f"      📈 Taux: {success_rate:.0%} | Itérations: {iterations} | Bonus: {len(bonuses)}")
+            self._logger.debug(f"      📈 Taux: {success_rate:.0%} | Itérations: {iterations} | Bonus: {len(bonuses)}")
         else:
             self._logger.warning(f"   ❌ Fragment {fragment_id} échoué")
-            self._logger.info(f"      📉 Taux: {success_rate:.0%} | Itérations: {iterations}")
+            self._logger.debug(f"      📉 Taux: {success_rate:.0%} | Itérations: {iterations}")
         
         return result
     
@@ -1270,21 +1543,37 @@ class OrchestratorAgent(BaseAgent):
         base_path.mkdir(parents=True, exist_ok=True)
         
         # Rapport JSON
-        report_file = base_path / f"{sprint_id}_report.json"
+        report_file = base_path / f"{sprint_id}_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(report, f, indent=2, ensure_ascii=False)
         
         self._logger.info(f"💾 Rapport sauvegardé: {report_file}")
     
     # =================================================================
-    # UTILITAIRES
+    # GESTION DES WORKFLOWS (API Publique)
     # =================================================================
     
-    async def get_workflow_status(self, workflow_id: str) -> Optional[Dict]:
-        """Retourne le statut d'un workflow"""
+    async def get_workflow(self, workflow_id: str) -> Optional[Dict]:
+        """Retourne un workflow par son ID"""
         if workflow_id not in self._workflows:
             return None
         return self._workflows[workflow_id].to_dict()
+    
+    async def get_workflow_status(self, workflow_id: str) -> Optional[Dict]:
+        """Retourne le statut d'un workflow"""
+        workflow = await self.get_workflow(workflow_id)
+        if not workflow:
+            return None
+        return {
+            "workflow_id": workflow["id"],
+            "name": workflow["name"],
+            "status": workflow["status"],
+            "steps_total": len(workflow["steps"]),
+            "steps_completed": sum(1 for s in workflow["steps"] if s["status"] == "completed"),
+            "steps_failed": sum(1 for s in workflow["steps"] if s["status"] == "failed"),
+            "started_at": workflow["started_at"],
+            "completed_at": workflow["completed_at"]
+        }
     
     async def list_workflows(self, status: Optional[str] = None) -> List[Dict]:
         """Liste tous les workflows"""
@@ -1295,13 +1584,57 @@ class OrchestratorAgent(BaseAgent):
             workflows.append(workflow.to_dict())
         return workflows
     
+    async def cancel_workflow(self, workflow_id: str) -> bool:
+        """Annule un workflow en cours"""
+        if workflow_id not in self._workflows:
+            return False
+        
+        workflow = self._workflows[workflow_id]
+        if workflow.status == WorkflowStatus.RUNNING:
+            workflow.status = WorkflowStatus.CANCELLED
+            workflow.completed_at = datetime.now()
+            self._logger.info(f"🛑 Workflow {workflow_id} annulé")
+            return True
+        
+        return False
+    
+    async def delete_workflow(self, workflow_id: str) -> bool:
+        """Supprime un workflow"""
+        if workflow_id in self._workflows:
+            del self._workflows[workflow_id]
+            self._logger.info(f"🗑️ Workflow {workflow_id} supprimé")
+            return True
+        return False
+    
+    # =================================================================
+    # STATISTIQUES
+    # =================================================================
+    
     async def get_statistics(self) -> Dict[str, Any]:
         """Retourne les statistiques"""
+        uptime = (datetime.now() - self._stats["start_time"]).total_seconds()
+        
         return {
             **self._stats,
-            "uptime_seconds": (datetime.now() - self._stats["start_time"]).total_seconds(),
-            "active_workflows": len([w for w in self._workflows.values() if w.status == WorkflowStatus.RUNNING])
+            "uptime_seconds": uptime,
+            "uptime_formatted": str(timedelta(seconds=int(uptime))),
+            "active_workflows": len([w for w in self._workflows.values() if w.status == WorkflowStatus.RUNNING]),
+            "total_workflows": len(self._workflows)
         }
+    
+    async def reset_statistics(self) -> None:
+        """Réinitialise les statistiques"""
+        self._stats = {
+            "workflows_executed": 0,
+            "workflows_completed": 0,
+            "workflows_failed": 0,
+            "steps_executed": 0,
+            "steps_failed": 0,
+            "sprints_completed": 0,
+            "fragments_executed": 0,
+            "start_time": datetime.now()
+        }
+        self._logger.info("📊 Statistiques réinitialisées")
     
     # =================================================================
     # REQUIS PAR BASEAGENT
@@ -1311,14 +1644,21 @@ class OrchestratorAgent(BaseAgent):
         """Vérifie la santé de l'agent"""
         stats = await self.get_statistics()
         
+        # Vérifications supplémentaires
+        components_healthy = all(self._components.values())
+        
         return {
             "agent": self._name,
             "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "ready": self._status == AgentStatus.READY,
-            "workflows_executed": stats["workflows_executed"],
+            "ready": self._status == AgentStatus.READY and components_healthy,
+            "initialized": self._initialized,
+            "workflows": {
+                "executed": stats["workflows_executed"],
+                "active": stats["active_workflows"]
+            },
             "sprints_completed": stats["sprints_completed"],
-            "components": list(self._components.keys()),
-            "uptime": stats["uptime_seconds"]
+            "components": {k: "healthy" if v else "unhealthy" for k, v in self._components.items()},
+            "uptime": stats["uptime_formatted"]
         }
     
     def get_agent_info(self) -> Dict[str, Any]:
@@ -1326,7 +1666,7 @@ class OrchestratorAgent(BaseAgent):
         return {
             "id": self._name,
             "name": "🚀 Orchestrator Agent",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "description": "Orchestration des workflows et sprints",
             "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "capabilities": [
@@ -1334,44 +1674,158 @@ class OrchestratorAgent(BaseAgent):
                 "sprint_management",
                 "multi_domain_planning",
                 "fragment_execution",
-                "report_generation"
+                "report_generation",
+                "project_spec_generation"
             ],
+            "initialized": self._initialized,
             "workflows_created": len(self._workflows),
-            "sprints_completed": self._stats["sprints_completed"]
+            "sprints_completed": self._stats["sprints_completed"],
+            "components": list(self._components.keys())
         }
     
     async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """Gestion des messages personnalisés"""
         msg_type = message.get("type", "")
+        msg_id = message.get("message_id", "unknown")
         
-        if msg_type == "create_workflow":
-            workflow = await self.create_workflow(
-                name=message.get("name", "Workflow"),
-                steps=message.get("steps"),
-                workflow_type=message.get("type", "standard")
-            )
-            return {"workflow_id": workflow.id, "status": "created"}
+        self._logger.debug(f"📨 Message reçu: {msg_type} (id: {msg_id})")
         
-        elif msg_type == "execute_workflow":
-            result = await self.execute_workflow(message["workflow_id"])
-            return result
-        
-        elif msg_type == "execute_sprint":
-            report = await self.execute_sprint(message["spec_file"])
-            return report
-        
-        elif msg_type == "list_workflows":
-            workflows = await self.list_workflows(message.get("status"))
-            return {"workflows": workflows}
-        
-        elif msg_type == "workflow_status":
-            status = await self.get_workflow_status(message["workflow_id"])
-            return status or {"error": "Workflow not found"}
-        
-        elif msg_type == "statistics":
-            return await self.get_statistics()
-        
-        return {"status": "received", "type": msg_type}
+        try:
+            if msg_type == "create_workflow":
+                workflow = await self.create_workflow(
+                    name=message.get("name", "Workflow"),
+                    steps=message.get("steps"),
+                    workflow_type=message.get("workflow_type", "standard"),
+                    metadata=message.get("metadata")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "workflow_id": workflow.id,
+                    "status": "created"
+                }
+            
+            elif msg_type == "execute_workflow":
+                result = await self.execute_workflow(message["workflow_id"])
+                return {
+                    "message_id": msg_id,
+                    "success": result.get("status") in ["completed", "failed"],
+                    "result": result
+                }
+            
+            elif msg_type == "execute_sprint":
+                report = await self.execute_sprint(message["spec_file"])
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "report": report
+                }
+            
+            elif msg_type == "prepare_and_execute_sprint":
+                report = await self.prepare_and_execute_sprint(
+                    project_name=message["project_name"],
+                    project_type=message.get("project_type", "defi"),
+                    strategy=message.get("strategy", "largeur_dabord")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "report": report
+                }
+            
+            elif msg_type == "generate_project_spec":
+                spec_file = await self.generate_project_spec(
+                    project_name=message["project_name"],
+                    project_type=message.get("project_type", "defi"),
+                    output_dir=message.get("output_dir")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "spec_file": spec_file
+                }
+            
+            elif msg_type == "get_workflow":
+                workflow = await self.get_workflow(message["workflow_id"])
+                return {
+                    "message_id": msg_id,
+                    "success": workflow is not None,
+                    "workflow": workflow
+                }
+            
+            elif msg_type == "list_workflows":
+                workflows = await self.list_workflows(message.get("status"))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "workflows": workflows,
+                    "count": len(workflows)
+                }
+            
+            elif msg_type == "workflow_status":
+                status = await self.get_workflow_status(message["workflow_id"])
+                return {
+                    "message_id": msg_id,
+                    "success": status is not None,
+                    "status": status
+                }
+            
+            elif msg_type == "cancel_workflow":
+                cancelled = await self.cancel_workflow(message["workflow_id"])
+                return {
+                    "message_id": msg_id,
+                    "success": cancelled,
+                    "message": "Workflow annulé" if cancelled else "Workflow non trouvé ou non annulable"
+                }
+            
+            elif msg_type == "delete_workflow":
+                deleted = await self.delete_workflow(message["workflow_id"])
+                return {
+                    "message_id": msg_id,
+                    "success": deleted,
+                    "message": "Workflow supprimé" if deleted else "Workflow non trouvé"
+                }
+            
+            elif msg_type == "statistics":
+                stats = await self.get_statistics()
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "statistics": stats
+                }
+            
+            elif msg_type == "reset_statistics":
+                await self.reset_statistics()
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "message": "Statistiques réinitialisées"
+                }
+            
+            elif msg_type == "ping":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "pong": True,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            else:
+                self._logger.warning(f"⚠️ Type de message non supporté: {msg_type}")
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Type de message non supporté: {msg_type}"
+                }
+                
+        except Exception as e:
+            self._logger.error(f"❌ Erreur traitement message {msg_type}: {e}")
+            self._logger.error(traceback.format_exc())
+            return {
+                "message_id": msg_id,
+                "success": False,
+                "error": str(e)
+            }
 
 
 # =====================================================================
@@ -1383,23 +1837,33 @@ def create_orchestrator_agent(config_path: str = "") -> OrchestratorAgent:
     return OrchestratorAgent(config_path)
 
 
+async def get_orchestrator_agent(config_path: str = "") -> OrchestratorAgent:
+    """Crée et initialise une instance de l'orchestrateur"""
+    agent = create_orchestrator_agent(config_path)
+    await agent.initialize()
+    return agent
+
+
 # =====================================================================
 # POINT D'ENTRÉE POUR EXÉCUTION DIRECTE
 # =====================================================================
 
 if __name__ == "__main__":
     async def main():
-        print("🚀 TEST ORCHESTRATOR AGENT")
-        print("="*60)
+        print("=" * 70)
+        print("🚀 TEST ORCHESTRATOR AGENT".center(70))
+        print("=" * 70)
         
-        agent = OrchestratorAgent()
-        await agent.initialize()
+        agent = await get_orchestrator_agent()
         
-        print(f"✅ Agent: {agent.get_agent_info()['name']}")
-        print(f"✅ Statut: {agent._status.value if hasattr(agent._status, 'value') else agent._status}")
-        print(f"✅ Composants: {list(agent._components.keys())}")
+        info = agent.get_agent_info()
+        print(f"\n✅ Agent: {info['name']}")
+        print(f"✅ Version: {info['version']}")
+        print(f"✅ Statut: {info['status']}")
+        print(f"✅ Composants: {', '.join(info['components'])}")
         
         # Test création workflow
+        print(f"\n📋 Test création workflow...")
         workflow = await agent.create_workflow(
             name="Test Workflow",
             steps=[
@@ -1407,24 +1871,38 @@ if __name__ == "__main__":
                     "name": "step1",
                     "agent": "test_agent",
                     "task": "test_task",
-                    "parameters": {"param": "value"}
+                    "parameters": {"param": "value"},
+                    "metadata": {"order": 0}
                 }
             ]
         )
-        print(f"\n📋 Workflow créé: {workflow.id}")
+        print(f"   ✅ Workflow créé: {workflow.id}")
         
         # Test exécution
+        print(f"\n🚀 Test exécution workflow...")
         result = await agent.execute_workflow(workflow.id)
-        print(f"🚀 Exécution: {result['status']}")
+        print(f"   ✅ Statut: {result['status']}")
         
-        # Test sprint
-        print(f"\n📦 Test sprint manager...")
-        report = await agent.execute_sprint("specs/defi_app.json")
-        print(f"✅ Sprint {report['sprint']} terminé")
-        print(f"📊 Taux de succès: {report['metrics']['success_rate']:.1f}%")
+        # Test sprint avec projet DeFi
+        print(f"\n📦 Test sprint avec projet DeFi...")
+        report = await agent.prepare_and_execute_sprint(
+            project_name="MyDeFiApp",
+            project_type="defi",
+            strategy="largeur_dabord"
+        )
+        print(f"   ✅ Sprint {report['sprint']} terminé")
+        print(f"   📊 Taux de succès: {report['metrics']['success_rate']:.1f}%")
+        print(f"   📋 Fragments: {report['metrics']['total_fragments']}")
         
-        print("\n" + "="*60)
-        print("✅ ORCHESTRATOR AGENT OPÉRATIONNEL")
-        print("="*60)
+        # Statistiques
+        print(f"\n📊 Statistiques:")
+        stats = await agent.get_statistics()
+        print(f"   📈 Workflows: {stats['workflows_executed']}")
+        print(f"   📈 Sprints: {stats['sprints_completed']}")
+        print(f"   ⏱️  Uptime: {stats['uptime_formatted']}")
+        
+        print("\n" + "=" * 70)
+        print("✅ ORCHESTRATOR AGENT OPÉRATIONNEL".center(70))
+        print("=" * 70)
     
     asyncio.run(main())

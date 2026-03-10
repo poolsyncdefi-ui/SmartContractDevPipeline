@@ -1,34 +1,66 @@
-import logging
+"""
+Documenter Agent 2.0 - Documentation professionnelle
+Génère une documentation structurée, interactive et visuelle
+Avec Mermaid diagrams, table des matières, liens croisés
+Version alignée avec l'infrastructure existante
+Version: 2.0.2
+"""
+
 import os
 import sys
 import yaml
 import asyncio
 import json
-import traceback  # ← AJOUTÉ
+import traceback
 import hashlib
 import re
 import shutil
-import jinja2  # ← AJOUTÉ
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
-
-logger = logging.getLogger(__name__)
-
-"""
-Documenter Agent 2.0 - Documentation professionnelle
-Génère une documentation structurée, interactive et visuelle
-Avec Mermaid diagrams, table des matières, liens croisés
-Version: 2.0.0
-"""
 
 # Ajouter le chemin du projet
 project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
+from agents.base_agent.base_agent import BaseAgent, AgentStatus
 
+
+# ============================================================================
+# CONSTANTES
+# ============================================================================
+
+DEFAULT_CONFIG = {
+    "agent": {
+        "name": "documenter",
+        "display_name": "📚 Agent de Documentation",
+        "description": "Agent de documentation professionnelle",
+        "version": "2.0.2"
+    },
+    "documenter": {
+        "output_path": "./docs",
+        "temp_path": "./agents/documenter/temp",
+        "templates_path": "./agents/documenter/templates"
+    },
+    "mermaid": {
+        "enabled": True,
+        "theme": "dark"
+    },
+    "styling": {
+        "colors": {
+            "primary": "#00ff88",
+            "secondary": "#8b5cf6",
+            "background": "#0f1215"
+        }
+    }
+}
+
+
+# ============================================================================
+# ÉNUMÉRATIONS
+# ============================================================================
 
 class DocFormat(Enum):
     """Formats de documentation supportés"""
@@ -62,6 +94,10 @@ class DiagramType(Enum):
     SEQUENCE = "sequence"
 
 
+# ============================================================================
+# AGENT PRINCIPAL
+# ============================================================================
+
 class DocumenterAgent(BaseAgent):
     """
     Documenter Agent 2.0 - Documentation professionnelle
@@ -70,28 +106,45 @@ class DocumenterAgent(BaseAgent):
     
     def __init__(self, config_path: str = ""):
         """Initialise l'agent documenter"""
+        # Si aucun chemin de config n'est fourni, utiliser le chemin par défaut
+        if not config_path:
+            config_path = str(project_root / "agents" / "documenter" / "config.yaml")
+        
         super().__init__(config_path)
         
-        self._logger.info("📚 Documenter Pro Agent créé")
-        
-        # Charger configuration
+        # Charger la configuration
         self._load_configuration()
         
-        # Vérifier que la configuration a la bonne structure
-        if "documenter" not in self._config:
-            self._logger.error("❌ Configuration invalide : section 'documenter' manquante")
-            self._config["documenter"] = self._get_default_config()["documenter"]
+        self._logger.info("📚 Agent de documentation créé")
         
-        # État interne
+        # =====================================================================
+        # ÉTAT INTERNE
+        # =====================================================================
         self._docs_generated = 0
         self._templates = {}
         self._contracts_cache = {}
         self._diagrams_cache = {}
-        self._output_path = Path(self._config["documenter"]["output_path"])
-        self._temp_path = Path(self._config["documenter"]["temp_path"])
+        self._components: Dict[str, Any] = {}
+        self._initialized = False
         
-        # Jinja2 environment
-        self._env = None
+        documenter_config = self._agent_config.get("documenter", {})
+        self._output_path = Path(documenter_config.get("output_path", "./docs"))
+        self._temp_path = Path(documenter_config.get("temp_path", "./agents/documenter/temp"))
+        
+        # =====================================================================
+        # STATISTIQUES
+        # =====================================================================
+        self._stats = {
+            'docs_generated': 0,
+            'contracts_cached': 0,
+            'diagrams_generated': 0,
+            'start_time': datetime.now()
+        }
+        
+        # =====================================================================
+        # TÂCHES DE FOND
+        # =====================================================================
+        self._cleanup_task_obj = None  # Renommé pour éviter le conflit avec la méthode
         
         # Créer les répertoires
         self._create_directories()
@@ -99,104 +152,90 @@ class DocumenterAgent(BaseAgent):
     def _load_configuration(self):
         """Charge la configuration depuis le fichier YAML"""
         try:
-            config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
-            if os.path.exists(config_path):
-                with open(config_path, 'r', encoding='utf-8') as f:
-                    loaded_config = yaml.safe_load(f)
+            if self._config_path and os.path.exists(self._config_path):
+                with open(self._config_path, 'r', encoding='utf-8') as f:
+                    file_config = yaml.safe_load(f) or {}
                 
-                # Charger la config par défaut
-                default_config = self._get_default_config()
-                
-                # Fusionner : la config chargée écrase la config par défaut
-                self._config = default_config.copy()
-                if loaded_config:
-                    self._deep_merge(self._config, loaded_config)
-                
-                self._logger.info(f"✅ Configuration chargée: documenter v{self._config['agent']['version']}")
+                # Fusion avec la config par défaut
+                self._agent_config = self._merge_configs(DEFAULT_CONFIG, file_config)
+                self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
             else:
-                self._logger.warning("⚠️ Fichier config.yaml non trouvé, utilisation configuration par défaut")
-                self._config = self._get_default_config()
+                self._logger.warning("⚠️ Fichier de configuration non trouvé, utilisation des valeurs par défaut")
+                self._agent_config = DEFAULT_CONFIG.copy()
         except Exception as e:
             self._logger.error(f"❌ Erreur chargement config: {e}")
-            self._config = self._get_default_config()
-
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """
-        Gère les messages personnalisés pour le DocumenterAgent.
+            self._agent_config = DEFAULT_CONFIG.copy()
+    
+    def _merge_configs(self, default: Dict, override: Dict) -> Dict:
+        """Fusionne deux configurations récursivement"""
+        result = default.copy()
         
-        Args:
-            message: Message à traiter
-            
-        Returns:
-            Réponse éventuelle
-        """
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._merge_configs(result[key], value)
+            else:
+                result[key] = value
+        
+        return result
+    
+    def _create_directories(self):
+        """Crée les répertoires nécessaires"""
+        documenter_config = self._agent_config.get("documenter", {})
+        
+        dirs = [
+            documenter_config.get("output_path", "./docs"),
+            documenter_config.get("temp_path", "./agents/documenter/temp"),
+            documenter_config.get("templates_path", "./agents/documenter/templates"),
+            Path("./docs/assets"),
+            Path("./docs/diagrams"),
+            Path("./docs/contracts")
+        ]
+        
+        for dir_path in dirs:
+            if dir_path:
+                Path(dir_path).mkdir(parents=True, exist_ok=True)
+                self._logger.debug(f"📁 Répertoire créé: {dir_path}")
+    
+    # ========================================================================
+    # INITIALISATION
+    # ========================================================================
+    
+    async def initialize(self) -> bool:
+        """Initialisation asynchrone"""
         try:
-            msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type}")
+            self._status = AgentStatus.INITIALIZING
+            self._logger.info("📚 Initialisation du Documenter Pro...")
             
-            if msg_type == "generate_documentation":
-                # Générer de la documentation
-                result = await self.generate_documentation(message.content)
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="documentation_generated",
-                    correlation_id=message.message_id
-                )
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
             
-            elif msg_type == "generate_diagram":
-                # Générer un diagramme
-                result = await self.generate_diagram(message.content)
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="diagram_generated",
-                    correlation_id=message.message_id
-                )
+            # Initialiser les composants
+            await self._initialize_components()
             
-            elif msg_type == "pause":
-                await self.pause()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "paused"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
+            # Charger les templates
+            await self._load_templates()
             
-            elif msg_type == "resume":
-                await self.resume()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "resumed"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
             
-            elif msg_type == "shutdown":
-                await self.shutdown()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "shutdown"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            return None
+            self._initialized = True
+            self._status = AgentStatus.READY
+            self._logger.info("✅ Documenter Pro prêt")
+            return True
             
         except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
-                correlation_id=message.message_id
-            )
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._logger.error(traceback.format_exc())
+            self._status = AgentStatus.ERROR
+            return False
+    
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._cleanup_task_obj = loop.create_task(self._cleanup_task())  # Utilisation du nouvel attribut
+        self._logger.debug("🧹 Tâche de nettoyage démarrée")
     
     async def _initialize_components(self) -> bool:
         """
@@ -209,8 +248,9 @@ class DocumenterAgent(BaseAgent):
             self._logger.info("Initialisation des composants du DocumenterAgent...")
             
             self._components = {
-                "doc_generator": {"enabled": True, "formats": ["markdown", "html", "pdf"]},
-                "diagram_generator": {"enabled": True, "types": ["mermaid", "uml", "c4"]},
+                "doc_generator": {"enabled": True, "formats": ["markdown", "html"]},
+                "diagram_generator": {"enabled": self._agent_config.get("mermaid", {}).get("enabled", True), 
+                                      "types": ["mermaid"]},
                 "template_manager": {"enabled": True, "templates": list(self._templates.keys())}
             }
             
@@ -220,127 +260,6 @@ class DocumenterAgent(BaseAgent):
         except Exception as e:
             self._logger.error(f"Erreur composants: {e}")
             return False
-    
-    async def generate_documentation(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        """Génère de la documentation."""
-        return {"success": True, "message": "Documentation générée"}
-    
-    async def generate_diagram(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        """Génère un diagramme."""
-        return {"success": True, "message": "Diagramme généré"}
-
-    def _deep_merge(self, base: Dict, override: Dict) -> None:
-        """
-        Fusionne profondément deux dictionnaires.
-        """
-        for key, value in override.items():
-            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
-                self._deep_merge(base[key], value)
-            else:
-                base[key] = value
-
-    # ⚠️ Cette méthode doit être au même niveau que _deep_merge, PAS à l'intérieur !
-    def _get_default_config(self) -> Dict[str, Any]:
-        """Configuration par défaut"""
-        return {
-            "agent": {
-                "name": "documenter",
-                "display_name": "📚 Documenter Agent",
-                "version": "2.0.0",
-                "description": "Agent de documentation professionnelle",
-                "capabilities": [
-                    {"name": "generate_contract_docs", "description": "Génère la documentation d'un contrat"},
-                    {"name": "generate_project_docs", "description": "Génère la documentation d'un projet"},
-                    {"name": "generate_diagrams", "description": "Génère des diagrammes Mermaid"}
-                ]
-            },
-            "documenter": {
-                "output_path": "./docs",
-                "temp_path": "./agents/documenter/temp",
-                "templates_path": "./agents/documenter/templates"
-            },
-            "mermaid": {
-                "enabled": True,
-                "theme": "dark"
-            },
-            "styling": {
-                "colors": {
-                    "primary": "#00ff88",
-                    "secondary": "#8b5cf6",
-                    "background": "#0f1215"
-                }
-            }
-        }
-    
-    def _create_directories(self):
-        """Crée les répertoires nécessaires"""
-        dirs = [
-            self._output_path,
-            self._temp_path,
-            Path(self._config["documenter"]["templates_path"]),
-            self._output_path / "assets",
-            self._output_path / "diagrams",
-            self._output_path / "contracts"
-        ]
-        
-        for dir_path in dirs:
-            dir_path.mkdir(parents=True, exist_ok=True)
-            self._logger.debug(f"📁 Répertoire créé: {dir_path}")
-    
-    async def _initialize_components(self):
-        """
-        Initialise les composants spécifiques de l'agent
-        Requis par BaseAgent
-        """
-        self._logger.info("Initialisation des composants...")
-        
-        self._components = {
-            "contract_analyzer": True,
-            "diagram_generator": self._config["mermaid"]["enabled"],
-            "html_generator": True,
-            "markdown_generator": True,
-            "site_generator": True
-        }
-        
-        self._logger.info(f"✅ Composants: {list(self._components.keys())}")
-        return self._components
-    
-    async def initialize(self) -> bool:
-        """Initialisation asynchrone"""
-        try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("📚 Initialisation du Documenter Pro...")
-            
-            # Initialiser Jinja2
-            self._init_jinja()
-            
-            # Charger les templates
-            await self._load_templates()
-            
-            self._set_status(AgentStatus.READY)
-            self._logger.info("✅ Documenter Pro prêt")
-            return True
-            
-        except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
-            return False
-    
-    def _init_jinja(self):
-        """Initialise l'environnement Jinja2"""
-        template_path = Path(self._config["documenter"]["templates_path"])
-        self._env = jinja2.Environment(
-            loader=jinja2.FileSystemLoader(template_path),
-            autoescape=jinja2.select_autoescape(['html', 'xml']),
-            trim_blocks=True,
-            lstrip_blocks=True
-        )
-        
-        # Filtres personnalisés
-        self._env.filters['anchor'] = self._generate_anchor
-        self._env.filters['highlight'] = self._highlight_code
-        self._env.filters['badge'] = self._generate_badge
     
     async def _load_templates(self):
         """Charge les templates de documentation"""
@@ -355,24 +274,73 @@ class DocumenterAgent(BaseAgent):
         }
         self._logger.info(f"✅ {len(self._templates)} templates chargés")
     
-    # -----------------------------------------------------------------
+    # ========================================================================
+    # TÂCHE DE NETTOYAGE
+    # ========================================================================
+    
+    async def _cleanup_task(self):
+        """
+        Tâche de nettoyage périodique
+        """
+        self._logger.info("🧹 Tâche de nettoyage démarrée")
+        
+        while self._status == AgentStatus.READY:
+            try:
+                # Nettoyage toutes les heures
+                await asyncio.sleep(3600)
+                
+                self._logger.debug("Nettoyage périodique...")
+                
+                # Nettoyer les vieux fichiers temporaires (> 7 jours)
+                if self._temp_path.exists():
+                    cutoff = datetime.now() - timedelta(days=7)
+                    for temp_file in self._temp_path.glob("*"):
+                        try:
+                            mtime = datetime.fromtimestamp(temp_file.stat().st_mtime)
+                            if mtime < cutoff:
+                                if temp_file.is_file():
+                                    temp_file.unlink()
+                                else:
+                                    shutil.rmtree(temp_file)
+                                self._logger.debug(f"🗑️ Fichier temporaire supprimé: {temp_file.name}")
+                        except Exception as e:
+                            self._logger.error(f"Erreur suppression {temp_file}: {e}")
+                
+                # Nettoyer le cache des contrats (plus de 30 jours)
+                cutoff_time = datetime.now() - timedelta(days=30)
+                # Note: Le cache ne contient pas d'horodatage, donc on ne peut pas le nettoyer automatiquement
+                
+            except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de nettoyage arrêtée")
+                break
+            except Exception as e:
+                self._logger.error(f"❌ Erreur dans la tâche de nettoyage: {e}")
+                await asyncio.sleep(60)
+    
+    # ========================================================================
     # API PUBLIQUE - GÉNÉRATION DE DOCUMENTATION
-    # -----------------------------------------------------------------
+    # ========================================================================
     
     async def generate_contract_documentation(self, 
                                              contract_path: str,
-                                             output_format: DocFormat = DocFormat.HTML) -> Dict[str, Any]:
+                                             output_format: str = "html") -> Dict[str, Any]:
         """
         Génère la documentation complète d'un contrat
         
         Args:
             contract_path: Chemin vers le fichier .sol
-            output_format: Format de sortie
+            output_format: Format de sortie (html, md, site)
             
         Returns:
             Métadonnées de la documentation générée
         """
         self._logger.info(f"📄 Génération documentation pour {contract_path}")
+        
+        # Convertir le format
+        try:
+            fmt = DocFormat(output_format)
+        except ValueError:
+            fmt = DocFormat.HTML
         
         # Extraire les informations du contrat
         contract_info = await self._analyze_contract(contract_path)
@@ -384,20 +352,24 @@ class DocumenterAgent(BaseAgent):
         docs_structure = await self._build_docs_structure(contract_info, diagrams)
         
         # Générer selon le format
-        if output_format == DocFormat.HTML:
+        if fmt == DocFormat.HTML:
             output_path = await self._generate_html(docs_structure)
-        elif output_format == DocFormat.MARKDOWN:
+        elif fmt == DocFormat.MARKDOWN:
             output_path = await self._generate_markdown(docs_structure)
-        elif output_format == DocFormat.SITE:
+        elif fmt == DocFormat.SITE:
             output_path = await self._generate_site(docs_structure)
         else:
             output_path = await self._generate_html(docs_structure)
         
         self._docs_generated += 1
+        self._stats['docs_generated'] += 1
+        self._stats['contracts_cached'] = len(self._contracts_cache)
+        self._stats['diagrams_generated'] += len(diagrams)
         
         return {
+            "success": True,
             "contract": contract_info["name"],
-            "format": output_format.value,
+            "format": fmt.value,
             "path": str(output_path),
             "sections": len(docs_structure["sections"]),
             "diagrams": len(diagrams),
@@ -444,16 +416,20 @@ class DocumenterAgent(BaseAgent):
         
         output_path = await self._generate_project_site(project_info)
         
+        self._docs_generated += 1
+        self._stats['docs_generated'] += 1
+        
         return {
+            "success": True,
             "project": project_name,
             "contracts": len(contracts_info),
             "path": str(output_path),
             "generated_at": datetime.now().isoformat()
         }
     
-    # -----------------------------------------------------------------
+    # ========================================================================
     # ANALYSE DE CONTRAT
-    # -----------------------------------------------------------------
+    # ========================================================================
     
     async def _analyze_contract(self, contract_path: str) -> Dict[str, Any]:
         """Analyse approfondie d'un contrat Solidity"""
@@ -519,7 +495,7 @@ class DocumenterAgent(BaseAgent):
         match = re.search(r'pragma solidity\s*([^;]+);', content)
         return match.group(1).strip() if match else "unknown"
     
-    def _extract_imports(self, content: str) -> List[Dict[str, str]]:
+    def _extract_imports(self, content: str) -> List[Dict[str, Any]]:
         """Extrait les imports avec détails"""
         imports = []
         pattern = r'import\s+(?:\{([^}]+)\}\s+from\s+)?["\']([^"\']+)["\']\s*;'
@@ -582,7 +558,7 @@ class DocumenterAgent(BaseAgent):
         
         return functions
     
-    def _parse_parameters(self, params_str: str) -> List[Dict[str, str]]:
+    def _parse_parameters(self, params_str: str) -> List[Dict[str, Any]]:
         """Parse les paramètres d'une fonction"""
         if not params_str.strip():
             return []
@@ -916,9 +892,10 @@ class DocumenterAgent(BaseAgent):
     
     def _calculate_complexity(self, content: str) -> Dict[str, Any]:
         """Calcule la complexité du code"""
+        cyclomatic = self._calculate_cyclomatic_complexity(content)
         return {
-            "cyclomatic": self._calculate_cyclomatic_complexity(content),
-            "cognitive": self._calculate_cognitive_complexity(content),
+            "cyclomatic": cyclomatic,
+            "cognitive": cyclomatic,  # Simplifié
             "maintainability": self._calculate_maintainability_index(content)
         }
     
@@ -936,11 +913,6 @@ class DocumenterAgent(BaseAgent):
         complexity += len(re.findall(r'\b&&\b|\|\|\b', content))
         
         return complexity
-    
-    def _calculate_cognitive_complexity(self, content: str) -> int:
-        """Calcule la complexité cognitive"""
-        # Simplifié - à améliorer
-        return self._calculate_cyclomatic_complexity(content)
     
     def _calculate_maintainability_index(self, content: str) -> float:
         """Calcule l'index de maintenabilité"""
@@ -966,7 +938,7 @@ class DocumenterAgent(BaseAgent):
                 "path": path,
                 "name": path.split('/')[-1].replace('.sol', ''),
                 "type": "local" if path.startswith('.') else "external",
-                "version": await self._detect_version(path)
+                "version": None
             })
         
         return dependencies
@@ -990,31 +962,34 @@ class DocumenterAgent(BaseAgent):
         complexity += len(re.findall(r'\bcatch\b', function_code))
         return complexity
     
-    # -----------------------------------------------------------------
+    # ========================================================================
     # GÉNÉRATION DE DIAGRAMMES MERMAID
-    # -----------------------------------------------------------------
+    # ========================================================================
     
     async def _generate_diagrams(self, contract_info: Dict[str, Any]) -> Dict[str, str]:
         """Génère les diagrammes Mermaid"""
         diagrams = {}
+        mermaid_config = self._agent_config.get("mermaid", {})
         
-        if not self._config["mermaid"]["enabled"]:
+        if not mermaid_config.get("enabled", True):
             return diagrams
         
         try:
             # Diagramme d'héritage
-            if contract_info.get("inheritance"):
+            if contract_info.get("inheritance") and mermaid_config.get("include_inheritance", True):
                 diagrams["inheritance"] = await self._generate_inheritance_diagram(contract_info)
             
             # Diagramme de dépendances
-            if contract_info.get("dependencies"):
+            if contract_info.get("dependencies") and mermaid_config.get("include_dependencies", True):
                 diagrams["dependencies"] = await self._generate_dependencies_diagram(contract_info)
             
             # Diagramme d'appels
-            diagrams["calls"] = await self._generate_call_graph(contract_info)
+            if mermaid_config.get("include_call_graph", True):
+                diagrams["calls"] = await self._generate_call_graph(contract_info)
             
             # Diagramme d'états
-            diagrams["state"] = await self._generate_state_diagram(contract_info)
+            if mermaid_config.get("include_state_diagram", True):
+                diagrams["state"] = await self._generate_state_diagram(contract_info)
             
             self._logger.debug(f"📊 {len(diagrams)} diagrammes générés")
             
@@ -1025,7 +1000,8 @@ class DocumenterAgent(BaseAgent):
     
     async def _generate_inheritance_diagram(self, contract_info: Dict[str, Any]) -> str:
         """Génère un diagramme d'héritage Mermaid"""
-        theme = self._config["mermaid"]["theme"]
+        mermaid_config = self._agent_config.get("mermaid", {})
+        theme = mermaid_config.get("theme", "dark")
         contract_name = contract_info["name"]
         inheritance = contract_info.get("inheritance", [])
         
@@ -1048,7 +1024,8 @@ class DocumenterAgent(BaseAgent):
     
     async def _generate_dependencies_diagram(self, contract_info: Dict[str, Any]) -> str:
         """Génère un diagramme de dépendances Mermaid"""
-        theme = self._config["mermaid"]["theme"]
+        mermaid_config = self._agent_config.get("mermaid", {})
+        theme = mermaid_config.get("theme", "dark")
         
         diagram = ["```mermaid"]
         diagram.append(f"%%{{init: {{'theme':'{theme}'}}}}%%")
@@ -1073,7 +1050,8 @@ class DocumenterAgent(BaseAgent):
     
     async def _generate_call_graph(self, contract_info: Dict[str, Any]) -> str:
         """Génère un graphe d'appels"""
-        theme = self._config["mermaid"]["theme"]
+        mermaid_config = self._agent_config.get("mermaid", {})
+        theme = mermaid_config.get("theme", "dark")
         
         diagram = ["```mermaid"]
         diagram.append(f"%%{{init: {{'theme':'{theme}'}}}}%%")
@@ -1093,7 +1071,8 @@ class DocumenterAgent(BaseAgent):
     
     async def _generate_state_diagram(self, contract_info: Dict[str, Any]) -> str:
         """Génère un diagramme d'états"""
-        theme = self._config["mermaid"]["theme"]
+        mermaid_config = self._agent_config.get("mermaid", {})
+        theme = mermaid_config.get("theme", "dark")
         
         diagram = ["```mermaid"]
         diagram.append(f"%%{{init: {{'theme':'{theme}'}}}}%%")
@@ -1107,9 +1086,9 @@ class DocumenterAgent(BaseAgent):
         
         return "\n".join(diagram)
     
-    # -----------------------------------------------------------------
+    # ========================================================================
     # CONSTRUCTION DE LA DOCUMENTATION
-    # -----------------------------------------------------------------
+    # ========================================================================
     
     async def _build_docs_structure(self, 
                                    contract_info: Dict[str, Any],
@@ -1561,7 +1540,7 @@ class DocumenterAgent(BaseAgent):
             md.append("- ⚠️ **Add ReentrancyGuard** to prevent reentrancy attacks")
         if not info["security"]["access_control"]:
             md.append("- ⚠️ **Implement access control** (Ownable, AccessControl)")
-        if "delegatecall" in str(info) and not info["security"]["access_control"]:
+        if 'delegatecall' in str(info) and not info["security"]["access_control"]:
             md.append("- ⚠️ **Delegatecall with caution** - ensure called contracts are trusted")
         
         md.append("")
@@ -1662,9 +1641,9 @@ class DocumenterAgent(BaseAgent):
         
         return "\n".join(md)
     
-    # -----------------------------------------------------------------
+    # ========================================================================
     # GÉNÉRATION HTML/MARKDOWN
-    # -----------------------------------------------------------------
+    # ========================================================================
     
     async def _generate_html(self, structure: Dict[str, Any]) -> Path:
         """Génère la documentation en HTML"""
@@ -1804,17 +1783,10 @@ class DocumenterAgent(BaseAgent):
         return index_path
     
     def _markdown_to_html(self, md: str) -> str:
-        """Convertit le markdown en HTML"""
-        return markdown.markdown(
-            md,
-            extensions=[
-                'tables',
-                'fenced_code',
-                'codehilite',
-                'toc',
-                'attr_list'
-            ]
-        )
+        """Convertit le markdown en HTML (simplifié)"""
+        # Version simplifiée - dans un environnement réel, utiliser une bibliothèque markdown
+        html = md.replace("\n", "<br>")
+        return f"<div class='markdown'>{html}</div>"
     
     async def _generate_toc(self, structure: Dict[str, Any]) -> str:
         """Génère une table des matières HTML"""
@@ -1826,9 +1798,7 @@ class DocumenterAgent(BaseAgent):
             # Sous-sections si nécessaire
             if section["id"] == "functions":
                 toc.append("<ul>")
-                for func in structure.get("functions", []):
-                    anchor = self._generate_anchor(func["name"])
-                    toc.append(f"<li><a href='#{anchor}'>{func['name']}</a></li>")
+                # Note: On ne peut pas accéder aux fonctions directement depuis structure
                 toc.append("</ul>")
             
             toc.append("</li>")
@@ -1865,16 +1835,17 @@ class DocumenterAgent(BaseAgent):
         """Highlight le code (simplifié)"""
         return f"<pre><code>{code}</code></pre>"
     
-    # =================================================================
-    # TEMPLATES (4 espaces)
-    # =================================================================
+    # ========================================================================
+    # TEMPLATES
+    # ========================================================================
     
     def _get_base_html_template(self) -> str:
         """Template HTML de base"""
-        colors = self._config["styling"]["colors"]
-        primary = colors["primary"]
-        secondary = colors["secondary"]
-        background = colors["background"]
+        styling = self._agent_config.get("styling", {})
+        colors = styling.get("colors", {})
+        primary = colors.get("primary", "#00ff88")
+        secondary = colors.get("secondary", "#8b5cf6")
+        background = colors.get("background", "#0f1215")
         
         return """<!DOCTYPE html>
 <html lang="en">
@@ -1912,7 +1883,7 @@ class DocumenterAgent(BaseAgent):
         }
         
         .sidebar h2 {
-            color: #00ff88;
+            color: """ + primary + """;
             margin-bottom: 20px;
             font-size: 18px;
         }
@@ -1935,7 +1906,7 @@ class DocumenterAgent(BaseAgent):
         }
         
         .toc a:hover {
-            color: #00ff88;
+            color: """ + primary + """;
             background: #2a2f35;
         }
         
@@ -1959,7 +1930,7 @@ class DocumenterAgent(BaseAgent):
             font-size: 32px;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #00ff88;
+            color: """ + primary + """;
         }
         
         h2 {
@@ -2030,7 +2001,7 @@ class DocumenterAgent(BaseAgent):
         }
         
         .badge-version {
-            background: #8b5cf6;
+            background: """ + secondary + """;
             color: #fff;
         }
         
@@ -2055,7 +2026,7 @@ class DocumenterAgent(BaseAgent):
         }
         
         .badge-visibility-internal {
-            background: #8b5cf6;
+            background: """ + secondary + """;
             color: #fff;
         }
         
@@ -2099,14 +2070,14 @@ class DocumenterAgent(BaseAgent):
         }
         
         .function-toc a:hover {
-            color: #00ff88;
+            color: """ + primary + """;
         }
         
         .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #00ff88;
+            background: """ + primary + """;
             color: #000;
             width: 40px;
             height: 40px;
@@ -2315,63 +2286,170 @@ class DocumenterAgent(BaseAgent):
         </div>
         """
     
-    # =================================================================
-    # HEALTH CHECK & INFO (4 espaces)
-    # =================================================================
-    
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé de l'agent"""
-        return {
-            "agent": self._name,
-            "status": self._status.value,
-            "ready": self._status == AgentStatus.READY,
-            "docs_generated": self._docs_generated,
-            "contracts_cached": len(self._contracts_cache),
-            "diagrams_generated": len(self._diagrams_cache),
-            "uptime": self.uptime.total_seconds()
-        }
-    
-    def get_agent_info(self) -> Dict[str, Any]:
-        """Informations de l'agent"""
-        return {
-            "id": self._name,
-            "name": self._config["agent"]["display_name"],
-            "version": self._config["agent"]["version"],
-            "description": self._config["agent"]["description"],
-            "status": self._status.value,
-            "capabilities": [cap["name"] for cap in self._config["agent"]["capabilities"]],
-            "docs_generated": self._docs_generated,
-            "templates_loaded": len(self._templates)
-        }
+    # ========================================================================
+    # GESTION DES MESSAGES
+    # ========================================================================
     
     async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """Gestion des messages personnalisés"""
         msg_type = message.get("type", "")
+        msg_id = message.get("message_id", "unknown")
         
-        if msg_type == "generate_contract_docs":
-            result = await self.generate_contract_documentation(
-                message["contract_path"],
-                DocFormat(message.get("format", "html"))
-            )
-            return result
+        self._logger.debug(f"📨 Message reçu: {msg_type} (id: {msg_id})")
         
-        elif msg_type == "generate_project_docs":
-            result = await self.generate_project_documentation(
-                message["project_name"],
-                message["contract_paths"],
-                message.get("description", "")
-            )
-            return result
+        try:
+            if msg_type == "generate_contract_docs":
+                result = await self.generate_contract_documentation(
+                    contract_path=message.get("contract_path", ""),
+                    output_format=message.get("format", "html")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "generate_project_docs":
+                result = await self.generate_project_documentation(
+                    project_name=message.get("project_name", ""),
+                    contract_paths=message.get("contract_paths", []),
+                    description=message.get("description", "")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "analyze_contract":
+                info = await self._analyze_contract(message.get("contract_path", ""))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "info": info
+                }
+            
+            elif msg_type == "ping":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "pong": True,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            else:
+                self._logger.warning(f"⚠️ Type de message non supporté: {msg_type}")
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Type de message non supporté: {msg_type}"
+                }
+                
+        except Exception as e:
+            self._logger.error(f"❌ Erreur traitement message {msg_type}: {e}")
+            self._logger.error(traceback.format_exc())
+            return {
+                "message_id": msg_id,
+                "success": False,
+                "error": str(e)
+            }
+    
+    # ========================================================================
+    # GESTION DU CYCLE DE VIE
+    # ========================================================================
+    
+    async def shutdown(self) -> bool:
+        """Arrête l'agent proprement"""
+        self._logger.info("Arrêt de l'agent Documenter...")
+        self._status = AgentStatus.SHUTTING_DOWN
         
-        elif msg_type == "analyze_contract":
-            info = await self._analyze_contract(message["contract_path"])
-            return info
+        # Arrêter la tâche de nettoyage
+        if self._cleanup_task_obj and not self._cleanup_task_obj.done():
+            self._cleanup_task_obj.cancel()
+            try:
+                await self._cleanup_task_obj
+            except asyncio.CancelledError:
+                pass
         
-        return {"status": "received", "type": msg_type}
+        # Sauvegarder les statistiques
+        try:
+            stats_file = self._output_path / f"documenter_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(stats_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "stats": self._stats,
+                    "docs_generated": self._docs_generated,
+                    "contracts_cached": len(self._contracts_cache),
+                    "templates": len(self._templates),
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2)
+            self._logger.info(f"✅ Statistiques sauvegardées: {stats_file}")
+        except Exception as e:
+            self._logger.warning(f"⚠️ Impossible de sauvegarder: {e}")
+        
+        # Appeler la méthode parent
+        await super().shutdown()
+        
+        self._logger.info("✅ Agent Documenter arrêté")
+        return True
+    
+    async def pause(self) -> bool:
+        """Met l'agent en pause"""
+        self._logger.info("Pause de l'agent Documenter...")
+        self._status = AgentStatus.PAUSED
+        return True
+    
+    async def resume(self) -> bool:
+        """Reprend l'activité"""
+        self._logger.info("Reprise de l'agent Documenter...")
+        self._status = AgentStatus.READY
+        return True
+    
+    # ========================================================================
+    # HEALTH CHECK & INFO
+    # ========================================================================
+    
+    async def health_check(self) -> Dict[str, Any]:
+        """Vérifie la santé de l'agent"""
+        # Calculer l'uptime
+        uptime = (datetime.now() - self._stats["start_time"]).total_seconds()
+        
+        return {
+            "agent": self._name,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "ready": self._status == AgentStatus.READY,
+            "initialized": self._initialized,
+            "uptime_seconds": uptime,
+            "uptime_formatted": str(timedelta(seconds=int(uptime))),
+            "docs_generated": self._docs_generated,
+            "contracts_cached": len(self._contracts_cache),
+            "diagrams_generated": self._stats.get('diagrams_generated', 0),
+            "components": list(self._components.keys()),
+            "stats": self._stats
+        }
+    
+    def get_agent_info(self) -> Dict[str, Any]:
+        """Informations de l'agent"""
+        agent_config = self._agent_config.get('agent', {})
+        return {
+            "id": self._name,
+            "name": "📚 Agent de Documentation",
+            "display_name": agent_config.get('display_name', '📚 Agent de Documentation'),
+            "version": agent_config.get('version', '2.0.2'),
+            "description": agent_config.get('description', 'Agent de documentation professionnelle'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "capabilities": ["generate_documentation", "generate_diagrams", "analyze_contracts"],
+            "docs_generated": self._docs_generated,
+            "templates_loaded": len(self._templates),
+            "stats": {
+                "docs_generated": self._stats['docs_generated'],
+                "contracts_cached": self._stats['contracts_cached'],
+                "diagrams_generated": self._stats.get('diagrams_generated', 0)
+            }
+        }
 
 
 # ========================================================================
-# FONCTIONS D'USINE (0 espace - niveau module)
+# FONCTIONS D'USINE
 # ========================================================================
 
 def create_documenter_agent(config_path: str = "") -> DocumenterAgent:
@@ -2379,25 +2457,29 @@ def create_documenter_agent(config_path: str = "") -> DocumenterAgent:
     return DocumenterAgent(config_path)
 
 
+async def get_documenter_agent(config_path: str = "") -> DocumenterAgent:
+    """Crée et initialise une instance du documenter agent"""
+    agent = create_documenter_agent(config_path)
+    await agent.initialize()
+    return agent
+
+
 # ========================================================================
-# POINT D'ENTRÉE POUR EXÉCUTION DIRECTE (0 espace - niveau module)
+# POINT D'ENTRÉE POUR EXÉCUTION DIRECTE
 # ========================================================================
 
 if __name__ == "__main__":
-    import asyncio
-    from pathlib import Path
-    
     async def main():
-        print("📚 TEST DOCUMENTER PRO AGENT 2.0")
-        print("="*60)
+        print("=" * 70)
+        print("📚 TEST DOCUMENTER PRO AGENT".center(70))
+        print("=" * 70)
         
-        agent = DocumenterAgent()
-        await agent.initialize()
+        agent = await get_documenter_agent()
         
-        print(f"✅ Agent: {agent._config['agent']['display_name']} v{agent._config['agent']['version']}")
-        print(f"✅ Statut: {agent._status.value}")
-        print(f"✅ Templates: {len(agent._templates)}")
-        print(f"✅ Capacités: {len(agent._config['agent']['capabilities'])}")
+        agent_info = agent.get_agent_info()
+        print(f"\n✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Templates: {agent_info['templates_loaded']}")
         
         # Test sur un contrat exemple
         test_contract = """
@@ -2457,8 +2539,12 @@ contract TestToken is Ownable {
         # Nettoyer
         test_path.unlink()
         
-        print("\n" + "="*60)
-        print("✅ DOCUMENTER PRO AGENT OPÉRATIONNEL")
-        print("="*60)
+        health = await agent.health_check()
+        print(f"\n❤️  Health: {health['status']}")
+        print(f"📊 Docs générés: {health['docs_generated']}")
+        
+        print("\n" + "=" * 70)
+        print("✅ DOCUMENTER AGENT OPÉRATIONNEL".center(70))
+        print("=" * 70)
     
     asyncio.run(main())

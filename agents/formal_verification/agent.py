@@ -1,10 +1,10 @@
 """
 Formal Verification Agent - Vérification formelle de smart contracts
 Certora Prover, Halo2, exécution symbolique, invariants
-Version: 2.0.0 (CORRIGÉE)
+Version alignée avec l'infrastructure existante
+Version: 2.0.2
 """
 
-import logging
 import os
 import sys
 import json
@@ -20,8 +20,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from collections import defaultdict
 
-logger = logging.getLogger(__name__)
-
 # ============================================================================
 # CONFIGURATION DES IMPORTS - Chemin absolu
 # ============================================================================
@@ -32,8 +30,61 @@ project_root = current_dir.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-# Import absolu de BaseAgent
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
+# Import de BaseAgent
+from agents.base_agent.base_agent import BaseAgent, AgentStatus
+
+
+# ============================================================================
+# CONSTANTES
+# ============================================================================
+
+DEFAULT_CONFIG = {
+    "agent": {
+        "name": "formal_verification",
+        "display_name": "🔬 Agent Vérification Formelle",
+        "description": "Vérification mathématique de smart contracts",
+        "version": "2.0.2",
+        "log_level": "INFO"
+    },
+    "verification": {
+        "enabled": True,
+        "timeout_seconds": 3600,
+        "max_rules": 100,
+        "generate_certificates": True,
+        "certificates_path": "./reports/formal",
+        "specs_path": "./specs",
+        "logs_path": "./logs/formal",
+        "supported_tools": ["certora", "halo2", "mythril"],
+        "default_tool": "certora",
+        "confidence_threshold": 0.95
+    },
+    "certora": {
+        "enabled": True,
+        "prover_version": "5.0",
+        "optimistic_loop": True,
+        "solc_version": "0.8.19",
+        "timeout": 1800
+    },
+    "halo2": {
+        "enabled": False,
+        "circuit_type": "plonk",
+        "k": 12,
+        "timeout": 3600,
+        "proof_system": "groth16"
+    },
+    "mythril": {
+        "enabled": True,
+        "analysis_depth": 20,
+        "execution_timeout": 300,
+        "solver_timeout": 10000,
+        "max_depth": 128
+    },
+    "spec_generation": {
+        "auto_generate": True,
+        "template_dir": "./templates/specs",
+        "inference_depth": 3
+    }
+}
 
 
 # ============================================================================
@@ -64,7 +115,7 @@ class VerificationStatus(Enum):
 class FormalSpecification:
     """Spécification formelle pour un contrat"""
     def __init__(self, name: str, contract: str):
-        self.id = f"SPEC-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        self.id = f"SPEC-{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         self.name = name
         self.contract = contract
         self.rules = []
@@ -111,7 +162,7 @@ class FormalSpecification:
 class VerificationProof:
     """Preuve de vérification générée"""
     def __init__(self, spec: FormalSpecification):
-        self.id = f"PROOF-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        self.id = f"PROOF-{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         self.spec = spec
         self.status = VerificationStatus.PENDING
         self.duration_ms = 0
@@ -140,6 +191,29 @@ class VerificationProof:
             "tool_used": self.tool_used,
             "confidence_score": self.confidence_score
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'VerificationProof':
+        """Crée une preuve depuis un dictionnaire"""
+        spec = FormalSpecification(data.get("name", "Unknown"), data.get("contract", "Unknown"))
+        spec.id = data.get("spec_id", spec.id)
+        
+        proof = cls(spec)
+        proof.id = data.get("id", proof.id)
+        proof.status = VerificationStatus(data.get("status", "pending"))
+        proof.duration_ms = data.get("duration_ms", 0)
+        proof.verified_properties = data.get("verified_properties", [])
+        proof.failed_properties = data.get("failed_properties", [])
+        proof.counterexamples = data.get("counterexamples", [])
+        proof.certificate_path = data.get("certificate_path")
+        proof.log_path = data.get("log_path")
+        proof.tool_used = data.get("tool_used")
+        proof.confidence_score = data.get("confidence_score", 0.0)
+        
+        if data.get("completed_at"):
+            proof.completed_at = datetime.fromisoformat(data["completed_at"])
+        
+        return proof
 
 
 # ============================================================================
@@ -152,27 +226,18 @@ class FormalVerificationAgent(BaseAgent):
     Garanties mathématiques, pas seulement des tests
     """
     
-    def __init__(self, config_path: Optional[str] = None):
+    def __init__(self, config_path: str = ""):
         """Initialise l'agent de vérification formelle"""
-        if config_path is None:
+        # Si aucun chemin de config n'est fourni, utiliser le chemin par défaut
+        if not config_path:
             config_path = str(project_root / "agents" / "formal_verification" / "config.yaml")
         
         super().__init__(config_path)
         
-        # Surcharger le nom d'affichage
-        agent_config = self._agent_config.get('agent', {})
-        self._display_name = agent_config.get('display_name', '🔬 Agent Vérification Formelle')
+        # Charger la configuration
+        self._load_configuration()
         
         self._logger.info("🔬 Agent vérification formelle créé")
-        
-        # =====================================================================
-        # CONFIGURATION
-        # =====================================================================
-        self._verification_config = self._agent_config.get('verification', {})
-        self._certora_config = self._agent_config.get('certora', {})
-        self._halo2_config = self._agent_config.get('halo2', {})
-        self._mythril_config = self._agent_config.get('mythril', {})
-        self._spec_generation_config = self._agent_config.get('spec_generation', {})
         
         # =====================================================================
         # ÉTAT INTERNE
@@ -202,16 +267,46 @@ class FormalVerificationAgent(BaseAgent):
                 "halo2": False,
                 "mythril": False
             },
-            "uptime_start": datetime.now().isoformat()
+            "start_time": datetime.now()
         }
         
         # =====================================================================
         # TÂCHES DE FOND
         # =====================================================================
-        self._cleanup_task_ref: Optional[asyncio.Task] = None
+        self._cleanup_task_obj = None  # Renommé pour éviter le conflit avec la méthode
         
         # Créer les répertoires
         self._create_directories()
+    
+    def _load_configuration(self):
+        """Charge la configuration depuis le fichier YAML"""
+        try:
+            if self._config_path and os.path.exists(self._config_path):
+                with open(self._config_path, 'r', encoding='utf-8') as f:
+                    import yaml
+                    file_config = yaml.safe_load(f) or {}
+                
+                # Fusion avec la config par défaut
+                self._agent_config = self._merge_configs(DEFAULT_CONFIG, file_config)
+                self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
+            else:
+                self._logger.warning("⚠️ Fichier de configuration non trouvé, utilisation des valeurs par défaut")
+                self._agent_config = DEFAULT_CONFIG.copy()
+        except Exception as e:
+            self._logger.error(f"❌ Erreur chargement config: {e}")
+            self._agent_config = DEFAULT_CONFIG.copy()
+    
+    def _merge_configs(self, default: Dict, override: Dict) -> Dict:
+        """Fusionne deux configurations récursivement"""
+        result = default.copy()
+        
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._merge_configs(result[key], value)
+            else:
+                result[key] = value
+        
+        return result
     
     # ============================================================================
     # INITIALISATION
@@ -220,7 +315,7 @@ class FormalVerificationAgent(BaseAgent):
     async def initialize(self) -> bool:
         """Initialisation asynchrone"""
         try:
-            self._set_status(AgentStatus.INITIALIZING)
+            self._status = AgentStatus.INITIALIZING
             self._logger.info("🔬 Initialisation de l'agent Vérification Formelle...")
             
             # Appeler l'initialisation du parent
@@ -237,17 +332,26 @@ class FormalVerificationAgent(BaseAgent):
             # Initialiser les templates de spécifications
             await self._initialize_spec_templates()
             
-            self._set_status(AgentStatus.READY)
-            self._initialized = True
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
             
-            self._logger.info(f"✅ Agent Vérification Formelle prêt")
+            self._initialized = True
+            self._status = AgentStatus.READY
+            
+            self._logger.info("✅ Agent Vérification Formelle prêt")
             return True
             
         except Exception as e:
             self._logger.error(f"❌ Erreur initialisation: {e}")
             self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
+            self._status = AgentStatus.ERROR
             return False
+    
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._cleanup_task_obj = loop.create_task(self._cleanup_task())  # Utilisation du nouvel attribut
+        self._logger.debug("🧹 Tâche de nettoyage démarrée")
     
     async def _initialize_components(self) -> bool:
         """
@@ -277,76 +381,84 @@ class FormalVerificationAgent(BaseAgent):
     
     def _init_spec_generator(self) -> Dict[str, Any]:
         """Initialise le générateur de spécifications"""
+        spec_config = self._agent_config.get('spec_generation', {})
         return {
             "templates": self._load_spec_templates(),
-            "output_path": self._verification_config.get("specs_path", "./specs"),
-            "auto_generate": self._spec_generation_config.get("auto_generate", True),
-            "inference_depth": self._spec_generation_config.get("inference_depth", 3)
+            "output_path": self._agent_config.get('verification', {}).get("specs_path", "./specs"),
+            "auto_generate": spec_config.get("auto_generate", True),
+            "inference_depth": spec_config.get("inference_depth", 3)
         }
     
     def _init_certora_integrator(self) -> Dict[str, Any]:
         """Initialise l'intégrateur Certora"""
+        certora_config = self._agent_config.get('certora', {})
         return {
-            "enabled": self._certora_config.get("enabled", True),
-            "prover_version": self._certora_config.get("prover_version", "5.0"),
-            "solc_version": self._certora_config.get("solc_version", "0.8.19"),
-            "timeout": self._certora_config.get("timeout", 1800),
-            "available": self._certora_available,
-            "settings": self._certora_config.get("settings", {})
+            "enabled": certora_config.get("enabled", True),
+            "prover_version": certora_config.get("prover_version", "5.0"),
+            "solc_version": certora_config.get("solc_version", "0.8.19"),
+            "timeout": certora_config.get("timeout", 1800),
+            "available": self._certora_available
         }
     
     def _init_halo2_integrator(self) -> Dict[str, Any]:
         """Initialise l'intégrateur Halo2"""
+        halo2_config = self._agent_config.get('halo2', {})
         return {
-            "enabled": self._halo2_config.get("enabled", False),
-            "circuit_type": self._halo2_config.get("circuit_type", "plonk"),
-            "k": self._halo2_config.get("k", 12),
-            "timeout": self._halo2_config.get("timeout", 3600),
-            "proof_system": self._halo2_config.get("proof_system", "groth16"),
+            "enabled": halo2_config.get("enabled", False),
+            "circuit_type": halo2_config.get("circuit_type", "plonk"),
+            "k": halo2_config.get("k", 12),
+            "timeout": halo2_config.get("timeout", 3600),
+            "proof_system": halo2_config.get("proof_system", "groth16"),
             "available": self._halo2_available
         }
     
     def _init_mythril_integrator(self) -> Dict[str, Any]:
         """Initialise l'intégrateur Mythril"""
+        mythril_config = self._agent_config.get('mythril', {})
         return {
-            "enabled": self._mythril_config.get("enabled", True),
-            "analysis_depth": self._mythril_config.get("analysis_depth", 20),
-            "execution_timeout": self._mythril_config.get("execution_timeout", 300),
-            "solver_timeout": self._mythril_config.get("solver_timeout", 10000),
-            "max_depth": self._mythril_config.get("max_depth", 128),
+            "enabled": mythril_config.get("enabled", True),
+            "analysis_depth": mythril_config.get("analysis_depth", 20),
+            "execution_timeout": mythril_config.get("execution_timeout", 300),
+            "solver_timeout": mythril_config.get("solver_timeout", 10000),
+            "max_depth": mythril_config.get("max_depth", 128),
             "available": self._mythril_available
         }
     
     def _init_proof_generator(self) -> Dict[str, Any]:
         """Initialise le générateur de preuves"""
+        verification_config = self._agent_config.get('verification', {})
         return {
             "formats": ["json", "pdf", "html"],
             "include_counterexamples": True,
-            "verification_timeout": self._verification_config.get("timeout_seconds", 3600),
-            "confidence_threshold": self._verification_config.get("confidence_threshold", 0.95)
+            "verification_timeout": verification_config.get("timeout_seconds", 3600),
+            "confidence_threshold": verification_config.get("confidence_threshold", 0.95)
         }
     
     def _init_certificate_generator(self) -> Dict[str, Any]:
         """Initialise le générateur de certificats"""
+        verification_config = self._agent_config.get('verification', {})
         return {
-            "enabled": self._verification_config.get("generate_certificates", True),
-            "output_path": self._verification_config.get("certificates_path", "./reports/formal"),
+            "enabled": verification_config.get("generate_certificates", True),
+            "output_path": verification_config.get("certificates_path", "./reports/formal"),
             "formats": ["pdf", "json"],
             "template": "certificate_template.html"
         }
     
     def _create_directories(self):
         """Crée les répertoires nécessaires"""
+        verification_config = self._agent_config.get('verification', {})
+        
         dirs = [
-            self._verification_config.get("specs_path", "./specs"),
-            self._verification_config.get("certificates_path", "./reports/formal"),
-            self._verification_config.get("logs_path", "./logs/formal"),
-            self._spec_generation_config.get("template_dir", "./templates/specs")
+            verification_config.get("specs_path", "./specs"),
+            verification_config.get("certificates_path", "./reports/formal"),
+            verification_config.get("logs_path", "./logs/formal"),
+            self._agent_config.get('spec_generation', {}).get("template_dir", "./templates/specs")
         ]
         
         for dir_path in dirs:
-            Path(dir_path).mkdir(parents=True, exist_ok=True)
-            self._logger.debug(f"📁 Répertoire créé: {dir_path}")
+            if dir_path:
+                Path(dir_path).mkdir(parents=True, exist_ok=True)
+                self._logger.debug(f"📁 Répertoire créé: {dir_path}")
     
     async def _check_tools_availability(self):
         """Vérifie la disponibilité des outils de vérification formelle"""
@@ -420,13 +532,12 @@ class FormalVerificationAgent(BaseAgent):
             return False
 
     # ============================================================================
-    # TÂCHE DE NETTOYAGE - REQUISE PAR BASEAGENT
+    # TÂCHE DE NETTOYAGE
     # ============================================================================
     
     async def _cleanup_task(self):
         """
-        Tâche de nettoyage périodique - Requis par BaseAgent._start_background_tasks().
-        Ne pas supprimer ou renommer cette méthode.
+        Tâche de nettoyage périodique
         """
         self._logger.info("🧹 Tâche de nettoyage démarrée")
         
@@ -437,21 +548,10 @@ class FormalVerificationAgent(BaseAgent):
                 
                 self._logger.debug("Nettoyage périodique...")
                 
-                # Nettoyer les vieux fichiers de preuves (> 7 jours)
-                proofs_path = Path(self._verification_config.get("proofs_path", "./proofs/verified"))
-                if proofs_path.exists():
-                    cutoff = datetime.now() - timedelta(days=7)
-                    for proof_file in proofs_path.glob("*.proof"):
-                        try:
-                            mtime = datetime.fromtimestamp(proof_file.stat().st_mtime)
-                            if mtime < cutoff:
-                                proof_file.unlink()
-                                self._logger.debug(f"🗑️ Preuve supprimée: {proof_file.name}")
-                        except Exception as e:
-                            self._logger.error(f"Erreur suppression {proof_file}: {e}")
+                verification_config = self._agent_config.get('verification', {})
                 
                 # Nettoyer les vieux certificats (> 30 jours)
-                certs_path = Path(self._verification_config.get("certificates_path", "./reports/formal"))
+                certs_path = Path(verification_config.get("certificates_path", "./reports/formal"))
                 if certs_path.exists():
                     cutoff = datetime.now() - timedelta(days=30)
                     for cert_file in certs_path.glob("*.pdf"):
@@ -464,7 +564,7 @@ class FormalVerificationAgent(BaseAgent):
                             self._logger.error(f"Erreur suppression {cert_file}: {e}")
                 
                 # Nettoyer les vieux logs (> 14 jours)
-                logs_path = Path(self._verification_config.get("logs_path", "./logs/formal"))
+                logs_path = Path(verification_config.get("logs_path", "./logs/formal"))
                 if logs_path.exists():
                     cutoff = datetime.now() - timedelta(days=14)
                     for log_file in logs_path.glob("*.log"):
@@ -477,7 +577,7 @@ class FormalVerificationAgent(BaseAgent):
                             self._logger.error(f"Erreur suppression {log_file}: {e}")
                 
                 # Nettoyer les vieilles spécifications (> 30 jours)
-                specs_path = Path(self._verification_config.get("specs_path", "./specs"))
+                specs_path = Path(verification_config.get("specs_path", "./specs"))
                 if specs_path.exists():
                     cutoff = datetime.now() - timedelta(days=30)
                     for spec_file in specs_path.glob("*.spec"):
@@ -499,20 +599,21 @@ class FormalVerificationAgent(BaseAgent):
     def _load_spec_templates(self) -> Dict[str, str]:
         """Charge les templates de spécifications"""
         templates = {
-            "erc20": "templates/specs/erc20.spec",
-            "erc721": "templates/specs/erc721.spec",
-            "erc1155": "templates/specs/erc1155.spec",
-            "ownable": "templates/specs/ownable.spec",
-            "pausable": "templates/specs/pausable.spec",
-            "reentrancy_guard": "templates/specs/reentrancy_guard.spec"
+            "erc20": "erc20.spec",
+            "erc721": "erc721.spec",
+            "erc1155": "erc1155.spec",
+            "ownable": "ownable.spec",
+            "pausable": "pausable.spec",
+            "reentrancy_guard": "reentrancy_guard.spec"
         }
         
-        template_dir = self._spec_generation_config.get("template_dir", "./templates/specs")
+        spec_generation = self._agent_config.get('spec_generation', {})
+        template_dir = Path(spec_generation.get("template_dir", "./templates/specs"))
         
         # Vérifier quels templates existent
         available = {}
-        for name, path in templates.items():
-            full_path = Path(template_dir) / Path(path).name
+        for name, filename in templates.items():
+            full_path = template_dir / filename
             if full_path.exists():
                 with open(full_path, 'r', encoding='utf-8') as f:
                     available[name] = f.read()
@@ -577,7 +678,8 @@ rule reentrancyGuardPreventsReentrancy() {
     
     async def _initialize_spec_templates(self):
         """Initialise les templates de spécifications"""
-        template_dir = Path(self._spec_generation_config.get("template_dir", "./templates/specs"))
+        spec_generation = self._agent_config.get('spec_generation', {})
+        template_dir = Path(spec_generation.get("template_dir", "./templates/specs"))
         template_dir.mkdir(parents=True, exist_ok=True)
         
         templates = ["erc20", "erc721", "erc1155", "ownable", "pausable", "reentrancy_guard"]
@@ -597,7 +699,7 @@ rule reentrancyGuardPreventsReentrancy() {
     async def verify_contract(self, 
                             contract_path: str, 
                             spec_path: Optional[str] = None,
-                            verification_type: VerificationType = VerificationType.CERTORA) -> VerificationProof:
+                            verification_type: str = "certora") -> Dict[str, Any]:
         """
         Vérifie formellement un contrat
         
@@ -610,6 +712,12 @@ rule reentrancyGuardPreventsReentrancy() {
             Preuve de vérification
         """
         self._logger.info(f"🔬 Vérification formelle de {contract_path}")
+        
+        # Convertir le type de vérification
+        try:
+            v_type = VerificationType(verification_type)
+        except ValueError:
+            v_type = VerificationType.CERTORA
         
         # Vérifier que le contrat existe
         if not os.path.exists(contract_path):
@@ -627,7 +735,7 @@ rule reentrancyGuardPreventsReentrancy() {
         
         try:
             # 3. Exécuter la vérification selon le type
-            if verification_type == VerificationType.CERTORA or verification_type == VerificationType.ALL:
+            if v_type == VerificationType.CERTORA or v_type == VerificationType.ALL:
                 if self._certora_available:
                     proof = await self._run_certora(spec)
                     proof.tool_used = "certora"
@@ -636,7 +744,7 @@ rule reentrancyGuardPreventsReentrancy() {
                     proof = await self._simulate_verification(spec)
                     proof.tool_used = "simulation"
             
-            elif verification_type == VerificationType.HALO2:
+            elif v_type == VerificationType.HALO2:
                 if self._halo2_available:
                     proof = await self._run_halo2(spec)
                     proof.tool_used = "halo2"
@@ -644,7 +752,7 @@ rule reentrancyGuardPreventsReentrancy() {
                     proof = await self._simulate_verification(spec)
                     proof.tool_used = "simulation"
             
-            elif verification_type == VerificationType.MODEL_CHECKING:
+            elif v_type == VerificationType.MODEL_CHECKING:
                 if self._mythril_available:
                     proof = await self._run_mythril(spec)
                     proof.tool_used = "mythril"
@@ -652,11 +760,11 @@ rule reentrancyGuardPreventsReentrancy() {
                     proof = await self._simulate_verification(spec)
                     proof.tool_used = "simulation"
             
-            elif verification_type == VerificationType.SYMBOLIC:
+            elif v_type == VerificationType.SYMBOLIC:
                 proof = await self._run_symbolic_execution(spec)
                 proof.tool_used = "symbolic"
             
-            elif verification_type == VerificationType.INVARIANT:
+            elif v_type == VerificationType.INVARIANT:
                 proof = await self._check_invariants(spec)
                 proof.tool_used = "invariant"
             
@@ -675,7 +783,8 @@ rule reentrancyGuardPreventsReentrancy() {
             proof.log_path = await self._save_verification_logs(proof)
             
             # 7. Générer le certificat
-            if self._verification_config.get("generate_certificates", True):
+            verification_config = self._agent_config.get('verification', {})
+            if verification_config.get("generate_certificates", True):
                 proof.certificate_path = await self._generate_certificate(proof)
             
             self._proofs.append(proof)
@@ -690,10 +799,9 @@ rule reentrancyGuardPreventsReentrancy() {
                 self._stats["timeout_count"] += 1
             
             self._stats["last_verification"] = datetime.now().isoformat()
-            self._stats["avg_confidence"] = (
-                (self._stats["avg_confidence"] * (self._stats["total_verifications"] - 1) + proof.confidence_score) 
-                / self._stats["total_verifications"]
-            )
+            total = self._stats["total_verifications"]
+            avg = self._stats["avg_confidence"]
+            self._stats["avg_confidence"] = (avg * (total - 1) + proof.confidence_score) / total
             
             self._logger.info(f"✅ Vérification terminée: {proof.status.value} ({proof.duration_ms}ms)")
             
@@ -703,7 +811,7 @@ rule reentrancyGuardPreventsReentrancy() {
             proof.status = VerificationStatus.ERROR
             proof.completed_at = datetime.now()
         
-        return proof
+        return proof.to_dict()
     
     async def _generate_specification(self, 
                                      contract_path: str, 
@@ -723,16 +831,19 @@ rule reentrancyGuardPreventsReentrancy() {
                 spec.file_path = spec_path
         else:
             # Générer la spécification automatiquement
-            self._logger.info("Génération automatique de la spécification...")
-            
-            # Analyser le contrat pour inférer les invariants
-            spec.invariants = await self.generate_invariants(contract_path)
-            
-            # Générer les règles basées sur les patterns
-            spec.rules = await self._generate_rules_from_patterns(contract_path)
+            spec_generation = self._agent_config.get('spec_generation', {})
+            if spec_generation.get("auto_generate", True):
+                self._logger.info("Génération automatique de la spécification...")
+                
+                # Analyser le contrat pour inférer les invariants
+                spec.invariants = await self.generate_invariants(contract_path)
+                
+                # Générer les règles basées sur les patterns
+                spec.rules = await self._generate_rules_from_patterns(contract_path)
             
             # Sauvegarder la spécification
-            specs_path = self._verification_config.get("specs_path", "./specs")
+            verification_config = self._agent_config.get('verification', {})
+            specs_path = verification_config.get("specs_path", "./specs")
             spec.save(specs_path)
             self._logger.info(f"Spécification sauvegardée: {spec.file_path}")
         
@@ -783,6 +894,8 @@ rule reentrancyGuardPreventsReentrancy() {
         proof = VerificationProof(spec)
         proof.status = VerificationStatus.RUNNING
         
+        certora_config = self._agent_config.get('certora', {})
+        
         try:
             # Créer un fichier de configuration temporaire
             with tempfile.NamedTemporaryFile(mode='w', suffix='.conf', delete=False) as f:
@@ -793,8 +906,8 @@ rule reentrancyGuardPreventsReentrancy() {
             cmd = [
                 "certoraRun",
                 spec.file_path or f"specs/{spec.id}.spec",
-                "--solc", self._certora_config.get("solc_version", "0.8.19"),
-                "--timeout", str(self._certora_config.get("timeout", 1800)),
+                "--solc", certora_config.get("solc_version", "0.8.19"),
+                "--timeout", str(certora_config.get("timeout", 1800)),
                 "--settings", f"-conf={conf_path}"
             ]
             
@@ -807,7 +920,7 @@ rule reentrancyGuardPreventsReentrancy() {
             
             stdout, stderr = await asyncio.wait_for(
                 process.communicate(), 
-                timeout=self._certora_config.get("timeout", 1800)
+                timeout=certora_config.get("timeout", 1800)
             )
             
             # Parser la sortie
@@ -829,7 +942,7 @@ rule reentrancyGuardPreventsReentrancy() {
         except asyncio.TimeoutError:
             proof.status = VerificationStatus.TIMEOUT
             proof.confidence_score = 0.0
-            self._logger.warning(f"Certora timeout après {self._certora_config.get('timeout', 1800)}s")
+            self._logger.warning(f"Certora timeout après {certora_config.get('timeout', 1800)}s")
         
         except Exception as e:
             self._logger.error(f"Erreur Certora: {e}")
@@ -839,12 +952,14 @@ rule reentrancyGuardPreventsReentrancy() {
     
     def _generate_certora_conf(self, spec: FormalSpecification) -> str:
         """Génère un fichier de configuration Certora"""
+        certora_config = self._agent_config.get('certora', {})
+        
         conf = []
         conf.append("{")
         conf.append(f'  "files": ["{spec.file_path}"],')
-        conf.append(f'  "solc": "{self._certora_config.get("solc_version", "0.8.19")}",')
+        conf.append(f'  "solc": "{certora_config.get("solc_version", "0.8.19")}",')
         conf.append('  "settings": {')
-        conf.append(f'    "optimistic_loop": {str(self._certora_config.get("optimistic_loop", True)).lower()},')
+        conf.append(f'    "optimistic_loop": {str(certora_config.get("optimistic_loop", True)).lower()},')
         conf.append('    "rule_sanity": "basic"')
         conf.append('  }')
         conf.append("}")
@@ -906,6 +1021,8 @@ rule reentrancyGuardPreventsReentrancy() {
         proof = VerificationProof(spec)
         proof.status = VerificationStatus.RUNNING
         
+        halo2_config = self._agent_config.get('halo2', {})
+        
         try:
             # Vérifier que Halo2 est disponible
             if not self._halo2_available:
@@ -918,9 +1035,11 @@ rule reentrancyGuardPreventsReentrancy() {
             cmd_compile = [
                 "halo2-compile",
                 circuit_path,
-                "--k", str(self._halo2_config.get("k", 12)),
+                "--k", str(halo2_config.get("k", 12)),
                 "--output", f"circuits/{spec.id}.json"
             ]
+            
+            Path("circuits").mkdir(exist_ok=True)
             
             process = await asyncio.create_subprocess_exec(
                 *cmd_compile,
@@ -938,6 +1057,8 @@ rule reentrancyGuardPreventsReentrancy() {
                     "--proof", f"proofs/{spec.id}.proof"
                 ]
                 
+                Path("proofs").mkdir(exist_ok=True)
+                
                 process = await asyncio.create_subprocess_exec(
                     *cmd_prove,
                     stdout=asyncio.subprocess.PIPE,
@@ -950,8 +1071,8 @@ rule reentrancyGuardPreventsReentrancy() {
                     proof.status = VerificationStatus.VERIFIED
                     proof.verified_properties = [
                         "Circuit satisfiability",
-                        f"k={self._halo2_config.get('k', 12)}",
-                        f"Système: {self._halo2_config.get('proof_system', 'groth16')}"
+                        f"k={halo2_config.get('k', 12)}",
+                        f"Système: {halo2_config.get('proof_system', 'groth16')}"
                     ]
                     proof.confidence_score = 0.99
                 else:
@@ -1033,15 +1154,17 @@ struct VerificationConfig {{
         proof = VerificationProof(spec)
         proof.status = VerificationStatus.RUNNING
         
+        mythril_config = self._agent_config.get('mythril', {})
+        
         try:
             # Construire la commande Mythril
             cmd = [
                 "myth",
                 "analyze",
                 spec.file_path or f"specs/{spec.id}.spec",
-                "--execution-timeout", str(self._mythril_config.get("execution_timeout", 300)),
-                "--solver-timeout", str(self._mythril_config.get("solver_timeout", 10000)),
-                "--max-depth", str(self._mythril_config.get("max_depth", 128)),
+                "--execution-timeout", str(mythril_config.get("execution_timeout", 300)),
+                "--solver-timeout", str(mythril_config.get("solver_timeout", 10000)),
+                "--max-depth", str(mythril_config.get("max_depth", 128)),
                 "-o", "json"
             ]
             
@@ -1053,7 +1176,7 @@ struct VerificationConfig {{
             
             stdout, stderr = await asyncio.wait_for(
                 process.communicate(),
-                timeout=self._mythril_config.get("execution_timeout", 300)
+                timeout=mythril_config.get("execution_timeout", 300) + 10
             )
             
             output = stdout.decode('utf-8', errors='ignore')
@@ -1186,7 +1309,8 @@ struct VerificationConfig {{
     
     async def _save_verification_logs(self, proof: VerificationProof) -> str:
         """Sauvegarde les logs de vérification"""
-        log_path = Path(self._verification_config.get("logs_path", "./logs/formal"))
+        verification_config = self._agent_config.get('verification', {})
+        log_path = Path(verification_config.get("logs_path", "./logs/formal"))
         log_path.mkdir(parents=True, exist_ok=True)
         
         log_file = log_path / f"{proof.id}.log"
@@ -1209,7 +1333,8 @@ struct VerificationConfig {{
     
     async def _generate_certificate(self, proof: VerificationProof) -> str:
         """Génère un certificat de vérification"""
-        cert_dir = Path(self._verification_config.get("certificates_path", "./reports/formal"))
+        verification_config = self._agent_config.get('verification', {})
+        cert_dir = Path(verification_config.get("certificates_path", "./reports/formal"))
         cert_dir.mkdir(parents=True, exist_ok=True)
         
         cert_path = cert_dir / f"{proof.id}.pdf"
@@ -1232,6 +1357,8 @@ struct VerificationConfig {{
         """Génère le HTML du certificat"""
         verified_items = "".join(f'<li class="verified">{prop}</li>' for prop in proof.verified_properties[:10])
         failed_items = "".join(f'<li class="failed">{prop}</li>' for prop in proof.failed_properties[:5])
+        
+        completed_at = proof.completed_at.strftime('%Y-%m-%d %H:%M:%S') if proof.completed_at else 'N/A'
         
         return f"""<!DOCTYPE html>
 <html>
@@ -1257,7 +1384,7 @@ struct VerificationConfig {{
         <h2>Contrat: {proof.spec.contract}</h2>
         <p><strong>Outil:</strong> {proof.tool_used}</p>
         <p><strong>Statut:</strong> {proof.status.value}</p>
-        <p><strong>Date:</strong> {proof.completed_at.strftime('%Y-%m-%d %H:%M:%S') if proof.completed_at else 'N/A'}</p>
+        <p><strong>Date:</strong> {completed_at}</p>
         <p><strong>Durée:</strong> {proof.duration_ms}ms</p>
         <p><strong>Score de confiance:</strong> {proof.confidence_score:.2%}</p>
         
@@ -1320,22 +1447,22 @@ struct VerificationConfig {{
         return invariants
     
     async def bulk_verify(self, contracts: List[str], 
-                         verification_type: VerificationType = VerificationType.CERTORA) -> List[VerificationProof]:
+                         verification_type: str = "certora") -> List[Dict[str, Any]]:
         """Vérifie plusieurs contrats en lot"""
         self._logger.info(f"📦 Vérification groupée de {len(contracts)} contrats")
         
         proofs = []
         
         for contract in contracts:
-            proof = await self.verify_contract(contract, None, verification_type)
-            proofs.append(proof)
+            proof_dict = await self.verify_contract(contract, None, verification_type)
+            proofs.append(proof_dict)
             
             # Petite pause entre les vérifications
             await asyncio.sleep(0.5)
         
         return proofs
     
-    async def compare_tools(self, contract_path: str) -> Dict[str, VerificationProof]:
+    async def compare_tools(self, contract_path: str) -> Dict[str, Dict[str, Any]]:
         """Compare les résultats de différents outils de vérification"""
         self._logger.info(f"🔬 Comparaison des outils pour {contract_path}")
         
@@ -1343,18 +1470,18 @@ struct VerificationConfig {{
         
         # Exécuter avec tous les outils disponibles
         if self._certora_available:
-            results["certora"] = await self.verify_contract(contract_path, None, VerificationType.CERTORA)
+            results["certora"] = await self.verify_contract(contract_path, None, "certora")
         
         if self._halo2_available:
-            results["halo2"] = await self.verify_contract(contract_path, None, VerificationType.HALO2)
+            results["halo2"] = await self.verify_contract(contract_path, None, "halo2")
         
         if self._mythril_available:
-            results["mythril"] = await self.verify_contract(contract_path, None, VerificationType.MODEL_CHECKING)
+            results["mythril"] = await self.verify_contract(contract_path, None, "model_checking")
         
         # Toujours inclure la simulation
-        results["simulation"] = await self._simulate_verification(
-            await self._generate_specification(contract_path, None)
-        )
+        spec = await self._generate_specification(contract_path, None)
+        sim_proof = await self._simulate_verification(spec)
+        results["simulation"] = sim_proof.to_dict()
         
         return results
     
@@ -1362,151 +1489,117 @@ struct VerificationConfig {{
     # GESTION DES MESSAGES
     # ============================================================================
     
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
+    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
         """Gère les messages personnalisés"""
-        try:
-            msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type} de {message.sender}")
-            
-            # Mapping des types de messages vers les méthodes
-            handlers = {
-                "formal_verification.verify": self._handle_verify,
-                "formal_verification.bulk_verify": self._handle_bulk_verify,
-                "formal_verification.compare_tools": self._handle_compare_tools,
-                "formal_verification.get_status": self._handle_get_status,
-                "formal_verification.list": self._handle_list,
-                "formal_verification.tools_status": self._handle_tools_status,
-                "formal_verification.generate_invariants": self._handle_generate_invariants,
-            }
-            
-            if msg_type in handlers:
-                return await handlers[msg_type](message)
-            
-            return None
-            
-        except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e), "traceback": traceback.format_exc()},
-                message_type=MessageType.ERROR.value,
-                correlation_id=message.message_id
-            )
-    
-    async def _handle_verify(self, message: Message) -> Message:
-        content = message.content
-        try:
-            v_type = VerificationType(content.get("verification_type", "certora"))
-        except ValueError:
-            v_type = VerificationType.CERTORA
+        msg_type = message.get("type", "")
+        msg_id = message.get("message_id", "unknown")
         
-        proof = await self.verify_contract(
-            contract_path=content.get("contract_path", ""),
-            spec_path=content.get("spec_path"),
-            verification_type=v_type
-        )
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=proof.to_dict(),
-            message_type="formal_verification.verify_response",
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_bulk_verify(self, message: Message) -> Message:
-        content = message.content
-        try:
-            v_type = VerificationType(content.get("verification_type", "certora"))
-        except ValueError:
-            v_type = VerificationType.CERTORA
+        self._logger.debug(f"📨 Message reçu: {msg_type} (id: {msg_id})")
         
-        proofs = await self.bulk_verify(
-            contracts=content.get("contracts", []),
-            verification_type=v_type
-        )
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={
-                "count": len(proofs),
-                "proofs": [p.to_dict() for p in proofs]
-            },
-            message_type="formal_verification.bulk_verify_response",
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_compare_tools(self, message: Message) -> Message:
-        results = await self.compare_tools(message.content.get("contract_path", ""))
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={
-                tool: proof.to_dict() 
-                for tool, proof in results.items()
-            },
-            message_type="formal_verification.compare_tools_response",
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_get_status(self, message: Message) -> Message:
-        proof_id = message.content.get("proof_id", "")
-        for proof in self._proofs:
-            if proof.id == proof_id:
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=proof.to_dict(),
-                    message_type="formal_verification.get_status_response",
-                    correlation_id=message.message_id
+        try:
+            if msg_type == "formal_verification.verify":
+                proof = await self.verify_contract(
+                    contract_path=message.get("contract_path", ""),
+                    spec_path=message.get("spec_path"),
+                    verification_type=message.get("verification_type", "certora")
                 )
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={"error": f"Preuve {proof_id} non trouvée"},
-            message_type=MessageType.ERROR.value,
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_list(self, message: Message) -> Message:
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={
-                "verifications": [
-                    {
-                        "id": p.id,
-                        "contract": p.spec.contract,
-                        "status": p.status.value,
-                        "tool": p.tool_used,
-                        "confidence": p.confidence_score,
-                        "timestamp": p.completed_at.isoformat() if p.completed_at else None
-                    }
-                    for p in self._proofs[-50:]  # Derniers 50
-                ]
-            },
-            message_type="formal_verification.list_response",
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_tools_status(self, message: Message) -> Message:
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=self._stats["tools_available"],
-            message_type="formal_verification.tools_status_response",
-            correlation_id=message.message_id
-        )
-    
-    async def _handle_generate_invariants(self, message: Message) -> Message:
-        invariants = await self.generate_invariants(message.content.get("contract_path", ""))
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={"invariants": invariants},
-            message_type="formal_verification.generate_invariants_response",
-            correlation_id=message.message_id
-        )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "proof": proof
+                }
+            
+            elif msg_type == "formal_verification.bulk_verify":
+                proofs = await self.bulk_verify(
+                    contracts=message.get("contracts", []),
+                    verification_type=message.get("verification_type", "certora")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "count": len(proofs),
+                    "proofs": proofs
+                }
+            
+            elif msg_type == "formal_verification.compare_tools":
+                results = await self.compare_tools(message.get("contract_path", ""))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "results": results
+                }
+            
+            elif msg_type == "formal_verification.get_status":
+                proof_id = message.get("proof_id", "")
+                for proof in self._proofs:
+                    if proof.id == proof_id:
+                        return {
+                            "message_id": msg_id,
+                            "success": True,
+                            "proof": proof.to_dict()
+                        }
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Preuve {proof_id} non trouvée"
+                }
+            
+            elif msg_type == "formal_verification.list":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "verifications": [
+                        {
+                            "id": p.id,
+                            "contract": p.spec.contract,
+                            "status": p.status.value,
+                            "tool": p.tool_used,
+                            "confidence": p.confidence_score,
+                            "timestamp": p.completed_at.isoformat() if p.completed_at else None
+                        }
+                        for p in self._proofs[-50:]  # Derniers 50
+                    ]
+                }
+            
+            elif msg_type == "formal_verification.tools_status":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "tools": self._stats["tools_available"]
+                }
+            
+            elif msg_type == "formal_verification.generate_invariants":
+                invariants = await self.generate_invariants(message.get("contract_path", ""))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "invariants": invariants
+                }
+            
+            elif msg_type == "ping":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "pong": True,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            else:
+                self._logger.warning(f"⚠️ Type de message non supporté: {msg_type}")
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Type de message non supporté: {msg_type}"
+                }
+                
+        except Exception as e:
+            self._logger.error(f"❌ Erreur traitement message {msg_type}: {e}")
+            self._logger.error(traceback.format_exc())
+            return {
+                "message_id": msg_id,
+                "success": False,
+                "error": str(e)
+            }
     
     # ============================================================================
     # GESTION DU CYCLE DE VIE
@@ -1515,11 +1608,20 @@ struct VerificationConfig {{
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent Vérification Formelle...")
-        self._set_status(AgentStatus.SHUTTING_DOWN)
+        self._status = AgentStatus.SHUTTING_DOWN
+        
+        # Arrêter la tâche de nettoyage
+        if self._cleanup_task_obj and not self._cleanup_task_obj.done():
+            self._cleanup_task_obj.cancel()
+            try:
+                await self._cleanup_task_obj
+            except asyncio.CancelledError:
+                pass
         
         # Sauvegarder les statistiques
         try:
-            stats_file = Path("./reports/formal") / f"formal_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            verification_config = self._agent_config.get('verification', {})
+            stats_file = Path(verification_config.get("logs_path", "./logs/formal")) / f"formal_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
             stats_file.parent.mkdir(parents=True, exist_ok=True)
             
             with open(stats_file, 'w', encoding='utf-8') as f:
@@ -1542,13 +1644,13 @@ struct VerificationConfig {{
     async def pause(self) -> bool:
         """Met l'agent en pause"""
         self._logger.info("Pause de l'agent Vérification Formelle...")
-        self._set_status(AgentStatus.PAUSED)
+        self._status = AgentStatus.PAUSED
         return True
     
     async def resume(self) -> bool:
         """Reprend l'activité"""
         self._logger.info("Reprise de l'agent Vérification Formelle...")
-        self._set_status(AgentStatus.READY)
+        self._status = AgentStatus.READY
         return True
     
     # ============================================================================
@@ -1557,22 +1659,17 @@ struct VerificationConfig {{
     
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
-        base = await super().health_check()
-        
         # Calculer l'uptime
-        uptime = None
-        if self._stats.get('uptime_start'):
-            start = datetime.fromisoformat(self._stats['uptime_start'])
-            uptime = str(datetime.now() - start)
+        uptime = (datetime.now() - self._stats["start_time"]).total_seconds()
         
         return {
-            **base,
-            "agent": self.name,
-            "display_name": self._display_name,
-            "status": self._status.value,
+            "agent": self._name,
+            "display_name": self._agent_config.get('agent', {}).get('display_name', '🔬 Agent Vérification Formelle'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "ready": self._status == AgentStatus.READY,
             "initialized": self._initialized,
-            "uptime": uptime,
+            "uptime_seconds": uptime,
+            "uptime_formatted": str(timedelta(seconds=int(uptime))),
             "formal_specific": {
                 "tools": self._stats["tools_available"],
                 "specifications_count": len(self._specifications),
@@ -1581,28 +1678,26 @@ struct VerificationConfig {{
                 "failed_count": self._stats["failed_count"],
                 "avg_confidence": round(self._stats["avg_confidence"], 3),
                 "components": list(self._components.keys())
-            },
-            "stats": self._stats,
-            "timestamp": datetime.now().isoformat()
+            }
         }
     
     def get_agent_info(self) -> Dict[str, Any]:
         """Informations de l'agent pour le registre"""
         agent_config = self._agent_config.get('agent', {})
         return {
-            "id": self.name,
+            "id": self._name,
             "name": "🔬 Agent Vérification Formelle",
-            "display_name": self._display_name,
-            "version": agent_config.get('version', '2.0.0'),
+            "display_name": agent_config.get('display_name', '🔬 Agent Vérification Formelle'),
+            "version": agent_config.get('version', '2.0.2'),
             "description": agent_config.get('description', 'Vérification mathématique de smart contracts'),
-            "status": self._status.value,
-            "capabilities": [cap["name"] for cap in agent_config.get('capabilities', [])],
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "capabilities": [cap.get("name") for cap in agent_config.get('capabilities', [])],
             "features": {
                 "tools_available": self._stats["tools_available"],
-                "certora_enabled": self._certora_config.get("enabled", True),
-                "halo2_enabled": self._halo2_config.get("enabled", False),
-                "mythril_enabled": self._mythril_config.get("enabled", True),
-                "auto_generate_specs": self._spec_generation_config.get("auto_generate", True)
+                "certora_enabled": self._agent_config.get('certora', {}).get("enabled", True),
+                "halo2_enabled": self._agent_config.get('halo2', {}).get("enabled", False),
+                "mythril_enabled": self._agent_config.get('mythril', {}).get("enabled", True),
+                "auto_generate_specs": self._agent_config.get('spec_generation', {}).get("auto_generate", True)
             },
             "stats": {
                 "verifications_total": self._stats["total_verifications"],
@@ -1616,9 +1711,16 @@ struct VerificationConfig {{
 # FONCTIONS D'USINE
 # ============================================================================
 
-def create_formal_verification_agent(config_path: Optional[str] = None) -> FormalVerificationAgent:
+def create_formal_verification_agent(config_path: str = "") -> FormalVerificationAgent:
     """Crée une instance de FormalVerificationAgent"""
     return FormalVerificationAgent(config_path)
+
+
+async def get_formal_verification_agent(config_path: str = "") -> FormalVerificationAgent:
+    """Crée et initialise une instance de FormalVerificationAgent"""
+    agent = create_formal_verification_agent(config_path)
+    await agent.initialize()
+    return agent
 
 
 # ============================================================================
@@ -1627,14 +1729,14 @@ def create_formal_verification_agent(config_path: Optional[str] = None) -> Forma
 
 if __name__ == "__main__":
     async def main():
-        print("🔬 TEST AGENT VÉRIFICATION FORMELLE")
-        print("="*60)
+        print("=" * 70)
+        print("🔬 TEST AGENT VÉRIFICATION FORMELLE".center(70))
+        print("=" * 70)
         
-        agent = FormalVerificationAgent()
-        await agent.initialize()
+        agent = await get_formal_verification_agent()
         
         agent_info = agent.get_agent_info()
-        print(f"✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"\n✅ Agent: {agent_info['name']} v{agent_info['version']}")
         print(f"✅ Statut: {agent_info['status']}")
         print(f"✅ Outils disponibles: {agent_info['features']['tools_available']}")
         
@@ -1642,20 +1744,20 @@ if __name__ == "__main__":
         print("\n🔬 Test de vérification...")
         proof = await agent.verify_contract(
             "./contracts/Token.sol",
-            verification_type=VerificationType.CERTORA
+            verification_type="certora"
         )
         
-        print(f"✅ Preuve générée: {proof.id}")
-        print(f"✅ Statut: {proof.status.value}")
-        print(f"✅ Propriétés vérifiées: {len(proof.verified_properties)}")
-        print(f"✅ Score de confiance: {proof.confidence_score:.2%}")
+        print(f"✅ Preuve générée: {proof['id']}")
+        print(f"✅ Statut: {proof['status']}")
+        print(f"✅ Propriétés vérifiées: {len(proof['verified_properties'])}")
+        print(f"✅ Score de confiance: {proof['confidence_score']:.2%}")
         
         health = await agent.health_check()
         print(f"\n❤️  Health: {health['status']}")
         print(f"📊 Vérifications: {health['formal_specific']['verifications_count']}")
         
-        print("\n" + "="*60)
-        print("🎉 AGENT VÉRIFICATION FORMELLE OPÉRATIONNEL")
-        print("="*60)
+        print("\n" + "=" * 70)
+        print("🎉 AGENT VÉRIFICATION FORMELLE OPÉRATIONNEL".center(70))
+        print("=" * 70)
     
     asyncio.run(main())

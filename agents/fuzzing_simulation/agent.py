@@ -1,10 +1,10 @@
 """
 Agent de Fuzzing et Simulation pour Smart Contracts
 Détection automatique de vulnérabilités par tests aléatoires et invariants
-Version: 1.0.0 (CORRIGÉE ET ALIGNÉE)
+Version alignée avec l'infrastructure existante
+Version: 1.0.2
 """
 
-import logging
 import os
 import sys
 import json
@@ -15,22 +15,82 @@ import tempfile
 import traceback
 import re
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass, field
-
-logger = logging.getLogger(__name__)
 
 # ============================================================================
 # CONFIGURATION DES IMPORTS
 # ============================================================================
 
 project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
+from agents.base_agent.base_agent import BaseAgent, AgentStatus
+
+
+# ============================================================================
+# CONSTANTES
+# ============================================================================
+
+DEFAULT_CONFIG = {
+    "agent": {
+        "name": "fuzzing_simulation",
+        "display_name": "🧪 Agent de Fuzzing",
+        "description": "Détection automatique de vulnérabilités par tests aléatoires",
+        "version": "1.0.2"
+    },
+    "fuzzing": {
+        "default_engine": "echidna",
+        "default_strategy": "comprehensive",
+        "test_limit": 100000,
+        "timeout_seconds": 3600,
+        "shrink_limit": 5000,
+        "sequence_length": 100,
+        "coverage_enabled": True,
+        "parallel_workers": 2,
+        "campaigns_path": "./campaigns",
+        "corpus_path": "./corpus",
+        "reports_path": "./reports/fuzzing"
+    },
+    "echidna": {
+        "enabled": True,
+        "executable": "echidna",
+        "config_format": "yaml",
+        "test_limit": 100000,
+        "shrink_limit": 5000,
+        "seq_len": 100,
+        "coverage": True,
+        "format": "text"
+    },
+    "foundry": {
+        "enabled": True,
+        "executable": "forge",
+        "invariant_runs": 256,
+        "invariant_depth": 15,
+        "fuzz_runs": 1000,
+        "fuzz_depth": 1000,
+        "verbosity": 2
+    },
+    "medusa": {
+        "enabled": False,
+        "executable": "medusa",
+        "test_limit": 50000,
+        "coverage": True,
+        "workers": 4
+    },
+    "vulnerability_detection": {
+        "severity_threshold": "medium",
+        "auto_remediation": True,
+        "generate_proofs": True,
+        "classify_vulnerabilities": True,
+        "max_findings": 50
+    },
+    "templates_path": "./agents/fuzzing_simulation/campaigns/templates"
+}
 
 
 # ============================================================================
@@ -134,6 +194,26 @@ class FuzzingCampaign:
             "coverage": self.coverage,
             "report": self.report_path
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'FuzzingCampaign':
+        """Crée une campagne depuis un dictionnaire"""
+        campaign = cls(
+            id=data.get("id", ""),
+            name=data.get("name", ""),
+            contract_path=data.get("contract_path", ""),
+            contract_name=data.get("contract", "")
+        )
+        campaign.engine = FuzzingEngine(data.get("engine", "simulation"))
+        campaign.strategy = FuzzingStrategy(data.get("strategy", "comprehensive"))
+        campaign.status = CampaignStatus(data.get("status", "pending"))
+        campaign.duration_ms = data.get("duration_ms", 0)
+        campaign.total_tests = data.get("total_tests", 0)
+        campaign.total_failures = data.get("total_failures", 0)
+        campaign.vulnerabilities = data.get("vulnerabilities", [])
+        campaign.coverage = data.get("coverage", {"percent": 0.0})
+        campaign.report_path = data.get("report")
+        return campaign
 
 
 @dataclass
@@ -165,6 +245,23 @@ class Vulnerability:
             "remediation": self.remediation,
             "sequence": self.sequence
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'Vulnerability':
+        """Crée une vulnérabilité depuis un dictionnaire"""
+        vuln = cls(
+            id=data.get("id", ""),
+            type=VulnerabilityType(data.get("type", "logic_error")),
+            severity=VulnerabilitySeverity(data.get("severity", "medium")),
+            description=data.get("description", ""),
+            contract=data.get("contract", ""),
+            function=data.get("function"),
+            line=data.get("line"),
+            sequence=data.get("sequence", [])
+        )
+        vuln.swc_id = data.get("swc_id", "")
+        vuln.remediation = data.get("remediation", "")
+        return vuln
 
 
 # ============================================================================
@@ -177,20 +274,22 @@ class FuzzingSimulationAgent(BaseAgent):
     Détection automatique de vulnérabilités par tests aléatoires
     """
     
-    def __init__(self, config_path: Optional[str] = None):
+    def __init__(self, config_path: str = ""):
         """Initialise l'agent de fuzzing"""
-        if config_path is None:
+        # Si aucun chemin de config n'est fourni, utiliser le chemin par défaut
+        if not config_path:
             config_path = str(project_root / "agents" / "fuzzing_simulation" / "config.yaml")
         
         super().__init__(config_path)
         
-        # Configuration par défaut
-        if not self._agent_config:
-            self._agent_config = self._get_default_config()
+        # Charger la configuration
+        self._load_configuration()
         
         self._logger.info("🧪 Agent de fuzzing créé")
         
-        # État interne
+        # =====================================================================
+        # ÉTAT INTERNE
+        # =====================================================================
         self._campaigns: Dict[str, FuzzingCampaign] = {}
         self._engines_available = {
             "echidna": False,
@@ -199,13 +298,13 @@ class FuzzingSimulationAgent(BaseAgent):
             "dappforge": False
         }
         self._campaign_templates = {}
-        self._vulnerability_db = []
         self._components: Dict[str, Any] = {}
-        self._corpus_manager: Optional[Dict] = None
         self._initialized = False
         
-        # Statistiques
-        self.stats = {
+        # =====================================================================
+        # STATISTIQUES
+        # =====================================================================
+        self._stats = {
             'total_campaigns': 0,
             'total_tests': 0,
             'total_vulnerabilities': 0,
@@ -213,113 +312,46 @@ class FuzzingSimulationAgent(BaseAgent):
             'high_findings': 0,
             'medium_findings': 0,
             'low_findings': 0,
-            'last_campaign': None
+            'last_campaign': None,
+            'start_time': datetime.now()
         }
+        
+        # =====================================================================
+        # TÂCHES DE FOND
+        # =====================================================================
+        self._cleanup_task_obj = None  # Renommé pour éviter le conflit avec la méthode
         
         # Créer les répertoires
         self._create_directories()
 
-    def _get_default_config(self) -> Dict[str, Any]:
-        """Configuration par défaut"""
-        return {
-            "agent": {
-                "name": "FuzzingSimulationAgent",
-                "display_name": "🧪 Agent de Fuzzing",
-                "description": "Détection automatique de vulnérabilités par tests aléatoires",
-                "version": "1.0.0",
-                "capabilities": [
-                    {"name": "echidna_integration", "description": "Intégration avec Echidna"},
-                    {"name": "foundry_invariant_testing", "description": "Tests d'invariants avec Foundry"},
-                    {"name": "medusa_fuzzing", "description": "Fuzzing avec Medusa"},
-                    {"name": "vulnerability_detection", "description": "Détection de vulnérabilités"},
-                    {"name": "attack_sequence_generation", "description": "Génération de séquences d'attaque"},
-                    {"name": "coverage_analysis", "description": "Analyse de couverture"},
-                    {"name": "corpus_management", "description": "Gestion du corpus"},
-                    {"name": "report_generation", "description": "Génération de rapports"}
-                ],
-                "dependencies": ["tester", "smart_contract"]
-            },
-            "fuzzing": {
-                "default_engine": "echidna",
-                "default_strategy": "comprehensive",
-                "test_limit": 100000,
-                "timeout_seconds": 3600,
-                "shrink_limit": 5000,
-                "sequence_length": 100,
-                "coverage_enabled": True,
-                "parallel_workers": 2,
-                "campaigns_path": "./campaigns",
-                "corpus_path": "./corpus",
-                "reports_path": "./reports/fuzzing"
-            },
-            "echidna": {
-                "enabled": True,
-                "executable": "echidna",
-                "config_format": "yaml",
-                "test_limit": 100000,
-                "shrink_limit": 5000,
-                "seq_len": 100,
-                "coverage": True,
-                "format": "text"
-            },
-            "foundry": {
-                "enabled": True,
-                "executable": "forge",
-                "invariant_runs": 256,
-                "invariant_depth": 15,
-                "fuzz_runs": 1000,
-                "fuzz_depth": 1000,
-                "verbosity": 2
-            },
-            "medusa": {
-                "enabled": False,
-                "executable": "medusa",
-                "test_limit": 50000,
-                "coverage": True,
-                "workers": 4
-            },
-            "vulnerability_detection": {
-                "severity_threshold": "medium",
-                "auto_remediation": True,
-                "generate_proofs": True,
-                "classify_vulnerabilities": True,
-                "max_findings": 50,
-                "patterns": {
-                    "reentrancy": [
-                        r"call\.value\(",
-                        r"\.send\(",
-                        r"\.transfer\(",
-                        r"\.call\{value:",
-                        r"withdraw\("
-                    ],
-                    "integer_overflow": [
-                        r"\+=",
-                        r"-=",
-                        r"\*=",
-                        r"/=",
-                        r"\+\+",
-                        r"--"
-                    ],
-                    "access_control": [
-                        r"onlyOwner",
-                        r"Ownable",
-                        r"require\(msg\.sender",
-                        r"modifier\s+\w+"
-                    ],
-                    "timestamp_dependence": [
-                        r"block\.timestamp",
-                        r"now\s*[=<>]",
-                        r"block\.number"
-                    ],
-                    "unchecked_call": [
-                        r"\.call\(",
-                        r"\.delegatecall\(",
-                        r"\.send\("
-                    ]
-                }
-            },
-            "templates_path": "./agents/fuzzing_simulation/campaigns/templates"
-        }
+    def _load_configuration(self):
+        """Charge la configuration depuis le fichier YAML"""
+        try:
+            if self._config_path and os.path.exists(self._config_path):
+                with open(self._config_path, 'r', encoding='utf-8') as f:
+                    file_config = yaml.safe_load(f) or {}
+                
+                # Fusion avec la config par défaut
+                self._agent_config = self._merge_configs(DEFAULT_CONFIG, file_config)
+                self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
+            else:
+                self._logger.warning("⚠️ Fichier de configuration non trouvé, utilisation des valeurs par défaut")
+                self._agent_config = DEFAULT_CONFIG.copy()
+        except Exception as e:
+            self._logger.error(f"❌ Erreur chargement config: {e}")
+            self._agent_config = DEFAULT_CONFIG.copy()
+    
+    def _merge_configs(self, default: Dict, override: Dict) -> Dict:
+        """Fusionne deux configurations récursivement"""
+        result = default.copy()
+        
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._merge_configs(result[key], value)
+            else:
+                result[key] = value
+        
+        return result
 
     def _create_directories(self):
         """Crée les répertoires nécessaires"""
@@ -334,8 +366,9 @@ class FuzzingSimulationAgent(BaseAgent):
         ]
         
         for dir_path in dirs:
-            Path(dir_path).mkdir(parents=True, exist_ok=True)
-            self._logger.debug(f"📁 Répertoire créé: {dir_path}")
+            if dir_path:
+                Path(dir_path).mkdir(parents=True, exist_ok=True)
+                self._logger.debug(f"📁 Répertoire créé: {dir_path}")
 
     # ========================================================================
     # MÉTHODES D'INITIALISATION
@@ -344,8 +377,13 @@ class FuzzingSimulationAgent(BaseAgent):
     async def initialize(self) -> bool:
         """Initialisation asynchrone de l'agent"""
         try:
-            self._set_status(AgentStatus.INITIALIZING)
+            self._status = AgentStatus.INITIALIZING
             self._logger.info("Initialisation de l'agent de fuzzing...")
+            
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
             
             # Vérifier les moteurs disponibles
             await self._check_engines()
@@ -359,22 +397,25 @@ class FuzzingSimulationAgent(BaseAgent):
             # Initialiser le corpus
             await self._initialize_corpus()
             
-            self._logger.info("Agent de fuzzing initialisé")
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
             
-            result = await super().initialize()
-            
-            if result:
-                self._set_status(AgentStatus.READY)
-                self._initialized = True
-                self._logger.info("✅ Agent de fuzzing prêt")
-            
-            return result
+            self._initialized = True
+            self._status = AgentStatus.READY
+            self._logger.info("✅ Agent de fuzzing prêt")
+            return True
             
         except Exception as e:
             self._logger.error(f"❌ Erreur initialisation: {e}")
             self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
+            self._status = AgentStatus.ERROR
             return False
+    
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._cleanup_task_obj = loop.create_task(self._cleanup_task())  # Utilisation du nouvel attribut
+        self._logger.debug("🧹 Tâche de nettoyage démarrée")
 
     async def _check_engines(self):
         """Vérifie les moteurs de fuzzing disponibles"""
@@ -516,14 +557,12 @@ class FuzzingSimulationAgent(BaseAgent):
     def _init_vulnerability_detector(self) -> Dict[str, Any]:
         """Initialise le détecteur de vulnérabilités"""
         vuln_config = self._agent_config.get("vulnerability_detection", {})
-        patterns = vuln_config.get("patterns", {})
         return {
             "severity_threshold": vuln_config.get("severity_threshold", "medium"),
             "auto_remediation": vuln_config.get("auto_remediation", True),
             "generate_proofs": vuln_config.get("generate_proofs", True),
             "classify": vuln_config.get("classify_vulnerabilities", True),
-            "max_findings": vuln_config.get("max_findings", 50),
-            "patterns": patterns
+            "max_findings": vuln_config.get("max_findings", 50)
         }
 
     def _init_corpus_manager(self) -> Dict[str, Any]:
@@ -680,208 +719,58 @@ class FuzzingSimulationAgent(BaseAgent):
             with open(corpus_file, 'w') as f:
                 f.write("\n".join(initial_corpus))
             self._logger.debug(f"✅ Corpus initial créé: {corpus_file}")
-        
-        self._corpus_manager = {
-            "path": str(corpus_path),
-            "size": len(initial_corpus),
-            "last_updated": datetime.now().isoformat()
-        }
 
     # ========================================================================
-    # MÉTHODES DE GESTION D'ÉTAT
+    # TÂCHE DE NETTOYAGE
     # ========================================================================
 
-    async def shutdown(self) -> bool:
-        """Arrête l'agent proprement"""
-        self._logger.info("Arrêt de l'agent Fuzzing...")
-        self._set_status(AgentStatus.SHUTDOWN)
+    async def _cleanup_task(self):
+        """
+        Tâche de nettoyage périodique
+        """
+        self._logger.info("🧹 Tâche de nettoyage démarrée")
         
-        # Sauvegarder les statistiques
-        try:
-            fuzzing_config = self._agent_config.get("fuzzing", {})
-            reports_path = Path(fuzzing_config.get("reports_path", "./reports/fuzzing"))
-            stats_file = reports_path / "fuzzing_stats.json"
-            with open(stats_file, 'w', encoding='utf-8') as f:
-                json.dump({
-                    "stats": self.stats,
-                    "campaigns": len(self._campaigns),
-                    "timestamp": datetime.now().isoformat()
-                }, f, indent=2)
-            self._logger.info(f"   ✓ Statistiques sauvegardées")
-        except Exception as e:
-            self._logger.warning(f"   ⚠️ Impossible de sauvegarder: {e}")
-        
-        self._logger.info("✅ Agent Fuzzing arrêté")
-        return True
-
-    async def pause(self) -> bool:
-        """Met l'agent en pause"""
-        self._logger.info("Pause de l'agent Fuzzing...")
-        self._set_status(AgentStatus.PAUSED)
-        return True
-
-    async def resume(self) -> bool:
-        """Reprend l'activité"""
-        self._logger.info("Reprise de l'agent Fuzzing...")
-        self._set_status(AgentStatus.READY)
-        return True
-
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé de l'agent"""
-        vuln_stats = await self.get_vulnerability_stats()
-        
-        return {
-            "agent": self.name,
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "ready": self._status == AgentStatus.READY,
-            "initialized": self._initialized,
-            "engines_available": self._engines_available,
-            "campaigns_total": len(self._campaigns),
-            "campaigns_running": len([c for c in self._campaigns.values() if c.status == CampaignStatus.RUNNING]),
-            "campaigns_completed": len([c for c in self._campaigns.values() if c.status == CampaignStatus.COMPLETED]),
-            "vulnerabilities_found": vuln_stats["total"],
-            "vulnerabilities_by_severity": vuln_stats["by_severity"],
-            "components": list(self._components.keys()),
-            "stats": self.stats,
-            "timestamp": datetime.now().isoformat()
-        }
-
-    def get_agent_info(self) -> Dict[str, Any]:
-        """Informations de l'agent"""
-        return {
-            "id": self.name,
-            "name": self._display_name,
-            "type": "fuzzing",
-            "version": self._version,
-            "description": self._description,
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "capabilities": self._agent_config.get("agent", {}).get("capabilities", []),
-            "engines": {
-                "echidna": self._engines_available["echidna"],
-                "foundry": self._engines_available["foundry"],
-                "medusa": self._engines_available["medusa"]
-            },
-            "templates": list(self._campaign_templates.keys()),
-            "campaigns_run": len(self._campaigns),
-            "stats": self.stats
-        }
-
-    # ========================================================================
-    # GESTION DES MESSAGES
-    # ========================================================================
-
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """Gestion des messages personnalisés"""
-        try:
-            msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type}")
-            
-            if msg_type == "run_fuzzing":
-                campaign = await self.run_fuzzing_campaign(
-                    contract_path=message.content.get("contract_path", ""),
-                    campaign_name=message.content.get("name"),
-                    engine=FuzzingEngine(message.content.get("engine", "simulation")),
-                    strategy=FuzzingStrategy(message.content.get("strategy", "comprehensive")),
-                    template=message.content.get("template")
-                )
+        while self._status == AgentStatus.READY:
+            try:
+                # Nettoyage toutes les heures
+                await asyncio.sleep(3600)
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"campaign_id": campaign.id, "status": campaign.status.value},
-                    message_type="campaign_started",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "campaign_status":
-                status = await self.get_campaign_status(message.content.get("campaign_id", ""))
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=status or {"error": "Campaign not found"},
-                    message_type="campaign_status_response",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "list_campaigns":
-                campaigns = await self.list_campaigns(message.content.get("status"))
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"campaigns": campaigns},
-                    message_type="campaigns_list",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "vulnerability_stats":
-                stats = await self.get_vulnerability_stats()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=stats,
-                    message_type="vulnerability_stats",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "available_templates":
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"templates": list(self._campaign_templates.keys())},
-                    message_type="templates_list",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "engines_status":
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"engines": self._engines_available},
-                    message_type="engines_status",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "pause":
-                await self.pause()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "paused"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "resume":
-                await self.resume()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "resumed"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "shutdown":
-                await self.shutdown()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "shutdown"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            return None
-            
-        except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
-                correlation_id=message.message_id
-            )
+                self._logger.debug("Nettoyage périodique...")
+                
+                fuzzing_config = self._agent_config.get("fuzzing", {})
+                
+                # Nettoyer les vieux rapports (> 30 jours)
+                reports_path = Path(fuzzing_config.get("reports_path", "./reports/fuzzing"))
+                if reports_path.exists():
+                    cutoff = datetime.now() - timedelta(days=30)
+                    for report_file in reports_path.glob("*.html"):
+                        try:
+                            mtime = datetime.fromtimestamp(report_file.stat().st_mtime)
+                            if mtime < cutoff:
+                                report_file.unlink()
+                                self._logger.debug(f"🗑️ Rapport supprimé: {report_file.name}")
+                        except Exception as e:
+                            self._logger.error(f"Erreur suppression {report_file}: {e}")
+                
+                # Nettoyer les vieilles campagnes (> 14 jours)
+                campaigns_path = Path(fuzzing_config.get("campaigns_path", "./campaigns"))
+                if campaigns_path.exists():
+                    cutoff = datetime.now() - timedelta(days=14)
+                    for campaign_file in campaigns_path.glob("*.json"):
+                        try:
+                            mtime = datetime.fromtimestamp(campaign_file.stat().st_mtime)
+                            if mtime < cutoff:
+                                campaign_file.unlink()
+                                self._logger.debug(f"🗑️ Campagne supprimée: {campaign_file.name}")
+                        except Exception as e:
+                            self._logger.error(f"Erreur suppression {campaign_file}: {e}")
+                
+            except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de nettoyage arrêtée")
+                break
+            except Exception as e:
+                self._logger.error(f"❌ Erreur dans la tâche de nettoyage: {e}")
+                await asyncio.sleep(60)
 
     # ========================================================================
     # MÉTHODES FONCTIONNELLES
@@ -890,9 +779,9 @@ class FuzzingSimulationAgent(BaseAgent):
     async def run_fuzzing_campaign(self,
                                    contract_path: str,
                                    campaign_name: Optional[str] = None,
-                                   engine: Optional[FuzzingEngine] = None,
-                                   strategy: Optional[FuzzingStrategy] = None,
-                                   template: Optional[str] = None) -> FuzzingCampaign:
+                                   engine: Optional[str] = None,
+                                   strategy: Optional[str] = None,
+                                   template: Optional[str] = None) -> Dict[str, Any]:
         """
         Exécute une campagne de fuzzing
         
@@ -913,28 +802,32 @@ class FuzzingSimulationAgent(BaseAgent):
         
         name = campaign_name or f"Fuzzing_{Path(contract_path).stem}"
         
+        # Convertir les énumérations
+        engine_enum = FuzzingEngine(engine) if engine else FuzzingEngine.SIMULATION
+        strategy_enum = FuzzingStrategy(strategy) if strategy else FuzzingStrategy.COMPREHENSIVE
+        
         campaign = FuzzingCampaign(
-            id=f"FUZZ-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            id=f"FUZZ-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
             name=name,
             contract_path=contract_path,
-            contract_name=Path(contract_path).stem
+            contract_name=Path(contract_path).stem,
+            engine=engine_enum,
+            strategy=strategy_enum
         )
         
-        if engine:
-            campaign.engine = engine
-        else:
+        # Choisir le moteur si non spécifié
+        if engine_enum == FuzzingEngine.SIMULATION:
             for e in [FuzzingEngine.ECHIDNA, FuzzingEngine.FOUNDRY, FuzzingEngine.MEDUSA]:
                 if self._engines_available.get(e.value, False):
                     campaign.engine = e
                     break
         
-        campaign.strategy = strategy or FuzzingStrategy.COMPREHENSIVE
         campaign.status = CampaignStatus.RUNNING
         campaign.start_time = datetime.now()
         
         self._campaigns[campaign.id] = campaign
-        self.stats['total_campaigns'] += 1
-        self.stats['last_campaign'] = campaign.id
+        self._stats['total_campaigns'] += 1
+        self._stats['last_campaign'] = campaign.id
         
         try:
             if campaign.engine == FuzzingEngine.ECHIDNA and self._engines_available["echidna"]:
@@ -959,7 +852,7 @@ class FuzzingSimulationAgent(BaseAgent):
             campaign.duration_ms = int((campaign.end_time - campaign.start_time).total_seconds() * 1000)
             campaign.report_path = await self._generate_report(campaign)
         
-        return campaign
+        return campaign.to_dict()
 
     async def _run_echidna(self, campaign: FuzzingCampaign, template: Optional[str] = None):
         """Exécute Echidna"""
@@ -969,6 +862,8 @@ class FuzzingSimulationAgent(BaseAgent):
         
         fuzzing_config = self._agent_config.get("fuzzing", {})
         campaigns_path = Path(fuzzing_config.get("campaigns_path", "./campaigns"))
+        campaigns_path.mkdir(parents=True, exist_ok=True)
+        
         config_path = campaigns_path / f"{campaign.id}.yaml"
         
         with open(config_path, 'w') as f:
@@ -1009,7 +904,8 @@ class FuzzingSimulationAgent(BaseAgent):
         except asyncio.TimeoutError:
             self._logger.warning(f"⚠️ Echidna timeout")
             campaign.status = CampaignStatus.TIMEOUT
-            process.kill()
+            if process:
+                process.kill()
 
     def _create_echidna_config(self, campaign: FuzzingCampaign, template: Optional[str] = None) -> Dict:
         """Crée la configuration Echidna"""
@@ -1038,7 +934,7 @@ class FuzzingSimulationAgent(BaseAgent):
         tests_match = re.search(r"Tests: (\d+)", output)
         if tests_match:
             campaign.total_tests = int(tests_match.group(1))
-            self.stats['total_tests'] += campaign.total_tests
+            self._stats['total_tests'] += campaign.total_tests
         
         fails_match = re.search(r"Failures: (\d+)", output)
         if fails_match:
@@ -1089,6 +985,8 @@ class FuzzingSimulationAgent(BaseAgent):
         except asyncio.TimeoutError:
             self._logger.warning(f"⚠️ Foundry timeout")
             campaign.status = CampaignStatus.TIMEOUT
+            if process:
+                process.kill()
 
     async def _create_foundry_invariant_test(self, campaign: FuzzingCampaign, template: Optional[str]) -> str:
         """Crée un fichier de test d'invariant Foundry"""
@@ -1142,7 +1040,7 @@ contract {campaign.contract_name}InvariantTest is Test {{
         failing = re.findall(r"\[FAIL\]", output)
         
         campaign.total_tests = len(passing) + len(failing)
-        self.stats['total_tests'] += campaign.total_tests
+        self._stats['total_tests'] += campaign.total_tests
         campaign.total_failures = len(failing)
         
         failures = re.findall(r"\[FAIL\].*?\n.*?\n", output, re.DOTALL)
@@ -1189,14 +1087,15 @@ contract {campaign.contract_name}InvariantTest is Test {{
         except asyncio.TimeoutError:
             self._logger.warning(f"⚠️ Medusa timeout")
             campaign.status = CampaignStatus.TIMEOUT
-            process.kill()
+            if process:
+                process.kill()
 
     def _parse_medusa_output(self, output: str, campaign: FuzzingCampaign):
         """Parse la sortie de Medusa"""
         tests_match = re.search(r"Tests executed: (\d+)", output)
         if tests_match:
             campaign.total_tests = int(tests_match.group(1))
-            self.stats['total_tests'] += campaign.total_tests
+            self._stats['total_tests'] += campaign.total_tests
         
         fails_match = re.search(r"Failures: (\d+)", output)
         if fails_match:
@@ -1210,7 +1109,7 @@ contract {campaign.contract_name}InvariantTest is Test {{
         
         campaign.total_tests = 1000
         campaign.total_failures = 3
-        self.stats['total_tests'] += campaign.total_tests
+        self._stats['total_tests'] += campaign.total_tests
         campaign.coverage = {
             "lines": 85.0,
             "branches": 72.0,
@@ -1255,16 +1154,16 @@ contract {campaign.contract_name}InvariantTest is Test {{
             "call withdraw(1000)"
         ]]
         
-        self.stats['total_vulnerabilities'] += len(vulnerabilities)
+        self._stats['total_vulnerabilities'] += len(vulnerabilities)
         for v in vulnerabilities:
             if v.severity == VulnerabilitySeverity.CRITICAL:
-                self.stats['critical_findings'] += 1
+                self._stats['critical_findings'] += 1
             elif v.severity == VulnerabilitySeverity.HIGH:
-                self.stats['high_findings'] += 1
+                self._stats['high_findings'] += 1
             elif v.severity == VulnerabilitySeverity.MEDIUM:
-                self.stats['medium_findings'] += 1
+                self._stats['medium_findings'] += 1
             elif v.severity == VulnerabilitySeverity.LOW:
-                self.stats['low_findings'] += 1
+                self._stats['low_findings'] += 1
 
     def _create_vulnerability(self,
                              vuln_type: VulnerabilityType,
@@ -1275,7 +1174,7 @@ contract {campaign.contract_name}InvariantTest is Test {{
                              line: Optional[int] = None,
                              sequence: Optional[List[str]] = None) -> Vulnerability:
         """Crée une vulnérabilité"""
-        vuln_id = f"VULN-{datetime.now().strftime('%Y%m%d%H%M%S')}-{vuln_type.value}"
+        vuln_id = f"VULN-{datetime.now().strftime('%Y%m%d_%H%M%S')}-{vuln_type.value}"
         
         remediation_map = {
             VulnerabilityType.REENTRANCY: "Utiliser ReentrancyGuard ou suivre le pattern Checks-Effects-Interactions",
@@ -1320,86 +1219,75 @@ contract {campaign.contract_name}InvariantTest is Test {{
         self._logger.info("🔬 Analyse des vulnérabilités...")
         
         vuln_config = self._agent_config.get("vulnerability_detection", {})
-        patterns = vuln_config.get("patterns", {})
+        max_findings = vuln_config.get("max_findings", 50)
+        
         detected = []
         
         # Analyser le contrat source
         try:
             with open(campaign.contract_path, 'r', encoding='utf-8') as f:
                 source = f.read()
-                lines = source.split('\n')
                 
-                for vuln_type, vuln_patterns in patterns.items():
-                    for i, line in enumerate(lines, 1):
-                        for pattern in vuln_patterns:
-                            if re.search(pattern, line):
-                                severity = self._assess_severity(vuln_type, line, source)
-                                
-                                vuln = self._create_vulnerability(
-                                    VulnerabilityType[vuln_type.upper()],
-                                    VulnerabilitySeverity(severity),
-                                    f"Potentielle {vuln_type} détectée",
-                                    campaign.contract_name,
-                                    self._extract_function_name(line),
-                                    i,
-                                    []
-                                )
-                                detected.append(vuln)
+                # Détection basique de patterns
+                if re.search(r"call\.value\(.*\)|\.send\(|\.transfer\(", source) and not re.search(r"nonReentrant", source):
+                    detected.append(self._create_vulnerability(
+                        VulnerabilityType.REENTRANCY,
+                        VulnerabilitySeverity.HIGH,
+                        "Potentielle vulnérabilité de réentrance détectée",
+                        campaign.contract_name
+                    ))
+                
+                if re.search(r"\+{2}|-{2}|\+=", source) and not re.search(r"SafeMath|using SafeMath", source):
+                    detected.append(self._create_vulnerability(
+                        VulnerabilityType.INTEGER_OVERFLOW,
+                        VulnerabilitySeverity.MEDIUM,
+                        "Opérations arithmétiques sans protection",
+                        campaign.contract_name
+                    ))
+                
+                if re.search(r"public function", source) and not re.search(r"onlyOwner|auth", source):
+                    detected.append(self._create_vulnerability(
+                        VulnerabilityType.ACCESS_CONTROL,
+                        VulnerabilitySeverity.HIGH,
+                        "Fonctions publiques sans contrôle d'accès",
+                        campaign.contract_name
+                    ))
+                
+                if re.search(r"block\.timestamp|now", source):
+                    detected.append(self._create_vulnerability(
+                        VulnerabilityType.TIMESTAMP_DEPENDENCE,
+                        VulnerabilitySeverity.LOW,
+                        "Dépendance au timestamp du bloc",
+                        campaign.contract_name
+                    ))
+                
+                if re.search(r"\.call\(.*\)", source) and not re.search(r"require\(.*success\)", source):
+                    detected.append(self._create_vulnerability(
+                        VulnerabilityType.UNCHECKED_CALL,
+                        VulnerabilitySeverity.MEDIUM,
+                        "Appel externe sans vérification du retour",
+                        campaign.contract_name
+                    ))
+                
         except Exception as e:
             self._logger.error(f"Erreur analyse vulnérabilités: {e}")
         
         # Limiter le nombre de findings
-        max_findings = vuln_config.get("max_findings", 50)
         campaign.vulnerabilities = [v.to_dict() for v in detected[:max_findings]]
         
-        self.stats['total_vulnerabilities'] += len(campaign.vulnerabilities)
+        self._stats['total_vulnerabilities'] += len(campaign.vulnerabilities)
         for vuln in campaign.vulnerabilities:
             severity = vuln.get("severity", "medium")
             if severity == "critical":
-                self.stats['critical_findings'] += 1
+                self._stats['critical_findings'] += 1
             elif severity == "high":
-                self.stats['high_findings'] += 1
+                self._stats['high_findings'] += 1
             elif severity == "medium":
-                self.stats['medium_findings'] += 1
+                self._stats['medium_findings'] += 1
             elif severity == "low":
-                self.stats['low_findings'] += 1
+                self._stats['low_findings'] += 1
         
         self._logger.info(f"🔴 {len(campaign.vulnerabilities)} vulnérabilités détectées")
-
-    def _assess_severity(self, vuln_type: str, line: str, source: str) -> str:
-        """Évalue la sévérité d'une vulnérabilité"""
-        severity_map = {
-            "reentrancy": "high",
-            "integer_overflow": "medium",
-            "integer_underflow": "medium",
-            "access_control": "critical",
-            "timestamp_dependence": "low",
-            "unchecked_call": "medium",
-            "delegatecall": "high",
-            "self_destruct": "critical"
-        }
-        
-        base_severity = severity_map.get(vuln_type, "medium")
-        
-        # Ajuster selon le contexte
-        if "public" in line and "onlyOwner" not in source:
-            return "critical"
-        if "call.value" in line and "require(success)" not in source:
-            return "high"
-        
-        return base_severity
-
-    def _extract_function_name(self, line: str) -> str:
-        """Extrait le nom de fonction d'une ligne de code"""
-        match = re.search(r'function\s+(\w+)', line)
-        if match:
-            return match.group(1)
-        
-        match = re.search(r'(\w+)\s*\(', line)
-        if match:
-            return match.group(1)
-        
-        return "unknown"
 
     async def _generate_report(self, campaign: FuzzingCampaign) -> str:
         """Génère un rapport de la campagne"""
@@ -1443,7 +1331,6 @@ contract {campaign.contract_name}InvariantTest is Test {{
                 <td>{vuln.get('type', 'unknown')}</td>
                 <td>{vuln.get('description', '')}</td>
                 <td><code>{vuln.get('function', 'unknown')}:{vuln.get('line', '?')}</code></td>
-                <td><a href="#proof-{vuln.get('id', '')}">Voir</a></td>
             </tr>
             """
         
@@ -1511,7 +1398,6 @@ contract {campaign.contract_name}InvariantTest is Test {{
                     <th>Type</th>
                     <th>Description</th>
                     <th>Location</th>
-                    <th>Proof</th>
                 </tr>
             </thead>
             <tbody>
@@ -1587,6 +1473,10 @@ contract {campaign.contract_name}InvariantTest is Test {{
         
         return md
 
+    # ========================================================================
+    # API PUBLIQUE
+    # ========================================================================
+
     async def get_campaign_status(self, campaign_id: str) -> Optional[Dict]:
         """Retourne le statut d'une campagne"""
         if campaign_id not in self._campaigns:
@@ -1628,14 +1518,211 @@ contract {campaign.contract_name}InvariantTest is Test {{
         
         return stats
 
+    # ========================================================================
+    # GESTION DES MESSAGES
+    # ========================================================================
+
+    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        """Gestion des messages personnalisés"""
+        msg_type = message.get("type", "")
+        msg_id = message.get("message_id", "unknown")
+        
+        self._logger.debug(f"📨 Message reçu: {msg_type} (id: {msg_id})")
+        
+        try:
+            if msg_type == "run_fuzzing":
+                campaign = await self.run_fuzzing_campaign(
+                    contract_path=message.get("contract_path", ""),
+                    campaign_name=message.get("name"),
+                    engine=message.get("engine"),
+                    strategy=message.get("strategy"),
+                    template=message.get("template")
+                )
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "campaign": campaign
+                }
+            
+            elif msg_type == "campaign_status":
+                status = await self.get_campaign_status(message.get("campaign_id", ""))
+                return {
+                    "message_id": msg_id,
+                    "success": status is not None,
+                    "campaign": status
+                }
+            
+            elif msg_type == "list_campaigns":
+                campaigns = await self.list_campaigns(message.get("status"))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "campaigns": campaigns,
+                    "count": len(campaigns)
+                }
+            
+            elif msg_type == "vulnerability_stats":
+                stats = await self.get_vulnerability_stats()
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "stats": stats
+                }
+            
+            elif msg_type == "available_templates":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "templates": list(self._campaign_templates.keys())
+                }
+            
+            elif msg_type == "engines_status":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "engines": self._engines_available
+                }
+            
+            elif msg_type == "ping":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "pong": True,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            else:
+                self._logger.warning(f"⚠️ Type de message non supporté: {msg_type}")
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Type de message non supporté: {msg_type}"
+                }
+                
+        except Exception as e:
+            self._logger.error(f"❌ Erreur traitement message {msg_type}: {e}")
+            self._logger.error(traceback.format_exc())
+            return {
+                "message_id": msg_id,
+                "success": False,
+                "error": str(e)
+            }
+
+    # ========================================================================
+    # GESTION DU CYCLE DE VIE
+    # ========================================================================
+
+    async def shutdown(self) -> bool:
+        """Arrête l'agent proprement"""
+        self._logger.info("Arrêt de l'agent Fuzzing...")
+        self._status = AgentStatus.SHUTTING_DOWN
+        
+        # Arrêter la tâche de nettoyage
+        if self._cleanup_task_obj and not self._cleanup_task_obj.done():
+            self._cleanup_task_obj.cancel()
+            try:
+                await self._cleanup_task_obj
+            except asyncio.CancelledError:
+                pass
+        
+        # Sauvegarder les statistiques
+        try:
+            fuzzing_config = self._agent_config.get("fuzzing", {})
+            reports_path = Path(fuzzing_config.get("reports_path", "./reports/fuzzing"))
+            stats_file = reports_path / f"fuzzing_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(stats_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "stats": self._stats,
+                    "campaigns": len(self._campaigns),
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2)
+            self._logger.info(f"✅ Statistiques sauvegardées: {stats_file}")
+        except Exception as e:
+            self._logger.warning(f"⚠️ Impossible de sauvegarder: {e}")
+        
+        # Appeler la méthode parent
+        await super().shutdown()
+        
+        self._logger.info("✅ Agent Fuzzing arrêté")
+        return True
+
+    async def pause(self) -> bool:
+        """Met l'agent en pause"""
+        self._logger.info("Pause de l'agent Fuzzing...")
+        self._status = AgentStatus.PAUSED
+        return True
+
+    async def resume(self) -> bool:
+        """Reprend l'activité"""
+        self._logger.info("Reprise de l'agent Fuzzing...")
+        self._status = AgentStatus.READY
+        return True
+
+    async def health_check(self) -> Dict[str, Any]:
+        """Vérifie la santé de l'agent"""
+        vuln_stats = await self.get_vulnerability_stats()
+        
+        # Calculer l'uptime
+        uptime = (datetime.now() - self._stats["start_time"]).total_seconds()
+        
+        return {
+            "agent": self._name,
+            "display_name": self._agent_config.get('agent', {}).get('display_name', '🧪 Agent de Fuzzing'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "ready": self._status == AgentStatus.READY,
+            "initialized": self._initialized,
+            "uptime_seconds": uptime,
+            "uptime_formatted": str(timedelta(seconds=int(uptime))),
+            "engines_available": self._engines_available,
+            "campaigns_total": len(self._campaigns),
+            "campaigns_running": len([c for c in self._campaigns.values() if c.status == CampaignStatus.RUNNING]),
+            "campaigns_completed": len([c for c in self._campaigns.values() if c.status == CampaignStatus.COMPLETED]),
+            "vulnerabilities_found": vuln_stats["total"],
+            "vulnerabilities_by_severity": vuln_stats["by_severity"],
+            "components": list(self._components.keys()),
+            "stats": self._stats
+        }
+
+    def get_agent_info(self) -> Dict[str, Any]:
+        """Informations de l'agent"""
+        agent_config = self._agent_config.get('agent', {})
+        return {
+            "id": self._name,
+            "name": "🧪 Agent de Fuzzing",
+            "display_name": agent_config.get('display_name', '🧪 Agent de Fuzzing'),
+            "version": agent_config.get('version', '1.0.2'),
+            "description": agent_config.get('description', 'Détection automatique de vulnérabilités par tests aléatoires'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "capabilities": ["fuzzing", "vulnerability_detection", "coverage_analysis", "report_generation"],
+            "engines": {
+                "echidna": self._engines_available["echidna"],
+                "foundry": self._engines_available["foundry"],
+                "medusa": self._engines_available["medusa"]
+            },
+            "templates": list(self._campaign_templates.keys()),
+            "campaigns_run": len(self._campaigns),
+            "stats": {
+                "total_campaigns": self._stats["total_campaigns"],
+                "total_tests": self._stats["total_tests"],
+                "total_vulnerabilities": self._stats["total_vulnerabilities"]
+            }
+        }
+
 
 # ============================================================================
 # FONCTIONS D'USINE
 # ============================================================================
 
-def create_fuzzing_agent(config_path: Optional[str] = None) -> FuzzingSimulationAgent:
+def create_fuzzing_agent(config_path: str = "") -> FuzzingSimulationAgent:
     """Crée une instance de l'agent de fuzzing"""
     return FuzzingSimulationAgent(config_path)
+
+
+async def get_fuzzing_agent(config_path: str = "") -> FuzzingSimulationAgent:
+    """Crée et initialise une instance de l'agent de fuzzing"""
+    agent = create_fuzzing_agent(config_path)
+    await agent.initialize()
+    return agent
 
 
 # ============================================================================
@@ -1644,31 +1731,38 @@ def create_fuzzing_agent(config_path: Optional[str] = None) -> FuzzingSimulation
 
 if __name__ == "__main__":
     async def main():
-        print("🧪 TEST AGENT DE FUZZING")
-        print("="*50)
+        print("=" * 70)
+        print("🧪 TEST AGENT DE FUZZING".center(70))
+        print("=" * 70)
         
-        agent = FuzzingSimulationAgent()
-        await agent.initialize()
+        agent = await get_fuzzing_agent()
         
-        print(f"✅ Agent créé: {agent.get_agent_info()['name']}")
-        print(f"✅ Statut: {agent.status}")
-        print(f"✅ Moteurs: {agent._engines_available}")
-        print(f"✅ Templates: {list(agent._campaign_templates.keys())}")
+        agent_info = agent.get_agent_info()
+        print(f"\n✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Moteurs: {agent_info['engines']}")
+        print(f"✅ Templates: {agent_info['templates']}")
         
+        # Test de campagne de fuzzing
+        print("\n🎯 Test de campagne de fuzzing...")
         campaign = await agent.run_fuzzing_campaign(
             contract_path="./contracts/Token.sol",
             campaign_name="Test Campaign"
         )
         
-        print(f"\n📊 Résultats campagne:")
-        print(f"  ID: {campaign.id}")
-        print(f"  Status: {campaign.status.value}")
-        print(f"  Tests: {campaign.total_tests}")
-        print(f"  Vulnérabilités: {len(campaign.vulnerabilities)}")
-        print(f"  Rapport: {campaign.report_path}")
+        print(f"  ID: {campaign['id']}")
+        print(f"  Status: {campaign['status']}")
+        print(f"  Tests: {campaign['total_tests']}")
+        print(f"  Vulnérabilités: {len(campaign['vulnerabilities'])}")
+        print(f"  Rapport: {campaign['report']}")
         
-        print("\n" + "="*50)
-        print("🎉 AGENT DE FUZZING OPÉRATIONNEL")
-        print("="*50)
+        health = await agent.health_check()
+        print(f"\n❤️  Health: {health['status']}")
+        print(f"📊 Campagnes: {health['campaigns_total']}")
+        print(f"🔴 Vulnérabilités: {health['vulnerabilities_found']}")
+        
+        print("\n" + "=" * 70)
+        print("🎉 AGENT DE FUZZING OPÉRATIONNEL".center(70))
+        print("=" * 70)
     
     asyncio.run(main())

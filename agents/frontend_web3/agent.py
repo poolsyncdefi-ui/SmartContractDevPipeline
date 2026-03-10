@@ -1,33 +1,11 @@
 """
 Frontend Web3 Agent - Agent de génération d'interfaces Web3
-Version: 2.0.0 (CORRIGÉE ET ALIGNÉE)
-
-CE QUE CETTE VERSION GARDE :
-- Tous les templates 2.0 (banking, lending, NFT lending, credit scoring)
-- Toutes les fonctionnalités avancées
-- La génération Next.js/React complète
-
-CE QU'ELLE AJOUTE :
-- Structure alignée sur architect/coder
-- Gestion d'état complète
-- Méthodes requises par BaseAgent
+Version: 2.1.0 (ALIGNÉ SUR CODER/ARCHITECT/SMARTCONTRACT)
 """
 
 import logging
-
-logger = logging.getLogger(__name__)
-
-"""
-Agent de génération d'interfaces Web3 - Version 2.0
-Banking Grade · Lending Protocol · Web3 Native
-Design systémique, UX bancaire, composants intelligents
-"""
-
-__version__ = '2.0.0'
-__author__ = 'SmartContractDevPipeline'
-__description__ = 'Agent nouvelle génération fusionnant UX bancaire, lending protocol et innovations Web3'
-
 import os
+import sys
 import json
 import yaml
 import asyncio
@@ -35,14 +13,20 @@ import subprocess
 import re
 import traceback
 from datetime import datetime
-from enum import Enum, auto
+from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
 from dataclasses import dataclass, field
 
-# Import de BaseAgent - Chemin ABSOLU (indispensable !)
-import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+logger = logging.getLogger(__name__)
+
+# ============================================================================
+# CONFIGURATION DES IMPORTS - Chemin absolu
+# ============================================================================
+
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
 from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
 
 
@@ -78,7 +62,7 @@ class ComponentType(Enum):
     AIRDROP = "airdrop_page"
     CUSTOM = "custom"
     
-    # === BANKING CORE 2.0 ===
+    # Banking Core 2.0
     BANKING_DASHBOARD_2_0 = "banking_dashboard_2_0"
     VIRTUAL_CARDS = "virtual_cards"
     SAVINGS_PODS = "savings_pods"
@@ -88,7 +72,7 @@ class ComponentType(Enum):
     BILL_SPLITTING = "bill_splitting"
     DIRECT_DEBIT = "direct_debit"
     
-    # === LENDING 2.0 ===
+    # Lending 2.0
     LENDING_MARKETPLACE_2_0 = "lending_marketplace_2_0"
     COLLATERAL_MANAGEMENT = "collateral_management"
     LIQUIDATION_GUARD = "liquidation_guard"
@@ -97,7 +81,7 @@ class ComponentType(Enum):
     CREDIT_SCORING = "credit_scoring"
     NFT_LENDING = "nft_lending"
     
-    # === WEB3 INNOVATIONS ===
+    # Web3 Innovations
     GASLESS_INTERFACE = "gasless_interface"
     SOCIAL_RECOVERY = "social_recovery"
     PASSKEY_AUTH = "passkey_auth"
@@ -105,7 +89,7 @@ class ComponentType(Enum):
     CROSS_CHAIN_SWAP = "cross_chain_swap"
     SESSION_KEYS = "session_keys"
     
-    # === UX 2.0 ===
+    # UX 2.0
     VOICE_COMMANDS = "voice_commands"
     GESTURE_NAVIGATION = "gesture_navigation"
     HAPTIC_FEEDBACK = "haptic_feedback"
@@ -127,20 +111,15 @@ class Web3Library(Enum):
 @dataclass
 class FrontendProject:
     """Projet frontend généré"""
-    def __init__(self, name: str, framework: FrameworkType):
-        self.id = f"FRONTEND-{datetime.now().strftime('%Y%m%d%H%M%S')}"
-        self.name = name
-        self.framework = framework
-        self.components: List[Dict] = []
-        self.contracts: List[Dict] = []
-        self.pages: List[str] = []
-        self.output_path = None
-        self.deploy_url = None
-        self.created_at = datetime.now()
-        self.project_type = "web3_dapp"
-        self.library = Web3Library.WAGMI
-        self.theme = "dark"
-        self.features = []
+    id: str
+    name: str
+    framework: FrameworkType
+    components: List[Dict] = field(default_factory=list)
+    contracts: List[Dict] = field(default_factory=list)
+    output_path: Optional[str] = None
+    deploy_url: Optional[str] = None
+    created_at: datetime = field(default_factory=datetime.now)
+    theme: str = "dark"
     
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -164,7 +143,7 @@ class ContractABI:
 
 
 # ============================================================================
-# AGENT PRINCIPAL
+# AGENT PRINCIPAL - FRONTEND WEB3 (ALIGNÉ)
 # ============================================================================
 
 class FrontendWeb3Agent(BaseAgent):
@@ -172,74 +151,63 @@ class FrontendWeb3Agent(BaseAgent):
     Agent de génération d'interfaces Web3
     Crée automatiquement des applications React/Next.js pour interagir avec les smart contracts
     """
-    
-    def __init__(self, config_path: str = ""):
+
+    def __init__(self, config_path: Optional[str] = None):
         """
         Initialise l'agent frontend Web3
-        
+
         Args:
             config_path: Chemin vers le fichier de configuration
         """
-        # Appel du parent
+        if config_path is None:
+            config_path = str(project_root / "agents" / "frontend_web3" / "config.yaml")
+
+        # Initialiser l'agent de base
         super().__init__(config_path)
-        
-        # Charger la configuration
-        if config_path and os.path.exists(config_path):
-            try:
-                with open(config_path, 'r', encoding='utf-8') as f:
-                    file_config = yaml.safe_load(f)
-                    if file_config and 'agent' in file_config:
-                        agent_config = file_config['agent']
-                        self._name = agent_config.get('name', self._name)
-                        self._display_name = agent_config.get('display_name', self._display_name)
-                        self._version = agent_config.get('version', self._version)
-            except Exception as e:
-                self._logger.warning(f"⚠️ Erreur chargement config: {e}")
-        
-        self._default_config = self._get_default_config()
-        if not self._agent_config:
-            self._agent_config = self._default_config
-        
-        self._logger.info("🎨 Agent frontend Web3 créé")
-        
+
+        # Configuration spécifique
+        agent_config = self._agent_config.get('agent', {})
+        self._display_name = agent_config.get('display_name', '🎨 Agent Frontend Web3')
+        self._frontend_config = self._agent_config.get('frontend', {})
+        self._deployment_config = self._agent_config.get('deployment', {})
+
         # État interne
         self._projects: Dict[str, FrontendProject] = {}
         self._components_generated = 0
         self._templates: Dict[str, str] = {}
+        self._templates_2_0: Dict[str, str] = {}
         self._contract_abis: Dict[str, ContractABI] = {}
         self._components: Dict[str, Any] = {}
+        self._sub_agents: Dict[str, Any] = {}
         self._initialized = False
-        self._templates_2_0: Dict[str, str] = {}
-        
-        # Statistiques
-        self.stats = {
+
+        # Statistiques internes
+        self._stats = {
             'total_projects': 0,
             'total_components_generated': 0,
             'total_contracts_analyzed': 0,
             'deployments': 0,
-            'last_project': None
+            'uptime_start': datetime.now()
         }
-        
+
         # Créer les répertoires
         self._create_directories()
-    
+
+        self._logger.info(f"🎨 Agent frontend Web3 créé - v{self._version}")
+
     def _get_default_config(self) -> Dict[str, Any]:
-        """Configuration par défaut"""
+        """Configuration par défaut (si aucune config fournie)"""
         return {
             "agent": {
                 "name": "frontend_web3",
                 "display_name": "🎨 Agent Frontend Web3",
                 "description": "Génération d'interfaces React/Next.js pour smart contracts",
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "capabilities": [
                     "react_generation",
                     "nextjs_generation",
-                    "vue_generation",
                     "wallet_integration",
                     "contract_interaction",
-                    "ipfs_deployment",
-                    "vercel_deployment",
-                    "theme_customization",
                     "banking_dashboard_2_0",
                     "lending_marketplace_2_0",
                     "nft_lending",
@@ -254,7 +222,6 @@ class FrontendWeb3Agent(BaseAgent):
                 "output_path": "./frontend",
                 "include_tests": True,
                 "include_docs": True,
-                "optimize_build": True,
                 "theme": "dark",
                 "colors": {
                     "primary": "#3b82f6",
@@ -268,93 +235,90 @@ class FrontendWeb3Agent(BaseAgent):
                 "auto_deploy": False,
                 "platform": "vercel",
                 "vercel_token": None,
-                "ipfs_gateway": "https://ipfs.io/ipfs/",
-                "domain": None
-            },
-            "templates_path": "./agents/frontend_web3/templates",
-            "abis_path": "./agents/frontend_web3/contracts/abi"
+                "ipfs_gateway": "https://ipfs.io/ipfs/"
+            }
         }
-    
-    def _load_capabilities_2_0(self) -> List[str]:
-        """Charge les capacités nouvelle génération"""
-        return [
-            # Banking Core
-            'banking_dashboard_2_0', 'virtual_cards', 'savings_pods',
-            'round_up_savings', 'spending_insights', 'budget_forecast',
-            'bill_splitting', 'direct_debit',
-            # Lending Protocol
-            'lending_marketplace_2_0', 'collateral_management',
-            'liquidation_guard', 'yield_optimizer', 'loan_builder',
-            'credit_scoring', 'nft_lending',
-            # Web3 Innovations
-            'gasless_interface', 'social_recovery', 'passkey_auth',
-            'defi_composer', 'cross_chain_swap', 'session_keys',
-            # UX 2.0
-            'voice_commands', 'gesture_navigation', 'haptic_feedback',
-            'biometric_confirm'
-        ]
-    
+
     def _create_directories(self):
         """Crée les répertoires nécessaires"""
-        frontend_config = self._agent_config.get('frontend', {})
         dirs = [
-            frontend_config.get("output_path", "./frontend"),
+            self._frontend_config.get("output_path", "./frontend"),
             self._agent_config.get("templates_path", "./agents/frontend_web3/templates"),
             self._agent_config.get("abis_path", "./agents/frontend_web3/contracts/abi")
         ]
-        
+
         for dir_path in dirs:
             Path(dir_path).mkdir(parents=True, exist_ok=True)
-            self._logger.debug(f"📁 Répertoire créé: {dir_path}")
-    
-    # ========================================================================
-    # MÉTHODES REQUISES PAR BASEAGENT
-    # ========================================================================
-    
+
+    # ============================================================================
+    # MÉTHODES D'INITIALISATION (ALIGNÉES)
+    # ============================================================================
+
     async def initialize(self) -> bool:
         """Initialisation asynchrone"""
+        self._logger.info("🎨 Initialisation du Frontend Web3 Agent...")
+        return await super().initialize()
+
+    async def _initialize_components(self) -> bool:
+        """
+        Initialise les composants spécifiques.
+        Appelé par BaseAgent.initialize().
+        """
         try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation de l'agent frontend Web3...")
-            
+            self._logger.info("Initialisation des composants Frontend Web3...")
+
             # Initialiser les composants
-            await self._initialize_components()
-            
+            self._components = {
+                "react_generator": self._init_react_generator(),
+                "nextjs_generator": self._init_nextjs_generator(),
+                "vue_generator": self._init_vue_generator(),
+                "contract_analyzer": self._init_contract_analyzer(),
+                "deployment_manager": self._init_deployment_manager()
+            }
+
             # Charger les templates
             await self._load_templates()
-            
-            self._logger.info("Agent frontend Web3 initialisé")
-            
-            result = await super().initialize()
-            
-            if result:
-                self._set_status(AgentStatus.READY)
-                self._initialized = True
-                self._logger.info("✅ Agent frontend Web3 prêt")
-            
-            return result
-            
+
+            # Initialiser les sous-agents
+            await self._initialize_sub_agents()
+
+            self._logger.info(f"✅ Composants: {list(self._components.keys())}")
+            self._initialized = True
+            return True
+
         except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
+            self._logger.error(f"Erreur composants: {e}")
             return False
-    
-    async def _initialize_components(self):
-        """Initialise les composants"""
-        self._logger.info("Initialisation des composants...")
-        
-        self._components = {
-            "react_generator": self._init_react_generator(),
-            "nextjs_generator": self._init_nextjs_generator(),
-            "vue_generator": self._init_vue_generator(),
-            "contract_analyzer": self._init_contract_analyzer(),
-            "deployment_manager": self._init_deployment_manager()
-        }
-        
-        self._logger.info(f"✅ Composants: {list(self._components.keys())}")
-        return self._components
-    
+
+    async def _initialize_sub_agents(self):
+        """Initialise les sous-agents spécialisés"""
+        try:
+            # Tentative d'import des sous-agents (optionnel)
+            try:
+                from .sous_agents import (
+                    ReactExpertSubAgent,
+                    Web3IntegrationSubAgent,
+                    UiUxExpertSubAgent
+                )
+
+                self._sub_agents = {
+                    "react": ReactExpertSubAgent(),
+                    "web3": Web3IntegrationSubAgent(),
+                    "ui_ux": UiUxExpertSubAgent()
+                }
+                self._logger.info(f"✅ Sous-agents: {list(self._sub_agents.keys())}")
+            except ImportError as e:
+                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
+                self._sub_agents = {}
+
+        except Exception as e:
+            self._logger.error(f"Erreur sous-agents: {e}")
+            self._sub_agents = {}
+
+    # ============================================================================
+    # MÉTHODES D'INITIALISATION DES COMPOSANTS
+    # ============================================================================
+
     def _init_react_generator(self) -> Dict[str, Any]:
         """Initialise le générateur React"""
         return {
@@ -366,16 +330,11 @@ class FrontendWeb3Agent(BaseAgent):
                 "wagmi@1.3.0",
                 "viem@1.10.0",
                 "react-router-dom@6.14.0",
-                "axios@1.4.0",
                 "tailwindcss@3.3.0"
             ],
-            "dev_dependencies": [
-                "@types/react",
-                "@types/react-dom",
-                "@vitejs/plugin-react"
-            ]
+            "enabled": True
         }
-    
+
     def _init_nextjs_generator(self) -> Dict[str, Any]:
         """Initialise le générateur Next.js"""
         return {
@@ -389,14 +348,9 @@ class FrontendWeb3Agent(BaseAgent):
                 "next-auth@4.22.0",
                 "tailwindcss@3.3.0"
             ],
-            "dev_dependencies": [
-                "@types/node",
-                "@types/react",
-                "@types/react-dom",
-                "typescript"
-            ]
+            "enabled": True
         }
-    
+
     def _init_vue_generator(self) -> Dict[str, Any]:
         """Initialise le générateur Vue.js"""
         return {
@@ -411,30 +365,31 @@ class FrontendWeb3Agent(BaseAgent):
             ],
             "enabled": False
         }
-    
+
     def _init_contract_analyzer(self) -> Dict[str, Any]:
         """Initialise l'analyseur de contrats"""
         return {
             "extract_abi": True,
             "generate_types": True,
             "analyze_functions": True,
-            "analyze_events": True
+            "analyze_events": True,
+            "enabled": True
         }
-    
+
     def _init_deployment_manager(self) -> Dict[str, Any]:
         """Initialise le gestionnaire de déploiement"""
-        deployment_config = self._agent_config.get("deployment", {})
         return {
             "platforms": ["vercel", "netlify", "ipfs"],
-            "auto_deploy": deployment_config.get("auto_deploy", False),
-            "default_platform": deployment_config.get("platform", "vercel")
+            "auto_deploy": self._deployment_config.get("auto_deploy", False),
+            "default_platform": self._deployment_config.get("platform", "vercel"),
+            "enabled": True
         }
-    
+
     async def _load_templates(self):
         """Charge les templates 2.0"""
         templates_path = Path(self._agent_config.get("templates_path", "./agents/frontend_web3/templates"))
         templates_path.mkdir(parents=True, exist_ok=True)
-        
+
         # Templates 2.0
         self._templates_2_0 = {
             # Banking
@@ -465,226 +420,238 @@ class FrontendWeb3Agent(BaseAgent):
             "bridge_page": self._create_bridge_page_2_0(),
             "session_keys": self._create_session_keys(),
         }
-        
+
         # Fusionner avec les templates existants
         self._templates.update(self._templates_2_0)
-        
-        # Sauvegarder tous les templates
-        for name, template in self._templates.items():
-            file_path = templates_path / f"{name}.html"
-            if not file_path.exists():
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(template)
-                self._logger.debug(f"✅ Template 2.0 créé: {name}")
-        
-        self._logger.info(f"📋 Templates 2.0: {list(self._templates_2_0.keys())}")
+
+        self._logger.info(f"📋 Templates 2.0: {len(self._templates_2_0)}")
         self._logger.info(f"📋 Templates totaux: {len(self._templates)}")
-    
-    # ========================================================================
-    # MÉTHODES DE GESTION D'ÉTAT
-    # ========================================================================
-    
+
+    # ============================================================================
+    # MÉTHODES DE GESTION D'ÉTAT (ALIGNÉES)
+    # ============================================================================
+
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent FrontendWeb3...")
-        self._set_status(AgentStatus.SHUTDOWN)
-        
+        return await super().shutdown()
+
+    async def _cleanup(self):
+        """Nettoie les ressources spécifiques"""
+        self._logger.info("Nettoyage des ressources FrontendWeb3...")
+
         # Sauvegarder les statistiques
         try:
-            output_dir = Path(self._agent_config["frontend"]["output_path"])
+            output_dir = Path(self._frontend_config.get("output_path", "./frontend"))
             stats_file = output_dir / "frontend_stats.json"
             with open(stats_file, 'w', encoding='utf-8') as f:
                 json.dump({
-                    "stats": self.stats,
+                    "stats": self._stats,
                     "projects": len(self._projects),
+                    "components_generated": self._components_generated,
                     "timestamp": datetime.now().isoformat()
                 }, f, indent=2)
-            self._logger.info(f"   ✓ Statistiques sauvegardées")
+            self._logger.info(f"✅ Statistiques sauvegardées")
         except Exception as e:
-            self._logger.warning(f"   ⚠️ Impossible de sauvegarder: {e}")
-        
-        self._logger.info("✅ Agent FrontendWeb3 arrêté")
-        return True
-    
-    async def pause(self) -> bool:
-        """Met l'agent en pause"""
-        self._logger.info("Pause de l'agent FrontendWeb3...")
-        self._set_status(AgentStatus.PAUSED)
-        return True
-    
-    async def resume(self) -> bool:
-        """Reprend l'activité"""
-        self._logger.info("Reprise de l'agent FrontendWeb3...")
-        self._set_status(AgentStatus.READY)
-        return True
-    
+            self._logger.warning(f"⚠️ Impossible de sauvegarder: {e}")
+
+    # ============================================================================
+    # MÉTHODES DE SANTÉ ET D'INFORMATION (ALIGNÉES)
+    # ============================================================================
+
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
+        base_health = await super().health_check()
+
         return {
-            "agent": self._name,
+            **base_health,
+            "agent": self.name,
+            "display_name": self._display_name,
             "status": self._status.value,
             "ready": self._status == AgentStatus.READY,
-            "projects_generated": len(self._projects),
-            "components_generated": self._components_generated,
-            "templates_available": list(self._templates.keys()),
-            "templates_2_0": list(self._templates_2_0.keys()) if hasattr(self, '_templates_2_0') else [],
-            "frameworks": ["nextjs", "react"],
-            "components": list(self._components.keys()),
-            "uptime": self.uptime.total_seconds()
+            "initialized": self._initialized,
+            "frontend_specific": {
+                "projects_generated": len(self._projects),
+                "components_generated": self._components_generated,
+                "templates_available": len(self._templates),
+                "templates_2_0": len(self._templates_2_0),
+                "sub_agents": list(self._sub_agents.keys()),
+                "frameworks": ["nextjs", "react", "vue"],
+                "stats": {
+                    "total_projects": self._stats['total_projects'],
+                    "total_components": self._stats['total_components_generated'],
+                    "deployments": self._stats['deployments']
+                }
+            },
+            "timestamp": datetime.now().isoformat()
         }
-    
+
     def get_agent_info(self) -> Dict[str, Any]:
-        """Informations de l'agent"""
+        """Retourne les informations de l'agent pour le registre"""
+        agent_config = self._agent_config.get('agent', {})
+        capabilities = agent_config.get('capabilities', [])
+
+        if capabilities and isinstance(capabilities[0], dict):
+            capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
+
         return {
-            "id": self._name,
-            "name": self._display_name,
-            "type": "frontend",
-            "version": self._version,
-            "description": self._description,
+            "id": self.name,
+            "name": "FrontendWeb3Agent",
+            "display_name": self._display_name,
+            "version": agent_config.get('version', '2.1.0'),
+            "description": agent_config.get('description', 'Génération d\'interfaces Web3'),
             "status": self._status.value,
-            "capabilities": self._agent_config.get("agent", {}).get("capabilities", []),
-            "projects_created": len(self._projects),
-            "templates": list(self._templates.keys()),
-            "templates_2_0": list(self._templates_2_0.keys()) if hasattr(self, '_templates_2_0') else [],
-            "default_framework": self._agent_config["frontend"]["default_framework"]
+            "capabilities": capabilities,
+            "features": {
+                "frameworks": ["nextjs", "react", "vue"],
+                "templates_2_0": list(self._templates_2_0.keys()),
+                "sub_agents": list(self._sub_agents.keys()),
+                "deployment_platforms": ["vercel", "netlify", "ipfs"]
+            },
+            "stats": {
+                "projects_generated": len(self._projects),
+                "components_generated": self._components_generated,
+                "deployments": self._stats['deployments']
+            }
         }
-    
-    # ========================================================================
-    # GESTION DES MESSAGES
-    # ========================================================================
-    
+
+    # ============================================================================
+    # GESTION DES MESSAGES (ALIGNÉE)
+    # ============================================================================
+
     async def _handle_custom_message(self, message: Message) -> Optional[Message]:
         """
-        Gère les messages personnalisés reçus par l'agent
-        Requis par BaseAgent
+        Gère les messages personnalisés pour le Frontend Web3 Agent.
         """
         try:
             msg_type = message.message_type
-            self._logger.debug(f"Message personnalisé reçu: {msg_type}")
-            
-            if msg_type == "generate_frontend":
-                project = await self.generate_project(
-                    project_name=message.content.get("project_name", "Web3App"),
-                    contract_paths=message.content.get("contracts", []),
-                    components=message.content.get("components", []),
-                    framework=message.content.get("framework", "nextjs")
-                )
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={
-                        "project_id": project.id,
-                        "output_path": project.output_path,
-                        "components": len(project.components)
-                    },
-                    message_type="project_generated",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "deploy":
-                url = await self.deploy_to_vercel(message.content.get("project_id", ""))
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"url": url},
-                    message_type="deployment_result",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "list_projects":
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"projects": [p.to_dict() for p in self._projects.values()]},
-                    message_type="projects_list",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "extract_abi":
-                abi = await self.extract_contract_abi(message.content.get("contract_path", ""))
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=abi,
-                    message_type="abi_extracted",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "pause":
-                await self.pause()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "paused"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "resume":
-                await self.resume()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "resumed"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "shutdown":
-                await self.shutdown()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "shutdown"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
+            self._logger.debug(f"Message personnalisé reçu: {msg_type} de {message.sender}")
+
+            handlers = {
+                "frontend.generate": self._handle_generate,
+                "frontend.deploy": self._handle_deploy,
+                "frontend.list_projects": self._handle_list_projects,
+                "frontend.extract_abi": self._handle_extract_abi,
+                "frontend.stats": self._handle_stats,
+            }
+
+            if msg_type in handlers:
+                return await handlers[msg_type](message)
+
+            self._logger.warning(f"Aucun handler pour le type: {msg_type}")
             return None
-            
+
         except Exception as e:
             self._logger.error(f"Erreur traitement message: {e}")
             return Message(
                 sender=self.name,
                 recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
+                content={"error": str(e), "traceback": traceback.format_exc()},
+                message_type=MessageType.ERROR.value,
                 correlation_id=message.message_id
             )
-    
-    # ========================================================================
-    # MÉTHODES FONCTIONNELLES (TOUTES PRÉSERVÉES)
-    # ========================================================================
-    
+
+    async def _handle_generate(self, message: Message) -> Message:
+        """Gère la génération de projet frontend"""
+        content = message.content
+        project = await self.generate_project(
+            project_name=content.get("project_name", "Web3App"),
+            contract_paths=content.get("contracts", []),
+            components=content.get("components", []),
+            framework=content.get("framework", "nextjs")
+        )
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={
+                "project_id": project.id,
+                "output_path": project.output_path,
+                "components": len(project.components)
+            },
+            message_type="frontend.generated",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_deploy(self, message: Message) -> Message:
+        """Gère le déploiement d'un projet"""
+        project_id = message.content.get("project_id", "")
+        url = await self.deploy_to_vercel(project_id)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"url": url, "success": url is not None},
+            message_type="frontend.deployed",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_list_projects(self, message: Message) -> Message:
+        """Liste tous les projets générés"""
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"projects": [p.to_dict() for p in self._projects.values()]},
+            message_type="frontend.projects_list",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_extract_abi(self, message: Message) -> Message:
+        """Extrait l'ABI d'un contrat"""
+        contract_path = message.content.get("contract_path", "")
+        abi_info = await self.extract_contract_abi(contract_path)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=abi_info,
+            message_type="frontend.abi_extracted",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_stats(self, message: Message) -> Message:
+        """Retourne les statistiques"""
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=self._stats,
+            message_type="frontend.stats_response",
+            correlation_id=message.message_id
+        )
+
+    # ============================================================================
+    # MÉTHODES FONCTIONNELLES (PRÉSERVÉES)
+    # ============================================================================
+
     async def extract_contract_abi(self, contract_path: str) -> Dict:
         """Extrait l'ABI d'un contrat compilé"""
         self._logger.info(f"🔍 Extraction ABI de {contract_path}")
-        
+        self._stats['total_contracts_analyzed'] += 1
+
         contract_name = Path(contract_path).stem
         possible_paths = [
             f"./artifacts/contracts/{contract_name}.sol/{contract_name}.json",
             f"./out/{contract_name}.sol/{contract_name}.json",
             f"./build/contracts/{contract_name}.json"
         ]
-        
+
         for path in possible_paths:
             if os.path.exists(path):
                 try:
                     with open(path, 'r', encoding='utf-8') as f:
                         data = json.load(f)
                         abi = data.get('abi', [])
-                        abi_path = Path(self._agent_config["abis_path"]) / f"{contract_name}.json"
+                        abi_path = Path(self._agent_config.get("abis_path", "./agents/frontend_web3/contracts/abi")) / f"{contract_name}.json"
                         with open(abi_path, 'w', encoding='utf-8') as af:
                             json.dump(abi, af, indent=2)
                         self._logger.info(f"✅ ABI extraite: {abi_path}")
                         return {"name": contract_name, "abi": abi, "path": str(abi_path)}
                 except Exception as e:
                     self._logger.warning(f"⚠️ Erreur lecture ABI: {e}")
-        
+
         self._logger.warning(f"⚠️ ABI non trouvée pour {contract_name}")
         return {"name": contract_name, "abi": [], "path": None}
-    
+
     async def generate_nextjs_project(self,
                                      project_name: str,
                                      contracts: List[str],
@@ -692,32 +659,39 @@ class FrontendWeb3Agent(BaseAgent):
                                      theme: str = "dark") -> FrontendProject:
         """Génère un projet Next.js complet"""
         self._logger.info(f"🚀 Génération projet Next.js: {project_name}")
-        
-        project = FrontendProject(project_name, FrameworkType.NEXTJS)
-        project.theme = theme
-        output_dir = Path(self._agent_config["frontend"]["output_path"]) / project.id
-        
+
+        project = FrontendProject(
+            id=f"FRONTEND-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            name=project_name,
+            framework=FrameworkType.NEXTJS,
+            theme=theme
+        )
+
+        output_dir = Path(self._frontend_config.get("output_path", "./frontend")) / project.id
+
         self._create_nextjs_structure(output_dir, project_name)
-        
+
         for contract in contracts:
             abi_info = await self.extract_contract_abi(contract)
             if abi_info["abi"]:
                 project.contracts.append(abi_info)
-        
+
         for component in components:
             await self._generate_component(project, component, output_dir)
-        
+
         self._generate_nextjs_config(output_dir, project)
         self._generate_package_json(output_dir, project)
         self._generate_wagmi_config(output_dir, project)
         self._generate_layout(output_dir, project)
-        
+
         project.output_path = str(output_dir)
         self._projects[project.id] = project
-        
+        self._stats['total_projects'] += 1
+        self._stats['total_components_generated'] += len(components)
+
         self._logger.info(f"✅ Projet généré: {output_dir}")
         return project
-    
+
     def _create_nextjs_structure(self, output_dir: Path, project_name: str):
         """Crée la structure de dossiers Next.js"""
         dirs = [
@@ -733,10 +707,10 @@ class FrontendWeb3Agent(BaseAgent):
             output_dir / "styles",
             output_dir / "types"
         ]
-        
+
         for dir_path in dirs:
             dir_path.mkdir(parents=True, exist_ok=True)
-    
+
     def _generate_nextjs_config(self, output_dir: Path, project: FrontendProject):
         """Génère next.config.js"""
         config = f"""/** @type {{import('next').NextConfig}} */
@@ -756,7 +730,7 @@ module.exports = nextConfig;
 """
         with open(output_dir / "next.config.js", 'w', encoding='utf-8') as f:
             f.write(config)
-    
+
     def _generate_package_json(self, output_dir: Path, project: FrontendProject):
         """Génère package.json"""
         package = {
@@ -791,10 +765,10 @@ module.exports = nextConfig;
                 "postcss": "8.4.0"
             }
         }
-        
+
         with open(output_dir / "package.json", 'w', encoding='utf-8') as f:
             json.dump(package, f, indent=2)
-    
+
     def _generate_wagmi_config(self, output_dir: Path, project: FrontendProject):
         """Génère la configuration wagmi"""
         config = f"""import {{ getDefaultWallets }} from '@rainbow-me/rainbowkit';
@@ -823,7 +797,7 @@ export {{ chains }};
 """
         with open(output_dir / "lib" / "wagmi.ts", 'w', encoding='utf-8') as f:
             f.write(config)
-    
+
     def _generate_layout(self, output_dir: Path, project: FrontendProject):
         """Génère le layout principal"""
         layout = f"""import './globals.css';
@@ -857,73 +831,356 @@ export default function RootLayout({{
 """
         with open(output_dir / "app" / "layout.tsx", 'w', encoding='utf-8') as f:
             f.write(layout)
-    
+
     async def _generate_component(self,
                                  project: FrontendProject,
                                  component_type: ComponentType,
                                  output_dir: Path):
         """Génère un composant spécifique - Version 2.0"""
         
-        # Composants existants
-        if component_type == ComponentType.MINT_PAGE:
-            await self._generate_mint_page(project, output_dir)
-        elif component_type == ComponentType.DASHBOARD:
-            await self._generate_dashboard(project, output_dir)
-        elif component_type == ComponentType.NFT_GALLERY:
-            await self._generate_nft_gallery(project, output_dir)
-        elif component_type == ComponentType.TOKEN_TRANSFER:
-            await self._generate_token_transfer(project, output_dir)
-        elif component_type == ComponentType.STAKING:
-            await self._generate_staking_page(project, output_dir)
-        elif component_type == ComponentType.GOVERNANCE:
-            await self._generate_governance_page(project, output_dir)
-        elif component_type == ComponentType.SWAP:
-            await self._generate_swap_page(project, output_dir)
-        elif component_type == ComponentType.BRIDGE:
-            await self._generate_bridge_page(project, output_dir)
-        elif component_type == ComponentType.ANALYTICS:
-            await self._generate_analytics_page(project, output_dir)
-        elif component_type == ComponentType.PROFILE:
-            await self._generate_profile_page(project, output_dir)
-        elif component_type == ComponentType.AUCTION:
-            await self._generate_auction_page(project, output_dir)
-        elif component_type == ComponentType.LENDING:
-            await self._generate_lending_page(project, output_dir)
-        elif component_type == ComponentType.MULTISIG:
-            await self._generate_multisig_page(project, output_dir)
-        elif component_type == ComponentType.AIRDROP:
-            await self._generate_airdrop_page(project, output_dir)
-        elif component_type == ComponentType.MARKETPLACE:
-            await self._generate_marketplace_page(project, output_dir)
+        # Mapping des composants vers leurs générateurs
+        generators = {
+            # Composants 2.0
+            ComponentType.BANKING_DASHBOARD_2_0: self._generate_banking_dashboard_2_0,
+            ComponentType.VIRTUAL_CARDS: self._generate_virtual_cards,
+            ComponentType.SAVINGS_PODS: self._generate_savings_pods,
+            ComponentType.CREDIT_SCORING: self._generate_credit_scoring,
+            ComponentType.NFT_LENDING: self._generate_nft_lending,
+            ComponentType.LENDING_MARKETPLACE_2_0: self._generate_lending_marketplace_2_0,
+            ComponentType.GASLESS_INTERFACE: self._generate_gasless_interface,
+            ComponentType.SOCIAL_RECOVERY: self._generate_social_recovery,
+            ComponentType.PASSKEY_AUTH: self._generate_passkey_auth,
+            ComponentType.DEFI_COMPOSER: self._generate_defi_composer,
+            ComponentType.BRIDGE: self._generate_bridge_page_2_0,
+            
+            # Composants existants (stubs)
+            ComponentType.MINT_PAGE: self._generate_mint_page,
+            ComponentType.DASHBOARD: self._generate_dashboard,
+            ComponentType.NFT_GALLERY: self._generate_nft_gallery,
+            ComponentType.TOKEN_TRANSFER: self._generate_token_transfer,
+            ComponentType.STAKING: self._generate_staking_page,
+            ComponentType.GOVERNANCE: self._generate_governance_page,
+            ComponentType.SWAP: self._generate_swap_page,
+            ComponentType.ANALYTICS: self._generate_analytics_page,
+            ComponentType.PROFILE: self._generate_profile_page,
+            ComponentType.AUCTION: self._generate_auction_page,
+            ComponentType.LENDING: self._generate_lending_page,
+            ComponentType.MULTISIG: self._generate_multisig_page,
+            ComponentType.AIRDROP: self._generate_airdrop_page,
+            ComponentType.MARKETPLACE: self._generate_marketplace_page,
+        }
+
+        generator = generators.get(component_type)
+        if generator:
+            await generator(project, output_dir)
+            project.components.append({"type": component_type.value, "path": f"app/{component_type.value}"})
+            self._components_generated += 1
+
+    # ============================================================================
+    # MÉTHODES DE GÉNÉRATION DES COMPOSANTS 2.0 (Vos templates existants)
+    # ============================================================================
+
+    async def _generate_banking_dashboard_2_0(self, project: FrontendProject, output_dir: Path):
+        """Génère le dashboard bancaire nouvelle génération"""
+        template = self._templates_2_0.get("banking_dashboard_2_0", "")
         
-        # NOUVEAUX COMPOSANTS 2.0
-        elif component_type == ComponentType.BANKING_DASHBOARD_2_0:
-            await self._generate_banking_dashboard_2_0(project, output_dir)
-        elif component_type == ComponentType.VIRTUAL_CARDS:
-            await self._generate_virtual_cards(project, output_dir)
-        elif component_type == ComponentType.SAVINGS_PODS:
-            await self._generate_savings_pods(project, output_dir)
-        elif component_type == ComponentType.CREDIT_SCORING:
-            await self._generate_credit_scoring(project, output_dir)
-        elif component_type == ComponentType.NFT_LENDING:
-            await self._generate_nft_lending(project, output_dir)
-        elif component_type == ComponentType.LENDING_MARKETPLACE_2_0:
-            await self._generate_lending_marketplace_2_0(project, output_dir)
-        elif component_type == ComponentType.GASLESS_INTERFACE:
-            await self._generate_gasless_interface(project, output_dir)
-        elif component_type == ComponentType.SOCIAL_RECOVERY:
-            await self._generate_social_recovery(project, output_dir)
-        elif component_type == ComponentType.PASSKEY_AUTH:
-            await self._generate_passkey_auth(project, output_dir)
-        elif component_type == ComponentType.DEFI_COMPOSER:
-            await self._generate_defi_composer(project, output_dir)
+        # Remplacer les variables
+        template = template.replace("{{BANK_NAME}}", project.name)
+        template = template.replace("{{USER_NAME}}", "Thomas")
+        template = template.replace("{{USER_INITIALS}}", "TD")
+        template = template.replace("{{TOTAL_BALANCE}}", "45,890")
+        template = template.replace("{{BALANCE_CHANGE}}", "2.4")
+        template = template.replace("{{ETH_BALANCE}}", "12.5")
+        template = template.replace("{{BTC_BALANCE}}", "0.45")
+        template = template.replace("{{DATE}}", datetime.now().strftime("%d %B %Y"))
+        
+        colors = self._frontend_config.get("colors", {})
+        template = template.replace("{{PRIMARY_COLOR}}", colors.get("primary", "#3b82f6"))
+        template = template.replace("{{SECONDARY_COLOR}}", colors.get("secondary", "#10b981"))
+        template = template.replace("{{ACCENT_COLOR}}", colors.get("accent", "#8b5cf6"))
+        
+        component_dir = output_dir / "app" / "banking"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+import {{ useAccount }} from 'wagmi';
+import {{ useEffect, useState }} from 'react';
+
+export default function BankingDashboard() {{
+    const {{ address, isConnected }} = useAccount();
     
-    # ------------------------------------------------------------------------
-    # TEMPLATES 2.0 - BANKING CORE
-    # ------------------------------------------------------------------------
-    
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_virtual_cards(self, project: FrontendProject, output_dir: Path):
+        """Génère la page de gestion de cartes virtuelles"""
+        template = self._templates_2_0.get("virtual_cards", "")
+        component_dir = output_dir / "app" / "cards"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function VirtualCards() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_savings_pods(self, project: FrontendProject, output_dir: Path):
+        """Génère la page des pockets d'épargne"""
+        template = self._templates_2_0.get("savings_pods", "")
+        component_dir = output_dir / "app" / "savings"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function SavingsPods() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_credit_scoring(self, project: FrontendProject, output_dir: Path):
+        """Génère la page de score de crédit"""
+        template = self._templates_2_0.get("credit_scoring", "")
+        template = template.replace("{{PROJECT_NAME}}", project.name)
+        
+        component_dir = output_dir / "app" / "credit-score"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function CreditScore() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_nft_lending(self, project: FrontendProject, output_dir: Path):
+        """Génère la page de NFT lending"""
+        template = self._templates_2_0.get("nft_lending", "")
+        template = template.replace("{{PROJECT_NAME}}", project.name)
+        
+        component_dir = output_dir / "app" / "nft-lending"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function NFTLending() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_lending_marketplace_2_0(self, project: FrontendProject, output_dir: Path):
+        """Génère la marketplace de prêts"""
+        template = self._templates_2_0.get("lending_marketplace_2_0", "")
+        template = template.replace("{{PROTOCOL_NAME}}", f"{project.name} Lending")
+        template = template.replace("{{TVL}}", "45.2")
+        template = template.replace("{{LOAN_VOLUME}}", "28.5")
+        template = template.replace("{{VOLUME_CHANGE}}", "12.3")
+        template = template.replace("{{LENDERS}}", "1,234")
+        template = template.replace("{{BORROWERS}}", "856")
+        template = template.replace("{{AVG_RATE}}", "4.8")
+        
+        component_dir = output_dir / "app" / "lending"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function LendingMarketplace() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_gasless_interface(self, project: FrontendProject, output_dir: Path):
+        """Génère le composant gasless"""
+        template = self._templates_2_0.get("gasless_interface", "")
+        component_dir = output_dir / "components" / "gasless"
+        component_dir.mkdir(parents=True, exist_ok=True)
+        
+        with open(component_dir / "GaslessTransaction.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+import {{ useState }} from 'react';
+
+export default function GaslessTransaction() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_social_recovery(self, project: FrontendProject, output_dir: Path):
+        """Génère le composant social recovery"""
+        template = self._templates_2_0.get("social_recovery", "")
+        component_dir = output_dir / "components" / "security"
+        component_dir.mkdir(parents=True, exist_ok=True)
+        
+        with open(component_dir / "SocialRecovery.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function SocialRecovery() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_passkey_auth(self, project: FrontendProject, output_dir: Path):
+        """Génère le composant d'authentification biométrique"""
+        template = self._templates_2_0.get("passkey_auth", "")
+        component_dir = output_dir / "components" / "auth"
+        component_dir.mkdir(parents=True, exist_ok=True)
+        
+        with open(component_dir / "PasskeyAuth.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function PasskeyAuth() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_defi_composer(self, project: FrontendProject, output_dir: Path):
+        """Génère le composant DeFi composer"""
+        template = self._templates_2_0.get("defi_composer", "")
+        component_dir = output_dir / "app" / "composer"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function DeFiComposer() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    async def _generate_bridge_page_2_0(self, project: FrontendProject, output_dir: Path):
+        """Génère la page de bridge"""
+        template = self._templates_2_0.get("bridge_page", "")
+        template = template.replace("{{PROJECT_NAME}}", project.name)
+        
+        component_dir = output_dir / "app" / "bridge"
+        component_dir.mkdir(exist_ok=True)
+        
+        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
+            f.write(f'''"use client";
+
+export default function Bridge() {{
+    return (
+        <>
+        {template}
+        </>
+    );
+}}
+''')
+
+    # ============================================================================
+    # MÉTHODES EXISTANTES (STUBS POUR COMPOSANTS EXISTANTS)
+    # ============================================================================
+
+    async def _generate_mint_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de mint NFT"""
+        pass
+
+    async def _generate_dashboard(self, project: FrontendProject, output_dir: Path):
+        """Génère un dashboard DeFi"""
+        pass
+
+    async def _generate_nft_gallery(self, project: FrontendProject, output_dir: Path):
+        """Génère une galerie NFT"""
+        pass
+
+    async def _generate_token_transfer(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de transfert"""
+        pass
+
+    async def _generate_staking_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de staking"""
+        pass
+
+    async def _generate_governance_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de gouvernance"""
+        pass
+
+    async def _generate_swap_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de swap"""
+        pass
+
+    async def _generate_analytics_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page d'analytics"""
+        pass
+
+    async def _generate_profile_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de profil"""
+        pass
+
+    async def _generate_auction_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page d'enchères"""
+        pass
+
+    async def _generate_lending_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page de lending"""
+        await self._generate_lending_marketplace_2_0(project, output_dir)
+
+    async def _generate_multisig_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page multisig"""
+        pass
+
+    async def _generate_airdrop_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page d'airdrop"""
+        pass
+
+    async def _generate_marketplace_page(self, project: FrontendProject, output_dir: Path):
+        """Génère une page marketplace"""
+        await self._generate_nft_gallery(project, output_dir)
+
+    # ============================================================================
+    # TEMPLATES 2.0 - BANKING CORE (Vos templates existants, préservés)
+    # ============================================================================
+
     def _create_banking_dashboard_2_0(self) -> str:
-        """Template bancaire nouvelle génération - Type Revolut/N26"""
+        """Template bancaire nouvelle génération"""
         return '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1229,39 +1486,35 @@ export default function RootLayout({{
     </script>
 </body>
 </html>'''
-    
+
     def _create_virtual_cards(self) -> str:
         """Template de gestion de cartes virtuelles"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_savings_pods(self) -> str:
         """Template de pockets d'épargne"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_round_up_savings(self) -> str:
         """Template d'arrondi automatique"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_spending_insights(self) -> str:
         """Template d'analyse des dépenses"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_budget_forecast(self) -> str:
         """Template de prévisions budgétaires"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_bill_splitting(self) -> str:
         """Template de partage de factures"""
         return self._create_banking_dashboard_2_0()
-    
+
     def _create_direct_debit(self) -> str:
         """Template de prélèvements automatiques"""
         return self._create_banking_dashboard_2_0()
-    
-    # ------------------------------------------------------------------------
-    # TEMPLATES 2.0 - LENDING PROTOCOL
-    # ------------------------------------------------------------------------
-    
+
     def _create_lending_marketplace_2_0(self) -> str:
         """Template de marketplace de prêts P2P"""
         return '''<!DOCTYPE html>
@@ -1457,7 +1710,7 @@ export default function RootLayout({{
     </div>
 </body>
 </html>'''
-    
+
     def _create_bridge_page_2_0(self) -> str:
         """Template de bridge cross-chain"""
         return '''<!DOCTYPE html>
@@ -1566,342 +1819,23 @@ export default function RootLayout({{
     </div>
 </body>
 </html>'''
-    
+
     def _create_collateral_management(self) -> str:
         """Template de gestion de collatéral"""
         return self._create_lending_marketplace_2_0()
-    
+
     def _create_liquidation_guard(self) -> str:
         """Template de protection contre la liquidation"""
         return self._create_lending_marketplace_2_0()
-    
+
     def _create_yield_optimizer(self) -> str:
         """Template d'optimisation de rendement"""
         return self._create_lending_marketplace_2_0()
-    
+
     def _create_loan_builder(self) -> str:
         """Template de constructeur de prêts"""
         return self._create_lending_marketplace_2_0()
-    
-    def _create_credit_scoring(self) -> str:
-        """Template de score de crédit"""
-        return '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credit Score • {{PROJECT_NAME}}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-        * { font-family: 'Space Grotesk', sans-serif; }
-        .score-meter {
-            background: conic-gradient(
-                from 0deg,
-                #ef4444 0deg 72deg,
-                #f59e0b 72deg 144deg,
-                #10b981 144deg 216deg,
-                #3b82f6 216deg 288deg,
-                #8b5cf6 288deg 360deg
-            );
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-        }
-        .score-inner {
-            width: 160px;
-            height: 160px;
-            background: #0f1219;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-    </style>
-</head>
-<body class="bg-[#0A0C12] text-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Score Card -->
-            <div class="glass-card p-8">
-                <h2 class="text-2xl font-bold mb-6">📊 Web3 Credit Score</h2>
-                <div class="flex flex-col items-center">
-                    <div class="score-meter flex items-center justify-center mb-6">
-                        <div class="score-inner">
-                            <span class="text-5xl font-bold">782</span>
-                            <span class="text-sm text-gray-400">/ 850</span>
-                        </div>
-                    </div>
-                    <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm">
-                        Excellent • Top 15%
-                    </span>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4 mt-8">
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <p class="text-xs text-gray-400">Historique</p>
-                        <p class="text-lg font-bold">Excellent</p>
-                    </div>
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <p class="text-xs text-gray-400">Utilisation</p>
-                        <p class="text-lg font-bold">23%</p>
-                    </div>
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <p class="text-xs text-gray-400">Âge du compte</p>
-                        <p class="text-lg font-bold">2 ans</p>
-                    </div>
-                    <div class="p-4 bg-white/5 rounded-xl">
-                        <p class="text-xs text-gray-400">Transactions</p>
-                        <p class="text-lg font-bold">847</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Score Simulator -->
-            <div class="glass-card p-8">
-                <h2 class="text-2xl font-bold mb-6">🎯 Simulateur de score</h2>
-                <div class="space-y-6">
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2">Nouveau prêt</label>
-                        <input type="range" min="0" max="50000" value="10000" 
-                               class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between mt-2">
-                            <span class="text-xs text-gray-400">0 €</span>
-                            <span class="text-sm font-bold">10 000 €</span>
-                            <span class="text-xs text-gray-400">50 000 €</span>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm text-gray-400 mb-2">Durée</label>
-                        <div class="flex space-x-2">
-                            <button class="flex-1 px-4 py-2 bg-blue-600 rounded-lg">12 mois</button>
-                            <button class="flex-1 px-4 py-2 bg-white/10 rounded-lg">24 mois</button>
-                            <button class="flex-1 px-4 py-2 bg-white/10 rounded-lg">36 mois</button>
-                        </div>
-                    </div>
-                    
-                    <div class="p-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl">
-                        <p class="text-sm text-gray-300 mb-2">Score projeté</p>
-                        <p class="text-3xl font-bold text-blue-400">756</p>
-                        <p class="text-xs text-gray-400 mt-2">↓ -26 points (éligible)</p>
-                    </div>
-                    
-                    <button class="w-full px-6 py-3 bg-blue-600 rounded-xl font-medium hover:bg-blue-700">
-                        Simuler un emprunt
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Loan Recommendations -->
-        <div class="mt-12">
-            <h2 class="text-xl font-bold mb-6">💡 Offres personnalisées</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-2xl">🏦</span>
-                        <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Pré-approuvé</span>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Prêt personnel</h3>
-                    <p class="text-sm text-gray-400 mb-4">TAEG 3.2% • Jusqu'à 50k€</p>
-                    <p class="text-xs text-gray-400">Mensualité estimée</p>
-                    <p class="text-xl font-bold">234 €</p>
-                </div>
-                <div class="glass-card p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-2xl">🚗</span>
-                        <span class="px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Auto</span>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Prêt automobile</h3>
-                    <p class="text-sm text-gray-400 mb-4">TAEG 2.8% • Jusqu'à 30k€</p>
-                    <p class="text-xs text-gray-400">Mensualité estimée</p>
-                    <p class="text-xl font-bold">312 €</p>
-                </div>
-                <div class="glass-card p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-2xl">💎</span>
-                        <span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs">Premium</span>
-                    </div>
-                    <h3 class="text-lg font-bold mb-2">Prêt immobilier</h3>
-                    <p class="text-sm text-gray-400 mb-4">TAEG 1.8% • Jusqu'à 300k€</p>
-                    <p class="text-xs text-gray-400">Mensualité estimée</p>
-                    <p class="text-xl font-bold">1,023 €</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>'''
-    
-    def _create_nft_lending(self) -> str:
-        """Template de lending sur NFT"""
-        return '''<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFT Lending • {{PROJECT_NAME}}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#0A0C12] text-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-        <div class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-3xl font-bold mb-2">🖼️ NFT Lending</h1>
-                <p class="text-gray-400">Empruntez contre vos NFT • Floor price lending</p>
-            </div>
-            <div class="flex space-x-4">
-                <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm">
-                    TVL: $45.2M
-                </span>
-                <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm">
-                    Taux: 4.8%
-                </span>
-            </div>
-        </div>
-
-        <!-- Your NFTs -->
-        <div class="glass-card p-6 mb-8">
-            <h2 class="text-xl font-bold mb-4">Vos NFT éligibles</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white/5 rounded-xl p-4">
-                    <div class="aspect-square bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-lg mb-3 flex items-center justify-center">
-                        <span class="text-3xl">🦍</span>
-                    </div>
-                    <h3 class="font-medium text-sm">BAYC #4592</h3>
-                    <p class="text-xs text-gray-400">Bored Ape</p>
-                    <div class="flex justify-between items-center mt-3">
-                        <span class="text-sm font-bold">12.5 ETH</span>
-                        <span class="text-xs text-green-400">LTV 65%</span>
-                    </div>
-                    <button class="w-full mt-3 px-3 py-1 bg-blue-600 rounded-lg text-sm">
-                        Emprunter
-                    </button>
-                </div>
-                <div class="bg-white/5 rounded-xl p-4">
-                    <div class="aspect-square bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-lg mb-3 flex items-center justify-center">
-                        <span class="text-3xl">🎭</span>
-                    </div>
-                    <h3 class="font-medium text-sm">Art Block #123</h3>
-                    <p class="text-xs text-gray-400">Fidenza</p>
-                    <div class="flex justify-between items-center mt-3">
-                        <span class="text-sm font-bold">8.2 ETH</span>
-                        <span class="text-xs text-green-400">LTV 55%</span>
-                    </div>
-                    <button class="w-full mt-3 px-3 py-1 bg-blue-600 rounded-lg text-sm">
-                        Emprunter
-                    </button>
-                </div>
-                <div class="bg-white/5 rounded-xl p-4">
-                    <div class="aspect-square bg-gradient-to-br from-pink-500/20 to-pink-600/20 rounded-lg mb-3 flex items-center justify-center">
-                        <span class="text-3xl">👾</span>
-                    </div>
-                    <h3 class="font-medium text-sm">Azuki #789</h3>
-                    <p class="text-xs text-gray-400">Azuki</p>
-                    <div class="flex justify-between items-center mt-3">
-                        <span class="text-sm font-bold">3.8 ETH</span>
-                        <span class="text-xs text-green-400">LTV 60%</span>
-                    </div>
-                    <button class="w-full mt-3 px-3 py-1 bg-blue-600 rounded-lg text-sm">
-                        Emprunter
-                    </button>
-                </div>
-                <div class="bg-white/5 rounded-xl p-4">
-                    <div class="aspect-square bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-lg mb-3 flex items-center justify-center">
-                        <span class="text-3xl">🐧</span>
-                    </div>
-                    <h3 class="font-medium text-sm">Pudgy #3456</h3>
-                    <p class="text-xs text-gray-400">Pudgy</p>
-                    <div class="flex justify-between items-center mt-3">
-                        <span class="text-sm font-bold">1.2 ETH</span>
-                        <span class="text-xs text-green-400">LTV 70%</span>
-                    </div>
-                    <button class="w-full mt-3 px-3 py-1 bg-blue-600 rounded-lg text-sm">
-                        Emprunter
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Active Loans -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="glass-card p-6">
-                <h3 class="text-lg font-bold mb-4">📋 Vos emprunts</h3>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🦍</span>
-                            <div>
-                                <p class="font-medium">BAYC #4592</p>
-                                <p class="text-xs text-gray-400">Collatéral: 12.5 ETH</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold">8.1 ETH</p>
-                            <p class="text-xs text-green-400">65% LTV</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🎭</span>
-                            <div>
-                                <p class="font-medium">Art Block #123</p>
-                                <p class="text-xs text-gray-400">Collatéral: 8.2 ETH</p>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <p class="font-bold">4.5 ETH</p>
-                            <p class="text-xs text-yellow-400">55% LTV</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="glass-card p-6">
-                <h3 class="text-lg font-bold mb-4">📊 Market Overview</h3>
-                <div class="space-y-3">
-                    <div class="flex justify-between">
-                        <span>Blue Chip LTV</span>
-                        <span class="font-medium">65-75%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                    <div class="flex justify-between mt-3">
-                        <span>Collection LTV</span>
-                        <span class="font-medium">40-55%</span>
-                    </div>
-                    <div class="w-full bg-gray-700 rounded-full h-2">
-                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 48%"></div>
-                    </div>
-                </div>
-                
-                <div class="mt-6 p-4 bg-gradient-to-r from-yellow-900/30 to-red-900/30 rounded-xl border border-yellow-500/30">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">⚠️</span>
-                            <div>
-                                <p class="font-medium">Liquidation imminent</p>
-                                <p class="text-xs text-gray-400">BAYC #4592 • 78% LTV</p>
-                            </div>
-                        </div>
-                        <button class="px-4 py-2 bg-yellow-600 rounded-lg text-sm">
-                            Ajouter collatéral
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>'''
-    
-    # ------------------------------------------------------------------------
-    # TEMPLATES 2.0 - WEB3 INNOVATIONS
-    # ------------------------------------------------------------------------
-    
     def _create_gasless_interface(self) -> str:
         """Template de transactions gasless"""
         return '''<div class="fixed bottom-8 left-8 glass rounded-2xl p-4 w-96">
@@ -1923,7 +1857,7 @@ export default function RootLayout({{
                 Sponsoriser la transaction
             </button>
         </div>'''
-    
+
     def _create_social_recovery(self) -> str:
         """Template de récupération sociale"""
         return '''<div class="glass rounded-2xl p-6">
@@ -1953,7 +1887,7 @@ export default function RootLayout({{
             </div>
             <button class="w-full px-4 py-2 bg-blue-600 rounded-lg">Configurer recovery</button>
         </div>'''
-    
+
     def _create_passkey_auth(self) -> str:
         """Template d'authentification biométrique"""
         return '''<div class="glass-card p-6 text-center">
@@ -1969,7 +1903,7 @@ export default function RootLayout({{
                 Authentifier
             </button>
         </div>'''
-    
+
     def _create_defi_composer(self) -> str:
         """Template de composition DeFi no-code"""
         return '''<div class="glass-card p-6">
@@ -2005,11 +1939,11 @@ export default function RootLayout({{
                 </button>
             </div>
         </div>'''
-    
+
     def _create_cross_chain_swap(self) -> str:
         """Template de swap cross-chain"""
         return self._create_bridge_page_2_0()
-    
+
     def _create_session_keys(self) -> str:
         """Template de clés de session"""
         return '''<div class="glass-card p-6">
@@ -2028,332 +1962,11 @@ export default function RootLayout({{
                 </button>
             </div>
         </div>'''
-    
-    # ------------------------------------------------------------------------
-    # MÉTHODES DE GÉNÉRATION DES COMPOSANTS 2.0
-    # ------------------------------------------------------------------------
-    
-    async def _generate_banking_dashboard_2_0(self, project: FrontendProject, output_dir: Path):
-        """Génère le dashboard bancaire nouvelle génération"""
-        template = self._templates["banking_dashboard_2_0"]
-        
-        # Remplacer les variables
-        template = template.replace("{{BANK_NAME}}", project.name)
-        template = template.replace("{{USER_NAME}}", "Thomas")
-        template = template.replace("{{USER_INITIALS}}", "TD")
-        template = template.replace("{{TOTAL_BALANCE}}", "45,890")
-        template = template.replace("{{BALANCE_CHANGE}}", "2.4")
-        template = template.replace("{{ETH_BALANCE}}", "12.5")
-        template = template.replace("{{BTC_BALANCE}}", "0.45")
-        template = template.replace("{{DATE}}", datetime.now().strftime("%d %B %Y"))
-        
-        # Remplacer les couleurs
-        colors = self._agent_config["frontend"]["colors"]
-        template = template.replace("{{PRIMARY_COLOR}}", colors["primary"])
-        template = template.replace("{{SECONDARY_COLOR}}", colors["secondary"])
-        template = template.replace("{{ACCENT_COLOR}}", colors["accent"])
-        
-        component_dir = output_dir / "app" / "banking"
-        component_dir.mkdir(exist_ok=True)
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
 
-import {{ useAccount }} from 'wagmi';
-import {{ useEffect, useState }} from 'react';
-
-export default function BankingDashboard() {{
-    const {{ address, isConnected }} = useAccount();
-    
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "banking_dashboard_2_0", "path": "app/banking"})
-        self._components_generated += 1
-    
-    async def _generate_virtual_cards(self, project: FrontendProject, output_dir: Path):
-        """Génère la page de gestion de cartes virtuelles"""
-        component_dir = output_dir / "app" / "cards"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["virtual_cards"]
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function VirtualCards() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "virtual_cards", "path": "app/cards"})
-        self._components_generated += 1
-    
-    async def _generate_savings_pods(self, project: FrontendProject, output_dir: Path):
-        """Génère la page des pockets d'épargne"""
-        component_dir = output_dir / "app" / "savings"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["savings_pods"]
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function SavingsPods() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "savings_pods", "path": "app/savings"})
-        self._components_generated += 1
-    
-    async def _generate_credit_scoring(self, project: FrontendProject, output_dir: Path):
-        """Génère la page de score de crédit"""
-        component_dir = output_dir / "app" / "credit-score"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["credit_scoring"]
-        template = template.replace("{{PROJECT_NAME}}", project.name)
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function CreditScore() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "credit_scoring", "path": "app/credit-score"})
-        self._components_generated += 1
-    
-    async def _generate_nft_lending(self, project: FrontendProject, output_dir: Path):
-        """Génère la page de NFT lending"""
-        component_dir = output_dir / "app" / "nft-lending"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["nft_lending"]
-        template = template.replace("{{PROJECT_NAME}}", project.name)
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function NFTLending() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "nft_lending", "path": "app/nft-lending"})
-        self._components_generated += 1
-    
-    async def _generate_lending_marketplace_2_0(self, project: FrontendProject, output_dir: Path):
-        """Génère la marketplace de prêts"""
-        component_dir = output_dir / "app" / "lending"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["lending_marketplace_2_0"]
-        template = template.replace("{{PROTOCOL_NAME}}", f"{project.name} Lending")
-        template = template.replace("{{TVL}}", "45.2")
-        template = template.replace("{{LOAN_VOLUME}}", "28.5")
-        template = template.replace("{{VOLUME_CHANGE}}", "12.3")
-        template = template.replace("{{LENDERS}}", "1,234")
-        template = template.replace("{{BORROWERS}}", "856")
-        template = template.replace("{{AVG_RATE}}", "4.8")
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function LendingMarketplace() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "lending_marketplace_2_0", "path": "app/lending"})
-        self._components_generated += 1
-    
-    async def _generate_gasless_interface(self, project: FrontendProject, output_dir: Path):
-        """Génère le composant gasless"""
-        component_dir = output_dir / "components" / "gasless"
-        component_dir.mkdir(parents=True, exist_ok=True)
-        
-        template = self._templates["gasless_interface"]
-        
-        with open(component_dir / "GaslessTransaction.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-import {{ useState }} from 'react';
-
-export default function GaslessTransaction() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "gasless_interface", "path": "components/gasless/GaslessTransaction.tsx"})
-        self._components_generated += 1
-    
-    async def _generate_social_recovery(self, project: FrontendProject, output_dir: Path):
-        """Génère le composant social recovery"""
-        component_dir = output_dir / "components" / "security"
-        component_dir.mkdir(parents=True, exist_ok=True)
-        
-        template = self._templates["social_recovery"]
-        
-        with open(component_dir / "SocialRecovery.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function SocialRecovery() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "social_recovery", "path": "components/security/SocialRecovery.tsx"})
-        self._components_generated += 1
-    
-    async def _generate_passkey_auth(self, project: FrontendProject, output_dir: Path):
-        """Génère le composant d'authentification biométrique"""
-        component_dir = output_dir / "components" / "auth"
-        component_dir.mkdir(parents=True, exist_ok=True)
-        
-        template = self._templates["passkey_auth"]
-        
-        with open(component_dir / "PasskeyAuth.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function PasskeyAuth() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "passkey_auth", "path": "components/auth/PasskeyAuth.tsx"})
-        self._components_generated += 1
-    
-    async def _generate_defi_composer(self, project: FrontendProject, output_dir: Path):
-        """Génère le composant DeFi composer"""
-        component_dir = output_dir / "app" / "composer"
-        component_dir.mkdir(exist_ok=True)
-        
-        template = self._templates["defi_composer"]
-        
-        with open(component_dir / "page.tsx", 'w', encoding='utf-8') as f:
-            f.write(f'''"use client";
-
-export default function DeFiComposer() {{
-    return (
-        <>
-        {template}
-        </>
-    );
-}}
-''')
-        
-        project.components.append({"type": "defi_composer", "path": "app/composer"})
-        self._components_generated += 1
-    
-    # ------------------------------------------------------------------------
-    # MÉTHODES EXISTANTES (STUBS POUR COMPOSANTS EXISTANTS)
-    # ------------------------------------------------------------------------
-    
-    async def _generate_mint_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de mint NFT"""
-        # Garder le code existant - stub pour l'instant
-        pass
-    
-    async def _generate_dashboard(self, project: FrontendProject, output_dir: Path):
-        """Génère un dashboard DeFi"""
-        pass
-    
-    async def _generate_nft_gallery(self, project: FrontendProject, output_dir: Path):
-        """Génère une galerie NFT"""
-        pass
-    
-    async def _generate_token_transfer(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de transfert"""
-        pass
-    
-    async def _generate_staking_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de staking"""
-        pass
-    
-    async def _generate_governance_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de gouvernance"""
-        pass
-    
-    async def _generate_swap_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de swap"""
-        pass
-    
-    async def _generate_bridge_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de bridge"""
-        await self._generate_banking_dashboard_2_0(project, output_dir)  # Fallback
-    
-    async def _generate_analytics_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page d'analytics"""
-        pass
-    
-    async def _generate_profile_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de profil"""
-        pass
-    
-    async def _generate_auction_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page d'enchères"""
-        pass
-    
-    async def _generate_lending_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page de lending"""
-        await self._generate_lending_marketplace_2_0(project, output_dir)  # Utilise la version 2.0
-    
-    async def _generate_multisig_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page multisig"""
-        pass
-    
-    async def _generate_airdrop_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page d'airdrop"""
-        pass
-    
-    async def _generate_marketplace_page(self, project: FrontendProject, output_dir: Path):
-        """Génère une page marketplace"""
-        await self._generate_nft_gallery(project, output_dir)
-    
-    # ------------------------------------------------------------------------
+    # ============================================================================
     # MÉTHODES DE PROJET
-    # ------------------------------------------------------------------------
-    
+    # ============================================================================
+
     async def generate_project(self,
                              project_name: str,
                              contract_paths: List[str],
@@ -2379,7 +1992,7 @@ export default function DeFiComposer() {{
             raise ValueError(f"Framework {framework} non supporté")
         
         return project
-    
+
     async def deploy_to_vercel(self, project_id: str) -> Optional[str]:
         """Déploie le projet sur Vercel"""
         self._logger.info(f"🚀 Déploiement sur Vercel: {project_id}")
@@ -2391,8 +2004,6 @@ export default function DeFiComposer() {{
         project = self._projects[project_id]
         
         try:
-            import subprocess
-            
             # Vérifier si Vercel CLI est installé
             result = subprocess.run(["vercel", "--version"], capture_output=True, text=True)
             if result.returncode != 0:
@@ -2415,7 +2026,7 @@ export default function DeFiComposer() {{
             if match:
                 url = match.group(0)
                 project.deploy_url = url
-                self.stats['deployments'] += 1
+                self._stats['deployments'] += 1
                 self._logger.info(f"✅ Déployé sur: {url}")
                 return url
             
@@ -2429,7 +2040,7 @@ export default function DeFiComposer() {{
 # FONCTIONS D'USINE
 # ============================================================================
 
-def create_frontend_web3_agent(config_path: str = "") -> FrontendWeb3Agent:
+def create_frontend_web3_agent(config_path: Optional[str] = None) -> FrontendWeb3Agent:
     """Crée une instance de l'agent frontend Web3"""
     return FrontendWeb3Agent(config_path)
 
@@ -2446,11 +2057,13 @@ if __name__ == "__main__":
         agent = FrontendWeb3Agent()
         await agent.initialize()
         
-        print(f"✅ Agent version: {__version__}")
-        print(f"✅ Templates 2.0: {list(agent._templates_2_0.keys())}")
-        print(f"✅ Templates totaux: {len(agent._templates)}")
+        agent_info = agent.get_agent_info()
+        print(f"✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Templates 2.0: {len(agent_info['features']['templates_2_0'])}")
+        print(f"✅ Sous-agents: {agent_info['features']['sub_agents']}")
         
-        # Générer un projet de démonstration
+        # Test de génération
         project = await agent.generate_project(
             project_name="BankingWeb3 Demo",
             contract_paths=[],
@@ -2466,20 +2079,15 @@ if __name__ == "__main__":
             framework="nextjs"
         )
         
-        print(f"\n📦 Projet 2.0 généré!")
+        print(f"\n📦 Projet généré!")
         print(f"  📁 Output: {project.output_path}")
         print(f"  📄 Composants: {len(project.components)}")
-        print(f"\n🚀 Pour lancer le projet:")
-        print(f"  cd {project.output_path}")
-        print(f"  npm install")
-        print(f"  npm run dev")
-        print(f"\n🌐 http://localhost:3000/banking")
-        print(f"🌐 http://localhost:3000/lending")
-        print(f"🌐 http://localhost:3000/credit-score")
-        print(f"🌐 http://localhost:3000/nft-lending")
         
+        health = await agent.health_check()
+        print(f"\n❤️  Health: {health['status']}")
+        
+        await agent.shutdown()
+        print(f"\n✅ Test terminé")
         print("\n" + "="*60)
-        print("🎉 FRONTEND WEB3 AGENT 2.0 OPÉRATIONNEL !")
-        print("="*60)
     
     asyncio.run(main())

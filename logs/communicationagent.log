@@ -841,3 +841,318 @@ TypeError: '_asyncio.Task' object is not callable
 
 2026-03-05 18:45:14 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
 2026-03-05 18:45:17 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 20:55:56 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 20:55:56 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 20:55:56 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 20:56:00 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 21:02:16 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-05 21:02:16 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-05 21:02:16 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-05 21:02:18 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:32 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-06 18:37:32 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-06 18:37:32 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-06 18:37:34 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:50 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-06 18:37:50 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-06 18:37:50 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-06 18:37:52 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:51:21 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-06 18:51:21 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-06 18:51:21 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-06 18:51:24 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:21:03 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:21:03 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:21:03 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:21:07 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:27:52 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:27:52 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:27:52 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:27:54 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:36:45 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:36:45 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:36:45 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:36:47 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:43:41 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:43:41 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:43:41 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:43:44 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:52:08 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:52:08 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:52:08 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:52:10 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:59:36 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 20:59:36 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 20:59:36 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:59:39 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:10:46 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 21:10:46 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 21:10:46 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 21:10:48 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:19:19 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 21:19:19 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 21:19:19 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 21:19:21 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:26:31 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 21:26:31 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 21:26:31 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 21:26:34 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:32:39 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-09 21:32:39 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 21:32:41 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré

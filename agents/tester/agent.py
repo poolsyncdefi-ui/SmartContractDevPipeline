@@ -1,19 +1,12 @@
 """
 Agent Tester - Tests et assurance qualité
-Version: 2.2.0 (CORRIGÉE ET COMPLÈTE)
-
-CE QUE CETTE VERSION CORRIGE :
-1. Import ABSOLU de BaseAgent (plus d'erreur "from .base_agent")
-2. Structure identique à Architect qui fonctionne
-3. Toutes les méthodes requises présentes (initialize, _handle_custom_message, etc.)
-4. Gestion d'état complète (shutdown, pause, resume, health_check)
-5. Templates de tests intégrés
+Version alignée avec l'infrastructure existante
+Version: 2.2.2
 """
 
 import os
 import sys
 import yaml
-import logging
 import asyncio
 import json
 import random
@@ -25,21 +18,65 @@ from datetime import datetime, timedelta
 from enum import Enum
 
 # ============================================================================
-# CONFIGURATION DES IMPORTS (TRÈS IMPORTANT)
+# CONFIGURATION DES IMPORTS
 # ============================================================================
 
-# Ajouter le chemin racine du projet pour pouvoir importer BaseAgent
+# Ajouter le chemin racine du projet
 project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
-# ⚠️ IMPORT ABSOLU - C'EST LA CLÉ !
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
-
-logger = logging.getLogger(__name__)
+# Import absolu de BaseAgent
+from agents.base_agent.base_agent import BaseAgent, AgentStatus
 
 
 # ============================================================================
-# CLASSES DE DONNÉES (définies dans le même fichier)
+# CONSTANTES
+# ============================================================================
+
+DEFAULT_CONFIG = {
+    "agent": {
+        "name": "tester",
+        "display_name": "🧪 Agent de Tests",
+        "description": "Agent responsable des tests et de l'assurance qualité",
+        "version": "2.2.2"
+    },
+    "tester": {
+        "default_framework": "pytest",
+        "coverage_threshold": 80,
+        "performance_sla_ms": 200,
+        "output_directory": "./reports/tests",
+        "enable_parallel": True,
+        "max_workers": 4,
+        "timeout_seconds": 3600,
+        "security": {
+            "enable_static_analysis": True,
+            "enable_dynamic_analysis": True,
+            "severity_threshold": "medium"
+        }
+    },
+    "frameworks": {
+        "pytest": {
+            "enabled": True,
+            "command": "pytest",
+            "options": ["-v", "--tb=short"]
+        },
+        "jest": {
+            "enabled": True,
+            "command": "npx jest",
+            "options": ["--coverage"]
+        },
+        "hardhat": {
+            "enabled": True,
+            "command": "npx hardhat test",
+            "options": []
+        }
+    }
+}
+
+
+# ============================================================================
+# CLASSES DE DONNÉES
 # ============================================================================
 
 class TestType(Enum):
@@ -98,6 +135,20 @@ class TestCase:
             "error_message": self.error_message,
             "timestamp": self.timestamp.isoformat()
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'TestCase':
+        """Crée un cas de test depuis un dictionnaire"""
+        test = cls(
+            id=data.get("id", ""),
+            name=data.get("name", ""),
+            type=TestType(data.get("type", "unit")),
+            description=data.get("description", "")
+        )
+        test.status = TestStatus(data.get("status", "pending"))
+        test.duration_ms = data.get("duration_ms", 0.0)
+        test.error_message = data.get("error_message")
+        return test
 
 
 @dataclass
@@ -142,6 +193,21 @@ class TestSuite:
             "end_time": self.end_time.isoformat() if self.end_time else None,
             "coverage": self.coverage
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'TestSuite':
+        """Crée une suite de tests depuis un dictionnaire"""
+        suite = cls(
+            id=data.get("id", ""),
+            name=data.get("name", "")
+        )
+        suite.status = TestStatus(data.get("status", "pending"))
+        suite.coverage = data.get("coverage", 0.0)
+        
+        for test_data in data.get("test_cases", []):
+            suite.test_cases.append(TestCase.from_dict(test_data))
+        
+        return suite
 
 
 @dataclass
@@ -169,6 +235,21 @@ class SecurityFinding:
             "cve_id": self.cve_id,
             "timestamp": self.timestamp.isoformat()
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'SecurityFinding':
+        """Crée un finding de sécurité depuis un dictionnaire"""
+        finding = cls(
+            id=data.get("id", ""),
+            severity=Severity(data.get("severity", "info")),
+            type=data.get("type", ""),
+            location=data.get("location", ""),
+            description=data.get("description", ""),
+            recommendation=data.get("recommendation", "")
+        )
+        finding.swc_id = data.get("swc_id")
+        finding.cve_id = data.get("cve_id")
+        return finding
 
 
 @dataclass
@@ -212,10 +293,27 @@ class TestReport:
             "end_time": self.end_time.isoformat() if self.end_time else None,
             "environment": self.environment
         }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'TestReport':
+        """Crée un rapport de test depuis un dictionnaire"""
+        report = cls(
+            id=data.get("id", ""),
+            name=data.get("name", "")
+        )
+        report.environment = data.get("environment", {})
+        
+        for suite_data in data.get("suites", []):
+            report.suites.append(TestSuite.from_dict(suite_data))
+        
+        for finding_data in data.get("security_findings", []):
+            report.security_findings.append(SecurityFinding.from_dict(finding_data))
+        
+        return report
 
 
 # ============================================================================
-# AGENT TESTER PRINCIPAL (structure identique à Architect)
+# AGENT TESTER PRINCIPAL
 # ============================================================================
 
 class TesterAgent(BaseAgent):
@@ -232,37 +330,38 @@ class TesterAgent(BaseAgent):
     - Génération de rapports
     """
     
-    def __init__(self, config_path: Optional[str] = None):
+    def __init__(self, config_path: str = ""):
         """
         Initialise l'agent Tester.
         
         Args:
             config_path: Chemin vers le fichier de configuration
         """
-        # Déterminer le chemin de configuration
-        if config_path is None:
+        # Si aucun chemin de config n'est fourni, utiliser le chemin par défaut
+        if not config_path:
             config_path = str(project_root / "agents" / "tester" / "config.yaml")
         
         # Initialiser l'agent de base
         super().__init__(config_path)
         
-        # Configuration par défaut si nécessaire
-        if not self._agent_config:
-            self._agent_config = self._get_default_config()
+        # Charger la configuration
+        self._load_configuration()
         
-        # Configuration spécifique au Tester
-        self._tester_config = self._agent_config.get('tester', {})
+        self._logger.info("🧪 Agent Tester créé")
         
-        # État interne
-        self.test_suites: Dict[str, TestSuite] = {}
-        self.test_reports: Dict[str, TestReport] = {}
-        self.test_templates: Dict[str, str] = {}
+        # =====================================================================
+        # ÉTAT INTERNE
+        # =====================================================================
+        self._test_suites: Dict[str, TestSuite] = {}
+        self._test_reports: Dict[str, TestReport] = {}
+        self._test_templates: Dict[str, str] = {}
         self._components: Dict[str, Any] = {}
         self._initialized = False
-        self.current_report: Optional[TestReport] = None
         
-        # Statistiques
-        self.stats = {
+        # =====================================================================
+        # STATISTIQUES
+        # =====================================================================
+        self._stats = {
             'total_tests_executed': 0,
             'total_tests_passed': 0,
             'total_tests_failed': 0,
@@ -270,68 +369,50 @@ class TesterAgent(BaseAgent):
             'average_coverage': 0.0,
             'last_test_run': None,
             'test_types_run': {},
-            'frameworks_used': []
+            'frameworks_used': [],
+            'start_time': datetime.now()
         }
+        
+        # =====================================================================
+        # TÂCHES DE FOND
+        # =====================================================================
+        self._cleanup_task_obj = None  # Renommé pour éviter le conflit avec la méthode
         
         # Initialiser les templates
         self._initialize_templates()
-        
-        self._logger.info(f"✅ Agent Tester créé (config: {config_path})")
     
-    def _get_default_config(self) -> Dict[str, Any]:
-        """Configuration par défaut (si pas de fichier config.yaml)"""
-        return {
-            "agent": {
-                "name": "TesterAgent",
-                "display_name": "Agent de Test",
-                "version": "2.2.0",
-                "description": "Agent responsable des tests et de l'assurance qualité",
-                "capabilities": [
-                    "run_unit_tests",
-                    "run_integration_tests",
-                    "run_e2e_tests",
-                    "run_security_audit",
-                    "run_fuzzing",
-                    "run_performance_tests",
-                    "generate_reports"
-                ]
-            },
-            "tester": {
-                "default_framework": "pytest",
-                "coverage_threshold": 80,
-                "performance_sla_ms": 200,
-                "output_directory": "./reports/tests",
-                "enable_parallel": True,
-                "max_workers": 4,
-                "timeout_seconds": 3600,
-                "security": {
-                    "enable_static_analysis": True,
-                    "enable_dynamic_analysis": True,
-                    "severity_threshold": "medium"
-                }
-            },
-            "frameworks": {
-                "pytest": {
-                    "enabled": True,
-                    "command": "pytest",
-                    "options": ["-v", "--tb=short"]
-                },
-                "jest": {
-                    "enabled": True,
-                    "command": "npx jest",
-                    "options": ["--coverage"]
-                },
-                "hardhat": {
-                    "enabled": True,
-                    "command": "npx hardhat test",
-                    "options": []
-                }
-            }
-        }
+    def _load_configuration(self):
+        """Charge la configuration depuis le fichier YAML"""
+        try:
+            if self._config_path and os.path.exists(self._config_path):
+                with open(self._config_path, 'r', encoding='utf-8') as f:
+                    file_config = yaml.safe_load(f) or {}
+                
+                # Fusion avec la config par défaut
+                self._agent_config = self._merge_configs(DEFAULT_CONFIG, file_config)
+                self._logger.info(f"✅ Configuration chargée depuis {self._config_path}")
+            else:
+                self._logger.warning("⚠️ Fichier de configuration non trouvé, utilisation des valeurs par défaut")
+                self._agent_config = DEFAULT_CONFIG.copy()
+        except Exception as e:
+            self._logger.error(f"❌ Erreur chargement config: {e}")
+            self._agent_config = DEFAULT_CONFIG.copy()
+    
+    def _merge_configs(self, default: Dict, override: Dict) -> Dict:
+        """Fusionne deux configurations récursivement"""
+        result = default.copy()
+        
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._merge_configs(result[key], value)
+            else:
+                result[key] = value
+        
+        return result
     
     def _initialize_templates(self):
         """Initialise les templates de tests."""
-        self.test_templates = {
+        self._test_templates = {
             "unit_python": self._get_unit_python_template(),
             "unit_javascript": self._get_unit_javascript_template(),
             "integration_python": self._get_integration_python_template(),
@@ -344,7 +425,7 @@ class TesterAgent(BaseAgent):
         }
     
     # ========================================================================
-    # MÉTHODES D'INITIALISATION
+    # INITIALISATION
     # ========================================================================
     
     async def initialize(self) -> bool:
@@ -355,8 +436,13 @@ class TesterAgent(BaseAgent):
             True si l'initialisation a réussi
         """
         try:
-            self._set_status(AgentStatus.INITIALIZING)
+            self._status = AgentStatus.INITIALIZING
             self._logger.info("Initialisation de l'agent Tester...")
+            
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
             
             # Initialiser les composants
             await self._initialize_components()
@@ -364,23 +450,25 @@ class TesterAgent(BaseAgent):
             # Vérifier les frameworks disponibles
             await self._check_frameworks()
             
-            # Charger les configurations
-            await self._load_framework_configs()
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
             
-            result = await super().initialize()
-            
-            if result:
-                self._set_status(AgentStatus.READY)
-                self._initialized = True
-                self._logger.info("✅ Agent Tester prêt")
-            
-            return result
+            self._initialized = True
+            self._status = AgentStatus.READY
+            self._logger.info("✅ Agent Tester prêt")
+            return True
             
         except Exception as e:
             self._logger.error(f"❌ Erreur initialisation: {e}")
             self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
+            self._status = AgentStatus.ERROR
             return False
+    
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._cleanup_task_obj = loop.create_task(self._cleanup_task())  # Utilisation du nouvel attribut
+        self._logger.debug("🧹 Tâche de nettoyage démarrée")
     
     async def _initialize_components(self) -> bool:
         """
@@ -406,7 +494,7 @@ class TesterAgent(BaseAgent):
                     "frameworks": ["cypress", "playwright"]
                 },
                 "security_scanner": {
-                    "enabled": self._tester_config.get("security", {}).get("enable_static_analysis", True),
+                    "enabled": self._agent_config.get("tester", {}).get("security", {}).get("enable_static_analysis", True),
                     "tools": ["slither", "mythril", "semgrep"]
                 },
                 "fuzzing_engine": {
@@ -455,249 +543,59 @@ class TesterAgent(BaseAgent):
                 except:
                     self._logger.debug(f"   ⚠️ Impossible de vérifier {framework_name}")
         
-        self.stats['frameworks_used'] = available
+        self._stats['frameworks_used'] = available
         self._logger.info(f"   ✅ Frameworks disponibles: {', '.join(available) if available else 'aucun'}")
         
         return True
     
-    async def _load_framework_configs(self):
-        """Charge les configurations des frameworks."""
-        # Les configurations sont déjà dans self._agent_config
-        pass
-    
     # ========================================================================
-    # MÉTHODES DE GESTION D'ÉTAT
+    # TÂCHE DE NETTOYAGE
     # ========================================================================
     
-    async def shutdown(self) -> bool:
+    async def _cleanup_task(self):
         """
-        Arrête l'agent proprement.
+        Tâche de nettoyage périodique
         """
-        self._logger.info("Arrêt de l'agent Tester...")
-        self._set_status(AgentStatus.SHUTDOWN)
+        self._logger.info("🧹 Tâche de nettoyage démarrée")
         
-        # Sauvegarder les statistiques
-        try:
-            output_dir = Path(self._tester_config.get("output_directory", "./reports/tests"))
-            output_dir.mkdir(parents=True, exist_ok=True)
-            
-            stats_file = output_dir / "tester_stats.json"
-            with open(stats_file, 'w', encoding='utf-8') as f:
-                json.dump({
-                    "stats": self.stats,
-                    "suites_created": len(self.test_suites),
-                    "reports_generated": len(self.test_reports),
-                    "timestamp": datetime.now().isoformat()
-                }, f, indent=2)
-            self._logger.info(f"   ✓ Statistiques sauvegardées")
-        except Exception as e:
-            self._logger.warning(f"   ⚠️ Impossible de sauvegarder: {e}")
-        
-        self._logger.info("✅ Agent Tester arrêté")
-        return True
-    
-    async def pause(self) -> bool:
-        """Met l'agent en pause."""
-        self._logger.info("Pause de l'agent Tester...")
-        self._set_status(AgentStatus.PAUSED)
-        return True
-    
-    async def resume(self) -> bool:
-        """Reprend l'activité."""
-        self._logger.info("Reprise de l'agent Tester...")
-        self._set_status(AgentStatus.READY)
-        return True
-    
-    async def health_check(self) -> Dict[str, Any]:
-        """
-        Vérifie la santé de l'agent.
-        """
-        # Calculer quelques métriques
-        total_tests = self.stats['total_tests_executed']
-        success_rate = (self.stats['total_tests_passed'] / total_tests * 100) if total_tests > 0 else 0
-        
-        return {
-            "agent": self.name,
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "ready": self._status == AgentStatus.READY,
-            "initialized": self._initialized,
-            "components": list(self._components.keys()),
-            "frameworks_available": self.stats['frameworks_used'],
-            "stats": {
-                "total_tests": self.stats['total_tests_executed'],
-                "success_rate": f"{success_rate:.1f}%",
-                "vulnerabilities_found": self.stats['total_security_findings'],
-                "average_coverage": f"{self.stats['average_coverage']:.1f}%"
-            },
-            "last_test_run": self.stats['last_test_run'],
-            "timestamp": datetime.now().isoformat()
-        }
-    
-    def get_agent_info(self) -> Dict[str, Any]:
-        """
-        Retourne les informations de l'agent.
-        """
-        return {
-            "id": self.name,
-            "name": "TesterAgent",
-            "display_name": "Agent de Test",
-            "version": self._agent_config.get("agent", {}).get("version", "2.2.0"),
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "capabilities": self._agent_config.get("agent", {}).get("capabilities", []),
-            "test_types": [t.value for t in TestType],
-            "frameworks": list(self._agent_config.get("frameworks", {}).keys()),
-            "templates": list(self.test_templates.keys())
-        }
-    
-    # ========================================================================
-    # GESTION DES MESSAGES
-    # ========================================================================
-    
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """
-        Gère les messages personnalisés.
-        
-        Args:
-            message: Message reçu
-            
-        Returns:
-            Réponse ou None
-        """
-        try:
-            msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type}")
-            
-            if msg_type == "run_tests":
-                # Exécuter des tests
-                test_spec = message.content.get("test_spec", {})
-                result = await self.run_tests(test_spec)
+        while self._status == AgentStatus.READY:
+            try:
+                # Nettoyage toutes les heures
+                await asyncio.sleep(3600)
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="test_results",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "security_audit":
-                # Exécuter un audit de sécurité
-                target = message.content.get("target", {})
-                result = await self.security_audit(target)
+                self._logger.debug("Nettoyage périodique...")
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="audit_results",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "fuzzing":
-                # Exécuter des tests de fuzzing
-                params = message.content.get("params", {})
-                result = await self.run_fuzzing(params)
+                tester_config = self._agent_config.get("tester", {})
+                output_dir = Path(tester_config.get("output_directory", "./reports/tests"))
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="fuzzing_results",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "performance_test":
-                # Exécuter des tests de performance
-                params = message.content.get("params", {})
-                result = await self.run_performance_test(params)
+                # Nettoyer les vieux rapports (> 30 jours)
+                if output_dir.exists():
+                    cutoff = datetime.now() - timedelta(days=30)
+                    for report_file in output_dir.glob("*.json"):
+                        try:
+                            mtime = datetime.fromtimestamp(report_file.stat().st_mtime)
+                            if mtime < cutoff:
+                                report_file.unlink()
+                                self._logger.debug(f"🗑️ Rapport supprimé: {report_file.name}")
+                        except Exception as e:
+                            self._logger.error(f"Erreur suppression {report_file}: {e}")
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="performance_results",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "get_coverage":
-                # Obtenir la couverture de code
-                target = message.content.get("target", "all")
-                result = await self.get_coverage(target)
+                # Nettoyer les vieux rapports HTML (> 30 jours)
+                for report_file in output_dir.glob("*.html"):
+                    try:
+                        mtime = datetime.fromtimestamp(report_file.stat().st_mtime)
+                        if mtime < cutoff:
+                            report_file.unlink()
+                            self._logger.debug(f"🗑️ Rapport HTML supprimé: {report_file.name}")
+                    except Exception as e:
+                        self._logger.error(f"Erreur suppression {report_file}: {e}")
                 
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="coverage_report",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "generate_report":
-                # Générer un rapport
-                report_spec = message.content.get("report_spec", {})
-                result = await self.generate_report(report_spec)
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="report_generated",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "get_test_templates":
-                # Retourner les templates disponibles
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"templates": list(self.test_templates.keys())},
-                    message_type="templates_list",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "pause":
-                await self.pause()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "paused"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "resume":
-                await self.resume()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "resumed"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "shutdown":
-                await self.shutdown()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "shutdown"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            # Si le type de message n'est pas reconnu
-            self._logger.warning(f"Type de message non supporté: {msg_type}")
-            return None
-            
-        except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
-                correlation_id=message.message_id
-            )
+            except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de nettoyage arrêtée")
+                break
+            except Exception as e:
+                self._logger.error(f"❌ Erreur dans la tâche de nettoyage: {e}")
+                await asyncio.sleep(60)
     
     # ========================================================================
     # MÉTHODES FONCTIONNELLES PRINCIPALES
@@ -743,17 +641,16 @@ class TesterAgent(BaseAgent):
                 
                 try:
                     # Simuler l'exécution du test
-                    # Dans une vraie implémentation, on appellerait le framework approprié
                     await asyncio.sleep(0.1)  # Simulation
                     
                     # 90% de chance de succès pour la simulation
                     if random.random() < 0.9:
                         test_case.status = TestStatus.PASSED
-                        self.stats['total_tests_passed'] += 1
+                        self._stats['total_tests_passed'] += 1
                     else:
                         test_case.status = TestStatus.FAILED
                         test_case.error_message = "Assertion error: expected True, got False"
-                        self.stats['total_tests_failed'] += 1
+                        self._stats['total_tests_failed'] += 1
                     
                     test_case.duration_ms = random.uniform(10, 500)
                     
@@ -761,28 +658,28 @@ class TesterAgent(BaseAgent):
                     test_case.status = TestStatus.ERROR
                     test_case.error_message = str(e)
                     test_case.stack_trace = traceback.format_exc()
-                    self.stats['total_tests_failed'] += 1
+                    self._stats['total_tests_failed'] += 1
                 
                 suite.add_test(test_case)
-                self.stats['total_tests_executed'] += 1
+                self._stats['total_tests_executed'] += 1
             
             # Mettre à jour les statistiques par type
             type_str = test_type.value
-            self.stats['test_types_run'][type_str] = self.stats['test_types_run'].get(type_str, 0) + 1
+            self._stats['test_types_run'][type_str] = self._stats['test_types_run'].get(type_str, 0) + 1
             
             # Calculer la couverture (simulation)
             suite.coverage = random.uniform(70, 95)
-            self.stats['average_coverage'] = (
-                (self.stats['average_coverage'] * (self.stats['total_tests_executed'] - len(test_cases)) +
-                 suite.coverage * len(test_cases)) / self.stats['total_tests_executed']
+            self._stats['average_coverage'] = (
+                (self._stats['average_coverage'] * (self._stats['total_tests_executed'] - len(test_cases)) +
+                 suite.coverage * len(test_cases)) / self._stats['total_tests_executed']
             )
             
             suite.end_time = datetime.now()
             suite.status = TestStatus.PASSED if suite.get_stats()['failed'] == 0 else TestStatus.FAILED
             
             # Stocker la suite
-            self.test_suites[suite_id] = suite
-            self.stats['last_test_run'] = datetime.now().isoformat()
+            self._test_suites[suite_id] = suite
+            self._stats['last_test_run'] = datetime.now().isoformat()
             
             # Retourner les résultats
             return {
@@ -848,7 +745,7 @@ class TesterAgent(BaseAgent):
                 findings.append(finding)
             
             # Mettre à jour les stats
-            self.stats['total_security_findings'] += len(findings)
+            self._stats['total_security_findings'] += len(findings)
             
             # Compter par sévérité
             by_severity = {
@@ -953,7 +850,8 @@ class TesterAgent(BaseAgent):
             p95_response_time = avg_response_time * random.uniform(1.5, 2.5)
             throughput = num_requests / (avg_response_time / 1000) * concurrency
             
-            sla_ms = self._tester_config.get('performance_sla_ms', 200)
+            tester_config = self._agent_config.get("tester", {})
+            sla_ms = tester_config.get('performance_sla_ms', 200)
             sla_violations = sum(1 for _ in range(int(num_requests * 0.05)) if random.random() < 0.1)
             
             return {
@@ -1036,10 +934,10 @@ class TesterAgent(BaseAgent):
             )
             
             # Inclure les suites demandées
-            suite_ids = report_spec.get('suite_ids', list(self.test_suites.keys())[-5:])
+            suite_ids = report_spec.get('suite_ids', list(self._test_suites.keys())[-5:])
             for suite_id in suite_ids:
-                if suite_id in self.test_suites:
-                    report.suites.append(self.test_suites[suite_id])
+                if suite_id in self._test_suites:
+                    report.suites.append(self._test_suites[suite_id])
             
             # Simuler des findings de sécurité si demandé
             if report_spec.get('include_security', True):
@@ -1058,10 +956,11 @@ class TesterAgent(BaseAgent):
             report.end_time = datetime.now()
             
             # Sauvegarder le rapport
-            self.test_reports[report_id] = report
+            self._test_reports[report_id] = report
             
             # Sauvegarder sur disque
-            output_dir = Path(self._tester_config.get("output_directory", "./reports/tests"))
+            tester_config = self._agent_config.get("tester", {})
+            output_dir = Path(tester_config.get("output_directory", "./reports/tests"))
             output_dir.mkdir(parents=True, exist_ok=True)
             
             report_file = output_dir / f"{report_id}.json"
@@ -1240,7 +1139,7 @@ class TestIntegration:
     
     def test_error_handling_propagates(self):
         """Test that errors are properly handled across components."""
-        with pytest.raises(IntegrationError):
+        with pytest.raises(Exception):
             self.component_a.trigger_error()
             self.component_b.handle_error()
 '''
@@ -1545,29 +1444,272 @@ test_suites:
         expected_status: 400
         expected_schema: "error_schema.json"
 '''
+    
+    # ========================================================================
+    # GESTION DES MESSAGES
+    # ========================================================================
+    
+    async def _handle_custom_message(self, message: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Gère les messages personnalisés.
+        
+        Args:
+            message: Message reçu
+            
+        Returns:
+            Réponse
+        """
+        msg_type = message.get("type", "")
+        msg_id = message.get("message_id", "unknown")
+        
+        self._logger.debug(f"📨 Message reçu: {msg_type} (id: {msg_id})")
+        
+        try:
+            if msg_type == "run_tests":
+                result = await self.run_tests(message.get("test_spec", {}))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "security_audit":
+                result = await self.security_audit(message.get("target", {}))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "run_fuzzing":
+                result = await self.run_fuzzing(message.get("params", {}))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "run_performance_test":
+                result = await self.run_performance_test(message.get("params", {}))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "get_coverage":
+                result = await self.get_coverage(message.get("target", "all"))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "generate_report":
+                result = await self.generate_report(message.get("report_spec", {}))
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "result": result
+                }
+            
+            elif msg_type == "get_test_templates":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "templates": list(self._test_templates.keys())
+                }
+            
+            elif msg_type == "get_test_suites":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "suites": [s.to_dict() for s in self._test_suites.values()]
+                }
+            
+            elif msg_type == "get_test_reports":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "reports": [r.to_dict() for r in self._test_reports.values()]
+                }
+            
+            elif msg_type == "ping":
+                return {
+                    "message_id": msg_id,
+                    "success": True,
+                    "pong": True,
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            else:
+                self._logger.warning(f"⚠️ Type de message non supporté: {msg_type}")
+                return {
+                    "message_id": msg_id,
+                    "success": False,
+                    "error": f"Type de message non supporté: {msg_type}"
+                }
+                
+        except Exception as e:
+            self._logger.error(f"❌ Erreur traitement message {msg_type}: {e}")
+            self._logger.error(traceback.format_exc())
+            return {
+                "message_id": msg_id,
+                "success": False,
+                "error": str(e)
+            }
+    
+    # ========================================================================
+    # GESTION DU CYCLE DE VIE
+    # ========================================================================
+    
+    async def shutdown(self) -> bool:
+        """
+        Arrête l'agent proprement.
+        """
+        self._logger.info("Arrêt de l'agent Tester...")
+        self._status = AgentStatus.SHUTTING_DOWN
+        
+        # Arrêter la tâche de nettoyage
+        if self._cleanup_task_obj and not self._cleanup_task_obj.done():
+            self._cleanup_task_obj.cancel()
+            try:
+                await self._cleanup_task_obj
+            except asyncio.CancelledError:
+                pass
+        
+        # Sauvegarder les statistiques
+        try:
+            tester_config = self._agent_config.get("tester", {})
+            output_dir = Path(tester_config.get("output_directory", "./reports/tests"))
+            output_dir.mkdir(parents=True, exist_ok=True)
+            
+            stats_file = output_dir / f"tester_stats_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(stats_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "stats": self._stats,
+                    "suites_created": len(self._test_suites),
+                    "reports_generated": len(self._test_reports),
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2)
+            self._logger.info(f"   ✓ Statistiques sauvegardées: {stats_file}")
+        except Exception as e:
+            self._logger.warning(f"   ⚠️ Impossible de sauvegarder: {e}")
+        
+        # Appeler la méthode parent
+        await super().shutdown()
+        
+        self._logger.info("✅ Agent Tester arrêté")
+        return True
+    
+    async def pause(self) -> bool:
+        """Met l'agent en pause."""
+        self._logger.info("Pause de l'agent Tester...")
+        self._status = AgentStatus.PAUSED
+        return True
+    
+    async def resume(self) -> bool:
+        """Reprend l'activité."""
+        self._logger.info("Reprise de l'agent Tester...")
+        self._status = AgentStatus.READY
+        return True
+    
+    # ========================================================================
+    # HEALTH CHECK & INFO
+    # ========================================================================
+    
+    async def health_check(self) -> Dict[str, Any]:
+        """
+        Vérifie la santé de l'agent.
+        """
+        # Calculer quelques métriques
+        total_tests = self._stats['total_tests_executed']
+        success_rate = (self._stats['total_tests_passed'] / total_tests * 100) if total_tests > 0 else 0
+        
+        # Calculer l'uptime
+        uptime = (datetime.now() - self._stats["start_time"]).total_seconds()
+        
+        return {
+            "agent": self._name,
+            "display_name": self._agent_config.get('agent', {}).get('display_name', '🧪 Agent de Tests'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "ready": self._status == AgentStatus.READY,
+            "initialized": self._initialized,
+            "uptime_seconds": uptime,
+            "uptime_formatted": str(timedelta(seconds=int(uptime))),
+            "components": list(self._components.keys()),
+            "frameworks_available": self._stats['frameworks_used'],
+            "stats": {
+                "total_tests": self._stats['total_tests_executed'],
+                "success_rate": f"{success_rate:.1f}%",
+                "vulnerabilities_found": self._stats['total_security_findings'],
+                "average_coverage": f"{self._stats['average_coverage']:.1f}%"
+            },
+            "suites_count": len(self._test_suites),
+            "reports_count": len(self._test_reports),
+            "last_test_run": self._stats['last_test_run']
+        }
+    
+    def get_agent_info(self) -> Dict[str, Any]:
+        """
+        Retourne les informations de l'agent.
+        """
+        agent_config = self._agent_config.get('agent', {})
+        return {
+            "id": self._name,
+            "name": "🧪 Agent de Tests",
+            "display_name": agent_config.get('display_name', '🧪 Agent de Tests'),
+            "version": agent_config.get('version', '2.2.2'),
+            "description": agent_config.get('description', 'Agent responsable des tests et de l\'assurance qualité'),
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "capabilities": ["unit_testing", "integration_testing", "e2e_testing", "security_testing", "performance_testing", "fuzzing", "report_generation"],
+            "test_types": [t.value for t in TestType],
+            "frameworks": list(self._agent_config.get("frameworks", {}).keys()),
+            "templates": list(self._test_templates.keys()),
+            "stats": {
+                "total_tests": self._stats['total_tests_executed'],
+                "total_security_findings": self._stats['total_security_findings'],
+                "average_coverage": round(self._stats['average_coverage'], 1)
+            }
+        }
+
+
+# ============================================================================
+# FONCTIONS D'USINE
+# ============================================================================
+
+def create_tester_agent(config_path: str = "") -> TesterAgent:
+    """Crée une instance de l'agent Tester"""
+    return TesterAgent(config_path)
+
+
+async def get_tester_agent(config_path: str = "") -> TesterAgent:
+    """Crée et initialise une instance de l'agent Tester"""
+    agent = create_tester_agent(config_path)
+    await agent.initialize()
+    return agent
 
 
 # ============================================================================
 # POINT D'ENTRÉE POUR TEST
 # ============================================================================
 
-async def test_tester_agent():
-    """Test simple de l'agent Tester."""
-    print("\n" + "="*70)
-    print("🧪 Test de l'agent Tester")
-    print("="*70)
-    
-    # 1. Créer l'agent
-    agent = TesterAgent()
-    print(f"\n📦 Agent créé: {agent.name}")
-    print(f"   Version: {agent.get_agent_info()['version']}")
-    
-    # 2. Initialiser
-    success = await agent.initialize()
-    print(f"\n🔄 Initialisation: {'✅' if success else '❌'}")
-    
-    if success:
-        # 3. Tester les différentes fonctionnalités
+if __name__ == "__main__":
+    async def main():
+        print("\n" + "=" * 70)
+        print("🧪 TEST DE L'AGENT TESTER".center(70))
+        print("=" * 70)
+        
+        # Créer et initialiser l'agent
+        agent = await get_tester_agent()
+        
+        agent_info = agent.get_agent_info()
+        print(f"\n✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Templates: {len(agent_info['templates'])}")
+        print(f"✅ Frameworks: {', '.join(agent_info['frameworks'])}")
+        
+        # Tester les différentes fonctionnalités
         print(f"\n📊 Exécution des tests de démonstration...")
         
         # Test unitaire
@@ -1590,16 +1732,16 @@ async def test_tester_agent():
         # Générer un rapport
         report = await agent.generate_report({"name": "Rapport de démonstration"})
         print(f"   📄 Rapport généré: {report['report_id']}")
+        
+        # Health check
+        health = await agent.health_check()
+        print(f"\n❤️  Health: {health['status']}")
+        print(f"   Tests exécutés: {health['stats']['total_tests']}")
+        print(f"   Taux de succès: {health['stats']['success_rate']}")
+        
+        # Arrêter
+        await agent.shutdown()
+        print(f"\n👋 Agent arrêté")
+        print("\n" + "=" * 70)
     
-    # 4. Health check
-    health = await agent.health_check()
-    print(f"\n❤️  Health: {health['status']}")
-    print(f"   Tests exécutés: {health['stats']['total_tests']}")
-    
-    # 5. Arrêter
-    await agent.shutdown()
-    print(f"\n👋 Agent arrêté")
-    print("\n" + "="*70)
-
-if __name__ == "__main__":
-    asyncio.run(test_tester_agent())
+    asyncio.run(main())

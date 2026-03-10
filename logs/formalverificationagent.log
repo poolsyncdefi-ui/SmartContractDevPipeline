@@ -855,3 +855,317 @@ TypeError: 'NoneType' object is not callable
 2026-03-05 18:45:15 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
 2026-03-05 18:45:17 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
 2026-03-05 18:45:20 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-05 20:55:56 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-05 20:55:57 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-05 20:55:57 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-05 20:55:57 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-05 20:55:57 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-05 20:56:00 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-05 20:56:01 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-05 21:02:16 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-05 21:02:18 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-05 21:02:19 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:37:32 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-06 18:37:34 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-06 18:37:35 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:37:50 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-06 18:37:52 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-06 18:37:53 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-06 18:51:21 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-06 18:51:22 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-06 18:51:24 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-06 18:51:25 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:21:03 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:21:03 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:21:03 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:21:04 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 20:21:07 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:21:08 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:27:52 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 20:27:54 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:27:55 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - ERROR - Erreur lors de l'initialisation: 'NoneType' object is not callable
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\agent.py", line 353, in _start_background_tasks
+    self._cleanup_task = loop.create_task(self._cleanup_task())
+                                          ^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object is not callable
+
+2026-03-09 20:36:45 - agent.FormalVerificationAgent - INFO - Changement de statut: ready -> error
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 20:43:41 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:43:42 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 20:43:44 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:43:44 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:43:45 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:43:45 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:52:08 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 20:52:10 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:52:10 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:52:11 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:52:11 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 20:59:36 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 20:59:37 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 20:59:39 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:59:39 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 20:59:40 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 20:59:40 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:10:46 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 21:10:48 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:10:48 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:10:49 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:10:49 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:19:19 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 21:19:21 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:19:21 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:19:22 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:19:22 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 21:26:31 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:26:32 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 21:26:34 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:26:34 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:26:35 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:26:35 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Configuration chargée: formal_verification v2.0.0
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Agent formal_verification créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml)
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\formal_verification\config.yaml
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - 🔬 Agent vérification formelle créé
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - 🔬 Initialisation de l'agent Vérification Formelle...
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Initialisation de l'agent formal_verification...
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Vérification des dépendances: ['smart_contract', 'tester']
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Agent formal_verification initialisé avec succès
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Vérification des outils de vérification formelle...
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Certora Prover: ✅
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Halo2: ❌
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Mythril: ❌
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - Initialisation des composants...
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - ✅ Composants: ['spec_generator', 'certora_integrator', 'halo2_integrator', 'mythril_integrator', 'proof_generator', 'certificate_generator']
+2026-03-09 21:32:39 - agent.FormalVerificationAgent - INFO - ✅ Agent Vérification Formelle prêt
+2026-03-09 21:32:41 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:32:41 - agent.FormalVerificationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-09 21:32:42 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-09 21:32:42 - agent.FormalVerificationAgent - INFO - 🛑 Tâche de nettoyage arrêtée

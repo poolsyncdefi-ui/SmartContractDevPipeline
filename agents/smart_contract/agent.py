@@ -1,13 +1,6 @@
 """
 Smart Contract Agent - Agent de développement de contrats intelligents
-Version: 2.5.0 (CORRIGÉE ET ALIGNÉE)
-
-CE QUE CETTE VERSION CORRIGE :
-1. Ajout de await devant _initialize_components() (ligne 133)
-2. Structure identique à architect/coder qui fonctionnent
-3. Import ABSOLU de BaseAgent
-4. Toutes les classes de données DANS le même fichier
-5. Gestion d'état complète (shutdown, pause, resume, health_check)
+Version: 2.6.0 (ALIGNÉ SUR CODER/ARCHITECT)
 """
 
 import logging
@@ -102,7 +95,7 @@ class DeploymentInfo:
 
 
 # ============================================================================
-# AGENT PRINCIPAL
+# AGENT PRINCIPAL (ALIGNÉ SUR CODER/ARCHITECT)
 # ============================================================================
 
 class SmartContractAgent(BaseAgent):
@@ -110,33 +103,35 @@ class SmartContractAgent(BaseAgent):
     Agent spécialisé dans le développement, audit, optimisation et déploiement
     de smart contracts sécurisés et efficaces pour applications DeFi et Web3
     """
-    
+
     def __init__(self, config_path: Optional[str] = None):
         """
         Initialise l'agent smart contract
-        
+
         Args:
             config_path: Chemin vers le fichier de configuration YAML
         """
         if config_path is None:
             config_path = str(project_root / "agents" / "smart_contract" / "config.yaml")
-        
+
+        # Initialiser l'agent de base
         super().__init__(config_path)
-        
-        # Configuration par défaut
-        if not self._agent_config:
-            self._agent_config = self._get_default_config()
-        
+
+        # Configuration spécifique
+        self._contract_config = self._agent_config.get('configuration', {})
+        self._display_name = self._agent_config.get('agent', {}).get('display_name', '📜 Agent Smart Contract')
+
         # État interne
         self._contracts_generated = 0
         self._audits_performed = 0
         self._deployments: List[DeploymentInfo] = []
         self._templates: Dict[str, ContractTemplate] = {}
+        self._sub_agents: Dict[str, Any] = {}
         self._components: Dict[str, Any] = {}
         self._initialized = False
-        
-        # Statistiques
-        self.stats = {
+
+        # Statistiques internes
+        self._stats = {
             'total_contracts': 0,
             'total_audits': 0,
             'total_deployments': 0,
@@ -146,223 +141,83 @@ class SmartContractAgent(BaseAgent):
             'high_findings': 0,
             'medium_findings': 0,
             'low_findings': 0,
-            'last_contract': None,
-            'last_audit': None,
-            'last_deployment': None
+            'uptime_start': datetime.now()
         }
-        
-        # Charger la configuration
-        self._load_configuration()
-        
-        # Charger les capacités
-        self._load_capabilities()
-        
+
         self._logger.info(f"📜 Agent Smart Contract créé - v{self._version}")
 
-    def _get_default_config(self) -> Dict[str, Any]:
-        """Configuration par défaut"""
-        return {
-            "agent": {
-                "name": "SmartContractAgent",
-                "display_name": "📜 Agent Smart Contract",
-                "version": "2.5.0",
-                "description": "Développement, audit et déploiement de smart contracts",
-                "capabilities": [
-                    {"name": "generate_erc20", "description": "Génère un contrat ERC20"},
-                    {"name": "generate_erc721", "description": "Génère un contrat ERC721"},
-                    {"name": "generate_erc1155", "description": "Génère un contrat ERC1155"},
-                    {"name": "generate_erc4626", "description": "Génère un contrat ERC4626"},
-                    {"name": "audit_contract", "description": "Audite un contrat"},
-                    {"name": "deploy_contract", "description": "Déploie un contrat"},
-                    {"name": "optimize_gas", "description": "Optimise la consommation de gas"},
-                    {"name": "design_upgradeability", "description": "Conçoit un pattern d'upgradeability"}
-                ],
-                "dependencies": ["architect", "coder", "tester"]
-            },
-            "supported_standards": {
-                "token_standards": ["ERC20", "ERC721", "ERC1155", "ERC4626"],
-                "security_standards": ["ERC165", "ERC2981", "EIP1967"]
-            },
-            "development_frameworks": {
-                "primary": ["hardhat", "foundry", "truffle"],
-                "verification": ["etherscan", "sourcify", "tenderly"]
-            },
-            "network_support": {
-                "ethereum": ["mainnet", "sepolia", "goerli"],
-                "polygon": ["mainnet", "mumbai"],
-                "arbitrum": ["mainnet", "goerli"],
-                "optimism": ["mainnet", "goerli"],
-                "bnb": ["mainnet", "testnet"]
-            },
-            "security_requirements": {
-                "audit_requirements": "high",
-                "minimum_coverage": 95,
-                "required_checks": [
-                    "reentrancy",
-                    "overflow",
-                    "access_control",
-                    "timestamp_dependence"
-                ]
-            },
-            "gas_optimization_targets": {
-                "deployment": "standard",
-                "execution": "aggressive"
-            },
-            "validation_rules": [
-                "no_hardcoded_addresses",
-                "events_for_state_changes",
-                "natspec_documentation",
-                "openzeppelin_imports"
-            ]
-        }
-
-    def _load_configuration(self):
-        """Charge la configuration depuis le fichier YAML"""
-        try:
-            # NE PAS utiliser self._agent_config.get("config_path")
-            # Utiliser plutôt le chemin standard
-            config_path = Path(__file__).parent / "config.yaml"
-            
-            if config_path.exists():
-                with open(config_path, 'r', encoding='utf-8') as f:
-                    file_config = yaml.safe_load(f)
-                    if file_config:
-                        # Fusionner avec la config existante
-                        self._deep_merge(self._agent_config, file_config)
-                        
-                        # Extraire les métadonnées
-                        agent_info = file_config.get('agent', {})
-                        self._name = agent_info.get('name', self._name)
-                        self._display_name = agent_info.get('display_name', self._display_name)
-                        self._description = agent_info.get('description', self._description)
-                        self._version = agent_info.get('version', self._version)
-                        
-                        self._logger.info(f"✅ Configuration chargée: {self._name} v{self._version}")
-            else:
-                self._logger.warning(f"⚠️ Fichier de configuration non trouvé: {config_path}")
-                
-        except PermissionError:
-            self._logger.error(f"❌ Permission refusée pour lire {config_path}")
-        except Exception as e:
-            self._logger.warning(f"⚠️ Erreur chargement config: {e}")
-
-    def _load_capabilities(self):
-        """Charge les capacités depuis la configuration"""
-        if self._agent_config and 'agent' in self._agent_config:
-            agent_config = self._agent_config['agent']
-            capabilities = agent_config.get('capabilities', [])
-            # Extraire les noms des capacités
-            self._capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
-            self._logger.info(f"✅ {len(self._capabilities)} capacités chargées")
-
-    def _deep_merge(self, base: Dict, override: Dict) -> None:
-        """Fusionne profondément deux dictionnaires"""
-        for key, value in override.items():
-            if key in base and isinstance(base[key], dict) and isinstance(value, dict):
-                self._deep_merge(base[key], value)
-            else:
-                base[key] = value
-
     # ========================================================================
-    # MÉTHODES D'INITIALISATION
+    # MÉTHODES D'INITIALISATION (ALIGNÉES)
     # ========================================================================
 
     async def initialize(self) -> bool:
         """Initialisation asynchrone de l'agent"""
-        try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation de l'agent Smart Contract...")
-            
-            # Initialiser les composants
-            await self._initialize_components()  # ← CORRIGÉ : ajout de await !
-            
-            # Charger les templates
-            await self._load_templates()
-            
-            # Vérifier les dépendances
-            await self._check_dependencies()
-            
-            self._logger.info("Agent Smart Contract initialisé")
-            
-            result = await super().initialize()
-            
-            if result:
-                self._set_status(AgentStatus.READY)
-                self._initialized = True
-                self._logger.info("✅ Agent Smart Contract prêt")
-            
-            return result
-            
-        except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._logger.error(traceback.format_exc())
-            self._set_status(AgentStatus.ERROR)
-            return False
+        self._logger.info("📜 Initialisation du Smart Contract Agent...")
+        return await super().initialize()
 
     async def _initialize_components(self) -> bool:
-        """Initialise les composants internes"""
+        """
+        Initialise les composants spécifiques.
+        Appelé par BaseAgent.initialize().
+        """
         try:
-            self._logger.info("Initialisation des composants...")
-            
+            self._logger.info("Initialisation des composants Smart Contract...")
+
+            # Charger les templates
+            await self._load_templates()
+
+            # Initialiser les sous-agents
+            await self._initialize_sub_agents()
+
+            # Initialiser les composants
             self._components = {
                 "contract_generator": {
                     "enabled": True,
-                    "standards": self._agent_config.get('supported_standards', {}).get('token_standards', []),
-                    "templates": ["ERC20", "ERC721", "ERC1155", "ERC4626"]
+                    "standards": self._contract_config.get('supported_standards', {}).get('token_standards', []),
                 },
                 "audit_engine": {
                     "enabled": True,
-                    "security_checks": self._agent_config.get('security_requirements', {}).get('required_checks', []),
-                    "min_coverage": self._agent_config.get('security_requirements', {}).get('minimum_coverage', 95)
+                    "security_checks": self._contract_config.get('security_requirements', {}).get('required_checks', []),
                 },
-                "gas_optimizer": {
-                    "enabled": True,
-                    "techniques": [
-                        "storage_packing",
-                        "memory_vs_storage",
-                        "loop_optimization",
-                        "assembly_inlining",
-                        "batch_operations"
-                    ]
-                },
-                "deployment_manager": {
-                    "enabled": True,
-                    "networks": self._agent_config.get('network_support', {}),
-                    "verification_services": self._agent_config.get('development_frameworks', {}).get('verification', [])
-                },
-                "upgradeability_designer": {
-                    "enabled": True,
-                    "patterns": ["UUPS", "Transparent", "Beacon", "Diamond"],
-                    "standards": ["EIP-1967", "EIP-2535"]
-                }
+                "gas_optimizer": {"enabled": True},
+                "deployment_manager": {"enabled": True},
+                "upgradeability_designer": {"enabled": True}
             }
-            
+
             self._logger.info(f"✅ Composants: {list(self._components.keys())}")
+            self._initialized = True
             return True
-            
+
         except Exception as e:
             self._logger.error(f"Erreur composants: {e}")
             return False
 
-    async def _check_dependencies(self) -> bool:
-        """Vérifie les dépendances"""
-        dependencies = self._agent_config.get('agent', {}).get('dependencies', [])
-        self._logger.info(f"Vérification des dépendances: {dependencies}")
-        
-        all_ok = True
-        for dep in dependencies:
+    async def _initialize_sub_agents(self):
+        """Initialise les sous-agents spécialisés"""
+        try:
+            # Tentative d'import des sous-agents (optionnel)
             try:
-                if dep == "architect":
-                    from agents.architect.agent import ArchitectAgent
-                elif dep == "coder":
-                    from agents.coder.agent import CoderAgent
-                elif dep == "tester":
-                    from agents.tester.agent import TesterAgent
-                self._logger.debug(f"✅ Dépendance {dep}: OK")
-            except ImportError:
-                self._logger.warning(f"⚠️ Dépendance {dep}: Non disponible (optionnelle)")
-        
-        return True
+                from .sous_agents import (
+                    SolidityExpertSubAgent,
+                    SecurityExpertSubAgent,
+                    GasOptimizerSubAgent,
+                    FormalVerificationSubAgent
+                )
+
+                self._sub_agents = {
+                    "solidity": SolidityExpertSubAgent(),
+                    "security": SecurityExpertSubAgent(),
+                    "gas": GasOptimizerSubAgent(),
+                    "formal": FormalVerificationSubAgent()
+                }
+                self._logger.info(f"✅ Sous-agents: {list(self._sub_agents.keys())}")
+            except ImportError as e:
+                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
+                self._sub_agents = {}
+
+        except Exception as e:
+            self._logger.error(f"Erreur sous-agents: {e}")
+            self._sub_agents = {}
 
     async def _load_templates(self):
         """Charge les templates de contrats"""
@@ -396,210 +251,214 @@ class SmartContractAgent(BaseAgent):
                 description="Tokenized Vault ERC4626"
             )
         }
-        
         self._logger.info(f"📋 {len(self._templates)} templates chargés")
 
     # ========================================================================
-    # MÉTHODES DE GESTION D'ÉTAT
+    # MÉTHODES DE GESTION D'ÉTAT (ALIGNÉES)
     # ========================================================================
 
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent Smart Contract...")
-        self._set_status(AgentStatus.SHUTDOWN)
-        
+        return await super().shutdown()
+
+    async def _cleanup(self):
+        """Nettoie les ressources spécifiques"""
+        self._logger.info("Nettoyage des ressources Smart Contract...")
+
         # Sauvegarder les statistiques
         try:
             stats_file = Path("./reports") / "smart_contract_stats.json"
             stats_file.parent.mkdir(parents=True, exist_ok=True)
             with open(stats_file, 'w', encoding='utf-8') as f:
                 json.dump({
-                    "stats": self.stats,
+                    "stats": self._stats,
                     "contracts_generated": self._contracts_generated,
                     "audits_performed": self._audits_performed,
                     "deployments": len(self._deployments),
                     "timestamp": datetime.now().isoformat()
                 }, f, indent=2)
-            self._logger.info(f"   ✓ Statistiques sauvegardées")
+            self._logger.info(f"✅ Statistiques sauvegardées")
         except Exception as e:
-            self._logger.warning(f"   ⚠️ Impossible de sauvegarder: {e}")
-        
-        self._logger.info("✅ Agent Smart Contract arrêté")
-        return True
+            self._logger.warning(f"⚠️ Impossible de sauvegarder: {e}")
 
-    async def pause(self) -> bool:
-        """Met l'agent en pause"""
-        self._logger.info("Pause de l'agent Smart Contract...")
-        self._set_status(AgentStatus.PAUSED)
-        return True
-
-    async def resume(self) -> bool:
-        """Reprend l'activité"""
-        self._logger.info("Reprise de l'agent Smart Contract...")
-        self._set_status(AgentStatus.READY)
-        return True
+    # ========================================================================
+    # MÉTHODES DE SANTÉ ET D'INFORMATION (ALIGNÉES)
+    # ========================================================================
 
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
+        base_health = await super().health_check()
+
         return {
+            **base_health,
             "agent": self.name,
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "display_name": self._display_name,
+            "status": self._status.value,
             "ready": self._status == AgentStatus.READY,
             "initialized": self._initialized,
-            "components": list(self._components.keys()),
-            "stats": {
+            "smart_contract_specific": {
                 "contracts_generated": self._contracts_generated,
                 "audits_performed": self._audits_performed,
                 "deployments": len(self._deployments),
-                "successful_deployments": self.stats['successful_deployments'],
-                "critical_findings": self.stats['critical_findings'],
-                "high_findings": self.stats['high_findings']
+                "templates_loaded": len(self._templates),
+                "sub_agents": list(self._sub_agents.keys()),
+                "stats": {
+                    "total_contracts": self._stats['total_contracts'],
+                    "total_audits": self._stats['total_audits'],
+                    "successful_deployments": self._stats['successful_deployments'],
+                    "critical_findings": self._stats['critical_findings']
+                }
             },
-            "templates_loaded": len(self._templates),
             "timestamp": datetime.now().isoformat()
         }
 
     def get_agent_info(self) -> Dict[str, Any]:
-        """Retourne les informations de l'agent"""
+        """Retourne les informations de l'agent pour le registre"""
+        agent_config = self._agent_config.get('agent', {})
+        capabilities = agent_config.get('capabilities', [])
+
+        if capabilities and isinstance(capabilities[0], dict):
+            capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
+
         return {
             "id": self.name,
-            "name": "📜 Agent Smart Contract",
+            "name": "SmartContractAgent",
             "display_name": self._display_name,
-            "version": self._version,
-            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
-            "capabilities": self._capabilities,
-            "supported_standards": self._agent_config.get('supported_standards', {}).get('token_standards', []),
-            "supported_networks": list(self._agent_config.get('network_support', {}).keys()),
-            "contracts_generated": self._contracts_generated,
-            "audits_performed": self._audits_performed,
-            "deployments": len(self._deployments),
-            "templates": list(self._templates.keys())
+            "version": agent_config.get('version', '2.6.0'),
+            "description": agent_config.get('description', 'Développement et audit de smart contracts'),
+            "status": self._status.value,
+            "capabilities": capabilities,
+            "features": {
+                "standards": [t.name for t in self._templates.keys()],
+                "sub_agents": list(self._sub_agents.keys()),
+                "components": list(self._components.keys())
+            },
+            "stats": {
+                "contracts_generated": self._contracts_generated,
+                "audits_performed": self._audits_performed,
+                "deployments": len(self._deployments)
+            }
         }
 
     # ========================================================================
-    # GESTION DES MESSAGES
+    # GESTION DES MESSAGES (ALIGNÉE)
     # ========================================================================
 
     async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """Gestion des messages personnalisés"""
+        """
+        Gère les messages personnalisés pour le Smart Contract Agent.
+        """
         try:
             msg_type = message.message_type
-            self._logger.debug(f"Message reçu: {msg_type}")
-            
-            if msg_type == "generate_contract":
-                # Générer un contrat
-                contract_type = message.content.get("contract_type", "ERC20")
-                name = message.content.get("name", "MyToken")
-                symbol = message.content.get("symbol", "MTK")
-                params = message.content.get("params", {})
-                
-                result = await self._develop_contract(contract_type, name, symbol, params)
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="contract_generated",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "audit_contract":
-                # Auditer un contrat
-                contract_code = message.content.get("contract_code", "")
-                result = await self._audit_contract(contract_code)
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="audit_results",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "deploy_contract":
-                # Déployer un contrat
-                contract_name = message.content.get("contract_name", "")
-                network = message.content.get("network", "ethereum")
-                result = await self._deploy_contract(contract_name, network)
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="deployment_result",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "optimize_gas":
-                # Optimiser le gas
-                contract_code = message.content.get("contract_code", "")
-                result = await self._optimize_gas(contract_code)
-                
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content=result,
-                    message_type="gas_optimization",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "pause":
-                await self.pause()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "paused"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "resume":
-                await self.resume()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "resumed"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
-            elif msg_type == "shutdown":
-                await self.shutdown()
-                return Message(
-                    sender=self.name,
-                    recipient=message.sender,
-                    content={"status": "shutdown"},
-                    message_type="status_update",
-                    correlation_id=message.message_id
-                )
-            
+            self._logger.debug(f"Message personnalisé reçu: {msg_type} de {message.sender}")
+
+            handlers = {
+                "smart_contract.generate": self._handle_generate,
+                "smart_contract.audit": self._handle_audit,
+                "smart_contract.deploy": self._handle_deploy,
+                "smart_contract.optimize": self._handle_optimize,
+                "smart_contract.stats": self._handle_stats,
+            }
+
+            if msg_type in handlers:
+                return await handlers[msg_type](message)
+
+            self._logger.warning(f"Aucun handler pour le type: {msg_type}")
             return None
-            
+
         except Exception as e:
             self._logger.error(f"Erreur traitement message: {e}")
             return Message(
                 sender=self.name,
                 recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
+                content={"error": str(e), "traceback": traceback.format_exc()},
+                message_type=MessageType.ERROR.value,
                 correlation_id=message.message_id
             )
 
+    async def _handle_generate(self, message: Message) -> Message:
+        """Gère la génération de contrat"""
+        content = message.content
+        contract_type = content.get("contract_type", "ERC20")
+        name = content.get("name", "MyToken")
+        symbol = content.get("symbol", "MTK")
+        params = content.get("params", {})
+
+        result = await self._develop_contract(contract_type, name, symbol, params)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="smart_contract.generated",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_audit(self, message: Message) -> Message:
+        """Gère l'audit de contrat"""
+        contract_code = message.content.get("contract_code", "")
+        result = await self._audit_contract(contract_code)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="smart_contract.audited",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_deploy(self, message: Message) -> Message:
+        """Gère le déploiement de contrat"""
+        contract_name = message.content.get("contract_name", "")
+        network = message.content.get("network", "ethereum")
+        result = await self._deploy_contract(contract_name, network)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="smart_contract.deployed",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_optimize(self, message: Message) -> Message:
+        """Gère l'optimisation de gas"""
+        contract_code = message.content.get("contract_code", "")
+        result = await self._optimize_gas(contract_code)
+
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=result,
+            message_type="smart_contract.optimized",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_stats(self, message: Message) -> Message:
+        """Retourne les statistiques"""
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=self._stats,
+            message_type="smart_contract.stats_response",
+            correlation_id=message.message_id
+        )
+
     # ========================================================================
-    # MÉTHODES FONCTIONNELLES
+    # MÉTHODES FONCTIONNELLES (Votre code existant, préservé)
     # ========================================================================
 
-    async def _develop_contract(self, 
-                               contract_type: str, 
-                               name: str, 
+    async def _develop_contract(self,
+                               contract_type: str,
+                               name: str,
                                symbol: str,
                                params: Dict[str, Any]) -> Dict[str, Any]:
         """Développe un smart contract selon le standard demandé"""
         self._logger.info(f"🔨 Développement du contrat {contract_type}: {name}")
         self._contracts_generated += 1
-        self.stats['total_contracts'] += 1
-        self.stats['last_contract'] = datetime.now().isoformat()
-        
+        self._stats['total_contracts'] += 1
+
         # Générer le code selon le type
         contract_code = ""
         if contract_type == "ERC20":
@@ -612,11 +471,10 @@ class SmartContractAgent(BaseAgent):
             contract_code = self._generate_erc4626(name, params)
         else:
             contract_code = self._generate_custom_contract(contract_type, params)
-        
-        # Calculer les métriques
+
         lines = len(contract_code.splitlines())
         complexity = "simple" if lines < 200 else "medium" if lines < 500 else "complex"
-        
+
         return {
             "contract_code": contract_code,
             "contract_type": contract_type,
@@ -633,25 +491,24 @@ class SmartContractAgent(BaseAgent):
     async def _audit_contract(self, contract_code: str) -> Dict[str, Any]:
         """Audite un smart contract"""
         self._audits_performed += 1
-        self.stats['total_audits'] += 1
-        self.stats['last_audit'] = datetime.now().isoformat()
-        
+        self._stats['total_audits'] += 1
+
         # Simulation d'audit
         vulnerabilities = random.randint(0, 8)
         critical = random.randint(0, min(2, vulnerabilities))
         high = random.randint(0, min(3, vulnerabilities - critical))
         medium = random.randint(0, min(4, vulnerabilities - critical - high))
         low = max(0, vulnerabilities - critical - high - medium)
-        
+
         # Mettre à jour les stats
-        self.stats['critical_findings'] += critical
-        self.stats['high_findings'] += high
-        self.stats['medium_findings'] += medium
-        self.stats['low_findings'] += low
-        
+        self._stats['critical_findings'] += critical
+        self._stats['high_findings'] += high
+        self._stats['medium_findings'] += medium
+        self._stats['low_findings'] += low
+
         # Générer des findings détaillés
         findings = self._generate_findings(critical, high, medium, low)
-        
+
         return {
             "audit_report": {
                 "summary": {
@@ -675,66 +532,15 @@ class SmartContractAgent(BaseAgent):
             }
         }
 
-    def _generate_findings(self, critical: int, high: int, medium: int, low: int) -> List[Dict]:
-        """Génère des findings d'audit simulés"""
-        findings = []
-        
-        finding_templates = [
-            {
-                "title": "Reentrancy Vulnerability",
-                "description": "External call before state update allows reentrancy attack",
-                "recommendation": "Use ReentrancyGuard and follow checks-effects-interactions pattern"
-            },
-            {
-                "title": "Integer Overflow/Underflow",
-                "description": "Arithmetic operations without overflow protection",
-                "recommendation": "Use SafeMath or Solidity ^0.8.0 built-in checks"
-            },
-            {
-                "title": "Missing Access Control",
-                "description": "Critical function lacks proper access control",
-                "recommendation": "Add onlyOwner modifier or role-based access control"
-            },
-            {
-                "title": "Timestamp Dependence",
-                "description": "Contract logic depends on block.timestamp which can be manipulated",
-                "recommendation": "Avoid using block.timestamp for critical logic"
-            },
-            {
-                "title": "Unchecked Call Return Value",
-                "description": "External call return value not checked",
-                "recommendation": "Always check return values of external calls"
-            }
-        ]
-        
-        severities = []
-        severities.extend([AuditSeverity.CRITICAL] * critical)
-        severities.extend([AuditSeverity.HIGH] * high)
-        severities.extend([AuditSeverity.MEDIUM] * medium)
-        severities.extend([AuditSeverity.LOW] * low)
-        
-        for severity in severities:
-            template = random.choice(finding_templates)
-            findings.append({
-                "severity": severity.value,
-                "title": template["title"],
-                "description": template["description"],
-                "location": f"contract.sol:L{random.randint(50, 300)}",
-                "recommendation": template["recommendation"]
-            })
-        
-        return findings
-
     async def _deploy_contract(self, contract_name: str, network: str) -> Dict[str, Any]:
         """Déploie un smart contract sur le réseau spécifié"""
-        self.stats['total_deployments'] += 1
-        self.stats['last_deployment'] = datetime.now().isoformat()
-        
+        self._stats['total_deployments'] += 1
+
         # Simulation de déploiement
         success = random.random() > 0.2  # 80% de succès
-        
+
         address = f"0x{''.join([random.choice('0123456789abcdef') for _ in range(40)])}"
-        
+
         deployment = DeploymentInfo(
             contract_name=contract_name,
             network=network,
@@ -745,14 +551,14 @@ class SmartContractAgent(BaseAgent):
             status=DeploymentStatus.DEPLOYED if success else DeploymentStatus.FAILED,
             explorer_url=f"https://{network}.etherscan.io/address/{address}" if success else None
         )
-        
+
         self._deployments.append(deployment)
-        
+
         if success:
-            self.stats['successful_deployments'] += 1
+            self._stats['successful_deployments'] += 1
         else:
-            self.stats['failed_deployments'] += 1
-        
+            self._stats['failed_deployments'] += 1
+
         return {
             "deployment": {
                 "contract_name": contract_name,
@@ -781,9 +587,9 @@ class SmartContractAgent(BaseAgent):
             "Immutable variables",
             "Custom errors instead of strings"
         ]
-        
+
         selected_techniques = random.sample(techniques, random.randint(4, 6))
-        
+
         return {
             "optimization": {
                 "gas_saved": f"{random.randint(15, 45)}%",
@@ -799,8 +605,78 @@ class SmartContractAgent(BaseAgent):
             }
         }
 
+    def _generate_findings(self, critical: int, high: int, medium: int, low: int) -> List[Dict]:
+        """Génère des findings d'audit simulés"""
+        findings = []
+
+        finding_templates = [
+            {
+                "title": "Reentrancy Vulnerability",
+                "description": "External call before state update allows reentrancy attack",
+                "recommendation": "Use ReentrancyGuard and follow checks-effects-interactions pattern"
+            },
+            {
+                "title": "Integer Overflow/Underflow",
+                "description": "Arithmetic operations without overflow protection",
+                "recommendation": "Use SafeMath or Solidity ^0.8.0 built-in checks"
+            },
+            {
+                "title": "Missing Access Control",
+                "description": "Critical function lacks proper access control",
+                "recommendation": "Add onlyOwner modifier or role-based access control"
+            },
+            {
+                "title": "Timestamp Dependence",
+                "description": "Contract logic depends on block.timestamp which can be manipulated",
+                "recommendation": "Avoid using block.timestamp for critical logic"
+            },
+            {
+                "title": "Unchecked Call Return Value",
+                "description": "External call return value not checked",
+                "recommendation": "Always check return values of external calls"
+            }
+        ]
+
+        severities = []
+        severities.extend([AuditSeverity.CRITICAL] * critical)
+        severities.extend([AuditSeverity.HIGH] * high)
+        severities.extend([AuditSeverity.MEDIUM] * medium)
+        severities.extend([AuditSeverity.LOW] * low)
+
+        for severity in severities:
+            template = random.choice(finding_templates)
+            findings.append({
+                "severity": severity.value,
+                "title": template["title"],
+                "description": template["description"],
+                "location": f"contract.sol:L{random.randint(50, 300)}",
+                "recommendation": template["recommendation"]
+            })
+
+        return findings
+
+    def _get_audit_recommendations(self, critical: int, high: int, medium: int) -> List[str]:
+        """Génère des recommandations d'audit"""
+        recommendations = [
+            "Implement ReentrancyGuard for all value-transferring functions",
+            "Use OpenZeppelin's SafeERC20 for token operations",
+            "Add timelocks for admin functions",
+            "Implement emergency pause mechanism",
+            "Use multisig for contract ownership",
+            "Add input validation for all public functions",
+            "Emit events for state-changing operations",
+            "Consider using upgradeable proxy pattern"
+        ]
+
+        if critical > 0:
+            recommendations.insert(0, "⚠️ CRITICAL: Immediate action required for critical vulnerabilities")
+        if high > 0:
+            recommendations.insert(1, "🔴 HIGH: Address high-risk issues before deployment")
+
+        return recommendations[:5]
+
     # ========================================================================
-    # MÉTHODES DE GÉNÉRATION DE CODE
+    # MÉTHODES DE GÉNÉRATION DE CODE (Vos templates existants)
     # ========================================================================
 
     def _get_erc20_template(self) -> str:
@@ -860,7 +736,7 @@ contract {{CONTRACT_NAME}} is ERC20, Ownable, Pausable, ReentrancyGuard {
         _unpause();
     }
 }'''
-    
+
     def _get_erc721_template(self) -> str:
         """Template ERC721 complet"""
         return '''// SPDX-License-Identifier: MIT
@@ -956,7 +832,7 @@ contract {{CONTRACT_NAME}} is ERC721, ERC2981, Ownable, Pausable {
         return super.supportsInterface(interfaceId);
     }
 }'''
-    
+
     def _get_erc1155_template(self) -> str:
         """Template ERC1155 complet"""
         return '''// SPDX-License-Identifier: MIT
@@ -1036,7 +912,7 @@ contract {{CONTRACT_NAME}} is ERC1155, ERC2981, Ownable, Pausable {
         return super.supportsInterface(interfaceId);
     }
 }'''
-    
+
     def _get_erc4626_template(self) -> str:
         """Template ERC4626 complet"""
         return '''// SPDX-License-Identifier: MIT
@@ -1101,57 +977,57 @@ contract {{CONTRACT_NAME}} is ERC4626, Ownable, Pausable {
         _unpause();
     }
 }'''
-    
+
     def _generate_erc20(self, name: str, symbol: str, params: Dict) -> str:
         """Génère un contrat ERC20"""
         template = self._templates["ERC20"].code
         max_supply = params.get("max_supply", "100_000_000")
         initial_supply = params.get("initial_supply", "10_000_000")
-        
+
         template = template.replace("{{CONTRACT_NAME}}", name)
         template = template.replace("{{TOKEN_NAME}}", name)
         template = template.replace("{{TOKEN_SYMBOL}}", symbol)
         template = template.replace("{{MAX_SUPPLY}}", str(max_supply))
         template = template.replace("{{INITIAL_SUPPLY}}", str(initial_supply))
-        
+
         return template
-    
+
     def _generate_erc721(self, name: str, symbol: str, params: Dict) -> str:
         """Génère un contrat ERC721"""
         template = self._templates["ERC721"].code
         max_supply = params.get("max_supply", "10000")
         price = params.get("price", "0.08 ether")
-        
+
         template = template.replace("{{CONTRACT_NAME}}", name)
         template = template.replace("{{TOKEN_NAME}}", name)
         template = template.replace("{{TOKEN_SYMBOL}}", symbol)
         template = template.replace("{{MAX_SUPPLY}}", str(max_supply))
         template = template.replace("{{PRICE}}", str(price))
-        
+
         return template
-    
+
     def _generate_erc1155(self, name: str, params: Dict) -> str:
         """Génère un contrat ERC1155"""
         template = self._templates["ERC1155"].code
         symbol = params.get("symbol", name[:3].upper())
-        
+
         template = template.replace("{{CONTRACT_NAME}}", name)
         template = template.replace("{{TOKEN_NAME}}", name)
         template = template.replace("{{TOKEN_SYMBOL}}", symbol)
-        
+
         return template
-    
+
     def _generate_erc4626(self, name: str, params: Dict) -> str:
         """Génère un contrat ERC4626"""
         template = self._templates["ERC4626"].code
         asset = params.get("asset", "0x0000000000000000000000000000000000000000")
-        
+
         template = template.replace("{{CONTRACT_NAME}}", name)
         template = template.replace("{{TOKEN_NAME}}", name)
         template = template.replace("{{ASSET_ADDRESS}}", asset)
-        
+
         return template
-    
+
     def _generate_custom_contract(self, contract_type: str, params: Dict) -> str:
         """Génère un contrat personnalisé"""
         return f'''// SPDX-License-Identifier: MIT
@@ -1175,7 +1051,7 @@ contract {contract_type} {{
     
     // Custom logic will be implemented here
 }}'''
-    
+
     def _estimate_gas(self, contract_code: str) -> Dict[str, str]:
         """Estime la consommation de gas"""
         return {
@@ -1185,7 +1061,7 @@ contract {contract_type} {{
             "mint": f"{random.randint(70000, 110000):,}",
             "burn": f"{random.randint(40000, 60000):,}"
         }
-    
+
     def _get_security_checklist(self, contract_type: str) -> List[str]:
         """Retourne la checklist de sécurité"""
         base_checks = [
@@ -1196,7 +1072,7 @@ contract {contract_type} {{
             "Gas limit",
             "Front-running resistance"
         ]
-        
+
         if contract_type == "ERC20":
             base_checks.extend([
                 "Approval race condition",
@@ -1209,9 +1085,9 @@ contract {contract_type} {{
                 "Royalty enforcement",
                 "Metadata immutability"
             ])
-        
+
         return base_checks
-    
+
     def _check_standards_compliance(self, contract_type: str) -> Dict[str, bool]:
         """Vérifie la conformité aux standards"""
         return {
@@ -1223,35 +1099,15 @@ contract {contract_type} {{
             "ERC4626": contract_type == "ERC4626",
             "EIP1967": False
         }
-    
+
     def _get_dependencies(self, contract_type: str) -> List[str]:
         """Retourne les dépendances nécessaires"""
         base_deps = ["@openzeppelin/contracts@4.9.0"]
-        
+
         if contract_type in ["ERC20", "ERC721", "ERC1155", "ERC4626"]:
             return base_deps
-        
+
         return []
-    
-    def _get_audit_recommendations(self, critical: int, high: int, medium: int) -> List[str]:
-        """Génère des recommandations d'audit"""
-        recommendations = [
-            "Implement ReentrancyGuard for all value-transferring functions",
-            "Use OpenZeppelin's SafeERC20 for token operations",
-            "Add timelocks for admin functions",
-            "Implement emergency pause mechanism",
-            "Use multisig for contract ownership",
-            "Add input validation for all public functions",
-            "Emit events for state-changing operations",
-            "Consider using upgradeable proxy pattern"
-        ]
-        
-        if critical > 0:
-            recommendations.insert(0, "⚠️ CRITICAL: Immediate action required for critical vulnerabilities")
-        if high > 0:
-            recommendations.insert(1, "🔴 HIGH: Address high-risk issues before deployment")
-        
-        return recommendations[:5]
 
 
 # ============================================================================
@@ -1271,34 +1127,35 @@ if __name__ == "__main__":
     async def main():
         print("📜 TEST AGENT SMART CONTRACT")
         print("="*60)
-        
+
         agent = SmartContractAgent()
         await agent.initialize()
-        
-        print(f"✅ Agent: {agent.get_agent_info()['name']} v{agent._version}")
-        print(f"✅ Statut: {agent.status}")
-        print(f"✅ Capacités: {len(agent._capabilities)}")
-        print(f"✅ Templates: {list(agent._templates.keys())}")
-        
+
+        agent_info = agent.get_agent_info()
+        print(f"✅ Agent: {agent_info['name']} v{agent_info['version']}")
+        print(f"✅ Statut: {agent_info['status']}")
+        print(f"✅ Capacités: {len(agent_info['capabilities'])}")
+        print(f"✅ Templates: {agent_info['features']['standards']}")
+
         # Test de génération ERC20
         result = await agent._develop_contract("ERC20", "TestToken", "TST", {})
-        
+
         print(f"\n🔨 Contrat ERC20 généré")
         print(f"  📄 Lignes: {result['lines_of_code']}")
         print(f"  ⚡ Gas estimate: {result['gas_estimate']['deployment']}")
         print(f"  🔒 Security checks: {len(result['security_checks'])}")
-        
+
         # Test d'audit
         audit = await agent._audit_contract(result["contract_code"])
         print(f"\n🔍 Audit réalisé")
         print(f"  📊 Score: {audit['audit_report']['security_score']}")
         print(f"  ⚠️  Findings: {audit['audit_report']['summary']['total_issues']}")
-        
+
         health = await agent.health_check()
         print(f"\n❤️  Health: {health['status']}")
-        
+
         await agent.shutdown()
         print(f"\n👋 Agent arrêté")
         print("\n" + "="*60)
-    
+
     asyncio.run(main())

@@ -533,3 +533,168 @@ KeyError: 'persistence'
 2026-03-05 18:45:17 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
 2026-03-05 18:45:17 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
 2026-03-05 18:45:17 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 20:55:59 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-05 21:02:18 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:34 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:37:52 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-06 18:51:24 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:21:07 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:27:54 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:36:47 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:43:44 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:52:10 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 20:59:38 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:10:48 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:19:21 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:26:33 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Configuration chargée: StorageAgent v1.0.0
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Agent StorageAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\storage\config.yaml)
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - 💾 Storage Agent créé avec 0 backends
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - 💾 Initialisation du Storage Agent...
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Changement de statut: created -> initializing
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Initialisation de l'agent StorageAgent...
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Vérification des dépendances: ['monitoring', 'learning']
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Initialisation des composants Storage...
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - ✅ Composants: ['memory_backend', 'disk_backend', 'ipfs_backend', 'cache', 'versioning', 'encryption', 'compression']
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Changement de statut: initializing -> ready
+2026-03-09 21:32:41 - agent.StorageAgent - INFO - Agent StorageAgent initialisé avec succès
