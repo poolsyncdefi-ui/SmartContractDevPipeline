@@ -1,0 +1,55 @@
+# ============================================================================
+# ⚡ Optimisateur Performance Web3 - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "PerformanceOptimizerSubAgent"
+  display_name: "⚡ Optimisateur Performance Web3"
+  description: |-
+    Expert en optimisation des performances Web3
+  version: "2.0.0"
+  class_name: "PerformanceOptimizerSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.performance_optimizer.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "bundle_optimization"
+  - name: "core_web_vitals"
+  - name: "caching_strategy"
+  - name: "image_optimization"
+  - name: "web3_performance"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "performance_report"
+  - name: "optimization_config"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

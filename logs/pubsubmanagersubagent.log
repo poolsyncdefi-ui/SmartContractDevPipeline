@@ -1,0 +1,25 @@
+2026-03-10 19:39:54 - agent.PubsubManagerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml: while scanning an alias
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 107, column 17
+expected alphabetic or numeric character, but found '\n'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 107, column 18
+2026-03-10 19:39:54 - agent.PubsubManagerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml)
+2026-03-10 19:40:22 - agent.PubsubManagerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml: while scanning an alias
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 107, column 17
+expected alphabetic or numeric character, but found '\n'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 107, column 18
+2026-03-10 19:40:22 - agent.PubsubManagerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml)
+2026-03-10 20:43:09 - agent.PubsubManagerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 6, column 1
+expected <block end>, but found '<block mapping start>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 106, column 3
+2026-03-10 20:43:09 - agent.PubsubManagerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml)
+2026-03-10 20:47:29 - agent.PubsubManagerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 6, column 1
+expected <block end>, but found '<block mapping start>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 106, column 3
+2026-03-10 20:47:29 - agent.PubsubManagerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml)
+2026-03-10 20:53:37 - agent.PubsubManagerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml: while parsing a block mapping
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 6, column 1
+expected <block end>, but found '<block mapping start>'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml", line 106, column 3
+2026-03-10 20:53:37 - agent.PubsubManagerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\config.yaml)

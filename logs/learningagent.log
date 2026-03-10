@@ -839,3 +839,651 @@ expected <block end>, but found '<scalar>'
 2026-03-09 21:32:41 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'insight_engine']
 2026-03-09 21:32:41 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
 2026-03-09 21:32:41 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 08:57:45 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 08:57:45 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 08:57:46 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:46 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 08:57:46 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:46 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 08:57:47 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 08:57:47 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 08:57:47 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 08:57:47 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 09:06:28 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:28 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 09:06:29 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:30 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 09:06:30 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 09:06:30 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 09:11:37 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 09:11:37 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 09:11:38 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:38 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 09:11:38 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:38 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 09:11:39 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:39 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 09:11:39 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 09:11:39 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:24:04 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 16:24:04 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 16:24:05 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:05 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:24:05 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:05 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:24:06 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:06 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:24:06 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:24:06 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:44:59 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 16:44:59 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 16:45:00 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:00 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:45:00 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:00 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:45:01 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:45:01 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:45:01 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:45:01 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:49:19 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 16:49:19 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 16:49:20 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:20 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:49:20 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:20 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:49:21 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:21 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:49:21 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:49:21 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 16:53:41 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 16:53:41 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 16:53:42 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:42 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:53:42 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:42 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 16:53:43 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:43 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:53:43 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 16:53:43 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 17:01:22 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 17:01:22 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 17:01:23 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:23 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 17:01:23 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:23 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 17:01:24 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:24 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 17:01:24 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 17:01:24 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:08:57 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 18:08:57 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 18:08:58 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:58 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:08:58 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:58 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:08:59 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:08:59 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:59 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:08:59 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:17:30 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 18:17:30 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 18:17:31 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:31 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:17:31 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:31 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:17:32 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:32 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:32 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:17:32 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:26:54 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:26:55 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:26:55 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:55 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:26:55 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:50 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 18:44:50 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:44:51 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:44:52 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:44:52 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:52 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:44:52 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 18:56:58 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 18:56:59 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:56:59 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 18:56:59 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:59 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:00:47 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 19:00:47 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 19:00:48 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:00:48 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:00:49 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:00:49 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:00:49 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:49 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:04:43 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:04:44 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:04:44 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:04:44 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:44 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:42 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 19:05:42 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:05:43 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:05:44 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:05:44 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:05:44 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:44 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 19:40:24 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 19:40:24 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 19:40:25 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:40:25 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 19:40:26 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 19:40:26 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:43:11 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 20:43:11 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 20:43:12 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:43:12 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:43:13 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:43:13 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:47:31 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:47:32 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:47:32 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 20:53:39 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 20:53:39 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 20:53:40 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:53:40 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 20:53:41 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 20:53:41 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:18:57 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:18:58 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:58 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:18:58 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:58 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:22:40 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:22:51 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:22:51 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:23:17 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 21:23:17 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 21:23:18 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:23:18 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:23:19 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:19 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:23:19 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:19 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Configuration chargée: learning v2.0.0
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Agent learning créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml)
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\learning\config.yaml
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 🧠 Agent Learning créé
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Initialisation de l'agent Learning...
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Initialisation de l'agent learning...
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Vérification des dépendances: ['tester', 'formal_verification', 'monitoring', 'communication', 'storage']
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Agent learning initialisé avec succès
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - Initialisation des composants ML...
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - ✅ Composants: ['gas_predictor', 'vulnerability_classifier', 'test_optimizer', 'anomaly_detector', 'trend_analyzer', 'quality_scorer', 'parameter_tuner', 'insight_engine']
+2026-03-10 21:29:42 - agent.LearningAgent - WARNING - ⚠️ Sous-agents non disponibles: No module named 'agents.learning.sous_agents'
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 📦 0 modèles chargés
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 📊 Données chargées: 0 exemples d'entraînement
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - ✅ Feature store initialisé avec 4 feature sets
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 📊 Baselines établies pour 0 tâches
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - ✅ Agent Learning prêt
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.LearningAgent - INFO - 🔄 Apprentissage continu démarré
+2026-03-10 21:29:43 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:43 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté
+2026-03-10 21:29:43 - agent.LearningAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:43 - agent.LearningAgent - INFO - 🛑 Apprentissage continu arrêté

@@ -1129,3 +1129,579 @@ TypeError: 'NoneType' object is not callable
 2026-03-09 21:32:41 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
 2026-03-09 21:32:42 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-09 21:32:42 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 08:57:44 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 08:57:46 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:46 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:47 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 08:57:47 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 09:06:27 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 09:06:28 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:28 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:30 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:30 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 09:11:36 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 09:11:38 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:38 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:39 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:39 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 16:24:03 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 16:24:05 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:05 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:06 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:06 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 16:44:58 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 16:45:00 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:00 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:01 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:45:01 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 16:49:18 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 16:49:20 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:20 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:21 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:21 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 16:53:40 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 16:53:42 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:42 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:43 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:43 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 17:01:21 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 17:01:23 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:23 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:24 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:24 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 18:08:56 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 18:08:58 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:58 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:59 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:59 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 18:17:29 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 18:17:31 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:31 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:32 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:32 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 18:26:52 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 18:26:54 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:55 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:55 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 18:44:49 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 18:44:51 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:52 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:52 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 18:56:56 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 18:56:58 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:59 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:59 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 19:00:46 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 19:00:48 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:49 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:49 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 19:04:42 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 19:04:43 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:44 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:44 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 19:05:41 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 19:05:43 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:44 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:44 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 19:40:23 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 19:40:25 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:26 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 20:43:10 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 20:43:12 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:13 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 20:47:29 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 20:47:31 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:32 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 20:53:38 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 20:53:40 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:41 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 21:18:55 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 21:18:57 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:58 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:58 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 21:22:38 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 21:22:40 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:51 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 21:23:16 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 21:23:18 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:19 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:19 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:40 - agent.FuzzingSimulationAgent - INFO - Configuration chargée: FuzzingSimulationAgent v1.0.0
+2026-03-10 21:29:40 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml)
+2026-03-10 21:29:40 - agent.FuzzingSimulationAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\fuzzing_simulation\config.yaml
+2026-03-10 21:29:40 - agent.FuzzingSimulationAgent - INFO - 🧪 Agent de fuzzing créé
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent de fuzzing...
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Initialisation de l'agent FuzzingSimulationAgent...
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Vérification des dépendances: ['tester', 'smart_contract']
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Agent FuzzingSimulationAgent initialisé avec succès
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - 🔍 Vérification des moteurs de fuzzing...
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO -   Echidna: ❌
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO -   Foundry: ❌
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO -   Medusa: ❌
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO -   DappForge: ❌
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - Initialisation des composants...
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - ✅ Composants: ['echidna_engine', 'foundry_engine', 'medusa_engine', 'vulnerability_detector', 'corpus_manager', 'report_generator']
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - 📋 Templates: ['reentrancy', 'overflow', 'access_control', 'comprehensive', 'invariant']
+2026-03-10 21:29:41 - agent.FuzzingSimulationAgent - INFO - ✅ Agent de fuzzing prêt
+2026-03-10 21:29:42 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.FuzzingSimulationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:43 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:43 - agent.FuzzingSimulationAgent - INFO - 🛑 Tâche de nettoyage arrêtée

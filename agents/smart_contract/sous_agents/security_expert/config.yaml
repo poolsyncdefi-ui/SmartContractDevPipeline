@@ -1,16 +1,46 @@
-sub_agent:
-  id: security_expert_01
-  name: Smart Contract Security
-  parent: smart_contract
-  specialization: Smart Contract Security
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# agents/smart_contract/sous_agents/security_expert/config.yaml
+agent:
+  name: "SecurityExpertSubAgent"
+  display_name: "🛡️ Expert Sécurité"
+  description: "Expert en sécurité des smart contracts - audit, détection de vulnérabilités"
+  version: "1.0.0"
+  class_name: "SecurityExpertSubAgent"
+  module_path: "agents.smart_contract.sous_agents.security_expert.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 180
   max_retries: 2
-logging:
-  level: INFO
+
+capabilities:
+  - name: "vulnerability_detection"
+    description: "Détection des vulnérabilités de sécurité"
+    confidence: 0.95
+  - name: "access_control_audit"
+    description: "Audit des contrôles d'accès"
+    confidence: 0.95
+  - name: "reentrancy_analysis"
+    description: "Analyse des vulnérabilités de réentrance"
+    confidence: 0.98
+  - name: "economic_attack_detection"
+    description: "Détection des attaques économiques (flash loans)"
+    confidence: 0.85
+
+audit:
+  default_depth: "standard"
+  generate_pdf_report: true
+  include_code_snippets: true
+  max_findings_per_audit: 50
+  
+severity_weights:
+  critical: 15
+  high: 8
+  medium: 4
+  low: 2
+  info: 1
+
+security_standards:
+  - "SWC Registry"
+  - "DASP Top 10"
+  - "Consensys Best Practices"
+  - "Trail of Bits Recommendations"

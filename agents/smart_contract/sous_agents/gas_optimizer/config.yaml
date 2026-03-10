@@ -1,16 +1,40 @@
-sub_agent:
-  id: gas_optimizer_01
-  name: Gas Optimization
-  parent: smart_contract
-  specialization: Gas Optimization
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# agents/smart_contract/sous_agents/gas_optimizer/config.yaml
+agent:
+  name: "GasOptimizerSubAgent"
+  display_name: "⚡ Optimisation Gas"
+  description: "Expert en optimisation de gas pour smart contracts"
+  version: "1.0.0"
+  class_name: "GasOptimizerSubAgent"
+  module_path: "agents.smart_contract.sous_agents.gas_optimizer.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 120
   max_retries: 2
-logging:
-  level: INFO
+
+capabilities:
+  - name: "storage_optimization"
+    description: "Optimisation du stockage (packing, layout)"
+    confidence: 0.95
+  - name: "loop_optimization"
+    description: "Optimisation des boucles (unchecked, caching)"
+    confidence: 0.9
+  - name: "assembly_optimization"
+    description: "Optimisations en assembly Yul"
+    confidence: 0.85
+  - name: "calldata_optimization"
+    description: "Optimisation de l'utilisation des calldata"
+    confidence: 0.9
+
+optimization:
+  aggressive_mode: false
+  max_suggestions: 10
+  include_assembly: true
+  include_yul: true
+  gas_price_oracle: "eth_gas_station"
+  target_network: "ethereum"
+  
+targets:
+  deployment_gas: 5000000
+  transaction_gas: 200000
+  storage_slots: 50

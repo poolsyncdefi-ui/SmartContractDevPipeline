@@ -1,7 +1,7 @@
 """
 Communication Agent - Système de messagerie centralisé haute performance
 Gestion des files d'attente, QoS, pub/sub, routage intelligent
-Version: 2.1.0 (ALIGNÉ SUR ARCHITECT/CODER/SMARTCONTRACT/FRONTEND)
+Version: 2.1.0 (CORRIGÉ - ALIGNÉ SUR ARCHITECT/CODER/SMARTCONTRACT/FRONTEND/LEARNING)
 """
 
 import logging
@@ -11,6 +11,7 @@ import json
 import asyncio
 import time
 import traceback
+import importlib
 from pathlib import Path
 from datetime import datetime, timedelta
 from enum import Enum
@@ -262,7 +263,7 @@ class CommunicationAgent(BaseAgent):
     """
     Agent de communication centralisé haute performance
     Gère les files d'attente prioritaires, pub/sub, routage intelligent
-    Hérite de BaseAgent et suit le cycle de vie standard.
+    Version 2.1 - Alignée sur l'architecture des agents
     """
 
     def __init__(self, config_path: Optional[str] = None):
@@ -311,7 +312,17 @@ class CommunicationAgent(BaseAgent):
         
         self._circuit_breakers: Dict[str, Dict[str, Any]] = {}  # recipient -> state
         
-        # Statistiques internes (avec underscore pour cohérence)
+        # Sous-agents
+        self._sub_agents: Dict[str, Any] = {}
+        self._components: Dict[str, Any] = {}
+        self._initialized = False
+        
+        # Tâches de fond
+        self._processor_task: Optional[asyncio.Task] = None
+        self._cleanup_task_obj: Optional[asyncio.Task] = None
+        self._retry_task: Optional[asyncio.Task] = None
+
+        # Statistiques internes
         self._stats = {
             "messages_received": 0,
             "messages_sent": 0,
@@ -329,16 +340,8 @@ class CommunicationAgent(BaseAgent):
             "processing_latency_p99": 0,
             "throughput_current": 0,
             "throughput_peak": 0,
-            "uptime_start": datetime.now()
+            "uptime_start": datetime.now().isoformat()
         }
-
-        self._sub_agents: Dict[str, Any] = {}  # Pour les sous-agents
-        self._components: Dict[str, Any] = {}
-        self._initialized = False
-        
-        self._processor_task: Optional[asyncio.Task] = None
-        self._cleanup_task: Optional[asyncio.Task] = None
-        self._retry_task: Optional[asyncio.Task] = None
 
         self._logger.info("💬 Communication Agent créé")
 
@@ -370,8 +373,34 @@ class CommunicationAgent(BaseAgent):
 
     async def initialize(self) -> bool:
         """Initialise l'agent"""
-        self._logger.info("💬 Initialisation du Communication Agent...")
-        return await super().initialize()
+        try:
+            self._set_status(AgentStatus.INITIALIZING)
+            self._logger.info("💬 Initialisation du Communication Agent...")
+
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
+
+            # Initialiser les composants
+            await self._initialize_components()
+
+            # Initialiser les sous-agents
+            await self._initialize_sub_agents()
+
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
+
+            self._initialized = True
+            self._set_status(AgentStatus.READY)
+            self._logger.info("✅ Communication Agent prêt")
+            return True
+
+        except Exception as e:
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._logger.error(traceback.format_exc())
+            self._set_status(AgentStatus.ERROR)
+            return False
 
     async def _initialize_components(self) -> bool:
         """
@@ -390,16 +419,7 @@ class CommunicationAgent(BaseAgent):
                 "rate_limiting_enabled": self._comm_config.get('rate_limiting', {}).get('enabled', True)
             }
 
-            # Initialiser les sous-agents
-            await self._initialize_sub_agents()
-
-            # Démarrer les tâches de fond
-            self._processor_task = asyncio.create_task(self._message_processor())
-            self._cleanup_task = asyncio.create_task(self._cleanup_worker())
-            self._retry_task = asyncio.create_task(self._retry_worker())
-
             self._logger.info(f"✅ Composants: {list(self._components.keys())}")
-            self._initialized = True
             return True
 
         except Exception as e:
@@ -407,48 +427,140 @@ class CommunicationAgent(BaseAgent):
             return False
 
     async def _initialize_sub_agents(self):
-        """Initialise les sous-agents spécialisés (optionnel)"""
+        """
+        Initialise les sous-agents spécialisés de manière robuste
+        Cette méthode ne doit jamais lever d'exception
+        """
+        self._sub_agents = {}
+
         try:
-            # Tentative d'import des sous-agents (à créer si besoin)
-            try:
-                from .sous_agents import (
-                    QueueManagerSubAgent,
-                    PubSubManagerSubAgent,
-                    CircuitBreakerSubAgent
-                )
-                
-                self._sub_agents = {
-                    "queue_manager": QueueManagerSubAgent(),
-                    "pubsub_manager": PubSubManagerSubAgent(),
-                    "circuit_breaker": CircuitBreakerSubAgent()
-                }
-                self._logger.info(f"✅ Sous-agents: {list(self._sub_agents.keys())}")
-            except ImportError as e:
-                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
-                self._sub_agents = {}
-                
+            # Liste des sous-agents à tenter de charger (basée sur config.yaml)
+            sub_agent_configs = self._agent_config.get('agent', {}).get('subAgents', [])
+
+            # Si la liste est vide, utiliser les sous-agents par défaut
+            if not sub_agent_configs:
+                sub_agent_configs = [
+                    {"id": "queue_manager", "name": "Queue Manager", "enabled": True},
+                    {"id": "pubsub_manager", "name": "PubSub Manager", "enabled": True},
+                    {"id": "circuit_breaker", "name": "Circuit Breaker", "enabled": True},
+                    {"id": "message_router", "name": "Message Router", "enabled": True},
+                    {"id": "dead_letter_analyzer", "name": "Dead Letter Analyzer", "enabled": True},
+                    {"id": "performance_optimizer", "name": "Performance Optimizer", "enabled": True},
+                    {"id": "security_validator", "name": "Security Validator", "enabled": True},
+                ]
+
+            for config in sub_agent_configs:
+                agent_id = config.get('id')
+                if not config.get('enabled', True):
+                    continue
+
+                try:
+                    # Tentative d'import dynamique du module
+                    module_name = f"agents.communication.sous_agents.{agent_id}.agent"
+                    class_name = self._get_sub_agent_class_name(agent_id)
+
+                    # Vérifier si le fichier existe
+                    module_path = Path(__file__).parent / "sous_agents" / agent_id / "agent.py"
+                    if not module_path.exists():
+                        self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non développé (fichier manquant)")
+                        continue
+
+                    module = importlib.import_module(module_name)
+                    agent_class = getattr(module, class_name, None)
+
+                    if agent_class:
+                        config_path = config.get('config_path', str(Path(__file__).parent / "sous_agents" / agent_id / "config.yaml"))
+                        sub_agent = agent_class(config_path)
+                        self._sub_agents[agent_id] = sub_agent
+                        self._logger.info(f"  ✓ Sous-agent {agent_id} initialisé")
+                    else:
+                        self._logger.debug(f"  ℹ️ Classe {class_name} non trouvée dans {agent_id}")
+
+                except ImportError as e:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non disponible: {e}")
+                except Exception as e:
+                    self._logger.warning(f"  ⚠️ Erreur initialisation {agent_id}: {e}")
+
         except Exception as e:
-            self._logger.error(f"Erreur sous-agents: {e}")
-            self._sub_agents = {}
+            self._logger.error(f"❌ Erreur globale initialisation sous-agents: {e}")
+
+        self._logger.info(f"✅ Sous-agents chargés: {len(self._sub_agents)}")
+
+    def _get_sub_agent_class_name(self, agent_id: str) -> str:
+        """Convertit un ID de sous-agent en nom de classe"""
+        # Convertit "queue_manager" en "QueueManagerSubAgent"
+        parts = agent_id.split('_')
+        class_name = ''.join(p.capitalize() for p in parts) + 'SubAgent'
+        return class_name
+
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._processor_task = loop.create_task(self._message_processor())
+        self._cleanup_task_obj = loop.create_task(self._cleanup_worker())
+        self._retry_task = loop.create_task(self._retry_worker())
+        self._logger.debug("🔄 Tâches de fond démarrées")
+
+    async def _cleanup_worker(self):
+        """Nettoie périodiquement les messages expirés et les vieilles données"""
+        interval = self._comm_config.get('performance', {}).get('cleanup_interval', 60)
+        
+        self._logger.info("🧹 Tâche de nettoyage démarrée")
+        while self._status == AgentStatus.READY:
+            try:
+                await asyncio.sleep(interval)
+                
+                # Nettoyer les messages expirés dans le store
+                expired = []
+                now = datetime.now()
+                for msg_id, msg in self._message_store.items():
+                    if msg.queued_at and (now - msg.queued_at).total_seconds() > msg.ttl_seconds:
+                        expired.append(msg_id)
+                
+                for msg_id in expired:
+                    self._message_store.pop(msg_id, None)
+                    self._stats["messages_expired"] += 1
+                
+                # Nettoyer les futures en timeout
+                timed_out = []
+                for corr_id, future in self._pending_requests.items():
+                    if future.done() or future.cancelled():
+                        timed_out.append(corr_id)
+                
+                for corr_id in timed_out:
+                    self._pending_requests.pop(corr_id, None)
+                
+                if expired or timed_out:
+                    self._logger.debug(f"🧹 Nettoyage: {len(expired)} messages, {len(timed_out)} requests")
+                    
+            except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de nettoyage arrêtée")
+                break
+            except Exception as e:
+                self._logger.error(f"Erreur dans cleanup_worker: {e}")
 
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent Communication...")
-        return await super().shutdown()
+        self._set_status(AgentStatus.SHUTTING_DOWN)
 
-    async def _cleanup(self):
-        """Nettoie les ressources spécifiques"""
-        self._logger.info("Nettoyage des ressources Communication...")
-        
         # Annuler les tâches de fond
-        for task in [self._processor_task, self._cleanup_task, self._retry_task]:
+        for task in [self._processor_task, self._cleanup_task_obj, self._retry_task]:
             if task and not task.done():
                 task.cancel()
                 try:
                     await task
                 except asyncio.CancelledError:
                     pass
-        
+
+        # Arrêter les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.shutdown()
+                self._logger.debug(f"  ✓ Sous-agent {agent_name} arrêté")
+            except Exception as e:
+                self._logger.warning(f"  ⚠️ Erreur arrêt sous-agent {agent_name}: {e}")
+
         # Vider les files
         for queue in self._queues.values():
             await queue.clear()
@@ -458,6 +570,59 @@ class CommunicationAgent(BaseAgent):
         self._correlation_map.clear()
         self._pending_requests.clear()
 
+        # Sauvegarder les statistiques
+        await self._save_stats()
+
+        # Appeler la méthode parent
+        await super().shutdown()
+
+        self._logger.info("✅ Agent Communication arrêté")
+        return True
+
+    async def pause(self) -> bool:
+        """Met l'agent en pause"""
+        self._logger.info("Pause de l'agent Communication...")
+
+        # Mettre en pause les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.pause()
+            except Exception as e:
+                self._logger.warning(f"⚠️ Erreur pause sous-agent {agent_name}: {e}")
+
+        self._set_status(AgentStatus.PAUSED)
+        return True
+
+    async def resume(self) -> bool:
+        """Reprend l'activité"""
+        self._logger.info("Reprise de l'agent Communication...")
+
+        # Reprendre les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.resume()
+            except Exception as e:
+                self._logger.warning(f"⚠️ Erreur reprise sous-agent {agent_name}: {e}")
+
+        self._set_status(AgentStatus.READY)
+        return True
+
+    async def _save_stats(self):
+        """Sauvegarde les statistiques"""
+        try:
+            stats_file = Path("./reports") / "communication" / f"stats_{datetime.now().strftime('%Y%m%d')}.json"
+            stats_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(stats_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "stats": self._stats,
+                    "queues": await self.get_queue_stats(),
+                    "topics": await self.get_topic_stats(),
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2)
+            self._logger.info(f"✅ Statistiques sauvegardées")
+        except Exception as e:
+            self._logger.warning(f"⚠️ Impossible de sauvegarder: {e}")
+
     # ============================================================================
     # MÉTHODES DE SANTÉ ET D'INFORMATION (ALIGNÉES)
     # ============================================================================
@@ -465,7 +630,16 @@ class CommunicationAgent(BaseAgent):
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
         base_health = await super().health_check()
-        
+
+        # Calculer l'uptime
+        uptime = None
+        if self._stats.get('uptime_start'):
+            start = datetime.fromisoformat(self._stats['uptime_start'])
+            uptime = str(datetime.now() - start)
+
+        # Vérifier la santé des sous-agents
+        sub_agents_health = await self.get_sub_agents_status()
+
         try:
             stats = await self.get_stats()
             
@@ -500,14 +674,23 @@ class CommunicationAgent(BaseAgent):
                 "circuit_breakers": len(stats["circuit_breakers"]),
                 "health_status": health_status,
                 "issues": issues,
-                "sub_agents": list(self._sub_agents.keys())
+                "sub_agents": sub_agents_health
             }
             
         except Exception as e:
             self._logger.error(f"Erreur dans health_check: {e}")
             base_health["communication_specific"] = {"error": str(e)}
         
-        return base_health
+        return {
+            **base_health,
+            "agent": self.name,
+            "display_name": self._display_name,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
+            "ready": self._status == AgentStatus.READY,
+            "initialized": self._initialized,
+            "uptime": uptime,
+            "timestamp": datetime.now().isoformat()
+        }
 
     def get_agent_info(self) -> Dict[str, Any]:
         """Informations de l'agent pour le registre"""
@@ -515,7 +698,7 @@ class CommunicationAgent(BaseAgent):
         capabilities = agent_config.get('capabilities', [])
         
         if capabilities and isinstance(capabilities[0], dict):
-            capabilities = [cap["name"] for cap in capabilities]
+            capabilities = [cap.get('name') for cap in capabilities if cap.get('name')]
 
         return {
             "id": self.name,
@@ -523,7 +706,7 @@ class CommunicationAgent(BaseAgent):
             "display_name": self._display_name,
             "version": agent_config.get('version', '2.1.0'),
             "description": agent_config.get('description', 'Système de communication centralisé'),
-            "status": self._status.value,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "capabilities": capabilities,
             "features": {
                 "queues": list(self._queues.keys()),
@@ -542,8 +725,88 @@ class CommunicationAgent(BaseAgent):
             }
         }
 
+    async def get_sub_agents_status(self) -> Dict[str, Any]:
+        """Retourne le statut de tous les sous-agents"""
+        status = {}
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                health = await agent_instance.health_check()
+                status[agent_name] = {
+                    "status": health.get("status", "unknown"),
+                    "agent_info": agent_instance.get_agent_info()
+                }
+            except Exception as e:
+                status[agent_name] = {
+                    "status": "error",
+                    "error": str(e)
+                }
+
+        return {
+            "total_sub_agents": len(self._sub_agents),
+            "sub_agents": status
+        }
+
+    async def delegate_to_sub_agent(self, task_type: str, task_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Délègue une tâche à un sous-agent approprié.
+
+        Args:
+            task_type: Type de tâche à déléguer
+            task_data: Données de la tâche
+
+        Returns:
+            Résultat de l'exécution par le sous-agent
+        """
+        # Mapping des types de tâches vers les sous-agents
+        sub_agent_mapping = {
+            "queue": "queue_manager",
+            "pubsub": "pubsub_manager",
+            "circuit": "circuit_breaker",
+            "router": "message_router",
+            "dead": "dead_letter_analyzer",
+            "performance": "performance_optimizer",
+            "security": "security_validator"
+        }
+
+        for pattern, agent_name in sub_agent_mapping.items():
+            if task_type.startswith(pattern):
+                if agent_name in self._sub_agents:
+                    self._logger.info(f"➡️ Délégation de la tâche {task_type} au sous-agent {agent_name}")
+                    # Créer un message pour le sous-agent
+                    msg = Message(
+                        sender=self.name,
+                        recipient=agent_name,
+                        content=task_data,
+                        message_type=f"communication.{task_type}",
+                        correlation_id=f"delegate_{datetime.now().timestamp()}"
+                    )
+                    return await self._sub_agents[agent_name].handle_message(msg)
+
+        # Fallback: utiliser l'agent principal
+        self._logger.info(f"ℹ️ Aucun sous-agent trouvé pour {task_type}, utilisation de l'agent principal")
+        
+        # Exécuter la tâche localement selon le type
+        if task_type == "send":
+            return await self.send_communication(
+                task_data.get("recipient"),
+                task_data.get("content"),
+                task_data.get("message_type", "command"),
+                MessagePriority(task_data.get("priority", 1)),
+                task_data.get("correlation_id"),
+                task_data.get("ttl_seconds")
+            )
+        elif task_type == "publish":
+            return await self.publish(
+                task_data.get("topic"),
+                task_data.get("content"),
+                task_data.get("message_type", "event"),
+                MessagePriority(task_data.get("priority", 1))
+            )
+        else:
+            return {"success": False, "error": f"Type de tâche non supporté: {task_type}"}
+
     # ============================================================================
-    # API PUBLIQUE - MÉTHODES SPÉCIFIQUES (INCHANGÉES)
+    # API PUBLIQUE - MÉTHODES SPÉCIFIQUES
     # ============================================================================
 
     async def send_communication(self, 
@@ -731,7 +994,7 @@ class CommunicationAgent(BaseAgent):
         return await self._topic_manager.unsubscribe(topic, self.name)
 
     # ============================================================================
-    # TRAITEMENT DES MESSAGES
+    # TRAITEMENT DES MESSAGES (CORRIGÉ)
     # ============================================================================
 
     async def _message_processor(self):
@@ -742,6 +1005,8 @@ class CommunicationAgent(BaseAgent):
         
         while self._status == AgentStatus.READY:
             try:
+                processed_any = False
+                
                 # Traiter les files par ordre de priorité
                 for queue_name in ["high_priority", "default", "batch"]:
                     queue = self._queues.get(queue_name)
@@ -752,6 +1017,8 @@ class CommunicationAgent(BaseAgent):
                     message = await queue.dequeue()
                     if not message:
                         continue
+                    
+                    processed_any = True
                     
                     # Traiter le message
                     start_time = time.time()
@@ -783,11 +1050,12 @@ class CommunicationAgent(BaseAgent):
                         self._stats["throughput_current"]
                     )
                 
-                # Petite pause si aucune file n'avait de message
-                if all((await q.size()) == 0 for q in self._queues.values()):
+                # Petite pause si aucun message n'a été traité
+                if not processed_any:
                     await asyncio.sleep(0.01)
                     
             except asyncio.CancelledError:
+                self._logger.info("🛑 Processeur de messages arrêté")
                 break
             except Exception as e:
                 self._logger.error(f"Erreur dans le processeur: {e}")
@@ -955,46 +1223,11 @@ class CommunicationAgent(BaseAgent):
     # TÂCHES DE FOND
     # ============================================================================
 
-    async def _cleanup_worker(self):
-        """Nettoie périodiquement les messages expirés et les vieilles données"""
-        interval = self._comm_config.get('performance', {}).get('cleanup_interval', 60)
-        
-        while self._status == AgentStatus.READY:
-            try:
-                await asyncio.sleep(interval)
-                
-                # Nettoyer les messages expirés dans le store
-                expired = []
-                now = datetime.now()
-                for msg_id, msg in self._message_store.items():
-                    if msg.queued_at and (now - msg.queued_at).total_seconds() > msg.ttl_seconds:
-                        expired.append(msg_id)
-                
-                for msg_id in expired:
-                    self._message_store.pop(msg_id, None)
-                    self._stats["messages_expired"] += 1
-                
-                # Nettoyer les futures en timeout
-                timed_out = []
-                for corr_id, future in self._pending_requests.items():
-                    if future.done() or future.cancelled():
-                        timed_out.append(corr_id)
-                
-                for corr_id in timed_out:
-                    self._pending_requests.pop(corr_id, None)
-                
-                if expired or timed_out:
-                    self._logger.debug(f"🧹 Nettoyage: {len(expired)} messages, {len(timed_out)} requests")
-                    
-            except asyncio.CancelledError:
-                break
-            except Exception as e:
-                self._logger.error(f"Erreur dans cleanup_worker: {e}")
-
     async def _retry_worker(self):
         """Gère les réessais des messages en dead letter"""
         interval = 30  # toutes les 30 secondes
         
+        self._logger.info("🔄 Tâche de réessai démarrée")
         while self._status == AgentStatus.READY:
             try:
                 await asyncio.sleep(interval)
@@ -1017,6 +1250,7 @@ class CommunicationAgent(BaseAgent):
                     self._logger.info(f"🔄 {len(to_retry)} messages réessayés depuis dead letter")
                     
             except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de réessai arrêtée")
                 break
             except Exception as e:
                 self._logger.error(f"Erreur dans retry_worker: {e}")
@@ -1099,6 +1333,12 @@ class CommunicationAgent(BaseAgent):
             msg_type = message.message_type
             self._logger.debug(f"Message personnalisé reçu: {msg_type} de {message.sender}")
 
+            # D'abord, essayer de déléguer à un sous-agent
+            if message.content and "sub_agent_task" in message.content:
+                task_type = message.content.get("sub_agent_task")
+                return await self.delegate_to_sub_agent(task_type, message.content)
+
+            # Handlers standards
             handlers = {
                 "communication.send": self._handle_send_request,
                 "communication.request": self._handle_request,
@@ -1108,6 +1348,10 @@ class CommunicationAgent(BaseAgent):
                 "communication.stats": self._handle_stats_request,
                 "communication.queue_stats": self._handle_queue_stats,
                 "communication.topic_stats": self._handle_topic_stats,
+                "communication.get_sub_agents_status": self._handle_get_sub_agents_status,
+                "communication.pause": self._handle_pause,
+                "communication.resume": self._handle_resume,
+                "communication.shutdown": self._handle_shutdown,
             }
 
             if msg_type in handlers:
@@ -1227,6 +1471,50 @@ class CommunicationAgent(BaseAgent):
             recipient=message.sender,
             content=stats,
             message_type="communication.topic_stats_response",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_get_sub_agents_status(self, message: Message) -> Message:
+        """Gère la récupération du statut des sous-agents"""
+        status = await self.get_sub_agents_status()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=status,
+            message_type="communication.sub_agents_status",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_pause(self, message: Message) -> Message:
+        """Gère la pause"""
+        await self.pause()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "paused"},
+            message_type="communication.status_update",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_resume(self, message: Message) -> Message:
+        """Gère la reprise"""
+        await self.resume()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "resumed"},
+            message_type="communication.status_update",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_shutdown(self, message: Message) -> Message:
+        """Gère l'arrêt"""
+        await self.shutdown()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "shutdown"},
+            message_type="communication.status_update",
             correlation_id=message.message_id
         )
 

@@ -1,0 +1,7 @@
+2026-03-10 20:47:29 - agent.CircuitBreakerSubAgent - ERROR - Erreur YAML dans la configuration D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\circuit_breaker\config.yaml: while scanning an alias
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\circuit_breaker\config.yaml", line 153, column 7
+expected alphabetic or numeric character, but found '.'
+  in "D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\circuit_breaker\config.yaml", line 153, column 12
+2026-03-10 20:47:29 - agent.CircuitBreakerSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\circuit_breaker\config.yaml)
+2026-03-10 20:53:37 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-10 20:53:37 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\circuit_breaker\config.yaml)

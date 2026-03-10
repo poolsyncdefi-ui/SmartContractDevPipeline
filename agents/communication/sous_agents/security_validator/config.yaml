@@ -1,0 +1,192 @@
+# ============================================================================
+# agents/communication/sous_agents/security_validator/config.yaml
+# Configuration du Security Validator SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "SecurityValidatorSubAgent"
+  class_name: "SecurityValidatorSubAgent"
+  module_path: "agents.communication.sous_agents.security_validator.agent"
+  display_name: "🔒 Security Validator"
+  version: "2.0.0"
+  description: |-
+    Valide et sécurise les messages selon des politiques de sécurité.
+    Vérifie les schémas, détecte les tentatives d'injection,
+    contrôle les accès et assure la conformité.
+  purpose: "Garantir la sécurité et l'intégrité des communications"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 7
+  tags: ["security", "validation", "authentication", "encryption"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "security.validate"
+    description: "Valide un message selon les règles de sécurité"
+    confidence: 0.98
+    parameters:
+      - "message"
+      - "schema"
+      - "context"
+
+  - name: "security.encrypt"
+    description: "Chiffre un message"
+    confidence: 0.99
+    parameters:
+      - "message"
+      - "key_id"
+      - "algorithm"
+
+  - name: "security.decrypt"
+    description: "Déchiffre un message"
+    confidence: 0.99
+    parameters:
+      - "encrypted_data"
+      - "key_id"
+
+  - name: "security.sign"
+    description: "Signe un message"
+    confidence: 0.98
+    parameters:
+      - "message"
+      - "key_id"
+
+  - name: "security.verify"
+    description: "Vérifie une signature"
+    confidence: 0.98
+    parameters:
+      - "message"
+      - "signature"
+      - "key_id"
+
+  - name: "security.scan"
+    description: "Scanne un message pour détecter des menaces"
+    confidence: 0.95
+    parameters:
+      - "content"
+      - "scan_level"
+
+  - name: "security.policy"
+    description: "Vérifie la conformité aux politiques"
+    confidence: 0.96
+    parameters:
+      - "message"
+      - "policy_name"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+security_validator:
+  defaults:
+    encryption_algorithm: "AES-256-GCM"
+    signature_algorithm: "Ed25519"
+    key_rotation_days: 90
+    max_message_size_kb: 10240
+
+  validation:
+    schemas_enabled: true
+    schema_path: "schemas/security/"
+    validate_timestamps: true
+    max_timestamp_drift_seconds: 300
+
+  encryption:
+    algorithms: ["AES-256-GCM", "ChaCha20-Poly1305", "RSA-OAEP"]
+    key_storage: "memory"  # memory, vault, filesystem
+    auto_key_rotation: true
+
+  threat_detection:
+    enabled: true
+    scan_levels: ["basic", "standard", "deep"]
+    patterns:
+      sql_injection: true
+      xss: true
+      path_traversal: true
+      command_injection: true
+    max_scan_time_ms: 500
+
+  policies:
+    - name: "strict"
+      description: "Politique stricte pour données sensibles"
+      rules:
+        - "encryption_required"
+        - "signature_required"
+        - "schema_validation"
+        - "timestamp_check"
+    - name: "standard"
+      description: "Politique standard"
+      rules:
+        - "schema_validation"
+        - "threat_scan"
+    - name: "relaxed"
+      description: "Politique relaxée pour logs"
+      rules:
+        - "size_check"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 30
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+
+  custom_metrics:
+    - name: "validations_total"
+      type: "counter"
+      description: "Validations effectuées"
+    - name: "validation_failures"
+      type: "counter"
+      description: "Échecs de validation"
+    - name: "encryptions_total"
+      type: "counter"
+      description: "Chiffrements effectués"
+    - name: "threats_detected"
+      type: "counter"
+      description: "Menaces détectées"
+    - name: "validation_time_ms"
+      type: "histogram"
+      description: "Temps de validation"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  validation_time_ms: 50
+  encryption_time_ms: 10
+  decryption_time_ms: 10
+  scan_time_ms: 100
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "security", "validation"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

@@ -1,0 +1,1322 @@
+# ============================================================================
+# agents/sous_agents/config.yaml
+# Configuration ULTIME de la Classe de Base pour TOUS les Sous-Agents
+# Version: 2.0.0 (ALIGNÉE SUR BASE_AGENT)
+# ============================================================================
+
+# Cette configuration sert de fondation et de template pour tous les sous-agents
+# du système. Chaque sous-agent concret hérite de ces valeurs et peut les
+# surcharger dans son propre fichier config.yaml.
+
+# ============================================================================
+# IDENTIFICATION ET MÉTADONNÉES
+# ============================================================================
+base_subagent:
+  # === IDENTIFICATION ===
+  name: "BaseSubAgent"
+  class_name: "BaseSubAgent"
+  module_path: "agents.sous_agents.base_subagent"
+  display_name: "🧩 Sous-Agent de Base"
+  version: "2.0.0"
+  description: |- 
+    Classe de base abstraite fournissant les fonctionnalités fondamentales 
+    pour TOUS les sous-agents du système. Gère le cycle de vie, les métriques,
+    le cache, les tâches asynchrones, la communication avec l'agent parent,
+    et l'initialisation des composants spécifiques.
+  purpose: "Standardiser et mutualiser le comportement de tous les sous-agents pour garantir cohérence et fiabilité"
+  
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "abstract_base"  # Même type que BaseAgent
+  abstract: true
+  instantiate: false
+  enabled: true
+  mandatory: true
+  singleton: false  # Peut avoir plusieurs instances par agent parent
+  
+  # === RELATION AVEC L'AGENT PARENT ===
+  parent_relationship:
+    type: "composition"  # Le sous-agent est composé dans l'agent parent
+    lifecycle_tied: true  # Le cycle de vie du sous-agent est lié au parent
+    auto_register: true   # S'enregistre automatiquement auprès du parent
+    heartbeat_interval: 30
+    sync_config_with_parent: true
+    delegation_enabled: true
+    reporting_interval: 60
+
+# ============================================================================
+# HÉRITAGE ET DÉPENDANCES
+# ============================================================================
+extends: "BaseAgent"  # Hérite directement de BaseAgent
+parent: "BaseAgent"
+dependencies:
+  - "BaseAgent"  # Dépendance minimale
+initialization_order: 0  # Sera surchargé par les sous-agents concrets
+
+# ============================================================================
+# RÈGLES GLOBALES (héritées par tous les sous-agents)
+# ============================================================================
+global_constraints:
+  # === LIMITES GÉNÉRALES ===
+  max_response_length: 2000
+  max_tokens: 1000
+  timeout_seconds: 60
+  
+  # === PATTERNS INTERDITS ===
+  forbidden_patterns:
+    - "je ne suis pas sûr mais"
+    - "probablement"
+    - "selon mes sources"
+    - "d'après mes connaissances"
+    - "je pense que"
+    - "il me semble que"
+    - "peut-être que"
+    - "à mon avis"
+  
+  # === ÉLÉMENTS REQUIS ===
+  required_elements:
+    - name: "success"
+      description: "Indicateur de succès (true/false)"
+    - name: "confidence_score"
+      description: "Score de confiance (0-1)"
+    - name: "processing_time_ms"
+      description: "Temps de traitement en millisecondes"
+    - name: "result"
+      description: "Résultat de l'exécution"
+    - name: "warnings"
+      description: "Liste des avertissements"
+  
+  # === VALIDATION AUTOMATIQUE ===
+  auto_validation:
+    check_consistency: true
+    detect_contradictions: true
+    min_confidence: 0.7
+    validate_against_schema: true
+    schema_path: "schemas/subagent_response.json"
+  
+  # === GESTION DE L'INCERTITUDE ===
+  uncertainty_handling:
+    threshold: 0.7
+    fallback_action: "signal_parent"
+    markers:
+      - "⚠️ Incertitude détectée: [raison]"
+      - "🔍 À vérifier: [point]"
+      - "❓ Donnée incertaine: [champ]"
+  
+  # === VÉRIFICATION DES FAITS ===
+  fact_checking:
+    require_source_citation: true
+    verify_with_parent: true
+    confidence_decay_without_source: 0.3
+
+# ============================================================================
+# CAPACITÉS FONDAMENTALES (COMMUNES À TOUS LES SOUS-AGENTS)
+# ============================================================================
+capabilities:
+  # === GESTION DE BASE ===
+  - name: "SUBAGENT_LIFECYCLE_MANAGEMENT"
+    description: "Gère le cycle de vie complet du sous-agent"
+    version: "1.0.0"
+    parameters: ["action", "force"]
+  
+  - name: "SUBAGENT_STATUS_REPORTING"
+    description: "Fournit des rapports d'état détaillés"
+    version: "1.0.0"
+    parameters: ["detail_level", "include_metrics"]
+  
+  - name: "SUBAGENT_HEALTH_CHECK"
+    description: "Exécute des vérifications de santé complètes"
+    version: "1.0.0"
+    parameters: ["check_type", "timeout"]
+  
+  - name: "SUBAGENT_METRICS_COLLECTION"
+    description: "Collecte et agrège les métriques de performance"
+    version: "1.0.0"
+    parameters: ["metrics_types", "time_range"]
+  
+  - name: "SUBAGENT_CONFIGURATION_MANAGEMENT"
+    description: "Gère la configuration du sous-agent"
+    version: "1.0.0"
+    parameters: ["action", "config_section", "value"]
+  
+  # === GESTION DES TÂCHES ===
+  - name: "TASK_EXECUTION"
+    description: "Exécute des tâches de manière asynchrone"
+    version: "1.0.0"
+    parameters: ["task_type", "params", "priority", "timeout"]
+  
+  - name: "TASK_QUEUE_MANAGEMENT"
+    description: "Gère la file d'attente des tâches"
+    version: "1.0.0"
+    parameters: ["action", "task_id", "queue_position"]
+  
+  - name: "TASK_PRIORITIZATION"
+    description: "Ajuste les priorités des tâches en attente"
+    version: "1.0.0"
+    parameters: ["task_id", "new_priority"]
+  
+  - name: "TASK_RESULT_RETRIEVAL"
+    description: "Récupère les résultats des tâches terminées"
+    version: "1.0.0"
+    parameters: ["task_id", "include_metadata"]
+  
+  - name: "TASK_CANCELLATION"
+    description: "Annule des tâches en cours ou en attente"
+    version: "1.0.0"
+    parameters: ["task_id", "force"]
+  
+  # === GESTION DU CACHE ===
+  - name: "CACHE_OPERATIONS"
+    description: "Effectue des opérations sur le cache"
+    version: "1.0.0"
+    parameters: ["operation", "key", "value", "ttl"]
+  
+  - name: "CACHE_STATISTICS"
+    description: "Fournit des statistiques d'utilisation du cache"
+    version: "1.0.0"
+    parameters: ["reset_counters"]
+  
+  - name: "CACHE_CLEANUP"
+    description: "Nettoie les entrées expirées du cache"
+    version: "1.0.0"
+    parameters: ["force"]
+  
+  # === COMMUNICATION AVEC L'AGENT PARENT ===
+  - name: "PARENT_COMMUNICATION"
+    description: "Communique avec l'agent parent"
+    version: "1.0.0"
+    parameters: ["message_type", "payload", "wait_response"]
+  
+  - name: "PARENT_STATUS_UPDATE"
+    description: "Envoie des mises à jour de statut au parent"
+    version: "1.0.0"
+    parameters: ["status", "details"]
+  
+  - name: "PARENT_ALERT"
+    description: "Envoie des alertes à l'agent parent"
+    version: "1.0.0"
+    parameters: ["severity", "message", "data"]
+  
+  # === MÉTRIQUES ET MONITORING ===
+  - name: "METRICS_EXPORT"
+    description: "Exporte les métriques vers différents formats"
+    version: "1.0.0"
+    parameters: ["format", "destination"]
+  
+  - name: "PERFORMANCE_PROFILING"
+    description: "Profile les performances du sous-agent"
+    version: "1.0.0"
+    parameters: ["profile_type", "duration"]
+  
+  - name: "RESOURCE_MONITORING"
+    description: "Surveille l'utilisation des ressources"
+    version: "1.0.0"
+    parameters: ["resource_type", "threshold"]
+  
+  # === SÉCURITÉ ===
+  - name: "INPUT_VALIDATION"
+    description: "Valide les entrées selon des schémas"
+    version: "1.0.0"
+    parameters: ["data", "schema_name"]
+  
+  - name: "SENSITIVE_DATA_MASKING"
+    description: "Masque les données sensibles dans les logs"
+    version: "1.0.0"
+    parameters: ["data", "fields_to_mask"]
+  
+  - name: "AUDIT_LOGGING"
+    description: "Enregistre les actions importantes pour audit"
+    version: "1.0.0"
+    parameters: ["action", "user", "resource", "result"]
+
+# ============================================================================
+# SYSTÈME (valeurs par défaut pour tous les sous-agents)
+# ============================================================================
+system:
+  # === VERSION ET COMPATIBILITÉ ===
+  version_info:
+    major: 2
+    minor: 0
+    patch: 0
+    build: "20260310"
+    compatible_versions:
+      - "2.0.x"
+      - "1.5.x"
+    requires_base_agent: ">=2.0.0"
+  
+  # === LOGGING AVANCÉ ===
+  logging:
+    system_name: "BaseSubAgent"
+    default_level: "INFO"
+    
+    # === FORMATS ===
+    formats:
+      console: "%(color)s[%(asctime)s] [%(levelname)8s] [%(name)s] %(message)s%(reset)s"
+      file: "json"
+      structured:
+        include_timestamp: true
+        include_level: true
+        include_name: true
+        include_process: true
+        include_thread: true
+        include_file: true
+        include_line: true
+        include_function: true
+    
+    # === HANDLERS ===
+    handlers:
+      console:
+        enabled: true
+        level: "INFO"
+        format: "console"
+        colors: true
+      
+      file:
+        enabled: true
+        level: "DEBUG"
+        format: "structured"
+        path: "logs/subagents"
+        filename_pattern: "{subagent_name}_{date}.log"
+        max_file_size_mb: 50
+        backup_count: 5
+        compression: true
+        encoding: "utf-8"
+      
+      parent_agent:
+        enabled: true
+        level: "WARNING"
+        format: "structured"
+        forward_to_parent: true
+        parent_channel: "log_messages"
+    
+    # === FILTRES ===
+    filters:
+      sensitive_data:
+        enabled: true
+        patterns:
+          - "password[=:].*"
+          - "token[=:].*"
+          - "secret[=:].*"
+          - "api_key[=:].*"
+          - "private_key[=:].*"
+          - "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"  # Emails
+          - "\\b\\d{16}\\b"  # Numéros de carte 16 chiffres
+        replacement: "[REDACTED]"
+      
+      duplicate_messages:
+        enabled: true
+        window_seconds: 5
+        max_duplicates: 3
+      
+      level_filter:
+        enabled: true
+        min_level: "DEBUG"
+        max_level: "CRITICAL"
+    
+    # === MÉTRIQUES DE LOG ===
+    metrics:
+      log_rate: true
+      error_rate: true
+      warning_rate: true
+      log_size: true
+      log_by_level: true
+      log_by_component: true
+  
+  # === PERFORMANCE ===
+  performance:
+    # === LIMITES RESSOURCES ===
+    resource_limits:
+      cpu_percent: 50
+      memory_mb: 256
+      open_files: 100
+      threads: 10
+      network_connections: 20
+    
+    # === TIMEOUTS ===
+    timeouts:
+      default: 60
+      task_execution: 300
+      parent_communication: 30
+      cache_operation: 1
+      health_check: 10
+      initialization: 30
+      shutdown: 10
+    
+    # === RÉESSAIS ===
+    retry_policy:
+      enabled: true
+      max_attempts: 3
+      initial_delay_ms: 100
+      max_delay_ms: 30000
+      backoff_factor: 2.0
+      jitter: 0.1
+      retryable_errors:
+        - "TimeoutError"
+        - "ConnectionError"
+        - "ResourceBusyError"
+        - "TemporaryError"
+        - "ServiceUnavailableError"
+    
+    # === CONCURRENCE ===
+    concurrency:
+      max_concurrent_tasks: 5
+      task_queue_size: 100
+      priority_levels: 4
+      preemptive_execution: false
+      worker_threads: 2
+    
+    # === OPTIMISATION ===
+    optimization:
+      lazy_loading: true
+      background_processing: true
+      batch_operations: true
+      compression: true
+      deduplication: true
+
+# ============================================================================
+# GESTION DES TÂCHES
+# ============================================================================
+task_management:
+  # === TYPES DE TÂCHES ===
+  task_types:
+    EXECUTE:
+      description: "Exécution de tâche standard"
+      priority: 50
+      timeout: 300
+      retryable: true
+      cacheable: true
+      max_attempts: 3
+      require_result: true
+    
+    MONITOR:
+      description: "Tâche de monitoring"
+      priority: 20
+      timeout: 30
+      retryable: true
+      cacheable: false
+      max_attempts: 2
+    
+    REPORT:
+      description: "Génération de rapport"
+      priority: 30
+      timeout: 120
+      retryable: false
+      cacheable: true
+      max_attempts: 1
+    
+    MAINTENANCE:
+      description: "Tâche de maintenance"
+      priority: 10
+      timeout: 600
+      retryable: true
+      cacheable: false
+      max_attempts: 2
+      schedule: "0 2 * * *"  # Tous les jours à 2h
+  
+  # === PRIORITÉS ===
+  priorities:
+    critical:
+      value: 3
+      max_concurrent: 1
+      timeout_multiplier: 2.0
+      color: "🔴"
+    
+    high:
+      value: 2
+      max_concurrent: 2
+      timeout_multiplier: 1.5
+      color: "🟠"
+    
+    normal:
+      value: 1
+      max_concurrent: 5
+      timeout_multiplier: 1.0
+      color: "🟢"
+    
+    low:
+      value: 0
+      max_concurrent: 10
+      timeout_multiplier: 0.5
+      color: "⚪"
+  
+  # === FILE D'ATTENTE ===
+  queue:
+    type: "priority"  # fifo, priority, lifo
+    max_size: 1000
+    persistence: false
+    overflow_policy: "reject"  # reject, drop_oldest, block, expand
+    monitoring:
+      track_size: true
+      track_wait_time: true
+      track_processing_time: true
+      alert_on_backlog: true
+      backlog_threshold: 100
+  
+  # === RÉSULTATS ===
+  results:
+    storage:
+      backend: "memory"  # memory, filesystem, database
+      retention_hours: 24
+      max_size_mb: 100
+      compression: true
+      encryption: false
+    
+    access:
+      allow_retrieval: true
+      allow_deletion: true
+      allow_archiving: true
+      max_results_per_task: 100
+    
+    format:
+      include_metadata: true
+      include_timestamps: true
+      include_duration: true
+      include_error_details: true
+      serialization: "json"
+
+# ============================================================================
+# GESTION DU CACHE
+# ============================================================================
+cache:
+  # === CONFIGURATION GÉNÉRALE ===
+  enabled: true
+  default_ttl_seconds: 300
+  max_size: 1000
+  eviction_policy: "LRU"  # LRU, LFU, FIFO, TTL
+  
+  # === STRATÉGIES PAR TYPE ===
+  strategies:
+    task_results:
+      enabled: true
+      ttl_seconds: 600
+      max_size: 500
+      eviction_policy: "LFU"
+    
+    configuration:
+      enabled: true
+      ttl_seconds: 1800
+      max_size: 50
+      eviction_policy: "FIFO"
+    
+    computed_values:
+      enabled: true
+      ttl_seconds: 120
+      max_size: 200
+      eviction_policy: "LRU"
+    
+    external_data:
+      enabled: false
+      ttl_seconds: 60
+      max_size: 100
+      eviction_policy: "TTL"
+  
+  # === STATISTIQUES ===
+  statistics:
+    enabled: true
+    track_hits: true
+    track_misses: true
+    track_evictions: true
+    track_size: true
+    track_ttl_expired: true
+    export_interval: 60
+  
+  # === PERSISTANCE ===
+  persistence:
+    enabled: false
+    save_on_shutdown: true
+    save_interval: 300
+    storage_path: "data/subagents/cache"
+    format: "pickle"
+    compression: true
+
+# ============================================================================
+# COMMUNICATION AVEC L'AGENT PARENT
+# ============================================================================
+parent_communication:
+  # === PROTOCOLES ===
+  protocols:
+    internal:
+      enabled: true
+      transport: "in_memory"
+      serialization: "pickle"
+      compression: true
+      max_message_size_kb: 1024
+    
+    message_queue:
+      enabled: false
+      type: "redis"
+      host: "localhost"
+      port: 6379
+      channel_prefix: "subagent:"
+  
+  # === TYPES DE MESSAGES ===
+  message_types:
+    STATUS_UPDATE:
+      require_response: false
+      priority: "normal"
+      max_rate_per_minute: 60
+    
+    METRICS_REPORT:
+      require_response: false
+      priority: "low"
+      max_rate_per_minute: 12  # Toutes les 5 secondes max
+    
+    HEALTH_REPORT:
+      require_response: true
+      priority: "high"
+      timeout: 5
+      max_rate_per_minute: 4  # Toutes les 15 secondes max
+    
+    ALERT:
+      require_response: true
+      priority: "critical"
+      timeout: 2
+      max_rate_per_minute: 60
+    
+    TASK_REQUEST:
+      require_response: true
+      priority: "high"
+      timeout: 30
+    
+    TASK_RESULT:
+      require_response: true
+      priority: "normal"
+      timeout: 5
+    
+    CONFIG_REQUEST:
+      require_response: true
+      priority: "high"
+      timeout: 10
+      max_rate_per_minute: 6  # Toutes les 10 secondes max
+    
+    CAPABILITY_QUERY:
+      require_response: true
+      priority: "normal"
+      timeout: 5
+      max_rate_per_minute: 12
+  
+  # === FORMAT DES MESSAGES ===
+  message_format:
+    version: "2.0"
+    required_fields:
+      - "message_id"
+      - "sender"
+      - "message_type"
+      - "timestamp"
+      - "payload"
+    
+    optional_fields:
+      - "correlation_id"
+      - "priority"
+      - "ttl_seconds"
+      - "response_timeout"
+      - "signature"
+    
+    validation:
+      validate_schema: true
+      validate_timestamp: true
+      check_ttl: true
+      max_message_age_seconds: 60
+  
+  # === FIABILITÉ ===
+  reliability:
+    delivery_guarantee: "AT_LEAST_ONCE"  # AT_MOST_ONCE, AT_LEAST_ONCE, EXACTLY_ONCE
+    max_retries: 3
+    retry_delay: 1
+    acknowledgement_required: true
+    dead_letter_queue: true
+    dlq_max_size: 100
+    circuit_breaker:
+      enabled: true
+      failure_threshold: 5
+      timeout_seconds: 30
+      half_open_timeout: 10
+
+# ============================================================================
+# MÉTRIQUES ET MONITORING
+# ============================================================================
+metrics:
+  # === COLLECTE ===
+  collection:
+    enabled: true
+    interval: 60
+    buffer_size: 1000
+    aggregation_window: 300
+  
+  # === MÉTRIQUES SYSTÈME ===
+  system_metrics:
+    cpu_usage:
+      enabled: true
+      unit: "percent"
+      thresholds:
+        warning: 70
+        critical: 90
+    
+    memory_usage:
+      enabled: true
+      unit: "percent"
+      thresholds:
+        warning: 70
+        critical: 90
+    
+    memory_rss:
+      enabled: true
+      unit: "bytes"
+    
+    open_files:
+      enabled: true
+      unit: "count"
+      thresholds:
+        warning: 80
+        critical: 95
+    
+    thread_count:
+      enabled: true
+      unit: "count"
+      thresholds:
+        warning: 50
+        critical: 80
+    
+    uptime_seconds:
+      enabled: true
+      unit: "seconds"
+  
+  # === MÉTRIQUES APPLICATION ===
+  application_metrics:
+    tasks_processed:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["task_type", "priority", "status"]
+    
+    tasks_succeeded:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["task_type"]
+    
+    tasks_failed:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["task_type", "error_type"]
+    
+    task_duration_ms:
+      enabled: true
+      type: "histogram"
+      unit: "milliseconds"
+      buckets: [10, 50, 100, 250, 500, 1000, 2500, 5000, 10000]
+      labels: ["task_type", "priority"]
+    
+    queue_size:
+      enabled: true
+      type: "gauge"
+      unit: "count"
+    
+    queue_wait_time_ms:
+      enabled: true
+      type: "histogram"
+      unit: "milliseconds"
+      buckets: [1, 5, 10, 25, 50, 100, 250, 500, 1000]
+    
+    cache_hits:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["cache_strategy"]
+    
+    cache_misses:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["cache_strategy"]
+    
+    cache_size:
+      enabled: true
+      type: "gauge"
+      unit: "count"
+      labels: ["cache_strategy"]
+    
+    parent_messages_sent:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["message_type"]
+    
+    parent_messages_received:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["message_type"]
+    
+    parent_communication_errors:
+      enabled: true
+      type: "counter"
+      unit: "count"
+      labels: ["error_type"]
+  
+  # === STOCKAGE ===
+  storage:
+    backend: "memory"  # memory, prometheus, influxdb
+    retention_hours: 24
+    aggregation:
+      enabled: true
+      intervals:
+        - interval: 60
+          retention: 24
+        - interval: 300
+          retention: 168
+        - interval: 3600
+          retention: 720
+    
+    export:
+      enabled: true
+      formats:
+        - type: "prometheus"
+          enabled: false
+          endpoint: "/metrics"
+        
+        - type: "json"
+          enabled: true
+          path: "data/subagents/metrics"
+          filename_pattern: "metrics_{date}.json"
+          compression: true
+        
+        - type: "parent"
+          enabled: true
+          send_to_parent: true
+          interval: 300
+  
+  # === ALERTES ===
+  alerts:
+    enabled: true
+    notification_channels:
+      log: true
+      parent: true
+      console: false
+    
+    rules:
+      - name: "high_error_rate"
+        condition: "rate(tasks_failed[5m]) > 10"
+        severity: "warning"
+        cooldown: 300
+        description: "Taux d'erreur élevé détecté"
+      
+      - name: "critical_error"
+        condition: "tasks_failed{error_type='critical'} > 0"
+        severity: "critical"
+        cooldown: 60
+        description: "Erreur critique survenue"
+      
+      - name: "high_memory_usage"
+        condition: "memory_usage > 90"
+        severity: "critical"
+        cooldown: 600
+        description: "Utilisation mémoire critique"
+      
+      - name: "queue_backlog"
+        condition: "queue_size > 100"
+        severity: "warning"
+        cooldown: 300
+        description: "File d'attente en backlog"
+      
+      - name: "parent_communication_failure"
+        condition: "rate(parent_communication_errors[5m]) > 5"
+        severity: "critical"
+        cooldown: 60
+        description: "Échec de communication avec le parent"
+
+# ============================================================================
+# SÉCURITÉ
+# ============================================================================
+security:
+  # === VALIDATION DES ENTRÉES ===
+  input_validation:
+    enabled: true
+    max_size_kb: 1024
+    allowed_types: ["string", "number", "boolean", "object", "array", "null"]
+    forbidden_patterns:
+      - "<script.*?>.*?</script>"
+      - "javascript:"
+      - "onerror="
+      - "onload="
+      - "\\bDROP\\s+TABLE\\b"
+      - "\\bDELETE\\s+FROM\\b"
+      - "\\bINSERT\\s+INTO\\b"
+      - "\\bEXEC(UTE)?\\b"
+      - "__.*__"  # Dunder methods
+    
+    schemas:
+      task_request:
+        type: "object"
+        required: ["task_type", "params"]
+        properties:
+          task_type: {"type": "string", "minLength": 1, "maxLength": 100}
+          params: {"type": "object"}
+          priority: {"type": "string", "enum": ["low", "normal", "high", "critical"]}
+          timeout: {"type": "number", "minimum": 1, "maximum": 3600}
+      
+      status_response:
+        type: "object"
+        required: ["status", "initialized", "stats"]
+        properties:
+          status: {"type": "string"}
+          initialized: {"type": "boolean"}
+          stats: {"type": "object"}
+  
+  # === DONNÉES SENSIBLES ===
+  sensitive_data:
+    mask_in_logs: true
+    mask_in_responses: true
+    mask_in_storage: true
+    
+    fields:
+      - "password"
+      - "passwd"
+      - "pwd"
+      - "secret"
+      - "token"
+      - "api_key"
+      - "apikey"
+      - "private_key"
+      - "privatekey"
+      - "auth_token"
+      - "access_token"
+      - "refresh_token"
+      - "jwt"
+      - "authorization"
+      - "credentials"
+      - "credit_card"
+      - "ssn"
+      - "social_security"
+      - "iban"
+      - "bic"
+    
+    patterns:
+      - "\\b[0-9]{16}\\b"  # Cartes bancaires
+      - "\\b[0-9]{3}-[0-9]{2}-[0-9]{4}\\b"  # SSN
+      - "\\b[A-Z]{2}[0-9]{2}[A-Z0-9]{1,30}\\b"  # IBAN
+      - "\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w+\\b"  # Emails
+    
+    replacement: "[REDACTED]"
+  
+  # === SANDBOX ===
+  sandbox:
+    enabled: true
+    restricted_imports: true
+    allowed_imports:
+      - "datetime"
+      - "json"
+      - "asyncio"
+      - "typing"
+      - "enum"
+      - "dataclasses"
+      - "pathlib"
+      - "logging"
+      - "collections"
+      - "uuid"
+      - "hashlib"
+      - "functools"
+      - "itertools"
+    
+    blocked_functions:
+      - "eval"
+      - "exec"
+      - "compile"
+      - "__import__"
+      - "open"
+      - "file"
+      - "input"
+      - "print"  # Sauf logging autorisé
+    
+    resource_limits:
+      cpu_time_ms: 10000
+      memory_mb: 256
+      execution_steps: 1000000
+  
+  # === AUDIT ===
+  audit:
+    enabled: true
+    log_level: "INFO"
+    
+    events:
+      - "SUBAGENT_STARTED"
+      - "SUBAGENT_STOPPED"
+      - "SUBAGENT_PAUSED"
+      - "SUBAGENT_RESUMED"
+      - "TASK_STARTED"
+      - "TASK_COMPLETED"
+      - "TASK_FAILED"
+      - "TASK_CANCELLED"
+      - "CONFIG_CHANGED"
+      - "PARENT_COMMUNICATION"
+      - "ALERT_SENT"
+      - "SECURITY_VIOLATION"
+    
+    storage:
+      backend: "file"
+      path: "logs/audit/subagents"
+      filename_pattern: "audit_{subagent_name}_{date}.log"
+      rotation_size_mb: 100
+      retention_days: 90
+      compression: true
+    
+    compliance:
+      gdpr: true
+      soc2: true
+      hipaa: false
+      pci_dss: false
+
+# ============================================================================
+# INTÉGRATION AVEC L'AGENT PARENT
+# ============================================================================
+parent_integration:
+  # === ENREGISTREMENT ===
+  registration:
+    auto_register: true
+    register_on_init: true
+    retry_on_failure: true
+    max_retries: 3
+    registration_timeout: 10
+    
+    metadata:
+      send_capabilities: true
+      send_config: false
+      send_initial_metrics: true
+    
+    heartbeat:
+      enabled: true
+      interval: 30
+      timeout: 5
+      retry_count: 2
+  
+  # === DÉLÉGATION ===
+  delegation:
+    enabled: true
+    require_parent_approval: false
+    timeout_seconds: 30
+    retry_on_failure: true
+    max_retries: 2
+    
+    task_types_delegatable:
+      - "EXECUTE"
+      - "MONITOR"
+      - "REPORT"
+    
+    delegation_strategy: "direct"  # direct, load_balanced, round_robin
+  
+  # === RAPPORTS ===
+  reporting:
+    status_updates:
+      enabled: true
+      interval: 300
+      send_on_change: true
+      include_metrics: true
+    
+    metrics_reports:
+      enabled: true
+      interval: 60
+      aggregation: "summary"  # raw, summary, detailed
+    
+    health_reports:
+      enabled: true
+      interval: 30
+      send_on_failure: true
+    
+    alerts:
+      enabled: true
+      forward_to_parent: true
+      require_ack: true
+      retry_count: 3
+  
+  # === CONFIGURATION ===
+  configuration:
+    sync_with_parent: true
+    sync_on_start: true
+    sync_interval: 3600
+    override_local: false  # La config parent écrase-t-elle la locale ?
+    validation:
+      validate_against_schema: true
+      reject_invalid: true
+
+# ============================================================================
+# PERSISTANCE
+# ============================================================================
+persistence:
+  # === ÉTAT ===
+  state_persistence:
+    enabled: false
+    auto_save: true
+    save_interval: 300
+    save_on_shutdown: true
+    storage_backend: "file"
+    storage_path: "data/subagents/states"
+    filename_pattern: "{subagent_name}_state.json"
+    compression: true
+    encryption: false
+    
+    state_components:
+      task_queue: true
+      task_results: true
+      metrics: true
+      cache_metadata: true
+      configuration: true
+  
+  # === SAUVEGARDE ===
+  backup:
+    enabled: false
+    schedule: "0 2 * * *"  # Tous les jours à 2h
+    destination: "backups/subagents"
+    
+    retention:
+      daily: 7
+      weekly: 4
+      monthly: 3
+    
+    compression: true
+    encryption: false
+  
+  # === RÉTENTION ===
+  retention:
+    metrics:
+      raw_hours: 24
+      aggregated_days: 30
+      archive_months: 12
+    
+    logs:
+      debug_days: 7
+      info_days: 30
+      error_months: 6
+    
+    task_results:
+      success_hours: 24
+      failure_days: 7
+      archive_months: 3
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  # === TEMPS DE RÉPONSE ===
+  response_time:
+    p50_ms: 10
+    p95_ms: 50
+    p99_ms: 200
+    max_ms: 500
+    by_task_type:
+      EXECUTE:
+        p95_ms: 100
+      MONITOR:
+        p95_ms: 20
+      REPORT:
+        p95_ms: 300
+      MAINTENANCE:
+        p95_ms: 500
+  
+  # === DÉBIT ===
+  throughput:
+    target_tps: 100
+    max_tps: 500
+    sustained_tps: 50
+    burst_tps: 200
+    burst_duration_seconds: 10
+  
+  # === LATENCE ===
+  latency:
+    queue_wait_p95_ms: 5
+    processing_p95_ms: 45
+    total_p95_ms: 50
+    cache_lookup_p95_ms: 1
+  
+  # === TAUX DE SUCCÈS ===
+  success_rate:
+    target_percent: 99.5
+    minimum_percent: 95.0
+    by_severity:
+      critical: 100.0
+      error: 99.9
+      warning: 98.0
+  
+  # === RESSOURCES ===
+  resources:
+    cpu_usage_percent: 30
+    memory_usage_mb: 128
+    disk_io_mbps: 10
+    network_kbps: 100
+    open_files: 50
+
+# ============================================================================
+# DEBUGGING
+# ============================================================================
+debugging:
+  # === CONFIGURATION ===
+  enabled: false
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  # === TRACE ===
+  trace:
+    method_calls: false
+    imports: false
+    cache: false
+    task_execution: false
+    parent_communication: false
+    metrics: false
+  
+  # === PROFILING ===
+  profiling:
+    enabled: false
+    profile_startup: false
+    profile_tasks: false
+    profile_interval: 0.1
+    profile_output: "logs/profiles"
+    
+    profilers:
+      cpu: false
+      memory: false
+      io: false
+      network: false
+  
+  # === DIAGNOSTIC ===
+  diagnostic:
+    auto_run_on_error: true
+    collect_stack_trace: true
+    collect_variables: false
+    save_to_file: true
+    diagnostic_directory: "logs/diagnostics"
+    max_files: 10
+    
+    checks:
+      configuration: true
+      cache_integrity: true
+      task_queue_consistency: true
+      parent_connection: true
+      resource_availability: true
+  
+  # === DÉTAIL DES LOGS ===
+  verbose_logging:
+    enabled: false
+    log_parameters: true
+    log_results: false
+    log_stack_traces: true
+    log_variable_values: false
+    max_log_size_kb: 10
+
+# ============================================================================
+# EXTENSIONS
+# ============================================================================
+extensions:
+  # === CHARGEMENT ===
+  auto_load: true
+  extension_dirs:
+    - "extensions/subagents/"
+    - "agents/_extensions/subagents/"
+  
+  # === POINTS D'EXTENSION ===
+  extension_points:
+    pre_initialization:
+      description: "Exécuté avant l'initialisation"
+      multiple_allowed: true
+      order_matters: true
+      timeout: 5
+    
+    post_initialization:
+      description: "Exécuté après l'initialisation"
+      multiple_allowed: true
+      order_matters: false
+      timeout: 5
+    
+    pre_task_execution:
+      description: "Exécuté avant l'exécution d'une tâche"
+      multiple_allowed: true
+      order_matters: true
+      timeout: 2
+    
+    post_task_execution:
+      description: "Exécuté après l'exécution d'une tâche"
+      multiple_allowed: true
+      order_matters: false
+      timeout: 2
+    
+    pre_shutdown:
+      description: "Exécuté avant l'arrêt"
+      multiple_allowed: true
+      order_matters: false
+      timeout: 5
+    
+    error_handler:
+      description: "Gestionnaire d'erreurs"
+      multiple_allowed: false
+      order_matters: false
+      timeout: 10
+    
+    metric_collector:
+      description: "Collecteur de métriques personnalisé"
+      multiple_allowed: true
+      order_matters: false
+      timeout: 1
+  
+  # === EXTENSIONS INTÉGRÉES ===
+  builtin_extensions:
+    metrics_aggregator:
+      class: "MetricsAggregatorExtension"
+      enabled: true
+      config:
+        aggregation_window: 60
+        export_formats: ["json", "parent"]
+    
+    cache_monitor:
+      class: "CacheMonitorExtension"
+      enabled: true
+      config:
+        report_interval: 300
+        alert_on_high_eviction: true
+        eviction_threshold: 100
+    
+    task_profiler:
+      class: "TaskProfilerExtension"
+      enabled: false
+      config:
+        profile_threshold_ms: 100
+        save_profiles: true
+        profile_dir: "logs/profiles/tasks"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  copyright: "© 2026 SmartContractDevPipeline"
+  
+  repository:
+    url: "https://github.com/poolsyncdefi-ui/SmartContractDevPipeline"
+    branch: "main"
+  
+  documentation:
+    api_reference: "docs/api/base_subagent.md"
+    user_guide: "docs/guides/subagents.md"
+    examples: "examples/subagents/"
+  
+  tags:
+    - "base"
+    - "subagent"
+    - "abstract"
+    - "template"
+    - "core"
+    - "framework"
+  
+  capabilities_count: 25
+  extension_points: 7
+  
+  compatibility:
+    python: ">=3.9"
+    base_agent: ">=2.0.0"
+    operating_systems: ["Windows", "Linux", "macOS"]
+  
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"
+  review_notes: "Version initiale alignée sur BaseAgent v2.2.0"
+
+# ============================================================================
+# FIN DU FICHIER DE CONFIGURATION
+# ============================================================================

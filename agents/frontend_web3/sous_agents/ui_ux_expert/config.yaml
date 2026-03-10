@@ -1,16 +1,57 @@
-sub_agent:
-  id: ui_ux_expert_01
-  name: UI/UX Design
-  parent: frontend_web3
-  specialization: UI/UX Design
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
+# ============================================================================
+# 🎨 Expert UI/UX Design Système - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "UiUxExpertSubAgent"
+  display_name: "🎨 Expert UI/UX Design Système"
+  description: |-
+    Expert en design system, composants accessibles, animations fluides
+  version: "2.0.0"
+  class_name: "UiUxExpertSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.ui_ux_expert.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
   timeout_seconds: 60
   max_retries: 2
-logging:
-  level: INFO
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "design_system_creation"
+  - name: "responsive_design_advanced"
+  - name: "animation_orchestration"
+  - name: "accessibility_compliance"
+  - name: "dark_mode_system"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+    - "Tailwind CSS"
+    - "Chakra UI"
+    - "Radix UI"
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "design_system"
+  - name: "accessible_component_library"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

@@ -1,0 +1,173 @@
+# ============================================================================
+# agents/communication/sous_agents/pubsub_manager/config.yaml
+# Configuration du PubSub Manager SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "PubSubManagerSubAgent"
+  class_name: "PubSubManagerSubAgent"
+  module_path: "agents.communication.sous_agents.pubsub_manager.agent"
+  display_name: "📢 PubSub Manager"
+  version: "2.0.0"
+  description: |-
+    Gère les topics et abonnements publish/subscribe avec patterns avancés.
+    Supporte les wildcards, les souscriptions durables, le partitionnement,
+    et le filtrage de messages.
+  purpose: "Fournir un système pub/scalable et fiable"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 7
+  tags: ["pubsub", "topics", "messaging", "events"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "topic.create"
+    description: "Crée un nouveau topic"
+    confidence: 0.99
+    parameters:
+      - "topic_name"
+      - "partitions"
+      - "retention_days"
+
+  - name: "topic.delete"
+    description: "Supprime un topic"
+    confidence: 0.99
+    parameters:
+      - "topic_name"
+      - "force"
+
+  - name: "topic.list"
+    description: "Liste tous les topics"
+    confidence: 0.98
+    parameters:
+      - "pattern"
+      - "include_stats"
+
+  - name: "subscribe"
+    description: "Abonne un agent à un topic"
+    confidence: 0.98
+    parameters:
+      - "topic"
+      - "subscriber_id"
+      - "durable"
+
+  - name: "unsubscribe"
+    description: "Désabonne un agent"
+    confidence: 0.99
+    parameters:
+      - "topic"
+      - "subscriber_id"
+
+  - name: "publish"
+    description: "Publie un message sur un topic"
+    confidence: 0.98
+    parameters:
+      - "topic"
+      - "message"
+      - "partition_key"
+
+  - name: "stats"
+    description: "Statistiques des topics"
+    confidence: 0.97
+    parameters:
+      - "topic"
+      - "detailed"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+pubsub_manager:
+  defaults:
+    partitions: 1
+    retention_days: 7
+    replication_factor: 1
+    durable_subscriptions: true
+
+  wildcard_support:
+    single_level: "*"
+    multi_level: "#"
+    enabled: true
+
+  partitioning:
+    enabled: true
+    max_partitions: 64
+    hash_algorithm: "murmur3"  # murmur3, consistent_hashing
+
+  filtering:
+    enabled: true
+    engines: ["jmespath", "jsonata", "regex"]
+    default_engine: "jmespath"
+
+  durability:
+    store_pending: true
+    max_pending_per_subscriber: 1000
+    retry_on_failure: true
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 30
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 15
+    task_queue_size: 300
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 30
+
+  custom_metrics:
+    - name: "topics_total"
+      type: "gauge"
+      description: "Nombre total de topics"
+    - name: "subscriptions_total"
+      type: "gauge"
+      description: "Nombre total d'abonnements"
+    - name: "messages_published_total"
+      type: "counter"
+      description: "Messages publiés"
+    - name: "messages_delivered_total"
+      type: "counter"
+      description: "Messages délivrés"
+    - name: "publish_latency_ms"
+      type: "histogram"
+      description: "Latence de publication"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  publish_latency_ms: 10
+  delivery_latency_ms: 20
+  max_topics: 10000
+  max_subscribers_per_topic: 1000
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "pubsub", "events"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

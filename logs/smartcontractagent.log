@@ -875,3 +875,424 @@ TypeError: object NoneType can't be used in 'await' expression
 2026-03-09 21:32:41 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer']
 2026-03-09 21:32:41 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
 2026-03-09 21:32:41 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 08:57:46 - agent.SmartContractAgent - ERROR - Erreur sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer']
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 08:57:46 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 09:06:28 - agent.SmartContractAgent - ERROR - Erreur sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 09:06:28 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent formal_verification: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent gas_optimizer: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent security_expert: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent solidity_expert: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent vyper_expert: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent defi_specialist: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent tokenomics_engineer: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent complex_contract_expert: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent cross_chain_specialist: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent nft_specialist: name 'importlib' is not defined
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 16:44:59 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent formal_verification: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent gas_optimizer: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent security_expert: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent solidity_expert: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent vyper_expert: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent defi_specialist: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent tokenomics_engineer: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent complex_contract_expert: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent cross_chain_specialist: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent nft_specialist: name 'importlib' is not defined
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 16:49:20 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 16:53:41 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 16:53:42 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent formal_verification: Can't instantiate abstract class FormalVerificationSubAgent with abstract method _initialize_components
+2026-03-10 16:53:42 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent gas_optimizer: Can't instantiate abstract class GasOptimizerSubAgent with abstract method _initialize_components
+2026-03-10 16:53:42 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent security_expert: Can't instantiate abstract class SecurityExpertSubAgent with abstract method _initialize_components
+2026-03-10 16:53:42 - agent.SmartContractAgent - ERROR -   ❌ Erreur initialisation sous-agent solidity_expert: Can't instantiate abstract class SolidityExpertSubAgent with abstract method _initialize_components
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 16:53:42 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 17:01:22 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 18:08:57 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 18:17:30 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 18:26:54 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 18:44:51 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 18:56:58 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 19:00:47 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 19:04:43 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 19:05:43 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 19:40:25 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 20:43:12 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 20:47:31 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 20:53:39 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 21:18:57 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 21:22:40 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 21:23:17 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Configuration chargée: SmartContractAgent v2.5.0
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Agent SmartContractAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\smart_contract\config.yaml)
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - 📜 Agent Smart Contract créé - v2.5.0
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - 📜 Initialisation du Smart Contract Agent...
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Initialisation de l'agent SmartContractAgent...
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'tester', 'formal_verification', 'fuzzing_simulation']
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Agent SmartContractAgent initialisé avec succès
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - Initialisation des composants Smart Contract...
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - ✅ Composants: ['contract_generator', 'audit_engine', 'gas_optimizer', 'deployment_manager', 'upgradeability_designer', 'economic_analyzer', 'formal_verification_engine']
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO -   ✓ Sous-agent formal_verification initialisé
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO -   ✓ Sous-agent gas_optimizer initialisé
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO -   ✓ Sous-agent security_expert initialisé
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO -   ✓ Sous-agent solidity_expert initialisé
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - 📋 4 templates chargés
+2026-03-10 21:29:42 - agent.SmartContractAgent - INFO - ✅ Smart Contract Agent prêt

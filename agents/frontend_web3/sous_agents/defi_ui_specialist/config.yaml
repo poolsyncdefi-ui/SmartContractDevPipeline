@@ -1,0 +1,55 @@
+# ============================================================================
+# 📊 Spécialiste Interfaces DeFi Avancées - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "DefiUiSpecialistSubAgent"
+  display_name: "📊 Spécialiste Interfaces DeFi Avancées"
+  description: |-
+    Spécialiste des interfaces DeFi complexes (swap, lending, staking)
+  version: "2.0.0"
+  class_name: "DefiUiSpecialistSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.defi_ui_specialist.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "swap_interface_advanced"
+  - name: "lending_interface_complete"
+  - name: "staking_interface_advanced"
+  - name: "vault_interface"
+  - name: "defi_dashboard_comprehensive"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "dex_interface"
+  - name: "lending_dashboard"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

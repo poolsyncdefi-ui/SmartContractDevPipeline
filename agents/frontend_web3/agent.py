@@ -1,6 +1,6 @@
 """
 Frontend Web3 Agent - Agent de génération d'interfaces Web3
-Version: 2.1.0 (ALIGNÉ SUR CODER/ARCHITECT/SMARTCONTRACT)
+Version: 2.5.0 (ALIGNÉ SUR ARCHITECT/CODER/LEARNING/SMARTCONTRACT)
 """
 
 import logging
@@ -12,11 +12,12 @@ import asyncio
 import subprocess
 import re
 import traceback
-from datetime import datetime
+import importlib  # AJOUT IMPORTANT
+from datetime import datetime, timedelta
 from enum import Enum
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 
 logger = logging.getLogger(__name__)
 
@@ -25,9 +26,10 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(project_root))
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
 
 
 # ============================================================================
@@ -122,16 +124,18 @@ class FrontendProject:
     theme: str = "dark"
     
     def to_dict(self) -> Dict[str, Any]:
-        return {
-            "id": self.id,
-            "name": self.name,
-            "framework": self.framework.value,
-            "components": len(self.components),
-            "contracts": len(self.contracts),
-            "output_path": self.output_path,
-            "deploy_url": self.deploy_url,
-            "created_at": self.created_at.isoformat()
-        }
+        d = asdict(self)
+        d['framework'] = self.framework.value
+        d['created_at'] = self.created_at.isoformat()
+        return d
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'FrontendProject':
+        """Crée une instance depuis un dictionnaire"""
+        data = data.copy()
+        data['framework'] = FrameworkType(data['framework'])
+        data['created_at'] = datetime.fromisoformat(data['created_at'])
+        return cls(**data)
 
 
 @dataclass
@@ -140,6 +144,9 @@ class ContractABI:
     name: str
     abi: List[Dict]
     path: Optional[str] = None
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
 
 
 # ============================================================================
@@ -150,6 +157,7 @@ class FrontendWeb3Agent(BaseAgent):
     """
     Agent de génération d'interfaces Web3
     Crée automatiquement des applications React/Next.js pour interagir avec les smart contracts
+    Version 2.5 - Alignée sur l'architecture des agents
     """
 
     def __init__(self, config_path: Optional[str] = None):
@@ -187,8 +195,11 @@ class FrontendWeb3Agent(BaseAgent):
             'total_components_generated': 0,
             'total_contracts_analyzed': 0,
             'deployments': 0,
-            'uptime_start': datetime.now()
+            'uptime_start': datetime.now().isoformat()
         }
+
+        # Tâches de fond
+        self._cleanup_task_obj = None
 
         # Créer les répertoires
         self._create_directories()
@@ -202,7 +213,7 @@ class FrontendWeb3Agent(BaseAgent):
                 "name": "frontend_web3",
                 "display_name": "🎨 Agent Frontend Web3",
                 "description": "Génération d'interfaces React/Next.js pour smart contracts",
-                "version": "2.1.0",
+                "version": "2.5.0",
                 "capabilities": [
                     "react_generation",
                     "nextjs_generation",
@@ -244,20 +255,59 @@ class FrontendWeb3Agent(BaseAgent):
         dirs = [
             self._frontend_config.get("output_path", "./frontend"),
             self._agent_config.get("templates_path", "./agents/frontend_web3/templates"),
-            self._agent_config.get("abis_path", "./agents/frontend_web3/contracts/abi")
+            self._agent_config.get("abis_path", "./agents/frontend_web3/contracts/abi"),
+            self._agent_config.get("components_path", "./agents/frontend_web3/components"),
+            self._agent_config.get("hooks_path", "./agents/frontend_web3/hooks"),
+            self._agent_config.get("utils_path", "./agents/frontend_web3/utils"),
+            self._agent_config.get("styles_path", "./agents/frontend_web3/styles"),
         ]
 
         for dir_path in dirs:
             Path(dir_path).mkdir(parents=True, exist_ok=True)
+            self._logger.debug(f"📁 Répertoire créé: {dir_path}")
 
     # ============================================================================
     # MÉTHODES D'INITIALISATION (ALIGNÉES)
     # ============================================================================
 
     async def initialize(self) -> bool:
-        """Initialisation asynchrone"""
-        self._logger.info("🎨 Initialisation du Frontend Web3 Agent...")
-        return await super().initialize()
+        """
+        Initialisation asynchrone de l'agent
+        """
+        try:
+            self._set_status(AgentStatus.INITIALIZING)
+            self._logger.info("🎨 Initialisation du Frontend Web3 Agent...")
+
+            # Appeler l'initialisation du parent
+            base_result = await super().initialize()
+            if not base_result:
+                return False
+
+            # Initialiser les composants spécifiques
+            await self._initialize_components()
+
+            # Initialiser les sous-agents
+            await self._initialize_sub_agents()
+
+            # Charger les templates
+            await self._load_templates()
+
+            # Charger les projets existants
+            await self._load_projects()
+
+            # Démarrer les tâches de fond
+            self._start_background_tasks()
+
+            self._initialized = True
+            self._set_status(AgentStatus.READY)
+            self._logger.info("✅ Agent Frontend Web3 prêt")
+            return True
+
+        except Exception as e:
+            self._logger.error(f"❌ Erreur initialisation: {e}")
+            self._logger.error(traceback.format_exc())
+            self._set_status(AgentStatus.ERROR)
+            return False
 
     async def _initialize_components(self) -> bool:
         """
@@ -267,7 +317,6 @@ class FrontendWeb3Agent(BaseAgent):
         try:
             self._logger.info("Initialisation des composants Frontend Web3...")
 
-            # Initialiser les composants
             self._components = {
                 "react_generator": self._init_react_generator(),
                 "nextjs_generator": self._init_nextjs_generator(),
@@ -276,14 +325,7 @@ class FrontendWeb3Agent(BaseAgent):
                 "deployment_manager": self._init_deployment_manager()
             }
 
-            # Charger les templates
-            await self._load_templates()
-
-            # Initialiser les sous-agents
-            await self._initialize_sub_agents()
-
             self._logger.info(f"✅ Composants: {list(self._components.keys())}")
-            self._initialized = True
             return True
 
         except Exception as e:
@@ -291,29 +333,109 @@ class FrontendWeb3Agent(BaseAgent):
             return False
 
     async def _initialize_sub_agents(self):
-        """Initialise les sous-agents spécialisés"""
-        try:
-            # Tentative d'import des sous-agents (optionnel)
-            try:
-                from .sous_agents import (
-                    ReactExpertSubAgent,
-                    Web3IntegrationSubAgent,
-                    UiUxExpertSubAgent
-                )
+        """
+        Initialise les sous-agents spécialisés de manière robuste
+        Cette méthode ne doit jamais lever d'exception
+        """
+        self._sub_agents = {}
 
-                self._sub_agents = {
-                    "react": ReactExpertSubAgent(),
-                    "web3": Web3IntegrationSubAgent(),
-                    "ui_ux": UiUxExpertSubAgent()
-                }
-                self._logger.info(f"✅ Sous-agents: {list(self._sub_agents.keys())}")
-            except ImportError as e:
-                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
-                self._sub_agents = {}
+        try:
+            # Liste des sous-agents à tenter de charger (basée sur config.yaml)
+            sub_agent_configs = self._agent_config.get('agent', {}).get('subAgents', [])
+
+            # Si la liste est vide, utiliser les sous-agents par défaut
+            if not sub_agent_configs:
+                sub_agent_configs = [
+                    {"id": "react_expert", "name": "React/Next.js Expert", "enabled": True},
+                    {"id": "web3_integration", "name": "Web3 Integration Expert", "enabled": True},
+                    {"id": "ui_ux_expert", "name": "UI/UX Designer", "enabled": True},
+                    {"id": "defi_ui_specialist", "name": "DeFi UI Specialist", "enabled": True},
+                    {"id": "nft_ui_specialist", "name": "NFT UI Specialist", "enabled": True},
+                    {"id": "performance_optimizer", "name": "Web3 Performance Optimizer", "enabled": True},
+                    {"id": "security_ui_specialist", "name": "UI Security Specialist", "enabled": True},
+                ]
+
+            for config in sub_agent_configs:
+                agent_id = config.get('id')
+                if not config.get('enabled', True):
+                    continue
+
+                try:
+                    # Tentative d'import dynamique du module
+                    module_name = f"agents.frontend_web3.sous_agents.{agent_id}.agent"
+                    class_name = self._get_sub_agent_class_name(agent_id)
+
+                    # Vérifier si le fichier existe
+                    module_path = Path(__file__).parent / "sous_agents" / agent_id / "agent.py"
+                    if not module_path.exists():
+                        self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non développé (fichier manquant)")
+                        continue
+
+                    module = importlib.import_module(module_name)
+                    agent_class = getattr(module, class_name, None)
+
+                    if agent_class:
+                        config_path = config.get('config_path', str(Path(__file__).parent / "sous_agents" / agent_id / "config.yaml"))
+                        sub_agent = agent_class(config_path)
+                        self._sub_agents[agent_id] = sub_agent
+                        self._logger.info(f"  ✓ Sous-agent {agent_id} initialisé")
+                    else:
+                        self._logger.debug(f"  ℹ️ Classe {class_name} non trouvée dans {agent_id}")
+
+                except ImportError as e:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non disponible: {e}")
+                except Exception as e:
+                    self._logger.warning(f"  ⚠️ Erreur initialisation {agent_id}: {e}")
 
         except Exception as e:
-            self._logger.error(f"Erreur sous-agents: {e}")
-            self._sub_agents = {}
+            self._logger.error(f"❌ Erreur globale initialisation sous-agents: {e}")
+
+        self._logger.info(f"✅ Sous-agents chargés: {len(self._sub_agents)}")
+
+    def _get_sub_agent_class_name(self, agent_id: str) -> str:
+        """Convertit un ID de sous-agent en nom de classe"""
+        # Convertit "react_expert" en "ReactExpertSubAgent"
+        parts = agent_id.split('_')
+        class_name = ''.join(p.capitalize() for p in parts) + 'SubAgent'
+        return class_name
+
+    def _start_background_tasks(self):
+        """Démarre les tâches de fond"""
+        loop = asyncio.get_event_loop()
+        self._cleanup_task_obj = loop.create_task(self._cleanup_task())
+        self._logger.debug("🧹 Tâche de nettoyage démarrée")
+
+    async def _cleanup_task(self):
+        """
+        Tâche de nettoyage périodique
+        """
+        self._logger.info("🧹 Tâche de nettoyage démarrée")
+        while self._status == AgentStatus.READY:
+            try:
+                # Nettoyage toutes les heures
+                await asyncio.sleep(3600)
+
+                self._logger.debug("Nettoyage périodique...")
+
+                # Nettoyer les anciens projets (plus de 30 jours)
+                retention_days = 30
+                cutoff = datetime.now() - timedelta(days=retention_days)
+                
+                projects_to_remove = []
+                for project_id, project in self._projects.items():
+                    if project.created_at < cutoff:
+                        projects_to_remove.append(project_id)
+                
+                for project_id in projects_to_remove:
+                    del self._projects[project_id]
+                    self._logger.debug(f"🗑️ Ancien projet supprimé: {project_id}")
+
+            except asyncio.CancelledError:
+                self._logger.info("🛑 Tâche de nettoyage arrêtée")
+                break
+            except Exception as e:
+                self._logger.error(f"❌ Erreur dans la tâche de nettoyage: {e}")
+                await asyncio.sleep(60)
 
     # ============================================================================
     # MÉTHODES D'INITIALISATION DES COMPOSANTS
@@ -427,6 +549,40 @@ class FrontendWeb3Agent(BaseAgent):
         self._logger.info(f"📋 Templates 2.0: {len(self._templates_2_0)}")
         self._logger.info(f"📋 Templates totaux: {len(self._templates)}")
 
+    async def _load_projects(self):
+        """Charge les projets existants depuis le disque"""
+        try:
+            output_path = Path(self._frontend_config.get("output_path", "./frontend"))
+            projects_file = output_path / "projects_index.json"
+            
+            if projects_file.exists():
+                with open(projects_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    for project_data in data.get("projects", []):
+                        project = FrontendProject.from_dict(project_data)
+                        self._projects[project.id] = project
+                
+                self._logger.info(f"📦 {len(self._projects)} projets chargés")
+        except Exception as e:
+            self._logger.warning(f"⚠️ Erreur chargement projets: {e}")
+
+    async def _save_projects(self):
+        """Sauvegarde les projets sur le disque"""
+        try:
+            output_path = Path(self._frontend_config.get("output_path", "./frontend"))
+            output_path.mkdir(parents=True, exist_ok=True)
+            
+            projects_file = output_path / "projects_index.json"
+            with open(projects_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "projects": [p.to_dict() for p in self._projects.values()],
+                    "timestamp": datetime.now().isoformat()
+                }, f, indent=2, ensure_ascii=False)
+            
+            self._logger.debug(f"💾 Projets sauvegardés: {projects_file}")
+        except Exception as e:
+            self._logger.error(f"❌ Erreur sauvegarde projets: {e}")
+
     # ============================================================================
     # MÉTHODES DE GESTION D'ÉTAT (ALIGNÉES)
     # ============================================================================
@@ -434,13 +590,64 @@ class FrontendWeb3Agent(BaseAgent):
     async def shutdown(self) -> bool:
         """Arrête l'agent proprement"""
         self._logger.info("Arrêt de l'agent FrontendWeb3...")
-        return await super().shutdown()
+        self._set_status(AgentStatus.SHUTTING_DOWN)
 
-    async def _cleanup(self):
-        """Nettoie les ressources spécifiques"""
-        self._logger.info("Nettoyage des ressources FrontendWeb3...")
+        # Annuler la tâche de nettoyage
+        if self._cleanup_task_obj and not self._cleanup_task_obj.done():
+            self._cleanup_task_obj.cancel()
+            try:
+                await self._cleanup_task_obj
+            except asyncio.CancelledError:
+                pass
 
-        # Sauvegarder les statistiques
+        # Arrêter les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.shutdown()
+                self._logger.debug(f"  ✓ Sous-agent {agent_name} arrêté")
+            except Exception as e:
+                self._logger.warning(f"  ⚠️ Erreur arrêt sous-agent {agent_name}: {e}")
+
+        # Sauvegarder les données
+        await self._save_projects()
+        await self._save_stats()
+
+        # Appeler la méthode parent
+        await super().shutdown()
+
+        self._logger.info("✅ Agent FrontendWeb3 arrêté")
+        return True
+
+    async def pause(self) -> bool:
+        """Met l'agent en pause"""
+        self._logger.info("Pause de l'agent FrontendWeb3...")
+
+        # Mettre en pause les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.pause()
+            except Exception as e:
+                self._logger.warning(f"⚠️ Erreur pause sous-agent {agent_name}: {e}")
+
+        self._set_status(AgentStatus.PAUSED)
+        return True
+
+    async def resume(self) -> bool:
+        """Reprend l'activité"""
+        self._logger.info("Reprise de l'agent FrontendWeb3...")
+
+        # Reprendre les sous-agents
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                await agent_instance.resume()
+            except Exception as e:
+                self._logger.warning(f"⚠️ Erreur reprise sous-agent {agent_name}: {e}")
+
+        self._set_status(AgentStatus.READY)
+        return True
+
+    async def _save_stats(self):
+        """Sauvegarde les statistiques"""
         try:
             output_dir = Path(self._frontend_config.get("output_path", "./frontend"))
             stats_file = output_dir / "frontend_stats.json"
@@ -463,20 +670,30 @@ class FrontendWeb3Agent(BaseAgent):
         """Vérifie la santé de l'agent"""
         base_health = await super().health_check()
 
+        # Calculer l'uptime
+        uptime = None
+        if self._stats.get('uptime_start'):
+            start = datetime.fromisoformat(self._stats['uptime_start'])
+            uptime = str(datetime.now() - start)
+
+        # Vérifier la santé des sous-agents
+        sub_agents_health = await self.get_sub_agents_status()
+
         return {
             **base_health,
             "agent": self.name,
             "display_name": self._display_name,
-            "status": self._status.value,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "ready": self._status == AgentStatus.READY,
             "initialized": self._initialized,
+            "uptime": uptime,
             "frontend_specific": {
                 "projects_generated": len(self._projects),
                 "components_generated": self._components_generated,
                 "templates_available": len(self._templates),
                 "templates_2_0": len(self._templates_2_0),
-                "sub_agents": list(self._sub_agents.keys()),
-                "frameworks": ["nextjs", "react", "vue"],
+                "sub_agents": sub_agents_health,
+                "components": list(self._components.keys()),
                 "stats": {
                     "total_projects": self._stats['total_projects'],
                     "total_components": self._stats['total_components_generated'],
@@ -498,9 +715,9 @@ class FrontendWeb3Agent(BaseAgent):
             "id": self.name,
             "name": "FrontendWeb3Agent",
             "display_name": self._display_name,
-            "version": agent_config.get('version', '2.1.0'),
+            "version": agent_config.get('version', '2.5.0'),
             "description": agent_config.get('description', 'Génération d\'interfaces Web3'),
-            "status": self._status.value,
+            "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "capabilities": capabilities,
             "features": {
                 "frameworks": ["nextjs", "react", "vue"],
@@ -515,6 +732,88 @@ class FrontendWeb3Agent(BaseAgent):
             }
         }
 
+    async def get_sub_agents_status(self) -> Dict[str, Any]:
+        """Retourne le statut de tous les sous-agents"""
+        status = {}
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                health = await agent_instance.health_check()
+                status[agent_name] = {
+                    "status": health.get("status", "unknown"),
+                    "agent_info": agent_instance.get_agent_info()
+                }
+            except Exception as e:
+                status[agent_name] = {
+                    "status": "error",
+                    "error": str(e)
+                }
+
+        return {
+            "total_sub_agents": len(self._sub_agents),
+            "sub_agents": status
+        }
+
+    async def delegate_to_sub_agent(self, task_type: str, task_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Délègue une tâche à un sous-agent approprié.
+
+        Args:
+            task_type: Type de tâche à déléguer
+            task_data: Données de la tâche
+
+        Returns:
+            Résultat de l'exécution par le sous-agent
+        """
+        # Mapping des types de tâches vers les sous-agents
+        sub_agent_mapping = {
+            "react": "react_expert",
+            "nextjs": "react_expert",
+            "web3": "web3_integration",
+            "wallet": "web3_integration",
+            "contract": "web3_integration",
+            "ui": "ui_ux_expert",
+            "ux": "ui_ux_expert",
+            "defi": "defi_ui_specialist",
+            "nft": "nft_ui_specialist",
+            "performance": "performance_optimizer",
+            "security": "security_ui_specialist"
+        }
+
+        for pattern, agent_name in sub_agent_mapping.items():
+            if task_type.startswith(pattern):
+                if agent_name in self._sub_agents:
+                    self._logger.info(f"➡️ Délégation de la tâche {task_type} au sous-agent {agent_name}")
+                    # Créer un message pour le sous-agent
+                    msg = Message(
+                        sender=self.name,
+                        recipient=agent_name,
+                        content=task_data,
+                        message_type=f"frontend.{task_type}",
+                        correlation_id=f"delegate_{datetime.now().timestamp()}"
+                    )
+                    return await self._sub_agents[agent_name].handle_message(msg)
+
+        # Fallback: utiliser l'agent principal
+        self._logger.info(f"ℹ️ Aucun sous-agent trouvé pour {task_type}, utilisation de l'agent principal")
+        
+        # Exécuter la tâche localement selon le type
+        if task_type == "generate":
+            return {
+                "project": (await self.generate_project(
+                    task_data.get("project_name", "Web3App"),
+                    task_data.get("contracts", []),
+                    task_data.get("components", []),
+                    task_data.get("framework", "nextjs")
+                )).to_dict()
+            }
+        elif task_type == "deploy":
+            url = await self.deploy_to_vercel(task_data.get("project_id", ""))
+            return {"url": url, "success": url is not None}
+        elif task_type == "extract_abi":
+            return await self.extract_contract_abi(task_data.get("contract_path", ""))
+        else:
+            return {"success": False, "error": f"Type de tâche non supporté: {task_type}"}
+
     # ============================================================================
     # GESTION DES MESSAGES (ALIGNÉE)
     # ============================================================================
@@ -527,12 +826,22 @@ class FrontendWeb3Agent(BaseAgent):
             msg_type = message.message_type
             self._logger.debug(f"Message personnalisé reçu: {msg_type} de {message.sender}")
 
+            # D'abord, essayer de déléguer à un sous-agent
+            if message.content and "sub_agent_task" in message.content:
+                task_type = message.content.get("sub_agent_task")
+                return await self.delegate_to_sub_agent(task_type, message.content)
+
+            # Mapping des types de messages vers les méthodes
             handlers = {
                 "frontend.generate": self._handle_generate,
                 "frontend.deploy": self._handle_deploy,
                 "frontend.list_projects": self._handle_list_projects,
                 "frontend.extract_abi": self._handle_extract_abi,
                 "frontend.stats": self._handle_stats,
+                "frontend.get_sub_agents_status": self._handle_get_sub_agents_status,
+                "frontend.pause": self._handle_pause,
+                "frontend.resume": self._handle_resume,
+                "frontend.shutdown": self._handle_shutdown,
             }
 
             if msg_type in handlers:
@@ -614,8 +923,52 @@ class FrontendWeb3Agent(BaseAgent):
         return Message(
             sender=self.name,
             recipient=message.sender,
-            content=self._stats,
+            content={"stats": self._stats, "agent_info": self.get_agent_info()},
             message_type="frontend.stats_response",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_get_sub_agents_status(self, message: Message) -> Message:
+        """Gère la récupération du statut des sous-agents"""
+        status = await self.get_sub_agents_status()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content=status,
+            message_type="frontend.sub_agents_status",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_pause(self, message: Message) -> Message:
+        """Gère la pause"""
+        await self.pause()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "paused"},
+            message_type="frontend.status_update",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_resume(self, message: Message) -> Message:
+        """Gère la reprise"""
+        await self.resume()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "resumed"},
+            message_type="frontend.status_update",
+            correlation_id=message.message_id
+        )
+
+    async def _handle_shutdown(self, message: Message) -> Message:
+        """Gère l'arrêt"""
+        await self.shutdown()
+        return Message(
+            sender=self.name,
+            recipient=message.sender,
+            content={"status": "shutdown"},
+            message_type="frontend.status_update",
             correlation_id=message.message_id
         )
 
@@ -688,6 +1041,9 @@ class FrontendWeb3Agent(BaseAgent):
         self._projects[project.id] = project
         self._stats['total_projects'] += 1
         self._stats['total_components_generated'] += len(components)
+
+        # Sauvegarder l'index des projets
+        await self._save_projects()
 
         self._logger.info(f"✅ Projet généré: {output_dir}")
         return project
@@ -1939,6 +2295,366 @@ export default function Bridge() {{
                 </button>
             </div>
         </div>'''
+
+    def _create_credit_scoring(self) -> str:
+        """Template de scoring de crédit"""
+        return '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Scoring • {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .score-circle {
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        .metric-card {
+            background: linear-gradient(145deg, #1a1e2a, #0f1219);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59,130,246,0.3);
+        }
+    </style>
+</head>
+<body class="bg-[#0A0C12] text-white">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Credit Scoring</h1>
+                <p class="text-gray-400">On-chain creditworthiness assessment</p>
+            </div>
+            <div class="flex space-x-3">
+                <span class="px-4 py-2 bg-blue-600 rounded-lg">Connect Wallet</span>
+            </div>
+        </div>
+
+        <!-- Main Score -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="lg:col-span-2 metric-card p-8">
+                <div class="flex items-center space-x-8">
+                    <!-- Score Circle -->
+                    <div class="relative w-32 h-32">
+                        <svg class="w-32 h-32 transform -rotate-90">
+                            <circle cx="64" cy="64" r="54" stroke="#2d3748" stroke-width="8" fill="none"/>
+                            <circle class="score-circle" cx="64" cy="64" r="54" 
+                                    stroke="#3b82f6" stroke-width="8" fill="none"
+                                    stroke-dasharray="339.292" stroke-dashoffset="101.788"
+                                    style="stroke-dashoffset: 101.788px;"/>
+                        </svg>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                            <span class="text-3xl font-bold">702</span>
+                            <span class="text-sm text-gray-400 block">/850</span>
+                        </div>
+                    </div>
+                    <!-- Score Info -->
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Good Credit Score</h2>
+                        <p class="text-gray-400 mb-2">Last updated: March 10, 2026</p>
+                        <div class="flex space-x-2">
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">+12 pts</span>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm">Top 15%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="metric-card p-6">
+                <h3 class="text-lg font-bold mb-4">Quick Stats</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Total Transactions</span>
+                        <span class="font-bold">847</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Volume</span>
+                        <span class="font-bold">$124.5K</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Active Protocols</span>
+                        <span class="font-bold">12</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Wallet Age</span>
+                        <span class="font-bold">2.3 years</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Factors Grid -->
+        <h2 class="text-2xl font-bold mb-6">Score Factors</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="metric-card p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="text-2xl">💰</span>
+                    <h3 class="text-lg font-bold">Transaction History</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Consistency</span>
+                        <span class="text-green-400">High</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Volume</span>
+                        <span class="text-yellow-400">Medium</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Frequency</span>
+                        <span class="text-green-400">High</span>
+                    </div>
+                </div>
+            </div>
+            <div class="metric-card p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="text-2xl">🏦</span>
+                    <h3 class="text-lg font-bold">Protocol Engagement</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Lending</span>
+                        <span class="text-green-400">Active</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">DEX Usage</span>
+                        <span class="text-green-400">High</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Staking</span>
+                        <span class="text-yellow-400">Low</span>
+                    </div>
+                </div>
+            </div>
+            <div class="metric-card p-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="text-2xl">🔒</span>
+                    <h3 class="text-lg font-bold">Risk Metrics</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Liquidation Risk</span>
+                        <span class="text-green-400">0.2%</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Health Factor</span>
+                        <span class="text-green-400">2.8</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Bad Debt</span>
+                        <span class="text-green-400">None</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="mt-8 metric-card p-6">
+            <h3 class="text-lg font-bold mb-4">Recent Activity</h3>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                    <div>
+                        <p class="font-medium">Deposited 5 ETH into Aave</p>
+                        <p class="text-sm text-gray-400">2 hours ago</p>
+                    </div>
+                    <span class="text-green-400">+15 pts</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                    <div>
+                        <p class="font-medium">Repaid 1,000 USDC loan</p>
+                        <p class="text-sm text-gray-400">1 day ago</p>
+                    </div>
+                    <span class="text-green-400">+8 pts</span>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                    <div>
+                        <p class="font-medium">Swapped 2 ETH for DAI on Uniswap</p>
+                        <p class="text-sm text-gray-400">3 days ago</p>
+                    </div>
+                    <span class="text-green-400">+5 pts</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>'''
+
+    def _create_nft_lending(self) -> str:
+        """Template de NFT lending"""
+        return '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Lending • {{PROJECT_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .nft-card {
+            background: linear-gradient(145deg, #1a1e2a, #0f1219);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .nft-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px -10px #3b82f6;
+        }
+        .nft-image {
+            height: 200px;
+            background: linear-gradient(45deg, #2d3748, #1a202c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0C12] text-white">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">NFT Lending</h1>
+                <p class="text-gray-400">Borrow against your NFTs or lend to earn yield</p>
+            </div>
+            <div class="flex space-x-3">
+                <button class="px-4 py-2 bg-blue-600 rounded-lg">Lend NFT</button>
+                <button class="px-4 py-2 bg-purple-600 rounded-lg">Borrow</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="nft-card p-4">
+                <p class="text-sm text-gray-400">Total Loans</p>
+                <p class="text-2xl font-bold">847</p>
+            </div>
+            <div class="nft-card p-4">
+                <p class="text-sm text-gray-400">Volume</p>
+                <p class="text-2xl font-bold">2,450 ETH</p>
+            </div>
+            <div class="nft-card p-4">
+                <p class="text-sm text-gray-400">Avg LTV</p>
+                <p class="text-2xl font-bold">42%</p>
+            </div>
+            <div class="nft-card p-4">
+                <p class="text-sm text-gray-400">Avg Interest</p>
+                <p class="text-2xl font-bold">8.5%</p>
+            </div>
+        </div>
+
+        <!-- Active Loans -->
+        <h2 class="text-2xl font-bold mb-4">Active Loans</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="nft-card">
+                <div class="nft-image">
+                    <span class="text-6xl">🖼️</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Bored Ape #8742</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Loan Amount</span>
+                            <span class="font-bold">15 ETH</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Interest</span>
+                            <span class="text-green-400">6.5%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">LTV</span>
+                            <span>35%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Duration</span>
+                            <span>90 days</span>
+                        </div>
+                    </div>
+                    <button class="w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700">
+                        Fund Loan
+                    </button>
+                </div>
+            </div>
+            <div class="nft-card">
+                <div class="nft-image">
+                    <span class="text-6xl">⚔️</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">CryptoPunk #5209</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Loan Amount</span>
+                            <span class="font-bold">25 ETH</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Interest</span>
+                            <span class="text-green-400">5.2%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">LTV</span>
+                            <span>28%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Duration</span>
+                            <span>60 days</span>
+                        </div>
+                    </div>
+                    <button class="w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700">
+                        Fund Loan
+                    </button>
+                </div>
+            </div>
+            <div class="nft-card">
+                <div class="nft-image">
+                    <span class="text-6xl">👾</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Azuki #3021</h3>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Loan Amount</span>
+                            <span class="font-bold">8 ETH</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Interest</span>
+                            <span class="text-green-400">7.8%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">LTV</span>
+                            <span>42%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Duration</span>
+                            <span>30 days</span>
+                        </div>
+                    </div>
+                    <button class="w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700">
+                        Fund Loan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Your Positions -->
+        <h2 class="text-2xl font-bold mt-8 mb-4">Your Positions</h2>
+        <div class="nft-card p-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="font-bold">You have no active positions</p>
+                    <p class="text-sm text-gray-400">Start lending or borrowing to see your positions here</p>
+                </div>
+                <button class="px-4 py-2 bg-purple-600 rounded-lg">Browse NFTs</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>'''
 
     def _create_cross_chain_swap(self) -> str:
         """Template de swap cross-chain"""

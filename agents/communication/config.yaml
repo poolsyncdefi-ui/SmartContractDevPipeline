@@ -581,3 +581,161 @@ agent:
     capabilities_count: 38
     last_reviewed: "2026-03-05"
     next_review: "2026-04-05"
+    
+# ============================================================================
+# SOUS-AGENTS SPÉCIALISÉS
+# ============================================================================
+subAgents:
+  - id: "queue_manager"
+    name: "Queue Manager"
+    display_name: "📊 Gestionnaire de Files"
+    config_path: "agents/communication/sous_agents/queue_manager/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "queue_management"
+    confidence: 0.95
+
+  - id: "pubsub_manager"
+    name: "PubSub Manager"
+    display_name: "📢 Gestionnaire Pub/Sub"
+    config_path: "agents/communication/sous_agents/pubsub_manager/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "pubsub"
+    confidence: 0.95
+
+  - id: "circuit_breaker"
+    name: "Circuit Breaker"
+    display_name: "🛡️ Circuit Breaker"
+    config_path: "agents/communication/sous_agents/circuit_breaker/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "resilience"
+    confidence: 0.96
+
+  - id: "message_router"
+    name: "Message Router"
+    display_name: "🔄 Routeur de Messages"
+    config_path: "agents/communication/sous_agents/message_router/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "routing"
+    confidence: 0.94
+
+  - id: "dead_letter_analyzer"
+    name: "Dead Letter Analyzer"
+    display_name: "💀 Analyseur Dead Letter"
+    config_path: "agents/communication/sous_agents/dead_letter_analyzer/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "analysis"
+    confidence: 0.92
+
+  - id: "performance_optimizer"
+    name: "Performance Optimizer"
+    display_name: "⚡ Optimisateur Performance"
+    config_path: "agents/communication/sous_agents/performance_optimizer/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "optimization"
+    confidence: 0.93
+
+  - id: "security_validator"
+    name: "Security Validator"
+    display_name: "🔒 Validateur Sécurité"
+    config_path: "agents/communication/sous_agents/security_validator/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "security"
+    confidence: 0.97
+ 
+# ============================================================================
+# SOUS-AGENTS SPÉCIALISÉS
+# ============================================================================
+subAgents:
+  - id: "circuit_breaker"
+    name: "Circuit Breaker"
+    display_name: "🛡️ Circuit Breaker"
+    config_path: "agents/communication/sous_agents/circuit_breaker/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "resilience"
+    confidence: 0.98
+
+  - id: "queue_manager"
+    name: "Queue Manager"
+    display_name: "📊 Queue Manager"
+    config_path: "agents/communication/sous_agents/queue_manager/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "queue_management"
+    confidence: 0.97
+
+  - id: "pubsub_manager"
+    name: "PubSub Manager"
+    display_name: "📢 PubSub Manager"
+    config_path: "agents/communication/sous_agents/pubsub_manager/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "pubsub"
+    confidence: 0.96
+
+  - id: "message_router"
+    name: "Message Router"
+    display_name: "🔄 Message Router"
+    config_path: "agents/communication/sous_agents/message_router/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "routing"
+    confidence: 0.95
+
+  - id: "dead_letter_analyzer"
+    name: "Dead Letter Analyzer"
+    display_name: "💀 Dead Letter Analyzer"
+    config_path: "agents/communication/sous_agents/dead_letter_analyzer/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "analysis"
+    confidence: 0.94
+
+  - id: "performance_optimizer"
+    name: "Performance Optimizer"
+    display_name: "⚡ Performance Optimizer"
+    config_path: "agents/communication/sous_agents/performance_optimizer/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "optimization"
+    confidence: 0.93
+
+  - id: "security_validator"
+    name: "Security Validator"
+    display_name: "🔒 Security Validator"
+    config_path: "agents/communication/sous_agents/security_validator/config.yaml"
+    enabled: true
+    dependencies: ["communication"]
+    specialization: "security"
+    confidence: 0.97
+
+# ============================================================================
+# MAPPING DES TÂCHES VERS LES SOUS-AGENTS
+# ============================================================================
+sub_agent_mapping:
+  "circuit_": "circuit_breaker"
+  "breaker_": "circuit_breaker"
+  "queue_": "queue_manager"
+  "fifo_": "queue_manager"
+  "priority_": "queue_manager"
+  "pubsub_": "pubsub_manager"
+  "topic_": "pubsub_manager"
+  "subscribe_": "pubsub_manager"
+  "route_": "message_router"
+  "router_": "message_router"
+  "dead_": "dead_letter_analyzer"
+  "dlq_": "dead_letter_analyzer"
+  "performance_": "performance_optimizer"
+  "perf_": "performance_optimizer"
+  "optimize_": "performance_optimizer"
+  "security_": "security_validator"
+  "validate_": "security_validator"
+  "encrypt_": "security_validator"
+

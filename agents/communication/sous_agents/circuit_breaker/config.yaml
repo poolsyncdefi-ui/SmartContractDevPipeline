@@ -1,0 +1,190 @@
+# ============================================================================
+# agents/communication/sous_agents/circuit_breaker/config.yaml
+# Configuration du Circuit Breaker SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "CircuitBreakerSubAgent"
+  class_name: "CircuitBreakerSubAgent"
+  module_path: "agents.communication.sous_agents.circuit_breaker.agent"
+  display_name: "🛡️ Circuit Breaker"
+  version: "2.0.0"
+  description: |-
+    Protège le système contre les défaillances en cascade en surveillant
+    les erreurs et en ouvrant/fermant automatiquement le circuit.
+    Implémente les patterns Circuit Breaker avec états CLOSED, OPEN, HALF-OPEN.
+  purpose: "Prévenir les défaillances en cascade et assurer la résilience du système"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 6
+  tags: ["circuit-breaker", "resilience", "fault-tolerance", "monitoring"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "circuit_breaker.monitor"
+    description: "Surveille les taux d'erreur et l'état des circuits"
+    confidence: 0.98
+    parameters:
+      - "target_service"
+      - "time_window_seconds"
+
+  - name: "circuit_breaker.trip"
+    description: "Ouvre manuellement un circuit"
+    confidence: 0.99
+    parameters:
+      - "circuit_id"
+      - "reason"
+
+  - name: "circuit_breaker.reset"
+    description: "Réinitialise un circuit à l'état fermé"
+    confidence: 0.99
+    parameters:
+      - "circuit_id"
+
+  - name: "circuit_breaker.status"
+    description: "Retourne l'état de tous les circuits"
+    confidence: 0.98
+    parameters: []
+
+  - name: "circuit_breaker.configure"
+    description: "Configure les paramètres d'un circuit"
+    confidence: 0.95
+    parameters:
+      - "circuit_id"
+      - "failure_threshold"
+      - "timeout_seconds"
+      - "half_open_timeout"
+
+  - name: "circuit_breaker.stats"
+    description: "Fournit des statistiques détaillées"
+    confidence: 0.96
+    parameters:
+      - "circuit_id"
+      - "detailed"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE DU CIRCUIT BREAKER
+# ============================================================================
+circuit_breaker:
+  defaults:
+    failure_threshold: 5
+    timeout_seconds: 30
+    half_open_timeout: 10
+    success_threshold: 2
+    window_size_seconds: 60
+
+  states:
+    - name: "CLOSED"
+      description: "Circuit fermé - trafic normal"
+      color: "🟢"
+      allows_traffic: true
+    - name: "OPEN"
+      description: "Circuit ouvert - trafic bloqué"
+      color: "🔴"
+      allows_traffic: false
+    - name: "HALF_OPEN"
+      description: "Circuit mi-ouvert - test limité"
+      color: "🟡"
+      allows_traffic: true
+      max_test_requests: 1
+    - name: "FORCED_OPEN"
+      description: "Circuit forcé ouvert - maintenance"
+      color: "⚫"
+      allows_traffic: false
+    - name: "DISABLED"
+      description: "Circuit désactivé - surveillance seule"
+      color: "⚪"
+      allows_traffic: true
+
+  recovery_strategies:
+    - name: "progressive"
+      description: "Test progressif avec charge croissante"
+      enabled: true
+    - name: "test_request"
+      description: "Envoi d'une requête test unique"
+      enabled: true
+    - name: "time_based"
+      description: "Récupération après délai fixe"
+      enabled: true
+
+  metrics:
+    - "failure_count"
+    - "success_count"
+    - "failure_rate"
+    - "success_rate"
+    - "last_failure"
+    - "last_success"
+    - "open_count"
+    - "half_open_count"
+    - "close_count"
+    - "mean_time_to_recover_ms"
+
+  alerts:
+    enabled: true
+    thresholds:
+      high_failure_rate: 50
+      consecutive_failures: 10
+      circuit_stuck_open: 300
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 30
+  max_retries: 2
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 30
+
+  custom_metrics:
+    - name: "circuit_state_changes"
+      type: "counter"
+      description: "Nombre de changements d'état"
+    - name: "requests_blocked"
+      type: "counter"
+      description: "Requêtes bloquées par circuit ouvert"
+    - name: "recovery_attempts"
+      type: "counter"
+      description: "Tentatives de récupération"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  response_time_ms: 10
+  max_circuits_monitored: 1000
+  state_change_latency_ms: 5
+  monitoring_overhead_percent: 1
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "circuit-breaker", "resilience"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

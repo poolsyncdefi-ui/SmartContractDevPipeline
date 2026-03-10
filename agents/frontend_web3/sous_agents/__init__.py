@@ -1,7 +1,6 @@
-# Import des sous-agents
+"""
+Package des sous-agents Frontend Web3
+Sous-agents spécialisés pour le développement d'interfaces Web3
+"""
 
-from .react_expert.agent import ReactExpertSubAgent
-from .web3_integration.agent import Web3IntegrationSubAgent
-from .ui_ux_expert.agent import UiUxExpertSubAgent
-
-__all__ = ["ReactExpertSubAgent", "Web3IntegrationSubAgent", "UiUxExpertSubAgent"]
+__all__ = []

@@ -1,16 +1,49 @@
-sub_agent:
-  id: formal_verification_01
-  name: Formal Verification
-  parent: smart_contract
-  specialization: Formal Verification
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# agents/smart_contract/sous_agents/formal_verification/config.yaml
+agent:
+  name: "FormalVerificationSubAgent"
+  display_name: "🔬 Vérification Formelle"
+  description: "Expert en vérification formelle de smart contracts avec Certora, Halmos, Scribble"
+  version: "1.0.0"
+  class_name: "FormalVerificationSubAgent"
+  module_path: "agents.smart_contract.sous_agents.formal_verification.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 300
   max_retries: 2
-logging:
-  level: INFO
+
+capabilities:
+  - name: "certora_verification"
+    description: "Vérification avec Certora Prover"
+    confidence: 0.95
+  - name: "halmos_verification"
+    description: "Exécution symbolique avec Halmos"
+    confidence: 0.9
+  - name: "scribble_instrumentation"
+    description: "Instrumentation avec Scribble"
+    confidence: 0.85
+  - name: "dafny_verification"
+    description: "Vérification avec Dafny"
+    confidence: 0.8
+
+verification:
+  default_timeout: 300
+  max_properties_per_run: 10
+  generate_counterexamples: true
+  generate_certificates: true
+  certificate_validity_days: 365
+
+tools:
+  certora:
+    enabled: true
+    executable: "certoraRun"
+    config_path: "./certora.conf"
+  halmos:
+    enabled: true
+    executable: "halmos"
+  scribble:
+    enabled: true
+    executable: "scribble"
+  dafny:
+    enabled: true
+    executable: "dafny"

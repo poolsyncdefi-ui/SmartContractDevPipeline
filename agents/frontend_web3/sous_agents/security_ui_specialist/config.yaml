@@ -1,0 +1,55 @@
+# ============================================================================
+# 🛡️ Spécialiste Sécurité UI Avancée - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "SecurityUiSpecialistSubAgent"
+  display_name: "🛡️ Spécialiste Sécurité UI Avancée"
+  description: |-
+    Expert en sécurité des interfaces Web3
+  version: "2.0.0"
+  class_name: "SecurityUiSpecialistSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.security_ui_specialist.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "transaction_security"
+  - name: "phishing_protection"
+  - name: "wallet_security"
+  - name: "smart_contract_verification"
+  - name: "approval_management"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "security_configuration"
+  - name: "transaction_guard"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

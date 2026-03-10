@@ -1,0 +1,55 @@
+# ============================================================================
+# 🖼️ Spécialiste Interfaces NFT Premium - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "NftUiSpecialistSubAgent"
+  display_name: "🖼️ Spécialiste Interfaces NFT Premium"
+  description: |-
+    Spécialiste des interfaces NFT (mint, gallery, marketplace)
+  version: "2.0.0"
+  class_name: "NftUiSpecialistSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.nft_ui_specialist.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "mint_page_advanced"
+  - name: "nft_gallery_pro"
+  - name: "marketplace_interface"
+  - name: "nft_detail_view"
+  - name: "nft_auction_house"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "nft_mint_page"
+  - name: "nft_marketplace"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

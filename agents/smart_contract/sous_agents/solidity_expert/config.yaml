@@ -1,16 +1,27 @@
-sub_agent:
-  id: solidity_expert_01
-  name: Solidity Development
-  parent: smart_contract
-  specialization: Solidity Development
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# agents/smart_contract/sous_agents/solidity_expert/config.yaml
+agent:
+  name: "SolidityExpertSubAgent"
+  display_name: "🔷 Expert Solidity"
+  description: "Expert en développement Solidity avancé"
+  version: "1.0.0"
+  class_name: "SolidityExpertSubAgent"
+  module_path: "agents.smart_contract.sous_agents.solidity_expert.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 120
   max_retries: 2
-logging:
-  level: INFO
+
+capabilities:
+  - name: "solidity_generation"
+    description: "Génération de code Solidity"
+    confidence: 0.95
+  - name: "solidity_optimization"
+    description: "Optimisation de code Solidity"
+    confidence: 0.9
+  - name: "pattern_implementation"
+    description: "Implémentation de patterns de conception"
+    confidence: 0.95
+  - name: "error_handling"
+    description: "Gestion des erreurs et exceptions"
+    confidence: 0.9

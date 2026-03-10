@@ -1,0 +1,171 @@
+# ============================================================================
+# agents/communication/sous_agents/performance_optimizer/config.yaml
+# Configuration du Performance Optimizer SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "PerformanceOptimizerSubAgent"
+  class_name: "PerformanceOptimizerSubAgent"
+  module_path: "agents.communication.sous_agents.performance_optimizer.agent"
+  display_name: "⚡ Performance Optimizer"
+  version: "2.0.0"
+  description: |-
+    Optimise en continu les performances du système de messagerie.
+    Analyse les métriques, détecte les goulots d'étranglement,
+    propose des optimisations et ajuste automatiquement les paramètres.
+  purpose: "Maximiser les performances et l'efficacité du système"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 6
+  tags: ["performance", "optimization", "monitoring", "tuning"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "perf.analyze"
+    description: "Analyse les performances actuelles"
+    confidence: 0.97
+    parameters:
+      - "metrics"
+      - "time_window"
+
+  - name: "perf.optimize"
+    description: "Propose des optimisations"
+    confidence: 0.95
+    parameters:
+      - "target"
+      - "constraints"
+
+  - name: "perf.tune"
+    description: "Ajuste automatiquement les paramètres"
+    confidence: 0.90
+    parameters:
+      - "component"
+      - "parameters"
+
+  - name: "perf.bottlenecks"
+    description: "Détecte les goulots d'étranglement"
+    confidence: 0.96
+    parameters:
+      - "threshold"
+
+  - name: "perf.predict"
+    description: "Prédit les performances futures"
+    confidence: 0.85
+    parameters:
+      - "horizon"
+      - "scenario"
+
+  - name: "perf.report"
+    description: "Génère un rapport de performance"
+    confidence: 0.95
+    parameters:
+      - "format"
+      - "time_range"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+performance_optimizer:
+  defaults:
+    analysis_window: 3600
+    optimization_interval: 300
+    auto_tune: false
+
+  metrics:
+    - "throughput"
+    - "latency_p50"
+    - "latency_p95"
+    - "latency_p99"
+    - "error_rate"
+    - "cpu_usage"
+    - "memory_usage"
+    - "queue_size"
+
+  thresholds:
+    critical_latency_ms: 1000
+    high_latency_ms: 500
+    critical_error_rate: 5.0
+    high_error_rate: 2.0
+    critical_queue_size: 0.9  # 90% de la capacité
+
+  optimization_strategies:
+    - name: "scale_out"
+      description: "Augmenter les ressources"
+      enabled: true
+    - name: "cache_optimization"
+      description: "Optimiser le cache"
+      enabled: true
+    - name: "batch_processing"
+      description: "Traiter par lots"
+      enabled: true
+    - name: "compression"
+      description: "Compresser les messages"
+      enabled: true
+    - name: "query_optimization"
+      description: "Optimiser les requêtes"
+      enabled: false
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 60
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 30
+
+  custom_metrics:
+    - name: "optimization_suggestions"
+      type: "counter"
+      description: "Suggestions d'optimisation"
+    - name: "optimizations_applied"
+      type: "counter"
+      description: "Optimisations appliquées"
+    - name: "performance_score"
+      type: "gauge"
+      description: "Score de performance global"
+    - name: "bottlenecks_detected"
+      type: "counter"
+      description: "Goulots d'étranglement détectés"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  analysis_time_ms: 500
+  prediction_accuracy: 0.85
+  optimization_impact_percent: 20
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "performance", "optimization"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

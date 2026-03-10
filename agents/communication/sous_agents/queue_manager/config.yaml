@@ -1,0 +1,177 @@
+# ============================================================================
+# agents/communication/sous_agents/queue_manager/config.yaml
+# Configuration du Queue Manager SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "QueueManagerSubAgent"
+  class_name: "QueueManagerSubAgent"
+  module_path: "agents.communication.sous_agents.queue_manager.agent"
+  display_name: "📊 Queue Manager"
+  version: "2.0.0"
+  description: |-
+    Gère les files d'attente prioritaires avec QoS avancé.
+    Supporte FIFO, LIFO, Priority queues avec monitoring en temps réel,
+    scaling automatique et persistance des messages.
+  purpose: "Assurer une gestion fiable et performante des files d'attente"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 6
+  tags: ["queue", "fifo", "priority", "messaging", "qos"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "queue.create"
+    description: "Crée une nouvelle file d'attente"
+    confidence: 0.99
+    parameters:
+      - "queue_name"
+      - "queue_type"  # fifo, lifo, priority
+      - "max_size"
+      - "persistent"
+
+  - name: "queue.delete"
+    description: "Supprime une file d'attente"
+    confidence: 0.99
+    parameters:
+      - "queue_name"
+      - "force"
+
+  - name: "queue.enqueue"
+    description: "Ajoute un message à une file"
+    confidence: 0.98
+    parameters:
+      - "queue_name"
+      - "message"
+      - "priority"
+      - "ttl_seconds"
+
+  - name: "queue.dequeue"
+    description: "Récupère un message d'une file"
+    confidence: 0.98
+    parameters:
+      - "queue_name"
+      - "timeout_seconds"
+      - "peek_only"
+
+  - name: "queue.stats"
+    description: "Statistiques détaillées d'une file"
+    confidence: 0.97
+    parameters:
+      - "queue_name"
+      - "detailed"
+
+  - name: "queue.list"
+    description: "Liste toutes les files disponibles"
+    confidence: 0.99
+    parameters:
+      - "filter"
+      - "include_stats"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+queue_manager:
+  defaults:
+    max_size: 10000
+    ttl_seconds: 3600
+    persistence: false
+    auto_delete: false
+
+  queue_types:
+    fifo:
+      description: "First In First Out - ordre strict"
+      max_size: 100000
+      supports_priority: false
+    lifo:
+      description: "Last In First Out - pile"
+      max_size: 50000
+      supports_priority: false
+    priority:
+      description: "File prioritaire à 5 niveaux"
+      max_size: 100000
+      priority_levels: 5
+      supports_priority: true
+
+  persistence:
+    backend: "memory"  # memory, disk, hybrid
+    sync_interval: 60
+    compression: true
+    encryption: false
+
+  monitoring:
+    enabled: true
+    track_size: true
+    track_throughput: true
+    track_latency: true
+    alert_on_backlog: true
+    backlog_threshold: 0.8  # 80% de la capacité
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 30
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 30
+
+  custom_metrics:
+    - name: "queue_size"
+      type: "gauge"
+      description: "Taille actuelle de la file"
+    - name: "queue_enqueued_total"
+      type: "counter"
+      description: "Nombre total de messages ajoutés"
+    - name: "queue_dequeued_total"
+      type: "counter"
+      description: "Nombre total de messages récupérés"
+    - name: "queue_backlog_percent"
+      type: "gauge"
+      description: "Pourcentage d'utilisation"
+    - name: "queue_latency_ms"
+      type: "histogram"
+      description: "Latence de traitement"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  enqueue_latency_ms: 5
+  dequeue_latency_ms: 5
+  max_queues: 1000
+  max_messages_per_queue: 100000
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "queue", "messaging"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

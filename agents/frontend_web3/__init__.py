@@ -8,7 +8,9 @@ from .agent import (
     FrameworkType,
     ComponentType,
     Web3Library,
-    FrontendProject
+    FrontendProject,
+    ContractABI,
+    create_frontend_web3_agent
 )
 
 __all__ = [
@@ -16,7 +18,9 @@ __all__ = [
     'FrameworkType',
     'ComponentType',
     'Web3Library',
-    'FrontendProject'
+    'FrontendProject',
+    'ContractABI',
+    'create_frontend_web3_agent'
 ]
 
-__version__ = '2.0.0'
+__version__ = '2.5.0'

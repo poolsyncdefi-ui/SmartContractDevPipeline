@@ -2466,3 +2466,203 @@ expected <block end>, but found '<block mapping start>'
 2026-03-09 21:32:41 - agent.OrchestratorAgent - INFO - Initialisation des composants...
 2026-03-09 21:32:41 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
 2026-03-09 21:32:41 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 08:57:45 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 09:06:28 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 09:11:37 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 16:24:04 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 16:44:59 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 16:49:19 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 16:53:41 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 17:01:22 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 18:08:57 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 18:17:30 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 18:26:54 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 18:44:51 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 18:56:58 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 19:00:47 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 19:04:43 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 19:05:43 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 19:40:25 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 20:43:11 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 20:47:31 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 20:53:39 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 21:18:57 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - 🚀 Démarrage du sprint avec spécifications: specs/projects/sprint_all_agents_20260310_212240.json
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - ℹ️ Chargement des spécifications: specs/projects/sprint_all_agents_20260310_212240.json
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - 📋 Planification: 9 fragments à exécuter
+2026-03-10 21:22:40 - agent.OrchestratorAgent - INFO - 📦 [smart_contract] Fragment SC_001 (solidity) - Token ERC20 Complet
+2026-03-10 21:22:41 - agent.OrchestratorAgent - INFO -    ✅ Fragment SC_001 validé
+2026-03-10 21:22:41 - agent.OrchestratorAgent - INFO - 📦 [backend] Fragment BE_001 (python) - API FastAPI Complète
+2026-03-10 21:22:44 - agent.OrchestratorAgent - INFO -    ✅ Fragment BE_001 validé
+2026-03-10 21:22:44 - agent.OrchestratorAgent - INFO - 📦 [frontend] Fragment FE_001 (typescript) - Interface Web3 Complète
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 21:23:17 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - Configuration chargée: OrchestratorAgent v2.2.0
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - Agent OrchestratorAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml)
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - 🚀 Orchestrator Agent créé
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\orchestrator\config.yaml
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - Initialisation de l'orchestrateur...
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - Initialisation des composants...
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - ✅ Composants: ['workflow_engine', 'sprint_manager', 'agent_registry']
+2026-03-10 21:29:42 - agent.OrchestratorAgent - INFO - ✅ Orchestrateur prêt

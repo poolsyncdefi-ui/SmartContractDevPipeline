@@ -1,16 +1,57 @@
-sub_agent:
-  id: web3_integration_01
-  name: Web3 Integration
-  parent: frontend_web3
-  specialization: Web3 Integration
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
+# ============================================================================
+# 🔗 Expert Intégration Web3 Avancé - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "Web3IntegrationSubAgent"
+  display_name: "🔗 Expert Intégration Web3 Avancé"
+  description: |-
+    Expert en intégration blockchain avec wagmi, viem, ethers.js, support multi-chaînes
+  version: "2.0.0"
+  class_name: "Web3IntegrationSubAgent"
+  module_path: "agents.frontend_web3.sous_agents.web3_integration.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
   timeout_seconds: 60
   max_retries: 2
-logging:
-  level: INFO
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
+capabilities:
+  - name: "wallet_connection_advanced"
+  - name: "contract_interaction_master"
+  - name: "transaction_management"
+  - name: "multi_chain_support"
+  - name: "abi_management"
+
+# ============================================================================
+# TECHNOLOGIES SUPPORTÉES
+# ============================================================================
+technologies:
+  supported:
+    - "wagmi"
+    - "viem"
+    - "ethers.js v6"
+
+# ============================================================================
+# OUTPUTS PRODUITS
+# ============================================================================
+outputs:
+  - name: "wallet_connection_system"
+  - name: "contract_interaction_hooks"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-10"

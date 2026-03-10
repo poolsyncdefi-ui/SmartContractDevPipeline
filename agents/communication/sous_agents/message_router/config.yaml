@@ -1,0 +1,166 @@
+# ============================================================================
+# agents/communication/sous_agents/message_router/config.yaml
+# Configuration du Message Router SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "MessageRouterSubAgent"
+  class_name: "MessageRouterSubAgent"
+  module_path: "agents.communication.sous_agents.message_router.agent"
+  display_name: "🔄 Message Router"
+  version: "2.0.0"
+  description: |-
+    Route les messages selon des règles complexes, patterns et conditions.
+    Supporte le routage basé sur le contenu, les en-têtes, et des algorithmes
+    d'équilibrage de charge dynamiques.
+  purpose: "Acheminer intelligemment les messages vers les destinations appropriées"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 6
+  tags: ["routing", "messages", "load-balancing", "filtering"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "router.add_route"
+    description: "Ajoute une règle de routage"
+    confidence: 0.99
+    parameters:
+      - "route_id"
+      - "condition"
+      - "destination"
+      - "priority"
+
+  - name: "router.remove_route"
+    description: "Supprime une règle de routage"
+    confidence: 0.99
+    parameters:
+      - "route_id"
+
+  - name: "router.route"
+    description: "Route un message selon les règles"
+    confidence: 0.98
+    parameters:
+      - "message"
+      - "context"
+
+  - name: "router.stats"
+    description: "Statistiques de routage"
+    confidence: 0.97
+    parameters:
+      - "route_id"
+      - "detailed"
+
+  - name: "router.list"
+    description: "Liste les routes actives"
+    confidence: 0.98
+    parameters:
+      - "filter"
+
+  - name: "router.test"
+    description: "Teste une règle de routage"
+    confidence: 0.95
+    parameters:
+      - "route_id"
+      - "test_message"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+message_router:
+  defaults:
+    max_routes: 10000
+    default_destination: "dead_letter"
+    enable_caching: true
+    cache_ttl_seconds: 300
+
+  routing_strategies:
+    - name: "content_based"
+      description: "Routage basé sur le contenu du message"
+      enabled: true
+    - name: "header_based"
+      description: "Routage basé sur les en-têtes"
+      enabled: true
+    - name: "round_robin"
+      description: "Équilibrage round-robin"
+      enabled: true
+    - name: "least_loaded"
+      description: "Destination la moins chargée"
+      enabled: true
+    - name: "consistent_hashing"
+      description: "Hash cohérent pour la persistance"
+      enabled: false
+
+  conditions:
+    engines: ["jmespath", "jsonata", "python"]
+    default_engine: "jmespath"
+    max_condition_length: 1000
+
+  load_balancing:
+    enabled: true
+    update_interval: 60
+    metrics: ["queue_size", "response_time", "error_rate"]
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 30
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 30
+
+  custom_metrics:
+    - name: "routes_total"
+      type: "gauge"
+      description: "Nombre total de routes"
+    - name: "messages_routed_total"
+      type: "counter"
+      description: "Messages routés"
+    - name: "route_evaluation_time_ms"
+      type: "histogram"
+      description: "Temps d'évaluation des routes"
+    - name: "routing_errors_total"
+      type: "counter"
+      description: "Erreurs de routage"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  route_evaluation_ms: 5
+  messages_per_second: 10000
+  max_routes_per_message: 100
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "routing", "messages"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

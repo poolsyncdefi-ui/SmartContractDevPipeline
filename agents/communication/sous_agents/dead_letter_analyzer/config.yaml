@@ -1,0 +1,166 @@
+# ============================================================================
+# agents/communication/sous_agents/dead_letter_analyzer/config.yaml
+# Configuration du Dead Letter Analyzer SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "DeadLetterAnalyzerSubAgent"
+  class_name: "DeadLetterAnalyzerSubAgent"
+  module_path: "agents.communication.sous_agents.dead_letter_analyzer.agent"
+  display_name: "💀 Dead Letter Analyzer"
+  version: "2.0.0"
+  description: |-
+    Analyse les messages échoués, détecte les patterns d'échec,
+    propose des solutions de récupération et génère des rapports
+    d'analyse pour améliorer la fiabilité du système.
+  purpose: "Améliorer la fiabilité en analysant les causes d'échec"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "communication"
+  parent_agent: "CommunicationAgent"
+  capabilities_count: 7
+  tags: ["dead-letter", "analysis", "failures", "recovery"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "dlq.add"
+    description: "Ajoute un message à la dead letter queue"
+    confidence: 0.99
+    parameters:
+      - "message"
+      - "error"
+      - "source"
+
+  - name: "dlq.list"
+    description: "Liste les messages de la dead letter queue"
+    confidence: 0.98
+    parameters:
+      - "filter"
+      - "limit"
+      - "offset"
+
+  - name: "dlq.analyze"
+    description: "Analyse les patterns d'échec"
+    confidence: 0.95
+    parameters:
+      - "time_window"
+      - "group_by"
+
+  - name: "dlq.retry"
+    description: "Tente de renvoyer un message"
+    confidence: 0.90
+    parameters:
+      - "message_id"
+      - "force"
+
+  - name: "dlq.delete"
+    description: "Supprime un message"
+    confidence: 0.99
+    parameters:
+      - "message_id"
+
+  - name: "dlq.stats"
+    description: "Statistiques des échecs"
+    confidence: 0.97
+    parameters:
+      - "detailed"
+
+  - name: "dlq.report"
+    description: "Génère un rapport d'analyse"
+    confidence: 0.95
+    parameters:
+      - "format"
+      - "time_range"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+dead_letter_analyzer:
+  defaults:
+    max_size: 10000
+    retention_days: 30
+    auto_analyze: true
+    analysis_interval: 3600
+
+  analysis:
+    enabled: true
+    ml_detection: false
+    pattern_recognition: true
+    correlation_threshold: 0.7
+
+  retry:
+    enabled: true
+    max_attempts: 3
+    backoff_factor: 2.0
+    strategies: ["immediate", "delayed", "exponential"]
+
+  reporting:
+    formats: ["json", "html", "markdown"]
+    include_recommendations: true
+    include_trends: true
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  timeout_seconds: 60
+  max_retries: 3
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+
+  custom_metrics:
+    - name: "dlq_size"
+      type: "gauge"
+      description: "Taille de la dead letter queue"
+    - name: "messages_added_total"
+      type: "counter"
+      description: "Messages ajoutés"
+    - name: "messages_retried_total"
+      type: "counter"
+      description: "Tentatives de réessai"
+    - name: "messages_deleted_total"
+      type: "counter"
+      description: "Messages supprimés"
+    - name: "analysis_duration_ms"
+      type: "histogram"
+      description: "Durée d'analyse"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  analysis_time_ms: 1000
+  max_messages_analyzed: 100000
+  pattern_detection_accuracy: 0.8
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["communication", "dead-letter", "analysis"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-10"
+  next_review: "2026-04-10"

@@ -1,0 +1,20 @@
+2026-03-10 20:31:05 - agent.TestAgent - INFO - Agent base_agent créé (config: )
+2026-03-10 20:31:05 - agent.TestAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:31:05 - agent.TestAgent - INFO - Initialisation de l'agent base_agent...
+2026-03-10 20:31:05 - agent.TestAgent - WARNING - Nom d'agent non spécifié ou par défaut
+2026-03-10 20:31:05 - agent.TestAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-10 20:31:05 - agent.TestAgent - WARNING - Champ obligatoire manquant: name
+2026-03-10 20:31:05 - agent.TestAgent - WARNING - Champ obligatoire manquant: version
+2026-03-10 20:31:05 - agent.TestAgent - ERROR - Erreur lors de l'initialisation: 'TestAgent' object has no attribute 'logger'
+2026-03-10 20:31:05 - agent.TestAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 412, in initialize
+    success = await self._initialize_components()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Web3Projects\SmartContractDevPipeline\test_subagent.py", line 75, in _initialize_components
+    self.logger.info("Initialisation des composants (via BaseAgent)...")
+    ^^^^^^^^^^^
+AttributeError: 'TestAgent' object has no attribute 'logger'
+
+2026-03-10 20:31:05 - agent.TestAgent - INFO - Changement de statut: initializing -> error
+2026-03-10 20:31:05 - agent.TestAgent - ERROR - Erreur lors de l'envoi du message 3a6c3e7d-b548-40fb-bdd2-3527da144a77: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-10 20:31:05 - agent.TestAgent - ERROR - Erreur lors de l'envoi du message 7b7b6af8-e7d7-4443-819b-833dd864abf9: 'SubAgentMetrics' object has no attribute 'messages_sent'

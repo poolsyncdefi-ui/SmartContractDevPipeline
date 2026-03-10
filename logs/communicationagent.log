@@ -1156,3 +1156,647 @@ TypeError: '_asyncio.Task' object is not callable
 
 2026-03-09 21:32:39 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
 2026-03-09 21:32:41 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 08:57:43 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 08:57:43 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 08:57:43 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 08:57:46 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:06:26 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 09:06:26 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 09:06:26 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 09:06:28 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:11:35 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 09:11:35 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 09:11:35 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 09:11:38 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:24:02 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 16:24:02 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 16:24:02 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 16:24:05 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:44:57 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 16:44:57 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 16:44:57 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 16:45:00 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:49:17 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 16:49:17 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 16:49:17 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 16:49:20 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:53:39 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 16:53:39 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 16:53:39 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 16:53:42 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 17:01:20 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 17:01:20 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 17:01:20 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 17:01:23 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:08:55 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 18:08:55 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 18:08:55 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 18:08:58 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:17:28 - agent.CommunicationAgent - ERROR - Erreur lors de l'initialisation: '_asyncio.Task' object is not callable
+2026-03-10 18:17:28 - agent.CommunicationAgent - ERROR - Traceback (most recent call last):
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 416, in initialize
+    self._start_background_tasks()
+  File "D:\Web3Projects\SmartContractDevPipeline\agents\base_agent\base_agent.py", line 777, in _start_background_tasks
+    self._task_registry["cleanup"] = asyncio.create_task(self._cleanup_task())
+                                                         ^^^^^^^^^^^^^^^^^^^^
+TypeError: '_asyncio.Task' object is not callable
+
+2026-03-10 18:17:28 - agent.CommunicationAgent - INFO - Changement de statut: ready -> error
+2026-03-10 18:17:31 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 18:26:52 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:26:54 - agent.CommunicationAgent - ERROR - Erreur dans le processeur: 'async_generator' object is not iterable
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:26:54 - agent.CommunicationAgent - ERROR - Erreur dans le processeur: 'async_generator' object is not iterable
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:26:55 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:55 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:26:55 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:55 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 18:44:48 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 18:44:52 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation pubsub_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: illegal target for annotation (agent.py, line 132)
+2026-03-10 18:56:56 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: illegal target for annotation (agent.py, line 135)
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 18:56:56 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 18:56:59 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation pubsub_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:00:45 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: illegal target for annotation (agent.py, line 135)
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 19:00:45 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:49 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation pubsub_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:04:41 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: illegal target for annotation (agent.py, line 135)
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 19:04:41 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation pubsub_manager: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: illegal target for annotation (agent.py, line 132)
+2026-03-10 19:05:40 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: illegal target for annotation (agent.py, line 135)
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 19:05:40 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: name 'QueueManagerSubAgent' is not defined
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: expected an indented block after function definition on line 174 (agent.py, line 175)
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: name 'MessageRouterSubAgent' is not defined
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: name 'DeadLetterAnalyzerSubAgent' is not defined
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: name 'PerformanceOptimizerSubAgent' is not defined
+2026-03-10 19:40:22 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: name 'SecurityValidatorSubAgent' is not defined
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 1
+2026-03-10 19:40:22 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: name 'QueueManagerSubAgent' is not defined
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation circuit_breaker: Can't instantiate abstract class CircuitBreakerSubAgent with abstract method _initialize_components
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: name 'MessageRouterSubAgent' is not defined
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: name 'DeadLetterAnalyzerSubAgent' is not defined
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: name 'PerformanceOptimizerSubAgent' is not defined
+2026-03-10 20:43:09 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: name 'SecurityValidatorSubAgent' is not defined
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 1
+2026-03-10 20:43:09 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 20:43:13 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:47:29 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: name 'QueueManagerSubAgent' is not defined
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO -   ✓ Sous-agent circuit_breaker initialisé
+2026-03-10 20:47:29 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: name 'MessageRouterSubAgent' is not defined
+2026-03-10 20:47:29 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: name 'DeadLetterAnalyzerSubAgent' is not defined
+2026-03-10 20:47:29 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: name 'PerformanceOptimizerSubAgent' is not defined
+2026-03-10 20:47:29 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: name 'SecurityValidatorSubAgent' is not defined
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-10 20:47:29 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:47:32 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 20:53:37 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation queue_manager: name 'QueueManagerSubAgent' is not defined
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO -   ✓ Sous-agent circuit_breaker initialisé
+2026-03-10 20:53:37 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation message_router: name 'MessageRouterSubAgent' is not defined
+2026-03-10 20:53:37 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation dead_letter_analyzer: name 'DeadLetterAnalyzerSubAgent' is not defined
+2026-03-10 20:53:37 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation performance_optimizer: name 'PerformanceOptimizerSubAgent' is not defined
+2026-03-10 20:53:37 - agent.CommunicationAgent - WARNING -   ⚠️ Erreur initialisation security_validator: name 'SecurityValidatorSubAgent' is not defined
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-10 20:53:37 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 20:53:41 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 21:18:55 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:18:58 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 21:22:38 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 21:23:15 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:23:19 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-10 21:29:40 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-10 21:29:43 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée

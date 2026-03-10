@@ -1,6 +1,7 @@
 """
 Package Communication - Système nerveux central
 Gestion des messages inter-agents avec files d'attente, persistance, pub/sub
+Version: 2.1.0
 """
 
 from .agent import (
@@ -8,7 +9,7 @@ from .agent import (
     MessagePriority,
     MessageStatus,
     DeliveryGuarantee,
-    Message,
+    MessageEnvelope,
     create_communication_agent
 )
 
@@ -17,8 +18,8 @@ __all__ = [
     'MessagePriority',
     'MessageStatus',
     'DeliveryGuarantee',
-    'Message',
+    'MessageEnvelope',
     'create_communication_agent'
 ]
 
-__version__ = '1.0.0'
+__version__ = '2.1.0'

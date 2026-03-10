@@ -610,3 +610,459 @@ TypeError: 'NoneType' object is not callable
 2026-03-09 21:32:41 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
 2026-03-09 21:32:42 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-09 21:32:42 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 08:57:43 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 08:57:46 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:46 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 08:57:47 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 08:57:47 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 09:06:26 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 09:06:28 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:28 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:06:29 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:06:29 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 09:11:35 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 09:11:38 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:38 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 09:11:39 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 09:11:39 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 16:24:02 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 16:24:05 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:05 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:24:06 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:24:06 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 16:44:57 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 16:45:00 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:00 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:45:01 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:45:01 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 16:49:17 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 16:49:20 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:20 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:49:21 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:49:21 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 16:53:39 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 16:53:42 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:42 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 16:53:43 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 16:53:43 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 17:01:20 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 17:01:23 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:23 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 17:01:24 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 17:01:24 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 18:08:55 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 18:08:58 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:58 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:08:59 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:08:59 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 18:17:28 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 18:17:31 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:31 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:17:32 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:17:32 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 18:26:52 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 18:26:54 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:54 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:26:55 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:26:55 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 18:44:48 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 18:44:51 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:51 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:44:52 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:44:52 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 18:56:56 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 18:56:58 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:58 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 18:56:59 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 18:56:59 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 19:00:45 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 19:00:48 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:48 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:00:49 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:00:49 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 19:04:41 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 19:04:43 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:43 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:04:44 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:04:44 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 19:05:41 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 19:05:43 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:43 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:05:44 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:05:44 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 19:40:22 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 19:40:25 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:25 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 19:40:26 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 19:40:26 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 20:43:09 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 20:43:12 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:12 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:43:13 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:43:13 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 20:47:29 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 20:47:31 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:31 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:47:32 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:47:32 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 20:53:37 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 20:53:40 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:40 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 20:53:41 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 20:53:41 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 21:18:55 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 21:18:57 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:57 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:18:58 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:18:58 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 21:22:38 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 21:22:40 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:40 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:22:51 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:22:51 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 21:23:15 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 21:23:18 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:18 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:23:19 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:23:19 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - ✅ Configuration chargée depuis D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - 📚 Agent de documentation créé
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Pro...
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - Initialisation des composants du DocumenterAgent...
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - ✅ Composants: ['doc_generator', 'diagram_generator', 'template_manager']
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - ✅ 7 templates chargés
+2026-03-10 21:29:40 - agent.DocumenterAgent - INFO - ✅ Documenter Pro prêt
+2026-03-10 21:29:42 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:42 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-10 21:29:43 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-10 21:29:43 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
