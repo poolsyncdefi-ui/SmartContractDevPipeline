@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
-Share GitHub V9.15 - Version finale
-- Ignore complètement les Gists vides (pas d'affichage)
-- Ne montre que les vrais Gists créés
+Share GitHub V9.16 - Version avec gestion améliorée de Git
 """
 
 import json
@@ -43,6 +41,8 @@ class Config:
         return {
             "PROJECT_NAME": "SmartContractDevPipeline",
             "GITHUB_TOKEN": "",
+            "GITHUB_USERNAME": "poolsyncdefi-ui",
+            "GITHUB_REPO_NAME": "SmartContractDevPipeline",
             "PROJECT_PATH": str(self.project_root),
             "MAX_GIST_SIZE_MB": 45,
             "MAX_FILES_PER_GIST": 100,
@@ -201,7 +201,7 @@ def create_full_share(config):
 
 
 # ============================================================================
-# PRÉPARATION DES FICHIERS
+# PRÉPARATION DES FICHIERS POUR GISTS
 # ============================================================================
 
 def split_large_file(content, filename, max_size_bytes):
@@ -281,9 +281,7 @@ def prepare_files_for_gists(project_root, config):
                 "original": None
             })
     
-    # Trier par taille décroissante
     prepared.sort(key=lambda x: x["size"], reverse=True)
-    
     return prepared, total_split
 
 def pack_gists(files, config):
@@ -293,14 +291,11 @@ def pack_gists(files, config):
     
     gists = []
     
-    # Séparer les fichiers par taille
-    large = [f for f in files if f["size"] > 1024 * 1024]  # > 1 MB
-    medium = [f for f in files if 100 * 1024 < f["size"] <= 1024 * 1024]  # 100 KB - 1 MB
-    small = [f for f in files if f["size"] <= 100 * 1024]  # < 100 KB
+    large = [f for f in files if f["size"] > 1024 * 1024]
+    medium = [f for f in files if 100 * 1024 < f["size"] <= 1024 * 1024]
+    small = [f for f in files if f["size"] <= 100 * 1024]
     
-    # Placer les gros fichiers d'abord
     for file in large + medium:
-        placed = False
         best_gist = None
         best_fill = -1
         
@@ -321,7 +316,6 @@ def pack_gists(files, config):
                 "size": file["size"]
             })
     
-    # Remplir avec les petits fichiers
     for file in small:
         candidates = []
         for gist in gists:
@@ -345,14 +339,13 @@ def pack_gists(files, config):
 
 
 # ============================================================================
-# UPLOAD GISTS (VERSION FINALE - IGNORE LES 422)
+# UPLOAD GISTS
 # ============================================================================
 
 def create_gist_files(gist_data, part_idx, total_parts, project_name):
     """Crée le dictionnaire des fichiers pour un Gist"""
     files_dict = {}
     
-    # README synthétique
     readme = f"""# {project_name} - Partie {part_idx}/{total_parts}
 📊 {len(gist_data['files'])} fichiers - {gist_data['size']/(1024*1024):.2f} MB
 
@@ -366,18 +359,16 @@ def create_gist_files(gist_data, part_idx, total_parts, project_name):
     
     files_dict["README.txt"] = {"content": readme}
     
-    # Ajouter les fichiers
     for f in gist_data["files"]:
         files_dict[f["name"]] = {"content": f["content"]}
     
     return files_dict
 
 def upload_to_github(gists, config, project_root):
-    """Upload les Gists vers GitHub - ignore silencieusement les Gists vides"""
+    """Upload les Gists vers GitHub"""
     print("\n" + "="*50)
     print("📤 UPLOAD GISTS")
     
-    # Ne garder que les Gists avec des fichiers
     valid_gists = [g for g in gists if g["files"]]
     
     if not valid_gists:
@@ -396,7 +387,6 @@ def upload_to_github(gists, config, project_root):
     
     headers = {"Authorization": f"token {github_token}"}
     
-    # Vérifier le token
     try:
         print("🔄 Vérification du token...")
         test = requests.get("https://api.github.com/user", headers=headers)
@@ -406,16 +396,7 @@ def upload_to_github(gists, config, project_root):
             print(f"✓ Connecté: {user.get('login')}")
         else:
             print(f"✗ Erreur token: {test.status_code}")
-            github_token = input("🔑 Nouveau token GitHub: ").strip()
-            if github_token:
-                headers = {"Authorization": f"token {github_token}"}
-                config.save_token(github_token)
-                test = requests.get("https://api.github.com/user", headers=headers)
-                if test.status_code != 200:
-                    print("✗ Token toujours invalide")
-                    return None
-            else:
-                return None
+            return None
     except Exception as e:
         print(f"✗ Erreur connexion: {e}")
         return None
@@ -451,15 +432,10 @@ def upload_to_github(gists, config, project_root):
                     "files": len(gist["files"])
                 })
             elif resp.status_code == 422:
-                # Ignorer silencieusement les Gists vides (pas d'affichage)
                 pass
             else:
                 print(f"\r    ❌ Erreur {resp.status_code}")
-                if resp.status_code == 401:
-                    print("    Token invalide - Arrêt")
-                    break
         except Exception as e:
-            # Ignorer les exceptions liées aux Gists vides
             if "422" not in str(e):
                 print(f"\r    ❌ Exception: {e}")
     
@@ -487,16 +463,10 @@ def share_to_gists(config, project_root):
     print("\n" + "="*50)
     print("📊 SHARE TO GISTS")
     
-    # Préparation
     files, nb_split = prepare_files_for_gists(project_root, config)
-    
-    # Packaging optimisé
     gists = pack_gists(files, config)
-    
-    # Ne garder que les Gists non vides pour l'affichage
     valid_gists = [g for g in gists if g["files"]]
     
-    # Stats
     total_files = len(files)
     total_size = sum(f["size"] for f in files) / (1024 * 1024)
     
@@ -504,12 +474,10 @@ def share_to_gists(config, project_root):
     if nb_split:
         print(f"   ({nb_split} fichiers fractionnés)")
     
-    # Aperçu compact - uniquement les Gists non vides
     for i, g in enumerate(valid_gists, 1):
         fill = (g["size"] / (config.get("MAX_GIST_SIZE_MB", 45) * 1024 * 1024)) * 100
         print(f"   G{i:02d}: {len(g['files']):3d} fichiers, {g['size']/(1024*1024):5.2f} MB ({fill:3.0f}%)")
     
-    # Upload
     uploaded = upload_to_github(gists, config, project_root)
     
     if uploaded:
@@ -521,7 +489,7 @@ def share_to_gists(config, project_root):
 
 
 # ============================================================================
-# GIT COMMIT + PUSH
+# GIT COMMIT + PUSH (VERSION CORRIGÉE)
 # ============================================================================
 
 def git_commit_push(config, project_root):
@@ -529,40 +497,114 @@ def git_commit_push(config, project_root):
     print("📦 GIT COMMIT + PUSH")
     
     try:
-        status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True, cwd=project_root)
+        # Vérifier si on est dans un repo git
+        git_check = subprocess.run(["git", "rev-parse", "--git-dir"], 
+                                   capture_output=True, text=True, cwd=project_root)
+        if git_check.returncode != 0:
+            print("✗ Pas un dépôt Git")
+            return False
+        
+        # Vérifier les changements
+        status = subprocess.run(["git", "status", "--porcelain"], 
+                               capture_output=True, text=True, cwd=project_root)
         
         if not status.stdout.strip():
-            print("ℹ Aucun changement")
+            print("ℹ Aucun changement à commiter")
             return True
         
         files = len(status.stdout.strip().split('\n'))
-        print(f"📝 {files} fichier(s)")
+        print(f"📝 {files} fichier(s) modifié(s)")
         
-        msg = input("Message (défaut): ").strip()
+        # Aperçu des fichiers modifiés
+        print("\n📋 Fichiers modifiés:")
+        for line in status.stdout.strip().split('\n')[:5]:  # Max 5 lignes
+            print(f"   {line}")
+        if len(status.stdout.strip().split('\n')) > 5:
+            print("   ...")
+        
+        # Message de commit
+        msg = input("\n💬 Message de commit (défaut): ").strip()
         if not msg:
-            msg = f"Màj {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+            msg = f"Mise à jour {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}"
         
+        # Git add
+        print("\n📥 Git add...")
         subprocess.run(["git", "add", "."], cwd=project_root, check=True)
-        subprocess.run(["git", "commit", "-m", msg], cwd=project_root, check=True)
         
-        branch = subprocess.run(["git", "branch", "--show-current"], capture_output=True, text=True, cwd=project_root)
-        branch = branch.stdout.strip() or "main"
+        # Git commit
+        print("📝 Git commit...")
+        commit = subprocess.run(["git", "commit", "-m", msg], 
+                               capture_output=True, text=True, cwd=project_root)
+        if commit.returncode != 0:
+            print(f"✗ Erreur commit: {commit.stderr}")
+            return False
+        print(f"✓ Commit créé: {commit.stdout}")
         
-        result = subprocess.run(["git", "push", "origin", branch], capture_output=True, text=True, cwd=project_root)
+        # Récupérer la branche courante
+        branch = subprocess.run(["git", "branch", "--show-current"], 
+                               capture_output=True, text=True, cwd=project_root)
+        current_branch = branch.stdout.strip() or "main"
         
-        if result.returncode == 0:
-            print("✓ Push OK")
+        # Récupérer le remote
+        remote = subprocess.run(["git", "remote"], 
+                               capture_output=True, text=True, cwd=project_root)
+        remotes = remote.stdout.strip().split('\n')
+        
+        if not remotes or not remotes[0]:
+            print("✗ Aucun remote configuré")
+            return False
+        
+        default_remote = remotes[0]
+        print(f"\n🌐 Remote: {default_remote}, Branche: {current_branch}")
+        
+        # Vérifier l'authentification
+        print("🔄 Vérification de l'authentification...")
+        
+        # Essayer de récupérer d'abord (pull) pour éviter les conflits
+        print("📥 Git pull...")
+        pull = subprocess.run(["git", "pull", default_remote, current_branch],
+                             capture_output=True, text=True, cwd=project_root)
+        if pull.returncode != 0:
+            print(f"⚠ Warning pull: {pull.stderr}")
+        
+        # Git push
+        print("📤 Git push...")
+        push = subprocess.run(["git", "push", default_remote, current_branch],
+                             capture_output=True, text=True, cwd=project_root)
+        
+        if push.returncode == 0:
+            print("✓ Push réussi!")
             return True
         else:
-            print("✗ Push échec")
+            print(f"✗ Échec push:")
+            error_msg = push.stderr.lower()
+            
+            if "authentication failed" in error_msg or "401" in error_msg:
+                print("   Problème d'authentification - Vérifiez vos identifiants GitHub")
+                print("   Suggestions:")
+                print("   • git config --global user.name \"votre_nom\"")
+                print("   • git config --global user.email \"votre_email\"")
+                print("   • Utiliser un token personnel au lieu du mot de passe")
+            elif "protected branch" in error_msg:
+                print("   Branche protégée - Vous devez faire une pull request")
+            elif "non-fast-forward" in error_msg:
+                print("   Des changements distants existent - Faites git pull d'abord")
+                print("   → git pull --rebase")
+            else:
+                print(f"   {push.stderr}")
+            
             return False
+            
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Erreur Git: {e}")
+        return False
     except Exception as e:
-        print(f"✗ Erreur: {e}")
+        print(f"✗ Erreur inattendue: {e}")
         return False
 
 
 # ============================================================================
-# MENU
+# MENU PRINCIPAL
 # ============================================================================
 
 def clear():
@@ -574,7 +616,7 @@ def main():
     while True:
         clear()
         print("\n" + "="*50)
-        print(f"🚀 SHARE GITHUB V9.15 - {config.get('PROJECT_NAME')}")
+        print(f"🚀 SHARE GITHUB V9.16 - {config.get('PROJECT_NAME')}")
         print("="*50)
         print("1. 📄 Générer PROJECT_SHARE.txt")
         print("2. 📦 Git commit + push")
