@@ -586,73 +586,7 @@ agent:
 # SOUS-AGENTS SPÉCIALISÉS
 # ============================================================================
 subAgents:
-  - id: "queue_manager"
-    name: "Queue Manager"
-    display_name: "📊 Gestionnaire de Files"
-    config_path: "agents/communication/sous_agents/queue_manager/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "queue_management"
-    confidence: 0.95
-
-  - id: "pubsub_manager"
-    name: "PubSub Manager"
-    display_name: "📢 Gestionnaire Pub/Sub"
-    config_path: "agents/communication/sous_agents/pubsub_manager/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "pubsub"
-    confidence: 0.95
-
-  - id: "circuit_breaker"
-    name: "Circuit Breaker"
-    display_name: "🛡️ Circuit Breaker"
-    config_path: "agents/communication/sous_agents/circuit_breaker/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "resilience"
-    confidence: 0.96
-
-  - id: "message_router"
-    name: "Message Router"
-    display_name: "🔄 Routeur de Messages"
-    config_path: "agents/communication/sous_agents/message_router/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "routing"
-    confidence: 0.94
-
-  - id: "dead_letter_analyzer"
-    name: "Dead Letter Analyzer"
-    display_name: "💀 Analyseur Dead Letter"
-    config_path: "agents/communication/sous_agents/dead_letter_analyzer/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "analysis"
-    confidence: 0.92
-
-  - id: "performance_optimizer"
-    name: "Performance Optimizer"
-    display_name: "⚡ Optimisateur Performance"
-    config_path: "agents/communication/sous_agents/performance_optimizer/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "optimization"
-    confidence: 0.93
-
-  - id: "security_validator"
-    name: "Security Validator"
-    display_name: "🔒 Validateur Sécurité"
-    config_path: "agents/communication/sous_agents/security_validator/config.yaml"
-    enabled: true
-    dependencies: ["communication"]
-    specialization: "security"
-    confidence: 0.97
- 
-# ============================================================================
-# SOUS-AGENTS SPÉCIALISÉS
-# ============================================================================
-subAgents:
+  # Version anglaise (complète)
   - id: "circuit_breaker"
     name: "Circuit Breaker"
     display_name: "🛡️ Circuit Breaker"
@@ -738,4 +672,3 @@ sub_agent_mapping:
   "security_": "security_validator"
   "validate_": "security_validator"
   "encrypt_": "security_validator"
-

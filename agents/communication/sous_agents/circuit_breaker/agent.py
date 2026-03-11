@@ -770,10 +770,10 @@ class CircuitBreakerSubAgent(BaseSubAgent):
             await asyncio.sleep(0.1)
 
 
-# ============================================================================
-# FONCTION D'USINE
-# ============================================================================
+    # ============================================================================
+    # FONCTION D'USINE
+    # ============================================================================
 
-def create_circuit_breaker_agent(config_path: str = "") -> CircuitBreakerSubAgent:
-    """Crée une instance du sous-agent circuit breaker"""
-    return CircuitBreakerSubAgent(config_path)
+    def create_circuit_breaker_agent(config_path: str = "") -> "CircuitBreakerSubAgent":
+        """Crée une instance du sous-agent circuit breaker"""
+        return CircuitBreakerSubAgent(config_path)

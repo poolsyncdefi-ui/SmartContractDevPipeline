@@ -100,7 +100,7 @@ class PubSubMessage:
 # SOUS-AGENT PRINCIPAL
 # ============================================================================
 
-class PubSubManagerSubAgent(BaseSubAgent):
+class PubsubManagerSubAgent(BaseSubAgent):
     """
     Sous-agent PubSub Manager - Gestionnaire Publish/Subscribe
 
@@ -655,7 +655,6 @@ class PubSubManagerSubAgent(BaseSubAgent):
     # ========================================================================
     # SURCHARGE POUR LE NETTOYAGE
     # ========================================================================
-
     async def shutdown(self) -> bool:
         """Arrête le sous-agent"""
         logger.info(f"Arrêt de {self._subagent_display_name}...")
@@ -670,10 +669,19 @@ class PubSubManagerSubAgent(BaseSubAgent):
         return await super().shutdown()
 
 
-# ============================================================================
-# FONCTION D'USINE
-# ============================================================================
-
-def create_pubsub_manager_agent(config_path: str = "") -> "PubSubManagerSubAgent":
-    """Crée une instance du sous-agent pubsub manager"""
-    return PubSubManagerSubAgent(config_path)
+    # ============================================================================
+    # FONCTION D'USINE
+    # ============================================================================
+    def create_pubsub_manager_agent(config_path: str = "") -> "PubSubManagerSubAgent":
+        """Crée une instance du sous-agent pubsub manager"""
+        return PubSubManagerSubAgent(config_path)
+        
+    # ============================================================================
+    # FONCTION REQUISE POUR LE CHARGEMENT DYNAMIQUE
+    # ============================================================================
+    def get_agent_class():
+        """
+        Fonction requise pour le chargement dynamique des sous-agents.
+        Retourne la classe principale du sous-agent.
+        """
+        return PubSubManagerSubAgent

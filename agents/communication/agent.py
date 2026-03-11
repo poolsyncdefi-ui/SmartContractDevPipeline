@@ -413,7 +413,7 @@ class CommunicationAgent(BaseAgent):
             self._components = {
                 "queues": list(self._queues.keys()),
                 "priority_levels": self._default_queue_config.get('priority_levels', 5),
-                "pubsub_enabled": self._comm_config.get('pubsub', {}).get('enabled', True),
+                "pubsub_enabled": self._comm_config.get('pubsub_manager', {}).get('enabled', True),
                 "persistence_enabled": self._persistence_config.get('enabled', False),
                 "circuit_breakers_enabled": self._comm_config.get('circuit_breaker', {}).get('enabled', True),
                 "rate_limiting_enabled": self._comm_config.get('rate_limiting', {}).get('enabled', True)
@@ -429,20 +429,59 @@ class CommunicationAgent(BaseAgent):
     async def _initialize_sub_agents(self):
         """
         Initialise les sous-agents spécialisés de manière robuste
+        """
+        self._sub_agents = {}
+
+        try:
+            # Lire la config à la racine
+            sub_agent_configs = self._agent_config.get('subAgents', [])
+            
+            for config in sub_agent_configs:
+                agent_id = config.get('id')
+                
+                if not config.get('enabled', True):
+                    continue
+
+                try:
+                    module_name = f"agents.communication.sous_agents.{agent_id}.agent"
+                    module = importlib.import_module(module_name)
+                    
+                    class_name = self._get_sub_agent_class_name(agent_id)
+                    agent_class = getattr(module, class_name, None)
+                    
+                    if agent_class:
+                        config_path = config.get('config_path')
+                        sub_agent = agent_class(config_path)
+                        self._sub_agents[agent_id] = sub_agent
+                        self._logger.info(f"  ✓ Sous-agent {agent_id} initialisé")
+                    else:
+                        self._logger.debug(f"  ℹ️ Classe {class_name} non trouvée pour {agent_id}")
+
+                except Exception as e:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non disponible: {e}")
+
+        except Exception as e:
+            self._logger.error(f"❌ Erreur globale initialisation sous-agents: {e}")
+
+        self._logger.info(f"✅ Sous-agents chargés: {len(self._sub_agents)}")
+
+    async def _initialize_sub_agents_old(self):
+        """
+        Initialise les sous-agents spécialisés de manière robuste
         Cette méthode ne doit jamais lever d'exception
         """
         self._sub_agents = {}
 
         try:
-            # Liste des sous-agents à tenter de charger (basée sur config.yaml)
-            sub_agent_configs = self._agent_config.get('agent', {}).get('subAgents', [])
-
+            # Lire la config à la racine
+            sub_agent_configs = self._agent_config.get('subAgents', [])
+            
             # Si la liste est vide, utiliser les sous-agents par défaut
             if not sub_agent_configs:
                 sub_agent_configs = [
+                    {"id": "circuit_breaker", "name": "Circuit Breaker", "enabled": True},
                     {"id": "queue_manager", "name": "Queue Manager", "enabled": True},
                     {"id": "pubsub_manager", "name": "PubSub Manager", "enabled": True},
-                    {"id": "circuit_breaker", "name": "Circuit Breaker", "enabled": True},
                     {"id": "message_router", "name": "Message Router", "enabled": True},
                     {"id": "dead_letter_analyzer", "name": "Dead Letter Analyzer", "enabled": True},
                     {"id": "performance_optimizer", "name": "Performance Optimizer", "enabled": True},
@@ -455,7 +494,7 @@ class CommunicationAgent(BaseAgent):
                     continue
 
                 try:
-                    # Tentative d'import dynamique du module
+                    # IMPORTANT: Utiliser le bon chemin !
                     module_name = f"agents.communication.sous_agents.{agent_id}.agent"
                     class_name = self._get_sub_agent_class_name(agent_id)
 

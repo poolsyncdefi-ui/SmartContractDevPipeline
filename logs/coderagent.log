@@ -1092,3 +1092,234 @@
 2026-03-10 21:29:40 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
 2026-03-10 21:29:40 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
 2026-03-10 21:29:40 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 21:31:37 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:31:37 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 21:33:47 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:33:47 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 21:40:35 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:40:35 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 21:51:06 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:51:06 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 21:55:19 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:55:19 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-10 22:11:20 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 22:11:20 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 14:51:50 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 14:51:50 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 15:08:51 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:08:51 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 15:12:25 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:12:25 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 15:16:31 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:16:31 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 17:11:58 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:11:58 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 17:17:26 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:17:26 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 17:25:27 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:25:27 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 18:54:11 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 18:54:11 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:06:12 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:06:12 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:15:13 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:15:13 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:15:59 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:15:59 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:18:18 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:18:18 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:55:16 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:55:16 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:57:05 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:57:05 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Configuration chargée: CoderAgent v2.2.0
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Agent CoderAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml)
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Agent Coder initialisé avec la configuration de D:\Web3Projects\SmartContractDevPipeline\agents\coder\config.yaml
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Initialisation de l'agent CoderAgent...
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Vérification des dépendances: ['architect']
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Initialisation des composants du CoderAgent...
+2026-03-11 19:58:07 - agent.CoderAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 16)
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Composants du CoderAgent initialisés avec succès
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:58:07 - agent.CoderAgent - INFO - Agent CoderAgent initialisé avec succès

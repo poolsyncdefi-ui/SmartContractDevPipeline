@@ -1282,3 +1282,339 @@
 2026-03-10 21:29:42 - agent.RegistryAgent - INFO - Initialisation des composants...
 2026-03-10 21:29:42 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
 2026-03-10 21:29:42 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:31:39 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:33:50 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:40:37 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:51:08 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 21:55:21 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-10 22:11:23 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 14:51:54 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:08:54 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:12:27 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 15:16:33 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:12:00 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:17:29 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 17:25:29 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 18:54:14 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:06:14 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:15:15 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:16:02 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:18:20 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:55:18 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:57:07 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Configuration chargée: registry v2.0.0
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Agent registry créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\registry\config.yaml)
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - 🗄️ Registry Agent créé
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - ✅ Agents chargés: 1
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - ✅ Registry initialisé avec 1 agents
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Changement de statut: created -> initializing
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - 🗄️ Initialisation du Registry...
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Initialisation de l'agent registry...
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Vérification des dépendances: defaultdict(<class 'list'>, {'test_agent': []})
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Changement de statut: initializing -> ready
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Agent registry initialisé avec succès
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - Initialisation des composants...
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - ✅ Composants: ['agent_registry', 'version_manager', 'dependency_resolver', 'cache_manager', 'metrics_collector']
+2026-03-11 19:58:09 - agent.RegistryAgent - INFO - ✅ Registry prêt - 1 agents enregistrés
