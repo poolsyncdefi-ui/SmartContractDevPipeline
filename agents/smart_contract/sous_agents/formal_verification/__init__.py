@@ -1,8 +1,11 @@
 """
-Package Formal Verification Sub-Agent
-Expert en vérification formelle de smart contracts
+Package pour le sous-agent de vérification formelle.
+Exporte la classe principale et la fonction d'usine.
 """
 
-from .agent import FormalVerificationSubAgent
+from .agent import FormalVerificationSubAgent, get_agent_class
 
-__all__ = ['FormalVerificationSubAgent']
+__all__ = [
+    'FormalVerificationSubAgent',
+    'get_agent_class'
+]

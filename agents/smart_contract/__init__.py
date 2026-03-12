@@ -1,28 +1,32 @@
 """
-Package Smart Contract Agent - Agent principal de développement de smart contracts
-Génération, audit, optimisation et déploiement de smart contracts sécurisés
+Package Smart Contract - Développement de smart contracts sécurisés
+Version: 2.5.0
 """
 
 from .agent import (
     SmartContractAgent,
+    ContractType,
     ContractStandard,
+    SolidityVersion,
     AuditSeverity,
-    DeploymentStatus,
-    ContractTemplate,
-    AuditFinding,
-    DeploymentInfo,
-    create_smart_contract_agent
+    VulnerabilityType,
+    GasOptimizationLevel,
+    VerificationStatus,
+    create_smart_contract_agent,
+    get_agent_class
 )
 
 __all__ = [
     'SmartContractAgent',
+    'ContractType',
     'ContractStandard',
+    'SolidityVersion',
     'AuditSeverity',
-    'DeploymentStatus',
-    'ContractTemplate',
-    'AuditFinding',
-    'DeploymentInfo',
-    'create_smart_contract_agent'
+    'VulnerabilityType',
+    'GasOptimizationLevel',
+    'VerificationStatus',
+    'create_smart_contract_agent',
+    'get_agent_class'
 ]
 
-__version__ = '2.6.0'
+__version__ = '2.5.0'

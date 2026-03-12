@@ -1,40 +1,118 @@
-# agents/smart_contract/sous_agents/gas_optimizer/config.yaml
+# ============================================================================
+# ⛽ Gas Optimizer SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
 agent:
   name: "GasOptimizerSubAgent"
-  display_name: "⚡ Optimisation Gas"
-  description: "Expert en optimisation de gas pour smart contracts"
-  version: "1.0.0"
+  display_name: "⛽ Optimisation Gas"
+  description: |
+    Optimisation des coûts de gas des smart contracts.
+    Analyse détaillée, suggestions automatiques, estimation des coûts.
+  version: "2.0.0"
   class_name: "GasOptimizerSubAgent"
   module_path: "agents.smart_contract.sous_agents.gas_optimizer.agent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 120
   max_retries: 2
+  temp_dir: "temp/gas_optimizer"
 
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-  - name: "storage_optimization"
-    description: "Optimisation du stockage (packing, layout)"
+  - name: "gas.analyze_contract"
+    description: "Analyse détaillée de la consommation gas"
     confidence: 0.95
-  - name: "loop_optimization"
-    description: "Optimisation des boucles (unchecked, caching)"
-    confidence: 0.9
-  - name: "assembly_optimization"
-    description: "Optimisations en assembly Yul"
-    confidence: 0.85
-  - name: "calldata_optimization"
-    description: "Optimisation de l'utilisation des calldata"
-    confidence: 0.9
 
-optimization:
-  aggressive_mode: false
-  max_suggestions: 10
-  include_assembly: true
-  include_yul: true
-  gas_price_oracle: "eth_gas_station"
-  target_network: "ethereum"
+  - name: "gas.optimize_contract"
+    description: "Optimisation automatique du code"
+    confidence: 0.88
+
+  - name: "gas.estimate_costs"
+    description: "Estimation des coûts de gas en USD"
+    confidence: 0.92
+
+  - name: "gas.suggest_patterns"
+    description: "Suggestions de patterns optimisés"
+    confidence: 0.90
+
+  - name: "gas.compare_versions"
+    description: "Comparaison de versions optimisées"
+    confidence: 0.85
+
+  - name: "gas.simulate_transaction"
+    description: "Simulation de transactions"
+    confidence: 0.80
+
+  - name: "gas.get_optimization_history"
+    description: "Historique des optimisations"
+    confidence: 0.99
+
+# ============================================================================
+# PARAMÈTRES GAS
+# ============================================================================
+gas_parameters:
+  target_gas_limit: 3000000
+  warning_threshold: 2000000
+  critical_threshold: 4000000
+  default_optimization_level: "medium"  # none, low, medium, high, aggressive
+  enable_automatic_optimization: true
+  max_optimization_iterations: 5
+  analysis_depth: "detailed"  # quick, standard, detailed
+
+# ============================================================================
+# ESTIMATION DES COÛTS
+# ============================================================================
+cost_estimation:
+  default_gas_price_gwei: 50
+  default_eth_price_usd: 3000
+  price_source: "coingecko"  # coingecko, manual
+  update_interval_hours: 6
+  cache_duration_days: 1
+
+# ============================================================================
+# PATTERNS D'OPTIMISATION
+# ============================================================================
+optimization_patterns:
+  enabled_categories:
+    - "storage"
+    - "loops"
+    - "functions"
+    - "math"
+    - "events"
+    - "strings"
+    - "arrays"
+    - "mappings"
   
-targets:
-  deployment_gas: 5000000
-  transaction_gas: 200000
-  storage_slots: 50
+  custom_patterns_path: "patterns/gas_optimization/"
+  enable_ai_suggestions: true
+  ai_confidence_threshold: 0.7
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  max_suggestions_per_analysis: 50
+  min_confidence_to_apply: 0.8
+  enable_history_tracking: true
+  max_history_size: 10000
+  retention_days: 7
+  save_reports: true
+  reports_path: "reports/gas_optimization/"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 7
+  last_reviewed: "2026-03-11"
+  dependencies: []

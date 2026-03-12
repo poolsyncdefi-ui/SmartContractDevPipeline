@@ -1,8 +1,11 @@
 """
-Package Security Expert Sub-Agent
-Expert en sécurité des smart contracts
+Package pour le sous-agent expert sécurité.
+Exporte la classe principale et la fonction d'usine.
 """
 
-from .agent import SecurityExpertSubAgent
+from .agent import SecurityExpertSubAgent, get_agent_class
 
-__all__ = ['SecurityExpertSubAgent']
+__all__ = [
+    'SecurityExpertSubAgent',
+    'get_agent_class'
+]

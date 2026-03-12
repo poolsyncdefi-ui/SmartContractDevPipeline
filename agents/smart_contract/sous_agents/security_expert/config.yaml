@@ -1,46 +1,143 @@
-# agents/smart_contract/sous_agents/security_expert/config.yaml
+# ============================================================================
+# 🛡️ Security Expert SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
 agent:
   name: "SecurityExpertSubAgent"
   display_name: "🛡️ Expert Sécurité"
-  description: "Expert en sécurité des smart contracts - audit, détection de vulnérabilités"
-  version: "1.0.0"
+  description: |
+    Analyse de sécurité et audit des smart contracts.
+    Détection des vulnérabilités, suggestions de correctifs, rapports d'audit.
+  version: "2.0.0"
   class_name: "SecurityExpertSubAgent"
   module_path: "agents.smart_contract.sous_agents.security_expert.agent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 180
   max_retries: 2
+  temp_dir: "temp/security"
 
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-  - name: "vulnerability_detection"
-    description: "Détection des vulnérabilités de sécurité"
+  - name: "security.scan_contract"
+    description: "Scan rapide de sécurité"
     confidence: 0.95
-  - name: "access_control_audit"
-    description: "Audit des contrôles d'accès"
-    confidence: 0.95
-  - name: "reentrancy_analysis"
-    description: "Analyse des vulnérabilités de réentrance"
-    confidence: 0.98
-  - name: "economic_attack_detection"
-    description: "Détection des attaques économiques (flash loans)"
+
+  - name: "security.audit_contract"
+    description: "Audit complet de sécurité"
+    confidence: 0.90
+
+  - name: "security.check_vulnerabilities"
+    description: "Vérification des vulnérabilités connues"
+    confidence: 0.92
+
+  - name: "security.suggest_fixes"
+    description: "Suggestions de correctifs"
     confidence: 0.85
 
-audit:
-  default_depth: "standard"
-  generate_pdf_report: true
-  include_code_snippets: true
-  max_findings_per_audit: 50
-  
-severity_weights:
-  critical: 15
-  high: 8
-  medium: 4
-  low: 2
-  info: 1
+  - name: "security.generate_report"
+    description: "Génération de rapport d'audit"
+    confidence: 0.95
 
-security_standards:
-  - "SWC Registry"
-  - "DASP Top 10"
-  - "Consensys Best Practices"
-  - "Trail of Bits Recommendations"
+  - name: "security.get_audit_history"
+    description: "Historique des audits"
+    confidence: 0.99
+
+  - name: "security.compare_audits"
+    description: "Comparaison d'audits"
+    confidence: 0.88
+
+# ============================================================================
+# PARAMÈTRES D'AUDIT
+# ============================================================================
+audit_parameters:
+  default_scan_depth: "standard"  # quick, standard, deep
+  include_gas_analysis: true
+  include_swc_references: true
+  max_findings_per_audit: 50
+  save_reports: true
+  reports_path: "reports/security/"
+  retention_days: 30
+
+# ============================================================================
+# SEUILS DE RISQUE
+# ============================================================================
+risk_thresholds:
+  critical_risk: 8.0
+  high_risk: 6.0
+  medium_risk: 4.0
+  low_risk: 2.0
+
+  severity_weights:
+    critical: 10
+    high: 7
+    medium: 4
+    low: 2
+    info: 0.5
+
+# ============================================================================
+# PATTERNS DE VULNÉRABILITÉS
+# ============================================================================
+vulnerability_patterns:
+  enabled_categories:
+    - "reentrancy"
+    - "access_control"
+    - "arithmetic"
+    - "unchecked_calls"
+    - "timestamp_dependency"
+    - "front_running"
+    - "compiler_issues"
+    - "business_logic"
+  
+  custom_patterns_path: "patterns/security/"
+  enable_ai_detection: true
+  ai_confidence_threshold: 0.7
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  severity_threshold: "medium"  # minimum severity to report
+  include_informational: true
+  max_audits_per_contract: 100
+  enable_history_tracking: true
+  max_history_size: 10000
+
+# ============================================================================
+# INTÉGRATIONS
+# ============================================================================
+integrations:
+  slither:
+    enabled: true
+    version: "0.9.0"
+    detectors: ["all"]
+  
+  mythril:
+    enabled: false
+    version: "0.23.0"
+    timeout_seconds: 120
+  
+  echidna:
+    enabled: false
+    version: "2.0.0"
+    test_limit: 10000
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 7
+  last_reviewed: "2026-03-11"
+  dependencies:
+    - "slither-analyzer"
+    - "mythril"

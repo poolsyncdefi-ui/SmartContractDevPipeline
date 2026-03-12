@@ -112,3 +112,4 @@
 2026-03-11 19:58:09 - agent.SecurityExpertSubAgent - INFO - Configuration chargée: SecurityExpertSubAgent v1.0.0
 2026-03-11 19:58:09 - agent.SecurityExpertSubAgent - INFO - Agent SecurityExpertSubAgent créé (config: agents/smart_contract/sous_agents/security_expert/config.yaml)
 2026-03-11 19:58:09 - agent.SecurityExpertSubAgent - INFO - 🛡️ Sous-agent Expert Sécurité créé
+2026-03-11 21:43:36 - agent.SecurityExpertSubAgent - INFO - Agent base_agent créé (config: None)

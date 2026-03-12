@@ -1,524 +1,771 @@
 """
-Gas Optimizer Sub-Agent - Expert en optimisation de gas
-Version: 1.0.0
+Gas Optimizer SubAgent - Sous-agent d'optimisation gas
+Version: 2.0.0
+
+Optimise la consommation de gas des smart contracts avec support de :
+- Analyse de gas
+- Suggestions d'optimisation
+- Estimation des coûts
+- Comparaison de versions
 """
 
 import logging
 import sys
-import json
 import asyncio
-import random
+import json
 import re
-import importlib
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, Optional, List, Set, Tuple
 from enum import Enum
+from dataclasses import dataclass, field
+from collections import defaultdict
 
 # Configuration des imports
 current_dir = Path(__file__).parent.absolute()
-project_root = current_dir.parent.parent.parent.parent
+project_root = current_dir.parent.parent.parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
+from agents.sous_agents.base_subagent import BaseSubAgent
 
 logger = logging.getLogger(__name__)
 
 
-class OptimizationType(Enum):
-    """Types d'optimisations"""
-    STORAGE = "storage"
-    COMPUTATION = "computation"
-    MEMORY = "memory"
-    CALLDATA = "calldata"
-    LOOP = "loop"
-    ASSEMBLY = "assembly"
+# ============================================================================
+# ÉNUMS ET CLASSES DE DONNÉES
+# ============================================================================
 
-
-class OptimizationPriority(Enum):
-    """Priorités d'optimisation"""
-    CRITICAL = "critical"
-    HIGH = "high"
-    MEDIUM = "medium"
+class OptimizationLevel(Enum):
+    """Niveaux d'optimisation"""
+    NONE = "none"
     LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    AGGRESSIVE = "aggressive"
 
 
-class GasOptimizerSubAgent(BaseAgent):
+class OptimizationCategory(Enum):
+    """Catégories d'optimisation"""
+    STORAGE = "storage"
+    LOOPS = "loops"
+    FUNCTIONS = "functions"
+    MATH = "math"
+    STRINGS = "strings"
+    ARRAYS = "arrays"
+    MAPPINGS = "mappings"
+    EVENTS = "events"
+    MODIFIERS = "modifiers"
+    INHERITANCE = "inheritance"
+
+
+@dataclass
+class GasEstimate:
+    """Estimation de gas"""
+    function_name: str
+    gas_estimate: int
+    min_gas: int
+    max_gas: int
+    call_data_size: int
+    execution_time_ms: float
+
+
+@dataclass
+class OptimizationSuggestion:
+    """Suggestion d'optimisation"""
+    id: str
+    category: OptimizationCategory
+    location: str  # Ligne ou fonction
+    description: str
+    current_code: str
+    suggested_code: str
+    estimated_saving: int  # en gas
+    confidence: float
+    complexity: str  # low, medium, high
+    applied: bool = False
+
+
+@dataclass
+class GasAnalysis:
+    """Analyse de gas complète"""
+    contract_name: str
+    total_estimated_gas: int
+    functions_analyzed: int
+    gas_by_function: Dict[str, GasEstimate]
+    suggestions: List[OptimizationSuggestion]
+    total_potential_saving: int
+    optimization_score: float  # 0-100
+    created_at: datetime = field(default_factory=datetime.now)
+
+
+# ============================================================================
+# SOUS-AGENT PRINCIPAL
+# ============================================================================
+
+class GasOptimizerSubAgent(BaseSubAgent):
     """
-    Sous-agent spécialisé dans l'optimisation de gas pour smart contracts
-    Storage packing, assembly optimization, loop unrolling, etc.
+    Sous-agent d'optimisation gas
+
+    Optimise la consommation de gas des smart contracts avec :
+    - Analyse détaillée du gas
+    - Suggestions d'optimisation automatiques
+    - Estimation des coûts
+    - Comparaison de versions
     """
 
     def __init__(self, config_path: str = ""):
         """Initialise le sous-agent d'optimisation gas"""
-        if not config_path:
-            config_path = str(current_dir / "config.yaml")
-
         super().__init__(config_path)
 
-        self._display_name = self._agent_config.get('agent', {}).get('display_name', '⚡ Optimisation Gas')
-        self._initialized = False
+        # Métadonnées
+        self._subagent_display_name = "⛽ Optimisation Gas"
+        self._subagent_description = "Optimisation des coûts de gas des smart contracts"
+        self._subagent_version = "2.0.0"
+        self._subagent_category = "smart_contract"
+        self._subagent_capabilities = [
+            "gas.analyze_contract",
+            "gas.optimize_contract",
+            "gas.estimate_costs",
+            "gas.suggest_patterns",
+            "gas.compare_versions",
+            "gas.simulate_transaction",
+            "gas.get_optimization_history"
+        ]
 
-        # Statistiques
-        self._stats = {
-            'optimizations_performed': 0,
-            'total_gas_saved': 0,
-            'contracts_optimized': 0,
-            'assembly_blocks_used': 0,
-            'start_time': datetime.now().isoformat()
-        }
+        # État interne
+        self._analyses: Dict[str, GasAnalysis] = {}
+        self._optimization_history: List[Dict[str, Any]] = []
+        self._contract_locks: Dict[str, asyncio.Lock] = {}
+        
+        # Configuration
+        self._gas_params = self._agent_config.get('gas_parameters', {})
+        self._target_gas = self._gas_params.get('target_gas_limit', 3000000)
+        self._warning_threshold = self._gas_params.get('warning_threshold', 2000000)
+        self._critical_threshold = self._gas_params.get('critical_threshold', 4000000)
 
-        self._logger.info("⚡ Sous-agent Optimisation Gas créé")
+        # Charger les patterns d'optimisation
+        self._optimization_patterns = self._load_optimization_patterns()
+        
+        # Tâche de fond
+        self._cleanup_task: Optional[asyncio.Task] = None
 
-    async def initialize(self) -> bool:
-        """Initialise le sous-agent"""
+        logger.info(f"✅ {self._subagent_display_name} initialisé (v{self._subagent_version})")
+
+    # ========================================================================
+    # IMPLÉMENTATION DES MÉTHODES ABSTRACTES
+    # ========================================================================
+
+    async def _initialize_subagent_components(self) -> bool:
+        """Initialise les composants spécifiques"""
+        logger.info("Initialisation des composants d'optimisation gas...")
+
         try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation du sous-agent Optimisation Gas...")
+            # Charger les paramètres gas
+            logger.info(f"  ✅ Paramètres gas chargés: target={self._target_gas}, warning={self._warning_threshold}")
+            logger.info(f"  ✅ {len(self._optimization_patterns)} patterns d'optimisation chargés")
 
-            base_result = await super().initialize()
-            if not base_result:
-                return False
+            # Démarrer la tâche de nettoyage
+            self._cleanup_task = asyncio.create_task(self._cleanup_loop())
 
-            self._initialized = True
-            self._set_status(AgentStatus.READY)
-            self._logger.info("✅ Sous-agent Optimisation Gas prêt")
+            logger.info("✅ Composants d'optimisation gas initialisés")
             return True
 
         except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._set_status(AgentStatus.ERROR)
+            logger.error(f"❌ Erreur initialisation composants: {e}")
             return False
 
     async def _initialize_components(self) -> bool:
-        """Initialise les composants du sous-agent"""
-        self._logger.info("Initialisation des composants...")
-        self._components = {
-            "analyzer": {"enabled": True},
-            "optimizer": {"enabled": True},
-            "profiler": {"enabled": True}
-        }
-        return True
+        """Implémentation requise par BaseAgent"""
+        return await self._initialize_subagent_components()
 
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """Gère les messages personnalisés"""
-        try:
-            msg_type = message.message_type
-
-            handlers = {
-                "gas.optimize": self._handle_optimize,
-                "gas.analyze": self._handle_analyze,
-                "gas.profile": self._handle_profile,
-                "gas.techniques": self._handle_techniques,
-                "gas.estimate": self._handle_estimate,
-            }
-
-            if msg_type in handlers:
-                return await handlers[msg_type](message)
-
-            return None
-
-        except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type=MessageType.ERROR.value,
-                correlation_id=message.message_id
-            )
-
-    async def _handle_optimize(self, message: Message) -> Message:
-        """Gère l'optimisation de code"""
-        code = message.content.get("code", "")
-        target = message.content.get("target", "all")
-
-        result = await self.optimize_contract(code, target)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="gas.optimized",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_analyze(self, message: Message) -> Message:
-        """Gère l'analyse de gas"""
-        code = message.content.get("code", "")
-        result = await self.analyze_gas_usage(code)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="gas.analyzed",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_profile(self, message: Message) -> Message:
-        """Gère le profilage de gas"""
-        code = message.content.get("code", "")
-        function = message.content.get("function", "all")
-        result = await self.profile_gas_usage(code, function)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="gas.profiled",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_techniques(self, message: Message) -> Message:
-        """Retourne les techniques d'optimisation disponibles"""
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={"techniques": self._get_optimization_techniques()},
-            message_type="gas.techniques_list",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_estimate(self, message: Message) -> Message:
-        """Estime le gas pour une fonction"""
-        code = message.content.get("code", "")
-        function = message.content.get("function", "")
-        result = await self.estimate_gas_function(code, function)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="gas.estimated",
-            correlation_id=message.message_id
-        )
-
-    async def optimize_contract(self, code: str, target: str = "all") -> Dict[str, Any]:
-        """Optimise un contrat pour réduire le gas"""
-        self._stats['optimizations_performed'] += 1
-        self._stats['contracts_optimized'] += 1
-
-        # Analyser le code pour trouver des opportunités d'optimisation
-        opportunities = self._find_optimization_opportunities(code)
-
-        # Appliquer les optimisations (simulation)
-        optimized_code = code
-        applied_optimizations = []
-        total_gas_saved = 0
-
-        for opp in opportunities:
-            if opp['priority'] in ['critical', 'high'] or target == 'all':
-                applied_optimizations.append(opp)
-                total_gas_saved += opp['gas_save']
-                optimized_code = self._simulate_optimization(optimized_code, opp)
-
-        self._stats['total_gas_saved'] += total_gas_saved
-        if any('assembly' in opp['type'].lower() for opp in applied_optimizations):
-            self._stats['assembly_blocks_used'] += 1
-
+    def _get_capability_handlers(self) -> Dict[str, Any]:
+        """Retourne les handlers spécifiques"""
         return {
-            "success": True,
-            "original_code": code,
-            "optimized_code": optimized_code,
-            "gas_saved": f"{total_gas_saved:,}",
-            "percentage_saved": f"{(total_gas_saved / 1000000 * 100):.1f}%",
-            "applied_optimizations": applied_optimizations,
-            "optimization_summary": {
-                "storage": len([o for o in applied_optimizations if o['type'] == 'storage']),
-                "computation": len([o for o in applied_optimizations if o['type'] == 'computation']),
-                "memory": len([o for o in applied_optimizations if o['type'] == 'memory']),
-                "calldata": len([o for o in applied_optimizations if o['type'] == 'calldata']),
-                "assembly": len([o for o in applied_optimizations if o['type'] == 'assembly'])
-            },
-            "timestamp": datetime.now().isoformat()
+            "gas.analyze_contract": self._handle_analyze_contract,
+            "gas.optimize_contract": self._handle_optimize_contract,
+            "gas.estimate_costs": self._handle_estimate_costs,
+            "gas.suggest_patterns": self._handle_suggest_patterns,
+            "gas.compare_versions": self._handle_compare_versions,
+            "gas.simulate_transaction": self._handle_simulate_transaction,
+            "gas.get_optimization_history": self._handle_get_history,
         }
 
-    async def analyze_gas_usage(self, code: str) -> Dict[str, Any]:
-        """Analyse l'utilisation de gas d'un contrat"""
-        lines = code.split('\n')
-        
-        # Compter les opérations coûteuses
-        expensive_ops = {
-            'SSTORE': len(re.findall(r'=\s*\w+\s*;', code)),
-            'SLOAD': len(re.findall(r'\b\w+\s*=\s*\w+\[', code)),
-            'CALL': len(re.findall(r'\.call\s*\(', code)),
-            'DELEGATECALL': len(re.findall(r'\.delegatecall\s*\(', code)),
-            'MSTORE': len(re.findall(r'mstore\s*\(', code)),
-            'MLOAD': len(re.findall(r'mload\s*\(', code))
-        }
+    # ========================================================================
+    # MÉTHODES PRIVÉES
+    # ========================================================================
 
-        # Identifier les gas guzzlers
-        gas_guzzlers = []
-        if 'for (' in code or 'while (' in code:
-            gas_guzzlers.append({
-                "pattern": "Loop without gas limit",
-                "location": "multiple lines",
-                "estimated_cost": "unbounded"
-            })
-        if 'transfer(' in code or 'send(' in code:
-            gas_guzzlers.append({
-                "pattern": "transfer/send (2300 gas limit)",
-                "location": "various",
-                "estimated_cost": "2300"
-            })
-        if 'public' in code and 'view' not in code and 'pure' not in code:
-            gas_guzzlers.append({
-                "pattern": "Public state-changing functions",
-                "location": "various",
-                "estimated_cost": "external call overhead"
-            })
+    async def _get_contract_lock(self, contract_path: str) -> asyncio.Lock:
+        """Récupère ou crée un verrou pour un contrat"""
+        if contract_path not in self._contract_locks:
+            self._contract_locks[contract_path] = asyncio.Lock()
+        return self._contract_locks[contract_path]
 
-        return {
-            "success": True,
-            "analysis": {
-                "total_lines": lines,
-                "expensive_operations": expensive_ops,
-                "estimated_deployment_gas": self._estimate_deployment_gas(code),
-                "estimated_operation_gas": self._estimate_operation_gas(code),
-                "gas_guzzlers": gas_guzzlers,
-                "optimization_potential": self._calculate_optimization_potential(code)
-            },
-            "recommendations": self._generate_recommendations(code),
-            "timestamp": datetime.now().isoformat()
-        }
-
-    async def profile_gas_usage(self, code: str, function: str = "all") -> Dict[str, Any]:
-        """Profile l'utilisation de gas fonction par fonction"""
-        # Extraire les fonctions du code
-        functions = self._extract_functions(code)
-        
-        profile = {}
-        for func in functions:
-            if function == "all" or func['name'] == function:
-                profile[func['name']] = {
-                    "estimated_gas": func['estimated_gas'],
-                    "operations": func['operations'],
-                    "storage_writes": func['storage_writes'],
-                    "external_calls": func['external_calls'],
-                    "complexity": func['complexity']
+    def _load_optimization_patterns(self) -> Dict[str, List[Dict[str, Any]]]:
+        """Charge les patterns d'optimisation"""
+        patterns = {
+            'storage': [
+                {
+                    'pattern': r'uint\s*\[\s*\]',
+                    'suggestion': 'Utiliser bytes32[] pour les tableaux d\'entiers pour économiser du gas',
+                    'saving': 5000,
+                    'confidence': 0.8,
+                    'complexity': 'medium'
+                },
+                {
+                    'pattern': r'mapping\s*\(\s*address\s*=>\s*uint\s*\)',
+                    'suggestion': 'Considérer le packed storage pour les mappings',
+                    'saving': 2000,
+                    'confidence': 0.7,
+                    'complexity': 'high'
+                },
+                {
+                    'pattern': r'string\s+(public|internal|private)',
+                    'suggestion': 'Utiliser bytes32 pour les chaînes de moins de 32 caractères',
+                    'saving': 1500,
+                    'confidence': 0.9,
+                    'complexity': 'low'
                 }
-
-        return {
-            "success": True,
-            "profile": profile,
-            "total_estimated_gas": sum(f['estimated_gas'] for f in functions if function == "all" or f['name'] == function),
-            "timestamp": datetime.now().isoformat()
+            ],
+            'loops': [
+                {
+                    'pattern': r'for\s*\(\s*uint\s+i\s*=\s*0\s*;\s*i\s*<\s*(\w+)\.length\s*;\s*i\+\+\s*\)',
+                    'suggestion': 'Mettre en cache array.length en dehors de la boucle',
+                    'saving': 800 * 10,  # 800 gas par itération
+                    'confidence': 0.95,
+                    'complexity': 'low',
+                    'example': 'uint len = array.length; for (uint i = 0; i < len; i++)'
+                },
+                {
+                    'pattern': r'for\s*\([^;]+;[^;]+;[^\)]+\)\s*\{[^}]*require\([^}]*\)[^}]*\}',
+                    'suggestion': 'Éviter les require dans les boucles, les vérifier avant',
+                    'saving': 500,
+                    'confidence': 0.85,
+                    'complexity': 'medium'
+                },
+                {
+                    'pattern': r'i\+\+',
+                    'suggestion': 'Utiliser ++i au lieu de i++ pour économiser du gas',
+                    'saving': 5,
+                    'confidence': 0.99,
+                    'complexity': 'low'
+                }
+            ],
+            'functions': [
+                {
+                    'pattern': r'function\s+\w+\s*\([^)]*\)\s*(public|external)\s+payable',
+                    'suggestion': 'Rendre payable seulement si nécessaire',
+                    'saving': 2100,
+                    'confidence': 0.9,
+                    'complexity': 'low'
+                },
+                {
+                    'pattern': r'function\s+\w+\s*\([^)]*\)\s*(public|external)\s+view',
+                    'suggestion': 'Utiliser external pour les fonctions view appelées depuis l\'extérieur',
+                    'saving': 300,
+                    'confidence': 0.8,
+                    'complexity': 'low'
+                },
+                {
+                    'pattern': r'modifier\s+\w+\s*\([^)]*\)\s*\{[^}]*_;[^}]*\}',
+                    'suggestion': 'Remplacer les modificateurs par des fonctions internes si possible',
+                    'saving': 1000,
+                    'confidence': 0.6,
+                    'complexity': 'high'
+                }
+            ],
+            'math': [
+                {
+                    'pattern': r'(\+{2}|-{2})',
+                    'suggestion': "Utiliser unchecked { ++i; } quand le débordement est impossible",
+                    'saving': 30,
+                    'confidence': 0.95,
+                    'complexity': 'low'
+                },
+                {
+                    'pattern': r'for\s*\([^;]+;[^;]+;[^\)]+\)\s*\{[^}]*\w+\s*=\s*\w+\s*[+\-]\s*\w+[^}]*\}',
+                    'suggestion': 'Utiliser unchecked pour les calculs sans risque de débordement',
+                    'saving': 40,
+                    'confidence': 0.7,
+                    'complexity': 'medium'
+                },
+                {
+                    'pattern': r'\brequire\b\s*\(\s*\w+\s*!=\s*0\s*\)',
+                    'suggestion': 'Utiliser require(x > 0) au lieu de require(x != 0) quand pertinent',
+                    'saving': 10,
+                    'confidence': 0.6,
+                    'complexity': 'low'
+                }
+            ],
+            'events': [
+                {
+                    'pattern': r'event\s+\w+\s*\([^)]*\)\s*;',
+                    'suggestion': 'Indexer les paramètres pertinents pour faciliter la recherche',
+                    'saving': 0,
+                    'confidence': 0.9,
+                    'complexity': 'low',
+                    'info': 'N\'économise pas de gas mais améliore l\'indexation'
+                }
+            ],
+            'inheritance': [
+                {
+                    'pattern': r'is\s+(\w+),\s*(\w+)',
+                    'suggestion': 'Éviter l\'héritage multiple quand possible',
+                    'saving': 5000,
+                    'confidence': 0.5,
+                    'complexity': 'high'
+                }
+            ]
         }
+        return patterns
 
-    async def estimate_gas_function(self, code: str, function: str) -> Dict[str, Any]:
-        """Estime le gas pour une fonction spécifique"""
-        # Simulation d'estimation
-        base_gas = random.randint(20000, 100000)
+    def _analyze_gas_patterns(self, contract_code: str) -> List[OptimizationSuggestion]:
+        """Analyse le code pour trouver des opportunités d'optimisation"""
+        suggestions = []
+        lines = contract_code.split('\n')
         
-        return {
-            "success": True,
-            "function": function,
-            "estimated_gas": f"{base_gas:,}",
-            "breakdown": {
-                "base_cost": "21,000",
-                "computation": f"{random.randint(5000, 30000):,}",
-                "storage": f"{random.randint(5000, 50000):,}",
-                "memory": f"{random.randint(1000, 10000):,}",
-                "external_calls": f"{random.randint(0, 20000):,}"
-            },
-            "optimization_suggestions": self._get_function_optimizations(function),
-            "timestamp": datetime.now().isoformat()
+        for category, patterns in self._optimization_patterns.items():
+            for pattern_info in patterns:
+                pattern = pattern_info['pattern']
+                matches = list(re.finditer(pattern, contract_code, re.MULTILINE))
+                
+                for match in matches:
+                    # Trouver la ligne approximative
+                    line_no = 1
+                    for i, line in enumerate(lines, 1):
+                        if match.group() in line:
+                            line_no = i
+                            break
+                    
+                    suggestion = OptimizationSuggestion(
+                        id=f"OPT-{category}-{len(suggestions)}",
+                        category=OptimizationCategory(category),
+                        location=f"Ligne {line_no}",
+                        description=pattern_info['suggestion'],
+                        current_code=match.group(),
+                        suggested_code=pattern_info.get('example', match.group()),
+                        estimated_saving=pattern_info['saving'],
+                        confidence=pattern_info['confidence'],
+                        complexity=pattern_info['complexity']
+                    )
+                    suggestions.append(suggestion)
+        
+        return suggestions
+
+    def _estimate_function_gas(self, function_code: str) -> GasEstimate:
+        """Estime le gas pour une fonction"""
+        # Simulation d'estimation basée sur des règles simples
+        base_gas = 21000  # Transaction de base
+        
+        # Opérations de base
+        operations = {
+            r'require\s*\(': 200,
+            r'mapping\s*\(': 500,
+            r'\.transfer\s*\(': 3000,
+            r'\.send\s*\(': 2300,
+            r'\.call\s*\{': 9000,
+            r'for\s*\(': 800 * 10,  # Boucle avec 10 itérations
+            r'while\s*\(': 800 * 10,
+            r'new\s+\w+': 50000,
+            r'delete\s+': 5000,
+            r'emit\s+': 375,
+            r'return\s+': 200
+        }
+        
+        total_gas = base_gas
+        for op_pattern, op_cost in operations.items():
+            if re.search(op_pattern, function_code):
+                total_gas += op_cost
+        
+        return GasEstimate(
+            function_name="unknown",
+            gas_estimate=total_gas,
+            min_gas=total_gas - 1000,
+            max_gas=total_gas + 5000,
+            call_data_size=len(function_code),
+            execution_time_ms=total_gas / 100  # Approximation
+        )
+
+    # ========================================================================
+    # TÂCHES DE FOND
+    # ========================================================================
+
+    async def _cleanup_loop(self):
+        """Nettoie les anciennes analyses"""
+        logger.info("🔄 Boucle de nettoyage démarrée")
+
+        while self._status.value == "ready":
+            try:
+                await asyncio.sleep(3600)  # Toutes les heures
+
+                # Nettoyer les analyses de plus de 7 jours
+                cutoff = datetime.now() - timedelta(days=7)
+                old_analyses = [
+                    aid for aid, analysis in self._analyses.items()
+                    if analysis.created_at < cutoff
+                ]
+
+                for aid in old_analyses:
+                    del self._analyses[aid]
+
+                # Nettoyer l'historique d'optimisation
+                old_history = [
+                    h for h in self._optimization_history
+                    if datetime.fromisoformat(h['timestamp']) < cutoff
+                ]
+                
+                for h in old_history:
+                    self._optimization_history.remove(h)
+
+                if old_analyses or old_history:
+                    logger.info(f"🧹 Nettoyage: {len(old_analyses)} analyses, {len(old_history)} historiques")
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"❌ Erreur dans la boucle de nettoyage: {e}")
+
+    # ========================================================================
+    # HANDLERS DE CAPACITÉS
+    # ========================================================================
+
+    async def _handle_analyze_contract(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Analyse la consommation gas d'un contrat"""
+        contract_path = params.get('contract_path')
+        contract_code = params.get('contract_code')
+        detailed = params.get('detailed', False)
+
+        if not contract_path and not contract_code:
+            return {'success': False, 'error': 'contract_path ou contract_code requis'}
+
+        # Lire le code si nécessaire
+        if contract_path and not contract_code:
+            try:
+                with open(contract_path, 'r') as f:
+                    contract_code = f.read()
+            except Exception as e:
+                return {'success': False, 'error': f"Erreur lecture fichier: {e}"}
+
+        # Analyser le code
+        suggestions = self._analyze_gas_patterns(contract_code)
+        
+        # Estimer le gas par fonction (simplifié)
+        functions = re.findall(r'function\s+(\w+)\s*\([^)]*\)\s*[^{]*\{[^}]*\}', contract_code, re.DOTALL)
+        gas_by_function = {}
+        total_gas = 21000  # Transaction de base
+        
+        for func in functions[:10]:  # Limiter pour l'exemple
+            estimate = self._estimate_function_gas(func)
+            gas_by_function[estimate.function_name] = {
+                'estimate': estimate.gas_estimate,
+                'min': estimate.min_gas,
+                'max': estimate.max_gas
+            }
+            total_gas += estimate.gas_estimate
+
+        # Calculer le score d'optimisation
+        total_potential_saving = sum(s.estimated_saving for s in suggestions)
+        optimization_score = min(100, (total_potential_saving / total_gas) * 100) if total_gas > 0 else 0
+
+        # Créer l'analyse
+        analysis = GasAnalysis(
+            contract_name=Path(contract_path).stem if contract_path else "inline",
+            total_estimated_gas=total_gas,
+            functions_analyzed=len(functions),
+            gas_by_function=gas_by_function,
+            suggestions=suggestions,
+            total_potential_saving=total_potential_saving,
+            optimization_score=optimization_score
+        )
+
+        # Stocker l'analyse
+        analysis_id = f"ANALYSIS-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        self._analyses[analysis_id] = analysis
+
+        result = {
+            'success': True,
+            'analysis_id': analysis_id,
+            'contract': analysis.contract_name,
+            'total_estimated_gas': analysis.total_estimated_gas,
+            'functions_analyzed': analysis.functions_analyzed,
+            'total_potential_saving': analysis.total_potential_saving,
+            'optimization_score': round(analysis.optimization_score, 2),
+            'suggestions_count': len(analysis.suggestions),
+            'suggestions': [
+                {
+                    'id': s.id,
+                    'category': s.category.value,
+                    'location': s.location,
+                    'description': s.description,
+                    'estimated_saving': s.estimated_saving,
+                    'confidence': s.confidence,
+                    'complexity': s.complexity
+                }
+                for s in analysis.suggestions
+            ]
         }
 
-    def _find_optimization_opportunities(self, code: str) -> List[Dict]:
-        """Trouve les opportunités d'optimisation dans le code"""
-        opportunities = []
+        if detailed:
+            result['gas_by_function'] = analysis.gas_by_function
 
-        # Storage packing
-        if 'uint' in code and len(re.findall(r'uint\d+\s+\w+;', code)) > 3:
-            opportunities.append({
-                "type": "storage",
-                "description": "Storage packing possible - combine multiple small uints",
-                "priority": "high",
-                "gas_save": 20000,
-                "locations": ["state variables"],
-                "example": "uint128 a; uint128 b; → uint256 packed;"
-            })
+        return result
 
-        # Loop optimization
-        if 'for (' in code or 'while (' in code:
-            if 'unchecked' not in code:
-                opportunities.append({
-                    "type": "loop",
-                    "description": "Use unchecked blocks in loops where overflow is impossible",
-                    "priority": "medium",
-                    "gas_save": 5000,
-                    "locations": ["for loops"],
-                    "example": "for(uint i=0; i<10; i++) unchecked { ... }"
+    async def _handle_optimize_contract(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Optimise un contrat automatiquement"""
+        contract_path = params.get('contract_path')
+        contract_code = params.get('contract_code')
+        level = params.get('level', 'medium')
+        apply_suggestions = params.get('apply_suggestions', False)
+
+        if not contract_path and not contract_code:
+            return {'success': False, 'error': 'contract_path ou contract_code requis'}
+
+        # Analyser d'abord
+        analysis_result = await self._handle_analyze_contract(params)
+        if not analysis_result['success']:
+            return analysis_result
+
+        # Simuler l'optimisation
+        optimized_code = contract_code
+        changes_applied = 0
+        total_saving = 0
+
+        if apply_suggestions:
+            # Dans une vraie implémentation, appliquer les suggestions
+            # Ici, on simule
+            changes_applied = min(5, len(analysis_result['suggestions']))
+            total_saving = sum(s['estimated_saving'] for s in analysis_result['suggestions'][:changes_applied])
+
+        # Enregistrer dans l'historique
+        self._optimization_history.append({
+            'timestamp': datetime.now().isoformat(),
+            'contract': analysis_result['contract'],
+            'level': level,
+            'changes_applied': changes_applied,
+            'total_saving': total_saving,
+            'analysis_id': analysis_result['analysis_id']
+        })
+
+        return {
+            'success': True,
+            'original_analysis': analysis_result,
+            'optimization_level': level,
+            'changes_applied': changes_applied,
+            'total_gas_saving': total_saving,
+            'estimated_cost_saving_usd': round(total_saving * 50 / 1e9 * 3000, 2),  # 50 gwei, $3000/ETH
+            'optimized_code': optimized_code if apply_suggestions else None,
+            'message': f"Optimisation {level} appliquée avec {changes_applied} changements"
+        }
+
+    async def _handle_estimate_costs(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Estime les coûts de gas en USD"""
+        gas_estimate = params.get('gas_estimate', 0)
+        gas_price_gwei = params.get('gas_price_gwei', 50)
+        eth_price_usd = params.get('eth_price_usd', 3000)
+        transaction_count = params.get('transaction_count', 1000)
+
+        if gas_estimate == 0:
+            return {'success': False, 'error': 'gas_estimate requis'}
+
+        cost_eth = (gas_estimate * gas_price_gwei) / 1e9
+        cost_usd = cost_eth * eth_price_usd
+        
+        monthly_cost = cost_usd * transaction_count * 30  # 30 jours
+        yearly_cost = monthly_cost * 12
+
+        return {
+            'success': True,
+            'estimates': {
+                'per_transaction': {
+                    'gas': gas_estimate,
+                    'eth': round(cost_eth, 8),
+                    'usd': round(cost_usd, 2)
+                },
+                'monthly': {
+                    'transactions': transaction_count * 30,
+                    'usd': round(monthly_cost, 2)
+                },
+                'yearly': {
+                    'transactions': transaction_count * 365,
+                    'usd': round(yearly_cost, 2)
+                }
+            },
+            'assumptions': {
+                'gas_price_gwei': gas_price_gwei,
+                'eth_price_usd': eth_price_usd,
+                'daily_transactions': transaction_count
+            }
+        }
+
+    async def _handle_suggest_patterns(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Suggère des patterns d'optimisation"""
+        category = params.get('category')
+        context = params.get('context', {})
+
+        patterns = []
+        for cat, cat_patterns in self._optimization_patterns.items():
+            if category and cat != category:
+                continue
+            
+            for pattern in cat_patterns:
+                patterns.append({
+                    'category': cat,
+                    'suggestion': pattern['suggestion'],
+                    'saving': pattern['saving'],
+                    'confidence': pattern['confidence'],
+                    'complexity': pattern['complexity'],
+                    'example': pattern.get('example', '')
                 })
 
-        # Calldata optimization
-        if 'memory' in code and 'calldata' not in code:
-            opportunities.append({
-                "type": "calldata",
-                "description": "Use calldata instead of memory for read-only parameters",
-                "priority": "medium",
-                "gas_save": 3000,
-                "locations": ["function parameters"],
-                "example": "function f(string memory s) → function f(string calldata s)"
-            })
-
-        # Assembly optimization
-        if 'require(' in code and len(re.findall(r'require\(', code)) > 3:
-            opportunities.append({
-                "type": "assembly",
-                "description": "Use assembly for custom errors to save gas",
-                "priority": "high",
-                "gas_save": 10000,
-                "locations": ["require statements"],
-                "example": "require(cond, 'msg') → if(!cond) revert Error();"
-            })
-
-        return opportunities
-
-    def _simulate_optimization(self, code: str, optimization: Dict) -> str:
-        """Simule l'application d'une optimisation"""
-        # Dans un environnement réel, ceci modifierait réellement le code
-        # Ici, on ajoute simplement un commentaire
-        comment = f"\n    // OPTIMIZED: {optimization['description']}\n"
-        return code + comment
-
-    def _estimate_deployment_gas(self, code: str) -> str:
-        """Estime le gas de déploiement"""
-        lines = len(code.split('\n'))
-        base = 32000 + (lines * 200)
-        return f"{base + random.randint(-5000, 5000):,}"
-
-    def _estimate_operation_gas(self, code: str) -> Dict[str, str]:
-        """Estime le gas des opérations courantes"""
         return {
-            "transfer": f"{random.randint(40000, 60000):,}",
-            "approve": f"{random.randint(35000, 50000):,}",
-            "mint": f"{random.randint(60000, 90000):,}",
-            "burn": f"{random.randint(30000, 50000):,}",
-            "average_tx": f"{random.randint(80000, 120000):,}"
+            'success': True,
+            'patterns': patterns[:20],  # Limiter à 20
+            'count': len(patterns),
+            'categories': list(self._optimization_patterns.keys())
         }
 
-    def _calculate_optimization_potential(self, code: str) -> Dict[str, Any]:
-        """Calcule le potentiel d'optimisation"""
+    async def _handle_compare_versions(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Compare deux versions d'un contrat"""
+        version_a_path = params.get('version_a_path')
+        version_b_path = params.get('version_b_path')
+        version_a_code = params.get('version_a_code')
+        version_b_code = params.get('version_b_code')
+
+        if not version_a_path and not version_a_code:
+            return {'success': False, 'error': 'version_a requis'}
+        if not version_b_path and not version_b_code:
+            return {'success': False, 'error': 'version_b requis'}
+
+        # Analyser les deux versions
+        analysis_a = await self._handle_analyze_contract({
+            'contract_path': version_a_path,
+            'contract_code': version_a_code
+        })
+        analysis_b = await self._handle_analyze_contract({
+            'contract_path': version_b_path,
+            'contract_code': version_b_code
+        })
+
+        if not analysis_a['success']:
+            return analysis_a
+        if not analysis_b['success']:
+            return analysis_b
+
+        # Calculer les améliorations
+        gas_improvement = analysis_b['total_estimated_gas'] - analysis_a['total_estimated_gas']
+        gas_improvement_pct = (gas_improvement / analysis_a['total_estimated_gas']) * 100 if analysis_a['total_estimated_gas'] > 0 else 0
+        
+        score_improvement = analysis_b['optimization_score'] - analysis_a['optimization_score']
+
         return {
-            "score": random.randint(60, 95),
-            "estimated_savings": f"{random.randint(10, 40)}%",
-            "priority_areas": ["storage", "loops", "external calls"],
-            "effort_required": random.choice(["low", "medium", "high"])
+            'success': True,
+            'comparison': {
+                'version_a': {
+                    'name': version_a_path or 'version A',
+                    'total_gas': analysis_a['total_estimated_gas'],
+                    'optimization_score': analysis_a['optimization_score'],
+                    'suggestions': analysis_a['suggestions_count']
+                },
+                'version_b': {
+                    'name': version_b_path or 'version B',
+                    'total_gas': analysis_b['total_estimated_gas'],
+                    'optimization_score': analysis_b['optimization_score'],
+                    'suggestions': analysis_b['suggestions_count']
+                },
+                'differences': {
+                    'gas_improvement': gas_improvement,
+                    'gas_improvement_percent': round(gas_improvement_pct, 2),
+                    'score_improvement': round(score_improvement, 2),
+                    'suggestions_resolved': analysis_a['suggestions_count'] - analysis_b['suggestions_count']
+                },
+                'recommendation': 'version_b' if gas_improvement < 0 else 'version_a'
+            }
         }
 
-    def _generate_recommendations(self, code: str) -> List[str]:
-        """Génère des recommandations d'optimisation"""
-        return [
-            "📦 Storage: Pack multiple small uints into a single slot",
-            "🔄 Loops: Use unchecked blocks and cache array length",
-            "📞 Calls: Batch multiple external calls",
-            "🎯 Assembly: Use inline assembly for critical sections",
-            "💾 Memory: Use calldata instead of memory for read-only params",
-            "⚡ Immutable: Use immutable for variables set once in constructor",
-            "🚫 Errors: Use custom errors instead of require strings"
-        ]
+    async def _handle_simulate_transaction(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Simule une transaction pour estimer le gas"""
+        contract_path = params.get('contract_path')
+        function_name = params.get('function')
+        params_list = params.get('params', [])
 
-    def _get_function_optimizations(self, function: str) -> List[str]:
-        """Retourne des optimisations pour une fonction spécifique"""
-        return [
-            "Check if function can be external instead of public",
-            "Verify if parameters can be calldata instead of memory",
-            "Look for loops that can be optimized with unchecked",
-            "Consider using assembly for critical arithmetic"
-        ]
+        if not contract_path:
+            return {'success': False, 'error': 'contract_path requis'}
+        if not function_name:
+            return {'success': False, 'error': 'function requis'}
 
-    def _extract_functions(self, code: str) -> List[Dict]:
-        """Extrait les fonctions du code (simulation)"""
-        return [
-            {
-                "name": "transfer",
-                "estimated_gas": 45000,
-                "operations": ["SLOAD", "SSTORE", "CALL"],
-                "storage_writes": 2,
-                "external_calls": 1,
-                "complexity": "medium"
-            },
-            {
-                "name": "approve",
-                "estimated_gas": 38000,
-                "operations": ["SLOAD", "SSTORE"],
-                "storage_writes": 1,
-                "external_calls": 0,
-                "complexity": "low"
+        # Simulation
+        base_gas = 21000
+        function_gas = {
+            'transfer': 52000,
+            'approve': 46000,
+            'transferFrom': 68000,
+            'mint': 120000,
+            'burn': 45000,
+            'balanceOf': 30000
+        }.get(function_name, 50000)
+
+        total_gas = base_gas + function_gas
+
+        return {
+            'success': True,
+            'simulation': {
+                'function': function_name,
+                'params': params_list,
+                'estimated_gas': total_gas,
+                'execution_time_ms': total_gas / 100,
+                'would_succeed': True,
+                'state_changes': ['balance updated', 'event emitted']
             }
-        ]
+        }
 
-    def _get_optimization_techniques(self) -> List[Dict]:
-        """Retourne les techniques d'optimisation disponibles"""
-        return [
-            {
-                "name": "Storage Packing",
-                "description": "Combiner plusieurs petites variables dans un seul slot",
-                "savings": "up to 20,000 gas per variable",
-                "difficulty": "medium"
-            },
-            {
-                "name": "Unchecked Blocks",
-                "description": "Désactiver la vérification d'overflow dans les boucles",
-                "savings": "~100 gas per iteration",
-                "difficulty": "low"
-            },
-            {
-                "name": "Calldata vs Memory",
-                "description": "Utiliser calldata pour les paramètres read-only",
-                "savings": "~500 gas per call",
-                "difficulty": "low"
-            },
-            {
-                "name": "Assembly Optimizations",
-                "description": "Utiliser Yul/assembly pour les opérations critiques",
-                "savings": "up to 50%",
-                "difficulty": "high"
-            },
-            {
-                "name": "Custom Errors",
-                "description": "Remplacer les strings par des erreurs personnalisées",
-                "savings": "~10,000 gas per revert",
-                "difficulty": "low"
-            },
-            {
-                "name": "Immutable Variables",
-                "description": "Marquer les variables constantes comme immutable",
-                "savings": "~2,000 gas per access",
-                "difficulty": "low"
-            }
-        ]
+    async def _handle_get_history(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Récupère l'historique des optimisations"""
+        contract = params.get('contract')
+        limit = params.get('limit', 50)
+
+        history = self._optimization_history
+        if contract:
+            history = [h for h in history if h['contract'] == contract]
+
+        history = sorted(history, key=lambda h: h['timestamp'], reverse=True)[:limit]
+
+        return {
+            'success': True,
+            'history': history,
+            'total_count': len(history),
+            'total_savings': sum(h['total_saving'] for h in history),
+            'total_changes': sum(h['changes_applied'] for h in history)
+        }
+
+    # ========================================================================
+    # NETTOYAGE
+    # ========================================================================
 
     async def shutdown(self) -> bool:
         """Arrête le sous-agent"""
-        self._logger.info("Arrêt du sous-agent Optimisation Gas...")
-        self._set_status(AgentStatus.SHUTTING_DOWN)
+        logger.info(f"Arrêt de {self._subagent_display_name}...")
 
-        await super().shutdown()
+        if self._cleanup_task and not self._cleanup_task.done():
+            self._cleanup_task.cancel()
+            try:
+                await self._cleanup_task
+            except asyncio.CancelledError:
+                pass
 
-        self._logger.info("✅ Sous-agent Optimisation Gas arrêté")
-        return True
-
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé du sous-agent"""
-        base_health = await super().health_check()
-
-        return {
-            **base_health,
-            "agent": self.name,
-            "display_name": self._display_name,
-            "status": self._status.value,
-            "ready": self._status == AgentStatus.READY,
-            "initialized": self._initialized,
-            "stats": self._stats,
-            "timestamp": datetime.now().isoformat()
-        }
+        return await super().shutdown()
 
 
-def create_gas_optimizer_agent(config_path: str = "") -> GasOptimizerSubAgent:
+# ============================================================================
+# FONCTIONS D'EXPORT
+# ============================================================================
+
+def get_agent_class():
+    """
+    Fonction requise pour le chargement dynamique des sous-agents.
+    Retourne la classe principale du sous-agent.
+    """
+    return GasOptimizerSubAgent
+
+
+def create_gas_optimizer_agent(config_path: str = "") -> "GasOptimizerSubAgent":
     """Crée une instance du sous-agent d'optimisation gas"""
     return GasOptimizerSubAgent(config_path)

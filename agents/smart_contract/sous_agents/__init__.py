@@ -1,6 +1,7 @@
 """
-Package des sous-agents Smart Contract
-Sous-agents spécialisés pour le développement de smart contracts
+Package des sous-agents de smart contract
+Exporte tous les sous-agents spécialisés disponibles
+Version: 2.0.0
 """
 
 from .formal_verification.agent import FormalVerificationSubAgent
@@ -12,5 +13,7 @@ __all__ = [
     'FormalVerificationSubAgent',
     'GasOptimizerSubAgent',
     'SecurityExpertSubAgent',
-    'SolidityExpertSubAgent'
+    'SolidityExpertSubAgent',
 ]
+
+__version__ = '2.0.0'

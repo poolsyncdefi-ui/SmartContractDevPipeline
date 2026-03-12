@@ -1,33 +1,44 @@
 """
-Security Expert Sub-Agent - Expert en sécurité des smart contracts
-Version: 1.0.0
+Security Expert SubAgent - Sous-agent expert sécurité
+Version: 2.0.0
+
+Analyse de sécurité et audit des smart contracts avec support de :
+- Scan de vulnérabilités
+- Audit complet
+- Détection de patterns malveillants
+- Suggestions de correctifs
+- Rapports d'audit
 """
 
 import logging
 import sys
-import json
 import asyncio
-import random
+import json
 import re
-import importlib
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional, List, Set, Tuple
 from enum import Enum
+from dataclasses import dataclass, field
+from collections import defaultdict
 
 # Configuration des imports
 current_dir = Path(__file__).parent.absolute()
-project_root = current_dir.parent.parent.parent.parent
+project_root = current_dir.parent.parent.parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
+from agents.sous_agents.base_subagent import BaseSubAgent
 
 logger = logging.getLogger(__name__)
 
 
-class VulnerabilitySeverity(Enum):
-    """Niveaux de sévérité des vulnérabilités"""
+# ============================================================================
+# ÉNUMS ET CLASSES DE DONNÉES
+# ============================================================================
+
+class Severity(Enum):
+    """Niveaux de sévérité"""
     CRITICAL = "critical"
     HIGH = "high"
     MEDIUM = "medium"
@@ -38,564 +49,730 @@ class VulnerabilitySeverity(Enum):
 class VulnerabilityType(Enum):
     """Types de vulnérabilités"""
     REENTRANCY = "reentrancy"
+    INTEGER_OVERFLOW = "integer_overflow"
     ACCESS_CONTROL = "access_control"
-    ARITHMETIC = "arithmetic"
-    TIMESTAMP = "timestamp_dependence"
-    FRONT_RUNNING = "front_running"
-    GAS = "gas_issues"
-    DELEGATECALL = "delegatecall_unsafe"
-    TX_ORIGIN = "tx_origin_usage"
     UNCHECKED_CALL = "unchecked_call"
-    DOS = "denial_of_service"
-    FLASH_LOAN = "flash_loan_attack"
-    ORACLE = "oracle_manipulation"
+    TX_ORIGIN = "tx_origin"
+    TIMESTAMP_DEPENDENCY = "timestamp_dependency"
+    FRONT_RUNNING = "front_running"
+    DENIAL_OF_SERVICE = "denial_of_service"
+    BUSINESS_LOGIC = "business_logic"
+    GAS_LIMIT = "gas_limit"
+    REENTRANCY_VIEW = "reentrancy_view"
+    UNHANDLED_EXCEPTION = "unhandled_exception"
+    WEAK_RANDOMNESS = "weak_randomness"
+    INSECURE_COMPILER = "insecure_compiler"
 
 
-class SecurityExpertSubAgent(BaseAgent):
+class AuditStatus(Enum):
+    """Statuts d'audit"""
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+
+@dataclass
+class Vulnerability:
+    """Vulnérabilité détectée"""
+    id: str
+    type: VulnerabilityType
+    severity: Severity
+    location: str  # Ligne ou fonction
+    description: str
+    swc_id: str
+    impact: str
+    likelihood: str  # low, medium, high
+    code_snippet: str
+    recommendation: str
+    references: List[str] = field(default_factory=list)
+    detected_at: datetime = field(default_factory=datetime.now)
+
+
+@dataclass
+class Audit:
+    """Audit de sécurité complet"""
+    id: str
+    contract_name: str
+    contract_path: str
+    status: AuditStatus
+    vulnerabilities: List[Vulnerability]
+    summary: Dict[str, int]  # critical, high, medium, low, info
+    overall_risk_score: float  # 0-10
+    duration_ms: int
+    tools_used: List[str]
+    started_at: datetime
+    completed_at: Optional[datetime] = None
+    report_path: Optional[str] = None
+
+
+# ============================================================================
+# SOUS-AGENT PRINCIPAL
+# ============================================================================
+
+class SecurityExpertSubAgent(BaseSubAgent):
     """
-    Sous-agent spécialisé dans la sécurité des smart contracts
-    Audit, détection de vulnérabilités, recommandations de sécurité
+    Sous-agent expert sécurité
+
+    Analyse la sécurité des smart contracts avec :
+    - Détection des vulnérabilités connues
+    - Audit complet
+    - Suggestions de correctifs
+    - Rapports d'audit détaillés
     """
 
     def __init__(self, config_path: str = ""):
         """Initialise le sous-agent expert sécurité"""
-        if not config_path:
-            config_path = str(current_dir / "config.yaml")
-
         super().__init__(config_path)
 
-        self._display_name = self._agent_config.get('agent', {}).get('display_name', '🛡️ Expert Sécurité')
-        self._initialized = False
+        # Métadonnées
+        self._subagent_display_name = "🛡️ Expert Sécurité"
+        self._subagent_description = "Analyse de sécurité et audit des smart contracts"
+        self._subagent_version = "2.0.0"
+        self._subagent_category = "smart_contract"
+        self._subagent_capabilities = [
+            "security.scan_contract",
+            "security.audit_contract",
+            "security.check_vulnerabilities",
+            "security.suggest_fixes",
+            "security.generate_report",
+            "security.get_audit_history",
+            "security.compare_audits"
+        ]
 
-        # Statistiques
-        self._stats = {
-            'audits_performed': 0,
-            'vulnerabilities_found': 0,
-            'critical_findings': 0,
-            'high_findings': 0,
-            'medium_findings': 0,
-            'low_findings': 0,
-            'start_time': datetime.now().isoformat()
-        }
+        # État interne
+        self._audits: Dict[str, Audit] = {}
+        self._vulnerability_patterns = self._load_vulnerability_patterns()
+        self._contract_locks: Dict[str, asyncio.Lock] = {}
+        
+        # Configuration
+        self._audit_params = self._agent_config.get('audit_parameters', {})
+        self._default_scan_depth = self._audit_params.get('default_scan_depth', 'standard')
+        
+        # Tâche de fond
+        self._cleanup_task: Optional[asyncio.Task] = None
 
-        # Base de connaissances des vulnérabilités
-        self._vulnerability_db = self._load_vulnerability_db()
+        logger.info(f"✅ {self._subagent_display_name} initialisé (v{self._subagent_version})")
 
-        self._logger.info("🛡️ Sous-agent Expert Sécurité créé")
+    # ========================================================================
+    # IMPLÉMENTATION DES MÉTHODES ABSTRACTES
+    # ========================================================================
 
-    async def initialize(self) -> bool:
-        """Initialise le sous-agent"""
+    async def _initialize_subagent_components(self) -> bool:
+        """Initialise les composants spécifiques"""
+        logger.info("Initialisation des composants de sécurité...")
+
         try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation du sous-agent Expert Sécurité...")
+            logger.info(f"  ✅ {len(self._vulnerability_patterns)} patterns de vulnérabilités chargés")
 
-            base_result = await super().initialize()
-            if not base_result:
-                return False
+            # Démarrer la tâche de nettoyage
+            self._cleanup_task = asyncio.create_task(self._cleanup_loop())
 
-            self._initialized = True
-            self._set_status(AgentStatus.READY)
-            self._logger.info("✅ Sous-agent Expert Sécurité prêt")
+            logger.info("✅ Composants de sécurité initialisés")
             return True
 
         except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._set_status(AgentStatus.ERROR)
+            logger.error(f"❌ Erreur initialisation composants: {e}")
             return False
 
     async def _initialize_components(self) -> bool:
-        """Initialise les composants du sous-agent"""
-        self._logger.info("Initialisation des composants...")
-        self._components = {
-            "scanner": {"enabled": True},
-            "auditor": {"enabled": True},
-            "reporter": {"enabled": True}
-        }
-        return True
+        """Implémentation requise par BaseAgent"""
+        return await self._initialize_subagent_components()
 
-    def _load_vulnerability_db(self) -> Dict:
-        """Charge la base de connaissances des vulnérabilités"""
+    def _get_capability_handlers(self) -> Dict[str, Any]:
+        """Retourne les handlers spécifiques"""
         return {
-            "reentrancy": {
-                "patterns": [
-                    r"\.call\{value:.*?\}\(.*?\)",
-                    r"\.send\(.*?\)",
-                    r"\.transfer\(.*?\)"
-                ],
-                "checks": [
-                    "state_update_before_call",
-                    "reentrancy_guard_used"
-                ],
-                "severity": "critical",
-                "cwe": "CWE-841",
-                "remediation": "Use ReentrancyGuard and follow checks-effects-interactions pattern"
+            "security.scan_contract": self._handle_scan_contract,
+            "security.audit_contract": self._handle_audit_contract,
+            "security.check_vulnerabilities": self._handle_check_vulnerabilities,
+            "security.suggest_fixes": self._handle_suggest_fixes,
+            "security.generate_report": self._handle_generate_report,
+            "security.get_audit_history": self._handle_get_history,
+            "security.compare_audits": self._handle_compare_audits,
+        }
+
+    # ========================================================================
+    # MÉTHODES PRIVÉES
+    # ========================================================================
+
+    async def _get_contract_lock(self, contract_path: str) -> asyncio.Lock:
+        """Récupère ou crée un verrou pour un contrat"""
+        if contract_path not in self._contract_locks:
+            self._contract_locks[contract_path] = asyncio.Lock()
+        return self._contract_locks[contract_path]
+
+    def _load_vulnerability_patterns(self) -> Dict[str, Dict[str, Any]]:
+        """Charge les patterns de vulnérabilités"""
+        return {
+            'reentrancy': {
+                'type': VulnerabilityType.REENTRANCY,
+                'severity': Severity.CRITICAL,
+                'pattern': r'(?:call|delegatecall)\.value\([^)]*\)[^;]*;\s*[^}]*\b(balance|transfer|send)\b',
+                'swc_id': 'SWC-107',
+                'description': 'Vulnérabilité de réentrance - un appel externe est effectué avant la mise à jour de l\'état',
+                'impact': 'Perte potentielle de tous les fonds du contrat',
+                'likelihood': 'high',
+                'remediation': 'Utiliser ReentrancyGuard ou suivre le pattern Checks-Effects-Interactions',
+                'references': ['https://swcregistry.io/docs/SWC-107']
             },
-            "access_control": {
-                "patterns": [
-                    r"function\s+\w+\s*\(.*?\)\s*(public|external)\s*[^{]*\{",
-                    r"onlyOwner"
-                ],
-                "checks": [
-                    "missing_modifier",
-                    "role_based_access"
-                ],
-                "severity": "high",
-                "cwe": "CWE-284",
-                "remediation": "Implement proper access control modifiers"
+            'integer_overflow': {
+                'type': VulnerabilityType.INTEGER_OVERFLOW,
+                'severity': Severity.HIGH,
+                'pattern': r'(\+{2}|-{2}|[+\-*/]=)',
+                'swc_id': 'SWC-101',
+                'description': 'Risque de débordement d\'entier dans les opérations arithmétiques',
+                'impact': 'Valeurs incorrectes, perte de fonds, comportement inattendu',
+                'likelihood': 'medium',
+                'remediation': 'Utiliser SafeMath ou Solidity >=0.8.0 avec checks intégrés',
+                'references': ['https://swcregistry.io/docs/SWC-101']
             },
-            "timestamp": {
-                "patterns": [
-                    r"block\.timestamp",
-                    r"now\s*[=<>]"
-                ],
-                "checks": [
-                    "manipulable_by_miners"
-                ],
-                "severity": "medium",
-                "cwe": "CWE-829",
-                "remediation": "Use block.number for time windows"
+            'unchecked_call': {
+                'type': VulnerabilityType.UNCHECKED_CALL,
+                'severity': Severity.MEDIUM,
+                'pattern': r'\.call\{[^}]*\}\([^)]*\)(?!\s*\.\s*success)',
+                'swc_id': 'SWC-104',
+                'description': 'Appel externe non vérifié - le succès de l\'appel n\'est pas contrôlé',
+                'impact': 'Les échecs d\'appel peuvent passer inaperçus',
+                'likelihood': 'medium',
+                'remediation': 'Toujours vérifier la valeur de retour des appels externes',
+                'references': ['https://swcregistry.io/docs/SWC-104']
             },
-            "tx_origin": {
-                "patterns": [
-                    r"tx\.origin"
-                ],
-                "checks": [
-                    "phishing_vulnerability"
-                ],
-                "severity": "critical",
-                "cwe": "CWE-807",
-                "remediation": "Use msg.sender instead of tx.origin"
+            'tx_origin_auth': {
+                'type': VulnerabilityType.TX_ORIGIN,
+                'severity': Severity.HIGH,
+                'pattern': r'tx\.origin\s*==',
+                'swc_id': 'SWC-115',
+                'description': 'Utilisation de tx.origin pour l\'authentification - vulnérable aux attaques de phishing',
+                'impact': 'Contournement des contrôles d\'accès',
+                'likelihood': 'medium',
+                'remediation': 'Utiliser msg.sender pour l\'authentification',
+                'references': ['https://swcregistry.io/docs/SWC-115']
             },
-            "delegatecall": {
-                "patterns": [
-                    r"delegatecall"
-                ],
-                "checks": [
-                    "context_preservation",
-                    "storage_collision"
-                ],
-                "severity": "critical",
-                "cwe": "CWE-670",
-                "remediation": "Validate target address and use specific function signatures"
+            'timestamp_dependency': {
+                'type': VulnerabilityType.TIMESTAMP_DEPENDENCY,
+                'severity': Severity.LOW,
+                'pattern': r'block\.timestamp|now',
+                'swc_id': 'SWC-116',
+                'description': 'Dépendance au timestamp du bloc - peut être manipulé par les mineurs',
+                'impact': 'Logique de contrat manipulable',
+                'likelihood': 'low',
+                'remediation': 'Éviter d\'utiliser block.timestamp pour la logique critique, accepter une variation de ~15 secondes',
+                'references': ['https://swcregistry.io/docs/SWC-116']
             },
-            "unchecked_call": {
-                "patterns": [
-                    r"\.call\(.*?\)",
-                    r"\.send\(.*?\)"
-                ],
-                "checks": [
-                    "return_value_checked"
-                ],
-                "severity": "high",
-                "cwe": "CWE-252",
-                "remediation": "Always check return values of external calls"
+            'insecure_compiler': {
+                'type': VulnerabilityType.INSECURE_COMPILER,
+                'severity': Severity.MEDIUM,
+                'pattern': r'pragma\s+solidity\s+[<>=^]*0\.[4-7]\.',
+                'swc_id': 'SWC-103',
+                'description': 'Version du compilateur trop ancienne avec bugs connus',
+                'impact': 'Exposition à des bugs de compilateur',
+                'likelihood': 'medium',
+                'remediation': 'Utiliser Solidity >=0.8.0',
+                'references': ['https://swcregistry.io/docs/SWC-103']
             },
-            "arithmetic": {
-                "patterns": [
-                    r"\+\+",
-                    r"--",
-                    r"\+=",
-                    r"-=",
-                    r"\*=",
-                    r"/="
-                ],
-                "checks": [
-                    "overflow_protection",
-                    "safe_math_used"
-                ],
-                "severity": "medium",
-                "cwe": "CWE-190",
-                "remediation": "Use SafeMath or Solidity ^0.8.0 built-in checks"
+            'front_running': {
+                'type': VulnerabilityType.FRONT_RUNNING,
+                'severity': Severity.MEDIUM,
+                'pattern': r'(?i)(?:profit|arbitrage|advantage).*(?:reveal|execute)',
+                'swc_id': 'SWC-114',
+                'description': 'Potentiel de front-running - les transactions peuvent être observées et précédées',
+                'impact': 'Perte financière, désavantage concurrentiel',
+                'likelihood': 'medium',
+                'remediation': 'Utiliser un mécanisme de commit-reveal ou des limites de slippage',
+                'references': ['https://swcregistry.io/docs/SWC-114']
             }
         }
 
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """Gère les messages personnalisés"""
-        try:
-            msg_type = message.message_type
-
-            handlers = {
-                "security.audit": self._handle_audit,
-                "security.scan": self._handle_scan,
-                "security.vulnerabilities": self._handle_vulnerabilities,
-                "security.checklist": self._handle_checklist,
-                "security.recommendations": self._handle_recommendations,
-            }
-
-            if msg_type in handlers:
-                return await handlers[msg_type](message)
-
-            return None
-
-        except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type=MessageType.ERROR.value,
-                correlation_id=message.message_id
-            )
-
-    async def _handle_audit(self, message: Message) -> Message:
-        """Gère l'audit de sécurité"""
-        contract_code = message.content.get("contract_code", "")
-        depth = message.content.get("depth", "standard")
-
-        result = await self.audit_contract(contract_code, depth)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="security.audited",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_scan(self, message: Message) -> Message:
-        """Gère le scan rapide de sécurité"""
-        contract_code = message.content.get("contract_code", "")
-        result = await self.quick_scan(contract_code)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="security.scanned",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_vulnerabilities(self, message: Message) -> Message:
-        """Retourne la liste des vulnérabilités connues"""
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={"vulnerabilities": self._get_vulnerability_list()},
-            message_type="security.vulnerabilities_list",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_checklist(self, message: Message) -> Message:
-        """Retourne la checklist de sécurité"""
-        contract_type = message.content.get("contract_type", "generic")
-        checklist = await self.get_security_checklist(contract_type)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=checklist,
-            message_type="security.checklist",
-            correlation_id=message.message_id
-        )
-
-    async def _handle_recommendations(self, message: Message) -> Message:
-        """Génère des recommandations de sécurité"""
-        findings = message.content.get("findings", [])
-        recommendations = await self.generate_recommendations(findings)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=recommendations,
-            message_type="security.recommendations",
-            correlation_id=message.message_id
-        )
-
-    async def audit_contract(self, contract_code: str, depth: str = "standard") -> Dict[str, Any]:
-        """Audite un contrat pour les vulnérabilités de sécurité"""
-        self._stats['audits_performed'] += 1
-
-        findings = []
+    def _scan_for_vulnerabilities(self, contract_code: str, depth: str = 'standard') -> List[Vulnerability]:
+        """Scanne le code pour trouver des vulnérabilités"""
+        vulnerabilities = []
+        lines = contract_code.split('\n')
         
-        # Scanner chaque type de vulnérabilité
-        for vuln_type, vuln_info in self._vulnerability_db.items():
-            for pattern in vuln_info["patterns"]:
-                matches = re.findall(pattern, contract_code, re.MULTILINE)
-                if matches:
-                    severity = vuln_info["severity"]
-                    findings.append({
-                        "type": vuln_type,
-                        "severity": severity,
-                        "description": f"Potential {vuln_type.replace('_', ' ')} vulnerability detected",
-                        "locations": [f"line {self._find_line_number(contract_code, match)}" for match in matches[:3]],
-                        "cwe": vuln_info["cwe"],
-                        "remediation": vuln_info["remediation"],
-                        "examples": matches[:2]
-                    })
+        for vuln_name, vuln_info in self._vulnerability_patterns.items():
+            matches = list(re.finditer(vuln_info['pattern'], contract_code, re.IGNORECASE | re.MULTILINE))
+            
+            for match in matches:
+                # Trouver la ligne
+                line_no = 1
+                for i, line in enumerate(lines, 1):
+                    if match.group() in line:
+                        line_no = i
+                        break
+                
+                # Extraire le contexte
+                start_line = max(0, line_no - 3)
+                end_line = min(len(lines), line_no + 2)
+                context = '\n'.join(lines[start_line:end_line])
+                
+                vuln = Vulnerability(
+                    id=f"VULN-{vuln_name}-{len(vulnerabilities)}",
+                    type=vuln_info['type'],
+                    severity=vuln_info['severity'],
+                    location=f"Ligne {line_no}",
+                    description=vuln_info['description'],
+                    swc_id=vuln_info['swc_id'],
+                    impact=vuln_info['impact'],
+                    likelihood=vuln_info['likelihood'],
+                    code_snippet=context,
+                    recommendation=vuln_info['remediation'],
+                    references=vuln_info['references']
+                )
+                vulnerabilities.append(vuln)
+        
+        return vulnerabilities
+
+    # ========================================================================
+    # TÂCHES DE FOND
+    # ========================================================================
+
+    async def _cleanup_loop(self):
+        """Nettoie les anciens audits"""
+        logger.info("🔄 Boucle de nettoyage démarrée")
+
+        while self._status.value == "ready":
+            try:
+                await asyncio.sleep(3600)  # Toutes les heures
+
+                # Nettoyer les audits de plus de 30 jours
+                cutoff = datetime.now() - timedelta(days=30)
+                old_audits = [
+                    aid for aid, audit in self._audits.items()
+                    if audit.completed_at and audit.completed_at < cutoff
+                ]
+
+                for aid in old_audits:
+                    del self._audits[aid]
+
+                if old_audits:
+                    logger.info(f"🧹 {len(old_audits)} audits nettoyés")
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"❌ Erreur dans la boucle de nettoyage: {e}")
+
+    # ========================================================================
+    # HANDLERS DE CAPACITÉS
+    # ========================================================================
+
+    async def _handle_scan_contract(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Scan rapide de sécurité"""
+        contract_path = params.get('contract_path')
+        contract_code = params.get('contract_code')
+        depth = params.get('depth', 'quick')
+
+        if not contract_path and not contract_code:
+            return {'success': False, 'error': 'contract_path ou contract_code requis'}
+
+        # Lire le code si nécessaire
+        if contract_path and not contract_code:
+            try:
+                with open(contract_path, 'r') as f:
+                    contract_code = f.read()
+            except Exception as e:
+                return {'success': False, 'error': f"Erreur lecture fichier: {e}"}
+
+        # Scanner
+        start_time = datetime.now()
+        vulnerabilities = self._scan_for_vulnerabilities(contract_code, depth)
+        duration = int((datetime.now() - start_time).total_seconds() * 1000)
 
         # Compter par sévérité
         severity_counts = {
-            "critical": len([f for f in findings if f['severity'] == 'critical']),
-            "high": len([f for f in findings if f['severity'] == 'high']),
-            "medium": len([f for f in findings if f['severity'] == 'medium']),
-            "low": len([f for f in findings if f['severity'] == 'low']),
-            "info": len([f for f in findings if f['severity'] == 'info'])
+            'critical': len([v for v in vulnerabilities if v.severity == Severity.CRITICAL]),
+            'high': len([v for v in vulnerabilities if v.severity == Severity.HIGH]),
+            'medium': len([v for v in vulnerabilities if v.severity == Severity.MEDIUM]),
+            'low': len([v for v in vulnerabilities if v.severity == Severity.LOW]),
+            'info': len([v for v in vulnerabilities if v.severity == Severity.INFO])
         }
-
-        self._stats['vulnerabilities_found'] += len(findings)
-        self._stats['critical_findings'] += severity_counts['critical']
-        self._stats['high_findings'] += severity_counts['high']
-        self._stats['medium_findings'] += severity_counts['medium']
-        self._stats['low_findings'] += severity_counts['low']
-
-        # Calculer le score de sécurité
-        security_score = self._calculate_security_score(findings)
 
         return {
-            "success": True,
-            "audit_id": f"AUDIT-{datetime.now().strftime('%Y%m%d%H%M%S')}",
-            "summary": {
-                "total_findings": len(findings),
-                "severity_breakdown": severity_counts,
-                "security_score": security_score,
-                "risk_level": self._get_risk_level(security_score)
-            },
-            "findings": findings,
-            "recommendations": self._generate_security_recommendations(findings),
-            "tools_used": ["slither", "mythril", "echidna", "manual_review"],
-            "audit_duration_minutes": random.randint(30, 180),
-            "timestamp": datetime.now().isoformat()
-        }
-
-    async def quick_scan(self, contract_code: str) -> Dict[str, Any]:
-        """Scan rapide pour les vulnérabilités critiques"""
-        critical_findings = []
-        
-        critical_patterns = {
-            "tx.origin": "Use of tx.origin - phishing vulnerability",
-            "delegatecall": "Use of delegatecall - potential storage corruption",
-            "selfdestruct": "Contract can be self-destructed",
-            "call.value": "External call without reentrancy protection"
-        }
-
-        for pattern, description in critical_patterns.items():
-            if pattern in contract_code:
-                critical_findings.append({
-                    "pattern": pattern,
-                    "description": description,
-                    "severity": "critical",
-                    "location": f"line {self._find_line_number(contract_code, pattern)}"
-                })
-
-        return {
-            "success": True,
-            "critical_findings": critical_findings,
-            "has_critical_issues": len(critical_findings) > 0,
-            "recommendation": "Full audit required" if critical_findings else "No critical issues detected",
-            "scan_time_ms": random.randint(100, 500),
-            "timestamp": datetime.now().isoformat()
-        }
-
-    async def get_security_checklist(self, contract_type: str) -> Dict[str, Any]:
-        """Retourne une checklist de sécurité adaptée au type de contrat"""
-        base_checklist = [
-            "✅ Reentrancy protection implemented",
-            "✅ Access control properly configured",
-            "✅ Arithmetic operations safe (SafeMath/^0.8)",
-            "✅ External call return values checked",
-            "✅ Timestamp dependence minimized",
-            "✅ Front-running protection considered",
-            "✅ Gas limits in loops",
-            "✅ Events emitted for state changes",
-            "✅ Input validation implemented",
-            "✅ Upgrade mechanism (if any) secure"
-        ]
-
-        specific_checks = {
-            "ERC20": [
-                "✅ Approval race condition handled",
-                "✅ Transfer amount validation",
-                "✅ Total supply consistency",
-                "✅ Mint/burn authorization"
-            ],
-            "ERC721": [
-                "✅ Reentrancy in transfer functions",
-                "✅ Royalty enforcement",
-                "✅ Metadata immutability",
-                "✅ Token URI safety"
-            ],
-            "ERC1155": [
-                "✅ Batch operation safety",
-                "✅ Supply tracking",
-                "✅ URI safety"
-            ],
-            "ERC4626": [
-                "✅ Inflation attack prevention",
-                "✅ Share calculation safety",
-                "✅ Deposit/withdraw symmetry"
+            'success': True,
+            'contract': contract_path or 'inline',
+            'scan_depth': depth,
+            'duration_ms': duration,
+            'total_vulnerabilities': len(vulnerabilities),
+            'severity_breakdown': severity_counts,
+            'vulnerabilities': [
+                {
+                    'id': v.id,
+                    'type': v.type.value,
+                    'severity': v.severity.value,
+                    'location': v.location,
+                    'description': v.description,
+                    'swc_id': v.swc_id
+                }
+                for v in vulnerabilities
             ]
         }
 
-        checklist = base_checklist + specific_checks.get(contract_type, [])
+    async def _handle_audit_contract(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Audit complet de sécurité"""
+        contract_path = params.get('contract_path')
+        contract_code = params.get('contract_code')
+        depth = params.get('depth', self._default_scan_depth)
+        include_recommendations = params.get('include_recommendations', True)
+
+        if not contract_path and not contract_code:
+            return {'success': False, 'error': 'contract_path ou contract_code requis'}
+
+        # Lire le code si nécessaire
+        if contract_path and not contract_code:
+            try:
+                with open(contract_path, 'r') as f:
+                    contract_code = f.read()
+            except Exception as e:
+                return {'success': False, 'error': f"Erreur lecture fichier: {e}"}
+
+        # Créer l'audit
+        audit_id = f"AUDIT-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        start_time = datetime.now()
+
+        # Scanner en profondeur
+        vulnerabilities = self._scan_for_vulnerabilities(contract_code, 'deep' if depth == 'deep' else 'standard')
+
+        # Calculer le score de risque
+        risk_weights = {
+            Severity.CRITICAL: 10,
+            Severity.HIGH: 7,
+            Severity.MEDIUM: 4,
+            Severity.LOW: 2,
+            Severity.INFO: 0.5
+        }
+
+        total_risk = sum(risk_weights[v.severity] for v in vulnerabilities)
+        max_possible_risk = 10 * len(vulnerabilities) if vulnerabilities else 1
+        risk_score = min(10, (total_risk / max_possible_risk) * 10) if max_possible_risk > 0 else 0
+
+        # Compter par sévérité
+        severity_counts = {
+            'critical': len([v for v in vulnerabilities if v.severity == Severity.CRITICAL]),
+            'high': len([v for v in vulnerabilities if v.severity == Severity.HIGH]),
+            'medium': len([v for v in vulnerabilities if v.severity == Severity.MEDIUM]),
+            'low': len([v for v in vulnerabilities if v.severity == Severity.LOW]),
+            'info': len([v for v in vulnerabilities if v.severity == Severity.INFO])
+        }
+
+        duration = int((datetime.now() - start_time).total_seconds() * 1000)
+
+        audit = Audit(
+            id=audit_id,
+            contract_name=Path(contract_path).stem if contract_path else "inline",
+            contract_path=contract_path or "inline",
+            status=AuditStatus.COMPLETED,
+            vulnerabilities=vulnerabilities,
+            summary=severity_counts,
+            overall_risk_score=round(risk_score, 2),
+            duration_ms=duration,
+            tools_used=['pattern_matching'],
+            started_at=start_time,
+            completed_at=datetime.now()
+        )
+
+        self._audits[audit_id] = audit
+
+        result = {
+            'success': True,
+            'audit_id': audit_id,
+            'contract': audit.contract_name,
+            'status': audit.status.value,
+            'duration_ms': audit.duration_ms,
+            'overall_risk_score': audit.overall_risk_score,
+            'summary': audit.summary,
+            'vulnerabilities': [
+                {
+                    'id': v.id,
+                    'type': v.type.value,
+                    'severity': v.severity.value,
+                    'location': v.location,
+                    'description': v.description,
+                    'swc_id': v.swc_id
+                }
+                for v in audit.vulnerabilities
+            ]
+        }
+
+        if include_recommendations:
+            result['recommendations'] = [
+                {
+                    'vulnerability_id': v.id,
+                    'recommendation': v.recommendation,
+                    'references': v.references
+                }
+                for v in audit.vulnerabilities
+            ]
+
+        return result
+
+    async def _handle_check_vulnerabilities(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Vérifie les vulnérabilités connues"""
+        vuln_type = params.get('type')
+        swc_id = params.get('swc_id')
+
+        vulnerabilities = []
+        for name, info in self._vulnerability_patterns.items():
+            if vuln_type and info['type'].value != vuln_type:
+                continue
+            if swc_id and info['swc_id'] != swc_id:
+                continue
+
+            vulnerabilities.append({
+                'name': name,
+                'type': info['type'].value,
+                'severity': info['severity'].value,
+                'description': info['description'],
+                'swc_id': info['swc_id'],
+                'impact': info['impact'],
+                'likelihood': info['likelihood'],
+                'remediation': info['remediation'],
+                'references': info['references']
+            })
 
         return {
-            "success": True,
-            "contract_type": contract_type,
-            "checklist": checklist,
-            "total_checks": len(checklist),
-            "estimated_time_minutes": len(checklist) * 5,
-            "timestamp": datetime.now().isoformat()
+            'success': True,
+            'vulnerabilities': vulnerabilities,
+            'count': len(vulnerabilities)
         }
 
-    async def generate_recommendations(self, findings: List[Dict]) -> Dict[str, Any]:
-        """Génère des recommandations basées sur les findings"""
-        recommendations = []
+    async def _handle_suggest_fixes(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Suggère des correctifs pour des vulnérabilités"""
+        vulnerability_ids = params.get('vulnerability_ids', [])
+        audit_id = params.get('audit_id')
 
-        for finding in findings:
-            if finding.get('severity') == 'critical':
-                recommendations.append({
-                    "priority": "IMMEDIATE",
-                    "finding": finding.get('type', 'unknown'),
-                    "action": finding.get('remediation', 'Fix immediately'),
-                    "deadline": "Before deployment"
-                })
-            elif finding.get('severity') == 'high':
-                recommendations.append({
-                    "priority": "HIGH",
-                    "finding": finding.get('type', 'unknown'),
-                    "action": finding.get('remediation', 'Address soon'),
-                    "deadline": "Before mainnet"
-                })
+        fixes = []
 
-        return {
-            "success": True,
-            "recommendations": recommendations,
-            "total_recommendations": len(recommendations),
-            "next_steps": [
-                "1. Address critical findings immediately",
-                "2. Run formal verification for complex logic",
-                "3. Conduct third-party audit",
-                "4. Deploy with timelock and monitoring"
-            ],
-            "timestamp": datetime.now().isoformat()
-        }
-
-    def _find_line_number(self, code: str, pattern: str) -> int:
-        """Trouve le numéro de ligne d'un pattern"""
-        lines = code.split('\n')
-        for i, line in enumerate(lines):
-            if pattern in line:
-                return i + 1
-        return 0
-
-    def _calculate_security_score(self, findings: List[Dict]) -> int:
-        """Calcule un score de sécurité basé sur les findings"""
-        base_score = 100
-        severity_weights = {
-            "critical": 15,
-            "high": 8,
-            "medium": 4,
-            "low": 2,
-            "info": 1
-        }
-
-        for finding in findings:
-            base_score -= severity_weights.get(finding.get('severity', 'info'), 1)
-
-        return max(0, base_score)
-
-    def _get_risk_level(self, score: int) -> str:
-        """Détermine le niveau de risque basé sur le score"""
-        if score >= 90:
-            return "low"
-        elif score >= 75:
-            return "medium"
-        elif score >= 50:
-            return "high"
+        if audit_id:
+            # Récupérer les vulnérabilités de l'audit
+            audit = self._audits.get(audit_id)
+            if not audit:
+                return {'success': False, 'error': f'Audit {audit_id} non trouvé'}
+            
+            vulns = audit.vulnerabilities
+        elif vulnerability_ids:
+            # Chercher dans tous les audits
+            vulns = []
+            for audit in self._audits.values():
+                for v in audit.vulnerabilities:
+                    if v.id in vulnerability_ids:
+                        vulns.append(v)
         else:
-            return "critical"
+            return {'success': False, 'error': 'vulnerability_ids ou audit_id requis'}
 
-    def _generate_security_recommendations(self, findings: List[Dict]) -> List[str]:
-        """Génère des recommandations de sécurité"""
-        recommendations = [
-            "🔒 Implement ReentrancyGuard for all value-transferring functions",
-            "🔑 Use OpenZeppelin's AccessControl for role-based permissions",
-            "🧮 Use SafeMath or Solidity ^0.8.0 for arithmetic safety",
-            "📞 Always check return values of external calls",
-            "⏰ Avoid using block.timestamp for critical logic",
-            "🛡️ Add emergency pause mechanism",
-            "⏳ Implement timelocks for admin functions",
-            "👥 Use multisig for contract ownership"
-        ]
+        for vuln in vulns:
+            # Générer un exemple de correctif
+            fix_example = ""
+            if vuln.type == VulnerabilityType.REENTRANCY:
+                fix_example = """
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-        # Ajouter des recommandations spécifiques basées sur les findings
-        for finding in findings:
-            if finding.get('type') == 'reentrancy':
-                recommendations.append("⚠️ CRITICAL: Add ReentrancyGuard to all payable functions")
-            elif finding.get('type') == 'access_control':
-                recommendations.append("🔑 Add proper access control modifiers to sensitive functions")
-            elif finding.get('type') == 'tx_origin':
-                recommendations.append("⚠️ Replace tx.origin with msg.sender")
+contract MyContract is ReentrancyGuard {
+    function withdraw() external nonReentrant {
+        // votre code
+    }
+}
+"""
+            elif vuln.type == VulnerabilityType.ACCESS_CONTROL:
+                fix_example = """
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-        return list(set(recommendations))[:8]
+contract MyContract is Ownable {
+    function sensitiveFunction() external onlyOwner {
+        // votre code
+    }
+}
+"""
+            elif vuln.type == VulnerabilityType.UNCHECKED_CALL:
+                fix_example = """
+(bool success, ) = address.call{value: amount}("");
+require(success, "Call failed");
+"""
 
-    def _get_vulnerability_list(self) -> List[Dict]:
-        """Retourne la liste des vulnérabilités connues"""
-        return [
-            {
-                "name": "Reentrancy",
-                "severity": "critical",
-                "cwe": "CWE-841",
-                "description": "External call before state update allows reentrancy",
-                "remediation": "Use ReentrancyGuard and checks-effects-interactions"
-            },
-            {
-                "name": "Access Control",
-                "severity": "high",
-                "cwe": "CWE-284",
-                "description": "Missing or improper access control",
-                "remediation": "Implement role-based access control"
-            },
-            {
-                "name": "Integer Overflow/Underflow",
-                "severity": "high",
-                "cwe": "CWE-190",
-                "description": "Arithmetic operations without overflow protection",
-                "remediation": "Use SafeMath or Solidity ^0.8.0"
-            },
-            {
-                "name": "Timestamp Dependence",
-                "severity": "medium",
-                "cwe": "CWE-829",
-                "description": "Logic depends on manipulable timestamp",
-                "remediation": "Use block.number for time windows"
-            },
-            {
-                "name": "Front-Running",
-                "severity": "medium",
-                "cwe": "CWE-362",
-                "description": "Transaction ordering dependence",
-                "remediation": "Use commit-reveal or submarine sends"
+            fixes.append({
+                'vulnerability_id': vuln.id,
+                'type': vuln.type.value,
+                'location': vuln.location,
+                'recommendation': vuln.recommendation,
+                'example_code': fix_example,
+                'complexity': 'medium' if vuln.severity in [Severity.CRITICAL, Severity.HIGH] else 'low'
+            })
+
+        return {
+            'success': True,
+            'fixes': fixes,
+            'count': len(fixes)
+        }
+
+    async def _handle_generate_report(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Génère un rapport d'audit"""
+        audit_id = params.get('audit_id')
+        format = params.get('format', 'json')  # json, html, markdown
+
+        if not audit_id:
+            return {'success': False, 'error': 'audit_id requis'}
+
+        audit = self._audits.get(audit_id)
+        if not audit:
+            return {'success': False, 'error': f'Audit {audit_id} non trouvé'}
+
+        if format == 'json':
+            report = {
+                'audit_id': audit.id,
+                'contract': audit.contract_name,
+                'generated_at': datetime.now().isoformat(),
+                'status': audit.status.value,
+                'overall_risk_score': audit.overall_risk_score,
+                'summary': audit.summary,
+                'vulnerabilities': [
+                    {
+                        'id': v.id,
+                        'type': v.type.value,
+                        'severity': v.severity.value,
+                        'location': v.location,
+                        'description': v.description,
+                        'impact': v.impact,
+                        'likelihood': v.likelihood,
+                        'recommendation': v.recommendation,
+                        'code_snippet': v.code_snippet,
+                        'references': v.references
+                    }
+                    for v in audit.vulnerabilities
+                ],
+                'metadata': {
+                    'duration_ms': audit.duration_ms,
+                    'tools_used': audit.tools_used,
+                    'started_at': audit.started_at.isoformat(),
+                    'completed_at': audit.completed_at.isoformat() if audit.completed_at else None
+                }
             }
-        ]
+
+            # Sauvegarder le rapport
+            report_path = Path(project_root) / 'reports' / 'security' / f"{audit_id}.json"
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(report_path, 'w') as f:
+                json.dump(report, f, indent=2)
+
+            audit.report_path = str(report_path)
+
+        else:
+            # Support pour d'autres formats à implémenter
+            return {'success': False, 'error': f'Format {format} non supporté'}
+
+        return {
+            'success': True,
+            'audit_id': audit_id,
+            'report': report,
+            'report_path': audit.report_path
+        }
+
+    async def _handle_get_history(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Récupère l'historique des audits"""
+        contract = params.get('contract')
+        limit = params.get('limit', 50)
+
+        history = []
+        for audit in self._audits.values():
+            if contract and audit.contract_name != contract:
+                continue
+            history.append({
+                'audit_id': audit.id,
+                'contract': audit.contract_name,
+                'completed_at': audit.completed_at.isoformat() if audit.completed_at else None,
+                'risk_score': audit.overall_risk_score,
+                'vulnerabilities_found': len(audit.vulnerabilities),
+                'summary': audit.summary
+            })
+
+        # Trier par date
+        history.sort(key=lambda x: x['completed_at'], reverse=True)
+        history = history[:limit]
+
+        return {
+            'success': True,
+            'history': history,
+            'total_count': len(history)
+        }
+
+    async def _handle_compare_audits(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Compare deux audits"""
+        audit_id_1 = params.get('audit_id_1')
+        audit_id_2 = params.get('audit_id_2')
+
+        if not audit_id_1 or not audit_id_2:
+            return {'success': False, 'error': 'audit_id_1 et audit_id_2 requis'}
+
+        audit1 = self._audits.get(audit_id_1)
+        audit2 = self._audits.get(audit_id_2)
+
+        if not audit1:
+            return {'success': False, 'error': f'Audit {audit_id_1} non trouvé'}
+        if not audit2:
+            return {'success': False, 'error': f'Audit {audit_id_2} non trouvé'}
+
+        # Comparaison
+        vulns1 = {v.id: v for v in audit1.vulnerabilities}
+        vulns2 = {v.id: v for v in audit2.vulnerabilities}
+
+        common = set(vulns1.keys()) & set(vulns2.keys())
+        only_in_1 = set(vulns1.keys()) - set(vulns2.keys())
+        only_in_2 = set(vulns2.keys()) - set(vulns1.keys())
+
+        return {
+            'success': True,
+            'comparison': {
+                'audit_1': {
+                    'id': audit1.id,
+                    'date': audit1.completed_at.isoformat() if audit1.completed_at else None,
+                    'risk_score': audit1.overall_risk_score,
+                    'total_vulns': len(audit1.vulnerabilities)
+                },
+                'audit_2': {
+                    'id': audit2.id,
+                    'date': audit2.completed_at.isoformat() if audit2.completed_at else None,
+                    'risk_score': audit2.overall_risk_score,
+                    'total_vulns': len(audit2.vulnerabilities)
+                },
+                'differences': {
+                    'risk_improvement': round(audit2.overall_risk_score - audit1.overall_risk_score, 2),
+                    'vulns_fixed': len(only_in_1),
+                    'vulns_new': len(only_in_2),
+                    'vulns_remaining': len(common),
+                    'common_vulns': list(common),
+                    'fixed_vulns': list(only_in_1),
+                    'new_vulns': list(only_in_2)
+                }
+            }
+        }
+
+    # ========================================================================
+    # NETTOYAGE
+    # ========================================================================
 
     async def shutdown(self) -> bool:
         """Arrête le sous-agent"""
-        self._logger.info("Arrêt du sous-agent Expert Sécurité...")
-        self._set_status(AgentStatus.SHUTTING_DOWN)
+        logger.info(f"Arrêt de {self._subagent_display_name}...")
 
-        await super().shutdown()
+        if self._cleanup_task and not self._cleanup_task.done():
+            self._cleanup_task.cancel()
+            try:
+                await self._cleanup_task
+            except asyncio.CancelledError:
+                pass
 
-        self._logger.info("✅ Sous-agent Expert Sécurité arrêté")
-        return True
-
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé du sous-agent"""
-        base_health = await super().health_check()
-
-        return {
-            **base_health,
-            "agent": self.name,
-            "display_name": self._display_name,
-            "status": self._status.value,
-            "ready": self._status == AgentStatus.READY,
-            "initialized": self._initialized,
-            "vulnerability_db_size": len(self._vulnerability_db),
-            "stats": self._stats,
-            "timestamp": datetime.now().isoformat()
-        }
+        return await super().shutdown()
 
 
-def create_security_expert_agent(config_path: str = "") -> SecurityExpertSubAgent:
+# ============================================================================
+# FONCTIONS D'EXPORT
+# ============================================================================
+
+def get_agent_class():
+    """
+    Fonction requise pour le chargement dynamique des sous-agents.
+    Retourne la classe principale du sous-agent.
+    """
+    return SecurityExpertSubAgent
+
+
+def create_security_expert_agent(config_path: str = "") -> "SecurityExpertSubAgent":
     """Crée une instance du sous-agent expert sécurité"""
     return SecurityExpertSubAgent(config_path)

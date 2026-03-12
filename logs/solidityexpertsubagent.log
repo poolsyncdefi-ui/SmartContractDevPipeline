@@ -112,3 +112,4 @@
 2026-03-11 19:58:09 - agent.SolidityExpertSubAgent - INFO - Configuration chargée: SolidityExpertSubAgent v1.0.0
 2026-03-11 19:58:09 - agent.SolidityExpertSubAgent - INFO - Agent SolidityExpertSubAgent créé (config: agents/smart_contract/sous_agents/solidity_expert/config.yaml)
 2026-03-11 19:58:09 - agent.SolidityExpertSubAgent - INFO - 🔷 Sous-agent Solidity Expert créé
+2026-03-11 21:43:36 - agent.SolidityExpertSubAgent - INFO - Agent base_agent créé (config: None)

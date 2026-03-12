@@ -1,49 +1,148 @@
-# agents/smart_contract/sous_agents/formal_verification/config.yaml
+# ============================================================================
+# 🔬 Formal Verification SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
 agent:
   name: "FormalVerificationSubAgent"
   display_name: "🔬 Vérification Formelle"
-  description: "Expert en vérification formelle de smart contracts avec Certora, Halmos, Scribble"
-  version: "1.0.0"
+  description: |
+    Vérification formelle des smart contracts avec Certora, Halo2 et Mythril.
+    Génération d'invariants, preuves de propriétés et certificats de vérification.
+  version: "2.0.0"
   class_name: "FormalVerificationSubAgent"
   module_path: "agents.smart_contract.sous_agents.formal_verification.agent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 300
   max_retries: 2
+  temp_dir: "temp/formal_verification"
 
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-  - name: "certora_verification"
-    description: "Vérification avec Certora Prover"
+  - name: "formal.generate_invariants"
+    description: "Génération d'invariants pour smart contracts"
     confidence: 0.95
-  - name: "halmos_verification"
-    description: "Exécution symbolique avec Halmos"
-    confidence: 0.9
-  - name: "scribble_instrumentation"
-    description: "Instrumentation avec Scribble"
+
+  - name: "formal.verify_property"
+    description: "Vérification de propriétés formelles"
+    confidence: 0.92
+
+  - name: "formal.generate_proof"
+    description: "Génération de preuves formelles complètes"
+    confidence: 0.90
+
+  - name: "formal.get_certificate"
+    description: "Obtention de certificats de vérification"
+    confidence: 0.95
+
+  - name: "formal.check_status"
+    description: "Vérification du statut des preuves"
+    confidence: 0.98
+
+  - name: "formal.list_proofs"
+    description: "Liste des preuves générées"
+    confidence: 0.99
+
+  - name: "formal.compare_proofs"
+    description: "Comparaison de preuves"
     confidence: 0.85
-  - name: "dafny_verification"
-    description: "Vérification avec Dafny"
-    confidence: 0.8
 
-verification:
-  default_timeout: 300
-  max_properties_per_run: 10
-  generate_counterexamples: true
-  generate_certificates: true
-  certificate_validity_days: 365
-
-tools:
+# ============================================================================
+# OUTILS DE VÉRIFICATION
+# ============================================================================
+verification_tools:
+  default_tool: "simulation"
+  
   certora:
     enabled: true
-    executable: "certoraRun"
-    config_path: "./certora.conf"
-  halmos:
-    enabled: true
-    executable: "halmos"
-  scribble:
-    enabled: true
-    executable: "scribble"
-  dafny:
-    enabled: true
-    executable: "dafny"
+    version: "latest"
+    timeout_seconds: 300
+    api_key_env: "CERTORA_API_KEY"
+    conf_path: "certora.conf"
+  
+  halo2:
+    enabled: false
+    version: "0.1.0"
+    timeout_seconds: 600
+    params_path: "halo2_params"
+  
+  mythril:
+    enabled: false
+    version: "0.23.0"
+    timeout_seconds: 180
+    analysis_depth: 20
+
+# ============================================================================
+# PROPRIÉTÉS PRÉDÉFINIES
+# ============================================================================
+predefined_properties:
+  no_reentrancy:
+    name: "No Reentrancy"
+    description: "Vérifie l'absence de vulnérabilités de réentrance"
+    type: "security"
+    swc_id: "SWC-107"
+    severity: "critical"
+  
+  integer_safety:
+    name: "Integer Safety"
+    description: "Vérifie l'absence de débordements d'entiers"
+    type: "safety"
+    swc_id: "SWC-101"
+    severity: "high"
+  
+  access_control:
+    name: "Access Control"
+    description: "Vérifie que seuls les utilisateurs autorisés peuvent appeler des fonctions sensibles"
+    type: "security"
+    swc_id: "SWC-115"
+    severity: "high"
+  
+  erc20_compliance:
+    name: "ERC20 Compliance"
+    description: "Vérifie la conformité avec la norme ERC20"
+    type: "functional"
+    severity: "medium"
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  max_properties_per_proof: 20
+  certificate_validity_days: 365
+  proof_retention_days: 30
+  enable_simulation: true
+  simulation_confidence: 0.8
+  generate_reports: true
+  save_counterexamples: true
+  max_counterexamples: 5
+
+# ============================================================================
+# CHEMINS
+# ============================================================================
+paths:
+  proofs_path: "proofs"
+  certificates_path: "certificates"
+  logs_path: "logs/formal"
+  specs_path: "specs/formal"
+  reports_path: "reports/formal"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 7
+  last_reviewed: "2026-03-11"
+  dependencies:
+    - "certora-cli"
+    - "solc"
+    - "python3"

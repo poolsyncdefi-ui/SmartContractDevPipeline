@@ -112,3 +112,4 @@
 2026-03-11 19:58:09 - agent.FormalVerificationSubAgent - INFO - Configuration chargée: FormalVerificationSubAgent v1.0.0
 2026-03-11 19:58:09 - agent.FormalVerificationSubAgent - INFO - Agent FormalVerificationSubAgent créé (config: agents/smart_contract/sous_agents/formal_verification/config.yaml)
 2026-03-11 19:58:09 - agent.FormalVerificationSubAgent - INFO - 🔬 Sous-agent Vérification Formelle créé
+2026-03-11 21:43:36 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)

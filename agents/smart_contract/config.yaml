@@ -103,7 +103,7 @@ agent:
       fallback_action: "require_audit"
       require_human_review_if_below: 0.7
 
-    # Gestion de la complexité (NOUVEAU)
+    # Gestion de la complexité
     complexity_management:
       enabled: true
       auto_split_threshold: 3  # Complexité >= 3 = découpage automatique
@@ -116,7 +116,7 @@ agent:
         - "gestion_etat"
       notify_on_split: true
 
-  # === CAPACITÉS SPÉCIFIQUES (ENRICHIES - 56 capacités) ===
+  # === CAPACITÉS SPÉCIFIQUES ===
   capabilities:
     # === CAPACITÉS FONDAMENTALES ===
     - name: "validate_config"
@@ -374,7 +374,101 @@ agent:
       description: "Évaluer les risques du protocole"
       confidence_required: 0.85
 
-  # === GESTION DES FRAGMENTS COMPLEXES (NOUVEAU) ===
+  # === SOUS-AGENTS SPÉCIALISÉS (LES 4 CORRIGÉS) ===
+  subAgents:
+    - id: "formal_verification"
+      enabled: true
+      name: "FormalVerificationSubAgent"
+      display_name: "🔬 Vérification Formelle"
+      description: "Vérification formelle des smart contracts avec Certora, Halo2 et Mythril"
+      config_path: "agents/smart_contract/sous_agents/formal_verification/config.yaml"
+      module_path: "agents.smart_contract.sous_agents.formal_verification.agent"
+      class_name: "FormalVerificationSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 1
+      capabilities:
+        - "formal.generate_invariants"
+        - "formal.verify_property"
+        - "formal.generate_proof"
+        - "formal.get_certificate"
+        - "formal.check_status"
+        - "formal.list_proofs"
+        - "formal.compare_proofs"
+      tools: ["certora", "halo2", "mythril"]
+      confidence: 0.95
+      enabled: true
+
+    - id: "gas_optimizer"
+      enabled: true
+      name: "GasOptimizerSubAgent"
+      display_name: "⛽ Optimisation Gas"
+      description: "Optimisation des coûts de gas des smart contracts"
+      config_path: "agents/smart_contract/sous_agents/gas_optimizer/config.yaml"
+      module_path: "agents.smart_contract.sous_agents.gas_optimizer.agent"
+      class_name: "GasOptimizerSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 2
+      capabilities:
+        - "gas.analyze_contract"
+        - "gas.optimize_contract"
+        - "gas.estimate_costs"
+        - "gas.suggest_patterns"
+        - "gas.compare_versions"
+        - "gas.simulate_transaction"
+        - "gas.get_optimization_history"
+      tools: ["hardhat-gas-reporter", "foundry-gas-snapshots", "tenderly"]
+      confidence: 0.9
+      enabled: true
+
+    - id: "security_expert"
+      enabled: true
+      name: "SecurityExpertSubAgent"
+      display_name: "🛡️ Expert Sécurité"
+      description: "Analyse de sécurité et audit des smart contracts"
+      config_path: "agents/smart_contract/sous_agents/security_expert/config.yaml"
+      module_path: "agents.smart_contract.sous_agents.security_expert.agent"
+      class_name: "SecurityExpertSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 3
+      capabilities:
+        - "security.scan_contract"
+        - "security.audit_contract"
+        - "security.check_vulnerabilities"
+        - "security.suggest_fixes"
+        - "security.generate_report"
+        - "security.get_audit_history"
+        - "security.compare_audits"
+      tools: ["slither", "mythril", "echidna", "medusa", "securify"]
+      confidence: 0.95
+      enabled: true
+
+    - id: "solidity_expert"
+      enabled: true
+      name: "SolidityExpertSubAgent"
+      display_name: "🔷 Expert Solidity"
+      description: "Développement Solidity avancé et bonnes pratiques"
+      config_path: "agents/smart_contract/sous_agents/solidity_expert/config.yaml"
+      module_path: "agents.smart_contract.sous_agents.solidity_expert.agent"
+      class_name: "SolidityExpertSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 4
+      capabilities:
+        - "solidity.generate_contract"
+        - "solidity.generate_interface"
+        - "solidity.generate_library"
+        - "solidity.check_best_practices"
+        - "solidity.migrate_version"
+        - "solidity.explain_code"
+        - "solidity.validate_code"
+        - "solidity.get_templates"
+      confidence: 0.95
+      enabled: true
+
+  # === GESTION DES FRAGMENTS COMPLEXES ===
   complex_fragment_management:
     enabled: true
     detection:
@@ -405,98 +499,54 @@ agent:
       if_still_failing: "human_expert_review"
       max_iterations_before_fallback: 6
 
-  # === SOUS-AGENTS SPÉCIALISÉS (ENRICHIS - 10 sous-agents) ===
-  subAgents:
-    - id: "formal_verification"
-      name: "Formal Verification Expert"
-      display_name: "Vérification Formelle"
-      config_path: "agents/smart_contract/sous_agents/formal_verification/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "formal_verification"
-      tools: ["certora", "halmos", "scribble", "dafny"]
-      confidence: 0.95
+  # === CONFIGURATION DES SMART CONTRACTS ===
+  contracts:
+    solidity_versions:
+      default: "0.8.19"
+      supported:
+        - "0.4.24"
+        - "0.5.17"
+        - "0.6.12"
+        - "0.7.6"
+        - "0.8.0"
+        - "0.8.19"
+        - "0.8.28"
     
-    - id: "gas_optimizer"
-      name: "Gas Optimization Expert"
-      display_name: "Optimisation Gas"
-      config_path: "agents/smart_contract/sous_agents/gas_optimizer/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "gas_optimization"
-      tools: ["hardhat-gas-reporter", "foundry-gas-snapshots", "tenderly"]
-      confidence: 0.9
+    standards:
+      - name: "ERC20"
+        description: "Fungible Token Standard"
+        openzeppelin: "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      - name: "ERC721"
+        description: "Non-Fungible Token Standard"
+        openzeppelin: "@openzeppelin/contracts/token/ERC721/ERC721.sol"
+      - name: "ERC1155"
+        description: "Multi Token Standard"
+        openzeppelin: "@openzeppelin/contracts/token/ERC1155/ERC1155.sol"
+      - name: "ERC4626"
+        description: "Tokenized Vault Standard"
+        openzeppelin: "@openzeppelin/contracts/token/ERC20/extensions/ERC4626.sol"
     
-    - id: "security_expert"
-      name: "Smart Contract Security Expert"
-      display_name: "Expert Sécurité"
-      config_path: "agents/smart_contract/sous_agents/security_expert/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "security_auditing"
-      tools: ["slither", "mythril", "echidna", "medusa", "securify"]
-      confidence: 0.95
+    templates:
+      path: "templates/smart_contract/"
+      list:
+        - "erc20_basic"
+        - "erc20_votes"
+        - "erc721_basic"
+        - "erc1155_basic"
+        - "simple_storage"
+        - "ownable"
     
-    - id: "solidity_expert"
-      name: "Solidity Development Expert"
-      display_name: "Expert Solidity"
-      config_path: "agents/smart_contract/sous_agents/solidity_expert/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "solidity_implementation"
-      confidence: 0.95
-    
-    - id: "vyper_expert"
-      name: "Vyper Development Expert"
-      display_name: "Expert Vyper"
-      config_path: "agents/smart_contract/sous_agents/vyper_expert/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "vyper_implementation"
-      confidence: 0.85
-    
-    - id: "defi_specialist"
-      name: "DeFi Protocol Specialist"
-      display_name: "Expert DeFi"
-      config_path: "agents/smart_contract/sous_agents/defi_specialist/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "defi_protocols"
-      sub_specializations: ["lending", "dex", "yield", "stablecoin"]
-      confidence: 0.9
-    
-    - id: "tokenomics_engineer"
-      name: "Tokenomics Engineer"
-      display_name: "Tokenomics"
-      config_path: "agents/smart_contract/sous_agents/tokenomics_engineer/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "economic_design"
-      tools: ["economic_simulator", "game_theory_analyzer"]
-      confidence: 0.85
-    
-    - id: "complex_contract_expert"
-      name: "Complex Contract Expert"
-      display_name: "Expert Contrats Complexes"
-      config_path: "agents/smart_contract/sous_agents/complex_contract_expert/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "complex_defi_protocols"
-      handles_complexity_above: 3
-      max_iterations: 10
-      confidence: 0.8
-    
-    - id: "cross_chain_specialist"
-      name: "Cross-Chain Specialist"
-      display_name: "Expert Cross-Chain"
-      config_path: "agents/smart_contract/sous_agents/cross_chain_specialist/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "bridges_messaging"
-      protocols: ["layerzero", "wormhole", "axelar", "ccip"]
-      confidence: 0.85
-    
-    - id: "nft_specialist"
-      name: "NFT Protocol Specialist"
-      display_name: "Expert NFT"
-      config_path: "agents/smart_contract/sous_agents/nft_specialist/config.yaml"
-      dependencies: ["smart_contract"]
-      specialization: "nft_protocols"
-      standards: ["ERC721", "ERC1155", "ERC2981", "ERC4907"]
-      confidence: 0.9
+    compilation:
+      default_optimizer_runs: 200
+      via_ir: false
+      output_selection:
+        - "*"
+        - "metadata"
+        - "evm.bytecode"
+        - "evm.deployedBytecode"
+        - "abi"
 
-  # === OUTILS DISPONIBLES (ENRICHIS - 28 outils) ===
+  # === OUTILS DISPONIBLES ===
   tools:
     # === OUTILS DE DÉVELOPPEMENT ===
     - name: "solidity_developer_advanced"
@@ -504,12 +554,6 @@ agent:
       validation_required: true
     - name: "vyper_developer"
       description: "Développement Vyper"
-      validation_required: true
-    - name: "yul_developer"
-      description: "Développement Yul pour assembly"
-      validation_required: true
-    - name: "cairo_developer"
-      description: "Développement Cairo pour StarkNet"
       validation_required: true
     
     # === OUTILS DE SÉCURITÉ ===
@@ -528,12 +572,6 @@ agent:
     - name: "medusa_fuzzer"
       description: "Fuzzing avancé Medusa"
       validation_required: true
-    - name: "securify_scanner"
-      description: "Scanner de sécurité Securify"
-      validation_required: true
-    - name: "swc_registry_checker"
-      description: "Vérification des vulnérabilités SWC"
-      validation_required: true
     
     # === OUTILS D'OPTIMISATION ===
     - name: "gas_optimizer_extreme"
@@ -541,12 +579,6 @@ agent:
       validation_required: true
     - name: "storage_layout_optimizer"
       description: "Optimisation stockage"
-      validation_required: true
-    - name: "gas_profiler"
-      description: "Profilage gas"
-      validation_required: true
-    - name: "bytecode_optimizer"
-      description: "Optimisation bytecode"
       validation_required: true
     
     # === OUTILS DE VÉRIFICATION FORMELLE ===
@@ -556,12 +588,6 @@ agent:
     - name: "certora_prover"
       description: "Vérification Certora"
       validation_required: true
-    - name: "halmos_executor"
-      description: "Exécution symbolique Halmos"
-      validation_required: true
-    - name: "scribble_instrumenter"
-      description: "Instrumentation Scribble"
-      validation_required: true
     
     # === OUTILS DE TEST ===
     - name: "test_generator_property_based"
@@ -569,12 +595,6 @@ agent:
       validation_required: true
     - name: "foundry_test_runner"
       description: "Exécuteur de tests Foundry"
-      validation_required: true
-    - name: "mutation_tester"
-      description: "Mutation testing"
-      validation_required: true
-    - name: "fork_testing_framework"
-      description: "Framework de fork testing"
       validation_required: true
     
     # === OUTILS DE DÉPLOIEMENT ===
@@ -584,22 +604,8 @@ agent:
     - name: "contract_verifier"
       description: "Vérification sur explorateurs"
       validation_required: true
-    
-    # === OUTILS DE DESIGN ===
-    - name: "upgradeability_designer"
-      description: "Design upgradeability"
-      validation_required: true
-    - name: "tokenomics_modeler"
-      description: "Modélisation tokenomics"
-      validation_required: true
-    - name: "economic_simulator"
-      description: "Simulation économique"
-      validation_required: true
-    - name: "game_theory_analyzer"
-      description: "Analyse théorie des jeux"
-      validation_required: true
 
-  # === OUTPUTS PRODUITS (ENRICHIS - 20 outputs) ===
+  # === OUTPUTS PRODUITS ===
   outputs:
     - name: "solidity_contracts_production_ready"
       type: "code"
@@ -608,14 +614,6 @@ agent:
     - name: "vyper_contracts"
       type: "code"
       format: "vyper"
-      validation: "compilation"
-    - name: "yul_optimized_code"
-      type: "code"
-      format: "yul"
-      validation: "assembly_check"
-    - name: "cairo_contracts"
-      type: "code"
-      format: "cairo"
       validation: "compilation"
     
     - name: "security_audit_reports_detailed"
@@ -630,14 +628,6 @@ agent:
       type: "certificate"
       format: "pdf"
       validation: "proof_validity"
-    - name: "slither_analysis_report"
-      type: "report"
-      format: "json"
-      validation: "findings_count"
-    - name: "echidna_fuzzing_report"
-      type: "report"
-      format: "json"
-      validation: "coverage"
     
     - name: "comprehensive_test_suites"
       type: "code"
@@ -647,10 +637,6 @@ agent:
       type: "report"
       format: "html"
       validation: "threshold_check"
-    - name: "mutation_testing_report"
-      type: "report"
-      format: "json"
-      validation: "mutation_score"
     
     - name: "deployment_scripts_multi_network"
       type: "code"
@@ -661,24 +647,6 @@ agent:
       format: "json"
       validation: "explorer_check"
     
-    - name: "upgradeability_implementation"
-      type: "code"
-      format: "solidity"
-      validation: "proxy_safety"
-    - name: "diamond_implementation"
-      type: "code"
-      format: "solidity"
-      validation: "eip2535"
-    
-    - name: "tokenomics_design_documents"
-      type: "document"
-      format: "markdown"
-      validation: "economic_analysis"
-    - name: "economic_simulation_results"
-      type: "data"
-      format: "json"
-      validation: "scenario_coverage"
-    
     - name: "contract_documentation_complete"
       type: "documentation"
       format: "markdown/html"
@@ -688,7 +656,7 @@ agent:
       format: "markdown"
       validation: "checklist_complete"
 
-  # === RÈGLES DE VALIDATION (ENRICHIES) ===
+  # === RÈGLES DE VALIDATION ===
   validation_rules:
     - name: "must_pass_all_security_audits_zero_critical"
       severity: "critical"
@@ -700,41 +668,14 @@ agent:
       action_on_failure: "warn"
       auto_correct: true
     
-    - name: "must_have_100_percent_test_coverage"
+    - name: "must_have_95_percent_test_coverage"
       severity: "high"
       action_on_failure: "reject"
       auto_correct: false
-      exception_for_complex_contracts: true  # NOUVEAU
     
     - name: "must_pass_formal_verification_key_properties"
       severity: "critical"
       action_on_failure: "block_deployment"
-      auto_correct: false
-      key_properties: ["no_reentrancy", "access_control", "arithmetic_safety"]
-    
-    - name: "must_comply_with_all_relevant_erc_standards"
-      severity: "high"
-      action_on_failure: "reject"
-      auto_correct: false
-    
-    - name: "must_implement_upgradeability_safely"
-      severity: "critical"
-      action_on_failure: "block_deployment"
-      auto_correct: false
-    
-    - name: "must_have_comprehensive_emergency_mechanisms"
-      severity: "high"
-      action_on_failure: "warn"
-      auto_correct: false
-    
-    - name: "must_document_all_functions_with_natspec"
-      severity: "medium"
-      action_on_failure: "warn"
-      auto_correct: true
-    
-    - name: "must_verify_source_code_on_all_block_explorers"
-      severity: "medium"
-      action_on_failure: "warn"
       auto_correct: false
     
     - name: "no_unchecked_external_calls"
@@ -742,123 +683,68 @@ agent:
       action_on_failure: "block_deployment"
       auto_correct: false
     
-    - name: "all_loops_must_have_gas_limits"
-      severity: "high"
-      action_on_failure: "reject"
-      auto_correct: true
-    
     - name: "access_control_must_be_comprehensive"
       severity: "critical"
       action_on_failure: "block_deployment"
       auto_correct: false
-    
-    - name: "economic_logic_must_be_arbitrage_resistant"
-      severity: "high"
-      action_on_failure: "warn"
-      auto_correct: false
-      check_with: "economic_simulator"
-    
-    - name: "flash_loan_attack_vectors_must_be_mitigated"
-      severity: "critical"
-      action_on_failure: "block_deployment"
-      auto_correct: false
-    
-    - name: "oracle_price_manipulation_must_be_prevented"
-      severity: "critical"
-      action_on_failure: "block_deployment"
-      auto_correct: false
 
-  # === EXIGENCES DE SÉCURITÉ ===
-  security_requirements:
-    audit_requirements:
-      independent_audits: 3
-      audit_firms: ["trail_of_bits", "consensys_diligence", "certik", "quantstamp", "spearbit"]
-      remediation_verification: true
-      audit_before_mainnet: true
+  # === PARAMÈTRES DE DÉPLOIEMENT ===
+  deployment:
+    networks:
+      ethereum:
+        chain_id: 1
+        rpc_env: "ETHEREUM_RPC_URL"
+        explorer: "https://etherscan.io"
+        confirmations: 5
+      polygon:
+        chain_id: 137
+        rpc_env: "POLYGON_RPC_URL"
+        explorer: "https://polygonscan.com"
+        confirmations: 3
+      arbitrum:
+        chain_id: 42161
+        rpc_env: "ARBITRUM_RPC_URL"
+        explorer: "https://arbiscan.io"
+        confirmations: 2
+      optimism:
+        chain_id: 10
+        rpc_env: "OPTIMISM_RPC_URL"
+        explorer: "https://optimistic.etherscan.io"
+        confirmations: 2
     
-    bug_bounty:
-      minimum_pool: "$1,000,000"
-      platform: "immunefi"
-      coverage_duration: "permanent"
-      requirements: ["public_repo", "documentation", "test_suite"]
-    
-    insurance_coverage:
-      minimum: "$10,000,000"
-      provider: "nexus_mutual"
-      coverage_types: ["smart_contract_failure", "economic_loss"]
-    
-    formal_verification:
-      core_functions: true
-      invariants: true
-      property_testing: true
-      critical_paths: true
-    
-    time_locks:
-      critical_functions: 86400  # 24h
-      admin_functions: 172800     # 48h
-      emergency_functions: 3600   # 1h
-    
-    multisig_threshold:
-      signers: 7
-      required: 4
-      signer_requirements: "distinct_entities"
-      fallback: "delayed_timelock"
-    
-    emergency_mechanisms:
-      pause: true
-      withdraw: true
-      migrate: true
-      recover: true
-      circuit_breaker: true
-    
-    monitoring:
-      events: true
-      alerts: true
-      dashboard: true
-      on_chain_monitoring: true
+    defaults:
+      gas_limit: 3000000
+      gas_price_multiplier: 1.1
+      verify_on_explorer: true
+      wait_for_confirmations: true
 
   # === CIBLES D'OPTIMISATION GAS ===
   gas_optimization_targets:
     deployment_cost:
-      main_contract: 5000000  # 5M gas
+      main_contract: 5000000
       factory: 3000000
       library: 2000000
-      complex_contract: 8000000  # Pour contrats complexes (SC_002)
     
     transaction_cost:
-      common_operations: 200000  # 200k gas
+      common_operations: 200000
       write_operations: 80000
       read_operations: 20000
-      complex_operations: 500000  # Pour opérations complexes
     
     storage_cost:
       slots_per_contract: 50
       packing_efficiency: 0.9
       minimal_storage: true
-      complex_contract_storage: 100
-    
-    computation_cost:
-      loops: "bounded"
-      recursion: false
-      algorithms: "optimized"
-      complex_calculations: "off_chain_oracle"
-    
-    call_data:
-      optimization: "calldata_compression"
-      min_size: 32
-      max_size: 1024
 
   # === MÉTADONNÉES ===
   metadata:
     author: "SmartContractDevPipeline"
     maintainer: "dev@poolsync.io"
     license: "Proprietary"
-    tags: ["smart-contracts", "solidity", "security", "defi", "web3", "blockchain", "audit", "formal-verification", "complex-contracts", "tokenomics"]
+    tags: ["smart-contracts", "solidity", "security", "defi", "web3"]
     capabilities_count: 56
-    tools_count: 28
-    subagents_count: 10
-    standards_supported: 35
-    networks_supported: 28
+    subagents_count: 4
+    standards_supported: 12
+    networks_supported: 4
     max_complexity_handled: 5
-    last_reviewed: "2026-02-27"
-    next_review: "2026-03-27"
+    last_reviewed: "2026-03-11"
+    next_review: "2026-04-11"

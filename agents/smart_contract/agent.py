@@ -64,6 +64,118 @@ class DeploymentStatus(Enum):
     VERIFIED = "verified"
 
 
+class ContractType(Enum):
+    """Types de contrats supportés."""
+    TOKEN = "token"
+    NFT = "nft"
+    DEFI = "defi"
+    DAO = "dao"
+    MULTISIG = "multisig"
+    STAKING = "staking"
+    VESTING = "vesting"
+    BRIDGE = "bridge"
+    ORACLE = "oracle"
+    CUSTOM = "custom"
+
+
+class ContractStandard(Enum):
+    """Standards de contrats supportés."""
+    ERC20 = "ERC20"
+    ERC721 = "ERC721"
+    ERC1155 = "ERC1155"
+    ERC4626 = "ERC4626"
+    ERC1967 = "ERC1967"
+    ERC2535 = "ERC2535"
+
+class ContractType(Enum):
+    """Types de contrats supportés."""
+    TOKEN = "token"
+    NFT = "nft"
+    DEFI = "defi"
+    DAO = "dao"
+    MULTISIG = "multisig"
+    STAKING = "staking"
+    VESTING = "vesting"
+    BRIDGE = "bridge"
+    ORACLE = "oracle"
+    CUSTOM = "custom"
+
+
+class ContractStandard(Enum):
+    """Standards de contrats supportés."""
+    ERC20 = "ERC20"
+    ERC721 = "ERC721"
+    ERC1155 = "ERC1155"
+    ERC4626 = "ERC4626"
+    ERC1967 = "ERC1967"
+    ERC2535 = "ERC2535"  # Diamond
+
+
+class SolidityVersion(Enum):
+    """Versions Solidity supportées."""
+    V0_4_24 = "0.4.24"
+    V0_5_17 = "0.5.17"
+    V0_6_12 = "0.6.12"
+    V0_7_6 = "0.7.6"
+    V0_8_0 = "0.8.0"
+    V0_8_19 = "0.8.19"
+    V0_8_28 = "0.8.28"
+
+
+class AuditSeverity(Enum):
+    """Niveaux de sévérité pour les audits."""
+    CRITICAL = "critical"
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
+    INFO = "info"
+
+
+class VulnerabilityType(Enum):
+    """Types de vulnérabilités."""
+    REENTRANCY = "reentrancy"
+    INTEGER_OVERFLOW = "integer_overflow"
+    ACCESS_CONTROL = "access_control"
+    UNCHECKED_CALL = "unchecked_call"
+    TX_ORIGIN = "tx_origin"
+    TIMESTAMP_DEPENDENCY = "timestamp_dependency"
+    FRONT_RUNNING = "front_running"
+    DENIAL_OF_SERVICE = "denial_of_service"
+    BUSINESS_LOGIC = "business_logic"
+    WEAK_RANDOMNESS = "weak_randomness"
+    INSECURE_COMPILER = "insecure_compiler"
+    REENTRANCY_VIEW = "reentrancy_view"
+    UNHANDLED_EXCEPTION = "unhandled_exception"
+
+
+class GasOptimizationLevel(Enum):
+    """Niveaux d'optimisation gas."""
+    NONE = "none"
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    AGGRESSIVE = "aggressive"
+
+
+class VerificationStatus(Enum):
+    """Statuts de vérification."""
+    PENDING = "pending"
+    RUNNING = "running"
+    VERIFIED = "verified"
+    FAILED = "failed"
+    ERROR = "error"
+    TIMEOUT = "timeout"
+
+class SolidityVersion(Enum):
+    """Versions Solidity supportées."""
+    V0_4_24 = "0.4.24"
+    V0_5_17 = "0.5.17"
+    V0_6_12 = "0.6.12"
+    V0_7_6 = "0.7.6"
+    V0_8_0 = "0.8.0"
+    V0_8_19 = "0.8.19"
+    V0_8_28 = "0.8.28"
+
 @dataclass
 class ContractTemplate:
     """Template de contrat"""
@@ -240,51 +352,104 @@ class SmartContractAgent(BaseAgent):
             return False
 
     async def _initialize_sub_agents(self):
-        """Initialise les sous-agents spécialisés avec gestion d'erreurs robuste"""
+        """
+        Initialise les sous-agents spécialisés avec gestion d'erreurs robuste.
+        Version corrigée pour charger les 4 sous-agents de smart_contract.
+        """
         self._sub_agents = {}
         
-        # Configuration des sous-agents depuis la config (si présente)
-        sub_agent_configs = self._agent_config.get('agent', {}).get('subAgents', [])
+        # Définition des sous-agents de smart_contract (comme dans communication)
+        sub_agent_definitions = [
+            {
+                "id": "formal_verification",
+                "name": "FormalVerificationSubAgent",
+                "display_name": "🔬 Vérification Formelle",
+                "module_path": "agents.smart_contract.sous_agents.formal_verification.agent",
+                "enabled": True
+            },
+            {
+                "id": "gas_optimizer",
+                "name": "GasOptimizerSubAgent",
+                "display_name": "⛽ Optimisation Gas",
+                "module_path": "agents.smart_contract.sous_agents.gas_optimizer.agent",
+                "enabled": True
+            },
+            {
+                "id": "security_expert",
+                "name": "SecurityExpertSubAgent",
+                "display_name": "🛡️ Expert Sécurité",
+                "module_path": "agents.smart_contract.sous_agents.security_expert.agent",
+                "enabled": True
+            },
+            {
+                "id": "solidity_expert",
+                "name": "SolidityExpertSubAgent",
+                "display_name": "🔷 Expert Solidity",
+                "module_path": "agents.smart_contract.sous_agents.solidity_expert.agent",
+                "enabled": True
+            }
+        ]
         
-        # Si la liste est vide, essayer de charger avec des noms par défaut
+        # Essayer de charger depuis la config d'abord
+        sub_agent_configs = self._agent_config.get('subAgents', [])
+        
+        # Si la config est vide, utiliser les définitions par défaut
         if not sub_agent_configs:
-            sub_agent_configs = [
-                {"id": "formal_verification", "name": "Formal Verification Expert", "enabled": True},
-                {"id": "gas_optimizer", "name": "Gas Optimization Expert", "enabled": True},
-                {"id": "security_expert", "name": "Smart Contract Security Expert", "enabled": True},
-                {"id": "solidity_expert", "name": "Solidity Development Expert", "enabled": True}
-            ]
+            sub_agent_configs = sub_agent_definitions
+        
+        self._logger.info(f"📦 Chargement de {len(sub_agent_configs)} sous-agents...")
         
         for config in sub_agent_configs:
             agent_id = config.get('id')
             if not config.get('enabled', True):
+                self._logger.debug(f"  ⏭️ Sous-agent {agent_id} désactivé")
                 continue
                 
             try:
-                # Tentative d'import dynamique du sous-agent
-                module_name = f"agents.smart_contract.sous_agents.{agent_id}.agent"
+                # Chemin du module
+                module_name = config.get('module_path', f"agents.smart_contract.sous_agents.{agent_id}.agent")
+                
+                # Nom de la classe (convertir l'ID en nom de classe)
+                # Ex: "formal_verification" -> "FormalVerificationSubAgent"
                 class_name = self._get_sub_agent_class_name(agent_id)
                 
-                module = importlib.import_module(module_name)
-                agent_class = getattr(module, class_name, None)
+                self._logger.debug(f"  🔄 Tentative d'import {module_name}")
                 
+                # Import dynamique
+                module = importlib.import_module(module_name)
+                self._logger.debug(f"  ✅ Module importé avec succès")
+                
+                # Récupérer la classe
+                agent_class = getattr(module, class_name, None)
                 if agent_class:
-                    config_path = config.get('config_path', '')
+                    self._logger.debug(f"  ✅ Classe {class_name} trouvée, création de l'instance")
+                    
+                    # Chemin de config (peut être spécifié ou None)
+                    config_path = config.get('config_path')
+                    
+                    # Instancier le sous-agent
                     sub_agent = agent_class(config_path)
                     self._sub_agents[agent_id] = sub_agent
                     self._logger.info(f"  ✓ Sous-agent {agent_id} initialisé")
                 else:
-                    self._logger.warning(f"  ⚠️ Classe {class_name} non trouvée pour {agent_id}")
+                    self._logger.warning(f"  ⚠️ Classe {class_name} non trouvée dans {module_name}")
                     
             except ImportError as e:
                 self._logger.debug(f"  ℹ️ Sous-agent {agent_id} non disponible: {e}")
             except Exception as e:
                 self._logger.error(f"  ❌ Erreur initialisation sous-agent {agent_id}: {e}")
+                self._logger.error(traceback.format_exc())
+
+        self._logger.info(f"✅ Sous-agents chargés: {len(self._sub_agents)}")
 
     def _get_sub_agent_class_name(self, agent_id: str) -> str:
-        """Convertit un ID de sous-agent en nom de classe"""
-        # Convertit "formal_verification" en "FormalVerificationSubAgent"
+        """
+        Convertit un ID de sous-agent en nom de classe.
+        Exemple: "formal_verification" -> "FormalVerificationSubAgent"
+        """
+        # Découper par underscores
         parts = agent_id.split('_')
+        # Mettre en capitale chaque partie et joindre
         class_name = ''.join(p.capitalize() for p in parts) + 'SubAgent'
         return class_name
 
@@ -306,8 +471,8 @@ class SmartContractAgent(BaseAgent):
             "security": "security_expert",
             "gas": "gas_optimizer",
             "formal": "formal_verification",
-            "defi": "defi_specialist",
-            "tokenomics": "tokenomics_engineer"
+            "defi": "solidity_expert",  # Fallback
+            "tokenomics": "security_expert"  # Fallback
         }
 
         for pattern, agent_name in sub_agent_mapping.items():
@@ -322,7 +487,17 @@ class SmartContractAgent(BaseAgent):
                         message_type=f"smart_contract.{task_type}",
                         correlation_id=f"delegate_{datetime.now().timestamp()}"
                     )
-                    return await self._sub_agents[agent_name].handle_message(msg)
+                    # Utiliser handle_message si disponible
+                    if hasattr(self._sub_agents[agent_name], 'handle_message'):
+                        return await self._sub_agents[agent_name].handle_message(msg)
+                    else:
+                        # Sinon, chercher une méthode spécifique
+                        handler_name = f"handle_{task_type.replace('.', '_')}"
+                        if hasattr(self._sub_agents[agent_name], handler_name):
+                            handler = getattr(self._sub_agents[agent_name], handler_name)
+                            return await handler(task_data)
+                        else:
+                            return {"success": False, "error": f"Handler {handler_name} non trouvé"}
 
         # Fallback: utiliser l'agent principal
         self._logger.info(f"ℹ️ Aucun sous-agent trouvé pour {task_type}, utilisation de l'agent principal")
@@ -352,11 +527,20 @@ class SmartContractAgent(BaseAgent):
         status = {}
         for agent_name, agent_instance in self._sub_agents.items():
             try:
-                health = await agent_instance.health_check()
-                status[agent_name] = {
-                    "status": health.get("status", "unknown"),
-                    "agent_info": agent_instance.get_agent_info()
-                }
+                # Essayer d'appeler health_check si disponible
+                if hasattr(agent_instance, 'health_check'):
+                    health = await agent_instance.health_check()
+                    status[agent_name] = {
+                        "status": health.get("status", "unknown"),
+                        "info": health
+                    }
+                else:
+                    # Sinon, utiliser get_agent_info
+                    agent_info = agent_instance.get_agent_info() if hasattr(agent_instance, 'get_agent_info') else {}
+                    status[agent_name] = {
+                        "status": "active",
+                        "info": agent_info
+                    }
             except Exception as e:
                 status[agent_name] = {
                     "status": "error",
@@ -437,8 +621,11 @@ class SmartContractAgent(BaseAgent):
         # Arrêter les sous-agents
         for agent_name, agent_instance in self._sub_agents.items():
             try:
-                await agent_instance.shutdown()
-                self._logger.debug(f"  ✓ Sous-agent {agent_name} arrêté")
+                if hasattr(agent_instance, 'shutdown'):
+                    await agent_instance.shutdown()
+                    self._logger.debug(f"  ✓ Sous-agent {agent_name} arrêté")
+                else:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_name} n'a pas de méthode shutdown")
             except Exception as e:
                 self._logger.warning(f"  ⚠️ Erreur arrêt sous-agent {agent_name}: {e}")
 
@@ -458,7 +645,10 @@ class SmartContractAgent(BaseAgent):
         # Mettre en pause les sous-agents
         for agent_name, agent_instance in self._sub_agents.items():
             try:
-                await agent_instance.pause()
+                if hasattr(agent_instance, 'pause'):
+                    await agent_instance.pause()
+                else:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_name} n'a pas de méthode pause")
             except Exception as e:
                 self._logger.warning(f"⚠️ Erreur pause sous-agent {agent_name}: {e}")
 
@@ -472,7 +662,10 @@ class SmartContractAgent(BaseAgent):
         # Reprendre les sous-agents
         for agent_name, agent_instance in self._sub_agents.items():
             try:
-                await agent_instance.resume()
+                if hasattr(agent_instance, 'resume'):
+                    await agent_instance.resume()
+                else:
+                    self._logger.debug(f"  ℹ️ Sous-agent {agent_name} n'a pas de méthode resume")
             except Exception as e:
                 self._logger.warning(f"⚠️ Erreur reprise sous-agent {agent_name}: {e}")
 
@@ -599,7 +792,14 @@ class SmartContractAgent(BaseAgent):
             # D'abord, essayer de déléguer à un sous-agent
             if message.content and "sub_agent_task" in message.content:
                 task_type = message.content.get("sub_agent_task")
-                return await self.delegate_to_sub_agent(task_type, message.content)
+                result = await self.delegate_to_sub_agent(task_type, message.content)
+                return Message(
+                    sender=self.name,
+                    recipient=message.sender,
+                    content=result,
+                    message_type=f"{msg_type}.response",
+                    correlation_id=message.message_id
+                )
 
             # Mapping des types de messages vers les méthodes
             handlers = {
@@ -1648,6 +1848,11 @@ contract {contract_type} {{
 def create_smart_contract_agent(config_path: Optional[str] = None) -> SmartContractAgent:
     """Crée une instance de l'agent smart contract"""
     return SmartContractAgent(config_path)
+
+
+def get_agent_class():
+    """Retourne la classe principale pour le chargement dynamique"""
+    return SmartContractAgent
 
 
 # ============================================================================

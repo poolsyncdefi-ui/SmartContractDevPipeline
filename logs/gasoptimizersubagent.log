@@ -112,3 +112,4 @@
 2026-03-11 19:58:09 - agent.GasOptimizerSubAgent - INFO - Configuration chargée: GasOptimizerSubAgent v1.0.0
 2026-03-11 19:58:09 - agent.GasOptimizerSubAgent - INFO - Agent GasOptimizerSubAgent créé (config: agents/smart_contract/sous_agents/gas_optimizer/config.yaml)
 2026-03-11 19:58:09 - agent.GasOptimizerSubAgent - INFO - ⚡ Sous-agent Optimisation Gas créé
+2026-03-11 21:43:36 - agent.GasOptimizerSubAgent - INFO - Agent base_agent créé (config: None)

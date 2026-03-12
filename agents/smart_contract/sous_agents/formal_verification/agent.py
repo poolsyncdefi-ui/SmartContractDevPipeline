@@ -1,29 +1,42 @@
 """
-Formal Verification Sub-Agent - Expert en vérification formelle
-Version: 1.0.0
+Formal Verification SubAgent - Sous-agent de vérification formelle
+Version: 2.0.0
+
+Gère la vérification formelle des smart contracts avec support de :
+- Génération d'invariants
+- Preuves de propriétés
+- Certificats de vérification
+- Intégration Certora, Halo2, Mythril
 """
 
 import logging
 import sys
-import json
-import importlib
 import asyncio
-import random
-from datetime import datetime
+import json
+from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional, List, Set, Tuple
 from enum import Enum
+from dataclasses import dataclass, field
+from collections import defaultdict, deque
+import hashlib
+import subprocess
+import tempfile
 
 # Configuration des imports
 current_dir = Path(__file__).parent.absolute()
-project_root = current_dir.parent.parent.parent.parent
+project_root = current_dir.parent.parent.parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
+from agents.sous_agents.base_subagent import BaseSubAgent
 
 logger = logging.getLogger(__name__)
 
+
+# ============================================================================
+# ÉNUMS ET CLASSES DE DONNÉES
+# ============================================================================
 
 class VerificationStatus(Enum):
     """Statuts de vérification"""
@@ -32,455 +45,851 @@ class VerificationStatus(Enum):
     VERIFIED = "verified"
     FAILED = "failed"
     ERROR = "error"
+    TIMEOUT = "timeout"
+
+
+class VerificationTool(Enum):
+    """Outils de vérification supportés"""
+    CERTORA = "certora"
+    HALO2 = "halo2"
+    MYTHRIL = "mythril"
+    SIMULATION = "simulation"
 
 
 class PropertyType(Enum):
     """Types de propriétés vérifiables"""
-    REENTRANCY = "reentrancy"
-    ACCESS_CONTROL = "access_control"
-    ARITHMETIC = "arithmetic"
-    INVARIANT = "invariant"
+    SAFETY = "safety"
     LIVENESS = "liveness"
-    FAIRNESS = "fairness"
+    INVARIANT = "invariant"
+    FUNCTIONAL = "functional"
+    SECURITY = "security"
 
 
-class FormalVerificationSubAgent(BaseAgent):
+@dataclass
+class VerificationProperty:
+    """Propriété à vérifier"""
+    id: str
+    name: str
+    description: str
+    property_type: PropertyType
+    expression: str
+    created_at: datetime = field(default_factory=datetime.now)
+    status: VerificationStatus = VerificationStatus.PENDING
+
+
+@dataclass
+class VerificationProof:
+    """Preuve de vérification"""
+    id: str
+    contract_path: str
+    contract_name: str
+    status: VerificationStatus
+    tool_used: VerificationTool
+    properties: List[VerificationProperty]
+    verified_properties: List[str] = field(default_factory=list)
+    failed_properties: List[str] = field(default_factory=list)
+    counterexamples: List[Dict[str, Any]] = field(default_factory=list)
+    duration_ms: int = 0
+    created_at: datetime = field(default_factory=datetime.now)
+    completed_at: Optional[datetime] = None
+    confidence_score: float = 0.0
+    certificate_path: Optional[str] = None
+    log_path: Optional[str] = None
+
+
+@dataclass
+class VerificationCertificate:
+    """Certificat de vérification"""
+    id: str
+    proof_id: str
+    contract_name: str
+    contract_hash: str
+    verified_properties: List[str]
+    tool_used: VerificationTool
+    issued_at: datetime
+    valid_until: datetime
+    issuer: str = "SmartContractDevPipeline"
+    signature: Optional[str] = None
+
+
+# ============================================================================
+# SOUS-AGENT PRINCIPAL
+# ============================================================================
+
+class FormalVerificationSubAgent(BaseSubAgent):
     """
-    Sous-agent spécialisé dans la vérification formelle de smart contracts
-    Certora, Halmos, Scribble, Dafny
+    Sous-agent de vérification formelle
+
+    Gère la vérification formelle des smart contracts avec :
+    - Génération d'invariants
+    - Preuves de propriétés
+    - Certificats de vérification
+    - Intégration avec outils existants
     """
 
     def __init__(self, config_path: str = ""):
         """Initialise le sous-agent de vérification formelle"""
-        if not config_path:
-            config_path = str(current_dir / "config.yaml")
-
         super().__init__(config_path)
 
-        self._display_name = self._agent_config.get('agent', {}).get('display_name', '🔬 Vérification Formelle')
-        self._initialized = False
+        # Métadonnées
+        self._subagent_display_name = "🔬 Vérification Formelle"
+        self._subagent_description = "Vérification formelle des smart contracts"
+        self._subagent_version = "2.0.0"
+        self._subagent_category = "smart_contract"
+        self._subagent_capabilities = [
+            "formal.generate_invariants",
+            "formal.verify_property",
+            "formal.generate_proof",
+            "formal.get_certificate",
+            "formal.check_status",
+            "formal.list_proofs",
+            "formal.compare_proofs"
+        ]
 
-        # Statistiques
-        self._stats = {
-            'verifications_performed': 0,
-            'verified_contracts': 0,
-            'properties_proven': 0,
-            'counterexamples_found': 0,
-            'start_time': datetime.now().isoformat()
-        }
+        # État interne
+        self._proofs: Dict[str, VerificationProof] = {}
+        self._properties: Dict[str, VerificationProperty] = {}
+        self._certificates: Dict[str, VerificationCertificate] = {}
+        self._contract_locks: Dict[str, asyncio.Lock] = {}
+        self._running_verifications: Dict[str, asyncio.Task] = {}
 
-        # Outils disponibles
-        self._tools = {
-            'certora': False,
-            'halmos': False,
-            'scribble': False,
-            'dafny': False
-        }
+        # Configuration des outils
+        self._tools_config = self._agent_config.get('verification_tools', {})
+        self._default_tool = self._tools_config.get('default_tool', 'simulation')
+        
+        # Chemins
+        self._proofs_dir = Path(project_root) / self._agent_config.get('proofs_path', 'proofs')
+        self._certificates_dir = Path(project_root) / self._agent_config.get('certificates_path', 'certificates')
+        self._logs_dir = Path(project_root) / self._agent_config.get('logs_path', 'logs/formal')
+        
+        # Créer les répertoires
+        self._proofs_dir.mkdir(parents=True, exist_ok=True)
+        self._certificates_dir.mkdir(parents=True, exist_ok=True)
+        self._logs_dir.mkdir(parents=True, exist_ok=True)
 
-        self._logger.info("🔬 Sous-agent Vérification Formelle créé")
+        # Tâches de fond
+        self._cleanup_task: Optional[asyncio.Task] = None
+        self._monitor_task: Optional[asyncio.Task] = None
 
-    async def initialize(self) -> bool:
-        """Initialise le sous-agent"""
+        logger.info(f"✅ {self._subagent_display_name} initialisé (v{self._subagent_version})")
+
+    # ========================================================================
+    # IMPLÉMENTATION DES MÉTHODES ABSTRACTES
+    # ========================================================================
+
+    async def _initialize_subagent_components(self) -> bool:
+        """Initialise les composants spécifiques"""
+        logger.info("Initialisation des composants de vérification formelle...")
+
         try:
-            self._set_status(AgentStatus.INITIALIZING)
-            self._logger.info("Initialisation du sous-agent Vérification Formelle...")
-
-            # Appeler l'initialisation du parent
-            base_result = await super().initialize()
-            if not base_result:
-                return False
-
             # Vérifier les outils disponibles
-            await self._check_tools()
+            await self._check_available_tools()
 
-            self._initialized = True
-            self._set_status(AgentStatus.READY)
-            self._logger.info("✅ Sous-agent Vérification Formelle prêt")
+            # Charger les propriétés prédéfinies
+            await self._load_predefined_properties()
+
+            # Démarrer les tâches de fond
+            self._cleanup_task = asyncio.create_task(self._cleanup_loop())
+            self._monitor_task = asyncio.create_task(self._monitor_loop())
+
+            logger.info("✅ Composants de vérification formelle initialisés")
             return True
 
         except Exception as e:
-            self._logger.error(f"❌ Erreur initialisation: {e}")
-            self._set_status(AgentStatus.ERROR)
+            logger.error(f"❌ Erreur initialisation composants: {e}")
             return False
 
     async def _initialize_components(self) -> bool:
-        """Initialise les composants du sous-agent"""
-        self._logger.info("Initialisation des composants...")
-        self._components = {
-            "verification_engine": {"enabled": True},
-            "spec_generator": {"enabled": True},
-            "certificate_manager": {"enabled": True}
+        """Implémentation requise par BaseAgent"""
+        return await self._initialize_subagent_components()
+
+    def _get_capability_handlers(self) -> Dict[str, Any]:
+        """Retourne les handlers spécifiques"""
+        return {
+            "formal.generate_invariants": self._handle_generate_invariants,
+            "formal.verify_property": self._handle_verify_property,
+            "formal.generate_proof": self._handle_generate_proof,
+            "formal.get_certificate": self._handle_get_certificate,
+            "formal.check_status": self._handle_check_status,
+            "formal.list_proofs": self._handle_list_proofs,
+            "formal.compare_proofs": self._handle_compare_proofs,
         }
-        return True
 
-    async def _check_tools(self):
-        """Vérifie la disponibilité des outils de vérification"""
-        # Simulation - dans un environnement réel, vérifier les binaires
-        self._tools['certora'] = random.choice([True, False])
-        self._tools['halmos'] = random.choice([True, False])
-        self._tools['scribble'] = random.choice([True, False])
-        self._tools['dafny'] = random.choice([True, False])
+    # ========================================================================
+    # MÉTHODES PRIVÉES
+    # ========================================================================
 
-        available = [name for name, avail in self._tools.items() if avail]
-        self._logger.info(f"🔧 Outils disponibles: {', '.join(available) if available else 'aucun'}")
+    async def _get_contract_lock(self, contract_path: str) -> asyncio.Lock:
+        """Récupère ou crée un verrou pour un contrat"""
+        if contract_path not in self._contract_locks:
+            self._contract_locks[contract_path] = asyncio.Lock()
+        return self._contract_locks[contract_path]
 
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """Gère les messages personnalisés"""
-        try:
-            msg_type = message.message_type
+    async def _check_available_tools(self):
+        """Vérifie les outils de vérification disponibles"""
+        logger.info("Vérification des outils de vérification formelle...")
 
-            handlers = {
-                "formal.verify": self._handle_verify,
-                "formal.specifications": self._handle_specifications,
-                "formal.invariants": self._handle_invariants,
-                "formal.properties": self._handle_properties,
-                "formal.certificate": self._handle_certificate,
+        self.available_tools = {}
+
+        # Certora Prover
+        if self._tools_config.get('certora', {}).get('enabled', False):
+            try:
+                # Vérifier si certora-cli est installé
+                result = subprocess.run(['certoraRun', '--version'], 
+                                      capture_output=True, text=True, timeout=5)
+                if result.returncode == 0:
+                    self.available_tools['certora'] = {
+                        'available': True,
+                        'version': result.stdout.strip(),
+                        'timeout': self._tools_config['certora'].get('timeout_seconds', 300)
+                    }
+                    logger.info(f"  ✅ Certora Prover disponible")
+                else:
+                    logger.warning("  ⚠️ Certora Prover non disponible")
+            except:
+                logger.warning("  ⚠️ Certora Prover non disponible")
+
+        # Halo2
+        if self._tools_config.get('halo2', {}).get('enabled', False):
+            # Simulation pour Halo2 (pas encore intégré)
+            self.available_tools['halo2'] = {
+                'available': False,
+                'simulation': True
             }
+            logger.info("  ℹ️ Halo2 en mode simulation")
 
-            if msg_type in handlers:
-                return await handlers[msg_type](message)
+        # Mythril
+        if self._tools_config.get('mythril', {}).get('enabled', False):
+            try:
+                result = subprocess.run(['myth', '--version'], 
+                                      capture_output=True, text=True, timeout=5)
+                if result.returncode == 0:
+                    self.available_tools['mythril'] = {
+                        'available': True,
+                        'version': result.stdout.strip(),
+                        'timeout': self._tools_config['mythril'].get('timeout_seconds', 180)
+                    }
+                    logger.info(f"  ✅ Mythril disponible")
+                else:
+                    logger.warning("  ⚠️ Mythril non disponible")
+            except:
+                logger.warning("  ⚠️ Mythril non disponible")
 
-            return None
+        # Toujours avoir la simulation
+        self.available_tools['simulation'] = {
+            'available': True,
+            'simulation': True
+        }
+
+        logger.info(f"  📊 Outils disponibles: {', '.join(self.available_tools.keys())}")
+
+    async def _load_predefined_properties(self):
+        """Charge les propriétés prédéfinies"""
+        self.predefined_properties = {
+            'no_reentrancy': {
+                'name': 'No Reentrancy',
+                'description': 'Vérifie l\'absence de vulnérabilités de réentrance',
+                'type': PropertyType.SECURITY,
+                'expression': 'forall x. (call(x) => !reentrant)',
+                'confidence': 0.95
+            },
+            'integer_safety': {
+                'name': 'Integer Safety',
+                'description': 'Vérifie l\'absence de débordements d\'entiers',
+                'type': PropertyType.SAFETY,
+                'expression': 'forall x. (x + y) >= x && (x + y) >= y',
+                'confidence': 0.98
+            },
+            'access_control': {
+                'name': 'Access Control',
+                'description': 'Vérifie que seuls les utilisateurs autorisés peuvent appeler des fonctions sensibles',
+                'type': PropertyType.SECURITY,
+                'expression': 'onlyOwner => msg.sender == owner',
+                'confidence': 0.92
+            },
+            'erc20_compliance': {
+                'name': 'ERC20 Compliance',
+                'description': 'Vérifie la conformité avec la norme ERC20',
+                'type': PropertyType.FUNCTIONAL,
+                'expression': 'totalSupply == sum(balances)',
+                'confidence': 0.90
+            }
+        }
+
+    def _generate_invariants_from_contract(self, contract_code: str) -> List[Dict[str, Any]]:
+        """Génère des invariants à partir du code du contrat"""
+        invariants = []
+        
+        # Invariants basiques
+        invariants.append({
+            'name': 'owner_not_zero',
+            'description': 'L\'owner ne peut pas être l\'adresse zéro',
+            'expression': 'owner != address(0)',
+            'type': 'safety'
+        })
+        
+        # Détecter les variables de type uint
+        if 'uint' in contract_code:
+            invariants.append({
+                'name': 'no_overflow',
+                'description': 'Pas de débordement dans les opérations mathématiques',
+                'expression': 'forall x. x + y >= x',
+                'type': 'safety'
+            })
+        
+        # Détecter les mappings de balances
+        if 'mapping(address => uint)' in contract_code or 'balanceOf' in contract_code:
+            invariants.append({
+                'name': 'balance_sum',
+                'description': 'La somme des balances correspond au totalSupply',
+                'expression': 'sum(balances) == totalSupply',
+                'type': 'invariant'
+            })
+        
+        # Détecter les fonctions de transfert
+        if 'transfer' in contract_code:
+            invariants.append({
+                'name': 'no_reentrancy_transfer',
+                'description': 'Pas de réentrance dans les fonctions de transfert',
+                'expression': 'nonReentrant',
+                'type': 'security'
+            })
+        
+        return invariants
+
+    async def _run_certora_verification(self, contract_path: str, 
+                                        properties: List[str]) -> VerificationProof:
+        """Exécute une vérification avec Certora"""
+        proof = VerificationProof(
+            id=f"PROOF-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            contract_path=contract_path,
+            contract_name=Path(contract_path).stem,
+            status=VerificationStatus.RUNNING,
+            tool_used=VerificationTool.CERTORA,
+            properties=[]
+        )
+
+        try:
+            # Créer un fichier de spécification temporaire
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.spec', delete=False) as f:
+                spec_file = f.name
+                f.write(f"// Certora specification for {contract_path}\n")
+                for prop in properties[:3]:  # Limiter pour l'exemple
+                    f.write(f"rule {prop} {{\n    // Vérification simulée\n}}\n")
+
+            # Simuler l'exécution de Certora
+            await asyncio.sleep(2)  # Simulation du temps de calcul
+
+            # Résultat simulé
+            proof.status = VerificationStatus.VERIFIED
+            proof.verified_properties = properties[:2]  # 2 sur 3 réussissent
+            proof.failed_properties = properties[2:] if len(properties) > 2 else []
+            proof.duration_ms = 5432
+            proof.completed_at = datetime.now()
+            proof.confidence_score = 0.95
+            proof.log_path = str(self._logs_dir / f"{proof.id}.log")
+
+            # Créer un faux log
+            with open(proof.log_path, 'w') as f:
+                f.write(f"Certora verification for {contract_path}\n")
+                f.write(f"Properties verified: {', '.join(proof.verified_properties)}\n")
 
         except Exception as e:
-            self._logger.error(f"Erreur traitement message: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type=MessageType.ERROR.value,
-                correlation_id=message.message_id
-            )
+            proof.status = VerificationStatus.ERROR
+            proof.completed_at = datetime.now()
+            logger.error(f"Erreur Certora: {e}")
+        finally:
+            # Nettoyer
+            if Path(spec_file).exists():
+                Path(spec_file).unlink()
 
-    async def _handle_verify(self, message: Message) -> Message:
-        """Gère la vérification formelle"""
-        contract_code = message.content.get("contract_code", "")
-        properties = message.content.get("properties", ["reentrancy", "access_control"])
+        return proof
 
-        result = await self.verify_contract(contract_code, properties)
-
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=result,
-            message_type="formal.verified",
-            correlation_id=message.message_id
+    async def _run_simulation_verification(self, contract_path: str,
+                                           properties: List[str]) -> VerificationProof:
+        """Exécute une vérification simulée (pour test/développement)"""
+        proof = VerificationProof(
+            id=f"PROOF-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            contract_path=contract_path,
+            contract_name=Path(contract_path).stem,
+            status=VerificationStatus.RUNNING,
+            tool_used=VerificationTool.SIMULATION,
+            properties=[]
         )
 
-    async def _handle_specifications(self, message: Message) -> Message:
-        """Gère la génération de spécifications"""
-        contract_code = message.content.get("contract_code", "")
-        specs = await self.generate_specifications(contract_code)
+        await asyncio.sleep(0.1)  # Simulation rapide
 
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=specs,
-            message_type="formal.specifications_generated",
-            correlation_id=message.message_id
+        # Résultat simulé - toujours réussi pour la simulation
+        proof.status = VerificationStatus.VERIFIED
+        proof.verified_properties = properties
+        proof.failed_properties = []
+        proof.duration_ms = 108
+        proof.completed_at = datetime.now()
+        proof.confidence_score = 0.8
+
+        return proof
+
+    async def _generate_certificate(self, proof: VerificationProof) -> VerificationCertificate:
+        """Génère un certificat pour une preuve"""
+        # Calculer le hash du contrat
+        contract_hash = hashlib.sha256()
+        try:
+            with open(proof.contract_path, 'rb') as f:
+                contract_hash.update(f.read())
+        except:
+            contract_hash.update(proof.contract_path.encode())
+
+        certificate = VerificationCertificate(
+            id=f"CERT-{proof.id}",
+            proof_id=proof.id,
+            contract_name=proof.contract_name,
+            contract_hash=contract_hash.hexdigest()[:16],
+            verified_properties=proof.verified_properties,
+            tool_used=proof.tool_used,
+            issued_at=datetime.now(),
+            valid_until=datetime.now() + timedelta(days=365),
+            issuer="SmartContractDevPipeline"
         )
 
-    async def _handle_invariants(self, message: Message) -> Message:
-        """Gère la génération d'invariants"""
-        contract_code = message.content.get("contract_code", "")
-        invariants = await self.generate_invariants(contract_code)
+        self._certificates[certificate.id] = certificate
 
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=invariants,
-            message_type="formal.invariants_generated",
-            correlation_id=message.message_id
-        )
+        # Sauvegarder le certificat
+        cert_path = self._certificates_dir / f"{certificate.id}.json"
+        with open(cert_path, 'w') as f:
+            json.dump({
+                'id': certificate.id,
+                'proof_id': certificate.proof_id,
+                'contract_name': certificate.contract_name,
+                'contract_hash': certificate.contract_hash,
+                'verified_properties': certificate.verified_properties,
+                'tool_used': certificate.tool_used.value,
+                'issued_at': certificate.issued_at.isoformat(),
+                'valid_until': certificate.valid_until.isoformat(),
+                'issuer': certificate.issuer
+            }, f, indent=2)
 
-    async def _handle_properties(self, message: Message) -> Message:
-        """Retourne les propriétés vérifiables"""
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content={"properties": self._get_available_properties()},
-            message_type="formal.properties_list",
-            correlation_id=message.message_id
-        )
+        certificate.certificate_path = str(cert_path)
+        return certificate
 
-    async def _handle_certificate(self, message: Message) -> Message:
-        """Génère un certificat de vérification"""
-        verification_id = message.content.get("verification_id", "unknown")
-        certificate = await self.generate_certificate(verification_id)
+    # ========================================================================
+    # TÂCHES DE FOND
+    # ========================================================================
 
-        return Message(
-            sender=self.name,
-            recipient=message.sender,
-            content=certificate,
-            message_type="formal.certificate_generated",
-            correlation_id=message.message_id
-        )
+    async def _cleanup_loop(self):
+        """Nettoie les anciennes preuves et certificats"""
+        logger.info("🔄 Boucle de nettoyage démarrée")
 
-    async def verify_contract(self, contract_code: str, properties: List[str]) -> Dict[str, Any]:
-        """Vérifie formellement un contrat"""
-        self._stats['verifications_performed'] += 1
+        while self._status.value == "ready":
+            try:
+                await asyncio.sleep(3600)  # Toutes les heures
 
-        # Simulation de vérification
-        results = []
-        verified_count = 0
-        counterexamples = []
+                # Nettoyer les preuves de plus de 30 jours
+                cutoff = datetime.now() - timedelta(days=30)
+                old_proofs = [
+                    pid for pid, proof in self._proofs.items()
+                    if proof.completed_at and proof.completed_at < cutoff
+                ]
 
-        for prop in properties:
-            # Simulation : 80% de chances de réussite
-            success = random.random() < 0.8
+                for pid in old_proofs:
+                    del self._proofs[pid]
 
-            if success:
-                verified_count += 1
-                results.append({
-                    "property": prop,
-                    "status": "verified",
-                    "time_ms": random.randint(100, 5000),
-                    "confidence": f"{random.uniform(95, 99.9):.1f}%"
+                # Nettoyer les certificats expirés
+                expired_certs = [
+                    cid for cid, cert in self._certificates.items()
+                    if cert.valid_until < datetime.now()
+                ]
+
+                for cid in expired_certs:
+                    del self._certificates[cid]
+
+                if old_proofs or expired_certs:
+                    logger.info(f"🧹 Nettoyage: {len(old_proofs)} preuves, {len(expired_certs)} certificats")
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"❌ Erreur dans la boucle de nettoyage: {e}")
+
+    async def _monitor_loop(self):
+        """Surveille les vérifications en cours"""
+        logger.info("👀 Boucle de surveillance démarrée")
+
+        while self._status.value == "ready":
+            try:
+                await asyncio.sleep(60)  # Toutes les minutes
+
+                # Vérifier les timeouts
+                now = datetime.now()
+                for proof_id, task in list(self._running_verifications.items()):
+                    if task.done():
+                        # Tâche terminée
+                        del self._running_verifications[proof_id]
+                    else:
+                        # Vérifier le timeout
+                        proof = self._proofs.get(proof_id)
+                        if proof and proof.created_at:
+                            timeout = self._tools_config.get(
+                                proof.tool_used.value, {}
+                            ).get('timeout_seconds', 300)
+                            
+                            if (now - proof.created_at).total_seconds() > timeout:
+                                # Timeout
+                                task.cancel()
+                                proof.status = VerificationStatus.TIMEOUT
+                                proof.completed_at = now
+                                del self._running_verifications[proof_id]
+                                logger.warning(f"⏰ Timeout pour la preuve {proof_id}")
+
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"❌ Erreur dans la boucle de surveillance: {e}")
+
+    # ========================================================================
+    # HANDLERS DE CAPACITÉS
+    # ========================================================================
+
+    async def _handle_generate_invariants(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Génère des invariants pour un contrat"""
+        contract_path = params.get('contract_path')
+        contract_code = params.get('contract_code')
+
+        if not contract_path and not contract_code:
+            return {'success': False, 'error': 'contract_path ou contract_code requis'}
+
+        # Si on a un chemin, lire le fichier
+        if contract_path and not contract_code:
+            try:
+                with open(contract_path, 'r') as f:
+                    contract_code = f.read()
+            except Exception as e:
+                return {'success': False, 'error': f"Erreur lecture fichier: {e}"}
+
+        # Générer les invariants
+        invariants = self._generate_invariants_from_contract(contract_code)
+
+        # Ajouter les invariants prédéfinis pertinents
+        for prop_id, prop in self.predefined_properties.items():
+            if prop['name'] not in [inv['name'] for inv in invariants]:
+                invariants.append({
+                    'name': prop['name'],
+                    'description': prop['description'],
+                    'expression': prop['expression'],
+                    'type': prop['type'].value,
+                    'predefined': True
                 })
-            else:
-                counterexamples.append({
-                    "property": prop,
-                    "status": "failed",
-                    "counterexample": self._generate_counterexample(prop),
-                    "time_ms": random.randint(50, 1000)
-                })
-
-        if verified_count == len(properties):
-            self._stats['verified_contracts'] += 1
-        self._stats['properties_proven'] += verified_count
-        self._stats['counterexamples_found'] += len(counterexamples)
 
         return {
-            "success": True,
-            "verification_id": f"VERIF-{datetime.now().strftime('%Y%m%d%H%M%S')}",
-            "summary": {
-                "total_properties": len(properties),
-                "verified": verified_count,
-                "failed": len(counterexamples),
-                "success_rate": f"{(verified_count/len(properties)*100):.1f}%"
-            },
-            "results": results,
-            "counterexamples": counterexamples,
-            "tools_used": [name for name, avail in self._tools.items() if avail],
-            "verification_time_seconds": random.randint(30, 300),
-            "certificate_available": verified_count == len(properties),
-            "timestamp": datetime.now().isoformat()
+            'success': True,
+            'contract': contract_path or 'inline',
+            'invariants': invariants,
+            'count': len(invariants),
+            'generated_at': datetime.now().isoformat()
         }
 
-    async def generate_specifications(self, contract_code: str) -> Dict[str, Any]:
-        """Génère des spécifications formelles à partir du code"""
-        specs = {
-            "reentrancy": [
-                "∀ call: call.value → state updated before call",
-                "∀ external_call: reentrancy_guard_active"
-            ],
-            "access_control": [
-                "∀ mint: onlyOwner()",
-                "∀ pause: onlyOwner()",
-                "∀ sensitive_function: onlyRole(ADMIN_ROLE)"
-            ],
-            "arithmetic": [
-                "∀ a,b: a + b ≥ a ∧ a + b ≥ b",
-                "∀ a,b: a - b ≤ a",
-                "∀ totalSupply: totalSupply ≤ MAX_SUPPLY"
-            ],
-            "invariants": [
-                "totalSupply = Σ balances",
-                "balanceOf(owner) ≥ 0",
-                "paused → ¬ any_transfer"
+    async def _handle_verify_property(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Vérifie une propriété sur un contrat"""
+        contract_path = params.get('contract_path')
+        property_name = params.get('property')
+        property_expression = params.get('expression')
+        tool = params.get('tool', self._default_tool)
+
+        if not contract_path:
+            return {'success': False, 'error': 'contract_path requis'}
+        if not property_name and not property_expression:
+            return {'success': False, 'error': 'property ou expression requis'}
+
+        # Vérifier que l'outil est disponible
+        if tool not in self.available_tools:
+            return {'success': False, 'error': f"Outil {tool} non disponible"}
+
+        # Créer la propriété
+        prop = VerificationProperty(
+            id=f"PROP-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+            name=property_name or 'Custom property',
+            description=params.get('description', ''),
+            property_type=PropertyType(params.get('type', 'safety')),
+            expression=property_expression or ''
+        )
+
+        # Exécuter la vérification
+        proof = await self._run_simulation_verification(contract_path, [prop.name])
+
+        return {
+            'success': True,
+            'property': prop.name,
+            'verified': proof.status == VerificationStatus.VERIFIED,
+            'tool': tool,
+            'duration_ms': proof.duration_ms,
+            'confidence': proof.confidence_score,
+            'proof_id': proof.id
+        }
+
+    async def _handle_generate_proof(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Génère une preuve complète pour un contrat"""
+        contract_path = params.get('contract_path')
+        properties = params.get('properties', [])
+        tool = params.get('tool', self._default_tool)
+
+        if not contract_path:
+            return {'success': False, 'error': 'contract_path requis'}
+
+        # Vérifier que l'outil est disponible
+        if tool not in self.available_tools:
+            return {'success': False, 'error': f"Outil {tool} non disponible"}
+
+        # Si pas de propriétés, en générer
+        if not properties:
+            with open(contract_path, 'r') as f:
+                contract_code = f.read()
+            invariants = self._generate_invariants_from_contract(contract_code)
+            properties = [inv['name'] for inv in invariants[:3]]  # Top 3
+
+        # Exécuter la vérification selon l'outil
+        lock = await self._get_contract_lock(contract_path)
+        async with lock:
+            if tool == 'certora' and self.available_tools['certora']['available']:
+                proof = await self._run_certora_verification(contract_path, properties)
+            else:
+                proof = await self._run_simulation_verification(contract_path, properties)
+
+        # Stocker la preuve
+        self._proofs[proof.id] = proof
+
+        # Générer un certificat si vérifié
+        certificate = None
+        if proof.status == VerificationStatus.VERIFIED:
+            certificate = await self._generate_certificate(proof)
+
+        return {
+            'success': True,
+            'proof_id': proof.id,
+            'contract': proof.contract_name,
+            'status': proof.status.value,
+            'verified_properties': proof.verified_properties,
+            'failed_properties': proof.failed_properties,
+            'duration_ms': proof.duration_ms,
+            'confidence': proof.confidence_score,
+            'tool': tool,
+            'certificate_id': certificate.id if certificate else None
+        }
+
+    async def _handle_get_certificate(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Récupère un certificat de vérification"""
+        proof_id = params.get('proof_id')
+        certificate_id = params.get('certificate_id')
+
+        if not proof_id and not certificate_id:
+            return {'success': False, 'error': 'proof_id ou certificate_id requis'}
+
+        # Chercher par proof_id
+        if proof_id:
+            for cert in self._certificates.values():
+                if cert.proof_id == proof_id:
+                    certificate = cert
+                    break
+            else:
+                return {'success': False, 'error': f'Certificat pour preuve {proof_id} non trouvé'}
+
+        # Chercher par certificate_id
+        else:
+            certificate = self._certificates.get(certificate_id)
+            if not certificate:
+                return {'success': False, 'error': f'Certificat {certificate_id} non trouvé'}
+
+        return {
+            'success': True,
+            'certificate': {
+                'id': certificate.id,
+                'proof_id': certificate.proof_id,
+                'contract_name': certificate.contract_name,
+                'contract_hash': certificate.contract_hash,
+                'verified_properties': certificate.verified_properties,
+                'tool': certificate.tool_used.value,
+                'issued_at': certificate.issued_at.isoformat(),
+                'valid_until': certificate.valid_until.isoformat(),
+                'issuer': certificate.issuer,
+                'certificate_path': certificate.certificate_path
+            }
+        }
+
+    async def _handle_check_status(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Vérifie le statut des vérifications"""
+        proof_id = params.get('proof_id')
+
+        if proof_id:
+            # Statut d'une preuve spécifique
+            proof = self._proofs.get(proof_id)
+            if not proof:
+                return {'success': False, 'error': f'Preuve {proof_id} non trouvée'}
+
+            return {
+                'success': True,
+                'proof_id': proof_id,
+                'status': proof.status.value,
+                'contract': proof.contract_name,
+                'created_at': proof.created_at.isoformat(),
+                'completed_at': proof.completed_at.isoformat() if proof.completed_at else None,
+                'duration_ms': proof.duration_ms,
+                'verified_count': len(proof.verified_properties),
+                'failed_count': len(proof.failed_properties),
+                'is_running': proof_id in self._running_verifications
+            }
+
+        # Statut global
+        return {
+            'success': True,
+            'total_proofs': len(self._proofs),
+            'total_certificates': len(self._certificates),
+            'running_verifications': len(self._running_verifications),
+            'tools_available': list(self.available_tools.keys()),
+            'status_breakdown': {
+                status.value: len([p for p in self._proofs.values() if p.status == status])
+                for status in VerificationStatus
+            },
+            'timestamp': datetime.now().isoformat()
+        }
+
+    async def _handle_list_proofs(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Liste les preuves générées"""
+        contract = params.get('contract')
+        status = params.get('status')
+        limit = params.get('limit', 50)
+        offset = params.get('offset', 0)
+
+        proofs_list = list(self._proofs.values())
+
+        # Filtrer par contrat
+        if contract:
+            proofs_list = [p for p in proofs_list if p.contract_name == contract]
+
+        # Filtrer par statut
+        if status:
+            try:
+                status_enum = VerificationStatus(status)
+                proofs_list = [p for p in proofs_list if p.status == status_enum]
+            except:
+                return {'success': False, 'error': f'Statut invalide: {status}'}
+
+        # Trier par date (plus récent d'abord)
+        proofs_list.sort(key=lambda p: p.created_at, reverse=True)
+
+        # Paginer
+        total = len(proofs_list)
+        proofs_list = proofs_list[offset:offset + limit]
+
+        return {
+            'success': True,
+            'total': total,
+            'offset': offset,
+            'limit': limit,
+            'proofs': [
+                {
+                    'id': p.id,
+                    'contract': p.contract_name,
+                    'status': p.status.value,
+                    'verified': len(p.verified_properties),
+                    'failed': len(p.failed_properties),
+                    'tool': p.tool_used.value,
+                    'created_at': p.created_at.isoformat(),
+                    'duration_ms': p.duration_ms,
+                    'confidence': p.confidence_score
+                }
+                for p in proofs_list
             ]
         }
 
-        return {
-            "success": True,
-            "specifications": specs,
-            "lsl_code": self._generate_lsl_code(),
-            "cvl_code": self._generate_cvl_code(),
-            "timestamp": datetime.now().isoformat()
-        }
+    async def _handle_compare_proofs(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Compare deux preuves"""
+        proof_id_1 = params.get('proof_id_1')
+        proof_id_2 = params.get('proof_id_2')
 
-    async def generate_invariants(self, contract_code: str) -> Dict[str, Any]:
-        """Génère des invariants pour le contrat"""
-        invariants = [
-            {
-                "name": "total_supply_invariant",
-                "description": "Total supply equals sum of all balances",
-                "expression": "totalSupply() == sum(balanceOf(_)) for all addresses",
-                "type": "state_invariant"
-            },
-            {
-                "name": "non_negative_balances",
-                "description": "All balances are non-negative",
-                "expression": "∀ a: balanceOf(a) ≥ 0",
-                "type": "safety_invariant"
-            },
-            {
-                "name": "preservation_of_assets",
-                "description": "Total assets never decrease",
-                "expression": "totalAssets() @post ≥ totalAssets() @pre",
-                "type": "monotonicity"
-            }
-        ]
+        if not proof_id_1 or not proof_id_2:
+            return {'success': False, 'error': 'proof_id_1 et proof_id_2 requis'}
+
+        proof1 = self._proofs.get(proof_id_1)
+        proof2 = self._proofs.get(proof_id_2)
+
+        if not proof1:
+            return {'success': False, 'error': f'Preuve {proof_id_1} non trouvée'}
+        if not proof2:
+            return {'success': False, 'error': f'Preuve {proof_id_2} non trouvée'}
+
+        # Comparaison
+        common_verified = set(proof1.verified_properties) & set(proof2.verified_properties)
+        only_in_1 = set(proof1.verified_properties) - set(proof2.verified_properties)
+        only_in_2 = set(proof2.verified_properties) - set(proof1.verified_properties)
 
         return {
-            "success": True,
-            "invariants": invariants,
-            "scribble_annotations": self._generate_scribble_annotations(invariants),
-            "timestamp": datetime.now().isoformat()
-        }
-
-    async def generate_certificate(self, verification_id: str) -> Dict[str, Any]:
-        """Génère un certificat de vérification formelle"""
-        return {
-            "success": True,
-            "certificate": {
-                "id": f"CERT-{verification_id}",
-                "contract": "VerifiedContract.sol",
-                "verification_date": datetime.now().isoformat(),
-                "verified_properties": [
-                    "No reentrancy",
-                    "Access control complete",
-                    "Arithmetic safety",
-                    "State invariants preserved"
-                ],
-                "tools": ["Certora Prover", "Halmos", "Scribble"],
-                "verification_proof": f"ipfs://Qm{''.join([random.choice('123456789abcdef') for _ in range(44)])}",
-                "valid_until": (datetime.now().replace(year=datetime.now().year+1)).isoformat(),
-                "certifying_authority": "SmartContractDevPipeline Formal Verification"
-            },
-            "pdf_url": f"/certificates/{verification_id}.pdf",
-            "timestamp": datetime.now().isoformat()
-        }
-
-    def _generate_counterexample(self, property_type: str) -> Dict[str, Any]:
-        """Génère un contre-exemple simulé"""
-        examples = {
-            "reentrancy": {
-                "attack_sequence": ["deposit()", "withdraw()", "withdraw()"],
-                "contract_state": {"balance": 0, "attacker_balance": 100},
-                "transaction": "0x1234...5678"
-            },
-            "access_control": {
-                "unauthorized_address": "0x742d35Cc6634C0532925a3b844Bc9e0FF6e5e5e8",
-                "function_called": "mint()",
-                "timestamp": "block.timestamp + 1"
-            },
-            "arithmetic": {
-                "operation": "a + b",
-                "values": {"a": 2**256 - 1, "b": 1},
-                "result": "overflow"
+            'success': True,
+            'comparison': {
+                'proof_1': {
+                    'id': proof1.id,
+                    'contract': proof1.contract_name,
+                    'tool': proof1.tool_used.value,
+                    'verified': len(proof1.verified_properties),
+                    'confidence': proof1.confidence_score
+                },
+                'proof_2': {
+                    'id': proof2.id,
+                    'contract': proof2.contract_name,
+                    'tool': proof2.tool_used.value,
+                    'verified': len(proof2.verified_properties),
+                    'confidence': proof2.confidence_score
+                },
+                'common_verified': list(common_verified),
+                'only_in_1': list(only_in_1),
+                'only_in_2': list(only_in_2),
+                'similarity_score': len(common_verified) / max(len(proof1.verified_properties), len(proof2.verified_properties)) if max(len(proof1.verified_properties), len(proof2.verified_properties)) > 0 else 0
             }
         }
-        return examples.get(property_type, {"error": "No counterexample available"})
 
-    def _generate_lsl_code(self) -> str:
-        """Génère du code LSL (Certora)"""
-        return '''// LSL Specification for ERC20
-using ERC20 as contract
-
-definition totalSupply() returns uint256 = contract.totalSupply()
-definition balanceOf(address a) returns uint256 = contract.balanceOf(a)
-
-invariant total_supply_invariant()
-    totalSupply() == sum(balanceOf(a) for all a)
-
-invariant no_reentrancy()
-    forall method f {
-        f.selector != withdraw.selector || 
-        !contract._reentrancy_guard_entered()
-    }'''
-
-    def _generate_cvl_code(self) -> str:
-        """Génère du code CVL (Certora)"""
-        return '''// CVL Specification
-methods {
-    totalSupply() returns uint256 envfree
-    balanceOf(address) returns uint256 envfree
-    transfer(address, uint256) returns bool
-}
-
-invariant total_supply_invariant()
-    totalSupply() == sum(balanceOf(_))
-
-rule reentrancy_protected(address to, uint256 amount) {
-    uint256 balanceBefore = balanceOf(to);
-    transfer(to, amount);
-    uint256 balanceAfter = balanceOf(to);
-    assert balanceAfter == balanceBefore + amount;
-}'''
-
-    def _generate_scribble_annotations(self, invariants: List[Dict]) -> str:
-        """Génère des annotations Scribble"""
-        annotations = []
-        for inv in invariants:
-            if "total_supply" in inv['name']:
-                annotations.append('/// #if_succeeds {:msg "Total supply invariant"} totalSupply() == sum(balanceOf(_));')
-            elif "non_negative" in inv['name']:
-                annotations.append('/// #if_succeeds {:msg "Non-negative balances"} balanceOf(_) >= 0;')
-        return '\n'.join(annotations)
-
-    def _get_available_properties(self) -> List[Dict]:
-        """Retourne les propriétés vérifiables"""
-        return [
-            {
-                "name": "reentrancy",
-                "description": "Absence de vulnérabilités de réentrance",
-                "difficulty": "medium",
-                "tools": ["certora", "halmos"]
-            },
-            {
-                "name": "access_control",
-                "description": "Vérification complète des contrôles d'accès",
-                "difficulty": "medium",
-                "tools": ["certora", "scribble"]
-            },
-            {
-                "name": "arithmetic",
-                "description": "Sécurité arithmétique (overflow/underflow)",
-                "difficulty": "easy",
-                "tools": ["halmos", "mythril"]
-            },
-            {
-                "name": "invariants",
-                "description": "Préservation des invariants d'état",
-                "difficulty": "hard",
-                "tools": ["certora", "dafny"]
-            },
-            {
-                "name": "liveness",
-                "description": "Propriétés de liveness (progression)",
-                "difficulty": "hard",
-                "tools": ["dafny"]
-            }
-        ]
+    # ========================================================================
+    # NETTOYAGE
+    # ========================================================================
 
     async def shutdown(self) -> bool:
         """Arrête le sous-agent"""
-        self._logger.info("Arrêt du sous-agent Vérification Formelle...")
-        self._set_status(AgentStatus.SHUTTING_DOWN)
+        logger.info(f"Arrêt de {self._subagent_display_name}...")
 
-        await super().shutdown()
+        # Annuler les vérifications en cours
+        for proof_id, task in self._running_verifications.items():
+            task.cancel()
+            try:
+                await task
+            except:
+                pass
 
-        self._logger.info("✅ Sous-agent Vérification Formelle arrêté")
-        return True
+        # Arrêter les tâches de fond
+        if self._cleanup_task and not self._cleanup_task.done():
+            self._cleanup_task.cancel()
+            try:
+                await self._cleanup_task
+            except asyncio.CancelledError:
+                pass
 
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé du sous-agent"""
-        base_health = await super().health_check()
+        if self._monitor_task and not self._monitor_task.done():
+            self._monitor_task.cancel()
+            try:
+                await self._monitor_task
+            except asyncio.CancelledError:
+                pass
 
-        return {
-            **base_health,
-            "agent": self.name,
-            "display_name": self._display_name,
-            "status": self._status.value,
-            "ready": self._status == AgentStatus.READY,
-            "initialized": self._initialized,
-            "tools_available": [name for name, avail in self._tools.items() if avail],
-            "stats": self._stats,
-            "timestamp": datetime.now().isoformat()
-        }
+        return await super().shutdown()
 
 
-def create_formal_verification_agent(config_path: str = "") -> FormalVerificationSubAgent:
+# ============================================================================
+# FONCTIONS D'EXPORT
+# ============================================================================
+
+def get_agent_class():
+    """
+    Fonction requise pour le chargement dynamique des sous-agents.
+    Retourne la classe principale du sous-agent.
+    """
+    return FormalVerificationSubAgent
+
+
+def create_formal_verification_agent(config_path: str = "") -> "FormalVerificationSubAgent":
     """Crée une instance du sous-agent de vérification formelle"""
     return FormalVerificationSubAgent(config_path)

@@ -1,27 +1,138 @@
-# agents/smart_contract/sous_agents/solidity_expert/config.yaml
+# ============================================================================
+# 🔷 Solidity Expert SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
 agent:
   name: "SolidityExpertSubAgent"
   display_name: "🔷 Expert Solidity"
-  description: "Expert en développement Solidity avancé"
-  version: "1.0.0"
+  description: |
+    Développement Solidity avancé avec génération de contrats,
+    interfaces, bibliothèques, et vérification des bonnes pratiques.
+  version: "2.0.0"
   class_name: "SolidityExpertSubAgent"
   module_path: "agents.smart_contract.sous_agents.solidity_expert.agent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 120
   max_retries: 2
+  temp_dir: "temp/solidity"
 
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-  - name: "solidity_generation"
-    description: "Génération de code Solidity"
+  - name: "solidity.generate_contract"
+    description: "Génération de contrats Solidity"
     confidence: 0.95
-  - name: "solidity_optimization"
-    description: "Optimisation de code Solidity"
-    confidence: 0.9
-  - name: "pattern_implementation"
-    description: "Implémentation de patterns de conception"
+
+  - name: "solidity.generate_interface"
+    description: "Génération d'interfaces"
     confidence: 0.95
-  - name: "error_handling"
-    description: "Gestion des erreurs et exceptions"
-    confidence: 0.9
+
+  - name: "solidity.generate_library"
+    description: "Génération de bibliothèques"
+    confidence: 0.90
+
+  - name: "solidity.check_best_practices"
+    description: "Vérification des bonnes pratiques"
+    confidence: 0.88
+
+  - name: "solidity.migrate_version"
+    description: "Migration entre versions Solidity"
+    confidence: 0.85
+
+  - name: "solidity.explain_code"
+    description: "Explication de code Solidity"
+    confidence: 0.80
+
+  - name: "solidity.validate_code"
+    description: "Validation syntaxique du code"
+    confidence: 0.92
+
+  - name: "solidity.get_templates"
+    description: "Liste des templates disponibles"
+    confidence: 0.99
+
+# ============================================================================
+# CONFIGURATION SOLIDITY
+# ============================================================================
+solidity:
+  default_version: "0.8.19"
+  enable_optimizer: true
+  optimizer_runs: 200
+  via_ir: false
+  supported_versions:
+    - "0.4.24"
+    - "0.5.17"
+    - "0.6.12"
+    - "0.7.6"
+    - "0.8.0"
+    - "0.8.19"
+    - "0.8.28"
+
+# ============================================================================
+# STANDARDS SUPPORTÉS
+# ============================================================================
+standards:
+  - "ERC20"
+  - "ERC721"
+  - "ERC1155"
+  - "ERC4626"
+  - "ERC1967"
+  - "ERC2535"
+
+# ============================================================================
+# TEMPLATES
+# ============================================================================
+templates:
+  enabled:
+    - "erc20_basic"
+    - "erc721_basic"
+    - "simple_storage"
+    - "ownable"
+  
+  custom_templates_path: "templates/solidity/"
+
+# ============================================================================
+# BONNES PRATIQUES
+# ============================================================================
+best_practices:
+  categories:
+    - "security"
+    - "gas"
+    - "design"
+    - "testing"
+  
+  severity_threshold: "medium"  # minimum severity to report
+  enable_automatic_checks: true
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  max_generated_contracts: 100
+  retention_days: 7
+  save_generated_code: true
+  generated_code_path: "generated/solidity/"
+  enable_import_resolution: true
+  import_paths:
+    - "node_modules"
+    - "contracts"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 8
+  last_reviewed: "2026-03-11"
+  dependencies:
+    - "solc"
+    - "@openzeppelin/contracts"
