@@ -1,16 +1,162 @@
-sub_agent:
-  id: fuzzing_expert_01
-  name: Fuzzing
-  parent: tester
-  specialization: Fuzzing
-  version: 1.0.0
+# ============================================================================
+# 🎲 Fuzzing Expert SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "FuzzingExpertSubAgent"
+  display_name: "🎲 Fuzzing Expert"
+  description: |
+    Fuzzing avancé pour smart contracts avec Echidna, Medusa, Foundry.
+    Détection automatique de vulnérabilités, analyse de couverture.
+  version: "2.0.0"
+  class_name: "FuzzingExpertSubAgent"
+  module_path: "agents.tester.sous_agents.fuzzing_expert.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 600
+  max_retries: 1
+  temp_dir: "temp/fuzzing"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
+  - name: "fuzzing.run_campaign"
+    description: "Lance une campagne de fuzzing"
+    confidence: 0.92
+
+  - name: "fuzzing.get_results"
+    description: "Récupère les résultats d'une campagne"
+    confidence: 0.98
+
+  - name: "fuzzing.list_campaigns"
+    description: "Liste les campagnes de fuzzing"
+    confidence: 0.98
+
+  - name: "fuzzing.analyze_coverage"
+    description: "Analyse la couverture de code"
+    confidence: 0.90
+
+  - name: "fuzzing.generate_corpus"
+    description: "Génère un corpus optimisé"
+    confidence: 0.85
+
+  - name: "fuzzing.simulate_attack_vector"
+    description: "Simule un vecteur d'attaque"
+    confidence: 0.88
+
+# ============================================================================
+# MOTEURS DE FUZZING
+# ============================================================================
+engines:
+  default: "simulation"
+  
+  echidna:
+    enabled: true
+    version: "2.0.0"
+    config_template: |
+      testLimit: {test_limit}
+      seqLen: 100
+      shrinkLimit: 5000
+      corpusDir: "{corpus_dir}"
+  
+  medusa:
+    enabled: true
+    version: "1.0.0"
+    config_template: |
+      testLimit: {test_limit}
+      coverageEnabled: true
+      workers: 4
+  
+  foundry:
+    enabled: true
+    version: "0.2.0"
+    config_template: |
+      fuzz_runs = {test_limit}
+      fuzz_check_assertions = true
+
+# ============================================================================
+# STRATÉGIES DE FUZZING
+# ============================================================================
+strategies:
+  - name: "random"
+    description: "Génération aléatoire d'entrées"
+    default: false
+  
+  - name: "coverage_guided"
+    description: "Guidé par la couverture de code"
+    default: true
+  
+  - name: "invariant_based"
+    description: "Basé sur la vérification d'invariants"
+    default: false
+  
+  - name: "delta"
+    description: "Mutation d'entrées existantes"
+    default: false
+  
+  - name: "comprehensive"
+    description: "Combinaison de toutes les stratégies"
+    default: true
+
+# ============================================================================
+# PARAMÈTRES PAR DÉFAUT
+# ============================================================================
+defaults:
+  test_limit: 10000
+  time_limit_seconds: 300
+  corpus_dir: "corpus/"
+  coverage_threshold: 80
+  save_failures: true
+  save_coverage: true
+
+# ============================================================================
+# DÉTECTION DE VULNÉRABILITÉS
+# ============================================================================
+vulnerability_detection:
+  enabled_patterns:
+    - "reentrancy"
+    - "integer_overflow"
+    - "access_control"
+    - "unchecked_call"
+    - "timestamp_dependency"
+    - "denial_of_service"
+  
+  severity_mapping:
+    reentrancy: "critical"
+    access_control: "high"
+    integer_overflow: "high"
+    unchecked_call: "medium"
+    timestamp_dependency: "low"
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
 parameters:
-  timeout_seconds: 60
-  max_retries: 2
-logging:
-  level: INFO
+  max_campaigns_parallel: 2
+  corpus_optimization: true
+  corpus_max_size_mb: 100
+  failure_analysis: true
+  save_traces: true
+  traces_path: "traces/fuzzing/"
+  reports_path: "reports/fuzzing/"
+  artifacts_retention_days: 14
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 6
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "echidna>=2.0.0"
+    - "medusa>=1.0.0"
+    - "foundry>=0.2.0"

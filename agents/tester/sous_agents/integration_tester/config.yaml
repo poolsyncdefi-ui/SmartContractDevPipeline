@@ -1,16 +1,121 @@
-sub_agent:
-  id: integration_tester_01
-  name: Integration Testing
-  parent: tester
-  specialization: Integration Testing
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# ============================================================================
+# 🔗 Integration Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "IntegrationTesterSubAgent"
+  display_name: "🔗 Tests d'Intégration"
+  description: |
+    Tests d'intégration entre composants : contrats, agents, services externes.
+    Support fork testing, simulations d'attaques, validation de flows.
+  version: "2.0.0"
+  class_name: "IntegrationTesterSubAgent"
+  module_path: "agents.tester.sous_agents.integration_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 600
   max_retries: 2
-logging:
-  level: INFO
+  temp_dir: "temp/integration_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "integration.test_contract_interaction"
+    description: "Teste les interactions entre contrats"
+    confidence: 0.92
+
+  - name: "integration.test_agent_communication"
+    description: "Teste les communications entre agents"
+    confidence: 0.90
+
+  - name: "integration.fork_test"
+    description: "Exécute des tests sur un fork de la mainnet"
+    confidence: 0.88
+
+  - name: "integration.simulate_attack"
+    description: "Simule des attaques sur les contrats"
+    confidence: 0.85
+
+  - name: "integration.validate_flow"
+    description: "Valide des flows complets"
+    confidence: 0.90
+
+# ============================================================================
+# ENVIRONNEMENTS
+# ============================================================================
+environments:
+  local:
+    enabled: true
+    url: "http://localhost:8545"
+    chain_id: 31337
+  
+  fork:
+    enabled: true
+    url: "http://localhost:8545"
+    networks:
+      ethereum:
+        fork_url: "https://mainnet.infura.io/v3/${INFURA_KEY}"
+        block_number: "latest"
+      polygon:
+        fork_url: "https://polygon-mainnet.infura.io/v3/${INFURA_KEY}"
+        block_number: "latest"
+  
+  testnet:
+    enabled: true
+    networks:
+      sepolia:
+        rpc_url: "https://sepolia.infura.io/v3/${INFURA_KEY}"
+        chain_id: 11155111
+      mumbai:
+        rpc_url: "https://polygon-mumbai.infura.io/v3/${INFURA_KEY}"
+        chain_id: 80001
+
+# ============================================================================
+# TESTS D'INTÉGRATION PRÉDÉFINIS
+# ============================================================================
+integration_tests:
+  - id: "contract_to_contract_01"
+    name: "Token Transfer between contracts"
+    type: "contract_to_contract"
+    components: ["TokenA", "TokenB"]
+    dependencies: []
+    timeout: 60
+  
+  - id: "agent_communication_01"
+    name: "Agent Communication Test"
+    type: "agent_to_agent"
+    components: ["ArchitectAgent", "CoderAgent"]
+    dependencies: []
+    timeout: 30
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  default_timeout_seconds: 60
+  max_parallel_tests: 3
+  test_retries: 1
+  save_traces: true
+  traces_path: "reports/integration_traces/"
+  save_reports: true
+  reports_path: "reports/integration_tests/"
+  artifacts_retention_days: 7
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "pytest>=7.0.0"
+    - "web3>=6.0.0"

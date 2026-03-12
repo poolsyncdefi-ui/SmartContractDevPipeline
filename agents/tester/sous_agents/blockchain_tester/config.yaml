@@ -1,0 +1,176 @@
+# ============================================================================
+# ⛓️ Blockchain Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "BlockchainTesterSubAgent"
+  display_name: "⛓️ Tests Blockchain"
+  description: |
+    Tests spécialisés pour smart contracts et protocoles blockchain :
+    gas optimization, invariants, cross-chain, attaques DeFi.
+  version: "2.0.0"
+  class_name: "BlockchainTesterSubAgent"
+  module_path: "agents.tester.sous_agents.blockchain_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 600
+  max_retries: 2
+  temp_dir: "temp/blockchain_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "blockchain.test_gas_optimization"
+    description: "Analyse et optimise la consommation de gas"
+    confidence: 0.92
+
+  - name: "blockchain.test_invariants"
+    description: "Teste les invariants du contrat"
+    confidence: 0.90
+
+  - name: "blockchain.test_cross_chain"
+    description: "Teste la compatibilité cross-chain"
+    confidence: 0.85
+
+  - name: "blockchain.simulate_defi_attack"
+    description: "Simule des attaques DeFi"
+    confidence: 0.88
+
+  - name: "blockchain.test_evm_compatibility"
+    description: "Teste la compatibilité EVM"
+    confidence: 0.90
+
+  - name: "blockchain.test_upgradeability"
+    description: "Teste les patterns d'upgradeability"
+    confidence: 0.87
+
+# ============================================================================
+# RÉSEAUX BLOCKCHAIN
+# ============================================================================
+networks:
+  local:
+    enabled: true
+    chain_id: 31337
+    rpc_url: "http://localhost:8545"
+    currency: "ETH"
+  
+  ethereum:
+    enabled: true
+    chain_id: 1
+    rpc_url: "https://mainnet.infura.io/v3/${INFURA_KEY}"
+    currency: "ETH"
+    testnet: "sepolia"
+  
+  polygon:
+    enabled: true
+    chain_id: 137
+    rpc_url: "https://polygon-mainnet.infura.io/v3/${INFURA_KEY}"
+    currency: "MATIC"
+    testnet: "mumbai"
+  
+  arbitrum:
+    enabled: true
+    chain_id: 42161
+    rpc_url: "https://arbitrum-mainnet.infura.io/v3/${INFURA_KEY}"
+    currency: "ETH"
+    testnet: "arbitrum-goerli"
+  
+  optimism:
+    enabled: true
+    chain_id: 10
+    rpc_url: "https://optimism-mainnet.infura.io/v3/${INFURA_KEY}"
+    currency: "ETH"
+    testnet: "optimism-goerli"
+  
+  bsc:
+    enabled: false
+    chain_id: 56
+    rpc_url: "https://bsc-dataseed.binance.org"
+    currency: "BNB"
+  
+  avalanche:
+    enabled: false
+    chain_id: 43114
+    rpc_url: "https://api.avax.network/ext/bc/C/rpc"
+    currency: "AVAX"
+
+# ============================================================================
+# TESTS DE GAS
+# ============================================================================
+gas_testing:
+  default_functions: ["transfer", "approve", "transferFrom", "mint", "burn"]
+  gas_price_source: "ethgasstation"
+  optimization_targets:
+    deployment: 3000000
+    transfer: 50000
+    approve: 45000
+    mint: 100000
+  
+  suggestions:
+    - "Utiliser des variables immutables"
+    - "Optimiser le stockage"
+    - "Utiliser des libraries"
+    - "Custom errors instead of strings"
+
+# ============================================================================
+# TESTS D'INVARIANTS
+# ============================================================================
+invariant_testing:
+  default_invariants:
+    - "total_supply_invariant"
+    - "no_reentrancy"
+    - "access_control"
+    - "integer_overflow"
+  
+  fuzz_runs: 1000
+  depth: 100
+
+# ============================================================================
+# SIMULATIONS D'ATTAQUES
+# ============================================================================
+attack_simulations:
+  flash_loan:
+    enabled: true
+    max_loan_usd: 10000000
+    protocols: ["aave", "uniswap", "balancer"]
+  
+  oracle_manipulation:
+    enabled: true
+    oracles: ["chainlink", "uniswapV2", "uniswapV3"]
+  
+  sandwich:
+    enabled: true
+    max_slippage: 5  # %
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  default_network: "local"
+  test_retries: 1
+  save_reports: true
+  reports_path: "reports/blockchain/"
+  artifacts_retention_days: 14
+  collect_coverage: true
+  coverage_path: "coverage/blockchain/"
+  gas_report_path: "reports/gas/"
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 6
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "web3>=6.0.0"
+    - "eth-tester>=0.9.0"
+    - "py-evm>=0.7.0"

@@ -552,50 +552,57 @@ agent:
     load_generators: "Distributed load testing"
     parallel_execution: "Up to 50 concurrent workers"
 
-  # === SOUS-AGENTS ===
+  # ============================================================================
+  # SOUS-AGENTS SPÉCIALISÉS
+  # ============================================================================
   subAgents:
-    - id: "e2e_tester"
-      name: "E2E Testing"
-      display_name: "E2E Testing"
-      config_path: "agents/tester/sous_agents/e2e_tester/config.yaml"
-      dependencies: ["tester"]
-      specialization: "end_to_end_testing"
-    - id: "fuzzing_expert"
-      name: "Fuzzing"
-      display_name: "Fuzzing"
-      config_path: "agents/tester/sous_agents/fuzzing_expert/config.yaml"
-      dependencies: ["tester"]
-      specialization: "fuzzing_security"
-    - id: "integration_tester"
-      name: "Integration Testing"
-      display_name: "Integration Testing"
-      config_path: "agents/tester/sous_agents/integration_tester/config.yaml"
-      dependencies: ["tester"]
-      specialization: "integration_testing"
     - id: "unit_tester"
-      name: "Unit Testing"
-      display_name: "Unit Testing"
+      enabled: true
+      name: "UnitTesterSubAgent"
+      display_name: "🧪 Tests Unitaires"
+      description: "Exécution et validation des tests unitaires"
       config_path: "agents/tester/sous_agents/unit_tester/config.yaml"
-      dependencies: ["tester"]
-      specialization: "unit_testing"
-    - id: "security_tester"
-      name: "Security Testing"
-      display_name: "Security Testing"
-      config_path: "agents/tester/sous_agents/security_tester/config.yaml"
-      dependencies: ["tester"]
-      specialization: "security_penetration"
-    - id: "performance_tester"
-      name: "Performance Testing"
-      display_name: "Performance Testing"
-      config_path: "agents/tester/sous_agents/performance_tester/config.yaml"
-      dependencies: ["tester"]
-      specialization: "load_performance"
-    - id: "blockchain_tester"
-      name: "Blockchain Testing"
-      display_name: "Blockchain Testing"
-      config_path: "agents/tester/sous_agents/blockchain_tester/config.yaml"
-      dependencies: ["tester", "smart_contract"]
-      specialization: "smart_contract_testing"
+      module_path: "agents.tester.sous_agents.unit_tester.agent"
+      class_name: "UnitTesterSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 1
+
+    - id: "integration_tester"
+      enabled: true
+      name: "IntegrationTesterSubAgent"
+      display_name: "🔗 Tests d'Intégration"
+      description: "Tests d'intégration entre composants"
+      config_path: "agents/tester/sous_agents/integration_tester/config.yaml"
+      module_path: "agents.tester.sous_agents.integration_tester.agent"
+      class_name: "IntegrationTesterSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 2
+
+    - id: "e2e_tester"
+      enabled: true
+      name: "E2ETesterSubAgent"
+      display_name: "🌐 Tests End-to-End"
+      description: "Tests de flows utilisateur complets"
+      config_path: "agents/tester/sous_agents/e2e_tester/config.yaml"
+      module_path: "agents.tester.sous_agents.e2e_tester.agent"
+      class_name: "E2ETesterSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 3
+
+    - id: "fuzzing_expert"
+      enabled: true
+      name: "FuzzingExpertSubAgent"
+      display_name: "🎲 Fuzzing Expert"
+      description: "Fuzzing avancé pour smart contracts"
+      config_path: "agents/tester/sous_agents/fuzzing_expert/config.yaml"
+      module_path: "agents.tester.sous_agents.fuzzing_expert.agent"
+      class_name: "FuzzingExpertSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 4
 
   # === MÉTADONNÉES ===
   metadata:

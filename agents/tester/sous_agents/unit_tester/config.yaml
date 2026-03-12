@@ -1,16 +1,153 @@
-sub_agent:
-  id: unit_tester_01
-  name: Unit Testing
-  parent: tester
-  specialization: Unit Testing
-  version: 1.0.0
-capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
-  timeout_seconds: 60
+# ============================================================================
+# 🧪 Unit Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "UnitTesterSubAgent"
+  display_name: "🧪 Tests Unitaires"
+  description: |
+    Exécution et validation des tests unitaires pour smart contracts, backend et frontend.
+    Supporte pytest, hardhat, foundry, jest, mocha.
+  version: "2.0.0"
+  class_name: "UnitTesterSubAgent"
+  module_path: "agents.tester.sous_agents.unit_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 300
   max_retries: 2
-logging:
-  level: INFO
+  temp_dir: "temp/unit_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "unit.run_tests"
+    description: "Exécute les tests unitaires"
+    confidence: 0.95
+
+  - name: "unit.get_coverage"
+    description: "Récupère le rapport de couverture"
+    confidence: 0.92
+
+  - name: "unit.generate_report"
+    description: "Génère un rapport de test détaillé"
+    confidence: 0.95
+
+  - name: "unit.list_suites"
+    description: "Liste les suites de test disponibles"
+    confidence: 0.98
+
+  - name: "unit.run_specific_test"
+    description: "Exécute un test spécifique"
+    confidence: 0.90
+
+  - name: "unit.watch_mode"
+    description: "Active le mode watch (réexécution automatique)"
+    confidence: 0.85
+
+# ============================================================================
+# FRAMEWORKS DE TEST
+# ============================================================================
+frameworks:
+  default: "pytest"
+  
+  pytest:
+    enabled: true
+    version: "7.0.0"
+    options:
+      - "-v"
+      - "--tb=short"
+      - "--strict-markers"
+  
+  hardhat:
+    enabled: true
+    version: "2.17.0"
+    options:
+      - "--network hardhat"
+  
+  foundry:
+    enabled: true
+    version: "0.2.0"
+    options:
+      - "--ffi"
+      - "--gas-report"
+  
+  jest:
+    enabled: false
+    version: "29.0.0"
+    options:
+      - "--coverage"
+  
+  mocha:
+    enabled: false
+    version: "10.0.0"
+    options:
+      - "--timeout 10000"
+
+# ============================================================================
+# CHEMINS DE TEST
+# ============================================================================
+test_paths:
+  pytest: "tests/"
+  hardhat: "test/"
+  foundry: "test/"
+  jest: "__tests__/"
+  mocha: "test/"
+
+# ============================================================================
+# COUVERTURE DE CODE
+# ============================================================================
+coverage:
+  enabled: true
+  min_percentage: 80
+  fail_below_min: false
+  report_formats:
+    - "html"
+    - "xml"
+    - "json"
+  exclude_patterns:
+    - "**/migrations/*"
+    - "**/node_modules/*"
+    - "**/__pycache__/*"
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  parallel_execution: true
+  max_parallel_tests: 4
+  test_retries: 2
+  fail_fast: false
+  show_progress: true
+  save_reports: true
+  reports_path: "reports/unit_tests/"
+  artifacts_retention_days: 7
+
+# ============================================================================
+# INTÉGRATION CONTINUE
+# ============================================================================
+ci:
+  enabled: true
+  junit_report: true
+  junit_path: "reports/junit.xml"
+  github_actions: false
+  gitlab_ci: false
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 6
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "pytest>=7.0.0"
+    - "pytest-cov>=4.0.0"
+    - "pytest-asyncio>=0.21.0"

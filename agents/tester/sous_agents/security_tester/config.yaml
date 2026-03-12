@@ -1,0 +1,135 @@
+# ============================================================================
+# 🛡️ Security Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "SecurityTesterSubAgent"
+  display_name: "🛡️ Tests de Sécurité"
+  description: |
+    Tests de sécurité avancés : tests de pénétration, analyse de vulnérabilités,
+    scan de smart contracts, tests d'injection, analyse statique et dynamique.
+  version: "2.0.0"
+  class_name: "SecurityTesterSubAgent"
+  module_path: "agents.tester.sous_agents.security_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 600
+  max_retries: 2
+  temp_dir: "temp/security_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "security.run_penetration_test"
+    description: "Exécute un test de pénétration"
+    confidence: 0.88
+
+  - name: "security.scan_vulnerabilities"
+    description: "Scanne les vulnérabilités d'un contrat"
+    confidence: 0.92
+
+  - name: "security.analyze_access_control"
+    description: "Analyse les contrôles d'accès"
+    confidence: 0.90
+
+  - name: "security.test_injection"
+    description: "Teste les vulnérabilités d'injection"
+    confidence: 0.85
+
+  - name: "security.dos_test"
+    description: "Teste les vulnérabilités DoS"
+    confidence: 0.87
+
+  - name: "security.get_report"
+    description: "Génère un rapport de test de sécurité"
+    confidence: 0.95
+
+# ============================================================================
+# OUTILS DE SÉCURITÉ
+# ============================================================================
+security_tools:
+  slither:
+    enabled: true
+    version: "0.9.0"
+    detectors: ["all"]
+    exclude_detectors: ["naming-convention"]
+  
+  mythril:
+    enabled: true
+    version: "0.23.0"
+    analysis_depth: 20
+    execution_timeout: 300
+  
+  echidna:
+    enabled: true
+    version: "2.0.0"
+    test_limit: 10000
+  
+  securify:
+    enabled: false
+    version: "2.0"
+
+# ============================================================================
+# TYPES DE TESTS
+# ============================================================================
+test_types:
+  penetration:
+    depths: ["quick", "standard", "deep"]
+    default_depth: "standard"
+    attack_vectors:
+      - "reentrancy"
+      - "front_running"
+      - "flash_loans"
+      - "signature_replay"
+      - "access_control"
+  
+  vulnerability_scan:
+    tools: ["slither", "mythril", "echidna"]
+    default_tool: "slither"
+  
+  injection:
+    types: ["sql", "command", "script"]
+    payloads_path: "payloads/injection/"
+
+# ============================================================================
+# SEUILS DE SÉVÉRITÉ
+# ============================================================================
+severity_thresholds:
+  critical: 9.0
+  high: 7.0
+  medium: 4.0
+  low: 2.0
+  info: 0.0
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  default_test_depth: "standard"
+  max_findings_per_test: 50
+  include_evidence: true
+  include_remediation: true
+  save_reports: true
+  reports_path: "reports/security/"
+  artifacts_retention_days: 30
+  notify_on_critical: true
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 6
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "slither-analyzer>=0.9.0"
+    - "mythril>=0.23.0"
+    - "echidna>=2.0.0"

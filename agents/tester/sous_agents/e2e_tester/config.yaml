@@ -1,16 +1,236 @@
-sub_agent:
-  id: e2e_tester_01
-  name: E2E Testing
-  parent: tester
-  specialization: E2E Testing
-  version: 1.0.0
+# ============================================================================
+# 🌐 E2E Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "E2ETesterSubAgent"
+  display_name: "🌐 Tests End-to-End"
+  description: |
+    Tests de flows utilisateur complets du frontend à la blockchain.
+    Scénarios réalistes, tests cross-browser, métriques UX.
+  version: "2.0.0"
+  class_name: "E2ETesterSubAgent"
+  module_path: "agents.tester.sous_agents.e2e_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 300
+  max_retries: 1
+  temp_dir: "temp/e2e_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
+  - name: "e2e.run_scenario"
+    description: "Exécute un scénario E2E"
+    confidence: 0.90
+
+  - name: "e2e.list_scenarios"
+    description: "Liste les scénarios disponibles"
+    confidence: 0.98
+
+  - name: "e2e.test_mobile"
+    description: "Exécute des tests sur appareils mobiles"
+    confidence: 0.85
+
+  - name: "e2e.collect_metrics"
+    description: "Collecte des métriques de performance"
+    confidence: 0.88
+
+  - name: "e2e.record_session"
+    description: "Enregistre une session de test"
+    confidence: 0.85
+
+# ============================================================================
+# URL DE BASE
+# ============================================================================
+base_url: "http://localhost:3000"
+
+# ============================================================================
+# NAVIGATEURS SUPPORTÉS
+# ============================================================================
+browsers:
+  chromium:
+    enabled: true
+    version: "latest"
+    headless_default: true
+  
+  firefox:
+    enabled: true
+    version: "latest"
+    headless_default: true
+  
+  webkit:
+    enabled: true
+    version: "latest"
+    headless_default: true
+  
+  chrome:
+    enabled: true
+    version: "latest"
+    headless_default: true
+  
+  edge:
+    enabled: true
+    version: "latest"
+    headless_default: true
+
+# ============================================================================
+# APPAREILS POUR TESTS MOBILES
+# ============================================================================
+devices:
+  iphone_12:
+    viewport:
+      width: 390
+      height: 844
+    user_agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) ..."
+  
+  iphone_se:
+    viewport:
+      width: 375
+      height: 667
+    user_agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2 like Mac OS X) ..."
+  
+  pixel_5:
+    viewport:
+      width: 393
+      height: 851
+    user_agent: "Mozilla/5.0 (Linux; Android 11; Pixel 5) ..."
+  
+  ipad_pro:
+    viewport:
+      width: 1024
+      height: 1366
+    user_agent: "Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) ..."
+  
+  surface_pro:
+    viewport:
+      width: 1280
+      height: 720
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ..."
+
+# ============================================================================
+# SCÉNARIOS DE TEST
+# ============================================================================
+scenarios:
+  - id: "connect_wallet"
+    name: "Connexion Wallet"
+    description: "L'utilisateur connecte son wallet via RainbowKit"
+    steps:
+      - name: "Visiter la page d'accueil"
+        type: "navigation"
+        element: "/"
+      - name: "Cliquer sur Connect Wallet"
+        type: "click"
+        element: "button[data-testid='connect-wallet']"
+      - name: "Sélectionner MetaMask"
+        type: "click"
+        element: "button:has-text('MetaMask')"
+      - name: "Confirmer la connexion"
+        type: "action"
+        element: "confirm"
+    timeout: 60
+
+  - id: "mint_nft"
+    name: "Mint d'un NFT"
+    description: "L'utilisateur mint un NFT"
+    steps:
+      - name: "Visiter la page NFT"
+        type: "navigation"
+        element: "/nft"
+      - name: "Cliquer sur Mint"
+        type: "click"
+        element: "button[data-testid='mint-button']"
+      - name: "Confirmer la transaction"
+        type: "action"
+        element: "confirm"
+      - name: "Attendre la confirmation"
+        type: "wait"
+        element: "text=Success"
+    required_contracts: ["NFTContract"]
+    timeout: 120
+
+  - id: "swap_tokens"
+    name: "Swap de tokens"
+    description: "L'utilisateur swap des tokens sur un DEX"
+    steps:
+      - name: "Visiter la page Swap"
+        type: "navigation"
+        element: "/swap"
+      - name: "Sélectionner token source"
+        type: "select"
+        element: "#token-from"
+      - name: "Sélectionner token cible"
+        type: "select"
+        element: "#token-to"
+      - name: "Entrer montant"
+        type: "input"
+        element: "#amount"
+      - name: "Cliquer sur Swap"
+        type: "click"
+        element: "button[data-testid='swap-button']"
+      - name: "Confirmer la transaction"
+        type: "action"
+        element: "confirm"
+    required_contracts: ["RouterContract", "TokenA", "TokenB"]
+    timeout: 180
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
 parameters:
-  timeout_seconds: 60
-  max_retries: 2
-logging:
-  level: INFO
+  default_viewport:
+    width: 1280
+    height: 720
+  
+  video_recording:
+    enabled: true
+    path: "recordings/"
+    format: "mp4"
+  
+  screenshot_on_failure: true
+  screenshot_path: "screenshots/"
+  
+  network_recording: true
+  network_log_path: "logs/network/"
+  
+  console_recording: true
+  console_log_path: "logs/console/"
+  
+  trace_recording: true
+  trace_path: "traces/"
+  
+  artifacts_retention_days: 7
+
+# ============================================================================
+# MÉTRIQUES UX
+# ============================================================================
+ux_metrics:
+  enabled: true
+  thresholds:
+    first_contentful_paint_ms: 1000
+    time_to_interactive_ms: 3000
+    largest_contentful_paint_ms: 2500
+    cumulative_layout_shift: 0.1
+  
+  collect_core_web_vitals: true
+  collect_api_timing: true
+  collect_resource_timing: true
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "playwright>=1.30.0"
+    - "pytest-playwright>=0.3.0"

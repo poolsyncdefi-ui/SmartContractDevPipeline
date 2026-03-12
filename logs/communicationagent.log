@@ -2566,3 +2566,61 @@ TypeError: '_asyncio.Task' object is not callable
 2026-03-11 21:43:37 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-11 21:43:37 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
 2026-03-11 21:43:37 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-12 19:19:51 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-12 19:19:55 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-12 19:19:56 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-12 19:22:00 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-12 19:22:01 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-12 19:22:01 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-12 19:22:03 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-12 19:22:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée

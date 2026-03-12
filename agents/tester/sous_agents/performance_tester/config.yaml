@@ -1,0 +1,132 @@
+# ============================================================================
+# ⚡ Performance Tester SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "PerformanceTesterSubAgent"
+  display_name: "⚡ Tests de Performance"
+  description: |
+    Tests de charge, stress et optimisation des performances
+    pour smart contracts, API et systèmes complets.
+  version: "2.0.0"
+  class_name: "PerformanceTesterSubAgent"
+  module_path: "agents.tester.sous_agents.performance_tester.agent"
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
+  log_level: "INFO"
+  timeout_seconds: 3600  # 1 heure max
+  max_retries: 1
+  temp_dir: "temp/performance_tests"
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "performance.load_test"
+    description: "Exécute un test de charge"
+    confidence: 0.92
+
+  - name: "performance.stress_test"
+    description: "Exécute un test de stress"
+    confidence: 0.90
+
+  - name: "performance.spike_test"
+    description: "Exécute un test de pic"
+    confidence: 0.88
+
+  - name: "performance.soak_test"
+    description: "Exécute un test d'endurance"
+    confidence: 0.85
+
+  - name: "performance.analyze_bottlenecks"
+    description: "Analyse les goulots d'étranglement"
+    confidence: 0.87
+
+  - name: "performance.optimize"
+    description: "Propose des optimisations"
+    confidence: 0.82
+
+# ============================================================================
+# PERFORMANCE
+# ============================================================================
+performance:
+  profiles:
+    web:
+      types: ["load", "stress", "spike", "soak"]
+      default_duration: 60
+      default_users: 100
+    
+    blockchain:
+      types: ["load", "stress"]
+      default_duration: 300
+      default_users: 50
+    
+    api:
+      types: ["load", "stress", "spike"]
+      default_duration: 120
+      default_users: 200
+
+# ============================================================================
+# SEUILS D'ALERTE
+# ============================================================================
+thresholds:
+  response_time_p95: 1000  # ms
+  response_time_p99: 2000  # ms
+  error_rate: 1  # %
+  cpu_usage: 80  # %
+  memory_usage: 500  # MB
+  throughput_degradation: 20  # %
+
+# ============================================================================
+# PROFILS DE TEST
+# ============================================================================
+test_profiles:
+  light:
+    duration: 30
+    users: 50
+    ramp_up: 5
+  
+  medium:
+    duration: 120
+    users: 200
+    ramp_up: 20
+  
+  heavy:
+    duration: 300
+    users: 500
+    ramp_up: 30
+  
+  extreme:
+    duration: 600
+    users: 1000
+    ramp_up: 60
+
+# ============================================================================
+# PARAMÈTRES SPÉCIFIQUES
+# ============================================================================
+parameters:
+  default_test_profile: "medium"
+  collect_system_metrics: true
+  collect_gas_metrics: true
+  save_traces: true
+  traces_path: "traces/performance/"
+  reports_path: "reports/performance/"
+  artifacts_retention_days: 14
+  notify_on_threshold_breach: true
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 6
+  last_reviewed: "2026-03-12"
+  dependencies:
+    - "locust>=2.15.0"
+    - "k6>=0.45.0"

@@ -41,3 +41,7 @@ expected <block end>, but found '<block mapping start>'
 2026-03-11 21:42:12 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
 2026-03-11 21:43:34 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
 2026-03-11 21:43:34 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-12 19:19:51 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-12 19:19:51 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-12 19:22:00 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-12 19:22:00 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)

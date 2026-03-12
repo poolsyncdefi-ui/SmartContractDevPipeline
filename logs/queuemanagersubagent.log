@@ -36,3 +36,7 @@
 2026-03-11 21:42:12 - agent.QueueManagerSubAgent - INFO - Agent QueueManagerSubAgent créé (config: agents/communication/sous_agents/queue_manager/config.yaml)
 2026-03-11 21:43:34 - agent.QueueManagerSubAgent - INFO - Configuration chargée: QueueManagerSubAgent v2.0.0
 2026-03-11 21:43:34 - agent.QueueManagerSubAgent - INFO - Agent QueueManagerSubAgent créé (config: agents/communication/sous_agents/queue_manager/config.yaml)
+2026-03-12 19:19:51 - agent.QueueManagerSubAgent - INFO - Configuration chargée: QueueManagerSubAgent v2.0.0
+2026-03-12 19:19:51 - agent.QueueManagerSubAgent - INFO - Agent QueueManagerSubAgent créé (config: agents/communication/sous_agents/queue_manager/config.yaml)
+2026-03-12 19:22:00 - agent.QueueManagerSubAgent - INFO - Configuration chargée: QueueManagerSubAgent v2.0.0
+2026-03-12 19:22:00 - agent.QueueManagerSubAgent - INFO - Agent QueueManagerSubAgent créé (config: agents/communication/sous_agents/queue_manager/config.yaml)
