@@ -1,0 +1,66 @@
+{
+  "stats": {
+    "messages_received": 3,
+    "messages_sent": 0,
+    "messages_processed": 0,
+    "messages_failed": 0,
+    "messages_expired": 0,
+    "messages_retried": 0,
+    "messages_deduplicated": 0,
+    "active_subscribers": 0,
+    "active_topics": 0,
+    "queue_size_current": 3,
+    "queue_size_max": 3,
+    "processing_latency_p50": 0,
+    "processing_latency_p95": 0,
+    "processing_latency_p99": 0,
+    "throughput_current": 0,
+    "throughput_peak": 0,
+    "uptime_start": "2026-03-13T18:17:32.832913"
+  },
+  "queues": {
+    "default": {
+      "enqueued": 0,
+      "dequeued": 0,
+      "expired": 0,
+      "current_size": 0,
+      "queues": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "high_priority": {
+      "enqueued": 0,
+      "dequeued": 0,
+      "expired": 0,
+      "current_size": 0,
+      "queues": [
+        0,
+        0,
+        0
+      ]
+    },
+    "batch": {
+      "enqueued": 3,
+      "dequeued": 0,
+      "expired": 0,
+      "current_size": 0,
+      "queues": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "topics": {
+    "topics_count": 0,
+    "subscribers_count": 0,
+    "topics": {}
+  },
+  "timestamp": "2026-03-13T18:17:34.305774"
+}

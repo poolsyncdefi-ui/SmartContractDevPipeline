@@ -1,0 +1,63 @@
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:30 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message fa531ac6-9894-466c-9828-05259ba2835c: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message 47d617ec-5d03-409e-acde-8ef57a5e656a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:31 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:32 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message c64c3b79-7e65-4d24-abac-7a2db4537cd3: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message c64c3b79-7e65-4d24-abac-7a2db4537cd3: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message a42dc081-a67b-425c-a89f-3285c9ac33a7: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message a42dc081-a67b-425c-a89f-3285c9ac33a7: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:33 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message 1570e0d7-4ff3-4d35-b9de-06cb7f0a0805: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message 1570e0d7-4ff3-4d35-b9de-06cb7f0a0805: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message 1570e0d7-4ff3-4d35-b9de-06cb7f0a0805: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message c027212b-841b-49d0-949b-473dc8a55756: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message c027212b-841b-49d0-949b-473dc8a55756: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message c027212b-841b-49d0-949b-473dc8a55756: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Configuration chargée: SecurityTesterSubAgent v2.0.0
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent créé (config: agents/tester/sous_agents/security_tester/config.yaml)
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Initialisation de l'agent SecurityTesterSubAgent...
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 17:07:17 - agent.SecurityTesterSubAgent - INFO - Agent SecurityTesterSubAgent initialisé avec succès
+2026-03-16 17:07:22 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message b5874a1e-a596-47f4-90f6-b317103e448a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.SecurityTesterSubAgent - ERROR - Erreur lors de l'envoi du message 9ca6fd4e-ee9b-4914-b93a-75fafcd06e48: 'SubAgentMetrics' object has no attribute 'messages_sent'

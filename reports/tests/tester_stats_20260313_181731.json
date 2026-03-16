@@ -1,0 +1,15 @@
+{
+  "stats": {
+    "total_tests_executed": 0,
+    "total_tests_passed": 0,
+    "total_tests_failed": 0,
+    "total_security_findings": 0,
+    "average_coverage": 0.0,
+    "last_test_run": null,
+    "test_types_run": {},
+    "frameworks_used": [
+      "pytest",
+      "jest",
+      "hardhat"
+    ],
+    "start_time": 

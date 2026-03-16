@@ -115,3 +115,27 @@
 2026-03-11 21:43:36 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
 2026-03-12 19:19:55 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
 2026-03-12 19:22:03 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Configuration chargée: FormalVerificationSubAgent v2.0.0
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Configuration chargée: FormalVerificationSubAgent v2.0.0
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Agent FormalVerificationSubAgent créé (config: agents/smart_contract/sous_agents/formal_verification/config.yaml)
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Agent FormalVerificationSubAgent créé (config: agents/smart_contract/sous_agents/formal_verification/config.yaml)
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Initialisation de l'agent FormalVerificationSubAgent...
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - INFO - Initialisation de l'agent FormalVerificationSubAgent...
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-16 17:07:17 - agent.FormalVerificationSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-16 17:07:18 - agent.FormalVerificationSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 17:07:18 - agent.FormalVerificationSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 17:07:18 - agent.FormalVerificationSubAgent - INFO - Agent FormalVerificationSubAgent initialisé avec succès
+2026-03-16 17:07:18 - agent.FormalVerificationSubAgent - INFO - Agent FormalVerificationSubAgent initialisé avec succès
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message a89fa1c9-8e0e-475f-8cf7-73b633cb899a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message a89fa1c9-8e0e-475f-8cf7-73b633cb899a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message a89fa1c9-8e0e-475f-8cf7-73b633cb899a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'

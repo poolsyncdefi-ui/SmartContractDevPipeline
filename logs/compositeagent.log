@@ -1,0 +1,84 @@
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Configuration chargée: CompositeAgent v2.0.0
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Agent CompositeAgent créé (config: agents/composite/config.yaml)
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - 🧩 Agent Composite dynamique créé: composite_20260313_181729
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Initialisation de l'agent CompositeAgent...
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Vérification des dépendances: ['base_agent']
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - Initialisation des composants du composite...
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - 📦 Chargement de la composition par défaut: full_team.yaml
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - 📦 Composition d'équipe à partir de: config\compositions\full_team.yaml
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO - 🧹 Équipe précédente vidée
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO -   ✓ Agent orchestrator initialisé
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO -   ✓ Agent communication initialisé
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO -   ✓ Agent smart_contract initialisé
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO -   ✓ Agent tester initialisé
+2026-03-13 18:17:29 - agent.CompositeAgent - INFO -   ✓ Agent frontend_web3 initialisé
+2026-03-13 18:17:30 - agent.CompositeAgent - INFO -   ✓ Agent architect initialisé
+2026-03-13 18:17:30 - agent.CompositeAgent - INFO -   ✓ Agent security_tester initialisé
+2026-03-13 18:17:30 - agent.CompositeAgent - INFO -   ✓ Agent fuzzing_expert initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent formal_verification initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent documenter initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO - ✅ Équipe composée: 10 agents chargés
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO - Agent CompositeAgent initialisé avec succès
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO - 📦 Composition d'équipe à partir de: config/compositions/full_team.yaml
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO - 🧹 Équipe précédente vidée
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent orchestrator initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent communication initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent smart_contract initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent tester initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent frontend_web3 initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent architect initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent security_tester initialisé
+2026-03-13 18:17:31 - agent.CompositeAgent - INFO -   ✓ Agent fuzzing_expert initialisé
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO -   ✓ Agent formal_verification initialisé
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO -   ✓ Agent documenter initialisé
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - ✅ Équipe composée: 10 agents chargés
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - 🎯 Composition d'équipe pour le sprint: config/sprint_plans/sprint_001.yaml
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - 📊 Besoins identifiés: ['formal_verification', 'smart_contract', 'orchestrator', 'communication', 'fuzzing_expert', 'tester', 'security_tester', 'security_expert']
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - ✅ Composition trouvée: config\compositions\full_team.yaml
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - 📦 Composition d'équipe à partir de: config\compositions\full_team.yaml
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO - 🧹 Équipe précédente vidée
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO -   ✓ Agent orchestrator initialisé
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO -   ✓ Agent communication initialisé
+2026-03-13 18:17:32 - agent.CompositeAgent - INFO -   ✓ Agent smart_contract initialisé
+2026-03-13 18:17:33 - agent.CompositeAgent - INFO -   ✓ Agent tester initialisé
+2026-03-13 18:17:33 - agent.CompositeAgent - INFO -   ✓ Agent frontend_web3 initialisé
+2026-03-13 18:17:33 - agent.CompositeAgent - INFO -   ✓ Agent architect initialisé
+2026-03-13 18:17:33 - agent.CompositeAgent - INFO -   ✓ Agent security_tester initialisé
+2026-03-13 18:17:33 - agent.CompositeAgent - INFO -   ✓ Agent fuzzing_expert initialisé
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO -   ✓ Agent formal_verification initialisé
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO -   ✓ Agent documenter initialisé
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - ✅ Équipe composée: 10 agents chargés
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - ➡️ Délégation: security_audit
+2026-03-13 18:17:34 - agent.CompositeAgent - ERROR - ❌ Erreur délégation: 'SmartContractAgent' object has no attribute 'execute'
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO -   ✓ Agent new_specialist initialisé
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - 🛑 Arrêt du composite composite_20260313_181729...
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - 🧹 Équipe précédente vidée
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - Arrêt de l'agent CompositeAgent...
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-13 18:17:34 - agent.CompositeAgent - INFO - Agent CompositeAgent arrêté (runtime: 0:00:04.830004)
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Configuration chargée: CompositeAgent v2.0.0
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Agent CompositeAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\composite\config.yaml)
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - 🧩 Agent Composite dynamique créé: composite_20260316_170717
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Initialisation de l'agent CompositeAgent...
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Vérification des dépendances: ['base_agent']
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - Initialisation des composants du composite...
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - 📦 Chargement de la composition par défaut: full_team.yaml
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - 📦 Composition d'équipe à partir de: config\compositions\full_team.yaml
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO - 🧹 Équipe précédente vidée
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent orchestrator initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent communication initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent smart_contract initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent tester initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent frontend_web3 initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent architect initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent security_tester initialisé
+2026-03-16 17:07:17 - agent.CompositeAgent - INFO -   ✓ Agent fuzzing_expert initialisé
+2026-03-16 17:07:18 - agent.CompositeAgent - INFO -   ✓ Agent formal_verification initialisé
+2026-03-16 17:07:18 - agent.CompositeAgent - INFO -   ✓ Agent documenter initialisé
+2026-03-16 17:07:18 - agent.CompositeAgent - INFO - ✅ Équipe composée: 10 agents chargés
+2026-03-16 17:07:18 - agent.CompositeAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 17:07:18 - agent.CompositeAgent - INFO - Agent CompositeAgent initialisé avec succès

@@ -1,0 +1,50 @@
+# config/sprint_plans/sprint_001.yaml
+name: "Sprint 1 - Développement Token ERC20"
+description: "Premier sprint pour créer un token ERC20 avec tests de sécurité"
+duration_days: 7
+
+fragments:
+  - id: "SC_001"
+    domain: "smart_contract"
+    name: "Token ERC20"
+    complexity: 2
+    language: "solidity"
+    dependencies: []
+
+  - id: "SC_002"
+    domain: "smart_contract"
+    name: "Staking Pool"
+    complexity: 4
+    language: "solidity"
+    depends_on: ["SC_001"]
+
+  - id: "TEST_001"
+    domain: "testing"
+    name: "Tests unitaires"
+    complexity: 2
+    depends_on: ["SC_001", "SC_002"]
+
+  - id: "SEC_001"
+    domain: "security"
+    name: "Audit sécurité"
+    complexity: 3
+    depends_on: ["SC_001", "SC_002"]
+
+  - id: "DOC_001"
+    domain: "documentation"
+    name: "Documentation"
+    complexity: 1
+    depends_on: ["*"]
+
+priority_domains:
+  - "smart_contract"
+  - "security"
+  - "testing"
+
+required_agents:
+  - "orchestrator"
+  - "communication"
+  - "smart_contract"
+  - "security_tester"
+  - "fuzzing_expert"
+  - "documenter"

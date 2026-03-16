@@ -1,0 +1,9 @@
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Configuration chargée: PerformanceTesterSubAgent v2.0.0
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Agent PerformanceTesterSubAgent créé (config: agents/tester/sous_agents/performance_tester/config.yaml)
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Initialisation de l'agent PerformanceTesterSubAgent...
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - INFO - Agent PerformanceTesterSubAgent initialisé avec succès
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - ERROR - Erreur lors de l'envoi du message 3fd04b94-6738-4bed-afaf-3d029eb45683: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.PerformanceTesterSubAgent - ERROR - Erreur lors de l'envoi du message d2740678-6dc2-4782-9720-a7b389be8076: 'SubAgentMetrics' object has no attribute 'messages_sent'

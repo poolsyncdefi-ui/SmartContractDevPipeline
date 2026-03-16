@@ -1,0 +1,63 @@
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:30 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 440021d8-930b-4c5d-b000-1e18c199cd8d: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message f06f490d-13c8-4443-867d-5e832955345f: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:31 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:32 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 79afaed2-a3eb-4ee9-a493-26b9891fefa9: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 79afaed2-a3eb-4ee9-a493-26b9891fefa9: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message b3cda11d-0e50-4223-adf2-2d07fc140498: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:32 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message b3cda11d-0e50-4223-adf2-2d07fc140498: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:33 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 2f07f019-7307-4cbe-8080-bc6df1ef118e: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 2f07f019-7307-4cbe-8080-bc6df1ef118e: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 2f07f019-7307-4cbe-8080-bc6df1ef118e: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 5654777b-5847-4b6c-98fe-882c87ab32e0: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 5654777b-5847-4b6c-98fe-882c87ab32e0: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-13 18:17:34 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 5654777b-5847-4b6c-98fe-882c87ab32e0: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Configuration chargée: FuzzingExpertSubAgent v2.0.0
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent créé (config: agents/tester/sous_agents/fuzzing_expert/config.yaml)
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Initialisation de l'agent FuzzingExpertSubAgent...
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 17:07:17 - agent.FuzzingExpertSubAgent - INFO - Agent FuzzingExpertSubAgent initialisé avec succès
+2026-03-16 17:07:22 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 01600cff-f0e0-4f6c-bc33-899703cd823e: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 17:07:22 - agent.FuzzingExpertSubAgent - ERROR - Erreur lors de l'envoi du message 99befd08-a241-4bd7-a3e2-507f9384c1f6: 'SubAgentMetrics' object has no attribute 'messages_sent'
