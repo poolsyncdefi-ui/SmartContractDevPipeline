@@ -1,0 +1,44 @@
+# ============================================================================
+# 📄 Doc Generator SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "DocGeneratorSubAgent"
+  display_name: "📄 Générateur de Documentation"
+  description: "Génération de documentation technique générale"
+  version: "2.0.0"
+  class_name: "DocGeneratorSubAgent"
+  module_path: "agents.documenter.sous_agents.doc_generator.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+doc_generator:
+  formats: ["markdown", "html", "json"]
+  default_format: "markdown"
+  include_metadata: true
+  include_toc: true
+
+capabilities:
+  - name: "doc.generate"
+    description: "Génère une documentation à partir de contenu"
+    confidence: 0.95
+  - name: "doc.generate_from_spec"
+    description: "Génère une documentation à partir d'une spécification"
+    confidence: 0.92
+  - name: "doc.generate_technical_spec"
+    description: "Génère une spécification technique"
+    confidence: 0.90
+  - name: "doc.generate_architecture_doc"
+    description: "Génère une documentation d'architecture"
+    confidence: 0.88
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 4
+  last_reviewed: "2026-03-17"

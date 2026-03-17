@@ -1,0 +1,54 @@
+# ============================================================================
+# 📖 README Specialist SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "ReadmeSpecialistSubAgent"
+  display_name: "📖 Spécialiste README"
+  description: "Expert en création de fichiers README"
+  version: "2.0.0"
+  class_name: "ReadmeSpecialistSubAgent"
+  module_path: "agents.documenter.sous_agents.readme_specialist.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 30
+  max_retries: 2
+
+readme_specialist:
+  include_badges: true
+  include_toc: true
+  include_installation: true
+  include_usage: true
+  include_api_docs: true
+  include_contributing: true
+  include_license: true
+
+capabilities:
+  - name: "readme.generate"
+    description: "Génère un README générique"
+    confidence: 0.98
+
+  - name: "readme.generate_standard"
+    description: "Génère un README standard selon le type de projet"
+    confidence: 0.95
+
+  - name: "readme.generate_python"
+    description: "Génère un README pour projet Python"
+    confidence: 0.96
+
+  - name: "readme.generate_js"
+    description: "Génère un README pour projet JavaScript"
+    confidence: 0.96
+
+  - name: "readme.generate_solidity"
+    description: "Génère un README pour projet Solidity"
+    confidence: 0.94
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-17"

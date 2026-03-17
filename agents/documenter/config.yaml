@@ -8,7 +8,7 @@ agent:
   # === IDENTIFICATION ===
   name: "DocumenterAgent"
   class_name: "DocumenterAgent"
-  module_path: "agents.documenter.documenter_agent"
+  module_path: "agents.documenter.agent"  # MODIFIÉ: de documenter_agent à agent
   display_name: "📚 Agent de Documentation Technique"
   version: "2.2.0"
   description: |-
@@ -38,7 +38,7 @@ agent:
   # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
   anti_hallucination:
     enabled: true
-    confidence_threshold: 0.8  # Seuil élevé pour la documentation
+    confidence_threshold: 0.8
 
     # Vérifications obligatoires
     mandatory_checks:
@@ -155,25 +155,75 @@ agent:
       description: "Génération de site de documentation complet"
       confidence_required: 0.75
 
+  # ============================================================================
+  # NOUVEAU - SOUS-AGENTS SPÉCIALISÉS
+  # ============================================================================
+  subAgents:
+    - id: "doc_generator"
+      enabled: true
+      name: "DocGeneratorSubAgent"
+      display_name: "📄 Générateur de Documentation"
+      description: "Génération de documentation technique générale"
+      config_path: "agents/documenter/sous_agents/doc_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.doc_generator.agent"
+      class_name: "DocGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 1
+
+    - id: "diagram_generator"
+      enabled: true
+      name: "DiagramGeneratorSubAgent"
+      display_name: "📊 Générateur de Diagrammes"
+      description: "Génération de diagrammes Mermaid et PlantUML"
+      config_path: "agents/documenter/sous_agents/diagram_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.diagram_generator.agent"
+      class_name: "DiagramGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 2
+
+    - id: "api_doc_specialist"
+      enabled: true
+      name: "ApiDocSpecialistSubAgent"
+      display_name: "🔌 Spécialiste Documentation API"
+      description: "Expert en documentation d'API (OpenAPI/Swagger)"
+      config_path: "agents/documenter/sous_agents/api_doc_specialist/config.yaml"
+      module_path: "agents.documenter.sous_agents.api_doc_specialist.agent"
+      class_name: "ApiDocSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 3
+
+    - id: "readme_specialist"
+      enabled: true
+      name: "ReadmeSpecialistSubAgent"
+      display_name: "📖 Spécialiste README"
+      description: "Expert en création de fichiers README"
+      config_path: "agents/documenter/sous_agents/readme_specialist/config.yaml"
+      module_path: "agents.documenter.sous_agents.readme_specialist.agent"
+      class_name: "ReadmeSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 4
+
   # === CONFIGURATION LLM ===
   llm_config:
     enabled: true
-    model: "ollama:mistral:7b"  # Modèle équilibré pour la documentation
-    temperature: 0.5  # Un peu de créativité pour la rédaction
+    model: "ollama:mistral:7b"
+    temperature: 0.5
     max_tokens: 4000
     top_p: 0.9
     frequency_penalty: 0.1
     presence_penalty: 0.1
 
-    # Paramètres anti-hallucination
     anti_hallucination_params:
       repetition_penalty: 1.1
       length_penalty: 1.0
       no_repeat_ngram_size: 3
-      do_sample: true  # Un peu de variété pour la rédaction
+      do_sample: true
       num_beams: 2
 
-    # Validation des réponses
     response_validation:
       require_fact_checking: true
       require_source_citation: true
@@ -296,12 +346,12 @@ agent:
   quality_metrics:
     enabled: true
     targets:
-      completeness_score: 90  # %
-      accuracy_score: 95      # %
-      freshness_score: 85     # % (docs à jour)
-      readability_score: 80   # % (score Flesch)
-      searchability_score: 75 # % (mots-clés couverts)
-      example_coverage: 85    # % des fonctions avec exemples
+      completeness_score: 90
+      accuracy_score: 95
+      freshness_score: 85
+      readability_score: 80
+      searchability_score: 75
+      example_coverage: 85
 
     checks:
       - "broken_links"
@@ -315,14 +365,13 @@ agent:
     reporting:
       generate_weekly: true
       alert_on_degradation: true
-      threshold_drop: 5  # points de pourcentage
+      threshold_drop: 5
 
   # === DOCUMENTER CONFIGURATION ===
   documenter:
     enabled: true
     purpose: "Produire une documentation complète et utile pour tous les acteurs du projet"
 
-    # Objectifs
     objectives:
       primary: "Produire une documentation complète et utile"
       secondary:
@@ -332,7 +381,6 @@ agent:
         - "Réduire le support technique"
         - "Améliorer l'adoption produit"
 
-    # Obligations
     obligations:
       - "Maintenir la documentation à jour avec le code"
       - "Vérifier l'exactitude technique"
@@ -347,12 +395,11 @@ agent:
       - "Vérifier tous les liens"
       - "Dater la documentation"
 
-    # Contraintes de validation
     documentation_validation:
       min_sections: 5
       require_examples: true
       require_diagrams: true
-      max_technical_jargon: 0.3  # Proportion max
+      max_technical_jargon: 0.3
       required_sections:
         - "introduction"
         - "installation"
@@ -360,7 +407,6 @@ agent:
         - "examples"
         - "troubleshooting"
 
-    # Audience cible
     audience:
       - name: "developers"
         description: "Développeurs intégrant ou étendant le système"
@@ -383,28 +429,23 @@ agent:
         tone: "business"
         detail_level: "low"
 
-    # Standards de documentation
     standards:
       file: "project_data/context/doc_standards.md"
       style_guide: "Google Developer Documentation Style Guide"
       accessibility: "WCAG 2.1 AA"
 
-    # Chemins
     output_path: "./docs"
     temp_path: "./agents/documenter/temp"
     templates_path: "./agents/documenter/templates"
     existing_docs_path: "project_data/workspace/docs/"
 
-    # Langues supportées
     languages: ["fr", "en"]
 
-    # Limitations
     limitations:
       max_document_size_mb: 50
       media: "Images générées uniquement via diagrammes"
       tools: "Pas d'outils SaaS payants"
 
-    # Formats de sortie
     output_formats:
       - name: "markdown"
         extensions: [".md", ".mdx"]
@@ -422,7 +463,6 @@ agent:
         extensions: [".adoc"]
         features: ["tables", "diagrams"]
 
-    # Structure de documentation
     structure:
       - "overview"
       - "architecture"
@@ -438,7 +478,6 @@ agent:
       - "troubleshooting"
       - "faq"
 
-    # Navigation
     navigation:
       toc_depth: 3
       breadcrumbs: true
@@ -576,6 +615,627 @@ agent:
     license: "Proprietary"
     tags: ["documentation", "technical-writing", "api-docs", "diagrams", "translation"]
     capabilities_count: 24
+    subagents_count: 4  # NOUVEAU - compteur des sous-agents
+    output_formats_count: 5
+    last_reviewed: "2026-02-26"
+    next_review: "2026-03-26"# =====================================================================
+# agents/documenter/config.yaml
+# Configuration complète de l'Agent Documenter - Version 2.2.0
+# Documentation professionnelle avec Mermaid, LLM, qualité, collaboration
+# =====================================================================
+
+agent:
+  # === IDENTIFICATION ===
+  name: "DocumenterAgent"
+  class_name: "DocumenterAgent"
+  module_path: "agents.documenter.agent"  # MODIFIÉ: de documenter_agent à agent
+  display_name: "📚 Agent de Documentation Technique"
+  version: "2.2.0"
+  description: |-
+    Agent de documentation professionnelle générant une documentation
+    technique complète, structurée et maintenue. S'adapte à multiples audiences,
+    valide la qualité, et s'intègre au cycle de vie du code.
+    Génère docs API, guides utilisateur, déploiement, diagrammes Mermaid.
+  purpose: "Produire une documentation complète et utile pour tous les acteurs du projet"
+
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: false
+  log_level: "INFO"
+
+  # === HÉRITAGE & DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "architect"
+    - "coder"
+    - "smart_contract"
+  initialization_order: 10
+
+  # === RÈGLES SPÉCIFIQUES ANTI-HALLUCINATION ===
+  anti_hallucination:
+    enabled: true
+    confidence_threshold: 0.8
+
+    # Vérifications obligatoires
+    mandatory_checks:
+      - "verify_technical_accuracy"
+      - "check_example_execution"
+      - "validate_links"
+      - "detect_outdated_info"
+      - "ensure_source_citation"
+
+    # Patterns interdits (hallucinations typiques en doc)
+    forbidden_patterns:
+      - pattern: "selon nos sources"  # Sans citation
+        reason: "Source non spécifiée"
+        severity: "high"
+      - pattern: "cette API n'existe pas encore"
+        reason: "Documentation d'API inexistante"
+        severity: "critical"
+      - pattern: "d'après la documentation officielle"  # Sans référence
+        reason: "Référence manquante"
+        severity: "medium"
+      - pattern: "prochainement disponible"
+        reason: "Promesse non tenue"
+        severity: "medium"
+
+    # Gestion de l'incertitude
+    uncertainty_handling:
+      threshold: 0.7
+      markers:
+        - doc: "⚠️ INFORMATION À VÉRIFIER"
+        - doc: "🔍 DOCUMENTATION NON CONFIRMÉE"
+        - doc: "❓ DONNÉE MANQUANTE"
+      fallback_action: "signal_human"
+      require_human_review_if_below: 0.5
+
+  # === CAPACITÉS MÉTIER ===
+  capabilities:
+    - name: "GENERATE_API_DOCUMENTATION"
+      description: "Génère documentation API (OpenAPI, référence)"
+      confidence_required: 0.85
+      output_formats: ["openapi", "markdown", "html"]
+    - name: "GENERATE_USER_GUIDES"
+      description: "Produit des guides utilisateur orientés tâches"
+      confidence_required: 0.8
+      audience: ["end_users", "stakeholders"]
+    - name: "GENERATE_DEVELOPER_GUIDES"
+      description: "Documentation pour développeurs (setup, archi, contribution)"
+      confidence_required: 0.85
+      audience: ["developers", "devops"]
+    - name: "GENERATE_DEPLOYMENT_GUIDES"
+      description: "Guides de déploiement multi-environnements"
+      confidence_required: 0.85
+      environments: ["development", "staging", "production"]
+    - name: "GENERATE_DIAGRAMS"
+      description: "Crée des diagrammes Mermaid (héritage, dépendances, workflow)"
+      confidence_required: 0.75
+      diagram_types: ["C4", "component", "sequence", "class", "state"]
+    - name: "GENERATE_TUTORIALS"
+      description: "Produit des tutoriels pas-à-pas"
+      confidence_required: 0.8
+    - name: "CREATE_GLOSSARIES"
+      description: "Génère des glossaires de termes techniques"
+      confidence_required: 0.7
+    - name: "PRODUCE_CHANGELOGS"
+      description: "Génère des changelogs et notes de version"
+      confidence_required: 0.8
+    - name: "MAINTAIN_DOCUMENTATION_SYNC"
+      description: "Maintient la documentation synchronisée avec le code"
+      confidence_required: 0.9
+      triggers: ["code_changes", "api_changes"]
+    - name: "VALIDATE_TECHNICAL_ACCURACY"
+      description: "Vérifie l'exactitude technique de la documentation"
+      confidence_required: 0.9
+      validation_methods: ["code_execution", "link_checking", "cross_reference"]
+    - name: "VALIDATE_COMPLETENESS"
+      description: "S'assure de la complétude de la documentation"
+      confidence_required: 0.8
+      min_sections: 5
+    - name: "ADAPT_CONTENT_FOR_AUDIENCE"
+      description: "Adapte le ton et le niveau de détail à l'audience"
+      confidence_required: 0.8
+      audiences: ["developers", "end_users", "devops", "project_managers", "stakeholders"]
+    - name: "STRUCTURE_FOR_SEARCHABILITY"
+      description: "Optimise la structure pour la recherche"
+      confidence_required: 0.75
+    - name: "UPDATE_EXISTING_DOCS"
+      description: "Met à jour la documentation existante"
+      confidence_required: 0.85
+    - name: "MAINTAIN_KNOWLEDGE_BASE"
+      description: "Maintient une base de connaissance cohérente"
+      confidence_required: 0.8
+    - name: "INCLUDE_FUNCTIONAL_EXAMPLES"
+      description: "Intègre des exemples fonctionnels et testables"
+      confidence_required: 0.85
+    - name: "TRANSLATE_CONTENT"
+      description: "Traduit le contenu dans plusieurs langues"
+      confidence_required: 0.7
+      languages: ["fr", "en", "es", "de"]
+    - name: "natspec_extraction_advanced"
+      description: "Extraction avancée des commentaires NatSpec"
+      confidence_required: 0.9
+    - name: "interactive_toc_generation"
+      description: "Table des matières interactive avec ancres"
+      confidence_required: 0.7
+    - name: "cross_reference_linking"
+      description: "Liens croisés entre sections et documents"
+      confidence_required: 0.8
+    - name: "versioned_documentation"
+      description: "Support multi-versions des contrats"
+      confidence_required: 0.8
+    - name: "security_analysis_docs"
+      description: "Section sécurité avec badges et métriques"
+      confidence_required: 0.85
+    - name: "html_site_generation"
+      description: "Génération de site de documentation complet"
+      confidence_required: 0.75
+
+  # ============================================================================
+  # NOUVEAU - SOUS-AGENTS SPÉCIALISÉS
+  # ============================================================================
+  subAgents:
+    - id: "doc_generator"
+      enabled: true
+      name: "DocGeneratorSubAgent"
+      display_name: "📄 Générateur de Documentation"
+      description: "Génération de documentation technique générale"
+      config_path: "agents/documenter/sous_agents/doc_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.doc_generator.agent"
+      class_name: "DocGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 1
+
+    - id: "diagram_generator"
+      enabled: true
+      name: "DiagramGeneratorSubAgent"
+      display_name: "📊 Générateur de Diagrammes"
+      description: "Génération de diagrammes Mermaid et PlantUML"
+      config_path: "agents/documenter/sous_agents/diagram_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.diagram_generator.agent"
+      class_name: "DiagramGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 2
+
+    - id: "api_doc_specialist"
+      enabled: true
+      name: "ApiDocSpecialistSubAgent"
+      display_name: "🔌 Spécialiste Documentation API"
+      description: "Expert en documentation d'API (OpenAPI/Swagger)"
+      config_path: "agents/documenter/sous_agents/api_doc_specialist/config.yaml"
+      module_path: "agents.documenter.sous_agents.api_doc_specialist.agent"
+      class_name: "ApiDocSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 3
+
+    - id: "readme_specialist"
+      enabled: true
+      name: "ReadmeSpecialistSubAgent"
+      display_name: "📖 Spécialiste README"
+      description: "Expert en création de fichiers README"
+      config_path: "agents/documenter/sous_agents/readme_specialist/config.yaml"
+      module_path: "agents.documenter.sous_agents.readme_specialist.agent"
+      class_name: "ReadmeSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 4
+
+  # === CONFIGURATION LLM ===
+  llm_config:
+    enabled: true
+    model: "ollama:mistral:7b"
+    temperature: 0.5
+    max_tokens: 4000
+    top_p: 0.9
+    frequency_penalty: 0.1
+    presence_penalty: 0.1
+
+    anti_hallucination_params:
+      repetition_penalty: 1.1
+      length_penalty: 1.0
+      no_repeat_ngram_size: 3
+      do_sample: true
+      num_beams: 2
+
+    response_validation:
+      require_fact_checking: true
+      require_source_citation: true
+      max_attempts: 3
+      fallback_model: "ollama:llama2:7b"
+
+    use_for:
+      - "description_generation"
+      - "example_generation"
+      - "translation"
+      - "glossary_definitions"
+      - "summarization"
+      - "style_harmonization"
+
+  # === OUTILS DISPONIBLES ===
+  tools:
+    - name: "diagram_generator_mermaid"
+      description: "Génère des diagrammes Mermaid"
+      validation_required: true
+    - name: "api_doc_generator_openapi"
+      description: "Génère documentation API au format OpenAPI"
+      validation_required: true
+    - name: "markdown_formatter"
+      description: "Formate le contenu en Markdown"
+      validation_required: false
+    - name: "html_site_builder"
+      description: "Construit un site HTML de documentation"
+      validation_required: true
+    - name: "link_validator"
+      description: "Vérifie la validité des liens"
+      validation_required: true
+    - name: "example_tester"
+      description: "Teste les exemples de code"
+      validation_required: true
+    - name: "translation_engine"
+      description: "Traduit le contenu"
+      validation_required: false
+    - name: "glossary_builder"
+      description: "Construit des glossaires"
+      validation_required: false
+    - name: "changelog_generator"
+      description: "Génère des changelogs"
+      validation_required: false
+
+  # === OUTPUTS PRODUITS ===
+  outputs:
+    - name: "api_documentation"
+      type: "documentation"
+      format: "openapi/markdown"
+      validation: "technical_accuracy"
+    - name: "user_guides"
+      type: "documentation"
+      format: "markdown/html"
+      validation: "completeness"
+    - name: "developer_guides"
+      type: "documentation"
+      format: "markdown"
+      validation: "technical_accuracy"
+    - name: "deployment_guides"
+      type: "documentation"
+      format: "markdown"
+      validation: "step_validation"
+    - name: "diagrams"
+      type: "visual"
+      format: "mermaid/svg"
+      validation: "syntax_check"
+    - name: "tutorials"
+      type: "documentation"
+      format: "markdown"
+      validation: "example_testing"
+    - name: "glossaries"
+      type: "reference"
+      format: "json/markdown"
+      validation: "consistency"
+    - name: "changelogs"
+      type: "log"
+      format: "markdown"
+      validation: "chronology"
+    - name: "html_site"
+      type: "site"
+      format: "html"
+      validation: "build_success"
+    - name: "knowledge_base"
+      type: "database"
+      format: "json"
+      validation: "integrity"
+
+  # === RÈGLES DE VALIDATION ===
+  validation_rules:
+    - name: "all_sections_present"
+      severity: "high"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "no_broken_links"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "examples_must_be_executable"
+      severity: "high"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "technical_terms_must_be_in_glossary"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: true
+    - name: "api_endpoints_must_be_documented"
+      severity: "critical"
+      action_on_failure: "reject"
+      auto_correct: false
+    - name: "diagrams_must_render"
+      severity: "medium"
+      action_on_failure: "warn"
+      auto_correct: false
+    - name: "readability_score_above_70"
+      severity: "low"
+      action_on_failure: "warn"
+      auto_correct: false
+
+  # === MÉTRIQUES DE QUALITÉ ===
+  quality_metrics:
+    enabled: true
+    targets:
+      completeness_score: 90
+      accuracy_score: 95
+      freshness_score: 85
+      readability_score: 80
+      searchability_score: 75
+      example_coverage: 85
+
+    checks:
+      - "broken_links"
+      - "outdated_examples"
+      - "missing_sections"
+      - "spelling_errors"
+      - "terminology_consistency"
+      - "api_coverage"
+      - "diagram_accuracy"
+
+    reporting:
+      generate_weekly: true
+      alert_on_degradation: true
+      threshold_drop: 5
+
+  # === DOCUMENTER CONFIGURATION ===
+  documenter:
+    enabled: true
+    purpose: "Produire une documentation complète et utile pour tous les acteurs du projet"
+
+    objectives:
+      primary: "Produire une documentation complète et utile"
+      secondary:
+        - "Réduire la courbe d'apprentissage"
+        - "Faciliter la maintenance"
+        - "Supporter l'auto-découverte"
+        - "Réduire le support technique"
+        - "Améliorer l'adoption produit"
+
+    obligations:
+      - "Maintenir la documentation à jour avec le code"
+      - "Vérifier l'exactitude technique"
+      - "Adapter le ton à l'audience"
+      - "Structurer pour la recherche"
+      - "Inclure des exemples fonctionnels"
+      - "Vérifier les liens et références"
+      - "Maintenir la cohérence du style"
+      - "S'assurer de l'accessibilité"
+      - "Documenter les changements importants"
+      - "Tester les exemples de code"
+      - "Vérifier tous les liens"
+      - "Dater la documentation"
+
+    documentation_validation:
+      min_sections: 5
+      require_examples: true
+      require_diagrams: true
+      max_technical_jargon: 0.3
+      required_sections:
+        - "introduction"
+        - "installation"
+        - "api_reference"
+        - "examples"
+        - "troubleshooting"
+
+    audience:
+      - name: "developers"
+        description: "Développeurs intégrant ou étendant le système"
+        tone: "technique"
+        detail_level: "high"
+      - name: "end_users"
+        description: "Utilisateurs finaux de l'application"
+        tone: "pédagogique"
+        detail_level: "medium"
+      - name: "devops"
+        description: "Équipes d'exploitation et déploiement"
+        tone: "procédural"
+        detail_level: "high"
+      - name: "project_managers"
+        description: "Chefs de projet et décideurs"
+        tone: "synthétique"
+        detail_level: "low"
+      - name: "stakeholders"
+        description: "Parties prenantes du projet"
+        tone: "business"
+        detail_level: "low"
+
+    standards:
+      file: "project_data/context/doc_standards.md"
+      style_guide: "Google Developer Documentation Style Guide"
+      accessibility: "WCAG 2.1 AA"
+
+    output_path: "./docs"
+    temp_path: "./agents/documenter/temp"
+    templates_path: "./agents/documenter/templates"
+    existing_docs_path: "project_data/workspace/docs/"
+
+    languages: ["fr", "en"]
+
+    limitations:
+      max_document_size_mb: 50
+      media: "Images générées uniquement via diagrammes"
+      tools: "Pas d'outils SaaS payants"
+
+    output_formats:
+      - name: "markdown"
+        extensions: [".md", ".mdx"]
+        features: ["tables", "code_blocks", "links", "mermaid"]
+      - name: "html"
+        extensions: [".html"]
+        features: ["search", "navigation", "responsive", "interactive_toc"]
+      - name: "pdf"
+        extensions: [".pdf"]
+        features: ["printable", "bookmarks", "watermark"]
+      - name: "openapi"
+        extensions: [".yaml", ".json"]
+        features: ["interactive", "try_it_out", "examples"]
+      - name: "asciidoc"
+        extensions: [".adoc"]
+        features: ["tables", "diagrams"]
+
+    structure:
+      - "overview"
+      - "architecture"
+      - "contracts"
+      - "functions"
+      - "events"
+      - "modifiers"
+      - "security"
+      - "deployment"
+      - "examples"
+      - "changelog"
+      - "glossary"
+      - "troubleshooting"
+      - "faq"
+
+    navigation:
+      toc_depth: 3
+      breadcrumbs: true
+      previous_next: true
+      search_enabled: true
+      back_to_top: true
+      cross_references: true
+
+  # === SPÉCIFICATIONS DÉTAILLÉES PAR TYPE DE DOCUMENT ===
+  doc_specs:
+    api_docs:
+      format: "OpenAPI 3.0"
+      auto_generate: true
+      examples: true
+      include_test_cases: true
+      versioning: true
+      interactive: true
+
+    user_guide:
+      structure: "task-oriented"
+      screenshots: false
+      video_tutorials: false
+      troubleshooting: true
+      faq: true
+      glossary: true
+
+    developer_guide:
+      includes:
+        - "setup"
+        - "architecture"
+        - "contributing"
+        - "api_reference"
+        - "testing"
+        - "debugging"
+      code_examples: true
+      best_practices: true
+      debugging_guide: true
+
+    deployment_guide:
+      environments: ["development", "staging", "production"]
+      steps: ["prerequisites", "installation", "configuration", "verification", "troubleshooting"]
+      monitoring: true
+      backup_recovery: true
+      rollback_procedures: true
+
+    architecture_docs:
+      diagrams: ["C4", "component", "sequence", "deployment", "inheritance"]
+      decisions: true
+      constraints: true
+      quality_attributes: true
+      data_flow: true
+
+  # === MERMAID DIAGRAMS ===
+  mermaid:
+    enabled: true
+    theme: "dark"
+    include_inheritance: true
+    include_dependencies: true
+    include_workflow: true
+    include_call_graph: true
+    include_state_diagram: true
+    include_sequence_diagram: true
+    include_c4: true
+    max_nodes: 100
+
+    styles:
+      class: "fill:#1a1e24,stroke:#00ff88,stroke-width:2px"
+      interface: "fill:#2a2e34,stroke:#8b5cf6,stroke-width:2px"
+      function: "fill:#0f1215,stroke:#3b82f6,stroke-width:1px"
+      event: "fill:#0f1215,stroke:#10b981,stroke-width:1px"
+      error: "fill:#0f1215,stroke:#ef4444,stroke-width:1px"
+
+  # === DÉCLENCHEURS DE MISE À JOUR ===
+  update_triggers:
+    code_changes:
+      enabled: true
+      watch_paths:
+        - "src/"
+        - "contracts/"
+        - "api/"
+        - "config/"
+    api_changes:
+      enabled: true
+      watch_endpoints: true
+      auto_regenerate: true
+    user_feedback:
+      enabled: true
+      sources:
+        - "github_issues"
+        - "support_tickets"
+        - "discord_feedback"
+    scheduled_review:
+      enabled: true
+      interval_days: 30
+      notify_before: 7
+
+  # === COLLABORATION ===
+  collaboration:
+    sync_with_code: true
+    review_required: true
+    approvers:
+      - "tech_lead"
+      - "product_owner"
+      - "documentation_lead"
+    notification_channels:
+      - "slack"
+      - "email"
+      - "github_pr"
+    version_control: true
+    changelog_auto_update: true
+
+  # === STYLE VISUEL ===
+  styling:
+    theme: "professional"
+    colors:
+      primary: "#00ff88"
+      secondary: "#8b5cf6"
+      accent: "#3b82f6"
+      background: "#0f1215"
+      text: "#ffffff"
+      code_bg: "#1a1e24"
+      warning: "#ffd700"
+      error: "#ef4444"
+      success: "#10b981"
+    typography:
+      font_family: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+      code_font: "'Fira Code', 'Courier New', monospace"
+      base_size: "16px"
+      heading_scale: 1.25
+
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    license: "Proprietary"
+    tags: ["documentation", "technical-writing", "api-docs", "diagrams", "translation"]
+    capabilities_count: 24
+    subagents_count: 4  # NOUVEAU - compteur des sous-agents
     output_formats_count: 5
     last_reviewed: "2026-02-26"
     next_review: "2026-03-26"

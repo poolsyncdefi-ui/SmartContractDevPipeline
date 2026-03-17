@@ -139,3 +139,13 @@
 2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'
 2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'
 2026-03-16 17:07:22 - agent.FormalVerificationSubAgent - ERROR - Erreur lors de l'envoi du message 9b4cdcd3-c268-43d7-91b5-9645ca0032ef: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-16 18:22:28 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 20:21:03 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 20:26:43 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 20:30:20 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 20:49:30 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 20:51:32 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 21:36:50 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 21:45:15 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-16 21:48:11 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-17 17:38:27 - agent.FormalVerificationSubAgent - INFO - Agent base_agent créé (config: None)

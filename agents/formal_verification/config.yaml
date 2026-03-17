@@ -1,49 +1,115 @@
-# =====================================================================
-# FORMAL VERIFICATION AGENT - CONFIGURATION ULTIME
-# Vérification formelle de smart contracts - Certora, Halo2, Mythril
-# Version: 2.0.0
-# =====================================================================
+# ============================================================================
+# agents/formal_verification/config.yaml
+# Configuration de l'Agent de Vérification Formelle - Version 2.1.0
+# ============================================================================
 
 agent:
+  # === IDENTIFICATION ===
   name: "formal_verification"
+  class_name: "FormalVerificationAgent"
+  module_path: "agents.formal_verification.agent"
   display_name: "🔬 Agent Vérification Formelle"
+  version: "2.1.0"
   description: |-
     Agent de vérification formelle garantissant mathématiquement
     la correction des smart contracts via Certora Prover, Halo2,
     exécution symbolique et vérification d'invariants.
-  version: "2.0.0"
-  log_level: "INFO"
-  
+  purpose: "Garantir mathématiquement la correction des smart contracts"
+
+  # === TYPE ET CARACTÉRISTIQUES ===
+  agent_type: "concrete"
+  abstract: false
+  instantiate: true
+  enabled: true
+  mandatory: false
+  singleton: false
+  execution_order: 8
+
+  # === HÉRITAGE & DÉPENDANCES ===
+  extends: "BaseAgent"
+  parent: "BaseAgent"
+  dependencies:
+    - "base_agent"
+    - "smart_contract"
+  initialization_order: 8
+
+  # === CAPACITÉS SPÉCIFIQUES ===
   capabilities:
     - name: "certora_integration"
       description: "Vérification avec Certora Prover"
+      confidence: 0.95
     - name: "halo2_proofs"
       description: "Génération de preuves ZK avec Halo2"
+      confidence: 0.90
     - name: "mythril_analysis"
       description: "Analyse de sécurité avec Mythril"
+      confidence: 0.88
     - name: "symbolic_execution"
       description: "Exécution symbolique de contrats"
+      confidence: 0.85
     - name: "invariant_checking"
       description: "Vérification d'invariants"
+      confidence: 0.92
     - name: "counterexample_generation"
       description: "Génération de contre-exemples"
+      confidence: 0.90
     - name: "automated_spec_generation"
       description: "Génération automatique de spécifications"
+      confidence: 0.80
     - name: "certificate_generation"
       description: "Certificats de vérification"
+      confidence: 0.95
     - name: "multi_tool_comparison"
       description: "Comparaison multi-outils"
+      confidence: 0.85
     - name: "bulk_verification"
       description: "Vérification par lots"
-  
-  dependencies:
-    - "smart_contract"
-    - "tester"
+      confidence: 0.90
+
+  # ============================================================================
+  # SOUS-AGENTS SPÉCIALISÉS
+  # ============================================================================
+  subAgents:
+    - id: "certora_specialist"
+      enabled: true
+      name: "CertoraSpecialistSubAgent"
+      display_name: "🔷 Spécialiste Certora"
+      description: "Expert en vérification Certora Prover"
+      config_path: "agents/formal_verification/sous_agents/certora_specialist/config.yaml"
+      module_path: "agents.formal_verification.sous_agents.certora_specialist.agent"
+      class_name: "CertoraSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 1
+
+    - id: "halo2_specialist"
+      enabled: false
+      name: "Halo2SpecialistSubAgent"
+      display_name: "🟣 Spécialiste Halo2"
+      description: "Expert en preuves Halo2"
+      config_path: "agents/formal_verification/sous_agents/halo2_specialist/config.yaml"
+      module_path: "agents.formal_verification.sous_agents.halo2_specialist.agent"
+      class_name: "Halo2SpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 2
+
+    - id: "mythril_specialist"
+      enabled: true
+      name: "MythrilSpecialistSubAgent"
+      display_name: "⚫ Spécialiste Mythril"
+      description: "Expert en analyse symbolique Mythril"
+      config_path: "agents/formal_verification/sous_agents/mythril_specialist/config.yaml"
+      module_path: "agents.formal_verification.sous_agents.mythril_specialist.agent"
+      class_name: "MythrilSpecialistSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 3
 
 
-# =====================================================================
+# ============================================================================
 # CONFIGURATION PRINCIPALE DE VÉRIFICATION
-# =====================================================================
+# ============================================================================
 verification:
   enabled: true
   timeout_seconds: 3600
@@ -57,9 +123,9 @@ verification:
   confidence_threshold: 0.95
 
 
-# =====================================================================
+# ============================================================================
 # CERTORA PROVER
-# =====================================================================
+# ============================================================================
 certora:
   enabled: true
   prover_version: "5.0"
@@ -76,9 +142,9 @@ certora:
       - "-split": "none"
 
 
-# =====================================================================
+# ============================================================================
 # HALO2 (ZK PROOFS)
-# =====================================================================
+# ============================================================================
 halo2:
   enabled: false
   circuit_type: "plonk"  # plonk, ultraplonk
@@ -89,9 +155,9 @@ halo2:
   optimization: true
 
 
-# =====================================================================
+# ============================================================================
 # MYTHRIL (SECURITY ANALYSIS)
-# =====================================================================
+# ============================================================================
 mythril:
   enabled: true
   analysis_depth: 20
@@ -103,16 +169,16 @@ mythril:
   parallelism: 4
 
 
-# =====================================================================
+# ============================================================================
 # GÉNÉRATION DE SPÉCIFICATIONS
-# =====================================================================
+# ============================================================================
 spec_generation:
   auto_generate: true
   template_dir: "./templates/specs"
   inference_depth: 3
   use_llm: false
   llm_model: "ollama:codellama:13b"
-  
+
   templates:
     erc20: true
     erc721: true
@@ -122,9 +188,9 @@ spec_generation:
     reentrancy_guard: true
 
 
-# =====================================================================
+# ============================================================================
 # VÉRIFICATION D'INVARIANTS
-# =====================================================================
+# ============================================================================
 invariants:
   check_always: true
   generate_from_code: true
@@ -137,9 +203,9 @@ invariants:
     - "pausable_behavior"
 
 
-# =====================================================================
+# ============================================================================
 # CONTRE-EXEMPLES
-# =====================================================================
+# ============================================================================
 counterexamples:
   generate_on_failure: true
   max_counterexamples: 5
@@ -148,9 +214,9 @@ counterexamples:
   include_call_trace: true
 
 
-# =====================================================================
+# ============================================================================
 # CERTIFICATS
-# =====================================================================
+# ============================================================================
 certificates:
   enabled: true
   formats: ["pdf", "json", "html"]
@@ -161,13 +227,13 @@ certificates:
   output_path: "./reports/formal/certificates"
 
 
-# =====================================================================
+# ============================================================================
 # MÉTRIQUES & MONITORING
-# =====================================================================
+# ============================================================================
 metrics:
   enabled: true
   export_to: "monitoring_agent"
-  
+
   collect:
     - "verifications_total"
     - "verified_count"
@@ -176,7 +242,7 @@ metrics:
     - "avg_confidence"
     - "tools_available"
     - "avg_duration_ms"
-  
+
   alerts:
     - metric: "failed_count"
       threshold: 10
@@ -190,14 +256,14 @@ metrics:
       severity: "critical"
 
 
-# =====================================================================
+# ============================================================================
 # INTÉGRATIONS
-# =====================================================================
+# ============================================================================
 integrations:
   monitoring:
     enabled: true
     push_metrics_interval: 60
-  
+
   learning:
     enabled: true
     provide_training_data: true
@@ -205,15 +271,15 @@ integrations:
       - "verification_success_rate"
       - "common_failures"
       - "tool_performance"
-  
+
   smart_contract:
     enabled: true
     auto_verify_on_deploy: false
 
 
-# =====================================================================
+# ============================================================================
 # SYSTÈME
-# =====================================================================
+# ============================================================================
 system:
   timeout_seconds: 3600
   max_retries: 2
@@ -221,3 +287,17 @@ system:
   log_level: "INFO"
   enable_cache: true
   cache_ttl: 3600
+
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  tags: ["formal-verification", "certora", "halo2", "mythril", "proofs"]
+  capabilities_count: 10
+  subagents_count: 3
+  last_reviewed: "2026-03-16"
+  next_review: "2026-04-16"

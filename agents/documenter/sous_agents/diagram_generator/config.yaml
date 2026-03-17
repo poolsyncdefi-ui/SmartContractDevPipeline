@@ -1,0 +1,51 @@
+# ============================================================================
+# 📊 Diagram Generator SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "DiagramGeneratorSubAgent"
+  display_name: "📊 Générateur de Diagrammes"
+  description: "Génération de diagrammes d'architecture et de séquence"
+  version: "2.0.0"
+  class_name: "DiagramGeneratorSubAgent"
+  module_path: "agents.documenter.sous_agents.diagram_generator.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+diagram_generator:
+  default_type: "mermaid"
+  supported_types: ["mermaid", "plantuml", "text"]
+  output_path: "./docs/diagrams"
+  include_metadata: true
+
+capabilities:
+  - name: "diagram.generate_architecture"
+    description: "Génère un diagramme d'architecture"
+    confidence: 0.92
+
+  - name: "diagram.generate_sequence"
+    description: "Génère un diagramme de séquence"
+    confidence: 0.90
+
+  - name: "diagram.generate_class"
+    description: "Génère un diagramme de classes"
+    confidence: 0.88
+
+  - name: "diagram.generate_flowchart"
+    description: "Génère un organigramme"
+    confidence: 0.95
+
+  - name: "diagram.generate_er"
+    description: "Génère un diagramme entité-relation"
+    confidence: 0.85
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-17"

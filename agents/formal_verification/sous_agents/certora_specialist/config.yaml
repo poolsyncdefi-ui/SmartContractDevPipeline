@@ -1,0 +1,47 @@
+# ============================================================================
+# 🔷 Certora Specialist SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "CertoraSpecialistSubAgent"
+  display_name: "🔷 Spécialiste Certora"
+  description: "Expert en vérification formelle avec Certora Prover"
+  version: "2.0.0"
+  class_name: "CertoraSpecialistSubAgent"
+  module_path: "agents.formal_verification.sous_agents.certora_specialist.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 300
+  max_retries: 2
+
+certora:
+  api_key_env: "CERTORA_API_KEY"
+  timeout_seconds: 300
+  conf_path: "certora.conf"
+  java_heap_size: "4g"
+
+capabilities:
+  - name: "certora.generate_spec"
+    description: "Génère une spécification Certora"
+    confidence: 0.95
+
+  - name: "certora.run_verification"
+    description: "Exécute une vérification Certora"
+    confidence: 0.90
+
+  - name: "certora.generate_report"
+    description: "Génère un rapport de vérification"
+    confidence: 0.95
+
+  - name: "certora.check_availability"
+    description: "Vérifie la disponibilité de Certora"
+    confidence: 1.0
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 4
+  last_reviewed: "2026-03-16"

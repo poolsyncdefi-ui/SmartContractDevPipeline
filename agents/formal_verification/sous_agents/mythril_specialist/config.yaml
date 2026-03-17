@@ -1,0 +1,48 @@
+# ============================================================================
+# ⚫ Mythril Specialist SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "MythrilSpecialistSubAgent"
+  display_name: "⚫ Spécialiste Mythril"
+  description: "Expert en analyse symbolique et détection de vulnérabilités"
+  version: "2.0.0"
+  class_name: "MythrilSpecialistSubAgent"
+  module_path: "agents.formal_verification.sous_agents.mythril_specialist.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 180
+  max_retries: 2
+
+mythril:
+  enabled: false
+  analysis_depth: 20
+  timeout_seconds: 180
+  execution_timeout: 300
+  create_timeout: 30
+
+capabilities:
+  - name: "mythril.analyze"
+    description: "Analyse un contrat avec Mythril"
+    confidence: 0.90
+
+  - name: "mythril.detect_vulnerabilities"
+    description: "Détecte des types spécifiques de vulnérabilités"
+    confidence: 0.88
+
+  - name: "mythril.generate_report"
+    description: "Génère un rapport d'analyse"
+    confidence: 0.95
+
+  - name: "mythril.check_availability"
+    description: "Vérifie la disponibilité de Mythril"
+    confidence: 1.0
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 4
+  last_reviewed: "2026-03-16"

@@ -2725,3 +2725,293 @@ TypeError: '_asyncio.Task' object is not callable
 2026-03-16 17:07:23 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-16 17:07:23 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
 2026-03-16 17:07:23 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 18:22:26 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 18:22:28 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 18:22:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 20:21:01 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:21:03 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:21:04 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 20:26:41 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:26:43 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:26:44 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 20:30:18 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:30:20 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:30:21 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 20:49:28 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:49:30 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:49:31 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 20:51:29 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 20:51:32 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 20:51:33 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 21:36:48 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:36:50 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:36:51 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 21:45:13 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:45:16 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:45:17 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-16 21:48:08 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-16 21:48:11 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-16 21:48:12 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Configuration chargée: CommunicationAgent v2.0.0
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Agent CommunicationAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\communication\config.yaml)
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - 💬 Communication Agent créé
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Changement de statut: created -> initializing
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - 💬 Initialisation du Communication Agent...
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Initialisation de l'agent CommunicationAgent...
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Vérification des dépendances: ['registry', 'monitoring', 'learning']
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Changement de statut: initializing -> ready
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Agent CommunicationAgent initialisé avec succès
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - Initialisation des composants Communication...
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - ✅ Composants: ['queues', 'priority_levels', 'pubsub_enabled', 'persistence_enabled', 'circuit_breakers_enabled', 'rate_limiting_enabled']
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO -   ✓ Sous-agent queue_manager initialisé
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO -   ✓ Sous-agent pubsub_manager initialisé
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - ✅ Sous-agents chargés: 2
+2026-03-17 17:38:25 - agent.CommunicationAgent - INFO - ✅ Communication Agent prêt
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🔄 Processeur de messages démarré
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 17:38:28 - agent.CommunicationAgent - INFO - 🔄 Tâche de réessai démarrée
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Processeur de messages arrêté
+2026-03-17 17:38:29 - agent.CommunicationAgent - INFO - 🛑 Tâche de réessai arrêtée

@@ -1,0 +1,51 @@
+# ============================================================================
+# 🔌 API Doc Specialist SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "ApiDocSpecialistSubAgent"
+  display_name: "🔌 Spécialiste Documentation API"
+  description: "Expert en documentation d'API (OpenAPI/Swagger)"
+  version: "2.0.0"
+  class_name: "ApiDocSpecialistSubAgent"
+  module_path: "agents.documenter.sous_agents.api_doc_specialist.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+api_doc_specialist:
+  formats: ["openapi", "swagger", "postman"]
+  default_format: "openapi"
+  include_examples: true
+  include_schemas: true
+
+capabilities:
+  - name: "api.generate_openapi"
+    description: "Génère une spécification OpenAPI"
+    confidence: 0.95
+
+  - name: "api.generate_swagger"
+    description: "Génère une interface Swagger UI"
+    confidence: 0.92
+
+  - name: "api.generate_postman"
+    description: "Génère une collection Postman"
+    confidence: 0.90
+
+  - name: "api.generate_endpoint_doc"
+    description: "Génère la documentation d'un endpoint"
+    confidence: 0.98
+
+  - name: "api.validate_spec"
+    description: "Valide une spécification OpenAPI"
+    confidence: 0.95
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 5
+  last_reviewed: "2026-03-17"

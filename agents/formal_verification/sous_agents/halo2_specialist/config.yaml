@@ -1,0 +1,46 @@
+# ============================================================================
+# 🟣 Halo2 Specialist SubAgent - Configuration
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "Halo2SpecialistSubAgent"
+  display_name: "🟣 Spécialiste Halo2"
+  description: "Expert en preuves à connaissance nulle Halo2"
+  version: "2.0.0"
+  class_name: "Halo2SpecialistSubAgent"
+  module_path: "agents.formal_verification.sous_agents.halo2_specialist.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 600
+  max_retries: 1
+
+halo2:
+  enabled: false
+  params_path: "halo2_params"
+  k: 12  # 2^k rows
+
+capabilities:
+  - name: "halo2.generate_circuit"
+    description: "Génère un circuit Halo2"
+    confidence: 0.85
+
+  - name: "halo2.generate_proof"
+    description: "Génère une preuve Halo2"
+    confidence: 0.80
+
+  - name: "halo2.verify_proof"
+    description: "Vérifie une preuve Halo2"
+    confidence: 0.90
+
+  - name: "halo2.check_availability"
+    description: "Vérifie la disponibilité de Halo2"
+    confidence: 1.0
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "dev@poolsync.io"
+  license: "Proprietary"
+  capabilities_count: 4
+  last_reviewed: "2026-03-16"
