@@ -1,10 +1,7 @@
 """
-Package pour le sous-agent Doc Generator
+Package du sous-agent doc_generator
 """
 
-from .agent import DocGeneratorSubAgent, get_agent_class
+from .agent import DocGeneratorSubAgent
 
-__all__ = [
-    'DocGeneratorSubAgent',
-    'get_agent_class'
-]
+__all__ = ['DocGeneratorSubAgent']

@@ -1,0 +1,10 @@
+{
+  "contracts_analyzed": 1,
+  "contracts_failed": 0,
+  "functions_extracted": 0,
+  "events_extracted": 0,
+  "modifiers_extracted": 0,
+  "processing_time_total": 0.0,
+  "processing_time_avg": 0.0,
+  "uptime_start": "2026-03-18T21:46:31.167396"
+}

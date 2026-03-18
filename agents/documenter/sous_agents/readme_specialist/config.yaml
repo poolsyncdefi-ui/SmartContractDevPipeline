@@ -1,21 +1,44 @@
 # ============================================================================
-# 📖 README Specialist SubAgent - Configuration
+# 📖 README Specialist SubAgent - Configuration (ALIGNÉ SUR COMMUNICATION)
 # Version: 2.0.0
 # ============================================================================
 
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
 agent:
   name: "ReadmeSpecialistSubAgent"
   display_name: "📖 Spécialiste README"
-  description: "Expert en création de fichiers README"
+  description: |-
+    Sous-agent expert en création de fichiers README.
+    Supporte multiples types de projets avec badges et sections adaptées.
+    Aligné sur l'architecture des sous-agents de communication.
   version: "2.0.0"
   class_name: "ReadmeSpecialistSubAgent"
   module_path: "agents.documenter.sous_agents.readme_specialist.agent"
+  category: "documentation"
+  parent_agent: "DocumenterAgent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 30
   max_retries: 2
+  temp_dir: "temp/readme"
+  enable_health_checks: true
+  health_check_interval: 60
 
+  performance:
+    max_concurrent_tasks: 10
+    task_queue_size: 200
+    cache_enabled: true
+    cache_ttl: 600
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
 readme_specialist:
   include_badges: true
   include_toc: true
@@ -24,31 +47,119 @@ readme_specialist:
   include_api_docs: true
   include_contributing: true
   include_license: true
+  include_development: true
+  
+  # Badges par défaut
+  default_badges:
+    - "version"
+    - "license"
+    - "build"
+    - "tests"
+    - "coverage"
+  
+  # Sections par défaut
+  default_sections:
+    - "title"
+    - "badges"
+    - "description"
+    - "toc"
+    - "installation"
+    - "usage"
+    - "features"
+    - "api"
+    - "development"
+    - "contributing"
+    - "license"
+  
+  # Licences supportées
+  licenses:
+    - "MIT"
+    - "Apache-2.0"
+    - "GPL-3.0"
+    - "BSD-3-Clause"
+    - "Unlicense"
+    - "Proprietary"
 
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
 capabilities:
   - name: "readme.generate"
     description: "Génère un README générique"
     confidence: 0.98
+    parameters:
+      - "project_info"
 
   - name: "readme.generate_standard"
     description: "Génère un README standard selon le type de projet"
     confidence: 0.95
+    parameters:
+      - "project_type"
+      - "project_info"
 
   - name: "readme.generate_python"
     description: "Génère un README pour projet Python"
     confidence: 0.96
+    parameters:
+      - "project_info"
 
   - name: "readme.generate_js"
     description: "Génère un README pour projet JavaScript"
     confidence: 0.96
+    parameters:
+      - "project_info"
 
   - name: "readme.generate_solidity"
     description: "Génère un README pour projet Solidity"
     confidence: 0.94
+    parameters:
+      - "project_info"
 
+  - name: "readme.list_types"
+    description: "Liste les types de projets supportés"
+    confidence: 1.0
+    parameters: []
+
+  - name: "readme.stats"
+    description: "Statistiques de l'agent"
+    confidence: 1.0
+    parameters: []
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection_interval: 60
+  custom_metrics:
+    - name: "readmes_generated_total"
+      type: "counter"
+      description: "Nombre total de README générés"
+    - name: "readmes_by_type"
+      type: "gauge"
+      description: "README par type de projet"
+    - name: "generation_time_ms"
+      type: "histogram"
+      description: "Temps de génération"
+    - name: "errors_total"
+      type: "counter"
+      description: "Nombre d'erreurs"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms: 500
+  max_sections_per_readme: 15
+  max_file_size_kb: 100
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
 metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 5
+  capabilities_count: 7
   last_reviewed: "2026-03-17"
+  dependencies: []

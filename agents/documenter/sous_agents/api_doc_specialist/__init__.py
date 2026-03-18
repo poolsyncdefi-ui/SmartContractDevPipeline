@@ -1,10 +1,7 @@
 """
-Package pour le sous-agent API Doc Specialist
+Package du sous-agent api_doc_specialist
 """
 
-from .agent import ApiDocSpecialistSubAgent, get_agent_class
+from .agent import ApiDocSpecialistSubAgent
 
-__all__ = [
-    'ApiDocSpecialistSubAgent',
-    'get_agent_class'
-]
+__all__ = ['ApiDocSpecialistSubAgent']

@@ -2786,3 +2786,467 @@ AttributeError: 'FrontendWeb3Agent' object has no attribute '_create_credit_scor
 2026-03-17 17:38:28 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
 2026-03-17 17:38:29 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-17 17:38:29 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 20:19:03 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 20:19:05 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:19:05 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:19:06 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:19:06 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 20:29:44 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 20:29:46 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:29:46 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:29:47 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:29:47 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 20:51:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 20:51:05 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 20:51:06 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:51:06 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 20:51:07 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 20:51:07 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:00:16 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:00:18 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:00:18 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:00:19 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:00:19 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:07:26 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:07:28 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:07:28 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:07:29 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:07:29 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:14:43 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:14:44 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:14:44 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:14:45 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:14:45 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:24:01 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:24:03 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:24:03 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:24:04 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:24:04 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:26:36 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:26:38 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:26:38 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:26:39 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:26:39 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:33:13 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:33:14 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:33:15 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:33:15 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:33:16 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:33:16 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-17 21:36:15 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-17 21:36:17 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:36:17 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-17 21:36:18 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-17 21:36:18 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 15:09:04 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 15:09:06 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:09:06 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:09:07 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:09:07 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 15:42:39 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 15:42:40 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 15:42:40 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 15:42:41 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:42:41 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:42:42 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:42:42 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 15:48:41 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 15:48:43 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:48:43 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 15:48:44 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 15:48:44 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 20:55:37 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 20:55:39 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 20:55:39 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 20:55:40 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 20:55:40 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 21:07:42 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 21:07:44 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:07:44 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:07:45 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:07:45 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Configuration chargée: FrontendWeb3Agent v2.5.0
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\config.yaml)
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - 🎨 Agent frontend Web3 créé - v2.5.0
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Changement de statut: created -> initializing
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - 🎨 Initialisation du Frontend Web3 Agent...
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Initialisation de l'agent FrontendWeb3Agent...
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Vérification des dépendances: ['smart_contract', 'coder', 'architect']
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Changement de statut: initializing -> ready
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Agent FrontendWeb3Agent initialisé avec succès
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - Initialisation des composants Frontend Web3...
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - ✅ Composants: ['react_generator', 'nextjs_generator', 'vue_generator', 'contract_analyzer', 'deployment_manager']
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent react_expert initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent ui_ux_expert initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent web3_integration initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent defi_ui_specialist initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent nft_ui_specialist initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent performance_optimizer initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO -   ✓ Sous-agent security_ui_specialist initialisé
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - 📋 Templates 2.0: 22
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - 📋 Templates totaux: 22
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - 📦 0 projets chargés
+2026-03-18 21:47:10 - agent.FrontendWeb3Agent - INFO - ✅ Agent Frontend Web3 prêt
+2026-03-18 21:47:12 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:47:12 - agent.FrontendWeb3Agent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:47:13 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:47:13 - agent.FrontendWeb3Agent - INFO - 🛑 Tâche de nettoyage arrêtée

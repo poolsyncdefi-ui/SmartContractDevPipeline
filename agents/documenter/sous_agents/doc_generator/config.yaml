@@ -1,44 +1,354 @@
 # ============================================================================
-# 📄 Doc Generator SubAgent - Configuration
+# 📄 Doc Generator SubAgent - Configuration CORRIGÉE (ALIGNÉ SUR COMMUNICATION)
 # Version: 2.0.0
 # ============================================================================
 
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
 agent:
   name: "DocGeneratorSubAgent"
   display_name: "📄 Générateur de Documentation"
-  description: "Génération de documentation technique générale"
+  description: |-
+    Sous-agent spécialisé en génération de documentation technique générale.
+    Génère des documents structurés en Markdown, HTML ou JSON avec
+    table des matières, sections hiérarchiques et métadonnées.
+    Aligné sur l'architecture des sous-agents de communication.
   version: "2.0.0"
   class_name: "DocGeneratorSubAgent"
   module_path: "agents.documenter.sous_agents.doc_generator.agent"
+  
+  # === MÉTADONNÉES SPÉCIFIQUES ===
+  category: "documentation"
+  parent_agent: "DocumenterAgent"
+  capabilities_count: 6
+  tags: ["documentation", "generator", "markdown", "html", "json"]
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 60
   max_retries: 2
+  temp_dir: "temp/doc_generator"
+  enable_health_checks: true
+  health_check_interval: 60
 
+  performance:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
+    cache_enabled: true
+    cache_ttl: 300
+    enable_profiling: false
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE DU GÉNÉRATEUR DE DOCUMENTATION
+# ============================================================================
 doc_generator:
-  formats: ["markdown", "html", "json"]
+  # Formats supportés
+  formats: ["markdown", "html", "json", "pdf"]
   default_format: "markdown"
+  
+  # Options de génération
   include_metadata: true
   include_toc: true
+  templates_path: "templates/doc_generator/"
+  
+  # Limites
+  max_sections_per_doc: 100
+  max_depth: 5
+  max_file_size_kb: 1024
+  
+  # Métadonnées par défaut
+  default_metadata:
+    author: "SmartContractDevPipeline"
+    license: "MIT"
+    version: "1.0.0"
+    generator: "DocGeneratorSubAgent v2.0.0"
+  
+  # Paramètres spécifiques aux formats
+  formats_config:
+    markdown:
+      extension: ".md"
+      mime_type: "text/markdown"
+      toc_depth: 3
+      code_highlight: true
+      
+    html:
+      extension: ".html"
+      mime_type: "text/html"
+      theme: "light"
+      responsive: true
+      include_css: true
+      include_js: true
+      
+    json:
+      extension: ".json"
+      mime_type: "application/json"
+      pretty_print: true
+      include_schema: true
 
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
   - name: "doc.generate"
-    description: "Génère une documentation à partir de contenu"
+    description: "Génère une documentation à partir de contenu structuré"
     confidence: 0.95
-  - name: "doc.generate_from_spec"
-    description: "Génère une documentation à partir d'une spécification"
-    confidence: 0.92
-  - name: "doc.generate_technical_spec"
-    description: "Génère une spécification technique"
-    confidence: 0.90
-  - name: "doc.generate_architecture_doc"
-    description: "Génère une documentation d'architecture"
-    confidence: 0.88
+    version: "1.0.0"
+    parameters:
+      - name: "project_name"
+        type: "string"
+        required: true
+        description: "Nom du projet"
+      - name: "content"
+        type: "object"
+        required: true
+        description: "Contenu de la documentation (sections, métadonnées)"
+      - name: "format"
+        type: "string"
+        required: false
+        default: "markdown"
+        description: "Format de sortie (markdown, html, json)"
+    returns:
+      type: "object"
+      description: "Documentation générée avec métadonnées"
 
+  - name: "doc.generate_from_spec"
+    description: "Génère une documentation à partir d'une spécification complète"
+    confidence: 0.92
+    version: "1.0.0"
+    parameters:
+      - name: "spec"
+        type: "object"
+        required: true
+        description: "Spécification complète du projet"
+      - name: "format"
+        type: "string"
+        required: false
+        default: "markdown"
+        description: "Format de sortie"
+    returns:
+      type: "object"
+      description: "Documentation générée"
+
+  - name: "doc.generate_technical_spec"
+    description: "Génère une spécification technique détaillée pour un composant"
+    confidence: 0.90
+    version: "1.0.0"
+    parameters:
+      - name: "component"
+        type: "object"
+        required: true
+        description: "Informations du composant (nom, description, interfaces)"
+      - name: "format"
+        type: "string"
+        required: false
+        default: "markdown"
+        description: "Format de sortie"
+    returns:
+      type: "object"
+      description: "Spécification technique générée"
+
+  - name: "doc.generate_architecture_doc"
+    description: "Génère une documentation d'architecture système"
+    confidence: 0.88
+    version: "1.0.0"
+    parameters:
+      - name: "architecture"
+        type: "object"
+        required: true
+        description: "Informations d'architecture (composants, flux, décisions)"
+      - name: "format"
+        type: "string"
+        required: false
+        default: "markdown"
+        description: "Format de sortie"
+    returns:
+      type: "object"
+      description: "Documentation d'architecture générée"
+
+  - name: "doc.list_templates"
+    description: "Liste les templates de documentation disponibles"
+    confidence: 1.0
+    version: "1.0.0"
+    parameters: []
+    returns:
+      type: "object"
+      description: "Liste des templates avec leurs noms"
+
+  - name: "doc.stats"
+    description: "Retourne les statistiques d'utilisation du générateur"
+    confidence: 1.0
+    version: "1.0.0"
+    parameters: []
+    returns:
+      type: "object"
+      description: "Statistiques (docs générées, temps moyen, erreurs)"
+
+# ============================================================================
+# MÉTRIQUES ET MONITORING
+# ============================================================================
+metrics:
+  enabled: true
+  collection_interval: 60  # secondes
+  
+  # Métriques personnalisées
+  custom_metrics:
+    - name: "docs_generated_total"
+      type: "counter"
+      description: "Nombre total de documents générés"
+      labels: ["format"]
+      
+    - name: "docs_by_format"
+      type: "gauge"
+      description: "Documents générés par format"
+      labels: ["format"]
+      
+    - name: "sections_generated_total"
+      type: "counter"
+      description: "Nombre total de sections générées"
+      
+    - name: "generation_duration_ms"
+      type: "histogram"
+      description: "Temps de génération en millisecondes"
+      buckets: [10, 50, 100, 200, 500, 1000, 2000, 5000]
+      
+    - name: "errors_total"
+      type: "counter"
+      description: "Nombre total d'erreurs"
+      labels: ["error_type"]
+      
+  # Export des métriques
+  export:
+    console: true
+    file: true
+    file_path: "metrics/doc_generator_metrics.json"
+    prometheus: false
+    statsd: false
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms:
+    markdown: 500   # 500ms max pour Markdown
+    html: 1000      # 1s max pour HTML
+    json: 200       # 200ms max pour JSON
+    pdf: 5000       # 5s max pour PDF
+  
+  max_doc_size_kb: 1024      # 1Mo max par document
+  max_sections: 100          # 100 sections max
+  max_depth: 5              # 5 niveaux de profondeur max
+  
+  throughput:
+    docs_per_minute: 60      # 60 docs/minute max
+    sections_per_second: 10  # 10 sections/seconde max
+
+# ============================================================================
+# LOGGING
+# ============================================================================
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+      color: true
+      
+    file:
+      enabled: true
+      level: "DEBUG"
+      path: "logs/doc_generator.log"
+      max_size_mb: 100
+      backup_count: 5
+      rotation: "midnight"
+
+# ============================================================================
+# PERSISTANCE
+# ============================================================================
+persistence:
+  enabled: true
+  save_generated_docs: true
+  retention_days: 30
+  storage_path: "data/doc_generator/"
+  compression: true
+  
+  backup:
+    enabled: true
+    interval_hours: 24
+    retention_days: 7
+    path: "backups/doc_generator/"
+
+# ============================================================================
+# SÉCURITÉ
+# ============================================================================
+security:
+  validate_inputs: true
+  max_input_size_kb: 512
+  allowed_formats: ["markdown", "html", "json", "pdf"]
+  allowed_tags: ["h1", "h2", "h3", "p", "ul", "ol", "li", "code", "pre", "table"]
+  allowed_attributes: ["class", "id", "href"]
+  
+  # Prévention XSS
+  escape_html: true
+  sanitize_markdown: true
+  
+  # Audit
+  audit_logging: true
+  audit_events:
+    - "doc_generated"
+    - "doc_exported"
+    - "error"
+
+# ============================================================================
+# API (optionnelle)
+# ============================================================================
+api:
+  enabled: false
+  host: "127.0.0.1"
+  port: 8014
+  endpoints:
+    - "/api/v1/doc/generate"
+    - "/api/v1/doc/templates"
+    - "/api/v1/doc/stats"
+    - "/api/v1/doc/health"
+  
+  authentication:
+    required: false
+    api_key_header: "X-API-Key"
+  
+  rate_limiting:
+    enabled: true
+    rate: "100/minute"
+    by_ip: true
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
 metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 4
+  copyright: "© 2026 SmartContractDevPipeline"
+  
+  capabilities_count: 6
   last_reviewed: "2026-03-17"
+  next_review: "2026-04-17"
+  
+  dependencies:
+    - python: ">=3.9"
+    - markdown: ">=3.4"
+    - jinja2: ">=3.1"
+    - beautifulsoup4: ">=4.11"
+  
+  documentation:
+    user_guide: "docs/doc_generator_user_guide.md"
+    developer_guide: "docs/doc_generator_dev_guide.md"
+    examples: "docs/doc_generator_examples.md"
+  
+  tags: ["documentation", "generator", "markdown", "html", "json"]

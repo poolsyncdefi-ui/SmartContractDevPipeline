@@ -1,0 +1,24 @@
+agent:
+  name: "HTMLGeneratorSubAgent"
+  display_name: "📄 Générateur HTML"
+  description: "Génération de documentation HTML"
+  version: "2.2.0"
+  class_name: "HTMLGeneratorSubAgent"
+  module_path: "agents.documenter.sous_agents.html_generator.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 30
+  max_retries: 2
+
+capabilities:
+  - name: "html.generate"
+    description: "Génère une page HTML"
+  - name: "html.generate_site"
+    description: "Génère un site complet"
+  - name: "html.get_template"
+    description: "Récupère un template"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  capabilities_count: 3

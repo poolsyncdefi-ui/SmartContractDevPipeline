@@ -207,6 +207,43 @@ agent:
       dependencies: []
       initialization_order: 4
 
+    # === NOUVEAUX SOUS-AGENTS AJOUTÉS ===
+    - id: "contract_analyzer"
+      enabled: true
+      name: "ContractAnalyzerSubAgent"
+      display_name: "🔍 Analyseur de Contrats"
+      description: "Analyse les contrats Solidity et extrait leur structure (fonctions, événements, modifiers)"
+      config_path: "agents/documenter/sous_agents/contract_analyzer/config.yaml"
+      module_path: "agents.documenter.sous_agents.contract_analyzer.agent"
+      class_name: "ContractAnalyzerSubAgent"
+      version: "2.2.0"
+      dependencies: []
+      initialization_order: 5
+
+    - id: "html_generator"
+      enabled: true
+      name: "HtmlGeneratorSubAgent"
+      display_name: "🌐 Générateur HTML"
+      description: "Génère une documentation au format HTML avec mise en page responsive et support des diagrammes"
+      config_path: "agents/documenter/sous_agents/html_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.html_generator.agent"
+      class_name: "HtmlGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 6
+
+    - id: "markdown_generator"
+      enabled: true
+      name: "MarkdownGeneratorSubAgent"
+      display_name: "📝 Générateur Markdown"
+      description: "Génère une documentation au format Markdown avec support des diagrammes Mermaid et tables des matières"
+      config_path: "agents/documenter/sous_agents/markdown_generator/config.yaml"
+      module_path: "agents.documenter.sous_agents.markdown_generator.agent"
+      class_name: "MarkdownGeneratorSubAgent"
+      version: "2.0.0"
+      dependencies: []
+      initialization_order: 7
+
   # === CONFIGURATION LLM ===
   llm_config:
     enabled: true
@@ -615,10 +652,11 @@ agent:
     license: "Proprietary"
     tags: ["documentation", "technical-writing", "api-docs", "diagrams", "translation"]
     capabilities_count: 24
-    subagents_count: 4  # NOUVEAU - compteur des sous-agents
+    subagents_count: 7  # NOUVEAU - compteur des sous-agents
     output_formats_count: 5
-    last_reviewed: "2026-02-26"
-    next_review: "2026-03-26"# =====================================================================
+    last_reviewed: "2026-03-18"  # MODIFIER: date du jour
+    next_review: "2026-04-18"     # MODIFIER: +1 mois
+# =====================================================================
 # agents/documenter/config.yaml
 # Configuration complète de l'Agent Documenter - Version 2.2.0
 # Documentation professionnelle avec Mermaid, LLM, qualité, collaboration

@@ -1,51 +1,164 @@
 # ============================================================================
-# 📊 Diagram Generator SubAgent - Configuration
+# 📊 Diagram Generator SubAgent - Configuration (ALIGNÉ SUR COMMUNICATION)
 # Version: 2.0.0
 # ============================================================================
 
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
 agent:
   name: "DiagramGeneratorSubAgent"
   display_name: "📊 Générateur de Diagrammes"
-  description: "Génération de diagrammes d'architecture et de séquence"
+  description: |-
+    Sous-agent spécialisé en génération de diagrammes.
+    Supporte Mermaid, PlantUML et représentation textuelle.
+    Aligné sur l'architecture des sous-agents de communication.
   version: "2.0.0"
   class_name: "DiagramGeneratorSubAgent"
   module_path: "agents.documenter.sous_agents.diagram_generator.agent"
+  category: "documentation"
+  parent_agent: "DocumenterAgent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 60
   max_retries: 2
+  temp_dir: "temp/diagram_generator"
+  enable_health_checks: true
+  health_check_interval: 60
 
+  performance:
+    max_concurrent_tasks: 3
+    task_queue_size: 50
+    cache_enabled: true
+    cache_ttl: 600
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
 diagram_generator:
   default_type: "mermaid"
   supported_types: ["mermaid", "plantuml", "text"]
   output_path: "./docs/diagrams"
   include_metadata: true
+  max_nodes_per_diagram: 100
+  max_depth: 10
 
+  # Paramètres Mermaid
+  mermaid:
+    theme: "dark"
+    security_level: "loose"
+    font_family: "Inter"
+    font_size: 16
+
+  # Paramètres PlantUML
+  plantuml:
+    theme: "sketch"
+    skin: "monochrome"
+    font: "SansSerif"
+
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
 capabilities:
   - name: "diagram.generate_architecture"
     description: "Génère un diagramme d'architecture"
     confidence: 0.92
+    parameters:
+      - "components"
+      - "diagram_type"
 
   - name: "diagram.generate_sequence"
     description: "Génère un diagramme de séquence"
     confidence: 0.90
+    parameters:
+      - "interactions"
+      - "diagram_type"
 
   - name: "diagram.generate_class"
     description: "Génère un diagramme de classes"
     confidence: 0.88
+    parameters:
+      - "classes"
+      - "diagram_type"
 
   - name: "diagram.generate_flowchart"
     description: "Génère un organigramme"
     confidence: 0.95
+    parameters:
+      - "nodes"
+      - "diagram_type"
 
   - name: "diagram.generate_er"
     description: "Génère un diagramme entité-relation"
     confidence: 0.85
+    parameters:
+      - "entities"
+      - "diagram_type"
 
+  - name: "diagram.generate_state"
+    description: "Génère un diagramme d'états"
+    confidence: 0.87
+    parameters:
+      - "states"
+      - "diagram_type"
+
+  - name: "diagram.list_types"
+    description: "Liste les types de diagrammes supportés"
+    confidence: 1.0
+    parameters: []
+
+  - name: "diagram.stats"
+    description: "Statistiques de l'agent"
+    confidence: 1.0
+    parameters: []
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection_interval: 60
+  custom_metrics:
+    - name: "diagrams_generated_total"
+      type: "counter"
+      description: "Nombre total de diagrammes générés"
+    - name: "diagrams_by_type"
+      type: "gauge"
+      description: "Diagrammes par type"
+    - name: "diagrams_by_engine"
+      type: "gauge"
+      description: "Diagrammes par moteur"
+    - name: "generation_time_ms"
+      type: "histogram"
+      description: "Temps de génération"
+    - name: "errors_total"
+      type: "counter"
+      description: "Nombre d'erreurs"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms:
+    mermaid: 200
+    plantuml: 500
+    text: 50
+  max_nodes_per_diagram: 100
+  max_file_size_kb: 500
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
 metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 5
+  capabilities_count: 8
   last_reviewed: "2026-03-17"
+  dependencies:
+    - "mmdc"  # Mermaid CLI (optionnel)
+    - "plantuml"  # PlantUML (optionnel)

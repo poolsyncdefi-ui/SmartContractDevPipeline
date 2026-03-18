@@ -1,51 +1,151 @@
 # ============================================================================
-# 🔌 API Doc Specialist SubAgent - Configuration
+# 🔌 API Doc Specialist SubAgent - Configuration (ALIGNÉ SUR COMMUNICATION)
 # Version: 2.0.0
 # ============================================================================
 
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
 agent:
   name: "ApiDocSpecialistSubAgent"
   display_name: "🔌 Spécialiste Documentation API"
-  description: "Expert en documentation d'API (OpenAPI/Swagger)"
+  description: |-
+    Sous-agent expert en documentation d'API.
+    Génération OpenAPI, Swagger UI, Postman collections.
+    Aligné sur l'architecture des sous-agents de communication.
   version: "2.0.0"
   class_name: "ApiDocSpecialistSubAgent"
   module_path: "agents.documenter.sous_agents.api_doc_specialist.agent"
+  category: "documentation"
+  parent_agent: "DocumenterAgent"
 
+# ============================================================================
+# SYSTÈME
+# ============================================================================
 system:
   log_level: "INFO"
   timeout_seconds: 60
   max_retries: 2
+  temp_dir: "temp/api_doc"
+  enable_health_checks: true
+  health_check_interval: 60
 
+  performance:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
+    cache_enabled: true
+    cache_ttl: 300
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
 api_doc_specialist:
-  formats: ["openapi", "swagger", "postman"]
+  formats: ["openapi", "swagger", "postman", "raml", "graphql"]
   default_format: "openapi"
   include_examples: true
   include_schemas: true
+  include_descriptions: true
+  validate_on_generate: true
+  
+  # Paramètres OpenAPI
+  openapi:
+    version: "3.0.0"
+    default_server: "http://localhost:8000"
+    default_server_description: "Local development server"
+    
+  # Paramètres Swagger UI
+  swagger:
+    theme: "dark"
+    show_extensions: true
+    deep_linking: true
 
+# ============================================================================
+# CAPACITÉS
+# ============================================================================
 capabilities:
   - name: "api.generate_openapi"
     description: "Génère une spécification OpenAPI"
     confidence: 0.95
+    parameters:
+      - "api_info"
 
   - name: "api.generate_swagger"
     description: "Génère une interface Swagger UI"
     confidence: 0.92
+    parameters:
+      - "spec"
+      - "api_info"
 
   - name: "api.generate_postman"
     description: "Génère une collection Postman"
     confidence: 0.90
+    parameters:
+      - "api_info"
 
   - name: "api.generate_endpoint_doc"
     description: "Génère la documentation d'un endpoint"
     confidence: 0.98
+    parameters:
+      - "endpoint"
 
   - name: "api.validate_spec"
     description: "Valide une spécification OpenAPI"
     confidence: 0.95
+    parameters:
+      - "spec"
 
+  - name: "api.list_formats"
+    description: "Liste les formats supportés"
+    confidence: 1.0
+    parameters: []
+
+  - name: "api.stats"
+    description: "Statistiques de l'agent"
+    confidence: 1.0
+    parameters: []
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection_interval: 60
+  custom_metrics:
+    - name: "docs_generated_total"
+      type: "counter"
+      description: "Nombre total de docs API générées"
+    - name: "docs_by_format"
+      type: "gauge"
+      description: "Documents par format"
+    - name: "endpoints_documented"
+      type: "counter"
+      description: "Endpoints documentés"
+    - name: "generation_time_ms"
+      type: "histogram"
+      description: "Temps de génération"
+    - name: "errors_total"
+      type: "counter"
+      description: "Nombre d'erreurs"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms:
+    openapi: 1000
+    swagger: 2000
+    postman: 500
+    endpoint: 100
+  max_endpoints_per_doc: 500
+  max_file_size_kb: 1024
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
 metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 5
+  capabilities_count: 7
   last_reviewed: "2026-03-17"
+  dependencies: []

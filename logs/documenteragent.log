@@ -1855,3 +1855,93 @@ TypeError: 'NoneType' object is not callable
 2026-03-17 17:38:28 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
 2026-03-17 17:38:29 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
 2026-03-17 17:38:29 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - 📚 Documenter Agent créé
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Agent...
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation doc_generator: 'DocGeneratorSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation diagram_generator: 'DiagramGeneratorSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation api_doc_specialist: 'ApiDocSpecialistSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation readme_specialist: 'ReadmeSpecialistSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation contract_analyzer: 'ContractAnalyzerSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation html_generator: 'HtmlGeneratorSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation markdown_generator: 'MarkdownGeneratorSubAgent' object has no attribute '_config'
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - ✅ Sous-agents chargés: 0
+2026-03-18 20:55:37 - agent.DocumenterAgent - INFO - ✅ Documenter Agent prêt
+2026-03-18 20:55:39 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 20:55:39 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 20:55:39 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 20:55:39 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 20:55:40 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 20:55:40 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 20:55:40 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 20:55:40 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - 📚 Documenter Agent créé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Agent...
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 21:07:41 - agent.DocumenterAgent - WARNING -   ⚠️ Erreur initialisation doc_generator: name 'defaultdict' is not defined
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent diagram_generator initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent api_doc_specialist initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent readme_specialist initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent contract_analyzer initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent html_generator initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO -   ✓ Sous-agent markdown_generator initialisé
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - ✅ Sous-agents chargés: 6
+2026-03-18 21:07:41 - agent.DocumenterAgent - INFO - ✅ Documenter Agent prêt
+2026-03-18 21:07:44 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 21:07:44 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:07:44 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 21:07:44 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:07:45 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 21:07:45 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 21:07:45 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:07:45 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Configuration chargée: DocumenterAgent v2.2.0
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Agent DocumenterAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\config.yaml)
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - 📚 Documenter Agent créé
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Changement de statut: created -> initializing
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - 📚 Initialisation du Documenter Agent...
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Initialisation de l'agent DocumenterAgent...
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Vérification des dépendances: ['architect', 'coder', 'smart_contract']
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Changement de statut: initializing -> ready
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Agent DocumenterAgent initialisé avec succès
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - Initialisation des composants Documenter...
+2026-03-18 21:47:09 - agent.DocumenterAgent - INFO - ✅ Composants: ['formats', 'diagram_types', 'llm_enabled', 'mermaid_enabled', 'quality_validation', 'sub_agents_count']
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent doc_generator initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent diagram_generator initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent api_doc_specialist initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent readme_specialist initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent contract_analyzer initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent html_generator initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO -   ✓ Sous-agent markdown_generator initialisé
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO - ✅ Sous-agents chargés: 7
+2026-03-18 21:47:10 - agent.DocumenterAgent - INFO - ✅ Documenter Agent prêt
+2026-03-18 21:47:12 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 21:47:12 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:47:12 - agent.DocumenterAgent - INFO - 🔄 Processeur de documentation démarré
+2026-03-18 21:47:12 - agent.DocumenterAgent - INFO - 🧹 Tâche de nettoyage démarrée
+2026-03-18 21:47:13 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 21:47:13 - agent.DocumenterAgent - INFO - 🛑 Processeur de documentation arrêté
+2026-03-18 21:47:13 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée
+2026-03-18 21:47:13 - agent.DocumenterAgent - INFO - 🛑 Tâche de nettoyage arrêtée

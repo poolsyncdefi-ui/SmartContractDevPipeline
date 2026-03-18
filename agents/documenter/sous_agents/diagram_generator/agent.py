@@ -1,282 +1,375 @@
 #!/usr/bin/env python3
 """
-Diagram Generator SubAgent - Générateur de diagrammes
-Version: 2.0.0
-
-Génère des diagrammes d'architecture, séquences, classes avec Mermaid et PlantUML.
+DiagramGenerator SubAgent - Générateur de diagrammes
+Version: 2.2.0 (ALIGNÉ SUR COMMUNICATION)
 """
 
-import logging
 import sys
-import asyncio
-import json
-import subprocess
-import tempfile
-from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, List, Any, Optional
+from datetime import datetime
+import time
+import json
+from enum import Enum
 
-# Configuration des imports
-current_dir = Path(__file__).parent.absolute()
-project_root = current_dir.parent.parent.parent.parent.parent
+project_root = Path(__file__).parent.parent.parent.parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 from agents.sous_agents.base_subagent import BaseSubAgent
+from agents.base_agent.base_agent import Message, MessageType
 
-logger = logging.getLogger(__name__)
+
+class DiagramType(Enum):
+    INHERITANCE = "inheritance"
+    DEPENDENCY = "dependency"
+    WORKFLOW = "workflow"
+    SEQUENCE = "sequence"
+    CLASS = "class"
+    STATE = "state"
 
 
 class DiagramGeneratorSubAgent(BaseSubAgent):
     """
-    Sous-agent spécialisé en génération de diagrammes.
-    Gère la création de diagrammes Mermaid, PlantUML, etc.
+    Sous-agent spécialisé dans la génération de diagrammes Mermaid
+    Version 2.2 - Aligné sur l'architecture Communication
     """
 
     def __init__(self, config_path: Optional[str] = None):
         super().__init__(config_path)
-
-        self._subagent_display_name = "📊 Générateur de Diagrammes"
-        self._subagent_description = "Génération de diagrammes d'architecture et de séquence"
-        self._subagent_version = "2.0.0"
-        self._subagent_category = "documentation"
-        self._subagent_capabilities = [
-            "diagram.generate_architecture",
-            "diagram.generate_sequence",
-            "diagram.generate_class",
-            "diagram.generate_flowchart",
-            "diagram.generate_er"
-        ]
-
-        self._diagram_config = self._agent_config.get('diagram_generator', {})
-        self._default_type = self._diagram_config.get('default_type', 'mermaid')
-        self._mermaid_available = self._check_mermaid_available()
-        self._plantuml_available = self._check_plantuml_available()
-
-        logger.info(f"✅ {self._subagent_display_name} initialisé (v{self._subagent_version})")
-
-    def _check_mermaid_available(self) -> bool:
-        """Vérifie si Mermaid CLI est disponible."""
-        try:
-            result = subprocess.run(['mmdc', '--version'], capture_output=True, text=True, timeout=2)
-            return result.returncode == 0
-        except:
-            return False
-
-    def _check_plantuml_available(self) -> bool:
-        """Vérifie si PlantUML est disponible."""
-        try:
-            result = subprocess.run(['plantuml', '-version'], capture_output=True, text=True, timeout=2)
-            return result.returncode == 0
-        except:
-            return False
+        
+        subagent_config = self._config.get('subagent', {})
+        self._display_name = subagent_config.get('display_name', '📊 Générateur de Diagrammes')
+        
+        self._initialized = False
+        self._diagrams_generated = 0
+        self._diagrams_failed = 0
+        
+        self._stats = {
+            "diagrams_generated": 0,
+            "diagrams_failed": 0,
+            "by_type": {},
+            "processing_time_total": 0,
+            "processing_time_avg": 0,
+            "uptime_start": datetime.now().isoformat()
+        }
+        
+        self._logger.info(f"{self._display_name} créé")
 
     async def _initialize_subagent_components(self) -> bool:
-        """Initialise les composants spécifiques."""
-        logger.info("Initialisation des composants Diagram Generator...")
-        logger.info(f"  Mermaid: {'✅' if self._mermaid_available else '❌'} (mode simulation)")
-        logger.info(f"  PlantUML: {'✅' if self._plantuml_available else '❌'} (mode simulation)")
-        return True
+        try:
+            self._components = {
+                "version": "2.2.0",
+                "diagram_types": [dt.value for dt in DiagramType],
+                "supports_mermaid": True,
+                "max_nodes": 100
+            }
+            return True
+        except Exception as e:
+            self._logger.error(f"Erreur composants: {e}")
+            return False
 
     async def _initialize_components(self) -> bool:
-        """Implémentation requise par BaseSubAgent."""
         return await self._initialize_subagent_components()
 
-    async def generate_architecture_diagram(self, components: List[Dict[str, Any]], 
-                                           diagram_type: str = "mermaid") -> Dict[str, Any]:
-        """Génère un diagramme d'architecture."""
-        logger.info(f"📊 Génération de diagramme d'architecture ({diagram_type})")
-
-        if diagram_type == "mermaid":
-            diagram = self._generate_mermaid_architecture(components)
-        elif diagram_type == "plantuml":
-            diagram = self._generate_plantuml_architecture(components)
-        else:
-            diagram = self._generate_text_architecture(components)
-
-        diagram_id = f"diag_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-
+    def _get_capability_handlers(self) -> Dict[str, str]:
         return {
-            'success': True,
-            'diagram_id': diagram_id,
-            'diagram_type': diagram_type,
-            'diagram': diagram,
-            'components_count': len(components),
-            'mode': 'simulation' if not self._mermaid_available else 'real'
+            "generate_diagrams": "handle_generate_diagrams",
+            "generate_inheritance": "handle_generate_inheritance",
+            "generate_dependencies": "handle_generate_dependencies",
+            "generate_workflow": "handle_generate_workflow",
+            "generate_sequence": "handle_generate_sequence",
+            "validate_diagram": "handle_validate_diagram"
         }
 
-    def _generate_mermaid_architecture(self, components: List[Dict]) -> str:
-        """Génère un diagramme d'architecture Mermaid."""
-        lines = ["graph TD"]
+    def _get_features(self) -> Dict[str, Any]:
+        return {
+            "diagram_types": [dt.value for dt in DiagramType],
+            "syntax": "mermaid",
+            "max_nodes": 100,
+            "themes": ["default", "dark", "forest"],
+            "export_formats": ["svg", "png", "markdown"]
+        }
+
+    async def generate_diagrams(self, contract_info: Dict[str, Any], types: List[str] = None) -> Dict[str, Any]:
+        """Génère des diagrammes à partir des informations du contrat"""
+        start_time = time.time()
         
-        for i, comp in enumerate(components):
-            node_id = comp.get('id', f"comp{i}")
-            node_name = comp.get('name', f"Component {i}")
-            lines.append(f"    {node_id}[{node_name}]")
+        try:
+            types = types or [dt.value for dt in DiagramType]
+            diagrams = {}
+            
+            if "inheritance" in types and contract_info.get("inheritance"):
+                diagrams["inheritance"] = self._generate_inheritance_diagram(contract_info)
+            
+            if "dependency" in types and contract_info.get("dependencies"):
+                diagrams["dependencies"] = self._generate_dependencies_diagram(contract_info)
+            
+            if "workflow" in types and contract_info.get("functions"):
+                diagrams["workflow"] = self._generate_workflow_diagram(contract_info)
+            
+            if "sequence" in types and contract_info.get("functions"):
+                diagrams["sequence"] = self._generate_sequence_diagram(contract_info)
+            
+            if "class" in types:
+                diagrams["class"] = self._generate_class_diagram(contract_info)
+            
+            processing_time = time.time() - start_time
+            self._diagrams_generated += len(diagrams)
+            self._stats["diagrams_generated"] += len(diagrams)
+            self._stats["processing_time_total"] += processing_time
+            self._stats["processing_time_avg"] = self._stats["processing_time_total"] / max(1, self._stats["diagrams_generated"])
+            
+            for diagram_type in diagrams.keys():
+                self._stats["by_type"][diagram_type] = self._stats["by_type"].get(diagram_type, 0) + 1
+            
+            return {
+                "success": True,
+                "diagrams": diagrams,
+                "count": len(diagrams),
+                "types": list(diagrams.keys()),
+                "processing_time": processing_time
+            }
+            
+        except Exception as e:
+            self._diagrams_failed += 1
+            self._stats["diagrams_failed"] += 1
+            return {
+                "success": False,
+                "error": str(e)
+            }
 
-            # Ajouter les relations
-            for dep in comp.get('dependencies', []):
-                lines.append(f"    {node_id} --> {dep}")
-
+    def _generate_inheritance_diagram(self, info: Dict) -> str:
+        """Génère un diagramme d'héritage"""
+        lines = ["```mermaid", "classDiagram"]
+        main = info.get('name', 'Contract')
+        
+        lines.append(f"  class {main} {{")
+        for func in info.get('functions', [])[:5]:
+            lines.append(f"    +{func.get('name')}()")
+        lines.append("  }")
+        
+        for parent in info.get('inheritance', []):
+            lines.append(f"  {main} --|> {parent}")
+        
+        lines.append("```")
         return "\n".join(lines)
 
-    def _generate_plantuml_architecture(self, components: List[Dict]) -> str:
-        """Génère un diagramme d'architecture PlantUML."""
-        lines = ["@startuml", "skinparam componentStyle rectangle"]
+    def _generate_dependencies_diagram(self, info: Dict) -> str:
+        """Génère un diagramme de dépendances"""
+        lines = ["```mermaid", "graph TD"]
+        main = info.get('name', 'Contract')
+        lines.append(f"  {main}[{main}]")
         
-        for comp in components:
-            comp_name = comp.get('name', 'Unknown')
-            lines.append(f"component {comp_name} {{")
-            lines.append("}")
-
-        lines.append("@enduml")
+        for i, dep in enumerate(info.get('dependencies', [])[:10]):
+            dep_id = f"dep{i}"
+            lines.append(f"  {dep_id}[{dep}]")
+            lines.append(f"  {main} --> {dep_id}")
+        
+        lines.append("```")
         return "\n".join(lines)
 
-    def _generate_text_architecture(self, components: List[Dict]) -> str:
-        """Génère une représentation textuelle simple."""
-        lines = ["ARCHITECTURE DIAGRAM", "=" * 50]
+    def _generate_workflow_diagram(self, info: Dict) -> str:
+        """Génère un diagramme de workflow"""
+        lines = ["```mermaid", "stateDiagram-v2"]
+        lines.append("  [*] --> Idle")
         
-        for comp in components:
-            lines.append(f"\n• {comp.get('name', 'Component')}")
-            if 'description' in comp:
-                lines.append(f"  {comp['description']}")
-            if 'dependencies' in comp:
-                lines.append(f"  → Depends on: {', '.join(comp['dependencies'])}")
-
+        for func in info.get('functions', [])[:8]:
+            name = func.get('name', 'function')
+            lines.append(f"  Idle --> {name}")
+            lines.append(f"  {name} --> Idle")
+        
+        lines.append("```")
         return "\n".join(lines)
 
-    async def generate_sequence_diagram(self, interactions: List[Dict[str, Any]],
-                                       diagram_type: str = "mermaid") -> Dict[str, Any]:
-        """Génère un diagramme de séquence."""
-        if diagram_type == "mermaid":
-            lines = ["sequenceDiagram"]
-            for interaction in interactions:
-                from_ = interaction.get('from', 'Actor')
-                to_ = interaction.get('to', 'System')
-                action = interaction.get('action', 'call')
-                lines.append(f"    {from_}->>{to_}: {action}")
-            diagram = "\n".join(lines)
-        else:
-            diagram = "Sequence diagram placeholder"
+    def _generate_sequence_diagram(self, info: Dict) -> str:
+        """Génère un diagramme de séquence"""
+        lines = ["```mermaid", "sequenceDiagram"]
+        lines.append("  participant User")
+        lines.append("  participant Contract")
+        
+        for func in info.get('functions', [])[:5]:
+            name = func.get('name', 'function')
+            lines.append(f"  User->>Contract: {name}()")
+            lines.append(f"  Contract-->>User: result")
+        
+        lines.append("```")
+        return "\n".join(lines)
 
+    def _generate_class_diagram(self, info: Dict) -> str:
+        """Génère un diagramme de classes"""
+        lines = ["```mermaid", "classDiagram"]
+        main = info.get('name', 'Contract')
+        
+        lines.append(f"  class {main} {{")
+        for func in info.get('functions', []):
+            params = ", ".join([p.get('type', '') for p in func.get('params', [])])
+            lines.append(f"    +{func.get('name')}({params}) {func.get('returns', 'void')}")
+        lines.append("  }")
+        
+        lines.append("```")
+        return "\n".join(lines)
+
+    async def validate_diagram(self, diagram: str) -> Dict[str, Any]:
+        """Valide la syntaxe d'un diagramme"""
+        issues = []
+        
+        if not diagram.startswith("```mermaid"):
+            issues.append("Le diagramme doit commencer par ```mermaid")
+        
+        if "classDiagram" in diagram:
+            if "class" not in diagram:
+                issues.append("Diagramme de classe sans classe")
+        
+        lines = diagram.split("\n")
+        if len(lines) > 100:
+            issues.append(f"Diagramme trop long: {len(lines)} lignes > 100")
+        
         return {
-            'success': True,
-            'diagram': diagram,
-            'interactions_count': len(interactions)
+            "valid": len(issues) == 0,
+            "issues": issues,
+            "line_count": len(lines)
         }
 
-    async def generate_class_diagram(self, classes: List[Dict[str, Any]],
-                                    diagram_type: str = "mermaid") -> Dict[str, Any]:
-        """Génère un diagramme de classes."""
-        if diagram_type == "mermaid":
-            lines = ["classDiagram"]
-            for cls in classes:
-                class_name = cls.get('name', 'Class')
-                lines.append(f"    class {class_name} {{")
-                for attr in cls.get('attributes', []):
-                    lines.append(f"        +{attr}")
-                for method in cls.get('methods', []):
-                    lines.append(f"        +{method}()")
-                lines.append("    }")
-            diagram = "\n".join(lines)
-        else:
-            diagram = "Class diagram placeholder"
+    async def handle_generate_diagrams(self, message: Message) -> Message:
+        content = message.content
+        result = await self.generate_diagrams(
+            content.get("contract_info", {}),
+            content.get("types")
+        )
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content=result,
+            message_type="diagrams_generated",
+            correlation_id=message.message_id
+        )
 
+    async def handle_generate_inheritance(self, message: Message) -> Message:
+        diagram = self._generate_inheritance_diagram(message.content)
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content={"diagram": diagram, "type": "inheritance"},
+            message_type="diagram_generated",
+            correlation_id=message.message_id
+        )
+
+    async def handle_generate_dependencies(self, message: Message) -> Message:
+        diagram = self._generate_dependencies_diagram(message.content)
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content={"diagram": diagram, "type": "dependencies"},
+            message_type="diagram_generated",
+            correlation_id=message.message_id
+        )
+
+    async def handle_generate_workflow(self, message: Message) -> Message:
+        diagram = self._generate_workflow_diagram(message.content)
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content={"diagram": diagram, "type": "workflow"},
+            message_type="diagram_generated",
+            correlation_id=message.message_id
+        )
+
+    async def handle_generate_sequence(self, message: Message) -> Message:
+        diagram = self._generate_sequence_diagram(message.content)
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content={"diagram": diagram, "type": "sequence"},
+            message_type="diagram_generated",
+            correlation_id=message.message_id
+        )
+
+    async def handle_validate_diagram(self, message: Message) -> Message:
+        result = await self.validate_diagram(message.content.get("diagram", ""))
+        return Message(
+            sender=self.__class__.__name__,
+            recipient=message.sender,
+            content=result,
+            message_type="diagram_validated",
+            correlation_id=message.message_id
+        )
+
+    async def handle_message(self, message: Message) -> Optional[Message]:
+        try:
+            msg_type = message.message_type
+            handlers = self._get_capability_handlers()
+            
+            if msg_type in handlers:
+                handler = getattr(self, handlers[msg_type], None)
+                if handler:
+                    return await handler(message)
+            
+            return Message(
+                sender=self.__class__.__name__,
+                recipient=message.sender,
+                content={"error": f"Type non supporté: {msg_type}"},
+                message_type=MessageType.ERROR.value,
+                correlation_id=message.message_id
+            )
+        except Exception as e:
+            return Message(
+                sender=self.__class__.__name__,
+                recipient=message.sender,
+                content={"error": str(e)},
+                message_type=MessageType.ERROR.value,
+                correlation_id=message.message_id
+            )
+
+    async def health_check(self) -> Dict[str, Any]:
         return {
-            'success': True,
-            'diagram': diagram,
-            'classes_count': len(classes)
+            "status": self._status,
+            "ready": self._initialized,
+            "display_name": self._display_name,
+            "stats": {
+                "diagrams_generated": self._stats["diagrams_generated"],
+                "diagrams_failed": self._stats["diagrams_failed"],
+                "by_type": self._stats["by_type"]
+            },
+            "timestamp": datetime.now().isoformat()
         }
 
-    async def generate_flowchart(self, nodes: List[Dict[str, Any]],
-                                diagram_type: str = "mermaid") -> Dict[str, Any]:
-        """Génère un organigramme."""
-        if diagram_type == "mermaid":
-            lines = ["flowchart TD"]
-            for node in nodes:
-                node_id = node.get('id', 'node')
-                node_text = node.get('text', 'Step')
-                lines.append(f"    {node_id}[{node_text}]")
-                
-                if 'next' in node:
-                    lines.append(f"    {node_id} --> {node['next']}")
-            diagram = "\n".join(lines)
-        else:
-            diagram = "Flowchart placeholder"
-
+    def get_agent_info(self) -> Dict[str, Any]:
         return {
-            'success': True,
-            'diagram': diagram,
-            'nodes_count': len(nodes)
+            "id": "DiagramGeneratorSubAgent",
+            "name": self._display_name,
+            "version": "2.2.0",
+            "status": self._status,
+            "capabilities": list(self._get_capability_handlers().keys()),
+            "features": self._get_features(),
+            "stats": {
+                "diagrams_generated": self._stats["diagrams_generated"],
+                "success_rate": round(
+                    (self._stats["diagrams_generated"] / max(1, self._stats["diagrams_generated"] + self._stats["diagrams_failed"])) * 100, 2
+                )
+            }
         }
 
-    async def generate_er_diagram(self, entities: List[Dict[str, Any]],
-                                 diagram_type: str = "mermaid") -> Dict[str, Any]:
-        """Génère un diagramme entité-relation."""
-        if diagram_type == "mermaid":
-            lines = ["erDiagram"]
-            for entity in entities:
-                entity_name = entity.get('name', 'Entity')
-                lines.append(f"    {entity_name} {{")
-                for attr in entity.get('attributes', []):
-                    lines.append(f"        {attr}")
-                lines.append("    }")
-                
-                for rel in entity.get('relationships', []):
-                    lines.append(f"    {entity_name} ||--o{{ {rel} : has")
-            diagram = "\n".join(lines)
-        else:
-            diagram = "ER diagram placeholder"
+    async def get_stats(self) -> Dict[str, Any]:
+        return self._stats
 
-        return {
-            'success': True,
-            'diagram': diagram,
-            'entities_count': len(entities)
-        }
+    async def shutdown(self) -> bool:
+        self._logger.info(f"Arrêt de {self._display_name}...")
+        await self._save_stats()
+        
+        # Appeler super().shutdown() mais ignorer son retour
+        try:
+            await super().shutdown()
+        except Exception:
+            pass  # Ignorer toute erreur
+        
+        return True
 
-    def _get_capability_handlers(self) -> Dict[str, Any]:
-        return {
-            "diagram.generate_architecture": self._handle_generate_architecture,
-            "diagram.generate_sequence": self._handle_generate_sequence,
-            "diagram.generate_class": self._handle_generate_class,
-            "diagram.generate_flowchart": self._handle_generate_flowchart,
-            "diagram.generate_er": self._handle_generate_er,
-        }
-
-    async def _handle_generate_architecture(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.generate_architecture_diagram(
-            components=params.get('components', []),
-            diagram_type=params.get('diagram_type', self._default_type)
-        )
-
-    async def _handle_generate_sequence(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.generate_sequence_diagram(
-            interactions=params.get('interactions', []),
-            diagram_type=params.get('diagram_type', self._default_type)
-        )
-
-    async def _handle_generate_class(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.generate_class_diagram(
-            classes=params.get('classes', []),
-            diagram_type=params.get('diagram_type', self._default_type)
-        )
-
-    async def _handle_generate_flowchart(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.generate_flowchart(
-            nodes=params.get('nodes', []),
-            diagram_type=params.get('diagram_type', self._default_type)
-        )
-
-    async def _handle_generate_er(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        return await self.generate_er_diagram(
-            entities=params.get('entities', []),
-            diagram_type=params.get('diagram_type', self._default_type)
-        )
-
-
-# ============================================================================
-# FONCTIONS D'EXPORT
-# ============================================================================
-
-def get_agent_class():
-    return DiagramGeneratorSubAgent
+    async def _save_stats(self):
+        try:
+            stats_file = Path("./reports") / "documenter" / "diagram_generator" / f"stats_{datetime.now().strftime('%Y%m%d')}.json"
+            stats_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(stats_file, 'w') as f:
+                json.dump(self._stats, f, indent=2, default=str)
+        except Exception as e:
+            self._logger.warning(f"Impossible de sauvegarder: {e}")

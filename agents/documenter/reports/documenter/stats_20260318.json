@@ -1,0 +1,51 @@
+{
+  "stats": {
+    "docs_generated": 1,
+    "docs_failed": 0,
+    "docs_validated": 1,
+    "diagrams_generated": 1,
+    "sections_generated": 3,
+    "quality_scores": [
+      0.0
+    ],
+    "average_quality_score": 0.0,
+    "by_format": {
+      "markdown": 1
+    },
+    "by_type": {
+      "contract": 1
+    },
+    "processing_time_total": 0,
+    "processing_time_avg": 0,
+    "uptime_start": "2026-03-18T21:46:31.089270"
+  },
+  "sub_agents": [
+    "doc_generator",
+    "diagram_generator",
+    "api_doc_specialist",
+    "readme_specialist",
+    "contract_analyzer",
+    "html_generator",
+    "markdown_generator"
+  ],
+  "components": {
+    "formats": [],
+    "diagram_types": [
+      "class",
+      "sequence",
+      "flowchart",
+      "state",
+      "entity_relationship",
+      "c4_context",
+      "c4_container",
+      "c4_component",
+      "dependency",
+      "inheritance"
+    ],
+    "llm_enabled": true,
+    "mermaid_enabled": true,
+    "quality_validation": true,
+    "sub_agents_count": 0
+  },
+  "timestamp": "2026-03-18T21:46:31.198618"
+}

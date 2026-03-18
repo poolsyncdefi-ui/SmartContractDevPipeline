@@ -1,1 +1,9 @@
 2026-03-17 17:38:25 - agent.DiagramGeneratorSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-18 20:55:37 - agent.DiagramGeneratorSubAgent - INFO - Configuration chargée: DiagramGeneratorSubAgent v2.0.0
+2026-03-18 20:55:37 - agent.DiagramGeneratorSubAgent - INFO - Agent DiagramGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\diagram_generator\config.yaml)
+2026-03-18 21:07:41 - agent.DiagramGeneratorSubAgent - INFO - Configuration chargée: DiagramGeneratorSubAgent v2.0.0
+2026-03-18 21:07:41 - agent.DiagramGeneratorSubAgent - INFO - Agent DiagramGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\diagram_generator\config.yaml)
+2026-03-18 21:07:41 - agent.DiagramGeneratorSubAgent - INFO - 📊 Générateur de Diagrammes créé
+2026-03-18 21:47:10 - agent.DiagramGeneratorSubAgent - INFO - Configuration chargée: DiagramGeneratorSubAgent v2.0.0
+2026-03-18 21:47:10 - agent.DiagramGeneratorSubAgent - INFO - Agent DiagramGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\diagram_generator\config.yaml)
+2026-03-18 21:47:10 - agent.DiagramGeneratorSubAgent - INFO - 📊 Générateur de Diagrammes créé

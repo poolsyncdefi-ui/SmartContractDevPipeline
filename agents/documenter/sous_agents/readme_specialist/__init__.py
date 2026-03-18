@@ -1,10 +1,7 @@
 """
-Package pour le sous-agent README Specialist
+Package du sous-agent readme_specialist
 """
 
-from .agent import ReadmeSpecialistSubAgent, get_agent_class
+from .agent import ReadmeSpecialistSubAgent
 
-__all__ = [
-    'ReadmeSpecialistSubAgent',
-    'get_agent_class'
-]
+__all__ = ['ReadmeSpecialistSubAgent']

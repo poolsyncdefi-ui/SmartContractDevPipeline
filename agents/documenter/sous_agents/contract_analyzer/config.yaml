@@ -1,0 +1,28 @@
+agent:
+  name: "ContractAnalyzerSubAgent"
+  display_name: "🔍 Analyseur de Contrats"
+  description: "Analyse approfondie des contrats Solidity"
+  version: "2.2.0"
+  class_name: "ContractAnalyzerSubAgent"
+  module_path: "agents.documenter.sous_agents.contract_analyzer.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 60
+  max_retries: 2
+
+capabilities:
+  - name: "contract.analyze"
+    description: "Analyse complète d'un contrat"
+  - name: "contract.extract_functions"
+    description: "Extrait les fonctions"
+  - name: "contract.extract_events"
+    description: "Extrait les événements"
+  - name: "contract.extract_natspec"
+    description: "Extrait la documentation NatSpec"
+  - name: "contract.security_analysis"
+    description: "Analyse de sécurité basique"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  capabilities_count: 5

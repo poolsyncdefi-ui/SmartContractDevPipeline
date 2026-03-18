@@ -1,1 +1,8 @@
 2026-03-17 17:38:25 - agent.DocGeneratorSubAgent - INFO - Agent base_agent créé (config: None)
+2026-03-18 20:55:37 - agent.DocGeneratorSubAgent - INFO - Configuration chargée: DocGeneratorSubAgent v2.0.0
+2026-03-18 20:55:37 - agent.DocGeneratorSubAgent - INFO - Agent DocGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\doc_generator\config.yaml)
+2026-03-18 21:07:41 - agent.DocGeneratorSubAgent - INFO - Configuration chargée: DocGeneratorSubAgent v2.0.0
+2026-03-18 21:07:41 - agent.DocGeneratorSubAgent - INFO - Agent DocGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\doc_generator\config.yaml)
+2026-03-18 21:47:10 - agent.DocGeneratorSubAgent - INFO - Configuration chargée: DocGeneratorSubAgent v2.0.0
+2026-03-18 21:47:10 - agent.DocGeneratorSubAgent - INFO - Agent DocGeneratorSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\documenter\sous_agents\doc_generator\config.yaml)
+2026-03-18 21:47:10 - agent.DocGeneratorSubAgent - INFO - 📄 Générateur de Documentation créé

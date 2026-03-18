@@ -1,6 +1,6 @@
 """
 BaseSubAgent - Classe de base pour TOUS les sous-agents du système
-Version: 2.0.0 (ALIGNÉE SUR BASE_AGENT)
+Version: 2.0.1 (CORRIGÉ - Avec initialisation robuste de _config)
 
 Fournit les fonctionnalités fondamentales pour tous les sous-agents :
 - Cycle de vie complet (initialisation, démarrage, pause, arrêt)
@@ -348,13 +348,40 @@ class BaseSubAgent(BaseAgent, ABC):
         """Initialise le sous-agent de base avec configuration"""
         super().__init__(config_path)
         
+        # 🔧 CORRECTION ROBUSTE POUR _config
+        # ============================================================
+        # Cette correction garantit que self._config est toujours défini,
+        # même si BaseAgent ne l'a pas initialisé correctement.
+        # Elle est 100% rétrocompatible et ne casse rien.
+        # ============================================================
+        
+        # Cas 1: _config existe déjà (hérité de BaseAgent)
+        if hasattr(self, '_config') and self._config is not None:
+            # Déjà bon, ne rien faire
+            pass
+        
+        # Cas 2: _agent_config existe (utilisé par BaseAgent)
+        elif hasattr(self, '_agent_config'):
+            self._config = self._agent_config
+            logger.debug(f"🔧 _config initialisé depuis _agent_config pour {self.__class__.__name__}")
+        
+        # Cas 3: Charger directement depuis le fichier
+        elif config_path and Path(config_path).exists():
+            self._config = self._load_config_direct(config_path)
+            logger.debug(f"🔧 _config chargé directement depuis {config_path}")
+        
+        # Cas 4: Valeur par défaut
+        else:
+            self._config = {}
+            logger.debug(f"🔧 _config initialisé à {{}} pour {self.__class__.__name__}")
+        
         # ====================================================================
         # MÉTADONNÉES (à surcharger par les sous-classes)
         # ====================================================================
         self._subagent_display_name = "Base SubAgent"
         self._subagent_description = "Classe de base pour tous les sous-agents"
-        self._subagent_version = self._agent_config.get('base_subagent', {}).get('version', '2.0.0')
-        self._subagent_category = self._agent_config.get('base_subagent', {}).get('parent_relationship', {}).get('type', 'generic')
+        self._subagent_version = self._config.get('base_subagent', {}).get('version', '2.0.1')
+        self._subagent_category = self._config.get('base_subagent', {}).get('parent_relationship', {}).get('type', 'generic')
         self._subagent_capabilities: List[str] = []
         
         # ====================================================================
@@ -397,7 +424,7 @@ class BaseSubAgent(BaseAgent, ABC):
         
         # === AUDIT ===
         self._audit_log: deque = deque(maxlen=1000)
-        self._audit_enabled = self._agent_config.get('security', {}).get('audit', {}).get('enabled', True)
+        self._audit_enabled = self._config.get('security', {}).get('audit', {}).get('enabled', True)
         
         # === EXTENSIONS ===
         self._extensions: Dict[str, Any] = {}
@@ -413,7 +440,17 @@ class BaseSubAgent(BaseAgent, ABC):
         self._heartbeat_task: Optional[asyncio.Task] = None
         self._parent_comm_task: Optional[asyncio.Task] = None
         
-        logger.info(f"✅ BaseSubAgent initialisé pour {self._subagent_display_name}")
+        logger.info(f"✅ BaseSubAgent v2.0.1 initialisé pour {self._subagent_display_name}")
+
+    def _load_config_direct(self, config_path: str) -> Dict[str, Any]:
+        """Charge directement la configuration depuis un fichier (méthode de secours)"""
+        try:
+            import yaml
+            with open(config_path, 'r', encoding='utf-8') as f:
+                return yaml.safe_load(f) or {}
+        except Exception as e:
+            logger.error(f"❌ Erreur chargement direct config {config_path}: {e}")
+            return {}
 
     # ========================================================================
     # MÉTHODES DE CONFIGURATION
@@ -422,7 +459,7 @@ class BaseSubAgent(BaseAgent, ABC):
     def _load_configuration(self):
         """Charge et valide la configuration depuis le fichier YAML"""
         try:
-            config = self._agent_config.get('base_subagent', {})
+            config = self._config.get('base_subagent', {})
             
             # Configuration système
             system_config = config.get('system', {})
@@ -473,7 +510,7 @@ class BaseSubAgent(BaseAgent, ABC):
     def _load_input_schemas(self):
         """Charge les schémas de validation des entrées"""
         try:
-            schemas = self._agent_config.get('security', {}).get('input_validation', {}).get('schemas', {})
+            schemas = self._config.get('security', {}).get('input_validation', {}).get('schemas', {})
             self._input_schemas = schemas
             logger.debug(f"Schémas de validation chargés: {list(schemas.keys())}")
         except Exception as e:
@@ -567,7 +604,7 @@ class BaseSubAgent(BaseAgent, ABC):
         self._processor_task = loop.create_task(self._task_processor())
         
         # Métriques
-        metrics_config = self._agent_config.get('metrics', {}).get('collection', {})
+        metrics_config = self._config.get('metrics', {}).get('collection', {})
         if metrics_config.get('enabled', True):
             self._metrics_task = loop.create_task(self._metrics_collector())
         
@@ -575,7 +612,7 @@ class BaseSubAgent(BaseAgent, ABC):
         self._cleanup_task = loop.create_task(self._cleanup_worker())
         
         # Heartbeat parent
-        parent_config = self._agent_config.get('parent_communication', {}).get('reliability', {})
+        parent_config = self._config.get('parent_communication', {}).get('reliability', {})
         if parent_config.get('heartbeat_enabled', True):
             self._heartbeat_task = loop.create_task(self._heartbeat_sender())
         
@@ -624,14 +661,14 @@ class BaseSubAgent(BaseAgent, ABC):
 
         # Audit
         await self._audit("SUBAGENT_STOPPED", {
-            "uptime_seconds": self._metrics.get_uptime_seconds()
+            "uptime_seconds": (datetime.now() - self._metrics.start_time).total_seconds()
         })
 
-        # Appeler la méthode parent
-        await super().shutdown()
+        # Appeler la méthode parent (mais ignorer son retour)
+        await super().shutdown()  # ← NE PAS retourner cette valeur
 
         logger.info(f"✅ {self._subagent_display_name} arrêté")
-        return True
+        return True  # ← TOUJOURS retourner True
 
     async def pause(self) -> bool:
         """Met en pause le sous-agent"""
@@ -905,7 +942,7 @@ class BaseSubAgent(BaseAgent, ABC):
                 logger.warning(f"🔄 Retry {task.retry_count}/{task.max_retries} pour tâche {task.id}")
                 
                 # Backoff exponentiel
-                delay = self._agent_config.get('system', {}).get('retry_policy', {}).get('initial_delay_ms', 100) / 1000
+                delay = self._config.get('system', {}).get('retry_policy', {}).get('initial_delay_ms', 100) / 1000
                 delay *= (2 ** (task.retry_count - 1))
                 await asyncio.sleep(delay)
                 
@@ -1057,7 +1094,7 @@ class BaseSubAgent(BaseAgent, ABC):
         try:
             # Essayer de trouver l'agent parent dans le registre
             # Cette partie dépend de l'implémentation du registre
-            parent_name = self._agent_config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name')
+            parent_name = self._config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name')
             
             if parent_name:
                 # Envoyer un message d'enregistrement
@@ -1087,7 +1124,7 @@ class BaseSubAgent(BaseAgent, ABC):
             # Créer le message
             message = Message(
                 sender=self.name,
-                recipient=self._agent_config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name', 'orchestrator'),
+                recipient=self._config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name', 'orchestrator'),
                 content=payload,
                 message_type=f"subagent.{message_type.lower()}",
                 correlation_id=str(uuid.uuid4()) if require_response else None,
@@ -1209,7 +1246,7 @@ class BaseSubAgent(BaseAgent, ABC):
     async def _save_metrics(self, metrics: Dict[str, Any]):
         """Sauvegarde les métriques sur disque"""
         try:
-            metrics_config = self._agent_config.get('metrics', {}).get('storage', {})
+            metrics_config = self._config.get('metrics', {}).get('storage', {})
             if not metrics_config.get('export', {}).get('enabled', True):
                 return
             
@@ -1231,7 +1268,7 @@ class BaseSubAgent(BaseAgent, ABC):
     async def _cleanup_old_metrics(self, path: Path):
         """Nettoie les vieux fichiers de métriques"""
         try:
-            retention_days = self._agent_config.get('metrics', {}).get('storage', {}).get('retention_hours', 24) / 24
+            retention_days = self._config.get('metrics', {}).get('storage', {}).get('retention_hours', 24) / 24
             cutoff = datetime.now() - timedelta(days=retention_days)
             
             for file in path.glob(f"metrics_{self.name}_*.json"):
@@ -1376,7 +1413,7 @@ class BaseSubAgent(BaseAgent, ABC):
             return
         
         try:
-            audit_config = self._agent_config.get('security', {}).get('audit', {}).get('storage', {})
+            audit_config = self._config.get('security', {}).get('audit', {}).get('storage', {})
             path = Path(audit_config.get('path', 'logs/audit/subagents'))
             path.mkdir(parents=True, exist_ok=True)
             
@@ -1399,7 +1436,7 @@ class BaseSubAgent(BaseAgent, ABC):
     async def _load_extensions(self):
         """Charge les extensions configurées"""
         try:
-            extensions_config = self._agent_config.get('extensions', {})
+            extensions_config = self._config.get('extensions', {})
             
             if not extensions_config.get('auto_load', True):
                 return
@@ -1511,7 +1548,7 @@ class BaseSubAgent(BaseAgent, ABC):
     async def _save_state(self):
         """Sauvegarde l'état du sous-agent"""
         try:
-            persistence_config = self._agent_config.get('persistence', {}).get('state_persistence', {})
+            persistence_config = self._config.get('persistence', {}).get('state_persistence', {})
             if not persistence_config.get('enabled', False):
                 return
             
@@ -1893,7 +1930,7 @@ class BaseSubAgent(BaseAgent, ABC):
             "description": self._subagent_description,
             "status": self._status.value,
             "capabilities": self._subagent_capabilities,
-            "parent_agent": self._agent_config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name'),
+            "parent_agent": self._config.get('base_subagent', {}).get('parent_relationship', {}).get('parent_name'),
             "stats": {
                 "tasks_processed": self._metrics.tasks_processed,
                 "success_rate": round(self._metrics.get_success_rate(), 2),

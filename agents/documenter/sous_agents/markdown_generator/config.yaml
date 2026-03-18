@@ -1,0 +1,24 @@
+agent:
+  name: "MarkdownGeneratorSubAgent"
+  display_name: "📝 Générateur Markdown"
+  description: "Génération de documentation Markdown"
+  version: "2.2.0"
+  class_name: "MarkdownGeneratorSubAgent"
+  module_path: "agents.documenter.sous_agents.markdown_generator.agent"
+
+system:
+  log_level: "INFO"
+  timeout_seconds: 30
+  max_retries: 2
+
+capabilities:
+  - name: "markdown.generate"
+    description: "Génère un document Markdown"
+  - name: "markdown.generate_overview"
+    description: "Génère la section overview"
+  - name: "markdown.generate_functions"
+    description: "Génère la section des fonctions"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  capabilities_count: 3
