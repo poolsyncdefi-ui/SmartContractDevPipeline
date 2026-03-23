@@ -668,8 +668,6 @@ class FrontendWeb3Agent(BaseAgent):
 
     async def health_check(self) -> Dict[str, Any]:
         """Vérifie la santé de l'agent"""
-        base_health = await super().health_check()
-
         # Calculer l'uptime
         uptime = None
         if self._stats.get('uptime_start'):
@@ -677,29 +675,30 @@ class FrontendWeb3Agent(BaseAgent):
             uptime = str(datetime.now() - start)
 
         # Vérifier la santé des sous-agents
-        sub_agents_health = await self.get_sub_agents_status()
+        sub_agents_health = {}
+        for agent_name, agent_instance in self._sub_agents.items():
+            try:
+                if hasattr(agent_instance, 'health_check'):
+                    health = await agent_instance.health_check()
+                    sub_agents_health[agent_name] = {
+                        "status": health.get("status", "unknown"),
+                        "ready": health.get("ready", False)
+                    }
+                else:
+                    sub_agents_health[agent_name] = {"status": "unknown", "error": "No health_check method"}
+            except Exception as e:
+                sub_agents_health[agent_name] = {"status": "error", "error": str(e)}
 
         return {
-            **base_health,
             "agent": self.name,
             "display_name": self._display_name,
             "status": self._status.value if hasattr(self._status, 'value') else str(self._status),
             "ready": self._status == AgentStatus.READY,
             "initialized": self._initialized,
             "uptime": uptime,
-            "frontend_specific": {
-                "projects_generated": len(self._projects),
-                "components_generated": self._components_generated,
-                "templates_available": len(self._templates),
-                "templates_2_0": len(self._templates_2_0),
-                "sub_agents": sub_agents_health,
-                "components": list(self._components.keys()),
-                "stats": {
-                    "total_projects": self._stats['total_projects'],
-                    "total_components": self._stats['total_components_generated'],
-                    "deployments": self._stats['deployments']
-                }
-            },
+            "sub_agents": len(self._sub_agents),
+            "sub_agents_health": sub_agents_health,
+            "stats": self._stats,
             "timestamp": datetime.now().isoformat()
         }
 

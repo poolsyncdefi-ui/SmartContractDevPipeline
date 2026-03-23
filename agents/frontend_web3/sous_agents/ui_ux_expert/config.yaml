@@ -1,50 +1,154 @@
 # ============================================================================
-# 🎨 Expert UI/UX Design Système - Configuration
+# agents/frontend_web3/sous_agents/ui_ux_expert/config.yaml
+# Configuration de l'Expert UI/UX Design
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "ui_ux_expert"
   name: "UiUxExpertSubAgent"
-  display_name: "🎨 Expert UI/UX Design Système"
-  description: |-
-    Expert en design system, composants accessibles, animations fluides
+  display_name: "🎨 Expert UI/UX Design"
   version: "2.0.0"
-  class_name: "UiUxExpertSubAgent"
-  module_path: "agents.frontend_web3.sous_agents.ui_ux_expert.agent"
+  enabled: true
+  description: "Expert en design system, composants accessibles, animations fluides"
+  purpose: "Créer des systèmes de design complets et accessibles"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  category: "frontend_web3"
+  parent_agent: "FrontendWeb3Agent"
+  capabilities_count: 6
+  tags: ["ui", "ux", "design", "accessibility", "responsive"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "ui_ux.create_design_system"
+    description: "Crée un système de design complet"
+    confidence: 0.95
+    parameters:
+      - "name"
+      - "type"
+      - "primary_color"
+      - "dark_mode"
+
+  - name: "ui_ux.generate_colors"
+    description: "Génère une palette de couleurs"
+    confidence: 0.94
+    parameters:
+      - "base_color"
+      - "mode"
+
+  - name: "ui_ux.generate_typography"
+    description: "Génère un système typographique"
+    confidence: 0.93
+    parameters:
+      - "font_family"
+
+  - name: "ui_ux.style_component"
+    description: "Génère les styles d'un composant"
+    confidence: 0.92
+    parameters:
+      - "name"
+      - "options"
+
+  - name: "ui_ux.generate_responsive"
+    description: "Génère des styles responsifs"
+    confidence: 0.90
+    parameters:
+      - "styles"
+
+  - name: "ui_ux.check_accessibility"
+    description: "Vérifie l'accessibilité des contrastes"
+    confidence: 0.88
+    parameters:
+      - "colors"
+      - "level"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+ui_ux_expert:
+  defaults:
+    dark_mode: true
+    accessibility_level: "AA"
+    base_color: "#00ff88"
+
+  design_systems:
+    - name: "material"
+      description: "Material Design"
+    - name: "tailwind"
+      description: "Tailwind CSS"
+    - name: "chakra"
+      description: "Chakra UI"
+    - name: "radix"
+      description: "Radix UI"
+
+  color_modes:
+    - name: "light"
+      description: "Mode clair"
+    - name: "dark"
+      description: "Mode sombre"
+    - name: "system"
+      description: "Préférence système"
+
+  accessibility_levels:
+    - name: "A"
+      description: "WCAG A - Niveau minimum"
+    - name: "AA"
+      description: "WCAG AA - Standard recommandé"
+    - name: "AAA"
+      description: "WCAG AAA - Excellence"
+
+  frameworks:
+    - name: "css"
+      extension: ".css"
+    - name: "scss"
+      extension: ".scss"
+    - name: "tailwind"
+      extension: ".config.js"
+    - name: "styled-components"
+      extension: ".js"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms: 500
+  max_concurrent_designs: 5
+  cache_size: 100
+  monitoring_interval: 30
 
 # ============================================================================
 # SYSTÈME
 # ============================================================================
 system:
-  log_level: "INFO"
-  timeout_seconds: 60
+  timeout_seconds: 30
   max_retries: 2
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
 
 # ============================================================================
-# CAPACITÉS
+# MÉTRIQUES
 # ============================================================================
-capabilities:
-  - name: "design_system_creation"
-  - name: "responsive_design_advanced"
-  - name: "animation_orchestration"
-  - name: "accessibility_compliance"
-  - name: "dark_mode_system"
+metrics:
+  enabled: true
+  collection:
+    interval: 30
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
-    - "Tailwind CSS"
-    - "Chakra UI"
-    - "Radix UI"
-
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "design_system"
-  - name: "accessible_component_library"
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "components_styled"
+      type: "counter"
+    - name: "generation_time_ms"
+      type: "histogram"
 
 # ============================================================================
 # MÉTADONNÉES
@@ -53,5 +157,7 @@ metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  tags: ["frontend", "design", "ui", "ux", "accessibility"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-20"
+  next_review: "2026-04-20"

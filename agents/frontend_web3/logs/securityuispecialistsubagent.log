@@ -1,0 +1,114 @@
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.023015)
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:32:45 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.027975)
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:33:57 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.023992)
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:35:05 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.027000)
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:41:06 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.026000)
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:43:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.026986)
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:49:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.022999)
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:51:04 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.023973)
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:59:31 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.028004)
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 08:05:01 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.025000)
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 17:25:45 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.028000)
+2026-03-23 14:52:30 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 14:52:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 14:55:31 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 14:55:31 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 18:43:05 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 18:43:05 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 18:50:54 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 18:50:54 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 18:57:18 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 18:57:18 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 19:01:43 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 19:01:43 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 19:05:23 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 19:05:23 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 19:07:48 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 19:07:48 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:03:37 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:03:37 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:05:08 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:05:08 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:07:07 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:07:07 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:09:12 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:09:12 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:11:39 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:11:39 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:19:40 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:19:40 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:21:27 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+2026-03-23 20:21:27 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 20:26:07 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml
+2026-03-23 20:26:07 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:30:06 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml
+2026-03-23 20:30:06 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:33:06 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml
+2026-03-23 20:33:06 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:36:09 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml
+2026-03-23 20:36:09 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:44:49 - agent.SecurityUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml
+2026-03-23 20:44:49 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:45:39 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 20:45:39 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:53:21 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 20:53:21 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:58:07 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 20:58:07 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 20:59:16 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 20:59:16 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)

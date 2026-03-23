@@ -1,55 +1,80 @@
 # ============================================================================
-# 🛡️ Spécialiste Sécurité UI Avancée - Configuration
+# agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml
+# Configuration du Spécialiste Sécurité UI
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "security_ui_specialist"
   name: "SecurityUiSpecialistSubAgent"
-  display_name: "🛡️ Spécialiste Sécurité UI Avancée"
-  description: |-
-    Expert en sécurité des interfaces Web3
+  display_name: "🛡️ Spécialiste Sécurité UI"
   version: "2.0.0"
-  class_name: "SecurityUiSpecialistSubAgent"
+  enabled: true
+  description: "Spécialiste de la sécurité des interfaces utilisateur"
   module_path: "agents.frontend_web3.sous_agents.security_ui_specialist.agent"
+  purpose: "Protéger les applications frontend contre les vulnérabilités"
 
-# ============================================================================
-# SYSTÈME
-# ============================================================================
-system:
+  # === TYPE ET CARACTÉRISTIQUES ===
+  enabled: true
+  singleton: true
   log_level: "INFO"
-  timeout_seconds: 60
-  max_retries: 2
 
-# ============================================================================
-# CAPACITÉS
-# ============================================================================
-capabilities:
-  - name: "transaction_security"
-  - name: "phishing_protection"
-  - name: "wallet_security"
-  - name: "smart_contract_verification"
-  - name: "approval_management"
+  # === DÉPENDANCES ===
+  dependencies: []
+  initialization_order: 7
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "audit_security"
+      description: "Audite la sécurité d'une application"
+      confidence_required: 0.9
+      output_formats: ["json", "report"]
+    
+    - name: "implement_auth"
+      description: "Implémente l'authentification sécurisée"
+      confidence_required: 0.9
+      output_formats: ["js", "ts"]
+    
+    - name: "prevent_xss"
+      description: "Prévient les attaques XSS"
+      confidence_required: 0.95
+      output_formats: ["js", "ts", "jsx", "tsx"]
+    
+    - name: "secure_api_calls"
+      description: "Sécurise les appels API"
+      confidence_required: 0.9
+      output_formats: ["js", "ts"]
+    
+    - name: "implement_csp"
+      description: "Implémente Content Security Policy"
+      confidence_required: 0.9
+      output_formats: ["js", "config"]
+    
+    - name: "secure_headers"
+      description: "Configure des en-têtes de sécurité"
+      confidence_required: 0.9
+      output_formats: ["js", "config"]
 
+  # === MÉTRIQUES DE PERFORMANCE ===
+  performance_targets:
+    generation_time_ms:
+      target: 700
+      max: 2500
+    success_rate:
+      target: 98
+      min: 95
 
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "security_configuration"
-  - name: "transaction_guard"
+  # === CONFIGURATION SPÉCIFIQUE ===
+  config:
+    security_areas: ["authentication", "authorization", "input_validation", "xss_prevention"]
+    vulnerabilities: ["xss", "csrf", "clickjacking", "open_redirect"]
+    best_practices: ["secure_cookies", "csp_headers", "input_sanitization"]
 
-# ============================================================================
-# MÉTADONNÉES
-# ============================================================================
-metadata:
-  author: "SmartContractDevPipeline"
-  maintainer: "dev@poolsync.io"
-  license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    tags: ["security", "authentication", "xss", "csp", "headers"]
+    capabilities_count: 6
+    last_reviewed: "2026-03-19"
+    next_review: "2026-04-19"

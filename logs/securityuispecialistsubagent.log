@@ -144,3 +144,11 @@
 2026-03-18 21:07:42 - agent.SecurityUiSpecialistSubAgent - INFO - Agent SecurityUiSpecialistSubAgent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
 2026-03-18 21:47:10 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: SecurityUiSpecialistSubAgent v2.0.0
 2026-03-18 21:47:10 - agent.SecurityUiSpecialistSubAgent - INFO - Agent SecurityUiSpecialistSubAgent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 08:08:30 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-20 08:08:30 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-20 17:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-20 17:24:49 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/security_ui_specialist/config.yaml)
+2026-03-23 21:00:02 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 21:00:02 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)
+2026-03-23 21:04:11 - agent.SecurityUiSpecialistSubAgent - INFO - Configuration chargée: base_agent v1.0.0
+2026-03-23 21:04:11 - agent.SecurityUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\frontend_web3\sous_agents\security_ui_specialist\config.yaml)

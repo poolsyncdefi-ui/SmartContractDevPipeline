@@ -1,55 +1,83 @@
 # ============================================================================
-# ⚡ Optimisateur Performance Web3 - Configuration
+# agents/frontend_web3/sous_agents/performance_optimizer/config.yaml
+# Configuration de l'Optimisateur Performance
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "performance_optimizer"
   name: "PerformanceOptimizerSubAgent"
-  display_name: "⚡ Optimisateur Performance Web3"
-  description: |-
-    Expert en optimisation des performances Web3
+  display_name: "⚡ Optimisateur Performance"
   version: "2.0.0"
-  class_name: "PerformanceOptimizerSubAgent"
-  module_path: "agents.frontend_web3.sous_agents.performance_optimizer.agent"
+  enabled: true
+  description: "Optimisation des performances frontend (bundle, images, caching, lazy loading)"
+  purpose: "Optimiser les performances des applications frontend"
+  category: "frontend_web3"
+  parent_agent: "FrontendWeb3Agent"
+  capabilities_count: 6
+  tags: ["performance", "optimization", "bundle", "caching", "lazy-loading"]
 
-# ============================================================================
-# SYSTÈME
-# ============================================================================
-system:
+  # === TYPE ET CARACTÉRISTIQUES ===
+  enabled: true
+  singleton: true
   log_level: "INFO"
-  timeout_seconds: 60
-  max_retries: 2
 
-# ============================================================================
-# CAPACITÉS
-# ============================================================================
-capabilities:
-  - name: "bundle_optimization"
-  - name: "core_web_vitals"
-  - name: "caching_strategy"
-  - name: "image_optimization"
-  - name: "web3_performance"
+  # === DÉPENDANCES ===
+  dependencies: []
+  initialization_order: 6
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "analyze_performance"
+      description: "Analyse les performances d'une application"
+      confidence_required: 0.9
+      output_formats: ["json", "report"]
+    
+    - name: "generate_optimization"
+      description: "Génère des optimisations spécifiques"
+      confidence_required: 0.9
+      output_formats: ["js", "config"]
+    
+    - name: "optimize_bundle"
+      description: "Optimise la taille du bundle"
+      confidence_required: 0.85
+      output_formats: ["js", "config"]
+    
+    - name: "optimize_images"
+      description: "Optimise les images"
+      confidence_required: 0.85
+      output_formats: ["js", "config"]
+    
+    - name: "implement_caching"
+      description: "Implémente des stratégies de cache"
+      confidence_required: 0.8
+      output_formats: ["js", "config"]
+    
+    - name: "lazy_load_components"
+      description: "Implémente le lazy loading"
+      confidence_required: 0.8
+      output_formats: ["jsx", "tsx"]
 
+  # === MÉTRIQUES DE PERFORMANCE ===
+  performance_targets:
+    generation_time_ms:
+      target: 600
+      max: 2500
+    success_rate:
+      target: 95
+      min: 90
 
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "performance_report"
-  - name: "optimization_config"
+  # === CONFIGURATION SPÉCIFIQUE ===
+  config:
+    optimization_areas: ["code_splitting", "lazy_loading", "caching", "image_optimization"]
+    metrics: ["load_time", "first_paint", "interactive_time", "bundle_size"]
+    tools: ["webpack", "vite", "next", "gatsby"]
 
-# ============================================================================
-# MÉTADONNÉES
-# ============================================================================
-metadata:
-  author: "SmartContractDevPipeline"
-  maintainer: "dev@poolsync.io"
-  license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    tags: ["performance", "optimization", "bundle", "caching", "lazy-loading"]
+    capabilities_count: 6
+    last_reviewed: "2026-03-19"
+    next_review: "2026-04-19"

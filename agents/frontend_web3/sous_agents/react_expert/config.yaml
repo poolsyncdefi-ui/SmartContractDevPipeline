@@ -1,50 +1,168 @@
 # ============================================================================
-# ⚛️ Expert React/Next.js Avancé - Configuration
+# agents/frontend_web3/sous_agents/react_expert/config.yaml
+# Configuration de l'Expert React/Next.js
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+subagent:
+  id: "react_expert"
   name: "ReactExpertSubAgent"
-  display_name: "⚛️ Expert React/Next.js Avancé"
-  description: |-
-    Expert en développement React 18+, Next.js 14+, hooks personnalisés, patterns avancés et optimisation de composants
+  display_name: "⚛️ Expert React/Next.js"
   version: "2.0.0"
-  class_name: "ReactExpertSubAgent"
-  module_path: "agents.frontend_web3.sous_agents.react_expert.agent"
+  enabled: true
+  description: "Expert en développement React 18+, Next.js 14+, hooks personnalisés"
+  purpose: "Générer des composants React et pages Next.js de haute qualité"
+  category: "frontend_web3"
+  parent_agent: "FrontendWeb3Agent"
+  capabilities_count: 6
+  tags: ["react", "nextjs", "frontend", "components", "hooks"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
+capabilities:
+  - name: "react.generate_component"
+    description: "Génère un composant React avec props, state et effets"
+    confidence: 0.95
+    parameters:
+      - "name"
+      - "type"
+      - "props"
+      - "state"
+      - "effects"
+      - "typescript"
+
+  - name: "react.generate_page"
+    description: "Génère une page Next.js avec routing et métadonnées"
+    confidence: 0.94
+    parameters:
+      - "name"
+      - "framework"
+      - "props"
+      - "typescript"
+
+  - name: "react.generate_hook"
+    description: "Génère un hook personnalisé avec state et effets"
+    confidence: 0.93
+    parameters:
+      - "name"
+      - "params"
+      - "state"
+      - "effects"
+
+  - name: "react.generate_context"
+    description: "Génère un contexte React avec reducer"
+    confidence: 0.92
+    parameters:
+      - "name"
+      - "state"
+      - "actions"
+
+  - name: "react.generate_styles"
+    description: "Génère des styles pour composants (CSS, SCSS, Tailwind)"
+    confidence: 0.90
+    parameters:
+      - "component"
+      - "styling"
+
+  - name: "react.analyze_performance"
+    description: "Analyse la performance d'un composant"
+    confidence: 0.88
+    parameters:
+      - "code"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE
+# ============================================================================
+react_expert:
+  defaults:
+    typescript: true
+    styling: "css"
+    memo: false
+    children: false
+
+  frameworks:
+    - name: "react"
+      version: "18.2.0"
+      templates: ["functional", "class", "memo"]
+    - name: "nextjs"
+      version: "14.0.0"
+      templates: ["page", "api", "layout"]
+    - name: "gatsby"
+      version: "5.0.0"
+    - name: "remix"
+      version: "2.0.0"
+
+  state_management:
+    - name: "context"
+      description: "React Context API"
+    - name: "redux"
+      description: "Redux Toolkit"
+    - name: "zustand"
+      description: "Zustand"
+    - name: "recoil"
+      description: "Recoil"
+    - name: "jotai"
+      description: "Jotai"
+
+  styling:
+    - name: "css"
+      extension: ".css"
+    - name: "scss"
+      extension: ".scss"
+    - name: "tailwind"
+      extension: ".tsx"
+    - name: "styled-components"
+      extension: ".tsx"
+
+  templates:
+    functional: "functional_component"
+    memo: "memo_component"
+    page: "nextjs_page"
+    hook: "custom_hook"
+    context: "react_context"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  generation_time_ms: 500
+  max_concurrent_generations: 5
+  cache_size: 100
+  monitoring_interval: 30
 
 # ============================================================================
 # SYSTÈME
 # ============================================================================
 system:
-  log_level: "INFO"
-  timeout_seconds: 60
+  timeout_seconds: 30
   max_retries: 2
+  log_level: "INFO"
+
+  performance:
+    max_concurrent_tasks: 5
+    task_queue_size: 100
 
 # ============================================================================
-# CAPACITÉS
+# MÉTRIQUES
 # ============================================================================
-capabilities:
-  - name: "react_component_generation_advanced"
-  - name: "nextjs_app_router_master"
-  - name: "react_hook_generator_advanced"
-  - name: "performance_optimization_react"
-  - name: "state_management_master"
+metrics:
+  enabled: true
+  collection:
+    interval: 30
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
-    - "Next.js 14+"
-    - "React 18+"
-    - "Vite"
-
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "react_component_library"
-  - name: "nextjs_application"
+  custom_metrics:
+    - name: "components_generated"
+      type: "counter"
+    - name: "pages_generated"
+      type: "counter"
+    - name: "hooks_generated"
+      type: "counter"
+    - name: "generation_time_ms"
+      type: "histogram"
 
 # ============================================================================
 # MÉTADONNÉES
@@ -53,5 +171,7 @@ metadata:
   author: "SmartContractDevPipeline"
   maintainer: "dev@poolsync.io"
   license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  tags: ["frontend", "react", "nextjs", "components"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-20"
+  next_review: "2026-04-20"

@@ -501,6 +501,35 @@ class BaseSubAgent(BaseAgent, ABC):
             logger.error(f"Erreur lors du chargement de la configuration: {e}")
             # Utiliser les valeurs par défaut
 
+    def _load_config_direct(self, config_path: str) -> Dict[str, Any]:
+        """Charge directement la configuration depuis un fichier (méthode de secours)"""
+        try:
+            import yaml
+            # 🔧 CORRECTION : Résoudre le chemin absolu par rapport à la racine du projet
+            if not Path(config_path).is_absolute():
+                # Chercher depuis la racine du projet
+                project_root = Path(__file__).parent.parent
+                config_path = str(project_root / config_path)
+            
+            config_file = Path(config_path)
+            if not config_file.exists():
+                # Essayer aussi depuis le dossier courant
+                alt_path = Path(__file__).parent / "config.yaml"
+                if alt_path.exists():
+                    config_file = alt_path
+            
+            if config_file.exists():
+                with open(config_file, 'r', encoding='utf-8') as f:
+                    logger.debug(f"📄 Configuration chargée depuis {config_file}")
+                    return yaml.safe_load(f) or {}
+            else:
+                logger.warning(f"Fichier de configuration non trouvé: {config_path}")
+                return {}
+                
+        except Exception as e:
+            logger.error(f"❌ Erreur chargement direct config {config_path}: {e}")
+            return {}
+
     def _init_priority_semaphores(self):
         """Initialise les sémaphores pour chaque niveau de priorité"""
         for priority in SubAgentTaskPriority:
@@ -1229,7 +1258,7 @@ class BaseSubAgent(BaseAgent, ABC):
                 }
                 
                 # Logger les métriques
-                logger.debug(f"📊 Métriques: {json.dumps(metrics, default=str)[:500]}...")
+                logger.debug("📊 Métriques: {}...".format(json.dumps(metrics, default=str)[:500]))
                 
                 # Exporter vers le parent
                 await self._send_to_parent("METRICS", metrics, require_response=False)

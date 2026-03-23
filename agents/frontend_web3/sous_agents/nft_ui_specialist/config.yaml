@@ -1,55 +1,81 @@
 # ============================================================================
-# 🖼️ Spécialiste Interfaces NFT Premium - Configuration
+# agents/frontend_web3/sous_agents/nft_ui_specialist/config.yaml
+# Configuration du Spécialiste Interfaces NFT
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "nft_ui_specialist"
   name: "NftUiSpecialistSubAgent"
-  display_name: "🖼️ Spécialiste Interfaces NFT Premium"
-  description: |-
-    Spécialiste des interfaces NFT (mint, gallery, marketplace)
+  display_name: "🖼️ Spécialiste Interfaces NFT"
   version: "2.0.0"
-  class_name: "NftUiSpecialistSubAgent"
+  enabled: true
+  description: "Spécialiste des interfaces NFT (gallery, mint, auction)"
   module_path: "agents.frontend_web3.sous_agents.nft_ui_specialist.agent"
+  purpose: "Générer des interfaces utilisateur pour applications NFT"
 
-# ============================================================================
-# SYSTÈME
-# ============================================================================
-system:
+  # === TYPE ET CARACTÉRISTIQUES ===
+  enabled: true
+  singleton: true
   log_level: "INFO"
-  timeout_seconds: 60
-  max_retries: 2
 
-# ============================================================================
-# CAPACITÉS
-# ============================================================================
-capabilities:
-  - name: "mint_page_advanced"
-  - name: "nft_gallery_pro"
-  - name: "marketplace_interface"
-  - name: "nft_detail_view"
-  - name: "nft_auction_house"
+  # === DÉPENDANCES ===
+  dependencies: ["web3_integration"]
+  initialization_order: 5
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "generate_nft_gallery"
+      description: "Génère une galerie NFT"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_mint_interface"
+      description: "Génère une interface de mint NFT"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_auction_interface"
+      description: "Génère une interface d'enchère NFT"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_marketplace_interface"
+      description: "Génère une interface de marketplace NFT"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_collection_page"
+      description: "Génère une page de collection NFT"
+      confidence_required: 0.85
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_nft_detail_page"
+      description: "Génère une page de détail NFT"
+      confidence_required: 0.85
+      output_formats: ["tsx", "jsx"]
 
+  # === MÉTRIQUES DE PERFORMANCE ===
+  performance_targets:
+    generation_time_ms:
+      target: 800
+      max: 3000
+    success_rate:
+      target: 95
+      min: 90
 
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "nft_mint_page"
-  - name: "nft_marketplace"
+  # === CONFIGURATION SPÉCIFIQUE ===
+  config:
+    nft_types: ["erc721", "erc1155", "erc721a"]
+    standards: ["opensea", "looksrare", "x2y2"]
+    supports_metadata: true
+    supports_rarity: true
 
-# ============================================================================
-# MÉTADONNÉES
-# ============================================================================
-metadata:
-  author: "SmartContractDevPipeline"
-  maintainer: "dev@poolsync.io"
-  license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    tags: ["nft", "gallery", "mint", "auction", "marketplace"]
+    capabilities_count: 6
+    last_reviewed: "2026-03-19"
+    next_review: "2026-04-19"

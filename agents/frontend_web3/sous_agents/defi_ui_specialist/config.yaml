@@ -1,55 +1,81 @@
 # ============================================================================
-# 📊 Spécialiste Interfaces DeFi Avancées - Configuration
+# agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+# Configuration du Spécialiste Interfaces DeFi
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "defi_ui_specialist"
   name: "DefiUiSpecialistSubAgent"
-  display_name: "📊 Spécialiste Interfaces DeFi Avancées"
-  description: |-
-    Spécialiste des interfaces DeFi complexes (swap, lending, staking)
+  display_name: "📊 Spécialiste Interfaces DeFi"
   version: "2.0.0"
-  class_name: "DefiUiSpecialistSubAgent"
+  enabled: true
+  description: "Spécialiste des interfaces DeFi (swap, liquidity, staking)"
   module_path: "agents.frontend_web3.sous_agents.defi_ui_specialist.agent"
+  purpose: "Générer des interfaces utilisateur pour applications DeFi"
 
-# ============================================================================
-# SYSTÈME
-# ============================================================================
-system:
+  # === TYPE ET CARACTÉRISTIQUES ===
+  enabled: true
+  singleton: true
   log_level: "INFO"
-  timeout_seconds: 60
-  max_retries: 2
 
-# ============================================================================
-# CAPACITÉS
-# ============================================================================
-capabilities:
-  - name: "swap_interface_advanced"
-  - name: "lending_interface_complete"
-  - name: "staking_interface_advanced"
-  - name: "vault_interface"
-  - name: "defi_dashboard_comprehensive"
+  # === DÉPENDANCES ===
+  dependencies: ["web3_integration"]
+  initialization_order: 4
 
-# ============================================================================
-# TECHNOLOGIES SUPPORTÉES
-# ============================================================================
-technologies:
-  supported:
+  # === CAPACITÉS SPÉCIFIQUES ===
+  capabilities:
+    - name: "generate_swap_interface"
+      description: "Génère une interface d'échange DeFi"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_liquidity_interface"
+      description: "Génère une interface de liquidité"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_staking_interface"
+      description: "Génère une interface de staking"
+      confidence_required: 0.9
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_vault_interface"
+      description: "Génère une interface de vault"
+      confidence_required: 0.85
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_lending_interface"
+      description: "Génère une interface de lending"
+      confidence_required: 0.85
+      output_formats: ["tsx", "jsx"]
+    
+    - name: "generate_defi_dashboard"
+      description: "Génère un dashboard DeFi complet"
+      confidence_required: 0.8
+      output_formats: ["tsx", "jsx"]
 
+  # === MÉTRIQUES DE PERFORMANCE ===
+  performance_targets:
+    generation_time_ms:
+      target: 800
+      max: 3000
+    success_rate:
+      target: 95
+      min: 90
 
-# ============================================================================
-# OUTPUTS PRODUITS
-# ============================================================================
-outputs:
-  - name: "dex_interface"
-  - name: "lending_dashboard"
+  # === CONFIGURATION SPÉCIFIQUE ===
+  config:
+    defi_types: ["swap", "liquidity", "staking", "vault", "lending"]
+    protocols: ["uniswap", "aave", "curve", "balancer", "compound"]
+    features: ["charts", "pools", "farms", "analytics"]
+    supports_wagmi: true
 
-# ============================================================================
-# MÉTADONNÉES
-# ============================================================================
-metadata:
-  author: "SmartContractDevPipeline"
-  maintainer: "dev@poolsync.io"
-  license: "Proprietary"
-  capabilities_count: 5
-  last_reviewed: "2026-03-10"
+  # === MÉTADONNÉES ===
+  metadata:
+    author: "SmartContractDevPipeline"
+    maintainer: "dev@poolsync.io"
+    tags: ["defi", "swap", "liquidity", "staking", "vault", "lending"]
+    capabilities_count: 6
+    last_reviewed: "2026-03-19"
+    next_review: "2026-04-19"

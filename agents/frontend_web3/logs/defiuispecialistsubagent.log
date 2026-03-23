@@ -1,0 +1,114 @@
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:24:49 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.024987)
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:32:45 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.027970)
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:33:57 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.025000)
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:35:05 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.025999)
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:41:06 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.027000)
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:43:30 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.024999)
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:49:30 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.023999)
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:51:04 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.025968)
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 07:59:31 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.029972)
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 08:05:01 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.026000)
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: created -> shutting_down
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - INFO - Arrêt de l'agent base_agent...
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-20 17:25:45 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent arrêté (runtime: 0:00:00.029002)
+2026-03-23 14:52:30 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 14:52:30 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 14:55:31 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 14:55:31 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 18:43:05 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 18:43:05 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 18:50:54 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 18:50:54 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 18:57:18 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 18:57:18 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 19:01:43 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 19:01:43 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 19:05:23 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 19:05:23 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 19:07:48 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 19:07:48 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:03:37 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:03:37 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:05:08 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:05:08 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:07:07 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:07:07 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:09:12 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:09:12 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:11:39 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:11:39 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:19:40 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:19:40 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:21:27 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml
+2026-03-23 20:21:27 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: agents/frontend_web3/sous_agents/defi_ui_specialist/config.yaml)
+2026-03-23 20:26:07 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:26:07 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:30:06 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:30:06 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:33:06 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:33:06 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:36:09 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:36:09 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:44:49 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:44:49 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:45:39 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:45:39 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:53:21 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:53:21 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:58:07 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:58:07 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)
+2026-03-23 20:59:16 - agent.DefiUiSpecialistSubAgent - WARNING - Fichier de configuration non trouvé: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml
+2026-03-23 20:59:16 - agent.DefiUiSpecialistSubAgent - INFO - Agent base_agent créé (config: D:\Web3Projects\agents\frontend_web3\sous_agents\defi_ui_specialist\config.yaml)

@@ -1,14 +1,16 @@
 # ============================================================================
-# 🔗 Expert Intégration Web3 Avancé - Configuration
+# agents/frontend_web3/sous_agents/web3_integration/config.yaml
+# Configuration de l'Expert Intégration Web3
 # Version: 2.0.0
 # ============================================================================
 
-agent:
+subagent:
+  id: "web3_integration"
   name: "Web3IntegrationSubAgent"
-  display_name: "🔗 Expert Intégration Web3 Avancé"
-  description: |-
-    Expert en intégration blockchain avec wagmi, viem, ethers.js, support multi-chaînes
+  display_name: "🔗 Expert Intégration Web3"
   version: "2.0.0"
+  enabled: true
+  description: "Expert en intégration Web3 (wagmi, ethers, viem)"
   class_name: "Web3IntegrationSubAgent"
   module_path: "agents.frontend_web3.sous_agents.web3_integration.agent"
 

@@ -1,0 +1,2285 @@
+{
+  "projects": [
+    {
+      "id": "FRONTEND-20260319101501",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319101501",
+      "deploy_url": null,
+      "created_at": "2026-03-19T10:15:01.033409",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319202829",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319202829",
+      "deploy_url": null,
+      "created_at": "2026-03-19T20:28:29.055349",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319203143",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319203143",
+      "deploy_url": null,
+      "created_at": "2026-03-19T20:31:43.399965",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319210405",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319210405",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:04:05.020972",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319210749",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319210749",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:07:49.779254",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319210946",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319210946",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:09:46.819425",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319211058",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319211058",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:10:58.318294",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319211219",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319211219",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:12:19.833568",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319211554",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319211554",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:15:54.110982",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319211854",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319211854",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:18:54.782736",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319212143",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319212143",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:21:43.737163",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319212428",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319212428",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:24:28.844709",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319212615",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319212615",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:26:15.592192",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319212926",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319212926",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:29:26.783756",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319213532",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319213532",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:35:32.641177",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319213855",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319213855",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:38:55.103298",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319214420",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319214420",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:44:20.696884",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319214607",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319214607",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:46:07.022006",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319215003",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319215003",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:50:03.361878",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319215212",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319215212",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:52:12.743332",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319215328",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319215328",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:53:28.464751",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260319215505",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260319215505",
+      "deploy_url": null,
+      "created_at": "2026-03-19T21:55:05.252914",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320072449",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320072449",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:24:49.858461",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320073245",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320073245",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:32:45.121354",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320073357",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320073357",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:33:57.798287",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320073505",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320073505",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:35:05.188076",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320074106",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320074106",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:41:06.916004",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320074330",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320074330",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:43:30.352241",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320074930",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320074930",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:49:30.100092",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320075104",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320075104",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:51:04.899662",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320075931",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320075931",
+      "deploy_url": null,
+      "created_at": "2026-03-20T07:59:31.032377",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320080501",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320080501",
+      "deploy_url": null,
+      "created_at": "2026-03-20T08:05:01.044135",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260320172545",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260320172545",
+      "deploy_url": null,
+      "created_at": "2026-03-20T17:25:45.620593",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323145230",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323145230",
+      "deploy_url": null,
+      "created_at": "2026-03-23T14:52:30.880842",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323145531",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323145531",
+      "deploy_url": null,
+      "created_at": "2026-03-23T14:55:31.834606",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323184305",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323184305",
+      "deploy_url": null,
+      "created_at": "2026-03-23T18:43:05.786031",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323185054",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323185054",
+      "deploy_url": null,
+      "created_at": "2026-03-23T18:50:54.759974",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323185718",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323185718",
+      "deploy_url": null,
+      "created_at": "2026-03-23T18:57:18.808100",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323190143",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323190143",
+      "deploy_url": null,
+      "created_at": "2026-03-23T19:01:43.057775",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323190523",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323190523",
+      "deploy_url": null,
+      "created_at": "2026-03-23T19:05:23.715503",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323190748",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323190748",
+      "deploy_url": null,
+      "created_at": "2026-03-23T19:07:48.478340",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323200337",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323200337",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:03:37.255507",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323200508",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323200508",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:05:08.460687",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323200707",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323200707",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:07:07.062829",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323200912",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323200912",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:09:12.350529",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323201139",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323201139",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:11:39.673616",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323201940",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323201940",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:19:40.751588",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323202127",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323202127",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:21:27.795169",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323202607",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323202607",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:26:07.466518",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323203006",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323203006",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:30:06.104590",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323203306",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323203306",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:33:06.882138",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323203609",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323203609",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:36:09.967737",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323204449",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323204449",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:44:49.140092",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323204539",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323204539",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:45:39.755692",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323205321",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323205321",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:53:21.173977",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323205807",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323205807",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:58:07.539302",
+      "theme": "dark"
+    },
+    {
+      "id": "FRONTEND-20260323205916",
+      "name": "BankingWeb3 Demo",
+      "framework": "nextjs",
+      "components": [
+        {
+          "type": "banking_dashboard_2_0",
+          "path": "app/banking_dashboard_2_0"
+        },
+        {
+          "type": "virtual_cards",
+          "path": "app/virtual_cards"
+        },
+        {
+          "type": "savings_pods",
+          "path": "app/savings_pods"
+        },
+        {
+          "type": "credit_scoring",
+          "path": "app/credit_scoring"
+        },
+        {
+          "type": "nft_lending",
+          "path": "app/nft_lending"
+        },
+        {
+          "type": "lending_marketplace_2_0",
+          "path": "app/lending_marketplace_2_0"
+        },
+        {
+          "type": "defi_composer",
+          "path": "app/defi_composer"
+        }
+      ],
+      "contracts": [],
+      "output_path": "frontend\\FRONTEND-20260323205916",
+      "deploy_url": null,
+      "created_at": "2026-03-23T20:59:16.282929",
+      "theme": "dark"
+    }
+  ],
+  "timestamp": "2026-03-23T20:59:16.298524"
+}
