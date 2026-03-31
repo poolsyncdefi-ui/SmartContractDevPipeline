@@ -1,0 +1,13 @@
+# agents/architect/sous_agents/blockchain_architect/templates/erc721.yaml
+name: "ERC721 NFT"
+description: "Non-fungible token"
+standards: ["ERC721", "ERC2981"]
+features:
+  - mint
+  - transferFrom
+  - tokenURI
+  - ownerOf
+extensions:
+  - ERC721Burnable
+  - ERC721Pausable
+  - ERC721Enumerable

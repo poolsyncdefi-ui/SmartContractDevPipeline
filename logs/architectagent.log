@@ -2332,3 +2332,1710 @@
 2026-03-23 21:04:10 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
 2026-03-23 21:04:10 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
 2026-03-23 21:04:10 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:40:03 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:40:03 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:43:55 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: name 'BaseAgent' is not defined
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:43:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:45:46 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: name 'Message' is not defined
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:45:46 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:49:52 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: name 'BaseAgent' is not defined
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:49:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:55:26 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: name 'Message' is not defined
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:55:26 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 08:58:52 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 08:58:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 09:05:07 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 09:05:07 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 09:06:45 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 09:06:45 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 09:12:59 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 09:12:59 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 09:16:23 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 09:16:23 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 09:21:30 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 09:21:30 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 20:37:55 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: Can't instantiate abstract class BlockchainArchitectSubAgent with abstract method _initialize_components
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:37:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 20:41:10 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected an indented block after function definition on line 337 (agent.py, line 344)
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:41:10 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 20:44:46 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: Can't instantiate abstract class MicroservicesArchitectSubAgent with abstract method _initialize_components
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:44:46 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:50:50 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:08:32 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:30:36 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-26 08:58:16 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-26 08:58:16 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unindent does not match any outer indentation level (agent.py, line 426)
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 08:58:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-26 09:03:35 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-26 09:03:35 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unindent does not match any outer indentation level (agent.py, line 426)
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:03:35 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-26 09:07:47 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-26 09:07:47 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-26 09:07:48 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-26 09:07:48 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-26 09:07:48 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-26 09:07:48 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:07:48 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-26 09:16:20 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:16:20 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 20:31:44 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:31:44 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 20:35:57 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - ✅ Sous-agents architecturaux chargés
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - ✅ 4 sous-agents initialisés (3 métier)
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:35:57 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 20:45:15 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 20:45:15 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:45:15 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 20:56:18 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 20:56:18 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:56:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:01:30 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:01:30 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:01:30 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:04:49 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:04:49 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:04:49 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:21:56 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:21:56 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:21:56 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:27:09 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:27:09 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:27:09 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:32:07 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:32:07 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:32:07 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:40:16 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:40:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:51:04 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:51:04 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-30 21:58:03 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:58:03 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-31 19:13:41 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CONFIG
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_BUSINESS_REQUIREMENTS
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: ANALYZE_TECHNICAL_CONSTRAINTS
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES_ECOSYSTEM
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_API_GATEWAY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DATA_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MONITORING_OBSERVABILITY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_DISASTER_RECOVERY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SCALABILITY_STRATEGY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SECURITY_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_EVENT_DRIVEN_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SERVERLESS_ARCHITECTURE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CONTAINER_ORCHESTRATION
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: REVIEW_ARCHITECTURE_DECISIONS
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_PERFORMANCE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_COST
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_RELIABILITY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: OPTIMIZE_ARCHITECTURE_SECURITY
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DOCUMENT_ARCHITECTURE_COMPREHENSIVE
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN_AGENT
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: ORCHESTRATE_MULTI_DOMAIN
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: MERGE_DOMAIN_DESIGNS
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: RESOLVE_DOMAIN_CONFLICTS
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Capacité ajoutée: VALIDATE_CROSS_CUTTING_CONCERNS
+2026-03-31 19:13:41 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-31 19:13:41 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès

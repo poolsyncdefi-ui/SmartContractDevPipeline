@@ -1,0 +1,20 @@
+# agents/architect/sous_agents/microservices_architect/patterns.yaml
+resilience_patterns:
+  - name: "Circuit Breaker"
+    description: "Protection contre les défaillances en cascade"
+  - name: "Retry"
+    description: "Réessai automatique avec backoff"
+  - name: "Timeout"
+    description: "Limite de temps d'exécution"
+  - name: "Bulkhead"
+    description: "Isolation des ressources"
+  - name: "Rate Limiter"
+    description: "Limitation du débit"
+
+communication_patterns:
+  - name: "API Gateway"
+    description: "Point d'entrée unique"
+  - name: "Service Discovery"
+    description: "Découverte dynamique"
+  - name: "Event-Driven"
+    description: "Communication asynchrone"

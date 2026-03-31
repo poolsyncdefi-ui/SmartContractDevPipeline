@@ -1,0 +1,454 @@
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Configuration chargée: ArchitectAgent v4.0.0
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Agent ArchitectAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\config.yaml)
+2026-03-24 20:04:42 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-24 20:04:42 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-03-24 20:04:42 - agent.ArchitectAgent - WARNING - Section anti_hallucination manquante dans la configuration
+2026-03-24 20:04:42 - agent.ArchitectAgent - WARNING - Section validation_rules manquante dans la configuration
+2026-03-24 20:04:42 - agent.ArchitectAgent - WARNING - Section performance manquante dans la configuration
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Alerting activé
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Vérification des dépendances: ['communication', 'registry', 'monitoring', 'learning']
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:04:42 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 19)
+2026-03-24 20:04:42 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des composants: 'ArchitectAgent' object has no attribute '_check_required_tools'
+2026-03-24 20:04:42 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> error
+2026-03-24 20:04:42 - agent.ArchitectAgent - ERROR - Échec de l'initialisation de l'agent ArchitectAgent
+2026-03-24 20:04:42 - agent.ArchitectAgent - ERROR - Erreur lors de l'envoi du message fee9b95f-0e2e-4efa-8754-b6705b8b8f60: 'dict' object has no attribute 'messages_sent'
+2026-03-24 20:04:42 - agent.ArchitectAgent - ERROR - Erreur lors de l'envoi du message 8dd12bdc-3713-4c45-9987-9da8fe960b75: 'dict' object has no attribute 'messages_sent'
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 20:11:41 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-24 20:11:41 - agent.ArchitectAgent - WARNING - Fichier des patterns non trouvé, utilisation des patterns par défaut
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:11:41 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-24 20:11:41 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: name
+2026-03-24 20:11:41 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: version
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:11:41 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 19)
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_201141 (0ms)
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 20:11:41 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.008348)
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:20:23 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-24 20:20:23 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: name
+2026-03-24 20:20:23 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: version
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:20:23 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 19)
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_202023 (0ms)
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 20:20:23 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.005970)
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:30:00 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-24 20:30:00 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: name
+2026-03-24 20:30:00 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: version
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:30:00 - agent.ArchitectAgent - WARNING - ⚠️ Circuit Breaker SubAgent non disponible: cannot import name 'PubSubManagerSubAgent' from 'agents.communication.sous_agents.pubsub_manager.agent' (D:\Web3Projects\SmartContractDevPipeline\agents\communication\sous_agents\pubsub_manager\agent.py)
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_203000 (0ms)
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 20:30:00 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.040989)
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:38:18 - agent.ArchitectAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-24 20:38:18 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: name
+2026-03-24 20:38:18 - agent.ArchitectAgent - WARNING - Champ obligatoire manquant: version
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_203818 (0ms)
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 20:38:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.022997)
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_204132 (0ms)
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 20:41:32 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.023999)
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 21:03:57 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_210357 (1ms)
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 21:03:57 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.024970)
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 21:08:29 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_210829 (1ms)
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 21:08:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.019001)
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\templates
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-24 21:16:29 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: expected '(' (agent.py, line 18)
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260324_211629 (0ms)
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-24 21:16:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.015628)
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 21:41:16 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_214116 (1ms)
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 21:41:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.027993)
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 21:43:55 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_214355 (1ms)
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 21:43:55 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.028000)
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 21:53:12 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_215312 (0ms)
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 21:53:12 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.025969)
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 21:58:09 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_215809 (1ms)
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 21:58:09 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.024000)
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 22:01:10 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - 📋 Chargement de 0 sous-agents depuis config
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_220110 (1ms)
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 22:01:10 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.035972)
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-30 22:05:18 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - ✅ 1 sous-agents initialisés (0 métier)
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260330_220518 (1ms)
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-30 22:05:18 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.033030)
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-31 19:13:52 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-31 19:13:52 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260331_191352 (0ms)
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-31 19:13:52 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.031253)
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-31 19:16:29 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-31 19:16:29 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: unexpected indent (agent.py, line 199)
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260331_191629 (0ms)
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-31 19:16:29 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.031247)
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-31 19:25:36 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - ✅ CloudArchitectSubAgent chargé
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - ✅ BlockchainArchitectSubAgent chargé
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - ✅ MicroservicesArchitectSubAgent chargé
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - ✅ BackendArchitectSubAgent chargé
+2026-03-31 19:25:36 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: from_string
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260331_192536 (0ms)
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-31 19:25:36 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.124999)
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Agent base_agent créé (config: None)
+2026-03-31 19:32:16 - agent.ArchitectAgent - WARNING - Répertoire des templates non trouvé, utilisation des templates par défaut
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\patterns.yaml
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_SYSTEM_ARCHITECTURE
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_MICROSERVICES
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DESIGN_CLOUD_INFRASTRUCTURE
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Capacité ajoutée: DELEGATE_TO_DOMAIN
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - ✅ 4 capacités par défaut ajoutées
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Configuration validée avec succès
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Agent Architect v4.0.0 initialisé avec 5 designs concurrents max
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Changement de statut: created -> initializing
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Initialisation de l'agent ArchitectAgent...
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Initialisation des composants de l'agent Architect v4.0.0...
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - ✅ CloudArchitectSubAgent chargé
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - ✅ BlockchainArchitectSubAgent chargé
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - ✅ MicroservicesArchitectSubAgent chargé
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - ✅ BackendArchitectSubAgent chargé
+2026-03-31 19:32:16 - agent.ArchitectAgent - ERROR - Erreur lors de l'initialisation des sous-agents: from_string
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Composants de l'agent Architect initialisés avec succès
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Changement de statut: initializing -> ready
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent initialisé avec succès
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Démarrage de la conception de l'architecture...
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Architecture conçue avec succès: design_20260331_193216 (1ms)
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Changement de statut: ready -> shutting_down
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Arrêt de l'agent ArchitectAgent...
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Nettoyage des ressources de l'ArchitectAgent...
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Changement de statut: shutting_down -> terminated
+2026-03-31 19:32:16 - agent.ArchitectAgent - INFO - Agent ArchitectAgent arrêté (runtime: 0:00:00.101006)

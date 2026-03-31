@@ -1,0 +1,22 @@
+# agents/architect/sous_agents/blockchain_architect/patterns.yaml
+security_patterns:
+  - name: "ReentrancyGuard"
+    description: "Protection contre les attaques de réentrance"
+  - name: "Pausable"
+    description: "Mécanisme d'arrêt d'urgence"
+  - name: "Ownable"
+    description: "Contrôle d'accès basé sur le propriétaire"
+  - name: "AccessControl"
+    description: "Gestion avancée des rôles"
+  - name: "TimelockController"
+    description: "Délai d'exécution pour les fonctions critiques"
+
+optimization_patterns:
+  - name: "Immutable Variables"
+    description: "Variables immutables pour économiser du gaz"
+  - name: "Storage Packing"
+    description: "Regroupement des variables pour optimiser le stockage"
+  - name: "Unchecked Blocks"
+    description: "Blocs unchecked pour les opérations arithmétiques sûres"
+  - name: "Custom Errors"
+    description: "Erreurs personnalisées pour réduire le coût du revert"

@@ -25,3 +25,23 @@ expected alphabetic or numeric character, but found '.'
 2026-03-11 19:16:00 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
 2026-03-16 17:07:17 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
 2026-03-16 17:07:17 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-25 20:50:50 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-25 20:50:50 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-25 21:08:33 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-25 21:08:33 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-25 21:30:36 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-25 21:30:36 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-26 09:07:48 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-26 09:07:48 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-26 09:16:20 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-26 09:16:20 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-30 20:31:44 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-30 20:31:44 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-30 20:35:57 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-30 20:35:57 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-30 21:40:16 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-30 21:40:16 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-30 21:51:04 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-30 21:51:04 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)
+2026-03-30 21:58:04 - agent.CircuitBreakerSubAgent - INFO - Configuration chargée: CircuitBreakerSubAgent v2.0.0
+2026-03-30 21:58:04 - agent.CircuitBreakerSubAgent - INFO - Agent CircuitBreakerSubAgent créé (config: agents/communication/sous_agents/circuit_breaker/config.yaml)

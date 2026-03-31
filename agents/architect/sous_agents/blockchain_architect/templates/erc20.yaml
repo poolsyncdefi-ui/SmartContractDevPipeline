@@ -1,0 +1,14 @@
+# agents/architect/sous_agents/blockchain_architect/templates/erc20.yaml
+name: "ERC20 Token"
+description: "Standard fungible token"
+standards: ["ERC20"]
+features:
+  - transfer
+  - approve
+  - transferFrom
+  - balanceOf
+  - allowance
+extensions:
+  - ERC20Burnable
+  - ERC20Pausable
+  - ERC20Capped

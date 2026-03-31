@@ -1,0 +1,24 @@
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_blockchain_architecture
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_smart_contract
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_tokenomics
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: get_chains
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: estimate_gas_costs
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: cross_chain_design
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: security_audit_requirements
+2026-03-31 19:25:36 - agent.BlockchainArchitectSubAgent - INFO - ✅ 7 capacités chargées depuis la configuration
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_blockchain_architecture
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_smart_contract
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: design_tokenomics
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: get_chains
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: estimate_gas_costs
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: cross_chain_design
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - Capacité ajoutée: security_audit_requirements
+2026-03-31 19:32:16 - agent.BlockchainArchitectSubAgent - INFO - ✅ 7 capacités chargées depuis la configuration

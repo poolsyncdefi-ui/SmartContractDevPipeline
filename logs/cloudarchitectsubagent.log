@@ -1,0 +1,77 @@
+2026-03-25 20:37:55 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-25 20:37:55 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-25 20:44:46 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-25 20:44:46 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:50:50 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:08:32 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:30:36 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:07:48 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: design_cloud_infrastructure
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: optimize_cloud_costs
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_providers
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_services
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: compare_providers
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: estimate_monthly_cost
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - ✅ 6 capacités chargées depuis la configuration
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:16:20 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-26 09:16:22 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message b052a972-2cfa-4d87-a6d9-5c4164893566: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:16:22 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 903456c4-33c4-437e-aa65-3ae2dbe7462a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: design_cloud_infrastructure
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: optimize_cloud_costs
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_providers
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_services
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: compare_providers
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: estimate_monthly_cost
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - ✅ 6 capacités chargées depuis la configuration
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:31:44 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-30 20:31:48 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 6b0fa375-4e6a-47ed-8dab-519aba1bbd30: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:48 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 105f0c40-50a7-40eb-a53c-12c1accf9440: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: design_cloud_infrastructure
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: optimize_cloud_costs
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_providers
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_services
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: compare_providers
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: estimate_monthly_cost
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - ✅ 6 capacités chargées depuis la configuration
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Initialisation de l'agent CloudArchitectSubAgent...
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:35:57 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent initialisé avec succès
+2026-03-30 20:35:59 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message ea01650d-198b-45c4-b88d-fa7900d2e4f3: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:59 - agent.CloudArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 70e9a063-a9c1-46d1-92fd-6a034ac84d19: 'SubAgentMetrics' object has no attribute 'messages_sent'

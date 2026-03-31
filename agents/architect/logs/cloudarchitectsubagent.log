@@ -1,0 +1,22 @@
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\templates
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: design_cloud_infrastructure
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: optimize_cloud_costs
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_providers
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_services
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: compare_providers
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: estimate_monthly_cost
+2026-03-31 19:25:36 - agent.CloudArchitectSubAgent - INFO - ✅ 6 capacités chargées depuis la configuration
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Configuration chargée: CloudArchitectSubAgent v2.0.0
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Agent CloudArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\config.yaml)
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\cloud_architect\templates
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: design_cloud_infrastructure
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: optimize_cloud_costs
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_providers
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: get_services
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: compare_providers
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - Capacité ajoutée: estimate_monthly_cost
+2026-03-31 19:32:16 - agent.CloudArchitectSubAgent - INFO - ✅ 6 capacités chargées depuis la configuration

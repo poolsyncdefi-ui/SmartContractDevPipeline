@@ -1,0 +1,126 @@
+# ============================================================================
+# agents/architect/sous_agents/database_architect/config.yaml
+# Configuration du Database Architect SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "DatabaseArchitectSubAgent"
+  class_name: "DatabaseArchitectSubAgent"
+  module_path: "agents.architect.sous_agents.database_architect.agent"
+  display_name: "🗄️ Expert Database Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'architecture de bases de données optimisées.
+    Expert en SQL (PostgreSQL, MySQL), NoSQL (MongoDB, Cassandra), sharding,
+    réplication, indexation, optimisation des requêtes, et migration de données.
+  purpose: "Concevoir des architectures de bases de données performantes, scalables et résilientes"
+
+subagent:
+  id: "database_architect"
+  parent_agent: "architect"
+  category: "database"
+  specialization: "database_architecture"
+  version: "2.0.0"
+  capabilities_count: 7
+  tags: ["database", "sql", "nosql", "sharding", "replication", "optimization", "migration"]
+
+capabilities:
+  - name: "database.design_schema"
+    description: "Conçoit un schéma de base de données optimisé"
+    confidence: 0.95
+  - name: "database.optimize_queries"
+    description: "Optimise les requêtes SQL pour les performances"
+    confidence: 0.94
+  - name: "database.design_replication"
+    description: "Conçoit des stratégies de réplication"
+    confidence: 0.93
+  - name: "database.design_sharding"
+    description: "Conçoit des stratégies de sharding"
+    confidence: 0.92
+  - name: "database.migration_planning"
+    description: "Planifie les migrations de bases de données"
+    confidence: 0.91
+  - name: "database.capacity_planning"
+    description: "Planifie la capacité de stockage et de performance"
+    confidence: 0.90
+  - name: "database.performance_tuning"
+    description: "Optimise les paramètres de configuration"
+    confidence: 0.89
+
+database:
+  default_engine: "postgresql"
+  
+  engines:
+    postgresql:
+      name: "PostgreSQL"
+      category: "sql"
+      use_cases: ["Transactional", "Analytical", "JSON data"]
+    mysql:
+      name: "MySQL"
+      category: "sql"
+      use_cases: ["Web applications", "E-commerce"]
+    mongodb:
+      name: "MongoDB"
+      category: "nosql"
+      use_cases: ["Document storage", "Flexible schema"]
+    cassandra:
+      name: "Cassandra"
+      category: "nosql"
+      use_cases: ["Time-series", "High write throughput"]
+    redis:
+      name: "Redis"
+      category: "cache"
+      use_cases: ["Caching", "Session storage", "Real-time"]
+
+  replication:
+    strategies:
+      - "master_slave"
+      - "master_master"
+      - "synchronous"
+      - "asynchronous"
+    recommended_read_replicas: 2
+
+  sharding:
+    strategies:
+      - "hash"
+      - "range"
+      - "geographic"
+      - "time_based"
+    min_shards: 4
+    max_shards: 256
+
+  optimization:
+    max_query_length: 10000
+    recommend_indexes: true
+    analyze_query_plan: true
+
+system:
+  timeout_seconds: 60
+  max_retries: 2
+  log_level: "INFO"
+  performance:
+    max_concurrent_designs: 5
+
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "tables_designed"
+      type: "counter"
+    - name: "optimizations_performed"
+      type: "counter"
+    - name: "migrations_planned"
+      type: "counter"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["database", "sql", "nosql", "sharding", "replication", "optimization"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-25"
+  next_review: "2026-04-25"

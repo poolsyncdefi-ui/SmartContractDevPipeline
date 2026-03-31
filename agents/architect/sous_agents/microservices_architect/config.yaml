@@ -1,16 +1,82 @@
-sub_agent:
-  id: microservices_architect_01
-  name: Microservices Architecture
-  parent: architect
-  specialization: Microservices Architecture
-  version: 1.0.0
+# ============================================================================
+# agents/architect/sous_agents/microservices_architect/config.yaml
+# Configuration du Microservices Architect SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "MicroservicesArchitectSubAgent"
+  class_name: "MicroservicesArchitectSubAgent"
+  module_path: "agents.architect.sous_agents.microservices_architect.agent"
+  display_name: "🔧 Expert Microservices Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'architecture microservices.
+    Expert en patterns de résilience, service discovery, orchestration,
+    et gestion des transactions distribuées (SAGA).
+  purpose: "Concevoir des architectures microservices robustes, scalables et résilientes"
+
+subagent:
+  id: "microservices_architect"
+  parent_agent: "architect"
+  category: "microservices"
+  specialization: "microservices_architecture"
+  version: "2.0.0"
+  capabilities_count: 5
+  tags: ["microservices", "resilience", "saga", "service-discovery", "circuit-breaker"]
+
 capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
+  - name: "microservices.design"
+    description: "Conçoit une architecture microservices complète"
+    confidence: 0.95
+  - name: "microservices.service_discovery"
+    description: "Configure le service discovery (Consul, Eureka, K8s)"
+    confidence: 0.92
+  - name: "microservices.circuit_breaker"
+    description: "Configure le circuit breaker pour la résilience"
+    confidence: 0.94
+  - name: "microservices.saga"
+    description: "Conçoit des transactions distribuées avec pattern SAGA"
+    confidence: 0.90
+  - name: "microservices.resilience"
+    description: "Définit une stratégie de résilience complète"
+    confidence: 0.93
+
+microservices:
+  default_service_discovery: "consul"
+  default_api_gateway: "kong"
+  default_container_platform: "kubernetes"
+  resilience_patterns:
+    - "Circuit Breaker"
+    - "Retry"
+    - "Timeout"
+    - "Bulkhead"
+    - "Rate Limiter"
+
+system:
   timeout_seconds: 60
   max_retries: 2
-logging:
-  level: INFO
+  log_level: "INFO"
+  performance:
+    max_concurrent_designs: 5
+
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "services_designed"
+      type: "counter"
+    - name: "patterns_applied"
+      type: "counter"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["microservices", "resilience", "saga", "service-discovery"]
+  capabilities_count: 5
+  last_reviewed: "2026-03-25"
+  next_review: "2026-04-25"

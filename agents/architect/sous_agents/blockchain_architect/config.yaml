@@ -1,16 +1,112 @@
-sub_agent:
-  id: blockchain_architect_01
-  name: Blockchain Architecture
-  parent: architect
-  specialization: Blockchain Architecture
-  version: 1.0.0
+# ============================================================================
+# agents/architect/sous_agents/blockchain_architect/config.yaml
+# Configuration du Blockchain Architect SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "BlockchainArchitectSubAgent"
+  class_name: "BlockchainArchitectSubAgent"
+  module_path: "agents.architect.sous_agents.blockchain_architect.agent"
+  display_name: "⛓️ Expert Blockchain Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'architecture blockchain multi-chaînes.
+    Expert en smart contracts (ERC20, ERC721, ERC1155), tokenomics, DeFi,
+    NFT, cross-chain bridges, et sécurité blockchain.
+  purpose: "Concevoir des architectures blockchain optimales, sécurisées et économiques"
+
+subagent:
+  id: "blockchain_architect"
+  parent_agent: "architect"
+  category: "blockchain"
+  specialization: "blockchain_architecture"
+  version: "2.0.0"
+  capabilities_count: 7
+  tags: ["blockchain", "smart-contracts", "defi", "nft", "web3", "ethereum", "solana"]
+
 capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
+  - name: "design_blockchain_architecture"
+    description: "Conçoit une architecture blockchain multi-chaînes complète"
+    confidence: 0.95
+  - name: "design_smart_contract"
+    description: "Conçoit un smart contract spécifique"
+    confidence: 0.96
+  - name: "design_tokenomics"
+    description: "Conçoit la tokenomics d'un projet blockchain"
+    confidence: 0.94
+  - name: "get_chains"
+    description: "Retourne la liste des blockchains supportées"
+    confidence: 0.99
+  - name: "estimate_gas_costs"
+    description: "Estime les coûts de gaz pour un contrat"
+    confidence: 0.92
+  - name: "cross_chain_design"
+    description: "Conçoit des bridges cross-chain"
+    confidence: 0.90
+  - name: "security_audit_requirements"
+    description: "Fournit les exigences d'audit de sécurité"
+    confidence: 0.98
+
+blockchain:
+  default_chain: "ethereum"
+  chains:
+    ethereum:
+      name: "Ethereum"
+      chain_id: 1
+      evm_compatible: true
+      native_currency: "ETH"
+    polygon:
+      name: "Polygon"
+      chain_id: 137
+      evm_compatible: true
+      native_currency: "MATIC"
+    arbitrum:
+      name: "Arbitrum"
+      chain_id: 42161
+      evm_compatible: true
+      native_currency: "ETH"
+    solana:
+      name: "Solana"
+      chain_id: 0
+      evm_compatible: false
+      native_currency: "SOL"
+
+audit_requirements:
+  mandatory:
+    - "Smart contract security audit by accredited firm"
+    - "Formal verification for critical functions"
+    - "Test coverage > 95%"
+  recommended:
+    - "Bug bounty program"
+    - "Multi-sig for admin functions"
+
+system:
   timeout_seconds: 60
   max_retries: 2
-logging:
-  level: INFO
+  log_level: "INFO"
+  performance:
+    max_concurrent_designs: 5
+
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "contracts_designed"
+      type: "counter"
+    - name: "cross_chain_designs"
+      type: "counter"
+    - name: "tokenomics_designed"
+      type: "counter"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["blockchain", "smart-contracts", "defi", "nft", "web3"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-24"
+  next_review: "2026-04-24"

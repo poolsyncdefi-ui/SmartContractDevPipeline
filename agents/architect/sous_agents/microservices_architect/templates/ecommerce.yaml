@@ -1,0 +1,15 @@
+# agents/architect/sous_agents/microservices_architect/templates/ecommerce.yaml
+name: "E-commerce Microservices"
+services:
+  - user-service
+  - product-service
+  - order-service
+  - payment-service
+  - inventory-service
+  - notification-service
+patterns:
+  - API Gateway
+  - Circuit Breaker
+  - SAGA
+service_mesh: true
+container_platform: kubernetes

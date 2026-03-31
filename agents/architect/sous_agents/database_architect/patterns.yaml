@@ -1,0 +1,18 @@
+# agents/architect/sous_agents/database_architect/patterns.yaml
+indexing_patterns:
+  - name: "BTREE"
+    description: "Default balanced tree index"
+  - name: "Composite Index"
+    description: "Multi-column index"
+  - name: "Partial Index"
+    description: "Index on subset of rows"
+  - name: "Covering Index"
+    description: "Include all needed columns"
+
+replication_patterns:
+  - name: "Master-Slave"
+    description: "One master, multiple read replicas"
+  - name: "Master-Master"
+    description: "Multi-master active-active"
+  - name: "Synchronous"
+    description: "Strong consistency, higher latency"

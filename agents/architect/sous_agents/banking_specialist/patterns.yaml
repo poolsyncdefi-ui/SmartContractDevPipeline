@@ -1,0 +1,45 @@
+# agents/architect/sous_agents/banking_specialist/patterns.yaml
+
+core_banking_patterns:
+  - name: "Double-Entry Accounting"
+    description: "Système comptable en partie double"
+    benefits: "Auditabilité, intégrité des données"
+  - name: "Ledger Architecture"
+    description: "Architecture de grand livre"
+    benefits: "Traçabilité, historique complet"
+  - name: "Event Sourcing"
+    description: "Traçabilité des transactions"
+    benefits: "Replay, audit, correction"
+
+payment_patterns:
+  - name: "ISO 20022"
+    description: "Standard de messagerie financière"
+    benefits: "Interopérabilité, richesse des données"
+  - name: "Settlement Finality"
+    description: "Garantie de règlement"
+    benefits: "Réduction du risque de règlement"
+  - name: "Netting"
+    description: "Compensation des transactions"
+    benefits: "Réduction des flux de paiement"
+
+compliance_patterns:
+  - name: "KYC/AML"
+    description: "Connaître son client et anti-blanchiment"
+    benefits: "Conformité réglementaire"
+  - name: "Transaction Monitoring"
+    description: "Surveillance des transactions"
+    benefits: "Détection de fraude"
+  - name: "Regulatory Reporting"
+    description: "Reporting réglementaire"
+    benefits: "Automatisation, réduction des risques"
+
+fraud_detection_patterns:
+  - name: "Rule-Based Detection"
+    description: "Règles métier pour détection"
+    benefits: "Simple, explicable"
+  - name: "ML-Based Anomaly Detection"
+    description: "Détection d'anomalies par machine learning"
+    benefits: "Détection de nouveaux patterns"
+  - name: "Behavioral Biometrics"
+    description: "Analyse du comportement utilisateur"
+    benefits: "Détection d'usurpation"

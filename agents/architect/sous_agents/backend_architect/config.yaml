@@ -1,0 +1,90 @@
+# ============================================================================
+# agents/architect/sous_agents/backend_architect/config.yaml
+# Configuration du Backend Architect SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "BackendArchitectSubAgent"
+  class_name: "BackendArchitectSubAgent"
+  module_path: "agents.architect.sous_agents.backend_architect.agent"
+  display_name: "⚙️ Expert Backend Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'architecture backend robuste et scalable.
+    Expert en API (REST, GraphQL, gRPC), bases de données (PostgreSQL, MongoDB, Redis),
+    caching, message brokers (RabbitMQ, Kafka), et patterns d'intégration.
+  purpose: "Concevoir des architectures backend performantes, scalables et maintenables"
+
+subagent:
+  id: "backend_architect"
+  parent_agent: "architect"
+  category: "backend"
+  specialization: "backend_architecture"
+  version: "2.0.0"
+  capabilities_count: 7
+  tags: ["backend", "api", "database", "cache", "message-queue", "scalability", "performance"]
+
+capabilities:
+  - name: "backend.design_architecture"
+    description: "Conçoit une architecture backend complète"
+    confidence: 0.95
+  - name: "backend.design_api"
+    description: "Conçoit des API (REST, GraphQL, gRPC)"
+    confidence: 0.94
+  - name: "backend.design_database"
+    description: "Conçoit des bases de données optimisées"
+    confidence: 0.93
+  - name: "backend.design_cache"
+    description: "Conçoit des stratégies de cache"
+    confidence: 0.92
+  - name: "backend.design_message_queue"
+    description: "Conçoit des files de messages"
+    confidence: 0.91
+  - name: "backend.optimize_performance"
+    description: "Optimise les performances du backend"
+    confidence: 0.90
+  - name: "backend.scalability_analysis"
+    description: "Analyse et recommande des stratégies de scalabilité"
+    confidence: 0.89
+
+backend:
+  default_api_type: "rest"
+  default_database: "postgresql"
+  default_cache_strategy: "cache_aside"
+  default_message_broker: "rabbitmq"
+  
+  performance_targets:
+    response_time_ms: 200
+    throughput_rps: 1000
+    availability_percent: 99.9
+
+system:
+  timeout_seconds: 60
+  max_retries: 2
+  log_level: "INFO"
+  performance:
+    max_concurrent_designs: 5
+
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "api_endpoints_designed"
+      type: "counter"
+    - name: "databases_designed"
+      type: "counter"
+    - name: "message_queues_designed"
+      type: "counter"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["backend", "api", "database", "cache", "message-queue", "scalability"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-25"
+  next_review: "2026-04-25"

@@ -1,16 +1,222 @@
-sub_agent:
-  id: cloud_architect_01
-  name: Cloud Architecture
-  parent: architect
-  specialization: Cloud Architecture
-  version: 1.0.0
+# ============================================================================
+# agents/architect/sous_agents/cloud_architect/config.yaml
+# Configuration du Cloud Architect SubAgent
+# Version: 2.0.0 (ALIGNÉ SUR CIRCUIT BREAKER)
+# ============================================================================
+
+# ============================================================================
+# IDENTIFICATION DU SOUS-AGENT
+# ============================================================================
+agent:
+  name: "CloudArchitectSubAgent"
+  class_name: "CloudArchitectSubAgent"
+  module_path: "agents.architect.sous_agents.cloud_architect.agent"
+  display_name: "☁️ Expert Cloud Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'infrastructure cloud multi-provider.
+    Expert en AWS, Azure, GCP, OCI avec optimisation des coûts,
+    scalabilité, haute disponibilité et résilience.
+  purpose: "Concevoir des infrastructures cloud optimales, sécurisées et économiques"
+
+# ============================================================================
+# MÉTADONNÉES SPÉCIFIQUES
+# ============================================================================
+subagent:
+  id: "cloud_architect"
+  parent_agent: "architect"
+  category: "infrastructure"
+  specialization: "cloud"
+  version: "2.0.0"
+  capabilities_count: 6
+  tags: ["cloud", "aws", "azure", "gcp", "oci", "infrastructure", "cost-optimization"]
+
+# ============================================================================
+# CAPACITÉS SPÉCIFIQUES
+# ============================================================================
 capabilities:
-- name: specialized_task_execution
-  description: Capacité specialized task execution
-- name: domain_expertise
-  description: Capacité domain expertise
-parameters:
+  - name: "design_cloud_infrastructure"
+    description: "Conçoit une infrastructure cloud optimale selon les exigences"
+    confidence: 0.95
+    parameters:
+      - "name"
+      - "description"
+      - "expected_users"
+      - "provider"
+      - "high_availability"
+      - "disaster_recovery"
+
+  - name: "optimize_cloud_costs"
+    description: "Optimise les coûts de l'infrastructure existante"
+    confidence: 0.92
+    parameters:
+      - "current_config"
+      - "estimated_cost_monthly"
+
+  - name: "get_providers"
+    description: "Retourne la liste des fournisseurs cloud supportés"
+    confidence: 0.99
+    parameters: []
+
+  - name: "get_services"
+    description: "Retourne les services disponibles pour un fournisseur"
+    confidence: 0.98
+    parameters:
+      - "provider"
+
+  - name: "compare_providers"
+    description: "Compare les offres des différents fournisseurs"
+    confidence: 0.90
+    parameters:
+      - "requirements"
+
+  - name: "estimate_monthly_cost"
+    description: "Estime le coût mensuel d'une configuration"
+    confidence: 0.85
+    parameters:
+      - "services"
+      - "expected_users"
+      - "regions"
+
+# ============================================================================
+# CONFIGURATION SPÉCIFIQUE CLOUD
+# ============================================================================
+cloud:
+  default_provider: "aws"
+  default_region: "us-east-1"
+  
+  providers:
+    aws:
+      name: "Amazon Web Services"
+      regions: ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"]
+      compute_families: ["t2", "t3", "c5", "m5", "r5"]
+      storage_tiers: ["standard", "infrequent_access", "glacier"]
+      
+    azure:
+      name: "Microsoft Azure"
+      regions: ["eastus", "westeurope", "southeastasia"]
+      compute_families: ["B", "D", "E", "F"]
+      storage_tiers: ["hot", "cool", "archive"]
+      
+    gcp:
+      name: "Google Cloud Platform"
+      regions: ["us-central1", "europe-west1", "asia-southeast1"]
+      compute_families: ["n1", "n2", "c2", "m1"]
+      storage_tiers: ["standard", "nearline", "coldline", "archive"]
+      
+    oci:
+      name: "Oracle Cloud Infrastructure"
+      regions: ["us-ashburn-1", "uk-london-1", "ap-tokyo-1"]
+      compute_families: ["VM.Standard", "VM.DenseIO", "BM.Standard"]
+      storage_tiers: ["standard", "infrequent_access", "archive"]
+
+# ============================================================================
+# STRATÉGIES D'OPTIMISATION
+# ============================================================================
+optimization:
+  enabled: true
+  strategies:
+    - name: "instance_reservations"
+      description: "Réservation d'instances pour workloads stables"
+      savings_potential: 40
+      effort: "low"
+    - name: "auto_scaling"
+      description: "Mise à l'échelle automatique"
+      savings_potential: 25
+      effort: "medium"
+    - name: "spot_instances"
+      description: "Utilisation d'instances Spot pour batch"
+      savings_potential: 70
+      effort: "medium"
+      applicable_workloads: ["batch", "dev", "test"]
+    - name: "storage_tiering"
+      description: "Tiering automatique du stockage"
+      savings_potential: 30
+      effort: "low"
+    - name: "right_sizing"
+      description: "Ajustement de la taille des ressources"
+      savings_potential: 20
+      effort: "medium"
+
+# ============================================================================
+# ARCHITECTURE PATTERNS
+# ============================================================================
+architecture_patterns:
+  - name: "single_region_basic"
+    description: "Architecture simple dans une seule région"
+    min_users: 0
+    max_users: 1000
+    high_availability: false
+    disaster_recovery: false
+    
+  - name: "multi_az_load_balanced"
+    description: "Multi-AZ avec load balancer"
+    min_users: 1000
+    max_users: 10000
+    high_availability: true
+    disaster_recovery: false
+    
+  - name: "multi_region_active_passive"
+    description: "Multi-région actif-passif"
+    min_users: 10000
+    max_users: 100000
+    high_availability: true
+    disaster_recovery: true
+    
+  - name: "global_active_active"
+    description: "Global multi-région actif-actif"
+    min_users: 100000
+    max_users: 1000000
+    high_availability: true
+    disaster_recovery: true
+
+# ============================================================================
+# SYSTÈME
+# ============================================================================
+system:
   timeout_seconds: 60
   max_retries: 2
-logging:
-  level: INFO
+  log_level: "INFO"
+  
+  performance:
+    max_concurrent_designs: 5
+    design_queue_size: 50
+
+# ============================================================================
+# MÉTRIQUES
+# ============================================================================
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+    
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+      description: "Nombre de conceptions d'infrastructure créées"
+    - name: "cost_optimizations"
+      type: "counter"
+      description: "Nombre d'optimisations de coûts effectuées"
+    - name: "total_savings_estimated"
+      type: "gauge"
+      description: "Économies totales estimées"
+
+# ============================================================================
+# PERFORMANCE TARGETS
+# ============================================================================
+performance_targets:
+  design_time_ms: 5000
+  cost_optimization_time_ms: 3000
+  max_concurrent_designs: 5
+
+# ============================================================================
+# MÉTADONNÉES
+# ============================================================================
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["cloud", "infrastructure", "aws", "azure", "gcp", "oci"]
+  capabilities_count: 6
+  last_reviewed: "2026-03-24"
+  next_review: "2026-04-24"

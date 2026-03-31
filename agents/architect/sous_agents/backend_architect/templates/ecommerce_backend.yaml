@@ -1,0 +1,20 @@
+# agents/architect/sous_agents/backend_architect/templates/ecommerce_backend.yaml
+name: "E-commerce Backend"
+api_type: rest
+databases:
+  - name: user_db
+    type: postgresql
+    purpose: "User data"
+  - name: product_db
+    type: postgresql
+    purpose: "Product catalog"
+  - name: order_db
+    type: postgresql
+    purpose: "Orders"
+  - name: cache
+    type: redis
+    purpose: "Session & product cache"
+message_queues:
+  - name: order_processing
+    broker: rabbitmq
+    purpose: "Async order processing"

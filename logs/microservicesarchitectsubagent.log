@@ -1,0 +1,77 @@
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:50:50 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-25 20:50:53 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 69e0436a-7053-4f5e-bc96-25e8405730e5: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 20:50:53 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message e7e49d65-84ee-4861-8ab9-ce7780969df4: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:08:32 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-25 21:08:35 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 5bbd9791-8e3a-4a12-83be-109193dd5541: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:08:35 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 8c39d443-7f66-4f6b-8581-68f3282b3de8: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:30:36 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-25 21:30:39 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message db700845-f929-42d3-9f41-32475fb8d930: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:30:39 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 4cc88828-bb92-4eb6-b38f-b0c329ca9b70: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\templates
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\patterns.yaml
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:07:48 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-26 09:07:50 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 44892881-9d78-413b-9190-10c29af08a6b: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:07:50 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message d9547692-ff62-4ce1-b019-6ab72949586f: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\templates
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\patterns.yaml
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:16:20 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-26 09:16:22 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message e11e6203-9587-409e-ba14-59c8ec5d8afd: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:16:22 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message f25c6106-c044-4b8a-8862-2a5a1f837e5b: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\templates
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\patterns.yaml
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:31:44 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-30 20:31:48 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 059655a8-8dfc-4592-b6c0-5596159254db: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:48 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 273e5611-8b94-4846-b6c1-a2d5fbaa1097: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Configuration chargée: MicroservicesArchitectSubAgent v2.0.0
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\config.yaml)
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\templates
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\microservices_architect\patterns.yaml
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Initialisation de l'agent MicroservicesArchitectSubAgent...
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:35:57 - agent.MicroservicesArchitectSubAgent - INFO - Agent MicroservicesArchitectSubAgent initialisé avec succès
+2026-03-30 20:35:59 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message a3e061d1-c7b8-479c-a9ce-f268f1baa291: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:59 - agent.MicroservicesArchitectSubAgent - ERROR - Erreur lors de l'envoi du message a45bc538-3de5-4d1e-9aaa-bd3bb060fe74: 'SubAgentMetrics' object has no attribute 'messages_sent'

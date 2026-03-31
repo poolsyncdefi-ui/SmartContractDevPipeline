@@ -1,0 +1,81 @@
+2026-03-25 20:44:46 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-25 20:44:46 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-25 20:44:46 - agent.BlockchainArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 20:44:46 - agent.BlockchainArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 20:50:50 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-25 20:50:53 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 97666e03-2e93-4175-ac18-532d34bf829a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 20:50:53 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 3ad7f3b1-56f0-47da-8658-f547316cf7a2: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:08:32 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-25 21:08:35 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 5986471f-f28f-43a3-9561-3f0270dcb8b0: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:08:35 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message bb9437ac-ad5b-4c4b-af00-fa16b35a229a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - WARNING - Répertoire des templates non trouvé
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - WARNING - Fichier des patterns non trouvé
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-25 21:30:36 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-25 21:30:39 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message d14ee9d1-02f8-4396-98ee-dd91cba4bf8c: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-25 21:30:39 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 4f634576-35d6-499b-9104-9458f1d876be: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:07:48 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-26 09:07:50 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 5046ca91-cd03-46d3-a085-e5494c17f926: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:07:50 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message a4988cb6-af12-4bbb-bf34-ea660011a5f3: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-26 09:16:20 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-26 09:16:22 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message c17604d4-8e57-4946-a757-ab23b20d0efd: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-26 09:16:22 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 13dcf489-e803-4119-8953-ff9513d6ecee: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:31:44 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-30 20:31:48 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 7a1d3adf-d6e3-4866-a150-fdfc4016cd93: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:31:48 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 3dc9f2ea-580c-4725-82d9-460ae9d6724a: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Configuration chargée: BlockchainArchitectSubAgent v2.0.0
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent créé (config: D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\config.yaml)
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Chargement des templates depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\templates
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Patterns chargés depuis D:\Web3Projects\SmartContractDevPipeline\agents\architect\sous_agents\blockchain_architect\patterns.yaml
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: created -> initializing
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Initialisation de l'agent BlockchainArchitectSubAgent...
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - WARNING - Aucune capacité définie pour l'agent
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Changement de statut: initializing -> ready
+2026-03-30 20:35:57 - agent.BlockchainArchitectSubAgent - INFO - Agent BlockchainArchitectSubAgent initialisé avec succès
+2026-03-30 20:35:59 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 5d11ccc8-6f2a-4e30-814a-e62b71528e86: 'SubAgentMetrics' object has no attribute 'messages_sent'
+2026-03-30 20:35:59 - agent.BlockchainArchitectSubAgent - ERROR - Erreur lors de l'envoi du message 0595d88d-7dc2-4038-b680-12311656fb69: 'SubAgentMetrics' object has no attribute 'messages_sent'

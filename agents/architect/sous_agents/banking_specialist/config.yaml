@@ -1,0 +1,132 @@
+# ============================================================================
+# agents/architect/sous_agents/banking_specialist/config.yaml
+# Configuration du Banking Specialist SubAgent
+# Version: 2.0.0
+# ============================================================================
+
+agent:
+  name: "BankingSpecialistSubAgent"
+  class_name: "BankingSpecialistSubAgent"
+  module_path: "agents.architect.sous_agents.banking_specialist.agent"
+  display_name: "🏦 Expert Banking Architecture"
+  version: "2.0.0"
+  description: |-
+    Sous-agent spécialisé en conception d'architecture bancaire et financière.
+    Expert en core banking, paiements (SEPA, SWIFT), crédit, scoring,
+    conformité réglementaire (PSD2, Bâle, DORA), et systèmes anti-fraude.
+  purpose: "Concevoir des architectures bancaires robustes, conformes et performantes"
+
+subagent:
+  id: "banking_specialist"
+  parent_agent: "architect"
+  category: "banking"
+  specialization: "banking_architecture"
+  version: "2.0.0"
+  capabilities_count: 7
+  tags: ["banking", "payments", "credit", "compliance", "fraud", "core-banking"]
+
+capabilities:
+  - name: "banking.design_core_system"
+    description: "Conçoit un système bancaire cœur (core banking)"
+    confidence: 0.95
+  - name: "banking.design_payments"
+    description: "Conçoit des systèmes de paiement (SEPA, SWIFT, instant)"
+    confidence: 0.94
+  - name: "banking.design_credit"
+    description: "Conçoit des systèmes de crédit et scoring"
+    confidence: 0.93
+  - name: "banking.compliance_check"
+    description: "Vérifie la conformité réglementaire (PSD2, GDPR, Bâle)"
+    confidence: 0.96
+  - name: "banking.fraud_detection"
+    description: "Conçoit des systèmes de détection de fraude"
+    confidence: 0.92
+  - name: "banking.open_banking"
+    description: "Conçoit des architectures open banking"
+    confidence: 0.91
+  - name: "banking.reporting"
+    description: "Conçoit des systèmes de reporting réglementaire"
+    confidence: 0.90
+
+banking:
+  default_domain: "retail"
+  default_currency: "EUR"
+  
+  domains:
+    retail:
+      name: "Retail Banking"
+      expected_customers: 100000
+      tps_target: 1000
+    corporate:
+      name: "Corporate Banking"
+      expected_customers: 5000
+      tps_target: 500
+    private:
+      name: "Private Banking"
+      expected_customers: 1000
+      tps_target: 200
+    digital:
+      name: "Digital Banking"
+      expected_customers: 500000
+      tps_target: 5000
+
+  payment_schemes:
+    - name: "SEPA Credit Transfer"
+      id: "sepa_credit"
+      settlement: "T+1"
+    - name: "SEPA Instant"
+      id: "sepa_instant"
+      settlement: "real-time"
+    - name: "SWIFT MT"
+      id: "swift_mt"
+      settlement: "T+2"
+    - name: "SWIFT MX"
+      id: "swift_mx"
+      settlement: "T+2"
+    - name: "TARGET2"
+      id: "target2"
+      settlement: "real-time"
+
+  compliance:
+    regulations:
+      EU:
+        - "PSD2"
+        - "GDPR"
+        - "MiCA"
+        - "DORA"
+      Switzerland:
+        - "FINMA"
+        - "AMLA"
+      Global:
+        - "Basel III"
+        - "IFRS9"
+
+system:
+  timeout_seconds: 60
+  max_retries: 2
+  log_level: "INFO"
+  performance:
+    max_concurrent_designs: 5
+
+metrics:
+  enabled: true
+  collection:
+    interval: 60
+  custom_metrics:
+    - name: "designs_created"
+      type: "counter"
+    - name: "payment_flows_designed"
+      type: "counter"
+    - name: "compliance_checks"
+      type: "counter"
+    - name: "fraud_rules_configured"
+      type: "counter"
+
+metadata:
+  author: "SmartContractDevPipeline"
+  maintainer: "architect-team@poolsync.io"
+  license: "Proprietary"
+  tags: ["banking", "payments", "credit", "compliance", "fraud"]
+  capabilities_count: 7
+  last_reviewed: "2026-03-26"
+  next_review: "2026-04-26"

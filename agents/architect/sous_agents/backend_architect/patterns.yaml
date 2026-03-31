@@ -1,0 +1,24 @@
+# agents/architect/sous_agents/backend_architect/patterns.yaml
+api_patterns:
+  - name: "RESTful"
+    description: "Resource-based API design"
+  - name: "GraphQL"
+    description: "Query language for APIs"
+  - name: "gRPC"
+    description: "High-performance RPC framework"
+
+database_patterns:
+  - name: "CQRS"
+    description: "Separate read and write models"
+  - name: "Event Sourcing"
+    description: "Store state changes as events"
+  - name: "Repository Pattern"
+    description: "Abstract data access"
+
+caching_patterns:
+  - name: "Cache-Aside"
+    description: "Application manages cache"
+  - name: "Read-Through"
+    description: "Cache manages loading"
+  - name: "Write-Through"
+    description: "Write to cache and DB"

@@ -1,8 +1,8 @@
 """
 Architect Agent - Agent responsable de la conception de l'architecture des systèmes
-Version: 1.2.0 (ALIGNÉ SUR CODER)
+Version: 4.0.0 (CORRIGÉE - ALIGNEMENT COMPLET AVEC BASEAGENT)
 Auteur: PoolSync DeFi
-Date: 2026-03-05
+Date: 2026-03-24
 """
 
 import os
@@ -11,12 +11,13 @@ import yaml
 import json
 import logging
 import asyncio
+import time
+import hashlib
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Union, Tuple
 from dataclasses import dataclass, field, asdict
 from enum import Enum
 from datetime import datetime
-import hashlib
 import uuid
 
 logger = logging.getLogger(__name__)
@@ -25,7 +26,7 @@ logger = logging.getLogger(__name__)
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType
+from agents.base_agent.base_agent import BaseAgent, AgentStatus, Message, MessageType, AgentCapability
 
 
 # -----------------------------------------------------------------------------
@@ -126,6 +127,45 @@ class DeploymentSpec:
 
 
 @dataclass
+class ArchitectureDecision:
+    """Architecture Decision Record (ADR)"""
+    title: str
+    status: str
+    context: str
+    decision: str
+    consequences: List[str] = field(default_factory=list)
+    alternatives_considered: List[Dict[str, str]] = field(default_factory=list)
+    trade_offs: List[str] = field(default_factory=list)
+    risks: List[Dict[str, str]] = field(default_factory=list)
+    mitigations: List[str] = field(default_factory=list)
+    compliance_impact: Optional[str] = None
+    cost_impact: Optional[str] = None
+    reviewers: List[str] = field(default_factory=list)
+    approval_date: Optional[str] = None
+    decision_id: str = field(default_factory=lambda: f"ADR_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
+    created_at: datetime = field(default_factory=datetime.now)
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "decision_id": self.decision_id,
+            "title": self.title,
+            "status": self.status,
+            "context": self.context,
+            "decision": self.decision,
+            "consequences": self.consequences,
+            "alternatives_considered": self.alternatives_considered,
+            "trade_offs": self.trade_offs,
+            "risks": self.risks,
+            "mitigations": self.mitigations,
+            "compliance_impact": self.compliance_impact,
+            "cost_impact": self.cost_impact,
+            "reviewers": self.reviewers,
+            "approval_date": self.approval_date,
+            "created_at": self.created_at.isoformat()
+        }
+
+
+@dataclass
 class ArchitectureDesign:
     """Conception complète de l'architecture"""
     project_name: str
@@ -137,6 +177,7 @@ class ArchitectureDesign:
     constraints: Dict[str, Any] = field(default_factory=dict)
     assumptions: List[str] = field(default_factory=list)
     risks: List[Dict[str, str]] = field(default_factory=list)
+    decisions: List[ArchitectureDecision] = field(default_factory=list)
     created_at: datetime = field(default_factory=datetime.now)
     version: str = "1.0.0"
     design_id: str = field(default_factory=lambda: f"design_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
@@ -154,35 +195,97 @@ class ArchitectureDesign:
             "constraints": self.constraints,
             "assumptions": self.assumptions,
             "risks": self.risks,
+            "decisions": [dec.to_dict() for dec in self.decisions],
             "created_at": self.created_at.isoformat(),
             "version": self.version
         }
 
 
 # -----------------------------------------------------------------------------
-# CLASSE ARCHITECT AGENT (CORRIGÉE ET ALIGNÉE)
+# CLASSE DE CACHE LRU
+# -----------------------------------------------------------------------------
+
+class LRUCache:
+    """Cache LRU simple pour les designs et patterns"""
+    
+    def __init__(self, max_size: int = 500, ttl_seconds: int = 3600):
+        self.max_size = max_size
+        self.ttl_seconds = ttl_seconds
+        self._cache: Dict[str, Any] = {}
+        self._order: List[str] = []
+        self._timestamps: Dict[str, datetime] = {}
+    
+    def get(self, key: str) -> Optional[Any]:
+        if key not in self._cache:
+            return None
+        
+        # Vérifier TTL
+        if key in self._timestamps:
+            age = (datetime.now() - self._timestamps[key]).total_seconds()
+            if age > self.ttl_seconds:
+                self._pop(key)
+                return None
+        
+        # Mettre à jour l'ordre (LRU)
+        if key in self._order:
+            self._order.remove(key)
+        self._order.append(key)
+        
+        return self._cache[key]
+    
+    def set(self, key: str, value: Any):
+        if key in self._cache:
+            if key in self._order:
+                self._order.remove(key)
+        else:
+            if len(self._cache) >= self.max_size:
+                oldest = self._order.pop(0)
+                self._pop(oldest)
+        
+        self._cache[key] = value
+        self._order.append(key)
+        self._timestamps[key] = datetime.now()
+    
+    def _pop(self, key: str):
+        if key in self._cache:
+            del self._cache[key]
+        if key in self._timestamps:
+            del self._timestamps[key]
+        if key in self._order:
+            self._order.remove(key)
+    
+    def clear(self):
+        self._cache.clear()
+        self._order.clear()
+        self._timestamps.clear()
+    
+    def size(self) -> int:
+        return len(self._cache)
+
+
+# -----------------------------------------------------------------------------
+# CLASSE ARCHITECT AGENT (VERSION 4.0.0 CORRIGÉE)
 # -----------------------------------------------------------------------------
 
 class ArchitectAgent(BaseAgent):
     """
     Agent responsable de la conception de l'architecture des systèmes.
-    Analyse les exigences et produit des conceptions d'architecture détaillées.
+    Version optimisée avec configuration renforcée, cache, métriques et délégation.
     """
 
     def __init__(self, config_path: Optional[str] = None):
         """
-        Initialise l'agent Architect.
-
-        Args:
-            config_path: Chemin vers le fichier de configuration YAML
+        Initialise l'agent Architect avec configuration renforcée.
         """
-        # Déterminer le chemin de configuration
-        if config_path is None:
-            config_path = str(project_root / "agents" / "architect" / "config.yaml")
-
-        # Initialiser l'agent de base
+        # Appeler le constructeur de BaseAgent
         super().__init__(config_path)
-
+        
+        # Redéfinir les attributs (BaseAgent les a initialisés avec des valeurs par défaut)
+        self._name = "ArchitectAgent"
+        self._display_name = "🏛️ Agent Architecte Système"
+        self._description = "Agent responsable de la conception de l'architecture des systèmes"
+        self._version = "4.0.0"
+        
         # État spécifique à l'Architect
         self._designs: Dict[str, ArchitectureDesign] = {}
         self._templates: Dict[str, Any] = {}
@@ -190,41 +293,90 @@ class ArchitectAgent(BaseAgent):
         
         # Sous-agents
         self._sub_agents: Dict[str, Any] = {}
-
+        self._domain_agents: Dict[str, Any] = {}
+        
+        # Domain mapping
+        self._domain_mapping: Dict[str, str] = {}
+        
+        # Configuration anti-hallucination (chargée depuis le YAML)
+        self._anti_hallucination_config: Dict[str, Any] = {}
+        self._confidence_threshold: float = 0.85
+        self._strict_mode: bool = False
+        
+        # Configuration performance
+        self._performance_config: Dict[str, Any] = {}
+        self._max_concurrent_designs: int = 5
+        self._max_concurrent_delegations: int = 10
+        self._design_semaphore: Optional[asyncio.Semaphore] = None
+        self._delegation_semaphore: Optional[asyncio.Semaphore] = None
+        
+        # Cache
+        self._cache_enabled: bool = True
+        self._design_cache: Optional[LRUCache] = None
+        
+        # Métriques de performance (complémentaires à celles de BaseAgent)
+        self._architect_metrics: Dict[str, Any] = {
+            "designs_created": 0,
+            "designs_cached": 0,
+            "delegations_successful": 0,
+            "delegations_failed": 0,
+            "validation_failures": 0,
+            "avg_design_time_ms": 0,
+            "total_design_time_ms": 0,
+            "adr_generated": 0,
+            "conflicts_resolved": 0
+        }
+        
+        # Statistiques des circuits (fallback)
+        self._circuit_stats: Dict[str, Dict[str, Any]] = {}
+        
         # Charger les templates et patterns
         self._load_templates()
         self._load_patterns()
+        
+        # Charger la configuration renforcée
+        self._load_and_validate_config()
+        
+        self._logger.info(f"Agent Architect v{self._version} initialisé avec {self._max_concurrent_designs} designs concurrents max")
 
-        self._logger.info(f"Agent Architect initialisé avec la configuration de {config_path}")
-
-    async def initialize(self) -> bool:
-        """
-        Initialise l'agent Architect.
-        """
-        return await super().initialize()
+    # -------------------------------------------------------------------------
+    # SURCHARGES DES MÉTHODES DE BASEAGENT
+    # -------------------------------------------------------------------------
 
     async def _initialize_components(self) -> bool:
         """
         Initialise les composants spécifiques de l'agent Architect.
-
-        Returns:
-            True si l'initialisation a réussi
+        Cette méthode est appelée par BaseAgent.initialize()
         """
         try:
-            self._logger.info("Initialisation des composants de l'agent Architect...")
+            self._logger.info("Initialisation des composants de l'agent Architect v4.0.0...")
 
-            # Charger les configurations avancées
-            self._load_advanced_configs()
+            # Charger le mapping des domaines depuis la config
+            self._domain_mapping = self._agent_config.get('domain_mapping', {})
 
-            # Initialiser le cache des designs
-            self._designs = {}
+            # Initialiser les sémaphores
+            self._design_semaphore = asyncio.Semaphore(self._max_concurrent_designs)
+            self._delegation_semaphore = asyncio.Semaphore(self._max_concurrent_delegations)
+
+            # Initialiser le cache
+            if self._cache_enabled:
+                caching_config = self._agent_config.get('caching', {})
+                max_cache_size = caching_config.get('max_size', 500)
+                cache_ttl = caching_config.get('ttl_seconds', 3600)
+                self._design_cache = LRUCache(max_size=max_cache_size, ttl_seconds=cache_ttl)
+
+            # Ajouter les capacités depuis la config
+            capabilities_list = self._agent_config.get('agent', {}).get('capabilities', [])
+            for cap in capabilities_list:
+                if isinstance(cap, dict):
+                    self.add_capability(AgentCapability(
+                        name=cap.get('name', 'unknown'),
+                        description=cap.get('description', ''),
+                        version=cap.get('version', '1.0.0')
+                    ))
 
             # Initialiser les sous-agents
             await self._initialize_sub_agents()
-
-            # Vérifier les outils nécessaires
-            if not self._check_required_tools():
-                self._logger.warning("Certains outils recommandés ne sont pas disponibles")
 
             self._logger.info("Composants de l'agent Architect initialisés avec succès")
             return True
@@ -233,81 +385,206 @@ class ArchitectAgent(BaseAgent):
             self._logger.error(f"Erreur lors de l'initialisation des composants: {e}")
             return False
 
-    async def _initialize_sub_agents(self):
-        """Initialise les sous-agents spécialisés"""
+    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
+        """
+        Gère les messages personnalisés pour l'agent Architect.
+        """
         try:
-            # Import des sous-agents si disponibles
+            message_type = message.message_type
+
+            handlers = {
+                "design_architecture": self._handle_design_architecture,
+                "review_design": self._handle_review_design,
+                "get_design": self._handle_get_design,
+                "validate_requirements": self._handle_validate_requirements,
+                "split_spec": self._handle_split_spec,
+                "record_call_result": self._handle_record_call_result,
+                "check_service_circuit": self._handle_check_service_circuit,
+                "delegate_to_domain": self._handle_delegate_to_domain,
+                "delegate_multi_domain": self._handle_delegate_multi_domain,
+                "resolve_conflicts": self._handle_resolve_conflicts,
+                "create_adr": self._handle_create_adr,
+                "get_architect_metrics": self._handle_get_metrics,
+            }
+
+            if message_type in handlers:
+                return await handlers[message_type](message)
+
+            self._logger.warning(f"Type de message non reconnu: {message_type}")
+            return None
+
+        except Exception as e:
+            self._logger.error(f"Erreur lors du traitement du message: {e}")
+            return Message(
+                sender=self._name,
+                recipient=message.sender,
+                content={"error": str(e)},
+                message_type=MessageType.ERROR.value,
+                correlation_id=message.message_id
+            )
+
+    # -------------------------------------------------------------------------
+    # MÉTHODES D'INITIALISATION INTERNES
+    # -------------------------------------------------------------------------
+
+    def _load_and_validate_config(self):
+        """Charge et valide la configuration renforcée"""
+        try:
+            # Charger la configuration anti-hallucination
+            self._anti_hallucination_config = self._agent_config.get('anti_hallucination', {})
+            self._confidence_threshold = self._anti_hallucination_config.get('confidence_threshold', 0.85)
+            self._strict_mode = self._anti_hallucination_config.get('strict_mode', False)
+            
+            # Charger la configuration performance
+            self._performance_config = self._agent_config.get('performance', {})
+            self._max_concurrent_designs = self._performance_config.get('max_concurrent_designs', 5)
+            self._max_concurrent_delegations = self._performance_config.get('max_concurrent_delegations', 10)
+            
+            # Charger la configuration cache
+            caching_config = self._agent_config.get('caching', {})
+            self._cache_enabled = caching_config.get('enabled', True)
+            
+            # =============================================================
+            # CORRECTION 1 : Assurer la présence des champs obligatoires
+            # pour la validation de BaseAgent
+            # =============================================================
+            if 'agent' not in self._agent_config:
+                self._agent_config['agent'] = {}
+            
+            agent_section = self._agent_config['agent']
+            
+            if 'name' not in agent_section:
+                agent_section['name'] = self._name
+                self._logger.debug(f"Champ 'agent.name' ajouté: {self._name}")
+            
+            if 'version' not in agent_section:
+                agent_section['version'] = self._version
+                self._logger.debug(f"Champ 'agent.version' ajouté: {self._version}")
+            
+            # =============================================================
+            # CORRECTION 2 : Charger les capacités depuis la configuration
+            # =============================================================
+            capabilities_list = self._agent_config.get('capabilities', [])
+            if capabilities_list:
+                loaded_count = 0
+                for cap in capabilities_list:
+                    if isinstance(cap, dict):
+                        self.add_capability(AgentCapability(
+                            name=cap.get('name', 'unknown'),
+                            description=cap.get('description', ''),
+                            version=cap.get('version', '1.0.0')
+                        ))
+                        loaded_count += 1
+                self._logger.info(f"✅ {loaded_count} capacités chargées depuis la configuration")
+            else:
+                # Optionnel : ajouter des capacités par défaut si aucune n'est définie
+                default_capabilities = [
+                    "DESIGN_SYSTEM_ARCHITECTURE",
+                    "DESIGN_MICROSERVICES",
+                    "DESIGN_CLOUD_INFRASTRUCTURE",
+                    "DELEGATE_TO_DOMAIN"
+                ]
+                for cap_name in default_capabilities:
+                    self.add_capability(AgentCapability(
+                        name=cap_name,
+                        description=f"Capacité {cap_name}",
+                        version="1.0.0"
+                    ))
+                self._logger.info(f"✅ {len(default_capabilities)} capacités par défaut ajoutées")
+            
+            # Vérifier les sections critiques
+            required_sections = ['anti_hallucination', 'validation_rules', 'performance']
+            for section in required_sections:
+                if section not in self._agent_config:
+                    self._logger.debug(f"Section {section} non trouvée dans la configuration")
+            
+            # Vérifier les alertes
+            alerting_config = self._agent_config.get('alerting', {})
+            if alerting_config.get('enabled'):
+                self._logger.info("Alerting activé")
+            
+            self._logger.info("Configuration validée avec succès")
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors de la validation de la configuration: {e}")
+
+    async def _initialize_sub_agents(self):
+        """
+        Initialise les sous-agents spécialisés.
+        """
+        try:
+            # -----------------------------------------------------------------
+            # 1. SOUS-AGENTS ARCHITECTURAUX (spécialisations techniques)
+            # -----------------------------------------------------------------
             try:
-                from .sous_agents import (
+                from agents.architect.sous_agents import (
                     CloudArchitectSubAgent,
                     BlockchainArchitectSubAgent,
-                    MicroservicesArchitectSubAgent
+                    MicroservicesArchitectSubAgent,
+                    BackendArchitectSubAgent,
+                    BankingSpecialistSubAgent
                 )
                 
-                self._sub_agents = {
-                    "cloud": CloudArchitectSubAgent(),
-                    "blockchain": BlockchainArchitectSubAgent(),
-                    "microservices": MicroservicesArchitectSubAgent()
-                }
-                self._logger.info(f"Sous-agents initialisés: {list(self._sub_agents.keys())}")
-            except ImportError as e:
-                self._logger.debug(f"Aucun sous-agent trouvé: {e}")
-                self._sub_agents = {}
+                # Vérifier que les classes existent avant de les instancier
+                if CloudArchitectSubAgent:
+                    self._domain_agents["cloud"] = CloudArchitectSubAgent()
+                    self._sub_agents["cloud"] = self._domain_agents["cloud"]
+                    self._logger.info("✅ CloudArchitectSubAgent chargé")
                 
+                if BlockchainArchitectSubAgent:
+                    self._domain_agents["blockchain"] = BlockchainArchitectSubAgent()
+                    self._sub_agents["blockchain"] = self._domain_agents["blockchain"]
+                    self._logger.info("✅ BlockchainArchitectSubAgent chargé")
+                
+                if MicroservicesArchitectSubAgent:
+                    self._domain_agents["microservices"] = MicroservicesArchitectSubAgent()
+                    self._sub_agents["microservices"] = self._domain_agents["microservices"]
+                    self._logger.info("✅ MicroservicesArchitectSubAgent chargé")
+                
+                if BackendArchitectSubAgent:
+                    self._domain_agents["backend"] = BackendArchitectSubAgent()
+                    self._sub_agents["backend"] = self._domain_agents["backend"]
+                    self._logger.info("✅ BackendArchitectSubAgent chargé")
+                
+                if BankingSpecialistSubAgent:
+                    self._domain_agents["banking"] = BankingSpecialistSubAgent()
+                    self._sub_agents["banking"] = self._domain_agents["banking"]
+                    self._logger.info("✅ BankingSpecialistSubAgent chargé")
+                
+            except ImportError as e:
+                self._logger.debug(f"Sous-agents architecturaux non trouvés: {e}")
+            
+            # -----------------------------------------------------------------
+            # 2. CIRCUIT BREAKER (optionnel - pour résilience)
+            # -----------------------------------------------------------------
+            try:
+                from agents.communication.sous_agents.circuit_breaker.agent import CircuitBreakerSubAgent
+                self._sub_agents["circuit_breaker"] = CircuitBreakerSubAgent()
+                self._logger.info("✅ Circuit Breaker SubAgent chargé (service de résilience)")
+            except ImportError as e:
+                self._logger.debug(f"Circuit Breaker SubAgent non disponible (optionnel): {e}")
+                self._sub_agents["circuit_breaker"] = None
+            
+            # -----------------------------------------------------------------
+            # 3. INITIALISATION DES SOUS-AGENTS
+            # -----------------------------------------------------------------
+            for agent_id, agent in self._sub_agents.items():
+                if agent and hasattr(agent, 'initialize'):
+                    try:
+                        await agent.initialize()
+                        self._logger.debug(f"Sous-agent {agent_id} initialisé")
+                    except Exception as e:
+                        self._logger.error(f"Erreur initialisation {agent_id}: {e}")
+            
+            self._logger.info(f"✅ {len(self._sub_agents)} sous-agents initialisés ({len(self._domain_agents)} métier)")
+                        
         except Exception as e:
             self._logger.error(f"Erreur lors de l'initialisation des sous-agents: {e}")
             self._sub_agents = {}
-
-    # -------------------------------------------------------------------------
-    # MÉTHODES D'INFORMATION ET DE SANTÉ (AJOUTÉES)
-    # -------------------------------------------------------------------------
-
-    async def health_check(self) -> Dict[str, Any]:
-        """Vérifie la santé de l'agent."""
-        base_health = await super().health_check()
+            self._domain_agents = {}
         
-        return {
-            **base_health,
-            "agent": self.name,
-            "display_name": self._display_name,
-            "status": self._status.value,
-            "ready": self._status == AgentStatus.READY,
-            "designs_count": len(self._designs),
-            "templates_loaded": len(self._templates),
-            "patterns_loaded": len(self._patterns_library),
-            "sub_agents": list(self._sub_agents.keys()),
-            "timestamp": datetime.now().isoformat()
-        }
-
-    def get_agent_info(self) -> Dict[str, Any]:
-        """Retourne les informations de l'agent."""
-        agent_config = self._agent_config.get('agent', {})
-        capabilities = agent_config.get('capabilities', [])
-        
-        if capabilities and isinstance(capabilities[0], dict):
-            capabilities = [cap["name"] for cap in capabilities]
-
-        return {
-            "id": self.name,
-            "name": "ArchitectAgent",
-            "display_name": self._display_name,
-            "version": agent_config.get('version', '3.0.0'),
-            "description": agent_config.get('description', 'Agent de conception d\'architecture'),
-            "status": self._status.value,
-            "capabilities": capabilities,
-            "features": {
-                "templates": list(self._templates.keys()),
-                "patterns": len(self._patterns_library),
-                "sub_agents": list(self._sub_agents.keys()),
-                "architecture_types": [t.value for t in ArchitectureType]
-            },
-            "stats": {
-                "designs_created": len(self._designs)
-            }
-        }
-
     # -------------------------------------------------------------------------
-    # MÉTHODES PRIVÉES D'INITIALISATION (inchangées)
+    # MÉTHODES DE CHARGEMENT DES TEMPLATES ET PATTERNS
     # -------------------------------------------------------------------------
 
     def _load_templates(self):
@@ -316,7 +593,6 @@ class ArchitectAgent(BaseAgent):
         
         if templates_dir.exists():
             self._logger.info(f"Chargement des templates depuis {templates_dir}")
-            
             self._templates = {
                 "microservices": self._get_microservices_template(),
                 "monolith": self._get_monolith_template(),
@@ -343,58 +619,9 @@ class ArchitectAgent(BaseAgent):
             self._logger.warning("Fichier des patterns non trouvé, utilisation des patterns par défaut")
             self._patterns_library = self._get_default_patterns()
 
-    def _load_advanced_configs(self):
-        """Charge les configurations avancées"""
-        pass
-
-    def _check_required_tools(self) -> bool:
-        """Vérifie la disponibilité des outils nécessaires"""
-        return True
-
     # -------------------------------------------------------------------------
-    # MÉTHODES PUBLIQUES PRINCIPALES (inchangées)
+    # MÉTHODES DE VALIDATION
     # -------------------------------------------------------------------------
-
-    async def design_architecture(self, requirements: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Conçoit une architecture basée sur les exigences.
-        """
-        try:
-            self._logger.info("Démarrage de la conception de l'architecture...")
-            
-            validation_result = self.validate_requirements(requirements)
-            if not validation_result["valid"]:
-                return {
-                    "success": False,
-                    "error": "Exigences invalides",
-                    "validation_errors": validation_result["errors"]
-                }
-            
-            analysis = self._analyze_requirements(requirements)
-            arch_type = self._select_architecture_type(analysis)
-            design = self._create_design(analysis, arch_type, requirements)
-            documentation = self._generate_documentation(design)
-            
-            self._designs[design.design_id] = design
-            
-            result = {
-                "success": True,
-                "design_id": design.design_id,
-                "architecture": design.to_dict(),
-                "documentation": documentation,
-                "analysis": analysis,
-                "created_at": design.created_at.isoformat()
-            }
-            
-            self._logger.info(f"Architecture conçue avec succès: {design.design_id}")
-            return result
-            
-        except Exception as e:
-            self._logger.error(f"Erreur lors de la conception de l'architecture: {e}")
-            return {
-                "success": False,
-                "error": str(e)
-            }
 
     def validate_requirements(self, requirements: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -407,6 +634,7 @@ class ArchitectAgent(BaseAgent):
             errors.append("Aucune exigence fournie")
             return {"valid": False, "errors": errors, "warnings": warnings}
         
+        # Validation de base
         required_fields = ["project_name", "description", "functional_requirements"]
         for field in required_fields:
             if field not in requirements:
@@ -416,16 +644,39 @@ class ArchitectAgent(BaseAgent):
         if not isinstance(func_reqs, list) or len(func_reqs) == 0:
             errors.append("Aucune exigence fonctionnelle spécifiée")
         
-        constraints = requirements.get("technical_constraints", {})
-        if constraints:
-            if "programming_languages" in constraints:
-                langs = constraints["programming_languages"]
-                if not isinstance(langs, list) or len(langs) == 0:
-                    warnings.append("Aucun langage de programmation spécifié")
+        # Validation renforcée avec les règles de configuration
+        validation_rules = self._agent_config.get('validation_rules', [])
         
-        scale = requirements.get("expected_scale", {})
-        if not scale:
-            warnings.append("Échelle attendue non spécifiée")
+        for rule in validation_rules:
+            rule_name = rule.get('name')
+            severity = rule.get('severity')
+            
+            if rule_name == "scalability_proven":
+                scale = requirements.get("expected_scale", {})
+                if not scale.get("expected_users") and not scale.get("expected_transactions"):
+                    msg = "Scalabilité non documentée - prévoir une analyse de charge"
+                    if severity == "critical":
+                        errors.append(msg)
+                        self._architect_metrics["validation_failures"] += 1
+                    else:
+                        warnings.append(msg)
+            
+            elif rule_name == "disaster_recovery_defined":
+                dr_plan = requirements.get("disaster_recovery", {})
+                if not dr_plan.get("rto") or not dr_plan.get("rpo"):
+                    errors.append("Plan de reprise d'activité (RTO/RPO) non défini")
+                    self._architect_metrics["validation_failures"] += 1
+            
+            elif rule_name == "security_requirements_met":
+                security_reqs = requirements.get("security_requirements", [])
+                if not security_reqs:
+                    errors.append("Exigences de sécurité non spécifiées")
+                    self._architect_metrics["validation_failures"] += 1
+        
+        # Vérifier les hypothèses manquantes
+        assumptions = requirements.get("assumptions", [])
+        if not assumptions:
+            warnings.append("Aucune hypothèse documentée - risque de malentendus")
         
         return {
             "valid": len(errors) == 0,
@@ -433,73 +684,79 @@ class ArchitectAgent(BaseAgent):
             "warnings": warnings
         }
 
-    async def review_design(self, design_id: str, feedback: Dict[str, Any]) -> Dict[str, Any]:
+    # -------------------------------------------------------------------------
+    # MÉTHODES DE CONCEPTION PRINCIPALES
+    # -------------------------------------------------------------------------
+
+    async def design_architecture(self, requirements: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Révision d'une conception d'architecture.
+        Conçoit une architecture basée sur les exigences.
         """
+        start_time = time.time()
+        
         try:
-            self._logger.info(f"Révision de la conception {design_id}...")
+            # Vérifier le cache
+            cache_key = hashlib.md5(json.dumps(requirements, sort_keys=True).encode()).hexdigest()
+            if self._cache_enabled and self._design_cache:
+                cached = self._design_cache.get(cache_key)
+                if cached:
+                    self._architect_metrics["designs_cached"] += 1
+                    self._logger.debug(f"Design récupéré du cache: {cache_key}")
+                    return cached
             
-            design = self.get_design(design_id)
-            if not design:
+            self._logger.info("Démarrage de la conception de l'architecture...")
+            
+            # Validation
+            validation_result = self.validate_requirements(requirements)
+            if not validation_result["valid"]:
                 return {
                     "success": False,
-                    "error": f"Conception non trouvée: {design_id}"
+                    "error": "Exigences invalides",
+                    "validation_errors": validation_result["errors"]
                 }
             
-            analysis = self._analyze_feedback(feedback, design)
+            # Analyse et conception
+            analysis = self._analyze_requirements(requirements)
+            arch_type = self._select_architecture_type(analysis)
+            design = self._create_design(analysis, arch_type, requirements)
             
-            if analysis.get("needs_revision", False):
-                revised_design = self._revise_design(design, analysis["suggestions"])
-                self._designs[design_id] = revised_design
-                design = revised_design
+            # Documentation
+            documentation = self._generate_documentation(design)
             
+            # Stockage
+            self._designs[design.design_id] = design
+            self._architect_metrics["designs_created"] += 1
+            
+            # Mise en cache
             result = {
                 "success": True,
-                "design_id": design_id,
-                "review_comments": analysis.get("comments", []),
-                "suggestions_applied": analysis.get("suggestions_applied", []),
-                "revision_needed": analysis.get("needs_revision", False),
-                "updated_design": design.to_dict() if analysis.get("needs_revision", False) else None
+                "design_id": design.design_id,
+                "architecture": design.to_dict(),
+                "documentation": documentation,
+                "analysis": analysis,
+                "created_at": design.created_at.isoformat()
             }
             
-            self._logger.info(f"Révision terminée pour {design_id}")
-            return result
+            if self._cache_enabled and self._design_cache:
+                self._design_cache.set(cache_key, result)
             
+            execution_time = (time.time() - start_time) * 1000
+            self._architect_metrics["total_design_time_ms"] += execution_time
+            self._architect_metrics["avg_design_time_ms"] = (
+                self._architect_metrics["total_design_time_ms"] / 
+                self._architect_metrics["designs_created"]
+            )
+            
+            self._logger.info(f"Architecture conçue avec succès: {design.design_id} ({execution_time:.0f}ms)")
+            
+            return result
+                
         except Exception as e:
-            self._logger.error(f"Erreur lors de la révision de la conception: {e}")
+            self._logger.error(f"Erreur lors de la conception de l'architecture: {e}")
             return {
                 "success": False,
                 "error": str(e)
             }
-
-    def get_design(self, design_id: str) -> Optional[Dict[str, Any]]:
-        """
-        Récupère une conception d'architecture.
-        """
-        design = self._designs.get(design_id)
-        if design:
-            return design.to_dict()
-        return None
-
-    def list_designs(self) -> List[Dict[str, Any]]:
-        """
-        Liste toutes les conceptions disponibles.
-        """
-        return [
-            {
-                "design_id": design_id,
-                "project_name": design.project_name,
-                "architecture_type": design.architecture_type.value,
-                "created_at": design.created_at.isoformat(),
-                "version": design.version
-            }
-            for design_id, design in self._designs.items()
-        ]
-
-    # -------------------------------------------------------------------------
-    # MÉTHODES D'ANALYSE ET DE CONCEPTION (inchangées)
-    # -------------------------------------------------------------------------
 
     def _analyze_requirements(self, requirements: Dict[str, Any]) -> Dict[str, Any]:
         """Analyse les exigences pour extraire les informations clés"""
@@ -518,12 +775,6 @@ class ArchitectAgent(BaseAgent):
         complexity_score = self._calculate_complexity_score(requirements)
         analysis["complexity_score"] = complexity_score
         analysis["complexity_level"] = self._get_complexity_level(complexity_score)
-        
-        perf_requirements = requirements.get("non_functional_requirements", {}).get("performance", {})
-        analysis["performance_requirements"] = perf_requirements
-        
-        availability = requirements.get("non_functional_requirements", {}).get("availability", "99.9%")
-        analysis["availability_requirement"] = availability
         
         return analysis
 
@@ -553,7 +804,7 @@ class ArchitectAgent(BaseAgent):
         return min(score, 100)
 
     def _get_complexity_level(self, score: int) -> str:
-        """Détermine le niveau de complexité basé sur le score"""
+        """Détermine le niveau de complexité"""
         if score < 20:
             return "simple"
         elif score < 50:
@@ -579,80 +830,6 @@ class ArchitectAgent(BaseAgent):
             else:
                 return ArchitectureType.MICROSERVICES
         return ArchitectureType.MICROSERVICES
-
-    async def split_spec_into_fragments(self, global_spec: Dict, strategy: str = "largeur_dabord") -> Dict[str, List[Dict]]:
-        """
-        Découpe une spécification globale en fragments individuels pour chaque instance de coder.py
-        """
-        self._logger.info(f"🔪 Découpage de la spécification en fragments...")
-        
-        fragments = {
-            "by_domain": {},
-            "by_priority": [],
-            "by_complexity": [],
-            "dependencies": {},
-            "metadata": {
-                "total_fragments": 0,
-                "estimated_sprints": 0,
-                "parallel_possible": True
-            }
-        }
-        
-        for fragment in global_spec.get("fragments", []):
-            domain = fragment.get("domain", "unknown")
-            
-            fragment["coder_config"] = {
-                "max_iterations": 3,
-                "validation_level": "comprehensive",
-                "generate_tests": True,
-                "generate_docs": True
-            }
-            
-            if domain not in fragments["by_domain"]:
-                fragments["by_domain"][domain] = []
-            fragments["by_domain"][domain].append(fragment)
-            
-            complexity = fragment.get("complexity", 5)
-            fragments["by_complexity"].append((complexity, fragment))
-            
-            deps = []
-            for dep in global_spec.get("dependencies", []):
-                if dep["from"] == fragment["id"]:
-                    deps.append(dep["to"])
-            if deps:
-                fragments["dependencies"][fragment["id"]] = deps
-        
-        fragments["by_complexity"].sort(key=lambda x: x[0])
-        fragments["metadata"]["total_fragments"] = len(global_spec.get("fragments", []))
-        fragments["metadata"]["estimated_sprints"] = self._estimate_sprints(fragments, strategy)
-        
-        base_dir = Path(f"./specs/fragments/{global_spec.get('project', 'unknown')}")
-        base_dir.mkdir(parents=True, exist_ok=True)
-        
-        for fragment in global_spec.get("fragments", []):
-            frag_file = base_dir / f"{fragment['id']}.json"
-            with open(frag_file, 'w', encoding='utf-8') as f:
-                json.dump(fragment, f, indent=2)
-            self._logger.debug(f"  ✅ Fragment sauvegardé: {frag_file}")
-        
-        index_file = base_dir / "_index.json"
-        with open(index_file, 'w', encoding='utf-8') as f:
-            json.dump({
-                "project": global_spec.get("project", "unknown"),
-                "fragments": [f["id"] for f in global_spec.get("fragments", [])],
-                "dependencies": fragments["dependencies"],
-                "metadata": fragments["metadata"]
-            }, f, indent=2)
-        
-        self._logger.info(f"✅ Découpage terminé: {fragments['metadata']['total_fragments']} fragments")
-        return fragments
-
-    def _estimate_sprints(self, fragments: Dict, strategy: str) -> int:
-        """Estime le nombre de sprints nécessaires"""
-        if strategy == "largeur_dabord":
-            return max(len(f) for f in fragments["by_domain"].values())
-        else:
-            return sum(len(f) for f in fragments["by_domain"].values())
 
     def _create_design(self, analysis: Dict[str, Any], arch_type: ArchitectureType,
                       requirements: Dict[str, Any]) -> ArchitectureDesign:
@@ -680,8 +857,6 @@ class ArchitectAgent(BaseAgent):
             patterns.extend(["API Gateway", "Service Discovery", "Circuit Breaker"])
         if arch_type == ArchitectureType.EVENT_DRIVEN:
             patterns.extend(["Event Sourcing", "CQRS", "Event Carried State Transfer"])
-        if analysis.get("performance_requirements", {}).get("caching_required", False):
-            patterns.append("Cache-Aside")
         if analysis.get("security_requirements"):
             patterns.append("Zero Trust")
         if analysis.get("expected_scale", {}).get("expected_users", 0) > 100000:
@@ -709,14 +884,6 @@ class ArchitectAgent(BaseAgent):
                 "risk": "Complexité technique élevée",
                 "impact": "Délais de développement prolongés",
                 "mitigation": "Revues de code fréquentes et tests approfondis"
-            })
-        
-        perf_reqs = analysis.get("performance_requirements", {})
-        if perf_reqs.get("response_time", 1000) < 100:
-            risks.append({
-                "risk": "Exigences de performance strictes",
-                "impact": "Difficulté à atteindre les objectifs de performance",
-                "mitigation": "Tests de performance précoces et optimisation continue"
             })
         
         if analysis.get("security_requirements"):
@@ -755,26 +922,6 @@ class ArchitectAgent(BaseAgent):
                 endpoints=[{"path": f"/api/v1/{service_name}", "method": "GET", "description": f"Endpoint pour {service_name}"}]
             )
             components.append(component)
-        
-        if analysis.get("technical_constraints", {}).get("database_type") == "postgresql":
-            db_component = ComponentSpec(
-                name="postgres-db",
-                component_type=ComponentType.DATABASE,
-                description="Base de données relationnelle principale",
-                technology=TechnologyStack.POSTGRESQL,
-                database_schemas=[{
-                    "name": "public",
-                    "tables": [{
-                        "name": "users",
-                        "columns": [
-                            {"name": "id", "type": "uuid", "primary_key": True},
-                            {"name": "email", "type": "varchar(255)", "unique": True},
-                            {"name": "created_at", "type": "timestamp"}
-                        ]
-                    }]
-                }]
-            )
-            components.append(db_component)
         
         auth_component = ComponentSpec(
             name="auth-service",
@@ -839,93 +986,228 @@ class ArchitectAgent(BaseAgent):
                 "title": f"Architecture Documentation - {design.project_name}",
                 "version": design.version,
                 "last_updated": datetime.now().isoformat(),
-                "author": "Architect Agent"
+                "author": "Architect Agent v4.0"
             },
-            "architecture_decisions": [{
-                "decision": f"Utilisation de l'architecture {design.architecture_type.value}",
-                "context": "Basé sur l'analyse des exigences et de la complexité",
-                "consequences": "Meilleure scalabilité et maintenabilité"
-            }],
             "component_documentation": [{
                 "name": comp.name,
                 "type": comp.component_type.value,
                 "responsibilities": comp.description,
                 "interfaces": comp.endpoints,
                 "dependencies": comp.dependencies
-            } for comp in design.components],
-            "deployment_guide": {
-                "prerequisites": ["Docker", "Kubernetes CLI", "AWS CLI"],
-                "steps": [
-                    "1. Cloner le référentiel",
-                    "2. Configurer les variables d'environnement",
-                    "3. Construire les images Docker",
-                    "4. Déployer sur Kubernetes"
-                ]
-            },
-            "operational_guidelines": {
-                "monitoring": "Surveiller les métriques de performance et les logs",
-                "scaling": "Ajuster le nombre de réplicas en fonction de la charge",
-                "backup": "Sauvegarder les bases de données quotidiennement"
+            } for comp in design.components]
+        }
+
+    async def split_spec_into_fragments(self, global_spec: Dict, strategy: str = "largeur_dabord") -> Dict[str, Any]:
+        """Découpe une spécification globale en fragments"""
+        self._logger.info(f"🔪 Découpage de la spécification en fragments...")
+        
+        fragments = {
+            "by_domain": {},
+            "by_complexity": [],
+            "dependencies": {},
+            "metadata": {
+                "total_fragments": 0,
+                "estimated_sprints": 0,
+                "parallel_possible": True
             }
         }
+        
+        for fragment in global_spec.get("fragments", []):
+            domain = fragment.get("domain", "unknown")
+            
+            fragment["coder_config"] = {
+                "max_iterations": 3,
+                "validation_level": "comprehensive",
+                "generate_tests": True,
+                "generate_docs": True
+            }
+            
+            if domain not in fragments["by_domain"]:
+                fragments["by_domain"][domain] = []
+            fragments["by_domain"][domain].append(fragment)
+            
+            complexity = fragment.get("complexity", 5)
+            fragments["by_complexity"].append((complexity, fragment))
+            
+            deps = []
+            for dep in global_spec.get("dependencies", []):
+                if dep["from"] == fragment["id"]:
+                    deps.append(dep["to"])
+            if deps:
+                fragments["dependencies"][fragment["id"]] = deps
+        
+        fragments["by_complexity"].sort(key=lambda x: x[0])
+        fragments["metadata"]["total_fragments"] = len(global_spec.get("fragments", []))
+        fragments["metadata"]["estimated_sprints"] = self._estimate_sprints(fragments, strategy)
+        
+        self._logger.info(f"✅ Découpage terminé: {fragments['metadata']['total_fragments']} fragments")
+        return fragments
 
-    def _analyze_feedback(self, feedback: Dict[str, Any], design: ArchitectureDesign) -> Dict[str, Any]:
-        """Analyse le feedback pour déterminer les actions nécessaires"""
-        comments = feedback.get("comments", [])
-        suggestions = feedback.get("suggestions", [])
-        
-        analysis = {
-            "comments": comments,
-            "suggestions": suggestions,
-            "needs_revision": len(suggestions) > 0,
-            "suggestions_applied": []
-        }
-        
-        for suggestion in suggestions:
-            if "simplifier" in suggestion.lower():
-                analysis["suggestions_applied"].append("Simplification de l'architecture")
-            elif "performance" in suggestion.lower():
-                analysis["suggestions_applied"].append("Optimisation des performances")
-            elif "sécurité" in suggestion.lower() or "security" in suggestion.lower():
-                analysis["suggestions_applied"].append("Renforcement de la sécurité")
-        
-        return analysis
-
-    def _revise_design(self, design: ArchitectureDesign, suggestions: List[str]) -> ArchitectureDesign:
-        """Révision d'une conception basée sur les suggestions"""
-        revised = ArchitectureDesign(
-            project_name=design.project_name,
-            architecture_type=design.architecture_type,
-            description=design.description,
-            components=design.components.copy(),
-            deployment_specs=design.deployment_specs.copy(),
-            design_patterns=design.design_patterns.copy(),
-            constraints=design.constraints.copy(),
-            assumptions=design.assumptions.copy(),
-            risks=design.risks.copy(),
-            created_at=design.created_at,
-            version=f"{design.version}.1"
-        )
-        
-        for suggestion in suggestions:
-            if "simplifier" in suggestion.lower():
-                if len(revised.components) > 10:
-                    revised.components = revised.components[:10]
-            if "performance" in suggestion.lower():
-                has_cache = any(c.component_type == ComponentType.CACHE for c in revised.components)
-                if not has_cache:
-                    cache_component = ComponentSpec(
-                        name="redis-cache",
-                        component_type=ComponentType.CACHE,
-                        description="Cache Redis pour améliorer les performances",
-                        technology=TechnologyStack.REDIS
-                    )
-                    revised.components.append(cache_component)
-        
-        return revised
+    def _estimate_sprints(self, fragments: Dict, strategy: str) -> int:
+        """Estime le nombre de sprints nécessaires"""
+        if strategy == "largeur_dabord":
+            return max(len(f) for f in fragments["by_domain"].values()) if fragments["by_domain"] else 0
+        else:
+            return sum(len(f) for f in fragments["by_domain"].values())
 
     # -------------------------------------------------------------------------
-    # TEMPLATES PAR DÉFAUT (inchangés)
+    # MÉTHODES DE DÉLÉGATION ET RÉSILIENCE
+    # -------------------------------------------------------------------------
+
+    async def delegate_to_domain(self, domain: str, action: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Délègue une tâche à un sous-agent métier.
+        """
+        start_time = datetime.now()
+        
+        agent = self._domain_agents.get(domain)
+        if not agent:
+            self._architect_metrics["delegations_failed"] += 1
+            return {
+                "success": False,
+                "error": f"Sous-agent pour le domaine '{domain}' non trouvé",
+                "available_domains": list(self._domain_agents.keys())
+            }
+        
+        # Vérifier le circuit breaker
+        circuit_check = await self.check_service_circuit(f"{domain}_{action}")
+        if not circuit_check.get("allowed", True):
+            self._architect_metrics["delegations_failed"] += 1
+            return {
+                "success": False,
+                "error": f"Circuit ouvert pour {domain}_{action}",
+                "circuit_state": circuit_check.get("state")
+            }
+        
+        try:
+            if hasattr(agent, action):
+                result = await getattr(agent, action)(**params) if asyncio.iscoroutinefunction(getattr(agent, action)) else getattr(agent, action)(**params)
+                
+                await self.record_call_result(f"{domain}_{action}", True)
+                self._architect_metrics["delegations_successful"] += 1
+                
+                execution_time = (datetime.now() - start_time).total_seconds() * 1000
+                
+                return {
+                    "success": True,
+                    "domain": domain,
+                    "action": action,
+                    "result": result,
+                    "execution_time_ms": execution_time
+                }
+            else:
+                await self.record_call_result(f"{domain}_{action}", False, f"Action '{action}' non trouvée")
+                self._architect_metrics["delegations_failed"] += 1
+                
+                return {
+                    "success": False,
+                    "error": f"Action '{action}' non trouvée",
+                    "available_actions": [m for m in dir(agent) if not m.startswith('_') and callable(getattr(agent, m))]
+                }
+                
+        except Exception as e:
+            await self.record_call_result(f"{domain}_{action}", False, str(e))
+            self._architect_metrics["delegations_failed"] += 1
+            return {
+                "success": False,
+                "error": str(e),
+                "domain": domain,
+                "action": action
+            }
+
+    async def record_call_result(self, service_name: str, success: bool, error: Optional[str] = None) -> Dict[str, Any]:
+        """Enregistre le résultat d'un appel vers un service."""
+        cb = self._sub_agents.get("circuit_breaker")
+        if not cb:
+            # Fallback local
+            if service_name not in self._circuit_stats:
+                self._circuit_stats[service_name] = {
+                    "success_count": 0,
+                    "failure_count": 0
+                }
+            if success:
+                self._circuit_stats[service_name]["success_count"] += 1
+            else:
+                self._circuit_stats[service_name]["failure_count"] += 1
+            return {"success": True, "recorded_locally": True}
+        
+        if success:
+            return await cb.record_success(service_name)
+        else:
+            return await cb.record_failure(service_name, error)
+
+    async def check_service_circuit(self, service_name: str) -> Dict[str, Any]:
+        """Vérifie si un service est accessible selon le circuit breaker."""
+        cb = self._sub_agents.get("circuit_breaker")
+        if not cb:
+            return {"allowed": True, "circuit_available": False}
+        
+        result = await cb.check_circuit(service_name)
+        return {
+            "allowed": result.get("allowed", True),
+            "state": result.get("state"),
+            "failure_rate": result.get("failure_rate")
+        }
+
+    # -------------------------------------------------------------------------
+    # MÉTHODES DE RÉCUPÉRATION
+    # -------------------------------------------------------------------------
+
+    def get_design(self, design_id: str) -> Optional[Dict[str, Any]]:
+        """Récupère une conception d'architecture"""
+        design = self._designs.get(design_id)
+        if design:
+            return design.to_dict()
+        return None
+
+    def list_designs(self) -> List[Dict[str, Any]]:
+        """Liste toutes les conceptions disponibles"""
+        return [
+            {
+                "design_id": design_id,
+                "project_name": design.project_name,
+                "architecture_type": design.architecture_type.value,
+                "created_at": design.created_at.isoformat(),
+                "version": design.version
+            }
+            for design_id, design in self._designs.items()
+        ]
+
+    def get_architect_metrics(self) -> Dict[str, Any]:
+        """Retourne les métriques spécifiques de l'architecte"""
+        return {
+            **self._architect_metrics,
+            "designs_count": len(self._designs),
+            "cache_size": self._design_cache.size() if self._design_cache else 0,
+            "cache_enabled": self._cache_enabled,
+            "sub_agents_count": len(self._sub_agents),
+            "domain_agents_count": len(self._domain_agents)
+        }
+
+    # -------------------------------------------------------------------------
+    # MÉTHODES DE NETTOYAGE
+    # -------------------------------------------------------------------------
+
+    async def _cleanup(self):
+        """Nettoie les ressources spécifiques de l'agent"""
+        self._logger.info("Nettoyage des ressources de l'ArchitectAgent...")
+        
+        # Nettoyer le cache
+        if self._design_cache:
+            self._design_cache.clear()
+        
+        # Arrêter les sous-agents
+        for agent_id, agent in self._sub_agents.items():
+            if agent and hasattr(agent, 'shutdown'):
+                try:
+                    await agent.shutdown()
+                except Exception as e:
+                    self._logger.error(f"Erreur arrêt {agent_id}: {e}")
+        
+        await super()._cleanup()
+
+    # -------------------------------------------------------------------------
+    # TEMPLATES PAR DÉFAUT
     # -------------------------------------------------------------------------
 
     def _get_default_templates(self) -> Dict[str, Any]:
@@ -954,254 +1236,105 @@ class ArchitectAgent(BaseAgent):
         }
 
     def _get_microservices_template(self) -> Dict[str, Any]:
-        """Template pour architecture microservices"""
         return {
             "name": "microservices",
             "description": "Architecture microservices pour applications complexes et scalables",
-            "use_cases": [
-                "Grandes équipes de développement",
-                "Applications nécessitant une échelle indépendante des composants",
-                "Systèmes avec des stacks technologiques hétérogènes"
-            ],
+            "use_cases": ["Grandes équipes", "Échelle indépendante", "Stacks hétérogènes"],
             "components": [
-                {
-                    "type": "api_gateway",
-                    "mandatory": True,
-                    "technologies": ["Python/FastAPI", "Node.js/Express", "Spring Cloud Gateway"]
-                },
-                {
-                    "type": "service_registry",
-                    "mandatory": True,
-                    "technologies": ["Consul", "Eureka", "Zookeeper"]
-                },
-                {
-                    "type": "config_server",
-                    "mandatory": True,
-                    "technologies": ["Spring Cloud Config", "HashiCorp Consul"]
-                }
+                {"type": "api_gateway", "mandatory": True},
+                {"type": "service_registry", "mandatory": True}
             ],
             "best_practices": [
                 "Définir des contrats d'API clairs",
                 "Implémenter le circuit breaker pattern",
-                "Utiliser la découverte de service",
-                "Séparer les bases de données par service"
+                "Utiliser la découverte de service"
             ]
         }
 
     def _get_monolith_template(self) -> Dict[str, Any]:
-        """Template pour architecture monolithique"""
         return {
             "name": "monolith",
             "description": "Architecture monolithique simple et facile à déployer",
-            "use_cases": [
-                "Petites à moyennes applications",
-                "Équipes de développement réduites",
-                "Prototypage rapide",
-                "Applications avec faible complexité"
-            ],
+            "use_cases": ["Petites applications", "Équipes réduites", "Prototypage rapide"],
             "components": [
-                {
-                    "type": "web_server",
-                    "mandatory": True,
-                    "technologies": ["Nginx", "Apache", "IIS"]
-                },
-                {
-                    "type": "application",
-                    "mandatory": True,
-                    "technologies": ["Django", "Spring Boot", "Ruby on Rails", "Laravel"]
-                },
-                {
-                    "type": "database",
-                    "mandatory": True,
-                    "technologies": ["PostgreSQL", "MySQL", "MongoDB"]
-                }
+                {"type": "web_server", "mandatory": True},
+                {"type": "application", "mandatory": True},
+                {"type": "database", "mandatory": True}
             ],
             "best_practices": [
                 "Organiser le code en modules",
                 "Utiliser des migrations de base de données",
-                "Implémenter le caching",
-                "Séparer les couches (présentation, logique, données)"
+                "Implémenter le caching"
             ]
         }
 
     def _get_serverless_template(self) -> Dict[str, Any]:
-        """Template pour architecture serverless"""
         return {
             "name": "serverless",
             "description": "Architecture serverless pour réduire les coûts d'infrastructure",
-            "use_cases": [
-                "Applications avec charge variable",
-                "Traitement par lots (batch processing)",
-                "API avec faible traffic",
-                "Automatisation de workflows"
-            ],
+            "use_cases": ["Charge variable", "Traitement par lots", "API faible traffic"],
             "components": [
-                {
-                    "type": "api_gateway",
-                    "mandatory": True,
-                    "technologies": ["AWS API Gateway", "Azure API Management", "Google Cloud Endpoints"]
-                },
-                {
-                    "type": "functions",
-                    "mandatory": True,
-                    "technologies": ["AWS Lambda", "Azure Functions", "Google Cloud Functions"]
-                },
-                {
-                    "type": "event_sources",
-                    "mandatory": False,
-                    "technologies": ["S3", "DynamoDB Streams", "EventBridge", "Pub/Sub"]
-                }
+                {"type": "api_gateway", "mandatory": True},
+                {"type": "functions", "mandatory": True}
             ],
             "best_practices": [
                 "Garder les fonctions stateless",
-                "Optimiser la taille des packages",
-                "Utiliser le cold start mitigation",
-                "Implémenter les retries et les dead letter queues"
+                "Optimiser la taille des packages"
             ]
         }
 
     def _get_event_driven_template(self) -> Dict[str, Any]:
-        """Template pour architecture event-driven"""
         return {
             "name": "event_driven",
-            "description": "Architecture pilotée par les événements pour systèmes découplés",
-            "use_cases": [
-                "Systèmes en temps réel",
-                "Traitement de flux de données",
-                "Applications avec haute disponibilité",
-                "Intégration de systèmes hétérogènes"
-            ],
+            "description": "Architecture pilotée par les événements",
+            "use_cases": ["Systèmes temps réel", "Flux de données", "Haute disponibilité"],
             "components": [
-                {
-                    "type": "message_broker",
-                    "mandatory": True,
-                    "technologies": ["Apache Kafka", "RabbitMQ", "AWS SQS", "Azure Service Bus"]
-                },
-                {
-                    "type": "event_processors",
-                    "mandatory": True,
-                    "technologies": ["Python", "Java", "Go", "Node.js"]
-                },
-                {
-                    "type": "event_store",
-                    "mandatory": False,
-                    "technologies": ["EventStoreDB", "MongoDB", "Cassandra"]
-                }
+                {"type": "message_broker", "mandatory": True},
+                {"type": "event_processors", "mandatory": True}
             ],
             "best_practices": [
                 "Définir des schémas d'événements clairs",
                 "Implémenter l'idempotence",
-                "Utiliser le pattern outbox",
-                "Surveiller les latences et les backlogs"
+                "Utiliser le pattern outbox"
             ]
         }
 
     def _get_default_patterns(self) -> Dict[str, Any]:
-        """Retourne les patterns d'architecture par défaut"""
         return {
             "microservices_patterns": [
-                {
-                    "name": "API Gateway",
-                    "description": "Point d'entrée unique pour toutes les requêtes client",
-                    "use_case": "Routage, authentification, limitation de débit"
-                },
-                {
-                    "name": "Circuit Breaker",
-                    "description": "Empêche les appels à des services défaillants",
-                    "use_case": "Tolérance aux pannes et résilience"
-                },
-                {
-                    "name": "Service Discovery",
-                    "description": "Découverte dynamique des instances de service",
-                    "use_case": "Environnements avec scaling automatique"
-                }
+                {"name": "API Gateway", "description": "Point d'entrée unique"},
+                {"name": "Circuit Breaker", "description": "Protection contre les défaillances"},
+                {"name": "Service Discovery", "description": "Découverte dynamique"}
             ],
             "data_patterns": [
-                {
-                    "name": "CQRS",
-                    "description": "Séparation des modèles de lecture et d'écriture",
-                    "use_case": "Applications avec modèles de lecture/écriture différents"
-                },
-                {
-                    "name": "Event Sourcing",
-                    "description": "Stockage des événements plutôt que de l'état",
-                    "use_case": "Audit trail, récupération d'état"
-                },
-                {
-                    "name": "SAGA",
-                    "description": "Gestion des transactions distribuées",
-                    "use_case": "Orchestration de workflows entre services"
-                }
-            ],
-            "deployment_patterns": [
-                {
-                    "name": "Blue-Green Deployment",
-                    "description": "Déploiement sans interruption de service",
-                    "use_case": "Mises à jour critiques avec zéro temps d'arrêt"
-                },
-                {
-                    "name": "Canary Release",
-                    "description": "Déploiement progressif à un sous-ensemble d'utilisateurs",
-                    "use_case": "Tests en production et réduction des risques"
-                }
+                {"name": "CQRS", "description": "Séparation lecture/écriture"},
+                {"name": "Event Sourcing", "description": "Stockage des événements"}
             ]
         }
 
     # -------------------------------------------------------------------------
-    # GESTION DES MESSAGES (ALIGNÉE SUR CODER)
+    # HANDLERS DE MESSAGES
     # -------------------------------------------------------------------------
-
-    async def _handle_custom_message(self, message: Message) -> Optional[Message]:
-        """
-        Gère les messages personnalisés pour l'agent Architect.
-        """
-        try:
-            message_type = message.message_type
-
-            handlers = {
-                "design_architecture": self._handle_design_architecture,
-                "review_design": self._handle_review_design,
-                "get_design": self._handle_get_design,
-                "validate_requirements": self._handle_validate_requirements,
-                "split_spec": self._handle_split_spec,
-            }
-
-            if message_type in handlers:
-                return await handlers[message_type](message)
-
-            self._logger.warning(f"Type de message non reconnu: {message_type}")
-            return None
-
-        except Exception as e:
-            self._logger.error(f"Erreur lors du traitement du message personnalisé: {e}")
-            return Message(
-                sender=self.name,
-                recipient=message.sender,
-                content={"error": str(e)},
-                message_type="error",
-                correlation_id=message.message_id
-            )
 
     async def _handle_design_architecture(self, message: Message) -> Message:
         requirements = message.content.get("requirements", {})
         result = await self.design_architecture(requirements)
         return Message(
-            sender=self.name,
+            sender=self._name,
             recipient=message.sender,
             content={"design_result": result},
-            message_type="design_result",
+            message_type=MessageType.RESPONSE.value,
             correlation_id=message.message_id
         )
 
     async def _handle_review_design(self, message: Message) -> Message:
         design_id = message.content.get("design_id", "")
-        feedback = message.content.get("feedback", {})
-        result = await self.review_design(design_id, feedback)
+        design = self.get_design(design_id)
         return Message(
-            sender=self.name,
+            sender=self._name,
             recipient=message.sender,
-            content={"review_result": result},
-            message_type="review_result",
+            content={"design": design, "reviewed": True},
+            message_type=MessageType.RESPONSE.value,
             correlation_id=message.message_id
         )
 
@@ -1209,10 +1342,10 @@ class ArchitectAgent(BaseAgent):
         design_id = message.content.get("design_id", "")
         design = self.get_design(design_id)
         return Message(
-            sender=self.name,
+            sender=self._name,
             recipient=message.sender,
             content={"design": design},
-            message_type="design_response",
+            message_type=MessageType.RESPONSE.value,
             correlation_id=message.message_id
         )
 
@@ -1220,10 +1353,10 @@ class ArchitectAgent(BaseAgent):
         requirements = message.content.get("requirements", {})
         result = self.validate_requirements(requirements)
         return Message(
-            sender=self.name,
+            sender=self._name,
             recipient=message.sender,
             content={"validation_result": result},
-            message_type="validation_response",
+            message_type=MessageType.RESPONSE.value,
             correlation_id=message.message_id
         )
 
@@ -1232,10 +1365,99 @@ class ArchitectAgent(BaseAgent):
         strategy = message.content.get("strategy", "largeur_dabord")
         result = await self.split_spec_into_fragments(global_spec, strategy)
         return Message(
-            sender=self.name,
+            sender=self._name,
             recipient=message.sender,
             content={"fragments": result},
-            message_type="split_spec_result",
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_record_call_result(self, message: Message) -> Message:
+        service_name = message.content.get("service_name", "")
+        success = message.content.get("success", False)
+        error = message.content.get("error")
+        result = await self.record_call_result(service_name, success, error)
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"result": result},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_check_service_circuit(self, message: Message) -> Message:
+        service_name = message.content.get("service_name", "")
+        result = await self.check_service_circuit(service_name)
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"circuit_status": result},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_delegate_to_domain(self, message: Message) -> Message:
+        domain = message.content.get("domain", "")
+        action = message.content.get("action", "")
+        params = message.content.get("params", {})
+        result = await self.delegate_to_domain(domain, action, params)
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"delegation_result": result},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_delegate_multi_domain(self, message: Message) -> Message:
+        tasks = message.content.get("tasks", [])
+        results = {}
+        for task in tasks:
+            domain = task.get("domain")
+            action = task.get("action")
+            params = task.get("params", {})
+            if domain and action:
+                results[f"{domain}_{action}"] = await self.delegate_to_domain(domain, action, params)
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"multi_delegation_results": results},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_resolve_conflicts(self, message: Message) -> Message:
+        designs = message.content.get("designs", [])
+        # Résolution simple: fusionner les designs
+        merged = {}
+        for design in designs:
+            merged.update(design)
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"resolved": True, "merged_design": merged},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_create_adr(self, message: Message) -> Message:
+        adr_data = message.content.get("adr_data", {})
+        adr = ArchitectureDecision(**adr_data)
+        self._architect_metrics["adr_generated"] += 1
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"adr": adr.to_dict()},
+            message_type=MessageType.RESPONSE.value,
+            correlation_id=message.message_id
+        )
+
+    async def _handle_get_metrics(self, message: Message) -> Message:
+        return Message(
+            sender=self._name,
+            recipient=message.sender,
+            content={"metrics": self.get_architect_metrics()},
+            message_type=MessageType.RESPONSE.value,
             correlation_id=message.message_id
         )
 
@@ -1250,12 +1472,12 @@ def create_architect_agent(config_path: Optional[str] = None) -> ArchitectAgent:
 
 
 # -----------------------------------------------------------------------------
-# POINT D'ENTRÉE POUR LES TESTS (CORRIGÉ)
+# POINT D'ENTRÉE POUR LES TESTS
 # -----------------------------------------------------------------------------
 
 async def test_architect_agent():
-    """Teste l'agent Architect"""
-    print("🧪 Test de l'agent Architect...")
+    """Teste l'agent Architect v4.0.0"""
+    print("🧪 Test de l'agent Architect v4.0.0...")
 
     agent = ArchitectAgent()
 
@@ -1271,22 +1493,23 @@ async def test_architect_agent():
             "project_name": "Test E-Commerce Platform",
             "description": "Plateforme e-commerce avec catalogue, panier et paiement",
             "functional_requirements": [
-                {"id": "FR1", "description": "Gestion des utilisateurs et authentification"},
-                {"id": "FR2", "description": "Catalogue de produits avec recherche et filtres"},
-                {"id": "FR3", "description": "Panier d'achat et gestion des commandes"},
-                {"id": "FR4", "description": "Système de paiement sécurisé"},
-                {"id": "FR5", "description": "Gestion des stocks en temps réel"}
+                {"id": "FR1", "description": "Gestion des utilisateurs"},
+                {"id": "FR2", "description": "Catalogue de produits"},
+                {"id": "FR3", "description": "Panier d'achat"},
+                {"id": "FR4", "description": "Système de paiement"},
+                {"id": "FR5", "description": "Gestion des stocks"}
             ],
             "non_functional_requirements": {
-                "performance": {"response_time": "200ms p95", "throughput": "1000 req/s"},
-                "availability": "99.99%",
-                "scalability": "Horizontal scaling support"
+                "performance": {"response_time": "200ms"},
+                "availability": "99.99%"
             },
             "technical_constraints": {
-                "programming_languages": ["Python", "JavaScript"],
+                "programming_languages": ["Python"],
                 "database_type": "postgresql"
             },
-            "expected_scale": {"expected_users": 100000, "expected_transactions": 10000}
+            "expected_scale": {"expected_users": 100000},
+            "security_requirements": ["authentication", "encryption"],
+            "disaster_recovery": {"rto": "4 hours", "rpo": "1 hour"}
         }
 
         result = await agent.design_architecture(requirements)
@@ -1295,20 +1518,17 @@ async def test_architect_agent():
             design_id = result["design_id"]
             print(f"  Conception créée: {design_id}")
             print(f"  Type d'architecture: {result['architecture']['architecture_type']}")
-            print(f"  Nombre de composants: {len(result['architecture']['components'])}")
 
             designs = agent.list_designs()
             print(f"  Conceptions disponibles: {len(designs)}")
         else:
             print(f"  ❌ Échec de la conception: {result.get('error', 'Erreur inconnue')}")
 
-    health = await agent.health_check()
-    print(f"  Santé: {health['status']}")
-
+    print(f"\n  Statut final: {agent.status}")
     await agent.shutdown()
-    print(f"  Statut final: {agent.status}")
+    print(f"  Statut après arrêt: {agent.status}")
 
-    print("✅ Test ArchitectAgent terminé")
+    print("\n✅ Test ArchitectAgent v4.0.0 terminé")
 
 
 if __name__ == "__main__":

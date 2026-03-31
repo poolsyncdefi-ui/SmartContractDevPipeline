@@ -1,0 +1,12 @@
+# agents/architect/sous_agents/database_architect/templates/ecommerce.yaml
+name: "E-commerce Database"
+engine: postgresql
+tables:
+  - name: users
+    columns: [id, email, name, created_at]
+  - name: products
+    columns: [id, name, price, stock]
+  - name: orders
+    columns: [id, user_id, total, status]
+  - name: order_items
+    columns: [id, order_id, product_id, quantity]

@@ -111,3 +111,71 @@ expected <block end>, but found '<block mapping start>'
 2026-03-23 21:00:01 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
 2026-03-23 21:04:10 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
 2026-03-23 21:04:10 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:40:03 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:40:03 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:43:55 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:43:55 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:45:46 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:45:46 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:49:52 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:49:52 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:55:26 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:55:26 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 08:58:52 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 08:58:52 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 09:05:08 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 09:05:08 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 09:06:45 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 09:06:45 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 09:12:59 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 09:12:59 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 09:16:24 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 09:16:24 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 09:21:30 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 09:21:30 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 20:37:55 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 20:37:55 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 20:41:10 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 20:41:10 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 20:44:46 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 20:44:46 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 20:50:50 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 20:50:50 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 21:08:33 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 21:08:33 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-25 21:30:36 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-25 21:30:36 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-26 08:58:16 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-26 08:58:16 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-26 09:03:35 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-26 09:03:35 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-26 09:07:48 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-26 09:07:48 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-26 09:16:20 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-26 09:16:20 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 20:31:44 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 20:31:44 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 20:35:57 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 20:35:57 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 20:45:15 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 20:45:15 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 20:56:19 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 20:56:19 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:01:30 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:01:30 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:04:49 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:04:49 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:21:56 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:21:56 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:27:09 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:27:09 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:32:07 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:32:07 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:40:16 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:40:16 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:51:04 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:51:04 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-30 21:58:04 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-30 21:58:04 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
+2026-03-31 19:13:41 - agent.PubsubManagerSubAgent - INFO - Configuration chargée: PubSubManagerSubAgent v2.0.0
+2026-03-31 19:13:41 - agent.PubsubManagerSubAgent - INFO - Agent PubSubManagerSubAgent créé (config: agents/communication/sous_agents/pubsub_manager/config.yaml)
